@@ -114,10 +114,11 @@ Viteの `base` は将来のプロジェクトサイトに備えて **`/slime-mer
 **正式な正本はGitHubの `main` ブランチにある最新版Markdown**です。WorkやChatGPTは最初に次の固定パスを参照してください。
 
 - [最新版仕様書への固定案内（CURRENT.md）](docs/specifications/CURRENT.md)
-- [完全仕様書 v0.2.3（2026-10-30）](docs/specifications/Slime_Merge_Game_Specification_v0.2.3_2026-10-30.md)
-- [直前の完全仕様書 v0.2.2（保全済み）](docs/specifications/Slime_Merge_Game_Specification_v0.2.2_2026-10-30.md)
+- [完全仕様書 v0.2.4（2026-10-30）](docs/specifications/Slime_Merge_Game_Specification_v0.2.4_2026-10-30.md)
+- [直前の完全仕様書 v0.2.3（保全済み）](docs/specifications/Slime_Merge_Game_Specification_v0.2.3_2026-10-30.md)
+- [旧版の完全仕様書 v0.2.2（保全済み）](docs/specifications/Slime_Merge_Game_Specification_v0.2.2_2026-10-30.md)
 
-v0.2.3は**Tier 30〜40を目指す方針**と、最高Tierへの到達状況に応じたランダム高Tier生成を追加しました。正確な最終Tier数・生成Tierの確率式は未決定です。生成処理の本格実装はPhase 2で行い、Phase 1では高Tierに対応できるデータ設計を優先します。
+v0.2.4で**現行最終Tierを30**に確定しました（将来40への拡張は別途検討）。生成Tierは**過去の最高到達Tier**を基準とし、**中心が進行に応じて右へ移動する正規分布型**の抽選を採用します。平均・標準偏差・生成可能帯域の具体数値は未決定です。抽選の本格実装はPhase 2で行い、Phase 1ではTier 1〜30の安全なマージ処理・最高到達Tierに対応できるデータ構造を優先します。
 
 改版は新しい完全仕様書を追加し、履歴・【合意】【推奨・暫定】【未決定】を維持します。**PRがmainにマージされるまではmain上の旧版が正本**であり、未マージ文書を確定済みとは扱いません。GitHubを参照できない場合、古いProject添付資料を無断で現行正本にしないでください。
 
