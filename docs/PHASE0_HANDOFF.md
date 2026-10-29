@@ -10,7 +10,8 @@
 - 基盤コミット: `8127dad2665a1e13508c1a0b659ba261526fa6ff`
 - 実装HEAD（アプリ・設定・試験の最終変更）: `a2a9bb9af3caa181800019126bcda626215fd60f`
 - 本書以降は資料更新コミットが続く。資料自身のSHAは自己参照になるため、**最終ブランチHEADはDraft PRのhead SHAと `git rev-parse HEAD` で確認**する。最終報告・PR本文にも記録する。
-- Draft PR: 作成待ち。作成後に番号・URL・CI証跡を本書へ追記する。
+- 資料追加時HEAD: `a2700ac065bd79a578aa61f940361d9e6d3099b7`（下記の初回CI対象）
+- Draft PR: **#1** https://github.com/Olivia-Grace0206/slime-merge-game/pull/1 （main向け、Draft・未マージ）
 - mainへの直接コミット・マージなし。Private維持、Public化・Pages公開なし。
 
 ## 正本
@@ -71,11 +72,12 @@ Vite 8・Vitest 5の互換要件は公式資料とnpm配布メタデータで確
 |---|---|---|
 | 開発環境 | `node --version` / `npm --version` | 22.23.4 / 10.9.9 |
 | 再現インストール | `npm ci` | PASS |
+| 開発起動 | `npm run dev -- --host 127.0.0.1 --port 5173 --strictPort` | PASS、HTMLとApp.tsx変換のHTTP 200 |
 | Lint | `npm run lint` | PASS、Lint警告0 |
 | 単体試験 | `npm test -- --run` | PASS、1ファイル・29件、失敗0、skip0 |
 | 型・本番ビルド | `npm run build` | PASS、TypeScript→Vite |
 | ブラウザ | 本番distをVite previewで配信 | PASS、下記参照 |
-| CI | Draft PRのActions | 確認待ち、作成後に追記 |
+| CI | Draft PRのActions | PASS、初回run #1（下記） |
 | ユーザー実機 | Windows Chrome/Edge、iPhone/iPad Safari | 未実施 |
 | 公開URL | Pages | 未実施・今回対象外 |
 
@@ -98,6 +100,14 @@ Playwrightは検証環境だけに導入し、ゲームの依存には追加し�
 - 公式ActionsのSHA固定：checkout v7 `3d3c42e5aac5ba805825da76410c181273ba90b1`、setup-node v7 `949feb2413d6458794dcd2491c4babbbce0c15c1`。
 - Pages用workflow・upload・deployは存在しない。
 - PR作成前のfeature pushだけでは起動しない。Draft PRを作成してからCIを観測する。
+
+### 確認済みCI証跡
+
+- Run #1: https://github.com/Olivia-Grace0206/slime-merge-game/actions/runs/40912932576
+- 対象head: `a2700ac065bd79a578aa61f940361d9e6d3099b7`
+- 結果：`completed / success`。全ステップ成功、ログでもVitest 29/29・型チェック付きビルド成功を確認。
+- 本書の追記後に新HEADのCIを再確認し、**最終HEADとそのCI URLはPR本文・最終報告へ記録する**。文書の過去runを最終HEADのrunと混同しない。
+- 最終CI照合：PRの最新head SHAを取得し、同SHAに関連するCIがsuccessであること、mainが開始時SHAのままであることを確認する。
 
 ## 既知の問題・未実装
 
