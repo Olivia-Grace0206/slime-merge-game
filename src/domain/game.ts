@@ -17,13 +17,21 @@ export type MergeGroup = Readonly<{
   consumedIds: readonly string[]
   outputs: readonly GridPosition[]
 }>
-export type InvalidReason = 'invalid-state' | 'missing-source' | 'outside-board' | 'same-cell' | 'different-tier' | 'too-few' | 'max-tier'
+export type InvalidReason =
+  | 'invalid-state'
+  | 'missing-source'
+  | 'outside-board'
+  | 'same-cell'
+  | 'different-tier'
+  | 'too-few'
+  | 'max-tier'
 type PlanBase = Readonly<{ sourceId: string; target: GridPosition; snapshot: string }>
 export type MovePlan = PlanBase & Readonly<{ kind: 'move' }>
-export type MergePlan = PlanBase & Readonly<{
-  kind: 'merge'
-  outputTier: number
-  groups: readonly MergeGroup[]
-  remainderIds: readonly string[]
-}>
+export type MergePlan = PlanBase &
+  Readonly<{
+    kind: 'merge'
+    outputTier: number
+    groups: readonly MergeGroup[]
+    remainderIds: readonly string[]
+  }>
 export type DropPlan = MovePlan | MergePlan | Readonly<{ kind: 'invalid'; reason: InvalidReason }>
