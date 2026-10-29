@@ -3,7 +3,7 @@
 PC・スマートフォンで遊ぶ、スライム育成の箱庭型マージゲームです。
 同じTierの個体へ重ねてドロップし、3体→上位1体／5体→上位2体へ進化させる構想です。
 
-現在は **Phase 0：開発基盤と仮トップ画面**。盤面・移動・マージ・保存は未実装です。
+**Phase 0はPR #1でmainへマージ済み**です。現在のアプリは仮トップ画面で、Phase 1の盤面・移動・マージ・保存は未実装です。
 このReact版は、以前の単体HTML Prototypeとは別の正式開発基盤です。
 HTMLをダブルクリックする形式ではありません。
 
@@ -31,7 +31,7 @@ Pythonは不要です。対応範囲はNode.js `>=22.13.0 <23`、npm 10系です
 導入後、開いていたターミナルを開き直してください。
 
 1. GitHub Desktopで `Olivia-Grace0206/slime-merge-game` をClone、または既存Cloneを開く。
-2. **Fetch origin** を押す。**Current branch** で `feature/phase0-bootstrap` を選ぶ。
+2. **Fetch origin** を押す。安定版を確認する場合は **Current branch** で `main` を選ぶ。開発PRの確認時は、そのPRのブランチに切り替える。
 3. リモート更新があれば **Pull origin**。未コミットの変更がある場合は先に保全し、上書きしない。
 4. **Repository → Open in Terminal** でリポジトリ直下を開く。
 5. 以下を実行する（Node.js/npmのバージョンを先に確認）。
@@ -84,7 +84,7 @@ Phase 0の座標検証は「安全な整数か」の判定であり、盤面サ�
 
 | Phase | 範囲 | 現在 |
 |---|---|---|
-| 0 | 開発基盤、初期画面、CI、仕様書・引き継ぎ | 本PRの対象 |
+| 0 | 開発基盤、初期画面、CI、仕様書・引き継ぎ | 完了・PR #1はmainへマージ済み |
 | 1 | 重ねドロップ、8方向連結、5体優先、組別予告・安全な出力 | 未着手 |
 | 2 | 生成・貯蔵・クリック加速、売却・強化、保存 | 未着手 |
 | 3 | 属性継承・複合効果・変異、外見合成・○×予告 | 未着手 |
@@ -95,8 +95,7 @@ Phase 0の座標検証は「安全な整数か」の判定であり、盤面サ�
 
 今後の開発は承認済みの最新mainからFeature Branchを作成し、変更・検証・Commit・Push・PRの順で進めます。
 Desktopの **History** でコミットを確認できます。Workの作業はFetch/Pullしてから受け取ってください。
-mainへ直接コミットしません。今回は `feature/phase0-bootstrap` からmainへの **Draft PR・未マージ**で終了します。
-mainへのマージはユーザーの確認後に行います。
+mainへ直接コミットしません。**Phase 0のPR #1はマージ済み**です。今後の仕様書改訂やPhase 1実装は新しいFeature Branchで別々のPRに分け、マージはユーザーの確認後に行います。
 
 CIはNode.js 22で `npm ci → lint → test -- --run → build` を実行します。
 `contents: read` のみを使い、Actionsは公式リポジトリのコミットSHAで固定しています。
@@ -112,11 +111,15 @@ Viteの `base` は将来のプロジェクトサイトに備えて **`/slime-mer
 
 ## 仕様書
 
-現行正本： [完全仕様書 v0.2.2](docs/specifications/Slime_Merge_Game_Specification_v0.2.2_2026-10-30.md)。原文をそのまま保全しています。
-旧版はProjectの改訂履歴として維持し、本PRでは変更しません。
-仕様書のリポジトリ名「候補」は作成当時の記録です。実際の対象名は今回の直接指示で `slime-merge-game` に確定しています。
-【合意】【推奨・暫定】【未決定】を区別し、今回の仮画面や座標APIを本番ゲーム仕様の確定とは扱いません。
-距離方式・座標タイブレークなどの暫定技術詳細はPhase 1で明示し、属性計算はPhase 3に引き継ぎます。
+**正式な正本はGitHubの `main` ブランチにある最新版Markdown**です。WorkやChatGPTは最初に次の固定パスを参照してください。
+
+- [最新版仕様書への固定案内（CURRENT.md）](docs/specifications/CURRENT.md)
+- [完全仕様書 v0.2.3（2026-10-30）](docs/specifications/Slime_Merge_Game_Specification_v0.2.3_2026-10-30.md)
+- [直前の完全仕様書 v0.2.2（保全済み）](docs/specifications/Slime_Merge_Game_Specification_v0.2.2_2026-10-30.md)
+
+v0.2.3は**Tier 30〜40を目指す方針**と、最高Tierへの到達状況に応じたランダム高Tier生成を追加しました。正確な最終Tier数・生成Tierの確率式は未決定です。生成処理の本格実装はPhase 2で行い、Phase 1では高Tierに対応できるデータ設計を優先します。
+
+改版は新しい完全仕様書を追加し、履歴・【合意】【推奨・暫定】【未決定】を維持します。**PRがmainにマージされるまではmain上の旧版が正本**であり、未マージ文書を確定済みとは扱いません。GitHubを参照できない場合、古いProject添付資料を無断で現行正本にしないでください。
 
 参考にした [array-puzzle](https://github.com/Olivia-Grace0206/array-puzzle) は構成・設定・CIの読み取り専用です。
 ゲーム固有コードをコピーせず、同リポジトリへの変更・PR・設定変更は行いません。
