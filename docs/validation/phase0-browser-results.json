@@ -1,0 +1,41 @@
+[
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "status": 200,
+    "title": "スライム\nマージゲーム.",
+    "hasPhase0": true,
+    "linkWorks": true,
+    "overflow": false,
+    "errors": [],
+    "failed": []
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "status": 200,
+    "title": "スライム\nマージゲーム.",
+    "hasPhase0": true,
+    "linkWorks": true,
+    "overflow": false,
+    "errors": [],
+    "failed": []
+  },
+  {
+    "viewport": {
+      "width": 320,
+      "height": 740
+    },
+    "status": 200,
+    "title": "スライム\nマージゲーム.",
+    "hasPhase0": true,
+    "linkWorks": true,
+    "overflow": false,
+    "errors": [],
+    "failed": []
+  }
+]
