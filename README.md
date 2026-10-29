@@ -3,7 +3,7 @@
 PC・スマートフォンで遊ぶ、スライム育成の箱庭型マージゲームです。
 同じTierの個体へ重ねてドロップし、3体→上位1体／5体→上位2体へ進化させる構想です。
 
-**Phase 0はPR #1でmainへマージ済み**です。mainのアプリは現時点で仮トップ画面です。Phase 1の盤面・移動・マージは[Draft PR #4](https://github.com/Olivia-Grace0206/slime-merge-game/pull/4)のブランチで実装済み・main未マージ、保存は未実装です。
+**Phase 0はPR #1でmainへマージ済み**です。現在のアプリは仮トップ画面で、Phase 1の盤面・移動・マージ・保存は未実装です。
 このReact版は、以前の単体HTML Prototypeとは別の正式開発基盤です。
 HTMLをダブルクリックする形式ではありません。
 
@@ -114,12 +114,11 @@ Viteの `base` は将来のプロジェクトサイトに備えて **`/slime-mer
 **正式な正本はGitHubの `main` ブランチにある最新版Markdown**です。WorkやChatGPTは最初に次の固定パスを参照してください。
 
 - [最新版仕様書への固定案内（CURRENT.md）](docs/specifications/CURRENT.md)
-- [完全仕様書 v0.2.5（2026-10-30）](docs/specifications/Slime_Merge_Game_Specification_v0.2.5_2026-10-30.md)
-- [直前の完全仕様書 v0.2.4（2026-10-30）](docs/specifications/Slime_Merge_Game_Specification_v0.2.4_2026-10-30.md)
+- [完全仕様書 v0.2.4（2026-10-30）](docs/specifications/Slime_Merge_Game_Specification_v0.2.4_2026-10-30.md)
 - [直前の完全仕様書 v0.2.3（保全済み）](docs/specifications/Slime_Merge_Game_Specification_v0.2.3_2026-10-30.md)
 - [旧版の完全仕様書 v0.2.2（保全済み）](docs/specifications/Slime_Merge_Game_Specification_v0.2.2_2026-10-30.md)
 
-v0.2.5で**最終Tierを40に変更**しました（Tier30は虹色の節目、Tier31〜40は超越・カオス系）。**ランダムな金色マス**でスライムの有益な効果を強化し、**GOLDで発生頻度／常時1マス保証を強化**する方向性も追加しました。倍率2倍や具体的な時間・報酬は未確定です。以前から合意済みの**過去最高到達Tierと中心が右へ動く正規分布型生成**は維持します。Phase1 PR #4は旧上限30で実装済みのため、Tier40へのコード移行・一画面UI・ホイール／ピンチズームはPhase1.1の対象です。
+v0.2.4で**現行最終Tierを30**に確定しました（将来40への拡張は別途検討）。生成Tierは**過去の最高到達Tier**を基準とし、**中心が進行に応じて右へ移動する正規分布型**の抽選を採用します。平均・標準偏差・生成可能帯域の具体数値は未決定です。抽選の本格実装はPhase 2で行い、Phase 1ではTier 1〜30の安全なマージ処理・最高到達Tierに対応できるデータ構造を優先します。
 
 改版は新しい完全仕様書を追加し、履歴・【合意】【推奨・暫定】【未決定】を維持します。**PRがmainにマージされるまではmain上の旧版が正本**であり、未マージ文書を確定済みとは扱いません。GitHubを参照できない場合、古いProject添付資料を無断で現行正本にしないでください。
 
