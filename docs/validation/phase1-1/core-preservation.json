@@ -1,0 +1,50 @@
+[
+  {
+    "path": ".github/workflows/ci.yml",
+    "sha": "ad08660c5e5e92c3f885906ada8a9da5309c5180",
+    "actual": "ad08660c5e5e92c3f885906ada8a9da5309c5180",
+    "unchanged": true
+  },
+  {
+    "path": "package-lock.json",
+    "sha": "9da4251d6eee59bde59328cc4300dfd6db270c29",
+    "actual": "9da4251d6eee59bde59328cc4300dfd6db270c29",
+    "unchanged": true
+  },
+  {
+    "path": "package.json",
+    "sha": "d0d631b79bb55c173d266b07d8eb470520844ee5",
+    "actual": "d0d631b79bb55c173d266b07d8eb470520844ee5",
+    "unchanged": true
+  },
+  {
+    "path": "src/core/board/state.ts",
+    "sha": "e1e107aeb5744feac3327ee9edad769e6457e0fd",
+    "actual": "e1e107aeb5744feac3327ee9edad769e6457e0fd",
+    "unchanged": true
+  },
+  {
+    "path": "src/core/grid/coordinates.ts",
+    "sha": "a9308ec63e8724142f6462a2513fd329aea263ce",
+    "actual": "a9308ec63e8724142f6462a2513fd329aea263ce",
+    "unchanged": true
+  },
+  {
+    "path": "src/core/input/coordinates.ts",
+    "sha": "ae0a2e4db39a63350bf9d29fa9e0f8b95b8cd39e",
+    "actual": "ae0a2e4db39a63350bf9d29fa9e0f8b95b8cd39e",
+    "unchanged": true
+  },
+  {
+    "path": "src/core/merge/apply.ts",
+    "sha": "ae628ae0af526f0c8052e10583bd2be1dfd956da",
+    "actual": "ae628ae0af526f0c8052e10583bd2be1dfd956da",
+    "unchanged": true
+  },
+  {
+    "path": "src/core/merge/plan.ts",
+    "sha": "7bb047406cd3f8b8a6bfd6f25d27eda5d79d55fb",
+    "actual": "7bb047406cd3f8b8a6bfd6f25d27eda5d79d55fb",
+    "unchanged": true
+  }
+]

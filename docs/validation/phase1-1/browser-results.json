@@ -1,0 +1,1839 @@
+{
+  "browser": "134.0.6998.35",
+  "playwright": "1.51.1",
+  "checks": [
+    {
+      "name": "1920x1080 layout: no page scroll, complete maximal centered square and reachable controls",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 menus: help, settings, 40-tier internally scrollable appearance and focus return",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 wheel in/out and cursor anchor, 75/300 clamps, UI size unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 trusted pinch cancels active merge; center held; residual finger cannot drop",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 pinch touchCancel/blur/third contact never commit and fresh touch recovers",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 zoom+pan 3体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 zoom+pan 5体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 zoom+pan 11体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 zoomed different-tier/outside drop, Escape, pointercancel, lost capture, blur preserve state",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 resize/rotation cancels pending drag and safely refits then merges",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 layout: no page scroll, complete maximal centered square and reachable controls",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 menus: help, settings, 40-tier internally scrollable appearance and focus return",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 wheel in/out and cursor anchor, 75/300 clamps, UI size unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 trusted pinch cancels active merge; center held; residual finger cannot drop",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 pinch touchCancel/blur/third contact never commit and fresh touch recovers",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 zoom+pan 3体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 zoom+pan 5体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 zoom+pan 11体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 zoomed different-tier/outside drop, Escape, pointercancel, lost capture, blur preserve state",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 resize/rotation cancels pending drag and safely refits then merges",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 layout: no page scroll, complete maximal centered square and reachable controls",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 menus: help, settings, 40-tier internally scrollable appearance and focus return",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 wheel in/out and cursor anchor, 75/300 clamps, UI size unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 trusted pinch cancels active merge; center held; residual finger cannot drop",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 pinch touchCancel/blur/third contact never commit and fresh touch recovers",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 zoom+pan 3体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 zoom+pan 5体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 zoom+pan 11体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 zoomed different-tier/outside drop, Escape, pointercancel, lost capture, blur preserve state",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 resize/rotation cancels pending drag and safely refits then merges",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 layout: no page scroll, complete maximal centered square and reachable controls",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 menus: help, settings, 40-tier internally scrollable appearance and focus return",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 wheel in/out and cursor anchor, 75/300 clamps, UI size unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 trusted pinch cancels active merge; center held; residual finger cannot drop",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 pinch touchCancel/blur/third contact never commit and fresh touch recovers",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 zoom+pan 3体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 zoom+pan 5体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 zoom+pan 11体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 zoomed different-tier/outside drop, Escape, pointercancel, lost capture, blur preserve state",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 resize/rotation cancels pending drag and safely refits then merges",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 layout: no page scroll, complete maximal centered square and reachable controls",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 menus: help, settings, 40-tier internally scrollable appearance and focus return",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 wheel in/out and cursor anchor, 75/300 clamps, UI size unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 trusted pinch cancels active merge; center held; residual finger cannot drop",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 pinch touchCancel/blur/third contact never commit and fresh touch recovers",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 zoom+pan 3体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 zoom+pan 5体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 zoom+pan 11体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 zoomed different-tier/outside drop, Escape, pointercancel, lost capture, blur preserve state",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 resize/rotation cancels pending drag and safely refits then merges",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 layout: no page scroll, complete maximal centered square and reachable controls",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 menus: help, settings, 40-tier internally scrollable appearance and focus return",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 wheel in/out and cursor anchor, 75/300 clamps, UI size unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 trusted pinch cancels active merge; center held; residual finger cannot drop",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 pinch touchCancel/blur/third contact never commit and fresh touch recovers",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 zoom+pan 3体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 zoom+pan 5体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 zoom+pan 11体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 zoomed different-tier/outside drop, Escape, pointercancel, lost capture, blur preserve state",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 resize/rotation cancels pending drag and safely refits then merges",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 layout: no page scroll, complete maximal centered square and reachable controls",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 menus: help, settings, 40-tier internally scrollable appearance and focus return",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 wheel in/out and cursor anchor, 75/300 clamps, UI size unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 trusted pinch cancels active merge; center held; residual finger cannot drop",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 pinch touchCancel/blur/third contact never commit and fresh touch recovers",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 zoom+pan 3体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 zoom+pan 5体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 zoom+pan 11体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 zoomed different-tier/outside drop, Escape, pointercancel, lost capture, blur preserve state",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 resize/rotation cancels pending drag and safely refits then merges",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 layout: no page scroll, complete maximal centered square and reachable controls",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 menus: help, settings, 40-tier internally scrollable appearance and focus return",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 wheel in/out and cursor anchor, 75/300 clamps, UI size unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 trusted pinch cancels active merge; center held; residual finger cannot drop",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 pinch touchCancel/blur/third contact never commit and fresh touch recovers",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 zoom+pan 3体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 zoom+pan 5体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 zoom+pan 11体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 zoomed different-tier/outside drop, Escape, pointercancel, lost capture, blur preserve state",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 resize/rotation cancels pending drag and safely refits then merges",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 layout: no page scroll, complete maximal centered square and reachable controls",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 menus: help, settings, 40-tier internally scrollable appearance and focus return",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 wheel in/out and cursor anchor, 75/300 clamps, UI size unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 trusted pinch cancels active merge; center held; residual finger cannot drop",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 pinch touchCancel/blur/third contact never commit and fresh touch recovers",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 zoom+pan 3体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 zoom+pan 5体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 zoom+pan 11体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 zoomed different-tier/outside drop, Escape, pointercancel, lost capture, blur preserve state",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 resize/rotation cancels pending drag and safely refits then merges",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 layout: no page scroll, complete maximal centered square and reachable controls",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 menus: help, settings, 40-tier internally scrollable appearance and focus return",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 wheel in/out and cursor anchor, 75/300 clamps, UI size unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 trusted pinch cancels active merge; center held; residual finger cannot drop",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 pinch touchCancel/blur/third contact never commit and fresh touch recovers",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 zoom+pan 3体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 zoom+pan 5体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 zoom+pan 11体マージ preview IDs, remainder and output cells match commit",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 zoomed different-tier/outside drop, Escape, pointercancel, lost capture, blur preserve state",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 resize/rotation cancels pending drag and safely refits then merges",
+      "result": "PASS"
+    }
+  ],
+  "errors": [],
+  "measurements": [
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "scrollHeight": 1080,
+      "clientHeight": 1080,
+      "scrollWidth": 1920,
+      "clientWidth": 1920,
+      "board": {
+        "x": 475,
+        "y": 60,
+        "width": 952,
+        "height": 952,
+        "right": 1427,
+        "bottom": 1012
+      },
+      "gameViewport": {
+        "x": 94,
+        "y": 56,
+        "width": 1714,
+        "height": 960,
+        "right": 1808,
+        "bottom": 1016
+      },
+      "header": {
+        "x": 8,
+        "y": 6,
+        "width": 1904,
+        "height": 44,
+        "right": 1912,
+        "bottom": 50
+      },
+      "menu": {
+        "x": 8,
+        "y": 56,
+        "width": 78,
+        "height": 960,
+        "right": 86,
+        "bottom": 1016
+      },
+      "camera": {
+        "x": 1816,
+        "y": 56,
+        "width": 96,
+        "height": 960,
+        "right": 1912,
+        "bottom": 1016
+      },
+      "status": {
+        "x": 8,
+        "y": 1022,
+        "width": 1904,
+        "height": 52,
+        "right": 1912,
+        "bottom": 1074
+      },
+      "boardAreaPercent": 43.70679012345679,
+      "boardWidthPercent": 49.583333333333336,
+      "boardHeightPercent": 88.14814814814815,
+      "buttons": [
+        {
+          "text": "?遊び方",
+          "visible": true
+        },
+        {
+          "text": "▦検証",
+          "visible": true
+        },
+        {
+          "text": "✦外見",
+          "visible": true
+        },
+        {
+          "text": "⚙設定",
+          "visible": true
+        },
+        {
+          "text": "−",
+          "visible": true
+        },
+        {
+          "text": "+",
+          "visible": true
+        },
+        {
+          "text": "表示リセット",
+          "visible": true
+        }
+      ],
+      "rootOverflow": "visible",
+      "bodyOverflow": "visible",
+      "baseline": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "scrollHeight": 1350,
+        "clientHeight": 1080,
+        "scrollWidth": 1920,
+        "clientWidth": 1920,
+        "board": {
+          "x": 439,
+          "y": 319.1875,
+          "width": 733,
+          "height": 733,
+          "right": 1172,
+          "bottom": 1052.1875
+        },
+        "gameViewport": {
+          "x": 419,
+          "y": 299.1875,
+          "width": 773,
+          "height": 773,
+          "right": 1192,
+          "bottom": 1072.1875
+        },
+        "header": {
+          "x": 417,
+          "y": 25,
+          "width": 1086,
+          "height": 69,
+          "right": 1503,
+          "bottom": 94
+        },
+        "menu": null,
+        "camera": null,
+        "status": {
+          "x": 419,
+          "y": 1072.1875,
+          "width": 773,
+          "height": 90,
+          "right": 1192,
+          "bottom": 1162.1875
+        },
+        "boardAreaPercent": 25.910927854938272,
+        "boardWidthPercent": 38.177083333333336,
+        "boardHeightPercent": 67.87037037037037,
+        "buttons": [],
+        "rootOverflow": "visible",
+        "bodyOverflow": "visible"
+      }
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scrollHeight": 900,
+      "clientHeight": 900,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "board": {
+        "x": 325,
+        "y": 60,
+        "width": 772,
+        "height": 772,
+        "right": 1097,
+        "bottom": 832
+      },
+      "gameViewport": {
+        "x": 94,
+        "y": 56,
+        "width": 1234,
+        "height": 780,
+        "right": 1328,
+        "bottom": 836
+      },
+      "header": {
+        "x": 8,
+        "y": 6,
+        "width": 1424,
+        "height": 44,
+        "right": 1432,
+        "bottom": 50
+      },
+      "menu": {
+        "x": 8,
+        "y": 56,
+        "width": 78,
+        "height": 780,
+        "right": 86,
+        "bottom": 836
+      },
+      "camera": {
+        "x": 1336,
+        "y": 56,
+        "width": 96,
+        "height": 780,
+        "right": 1432,
+        "bottom": 836
+      },
+      "status": {
+        "x": 8,
+        "y": 842,
+        "width": 1424,
+        "height": 52,
+        "right": 1432,
+        "bottom": 894
+      },
+      "boardAreaPercent": 45.98641975308642,
+      "boardWidthPercent": 53.61111111111111,
+      "boardHeightPercent": 85.77777777777777,
+      "buttons": [
+        {
+          "text": "?遊び方",
+          "visible": true
+        },
+        {
+          "text": "▦検証",
+          "visible": true
+        },
+        {
+          "text": "✦外見",
+          "visible": true
+        },
+        {
+          "text": "⚙設定",
+          "visible": true
+        },
+        {
+          "text": "−",
+          "visible": true
+        },
+        {
+          "text": "+",
+          "visible": true
+        },
+        {
+          "text": "表示リセット",
+          "visible": true
+        }
+      ],
+      "rootOverflow": "visible",
+      "bodyOverflow": "visible",
+      "baseline": {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scrollHeight": 1350,
+        "clientHeight": 900,
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "board": {
+          "x": 199,
+          "y": 319.1875,
+          "width": 733,
+          "height": 733,
+          "right": 932,
+          "bottom": 1052.1875
+        },
+        "gameViewport": {
+          "x": 179,
+          "y": 299.1875,
+          "width": 773,
+          "height": 773,
+          "right": 952,
+          "bottom": 1072.1875
+        },
+        "header": {
+          "x": 177,
+          "y": 25,
+          "width": 1086,
+          "height": 69,
+          "right": 1263,
+          "bottom": 94
+        },
+        "menu": null,
+        "camera": null,
+        "status": {
+          "x": 179,
+          "y": 1072.1875,
+          "width": 773,
+          "height": 90,
+          "right": 952,
+          "bottom": 1162.1875
+        },
+        "boardAreaPercent": 41.45748456790124,
+        "boardWidthPercent": 50.90277777777777,
+        "boardHeightPercent": 81.44444444444444,
+        "buttons": [],
+        "rootOverflow": "visible",
+        "bodyOverflow": "visible"
+      }
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "scrollHeight": 768,
+      "clientHeight": 768,
+      "scrollWidth": 1366,
+      "clientWidth": 1366,
+      "board": {
+        "x": 354,
+        "y": 60,
+        "width": 640,
+        "height": 640,
+        "right": 994,
+        "bottom": 700
+      },
+      "gameViewport": {
+        "x": 94,
+        "y": 56,
+        "width": 1160,
+        "height": 648,
+        "right": 1254,
+        "bottom": 704
+      },
+      "header": {
+        "x": 8,
+        "y": 6,
+        "width": 1350,
+        "height": 44,
+        "right": 1358,
+        "bottom": 50
+      },
+      "menu": {
+        "x": 8,
+        "y": 56,
+        "width": 78,
+        "height": 648,
+        "right": 86,
+        "bottom": 704
+      },
+      "camera": {
+        "x": 1262,
+        "y": 56,
+        "width": 96,
+        "height": 648,
+        "right": 1358,
+        "bottom": 704
+      },
+      "status": {
+        "x": 8,
+        "y": 710,
+        "width": 1350,
+        "height": 52,
+        "right": 1358,
+        "bottom": 762
+      },
+      "boardAreaPercent": 39.043435822352365,
+      "boardWidthPercent": 46.85212298682284,
+      "boardHeightPercent": 83.33333333333334,
+      "buttons": [
+        {
+          "text": "?遊び方",
+          "visible": true
+        },
+        {
+          "text": "▦検証",
+          "visible": true
+        },
+        {
+          "text": "✦外見",
+          "visible": true
+        },
+        {
+          "text": "⚙設定",
+          "visible": true
+        },
+        {
+          "text": "−",
+          "visible": true
+        },
+        {
+          "text": "+",
+          "visible": true
+        },
+        {
+          "text": "表示リセット",
+          "visible": true
+        }
+      ],
+      "rootOverflow": "visible",
+      "bodyOverflow": "visible",
+      "baseline": {
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "scrollHeight": 1350,
+        "clientHeight": 768,
+        "scrollWidth": 1366,
+        "clientWidth": 1366,
+        "board": {
+          "x": 162,
+          "y": 319.1875,
+          "width": 733,
+          "height": 733,
+          "right": 895,
+          "bottom": 1052.1875
+        },
+        "gameViewport": {
+          "x": 142,
+          "y": 299.1875,
+          "width": 773,
+          "height": 773,
+          "right": 915,
+          "bottom": 1072.1875
+        },
+        "header": {
+          "x": 140,
+          "y": 25,
+          "width": 1086,
+          "height": 69,
+          "right": 1226,
+          "bottom": 94
+        },
+        "menu": null,
+        "camera": null,
+        "status": {
+          "x": 142,
+          "y": 1072.1875,
+          "width": 773,
+          "height": 90,
+          "right": 915,
+          "bottom": 1162.1875
+        },
+        "boardAreaPercent": 51.21486472059541,
+        "boardWidthPercent": 53.66032210834554,
+        "boardHeightPercent": 95.44270833333334,
+        "buttons": [],
+        "rootOverflow": "visible",
+        "bodyOverflow": "visible"
+      }
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "scrollHeight": 720,
+      "clientHeight": 720,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "board": {
+        "x": 335,
+        "y": 60,
+        "width": 592,
+        "height": 592,
+        "right": 927,
+        "bottom": 652
+      },
+      "gameViewport": {
+        "x": 94,
+        "y": 56,
+        "width": 1074,
+        "height": 600,
+        "right": 1168,
+        "bottom": 656
+      },
+      "header": {
+        "x": 8,
+        "y": 6,
+        "width": 1264,
+        "height": 44,
+        "right": 1272,
+        "bottom": 50
+      },
+      "menu": {
+        "x": 8,
+        "y": 56,
+        "width": 78,
+        "height": 600,
+        "right": 86,
+        "bottom": 656
+      },
+      "camera": {
+        "x": 1176,
+        "y": 56,
+        "width": 96,
+        "height": 600,
+        "right": 1272,
+        "bottom": 656
+      },
+      "status": {
+        "x": 8,
+        "y": 662,
+        "width": 1264,
+        "height": 52,
+        "right": 1272,
+        "bottom": 714
+      },
+      "boardAreaPercent": 38.02777777777778,
+      "boardWidthPercent": 46.25,
+      "boardHeightPercent": 82.22222222222221,
+      "buttons": [
+        {
+          "text": "?遊び方",
+          "visible": true
+        },
+        {
+          "text": "▦検証",
+          "visible": true
+        },
+        {
+          "text": "✦外見",
+          "visible": true
+        },
+        {
+          "text": "⚙設定",
+          "visible": true
+        },
+        {
+          "text": "−",
+          "visible": true
+        },
+        {
+          "text": "+",
+          "visible": true
+        },
+        {
+          "text": "表示リセット",
+          "visible": true
+        }
+      ],
+      "rootOverflow": "visible",
+      "bodyOverflow": "visible",
+      "baseline": {
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "scrollHeight": 1350,
+        "clientHeight": 720,
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "board": {
+          "x": 119,
+          "y": 319.1875,
+          "width": 733,
+          "height": 733,
+          "right": 852,
+          "bottom": 1052.1875
+        },
+        "gameViewport": {
+          "x": 99,
+          "y": 299.1875,
+          "width": 773,
+          "height": 773,
+          "right": 872,
+          "bottom": 1072.1875
+        },
+        "header": {
+          "x": 97,
+          "y": 25,
+          "width": 1086,
+          "height": 69,
+          "right": 1183,
+          "bottom": 94
+        },
+        "menu": null,
+        "camera": null,
+        "status": {
+          "x": 99,
+          "y": 1072.1875,
+          "width": 773,
+          "height": 90,
+          "right": 872,
+          "bottom": 1162.1875
+        },
+        "boardAreaPercent": 58.29958767361111,
+        "boardWidthPercent": 57.265625,
+        "boardHeightPercent": 101.80555555555554,
+        "buttons": [],
+        "rootOverflow": "visible",
+        "bodyOverflow": "visible"
+      }
+    },
+    {
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "scrollHeight": 768,
+      "clientHeight": 768,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "board": {
+        "x": 183,
+        "y": 60,
+        "width": 640,
+        "height": 640,
+        "right": 823,
+        "bottom": 700
+      },
+      "gameViewport": {
+        "x": 94,
+        "y": 56,
+        "width": 818,
+        "height": 648,
+        "right": 912,
+        "bottom": 704
+      },
+      "header": {
+        "x": 8,
+        "y": 6,
+        "width": 1008,
+        "height": 44,
+        "right": 1016,
+        "bottom": 50
+      },
+      "menu": {
+        "x": 8,
+        "y": 56,
+        "width": 78,
+        "height": 648,
+        "right": 86,
+        "bottom": 704
+      },
+      "camera": {
+        "x": 920,
+        "y": 56,
+        "width": 96,
+        "height": 648,
+        "right": 1016,
+        "bottom": 704
+      },
+      "status": {
+        "x": 8,
+        "y": 710,
+        "width": 1008,
+        "height": 52,
+        "right": 1016,
+        "bottom": 762
+      },
+      "boardAreaPercent": 52.083333333333336,
+      "boardWidthPercent": 62.5,
+      "boardHeightPercent": 83.33333333333334,
+      "buttons": [
+        {
+          "text": "?遊び方",
+          "visible": true
+        },
+        {
+          "text": "▦検証",
+          "visible": true
+        },
+        {
+          "text": "✦外見",
+          "visible": true
+        },
+        {
+          "text": "⚙設定",
+          "visible": true
+        },
+        {
+          "text": "−",
+          "visible": true
+        },
+        {
+          "text": "+",
+          "visible": true
+        },
+        {
+          "text": "表示リセット",
+          "visible": true
+        }
+      ],
+      "rootOverflow": "visible",
+      "bodyOverflow": "visible",
+      "baseline": {
+        "viewport": {
+          "width": 1024,
+          "height": 768
+        },
+        "scrollHeight": 1224,
+        "clientHeight": 768,
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "board": {
+          "x": 54,
+          "y": 319.1875,
+          "width": 607,
+          "height": 607,
+          "right": 661,
+          "bottom": 926.1875
+        },
+        "gameViewport": {
+          "x": 34,
+          "y": 299.1875,
+          "width": 647,
+          "height": 647,
+          "right": 681,
+          "bottom": 946.1875
+        },
+        "header": {
+          "x": 32,
+          "y": 25,
+          "width": 960,
+          "height": 69,
+          "right": 992,
+          "bottom": 94
+        },
+        "menu": null,
+        "camera": null,
+        "status": {
+          "x": 34,
+          "y": 946.1875,
+          "width": 647,
+          "height": 90,
+          "right": 681,
+          "bottom": 1036.1875
+        },
+        "boardAreaPercent": 46.850713094075516,
+        "boardWidthPercent": 59.27734375,
+        "boardHeightPercent": 79.03645833333334,
+        "buttons": [],
+        "rootOverflow": "visible",
+        "bodyOverflow": "visible"
+      }
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "scrollHeight": 1024,
+      "clientHeight": 1024,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "board": {
+        "x": 8,
+        "y": 82,
+        "width": 752,
+        "height": 752,
+        "right": 760,
+        "bottom": 834
+      },
+      "gameViewport": {
+        "x": 4,
+        "y": 52,
+        "width": 760,
+        "height": 812,
+        "right": 764,
+        "bottom": 864
+      },
+      "header": {
+        "x": 4,
+        "y": 6,
+        "width": 760,
+        "height": 42,
+        "right": 764,
+        "bottom": 48
+      },
+      "menu": {
+        "x": 4,
+        "y": 912,
+        "width": 760,
+        "height": 48,
+        "right": 764,
+        "bottom": 960
+      },
+      "camera": {
+        "x": 4,
+        "y": 868,
+        "width": 760,
+        "height": 40,
+        "right": 764,
+        "bottom": 908
+      },
+      "status": {
+        "x": 4,
+        "y": 964,
+        "width": 760,
+        "height": 54,
+        "right": 764,
+        "bottom": 1018
+      },
+      "boardAreaPercent": 71.90755208333334,
+      "boardWidthPercent": 97.91666666666666,
+      "boardHeightPercent": 73.4375,
+      "buttons": [
+        {
+          "text": "?遊び方",
+          "visible": true
+        },
+        {
+          "text": "▦検証",
+          "visible": true
+        },
+        {
+          "text": "✦外見",
+          "visible": true
+        },
+        {
+          "text": "⚙設定",
+          "visible": true
+        },
+        {
+          "text": "−",
+          "visible": true
+        },
+        {
+          "text": "+",
+          "visible": true
+        },
+        {
+          "text": "表示リセット",
+          "visible": true
+        }
+      ],
+      "rootOverflow": "visible",
+      "bodyOverflow": "visible",
+      "baseline": {
+        "viewport": {
+          "width": 768,
+          "height": 1024
+        },
+        "scrollHeight": 1575,
+        "clientHeight": 1024,
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "board": {
+          "x": 83,
+          "y": 290.1875,
+          "width": 602,
+          "height": 602,
+          "right": 685,
+          "bottom": 892.1875
+        },
+        "gameViewport": {
+          "x": 66,
+          "y": 273.1875,
+          "width": 636,
+          "height": 636,
+          "right": 702,
+          "bottom": 909.1875
+        },
+        "header": {
+          "x": 18,
+          "y": 18,
+          "width": 732,
+          "height": 62,
+          "right": 750,
+          "bottom": 80
+        },
+        "menu": null,
+        "camera": null,
+        "status": {
+          "x": 66,
+          "y": 909.1875,
+          "width": 636,
+          "height": 90,
+          "right": 702,
+          "bottom": 999.1875
+        },
+        "boardAreaPercent": 46.08205159505208,
+        "boardWidthPercent": 78.38541666666666,
+        "boardHeightPercent": 58.7890625,
+        "buttons": [],
+        "rootOverflow": "visible",
+        "bodyOverflow": "visible"
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scrollHeight": 844,
+      "clientHeight": 844,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "board": {
+        "x": 8,
+        "y": 181,
+        "width": 374,
+        "height": 374,
+        "right": 382,
+        "bottom": 555
+      },
+      "gameViewport": {
+        "x": 4,
+        "y": 52,
+        "width": 382,
+        "height": 632,
+        "right": 386,
+        "bottom": 684
+      },
+      "header": {
+        "x": 4,
+        "y": 6,
+        "width": 382,
+        "height": 42,
+        "right": 386,
+        "bottom": 48
+      },
+      "menu": {
+        "x": 4,
+        "y": 732,
+        "width": 382,
+        "height": 48,
+        "right": 386,
+        "bottom": 780
+      },
+      "camera": {
+        "x": 4,
+        "y": 688,
+        "width": 382,
+        "height": 40,
+        "right": 386,
+        "bottom": 728
+      },
+      "status": {
+        "x": 4,
+        "y": 784,
+        "width": 382,
+        "height": 54,
+        "right": 386,
+        "bottom": 838
+      },
+      "boardAreaPercent": 42.494835338437234,
+      "boardWidthPercent": 95.8974358974359,
+      "boardHeightPercent": 44.312796208530806,
+      "buttons": [
+        {
+          "text": "?遊び方",
+          "visible": true
+        },
+        {
+          "text": "▦検証",
+          "visible": true
+        },
+        {
+          "text": "✦外見",
+          "visible": true
+        },
+        {
+          "text": "⚙設定",
+          "visible": true
+        },
+        {
+          "text": "−",
+          "visible": true
+        },
+        {
+          "text": "+",
+          "visible": true
+        },
+        {
+          "text": "表示リセット",
+          "visible": true
+        }
+      ],
+      "rootOverflow": "visible",
+      "bodyOverflow": "visible",
+      "baseline": {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scrollHeight": 1227,
+        "clientHeight": 844,
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "board": {
+          "x": 24,
+          "y": 256.59375,
+          "width": 342,
+          "height": 342,
+          "right": 366,
+          "bottom": 598.59375
+        },
+        "gameViewport": {
+          "x": 12,
+          "y": 244.59375,
+          "width": 366,
+          "height": 366,
+          "right": 378,
+          "bottom": 610.59375
+        },
+        "header": {
+          "x": 10,
+          "y": 14,
+          "width": 370,
+          "height": 57,
+          "right": 380,
+          "bottom": 71
+        },
+        "menu": null,
+        "camera": null,
+        "status": {
+          "x": 12,
+          "y": 610.59375,
+          "width": 366,
+          "height": 96,
+          "right": 378,
+          "bottom": 706.59375
+        },
+        "boardAreaPercent": 35.53408676631425,
+        "boardWidthPercent": 87.6923076923077,
+        "boardHeightPercent": 40.52132701421801,
+        "buttons": [],
+        "rootOverflow": "visible",
+        "bodyOverflow": "visible"
+      }
+    },
+    {
+      "viewport": {
+        "width": 375,
+        "height": 667
+      },
+      "scrollHeight": 667,
+      "clientHeight": 667,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "board": {
+        "x": 8,
+        "y": 100,
+        "width": 359,
+        "height": 359,
+        "right": 367,
+        "bottom": 459
+      },
+      "gameViewport": {
+        "x": 4,
+        "y": 52,
+        "width": 367,
+        "height": 455,
+        "right": 371,
+        "bottom": 507
+      },
+      "header": {
+        "x": 4,
+        "y": 6,
+        "width": 367,
+        "height": 42,
+        "right": 371,
+        "bottom": 48
+      },
+      "menu": {
+        "x": 4,
+        "y": 555,
+        "width": 367,
+        "height": 48,
+        "right": 371,
+        "bottom": 603
+      },
+      "camera": {
+        "x": 4,
+        "y": 511,
+        "width": 367,
+        "height": 40,
+        "right": 371,
+        "bottom": 551
+      },
+      "status": {
+        "x": 4,
+        "y": 607,
+        "width": 367,
+        "height": 54,
+        "right": 371,
+        "bottom": 661
+      },
+      "boardAreaPercent": 51.52663668165916,
+      "boardWidthPercent": 95.73333333333333,
+      "boardHeightPercent": 53.823088455772115,
+      "buttons": [
+        {
+          "text": "?遊び方",
+          "visible": true
+        },
+        {
+          "text": "▦検証",
+          "visible": true
+        },
+        {
+          "text": "✦外見",
+          "visible": true
+        },
+        {
+          "text": "⚙設定",
+          "visible": true
+        },
+        {
+          "text": "−",
+          "visible": true
+        },
+        {
+          "text": "+",
+          "visible": true
+        },
+        {
+          "text": "表示リセット",
+          "visible": true
+        }
+      ],
+      "rootOverflow": "visible",
+      "bodyOverflow": "visible",
+      "baseline": {
+        "viewport": {
+          "width": 375,
+          "height": 667
+        },
+        "scrollHeight": 1212,
+        "clientHeight": 667,
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "board": {
+          "x": 24,
+          "y": 256.59375,
+          "width": 327,
+          "height": 327,
+          "right": 351,
+          "bottom": 583.59375
+        },
+        "gameViewport": {
+          "x": 12,
+          "y": 244.59375,
+          "width": 351,
+          "height": 351,
+          "right": 363,
+          "bottom": 595.59375
+        },
+        "header": {
+          "x": 10,
+          "y": 14,
+          "width": 355,
+          "height": 57,
+          "right": 365,
+          "bottom": 71
+        },
+        "menu": null,
+        "camera": null,
+        "status": {
+          "x": 12,
+          "y": 595.59375,
+          "width": 351,
+          "height": 96,
+          "right": 363,
+          "bottom": 691.59375
+        },
+        "boardAreaPercent": 42.75022488755622,
+        "boardWidthPercent": 87.2,
+        "boardHeightPercent": 49.02548725637181,
+        "buttons": [],
+        "rootOverflow": "visible",
+        "bodyOverflow": "visible"
+      }
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "scrollHeight": 568,
+      "clientHeight": 568,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "board": {
+        "x": 8,
+        "y": 78,
+        "width": 304,
+        "height": 304,
+        "right": 312,
+        "bottom": 382
+      },
+      "gameViewport": {
+        "x": 4,
+        "y": 52,
+        "width": 312,
+        "height": 356,
+        "right": 316,
+        "bottom": 408
+      },
+      "header": {
+        "x": 4,
+        "y": 6,
+        "width": 312,
+        "height": 42,
+        "right": 316,
+        "bottom": 48
+      },
+      "menu": {
+        "x": 4,
+        "y": 456,
+        "width": 312,
+        "height": 48,
+        "right": 316,
+        "bottom": 504
+      },
+      "camera": {
+        "x": 4,
+        "y": 412,
+        "width": 312,
+        "height": 40,
+        "right": 316,
+        "bottom": 452
+      },
+      "status": {
+        "x": 4,
+        "y": 508,
+        "width": 312,
+        "height": 54,
+        "right": 316,
+        "bottom": 562
+      },
+      "boardAreaPercent": 50.84507042253521,
+      "boardWidthPercent": 95,
+      "boardHeightPercent": 53.52112676056338,
+      "buttons": [
+        {
+          "text": "?遊び方",
+          "visible": true
+        },
+        {
+          "text": "▦検証",
+          "visible": true
+        },
+        {
+          "text": "✦外見",
+          "visible": true
+        },
+        {
+          "text": "⚙設定",
+          "visible": true
+        },
+        {
+          "text": "−",
+          "visible": true
+        },
+        {
+          "text": "+",
+          "visible": true
+        },
+        {
+          "text": "表示リセット",
+          "visible": true
+        }
+      ],
+      "rootOverflow": "visible",
+      "bodyOverflow": "visible",
+      "baseline": {
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "scrollHeight": 1173,
+        "clientHeight": 568,
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "board": {
+          "x": 24,
+          "y": 256.59375,
+          "width": 272,
+          "height": 272,
+          "right": 296,
+          "bottom": 528.59375
+        },
+        "gameViewport": {
+          "x": 12,
+          "y": 244.59375,
+          "width": 296,
+          "height": 296,
+          "right": 308,
+          "bottom": 540.59375
+        },
+        "header": {
+          "x": 10,
+          "y": 14,
+          "width": 300,
+          "height": 57,
+          "right": 310,
+          "bottom": 71
+        },
+        "menu": null,
+        "camera": null,
+        "status": {
+          "x": 12,
+          "y": 540.59375,
+          "width": 296,
+          "height": 96,
+          "right": 308,
+          "bottom": 636.59375
+        },
+        "boardAreaPercent": 40.70422535211268,
+        "boardWidthPercent": 85,
+        "boardHeightPercent": 47.88732394366197,
+        "buttons": [],
+        "rootOverflow": "visible",
+        "bodyOverflow": "visible"
+      }
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "scrollHeight": 390,
+      "clientHeight": 390,
+      "scrollWidth": 844,
+      "clientWidth": 844,
+      "board": {
+        "x": 268,
+        "y": 48,
+        "width": 288,
+        "height": 288,
+        "right": 556,
+        "bottom": 336
+      },
+      "gameViewport": {
+        "x": 80,
+        "y": 44,
+        "width": 664,
+        "height": 296,
+        "right": 744,
+        "bottom": 340
+      },
+      "header": {
+        "x": 8,
+        "y": 4,
+        "width": 828,
+        "height": 36,
+        "right": 836,
+        "bottom": 40
+      },
+      "menu": {
+        "x": 8,
+        "y": 44,
+        "width": 66,
+        "height": 296,
+        "right": 74,
+        "bottom": 340
+      },
+      "camera": {
+        "x": 750,
+        "y": 44,
+        "width": 86,
+        "height": 296,
+        "right": 836,
+        "bottom": 340
+      },
+      "status": {
+        "x": 8,
+        "y": 344,
+        "width": 828,
+        "height": 42,
+        "right": 836,
+        "bottom": 386
+      },
+      "boardAreaPercent": 25.198687568355815,
+      "boardWidthPercent": 34.12322274881517,
+      "boardHeightPercent": 73.84615384615385,
+      "buttons": [
+        {
+          "text": "?遊び方",
+          "visible": true
+        },
+        {
+          "text": "▦検証",
+          "visible": true
+        },
+        {
+          "text": "✦外見",
+          "visible": true
+        },
+        {
+          "text": "⚙設定",
+          "visible": true
+        },
+        {
+          "text": "−",
+          "visible": true
+        },
+        {
+          "text": "+",
+          "visible": true
+        },
+        {
+          "text": "表示リセット",
+          "visible": true
+        }
+      ],
+      "rootOverflow": "visible",
+      "bodyOverflow": "visible",
+      "baseline": {
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "scrollHeight": 1150,
+        "clientHeight": 390,
+        "scrollWidth": 844,
+        "clientWidth": 844,
+        "board": {
+          "x": 54,
+          "y": 319.1875,
+          "width": 427,
+          "height": 427,
+          "right": 481,
+          "bottom": 746.1875
+        },
+        "gameViewport": {
+          "x": 34,
+          "y": 299.1875,
+          "width": 467,
+          "height": 467,
+          "right": 501,
+          "bottom": 766.1875
+        },
+        "header": {
+          "x": 32,
+          "y": 25,
+          "width": 780,
+          "height": 69,
+          "right": 812,
+          "bottom": 94
+        },
+        "menu": null,
+        "camera": null,
+        "status": {
+          "x": 34,
+          "y": 766.1875,
+          "width": 467,
+          "height": 90,
+          "right": 501,
+          "bottom": 856.1875
+        },
+        "boardAreaPercent": 55.392210475148865,
+        "boardWidthPercent": 50.59241706161137,
+        "boardHeightPercent": 109.4871794871795,
+        "buttons": [],
+        "rootOverflow": "visible",
+        "bodyOverflow": "visible"
+      }
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "code_commit": "55ad67382a1e9c60f4a2affa5f96d597b69309ec",
+  "files": [
+    {
+      "path": "src/app/App.tsx",
+      "sha256": "491f4bccd0da50b199ceaffdb3f2d71cf133ce16be05a3f227eb4da653f673a8"
+    },
+    {
+      "path": "src/app/input/camera.ts",
+      "sha256": "e5110a85696d8b52be542952c14903557484b8912ba1cd765bd9c1b1c63fda8b"
+    },
+    {
+      "path": "src/app/input/gestures.ts",
+      "sha256": "962a6845288e4d8f480c10f7ee331b2c5f1e800324317a28a1433df90dd26347"
+    },
+    {
+      "path": "src/app/presets.ts",
+      "sha256": "b05268d894145fef64a22e77214bde40aa075858e8974f29222cb74de84682fb"
+    },
+    {
+      "path": "src/components/GameBoard.tsx",
+      "sha256": "4dccac6b45b5af7bd6188b8db751dc00abf55374ff3c7c5242ed20304f5c1a58"
+    },
+    {
+      "path": "src/components/GameMenu.tsx",
+      "sha256": "17ad93b741b3b8f59f4917b8209e4682a2ea9526aa23b25452c77cac578a67b7"
+    },
+    {
+      "path": "src/components/Slime.tsx",
+      "sha256": "99658518fb4499590d0e4927da5a6d01b1971638d80c452da2a139129caa2343"
+    },
+    {
+      "path": "src/components/SlimeIllustration.tsx",
+      "sha256": "35c0e702adda40da96d0918fe05fcce5831930ad9f4647bff37516bf14a20cd6"
+    },
+    {
+      "path": "src/core/board/state.ts",
+      "sha256": "523360a8c88262ccab43670a1d1485f0e56f37e57bb76bc355fc7d1c06276ed0"
+    },
+    {
+      "path": "src/core/grid/coordinates.ts",
+      "sha256": "f9246072f35a2f4ef911e06faa26e4483b15ea4dcc78b6bc3232a2d045d756b8"
+    },
+    {
+      "path": "src/core/input/coordinates.ts",
+      "sha256": "d7a5ded778d00f80782a8363eb8b5a15cd3ffd7e58ff968154b8e23769326d41"
+    },
+    {
+      "path": "src/core/merge/apply.ts",
+      "sha256": "289876039b56538ed443ba6ebbc51f7545a50f512ee17ad08397f8fbb8fda643"
+    },
+    {
+      "path": "src/core/merge/plan.ts",
+      "sha256": "e199bfdb4f6518088caca12fca37f0542ff421b532d4b1e0c53d8e39fb7dccd5"
+    },
+    {
+      "path": "src/domain/game.ts",
+      "sha256": "10874ba357121f08682ed98250788871c17fd5821a04be33dc073df1cfc62e38"
+    },
+    {
+      "path": "src/domain/grid.ts",
+      "sha256": "1ef11af667a4100fccc8d9190ec45b9adc8ff9b86b821eff271f7054619bc96e"
+    },
+    {
+      "path": "src/main.tsx",
+      "sha256": "da587b0283059574161ca94c3d31270a08716ca0b1e00a4888a9bff3dd2874d0"
+    },
+    {
+      "path": "src/styles/global.css",
+      "sha256": "dc6e583f9c8755666f0b6f4033ae3477d47996eaf729790d46498854266d8a2d"
+    },
+    {
+      "path": "tests/board/state.test.ts",
+      "sha256": "39982758c91a4fd7d4f8e1d2c7da6ed221d9d07a828df48b92aeedee3a60f7ba"
+    },
+    {
+      "path": "tests/browser/phase1-1.cjs",
+      "sha256": "8771af1a73cc52aeeb4fb6b4857b6d71a4223c5d2b9ec9360115bc91aa8cbd0e"
+    },
+    {
+      "path": "tests/browser/phase1.cjs",
+      "sha256": "61c166c8dc282e55fa7d5e3891f879cfedbee10401b098680c5a8f066301b4d7"
+    },
+    {
+      "path": "tests/camera/camera.test.ts",
+      "sha256": "59f9e0e326b1571ed64983856393db09ae74d1f3244341cdb8206e91681629c3"
+    },
+    {
+      "path": "tests/camera/gestures.test.ts",
+      "sha256": "25f56f1ac702687eb7c4577f123b174368d29515db1d84676b1a6dc55ccdd97c"
+    },
+    {
+      "path": "tests/grid/coordinates.test.ts",
+      "sha256": "7c211ac490cc0b4167ebce5adc519bd6f39e68e97b138e87cffedea0cb1b4bf8"
+    },
+    {
+      "path": "tests/input/coordinates.test.ts",
+      "sha256": "a059b77ca4d83ee016ab00471e4061748deffa6b501811601cfdcedd97bd8829"
+    },
+    {
+      "path": "tests/merge/merge.test.ts",
+      "sha256": "c3031b968bae32f3aea6b2797db862c82492a91f1c244d9445c19cc30ec8eac3"
+    },
+    {
+      "path": "tests/ui/slime.test.ts",
+      "sha256": "14b08d6005558bf28ec5b49357739d278631f1592bd606e8372086a4bca7da58"
+    },
+    {
+      "path": "index.html",
+      "sha256": "a63e0ccdc6aada41d34c22e25456fef1eaf43bc6c99f873ee2888f939257cad9"
+    },
+    {
+      "path": "package.json",
+      "sha256": "db718e07c6e62c8b1dbb2b199cf3e2ed802f607ce4d9b85a469d87215105cd63"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "6336785cac8c4e218a5d03936b046e6d417fcac7b2b23cf372857dd86a817514"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "a9ad7d9124409c32b9d85097c712ee17c7b584894f9ce66505d9bd3edfe0ef10"
+    }
+  ]
+}
