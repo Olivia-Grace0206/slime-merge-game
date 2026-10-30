@@ -1146,7 +1146,7 @@ npm run build
 
 ## 13. GitHub開発・公開フロー【合意・v0.2.2更新】
 
-1. **ユーザーがGitHub Desktopを使って**新しいGitHubリポジトリを作成し、最初は**Private**に設定する。名称 `slime-merge-game` は候補であり、確定名ではない。**参考の`array-puzzle`自体は変更しない**。
+1. **ユーザーがGitHub Desktopで作成した既存リポジトリ `Olivia-Grace0206/slime-merge-game` をPrivateで維持**する。新規リポジトリの作成は完了済み。**参考の`array-puzzle`自体は変更しない**。
 2. `main`を安定版とし、実装は**Feature Branch**で進める。
 3. 変更は目的・影響範囲を小さくし、都度**Lint / Vitest / Build**を確認する。
 4. Pull Requestを作成し、変更点・試験・既知の制約を記録する。

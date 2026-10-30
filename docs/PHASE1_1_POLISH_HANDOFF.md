@@ -53,7 +53,7 @@ PCの58px増はログ52px＋gap6pxの再配分。横長小画面は46px増。ス
 
 Node22.23.4 / npm10.9.9でnpm ci・Lint（警告0）・Vitest214/214（7ファイル、失敗0・skip0）・型チェックとBuild成功。Chromium134 / Playwright1.51.1で**120＋54＝174項目PASS**、JS例外／console error／request failure 0。前回mainの従来100項目も別途実行して成功。10サイズ比較・ホイール・ピンチ・パン・マージ・取消・回転・メニュー・設定内キーボード操作を再検証。詳細は[最新検証記録](validation/phase1-1-polish/RESULTS.md)。
 
-CI：新規Draft PR作成後、PR HEADと一致するrunを確認し、実SHA・run URL・結論をPR本文へ記録する。**この段落はCI未実行を成功と扱わない。**
+**CI結果の参照先：[Draft PR #7](https://github.com/Olivia-Grace0206/slime-merge-game/pull/7)本文の「最終HEADとCI」**。最終HEAD SHAと一致するrunのURL・status・conclusion・各step結果を記録する。本書自身の更新でSHAが変わる自己参照を避け、最終照合結果はPR本文へ固定する。コード・全ローカル証跡のコミットは`00f87c4ce6e71363f82d489603cc3408f7c38ee6`。以降の変更は仕様書の既存Repository状態説明と本引き継ぎのPR参照のみ。CIの未確認・queuedを成功扱いしない。
 
 ## 未解決・未確認
 
