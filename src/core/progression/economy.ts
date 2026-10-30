@@ -1,0 +1,130 @@
+import { isTier, type GameState } from '../../domain/game'
+import { isGameState } from '../board/state'
+import { EXPERIMENTAL_GENERATION, type GeneratorRules } from './generation'
+
+/**
+ * Deliberately temporary Phase 2 economy parameters. User approval of these
+ * numbers has NOT been requested or given. Future simulation may replace them.
+ */
+export const EXPERIMENTAL_ECONOMY = Object.freeze({
+  priceBase: 2,
+  priceGrowth: 2,
+  shopCostGrowth: 1.7,
+  shopMaxLevel: 16,
+  goldRushRatePerPayment: 0.2,
+  goldRushAttributePenalty: 0.25,
+})
+
+export type UpgradeKey = 'speed' | 'tap' | 'storage'
+export type Upgrades = Readonly<Record<UpgradeKey, number>>
+export type Wallet = Readonly<{ gold: number; upgrades: Upgrades }>
+export type ShopResult = Readonly<{ ok: boolean; wallet: Wallet; cost: number }>
+
+export function freshWallet(): Wallet {
+  return { gold: 0, upgrades: { speed: 0, tap: 0, storage: 0 } }
+}
+
+export function isWallet(value: unknown): value is Wallet {
+  if (!value || typeof value !== 'object') return false
+  const w = value as Wallet
+  return Number.isSafeInteger(w.gold) && w.gold >= 0 &&
+    !!w.upgrades && (['speed', 'tap', 'storage'] as const).every((key) =>
+      Number.isSafeInteger(w.upgrades[key]) &&
+      w.upgrades[key] >= 0 &&
+      w.upgrades[key] <= EXPERIMENTAL_ECONOMY.shopMaxLevel)
+}
+
+/** Tier 40 is finite and safe, unlike unbounded exponential growth. */
+export function baseSaleValue(tier: number): number {
+  if (!isTier(tier)) throw new RangeError('Invalid Tier')
+  return EXPERIMENTAL_ECONOMY.priceBase * EXPERIMENTAL_ECONOMY.priceGrowth ** (tier - 1)
+}
+
+const SHOP_BASE: Readonly<Record<UpgradeKey, number>> = {
+  speed: 12,
+  tap: 16,
+  storage: 20,
+}
+
+export function upgradeCost(key: UpgradeKey, level: number): number {
+  if (!(key in SHOP_BASE) || !Number.isSafeInteger(level) || level < 0 || level > EXPERIMENTAL_ECONOMY.shopMaxLevel) {
+    throw new RangeError('Invalid upgrade')
+  }
+  return Math.ceil(SHOP_BASE[key] * EXPERIMENTAL_ECONOMY.shopCostGrowth ** level)
+}
+
+export function purchaseUpgrade(wallet: Wallet, key: UpgradeKey): ShopResult {
+  const reject = (cost = 0): ShopResult => ({ ok: false, wallet, cost })
+  if (!isWallet(wallet) || !(key in SHOP_BASE)) return reject()
+  const level = wallet.upgrades[key]
+  if (level >= EXPERIMENTAL_ECONOMY.shopMaxLevel) return reject()
+  const cost = upgradeCost(key, level)
+  if (wallet.gold < cost) return reject(cost)
+  return {
+    ok: true,
+    wallet: {
+      gold: wallet.gold - cost,
+      upgrades: { ...wallet.upgrades, [key]: level + 1 },
+    },
+    cost,
+  }
+}
+
+export function generationRules(wallet: Wallet): GeneratorRules {
+  if (!isWallet(wallet)) throw new RangeError('Invalid wallet')
+  return {
+    intervalMs: Math.max(2_000, Math.round(EXPERIMENTAL_GENERATION.baseIntervalMs * 0.9 ** wallet.upgrades.speed)),
+    tapAdvanceMs: EXPERIMENTAL_GENERATION.baseTapAdvanceMs + wallet.upgrades.tap * 350,
+    capacity: EXPERIMENTAL_GENERATION.initialCapacity + wallet.upgrades.storage * 3,
+  }
+}
+
+export type SaleResult = Readonly<{
+  ok: boolean
+  game: GameState
+  wallet: Wallet
+  earned: number
+}>
+
+/** Selling changes the board and GOLD together; highest ever Tier never decreases. */
+export function sellSlime(game: GameState, wallet: Wallet, slimeId: string): SaleResult {
+  const reject = (): SaleResult => ({ ok: false, game, wallet, earned: 0 })
+  if (!isGameState(game) || !isWallet(wallet) || !slimeId.trim()) return reject()
+  const target = game.slimes.find((s) => s.id === slimeId)
+  if (!target) return reject()
+  const earned = baseSaleValue(target.tier)
+  if (!Number.isSafeInteger(wallet.gold + earned) || game.revision >= Number.MAX_SAFE_INTEGER - 1) return reject()
+  const next = { ...game, revision: game.revision + 1, slimes: game.slimes.filter((s) => s.id !== slimeId) }
+  if (!isGameState(next)) return reject()
+  return { ok: true, game: next, wallet: { ...wallet, gold: wallet.gold + earned }, earned }
+}
+
+/**
+ * Pure 10-payment GOLD event primitive. Cell spawning and event IDs will be
+ * integrated in a later Phase 2 increment; this is not an automatic sell.
+ */
+export type GoldRush = Readonly<{ id: string; tier: number; attributeCount: number; paid: number; unitGOLD: number }>
+export function beginGoldRush(id: string, tier: number, attributeCount: number): GoldRush {
+  if (!id.trim() || !isTier(tier) || !Number.isSafeInteger(attributeCount) || attributeCount < 0 || attributeCount > 10)
+    throw new RangeError('Invalid event')
+  const rate = EXPERIMENTAL_ECONOMY.goldRushRatePerPayment
+  const penalty = EXPERIMENTAL_ECONOMY.goldRushAttributePenalty
+  const unitGOLD = Math.max(1, Math.floor(baseSaleValue(tier) * rate / (1 + attributeCount * penalty)))
+  return { id, tier, attributeCount, paid: 0, unitGOLD }
+}
+
+export function payGoldRush(wallet: Wallet, event: GoldRush): Readonly<{
+  ok: boolean; wallet: Wallet; event: GoldRush
+}> {
+  const reject = () => ({ ok: false, wallet, event })
+  if (!isWallet(wallet) || !event || !event.id?.trim() || !isTier(event.tier) ||
+      !Number.isSafeInteger(event.attributeCount) || event.attributeCount < 0 ||
+      !Number.isSafeInteger(event.paid) || event.paid < 0 || event.paid >= 10 ||
+      !Number.isSafeInteger(event.unitGOLD) || event.unitGOLD <= 0 ||
+      !Number.isSafeInteger(wallet.gold + event.unitGOLD)) return reject()
+  return {
+    ok: true,
+    wallet: { ...wallet, gold: wallet.gold + event.unitGOLD },
+    event: { ...event, paid: event.paid + 1 },
+  }
+}
