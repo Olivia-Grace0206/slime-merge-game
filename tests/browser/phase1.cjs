@@ -5,6 +5,10 @@ const assert = require('node:assert/strict')
 const path = require('node:path')
 const artifactDir = process.env.BROWSER_ARTIFACT_DIR || path.join(require('node:os').tmpdir(), 'slime-phase1-browser')
 fs.mkdirSync(artifactDir, { recursive: true })
+async function choosePreset(page, label) {
+  await page.getByRole('button', { name: '検証', exact: true }).click()
+  await page.getByRole('button', { name: label, exact: true }).click()
+}
 const checks = [],
   errors = []
 async function check(name, action) {
@@ -117,12 +121,12 @@ async function run() {
         ['8体マージ', 3, 2, 0],
         ['11体マージ', 5, 2, 1],
         ['斜め連結', 2, 2, 0],
-        ['高Tier試験', 4, 30, 0],
+        ['高Tier試験', 4, 40, 0],
       ]) {
         await check(
           `${width}px ${label}: ${width === 1440 ? 'mouse' : 'trusted touch'} preview/commit equality`,
           async () => {
-            await page.getByRole('button', { name: label, exact: true }).click()
+            await choosePreset(page, label)
             const before = await placements(page)
             const source = await center(page, '[data-slime-id="drag"]'),
               dest = await center(page, '[data-cell="2,2"]')
@@ -198,14 +202,14 @@ async function run() {
           },
         )
       }
-      await check(`${width}px Tier30 blocked without consumption`, async () => {
-        await page.getByRole('button', { name: '高Tier試験', exact: true }).click()
+      await check(`${width}px Tier40 blocked without consumption`, async () => {
+        await choosePreset(page, '高Tier試験')
         const before = await placements(page)
         await input.start(await center(page, '[data-slime-id="cap-0"]'))
         await input.move(await center(page, '[data-slime-id="cap-1"]'))
         await input.end()
         assert.deepEqual(await placements(page), before)
-        assert.match(await page.getByTestId('status').innerText(), /最終段階/)
+        assert.match(await page.getByTestId('status').innerText(), /上限/)
       })
       await check(`${width}px different-tier drop cancelled`, async () => {
         const before = await placements(page)
@@ -215,7 +219,7 @@ async function run() {
         assert.deepEqual(await placements(page), before)
       })
       await check(`${width}px empty cell moves without merging`, async () => {
-        await page.getByRole('button', { name: '3体マージ', exact: true }).click()
+        await choosePreset(page, '3体マージ')
         await input.start(await center(page, '[data-slime-id="drag"]'))
         await input.move(await center(page, '[data-cell="2,3"]'))
         await input.end()
@@ -225,7 +229,7 @@ async function run() {
         assert.equal(after.find((s) => s.id === 'drag').cell, '2,3')
       })
       await check(`${width}px cancelled drag preserves state`, async () => {
-        await page.getByRole('button', { name: '11体マージ', exact: true }).click()
+        await choosePreset(page, '11体マージ')
         const before = await placements(page)
         await input.start(await center(page, '[data-slime-id="drag"]'))
         await input.move(await center(page, '[data-cell="2,2"]'))
@@ -256,11 +260,11 @@ async function run() {
           await input.move(await center(page, '[data-cell="2,2"]'))
           await input.end()
           assert.equal((await placements(page)).length, 5)
-          await page.getByRole('button', { name: '視点を戻す ↺' }).click()
+          await page.getByRole('button', { name: '表示リセット' }).click()
         },
       )
       await check(`${width}px keyboard and Escape`, async () => {
-        await page.getByRole('button', { name: '3体マージ', exact: true }).click()
+        await choosePreset(page, '3体マージ')
         await page.locator('[data-slime-id="drag"]').focus()
         await page.keyboard.press('Enter')
         await page.keyboard.press('Escape')
@@ -271,8 +275,8 @@ async function run() {
         await page.keyboard.press('Enter')
         assert.equal((await placements(page)).length, 1)
       })
-      await check(`${width}px second pointer is ignored and focus loss cancels`, async () => {
-        await page.getByRole('button', { name: '11体マージ', exact: true }).click()
+      await check(`${width}px unknown pointer cancel/up is ignored and focus loss cancels`, async () => {
+        await choosePreset(page, '11体マージ')
         const before = await placements(page)
         await input.start(await center(page, '[data-slime-id="drag"]'))
         await input.move(await center(page, '[data-cell="2,2"]'))
@@ -288,9 +292,10 @@ async function run() {
         assert.deepEqual(await placements(page), before)
       })
       await check(`${width}px reset during drag invalidates pending operation`, async () => {
-        await page.getByRole('button', { name: '11体マージ', exact: true }).click()
+        await choosePreset(page, '11体マージ')
         await input.start(await center(page, '[data-slime-id="drag"]'))
         await input.move(await center(page, '[data-cell="2,2"]'))
+        await page.getByRole('button', {name:'検証',exact:true}).evaluate(button => button.click())
         await page
           .getByRole('button', { name: '3体マージ', exact: true })
           .evaluate((button) => button.click())
@@ -302,7 +307,7 @@ async function run() {
       await check(
         `${width}px Tier1 green Tier2 blue Tier3 red and highest-tier progression`,
         async () => {
-          await page.getByRole('button', { name: '8体マージ', exact: true }).click()
+          await choosePreset(page, '8体マージ')
           assert.equal(
             await page
               .locator('[data-slime-id="drag"] .slime-art')
@@ -340,7 +345,7 @@ async function run() {
       await page.emulateMedia({ reducedMotion: 'no-preference' })
     })
     await check(`${width}px viewport has no horizontal overflow and reset is safe`, async () => {
-        await page.getByRole('button', { name: '↻ 最初の配置にリセット' }).click()
+        await choosePreset(page, '盤面リセット')
         assert.equal((await placements(page)).length, 5)
         assert(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth))
         await page.screenshot({
