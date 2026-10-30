@@ -2,7 +2,7 @@
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright')
 const fs = require('node:fs'), path = require('node:path'), assert = require('node:assert/strict')
 const { spawn } = require('node:child_process')
-const dir = process.env.BROWSER_ARTIFACT_DIR || 'docs/validation/phase1-1'
+const dir = process.env.BROWSER_ARTIFACT_DIR || 'docs/validation/phase1-1-polish'
 fs.mkdirSync(dir, {recursive:true})
 const checks=[], errors=[], measurements=[]
 const sizes=[[1920,1080],[1440,900],[1366,768],[1280,720],[1024,768],[768,1024],[390,844],[375,667],[320,568],[844,390]]
@@ -10,6 +10,11 @@ async function check(name, action) {try {await action();checks.push({name,result
 async function center(page, selector) {const b=await page.locator(selector).boundingBox(); assert(b); return {x:b.x+b.width/2,y:b.y+b.height/2}}
 async function placements(page) {return page.locator('[data-slime-id]').evaluateAll(ns=>ns.map(n=>({id:n.dataset.slimeId,tier:+n.dataset.tier,cell:n.dataset.cell})).sort((a,b)=>a.id.localeCompare(b.id)))}
 async function preset(page,label) {await page.getByRole('button',{name:'検証',exact:true}).click();await page.getByRole('button',{name:label,exact:true}).click()}
+async function cameraAction(page, name) {
+ await page.getByRole('button',{name:'設定',exact:true}).click()
+ await page.getByRole('button',{name,exact:true}).click()
+ await page.getByRole('button',{name:'閉じる',exact:true}).click()
+}
 async function startServer(cwd, port) {
  const proc=spawn(process.execPath,[path.resolve('node_modules/vite/bin/vite.js'),'preview','--host','127.0.0.1','--port',String(port),'--strictPort'],{cwd,stdio:['ignore','pipe','pipe']})
  await new Promise((resolve,reject)=>{proc.stdout.on('data',d=>{if(String(d).includes('Local:'))resolve()});proc.on('exit',c=>reject(Error('server exit '+c)));proc.stderr.on('data',d=>process.stderr.write(d))})
@@ -18,7 +23,7 @@ async function startServer(cwd, port) {
 async function metrics(page) {return page.evaluate(()=>{
  const box=s=>{const node=document.querySelector(s);if(!node)return null;const r=node.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height,right:r.right,bottom:r.bottom}}
  const d=document.documentElement,b=box('[data-testid="board"]'),v=box('[data-testid="viewport"]')
- const buttons=[...document.querySelectorAll('.edge-menu button,.camera-controls button')].map(n=>{const r=n.getBoundingClientRect();const hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);return {text:n.textContent,visible:r.x>=0&&r.y>=0&&r.right<=innerWidth+1&&r.bottom<=innerHeight+1&&!!hit&&n.contains(hit)}})
+ const buttons=[...document.querySelectorAll('.edge-menu button')].map(n=>{const r=n.getBoundingClientRect();const hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);return {text:n.textContent,visible:r.x>=0&&r.y>=0&&r.right<=innerWidth+1&&r.bottom<=innerHeight+1&&!!hit&&n.contains(hit)}})
  return {viewport:{width:innerWidth,height:innerHeight},scrollHeight:d.scrollHeight,clientHeight:d.clientHeight,scrollWidth:d.scrollWidth,clientWidth:d.clientWidth,board:b,gameViewport:v,header:box('.app-header'),menu:box('.edge-menu'),camera:box('.camera-controls'),status:box('.result-bar'),boardAreaPercent:b.width*b.height/(innerWidth*innerHeight)*100,boardWidthPercent:b.width/innerWidth*100,boardHeightPercent:b.height/innerHeight*100,buttons,rootOverflow:getComputedStyle(d).overflow,bodyOverflow:getComputedStyle(document.body).overflow}
  })}
 async function run(){
@@ -41,7 +46,7 @@ async function run(){
     assert(m.board.x>=m.gameViewport.x-1&&m.board.right<=m.gameViewport.right+1)
     assert(m.board.y>=m.gameViewport.y-1&&m.board.bottom<=m.gameViewport.bottom+1)
     assert(Math.abs((m.board.x+m.board.right)/2-(m.gameViewport.x+m.gameViewport.right)/2)<1)
-    assert(m.buttons.every(b=>b.visible),JSON.stringify(m.buttons));assert(m.status.bottom<=height+1)
+    assert(m.buttons.every(b=>b.visible),JSON.stringify(m.buttons));assert.equal(m.status,null)
     assert(m.header.bottom<=m.gameViewport.y+1)
     if(width===1440)assert(m.board.width>=650)
     if(width===1366)assert(m.board.width>=520)
@@ -49,9 +54,36 @@ async function run(){
     await page.screenshot({path:path.join(dir,`screen-${name}.png`),type:'png'})
    })
    if(process.env.BASELINE_DIR){
-    const bp=await context.newPage();await bp.goto('http://127.0.0.1:5174/slime-merge-game/');await bp.getByTestId('board').waitFor()
-    measurements[measurements.length-1].baseline=await metrics(bp);await bp.close()
+    const bp=await context.newPage();await bp.goto('http://127.0.0.1:5174/slime-merge-game/');await bp.waitForFunction(()=>document.querySelector('[data-testid="board"]')?.getBoundingClientRect().width>100)
+    const current=measurements[measurements.length-1],baseline=await metrics(bp)
+    current.baseline=baseline
+    const recorded=JSON.parse(fs.readFileSync(path.resolve('docs/validation/phase1-1/browser-results.json'),'utf8')).measurements.find(m=>m.viewport.width===width&&m.viewport.height===height)
+    assert(Math.abs(recorded.board.width-baseline.board.width)<1,'baseline agrees with PR #6')
+    assert(current.board.width>=baseline.board.width-.5,'board must not shrink')
+    if(width>900||height<=500)assert(current.board.width>baseline.board.width+40,'reclaimed footer height enlarges PC board')
+    await bp.screenshot({path:path.join(dir,`before-${name}.png`),type:'png'});await bp.close()
    }
+   await check(`${name} polish: obsolete UI removed, live announcement takes no row and board centered in page`,async()=>{
+    assert.equal(await page.locator('.result-bar,.camera-controls,.board-label,[data-testid="zoom"]').count(),0)
+    assert.equal(await page.locator('footer').count(),0)
+    const live=page.getByTestId('status');assert.equal(await live.getAttribute('aria-live'),'polite')
+    const b=await live.boundingBox();assert(b.width<=1&&b.height<=1)
+    const visibleText=await page.locator('body').innerText();assert(!/7\s*[×x]\s*7|\d+%/.test(visibleText))
+    const board=await page.getByTestId('board').boundingBox();assert(Math.abs(board.x+board.width/2-width/2)<1)
+    assert.equal(await page.locator('[data-cell]').count(),49)
+   })
+   await check(`${name} keyboard: settings zoom +/-/reset accessible, focus returns and no game mutation`,async()=>{
+    const before=await placements(page),opener=page.getByRole('button',{name:'設定',exact:true})
+    await opener.focus();await page.keyboard.press('Enter');assert(await page.getByRole('dialog').isVisible())
+    const zoomIn=page.getByRole('button',{name:'拡大',exact:true}),zoomOut=page.getByRole('button',{name:'縮小',exact:true}),reset=page.getByTestId('reset-camera')
+    for(const button of [zoomIn,zoomOut,reset]){
+     const box=await button.boundingBox();assert(box.width>=44&&box.height>=44)
+     await button.focus();assert(await button.evaluate(n=>n===document.activeElement));await page.keyboard.press('Enter')
+     const z=+await page.getByTestId('viewport').getAttribute('data-zoom');assert.equal(z,button===zoomIn?1.2:1)
+    }
+    await page.keyboard.press('Escape');assert(await opener.evaluate(n=>n===document.activeElement))
+    assert.deepEqual(await placements(page),before)
+   })
    await check(`${name} menus: help, settings, 40-tier internally scrollable appearance and focus return`,async()=>{
     for(const label of ['遊び方','設定','スライム一覧・外見確認']){
      const opener=page.getByRole('button',{name:label,exact:true});await opener.click()
@@ -78,7 +110,7 @@ async function run(){
     await page.mouse.wheel(0,-3000);await page.waitForTimeout(30);assert.equal(+await page.getByTestId('viewport').getAttribute('data-zoom'),3)
     await page.mouse.wheel(0,3000);await page.waitForTimeout(30);assert.equal(+await page.getByTestId('viewport').getAttribute('data-zoom'),.75)
     assert.deepEqual(await page.locator('.app-header').boundingBox(),header)
-    await page.getByTestId('reset-camera').click();assert.equal(await page.getByTestId('zoom').innerText(),'100%')
+    await cameraAction(page,'表示リセット');assert.equal(+await page.getByTestId('viewport').getAttribute('data-zoom'),1)
    })
    const cdp=await context.newCDPSession(page)
    const touch=async(type,points)=>{await cdp.send('Input.dispatchTouchEvent',{type,touchPoints:points});await page.waitForTimeout(25)}
@@ -96,7 +128,7 @@ async function run(){
     await touch('touchEnd',[p]);await touch('touchMove',[{x:target.x+5,y:target.y,id:0}]);assert.equal(await page.locator('[data-group]').count(),0)
     await touch('touchEnd',[]);assert.deepEqual(await placements(page),before)
     assert.equal(await page.getByTestId('viewport').getAttribute('data-gesture'),'idle')
-    await page.getByTestId('reset-camera').click()
+    await cameraAction(page,'表示リセット')
    })
    await check(`${name} pinch touchCancel/blur/third contact never commit and fresh touch recovers`,async()=>{
     for(const mode of ['touchCancel','blur','third']){
@@ -132,7 +164,7 @@ async function run(){
     await page.getByTestId('viewport').dispatchEvent('pointerup',{pointerId:1,clientX:b.x,clientY:b.y});assert.deepEqual(await placements(page),after)
    })
    await check(`${name} zoomed different-tier/outside drop, Escape, pointercancel, lost capture, blur preserve state`,async()=>{
-    await preset(page,'高Tier試験');await page.getByRole('button',{name:'拡大',exact:true}).click();const e=await center(page,'[data-cell="3,0"]');await page.mouse.move(e.x,e.y);await page.mouse.down();await page.mouse.move(e.x+8,e.y);await page.mouse.up()
+    await preset(page,'高Tier試験');await cameraAction(page,'拡大');const e=await center(page,'[data-cell="3,0"]');await page.mouse.move(e.x,e.y);await page.mouse.down();await page.mouse.move(e.x+8,e.y);await page.mouse.up()
     for(const mode of ['different','outside','escape','pointercancel','lostpointercapture','blur']){
      const before=await placements(page),a=await center(page,'[data-slime-id="seed-0"]'),b=await center(page,mode==='different'?'[data-slime-id="cap-1"]':'[data-slime-id="seed-1"]')
      await page.mouse.move(a.x,a.y);await page.mouse.down();await page.mouse.move(b.x,b.y)
@@ -146,7 +178,7 @@ async function run(){
    await check(`${name} resize/rotation cancels pending drag and safely refits then merges`,async()=>{
     await preset(page,'3体マージ');const before=await placements(page),a=await center(page,'[data-slime-id="drag"]'),b=await center(page,'[data-cell="2,2"]')
     await page.mouse.move(a.x,a.y);await page.mouse.down();await page.mouse.move(b.x,b.y)
-    await page.setViewportSize({width:height,height:width});await page.waitForTimeout(60);await page.mouse.up();assert.deepEqual(await placements(page),before);assert.equal(await page.getByTestId('zoom').innerText(),'100%')
+    await page.setViewportSize({width:height,height:width});await page.waitForTimeout(60);await page.mouse.up();assert.deepEqual(await placements(page),before);assert.equal(+await page.getByTestId('viewport').getAttribute('data-zoom'),1)
     const m=await metrics(page);assert(m.scrollHeight<=m.clientHeight+1&&m.scrollWidth<=m.clientWidth+1)
     await page.setViewportSize({width,height});await page.waitForTimeout(60)
     const src=await center(page,'[data-slime-id="drag"]'),dest=await center(page,'[data-cell="2,2"]');await page.mouse.move(src.x,src.y);await page.mouse.down();await page.mouse.move(dest.x,dest.y);await page.mouse.up();assert.equal((await placements(page)).length,1)

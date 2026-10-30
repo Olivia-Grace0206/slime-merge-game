@@ -1,0 +1,114 @@
+{
+  "main_head": "bacbc2b9b53b7e3d11758242a49a415e1f91c259",
+  "all_78_main_blobs_verified_before_edit": true,
+  "protected_files": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "main_blob": "ad08660c5e5e92c3f885906ada8a9da5309c5180",
+      "current_blob": "ad08660c5e5e92c3f885906ada8a9da5309c5180",
+      "unchanged": true
+    },
+    {
+      "path": "docs/specifications/Slime_Merge_Game_Specification_v0.2.2_2026-10-30.md",
+      "main_blob": "e124be5f238a7e87eef2b869d00759704a88d8e1",
+      "current_blob": "e124be5f238a7e87eef2b869d00759704a88d8e1",
+      "unchanged": true
+    },
+    {
+      "path": "docs/specifications/Slime_Merge_Game_Specification_v0.2.3_2026-10-30.md",
+      "main_blob": "3e98fee4570107f03d1540d3de3609b9fde29b9a",
+      "current_blob": "3e98fee4570107f03d1540d3de3609b9fde29b9a",
+      "unchanged": true
+    },
+    {
+      "path": "docs/specifications/Slime_Merge_Game_Specification_v0.2.4_2026-10-30.md",
+      "main_blob": "ebf6cf1e13fb67aeb49e96dfed48bcc0174e7e43",
+      "current_blob": "ebf6cf1e13fb67aeb49e96dfed48bcc0174e7e43",
+      "unchanged": true
+    },
+    {
+      "path": "docs/specifications/Slime_Merge_Game_Specification_v0.2.5_2026-10-30.md",
+      "main_blob": "7efb58a119bf7b48409ef93c866bb5766d21e874",
+      "current_blob": "7efb58a119bf7b48409ef93c866bb5766d21e874",
+      "unchanged": true
+    },
+    {
+      "path": "docs/specifications/Slime_Merge_Game_Specification_v0.2.6_2026-10-30.md",
+      "main_blob": "5f6e753118eb4834d169e50c882a64e33ac3563a",
+      "current_blob": "5f6e753118eb4834d169e50c882a64e33ac3563a",
+      "unchanged": true
+    },
+    {
+      "path": "package-lock.json",
+      "main_blob": "9da4251d6eee59bde59328cc4300dfd6db270c29",
+      "current_blob": "9da4251d6eee59bde59328cc4300dfd6db270c29",
+      "unchanged": true
+    },
+    {
+      "path": "package.json",
+      "main_blob": "d0d631b79bb55c173d266b07d8eb470520844ee5",
+      "current_blob": "d0d631b79bb55c173d266b07d8eb470520844ee5",
+      "unchanged": true
+    },
+    {
+      "path": "src/app/input/camera.ts",
+      "main_blob": "afd7d92268f56d2ef1a38d48bad564dabc73d46b",
+      "current_blob": "afd7d92268f56d2ef1a38d48bad564dabc73d46b",
+      "unchanged": true
+    },
+    {
+      "path": "src/app/input/gestures.ts",
+      "main_blob": "40a755be8e7644f5f87d5e7d2480c2ea9a9cf243",
+      "current_blob": "40a755be8e7644f5f87d5e7d2480c2ea9a9cf243",
+      "unchanged": true
+    },
+    {
+      "path": "src/app/presets.ts",
+      "main_blob": "56952c49fff7345d04ac9baab6d5544382755dd8",
+      "current_blob": "56952c49fff7345d04ac9baab6d5544382755dd8",
+      "unchanged": true
+    },
+    {
+      "path": "src/core/board/state.ts",
+      "main_blob": "e1e107aeb5744feac3327ee9edad769e6457e0fd",
+      "current_blob": "e1e107aeb5744feac3327ee9edad769e6457e0fd",
+      "unchanged": true
+    },
+    {
+      "path": "src/core/grid/coordinates.ts",
+      "main_blob": "a9308ec63e8724142f6462a2513fd329aea263ce",
+      "current_blob": "a9308ec63e8724142f6462a2513fd329aea263ce",
+      "unchanged": true
+    },
+    {
+      "path": "src/core/input/coordinates.ts",
+      "main_blob": "ae0a2e4db39a63350bf9d29fa9e0f8b95b8cd39e",
+      "current_blob": "ae0a2e4db39a63350bf9d29fa9e0f8b95b8cd39e",
+      "unchanged": true
+    },
+    {
+      "path": "src/core/merge/apply.ts",
+      "main_blob": "ae628ae0af526f0c8052e10583bd2be1dfd956da",
+      "current_blob": "ae628ae0af526f0c8052e10583bd2be1dfd956da",
+      "unchanged": true
+    },
+    {
+      "path": "src/core/merge/plan.ts",
+      "main_blob": "7bb047406cd3f8b8a6bfd6f25d27eda5d79d55fb",
+      "current_blob": "7bb047406cd3f8b8a6bfd6f25d27eda5d79d55fb",
+      "unchanged": true
+    },
+    {
+      "path": "src/domain/game.ts",
+      "main_blob": "71b9834cb3187c0f5bb8cb578886d3d9e8e376e4",
+      "current_blob": "71b9834cb3187c0f5bb8cb578886d3d9e8e376e4",
+      "unchanged": true
+    },
+    {
+      "path": "src/domain/grid.ts",
+      "main_blob": "500e6c8de9ab5c13606f2f94e727feac52ce42c7",
+      "current_blob": "500e6c8de9ab5c13606f2f94e727feac52ce42c7",
+      "unchanged": true
+    }
+  ]
+}

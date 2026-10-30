@@ -4,9 +4,10 @@ import { PRESETS, type PresetId } from '../app/presets'
 import { Slime } from './Slime'
 export type Panel = 'help' | 'presets' | 'appearance' | 'settings'
 const TITLES: Record<Panel, string> = { help: '遊び方', presets: '検証用プリセット', appearance: 'スライム一覧・外見確認', settings: '表示設定' }
-export function GameMenu({ panel, onClose, preset, onPreset, reducedEffects, onEffects }: {
+export function GameMenu({ panel, onClose, preset, onPreset, reducedEffects, onEffects, onZoom, onResetCamera }: {
   panel: Panel | null; onClose: () => void; preset: PresetId; onPreset: (id: PresetId) => void
   reducedEffects: boolean; onEffects: (value: boolean) => void
+  onZoom: (direction: -1 | 1) => void; onResetCamera: () => void
 }) {
   const dialog = useRef<HTMLDialogElement>(null)
   useEffect(() => {
@@ -24,6 +25,7 @@ export function GameMenu({ panel, onClose, preset, onPreset, reducedEffects, onE
         <p>同じTierのスライムへ重ね、離すとマージします。</p>
         <div className="recipes"><strong>3体 → 上位1体</strong><strong>5体 → 上位2体</strong></div>
         <ul><li>縦・横・斜めの8方向で連結。5体優先、次に3体、余りは保持。</li><li>枠の番号＝マージ組、↑＝出力予定セル、点線＝残る個体。</li><li>空きマスへの移動・隣接だけではマージしません。</li><li>空きマスからドラッグでパン。ホイール / 2本指ピンチでズーム。</li><li>2本指になると素材ドラッグを取り消します。全ての指を離すと再操作できます。</li><li>Tabでマス移動 → Enter / Spaceで選択 → 移動先で再度Enter。Escapeで取消。</li></ul>
+        <p>設定から拡大・縮小・表示リセットを操作できます。キーボードではTabで設定を選び、Enterで開いて操作します。</p>
         <p className="muted">生成・売却・保存は未実装です。検証用プリセットで試遊できます。</p>
       </>}
       {panel === 'presets' && <>
@@ -37,6 +39,11 @@ export function GameMenu({ panel, onClose, preset, onPreset, reducedEffects, onE
         {[['通常・単色', 1], ['模様', 11], ['宝石・発光', 21], ['星・カオス・超越', 31]].map(([label, start]) => <section key={start} className="tier-section"><h3>{label} · Tier {start}〜{Number(start) + 9}</h3><div className="tier-gallery">{Array.from({ length: 10 }, (_, i) => Number(start) + i).map(tier => <figure key={tier} data-preview-tier={tier}><div className="gallery-slime"><Slime tier={tier} /></div><figcaption>Tier {tier}{tier === 30 ? ' · 虹' : tier === MAX_TIER ? ' · 最終' : ''}</figcaption></figure>)}</div></section>)}
       </>}
       {panel === 'settings' && <>
+        <div className="camera-actions" role="group" aria-label="表示操作">
+          <button type="button" aria-label="縮小" onClick={() => onZoom(-1)}>−</button>
+          <button type="button" aria-label="拡大" onClick={() => onZoom(1)}>＋</button>
+          <button type="button" data-testid="reset-camera" onClick={onResetCamera}>表示リセット</button>
+        </div>
         <label className="setting-row"><input type="checkbox" checked={reducedEffects} onChange={e => onEffects(e.target.checked)} />発光・進化アニメーションを軽減</label>
         <p className="muted">OSのモーション削減設定にも対応します。この表示設定は保存されません。</p>
         <p>ズーム：75〜300%。100%は盤面全体が見えるフィット表示。画面サイズ変更時は表示をリセットします。</p>

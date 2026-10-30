@@ -260,7 +260,9 @@ async function run() {
           await input.move(await center(page, '[data-cell="2,2"]'))
           await input.end()
           assert.equal((await placements(page)).length, 5)
+          await page.getByRole('button', { name: '設定', exact: true }).click()
           await page.getByRole('button', { name: '表示リセット' }).click()
+          await page.getByRole('button', { name: '閉じる', exact: true }).click()
         },
       )
       await check(`${width}px keyboard and Escape`, async () => {
