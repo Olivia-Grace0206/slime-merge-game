@@ -28,8 +28,10 @@ export default defineConfig([
     extends: [reactHooks.configs.flat.recommended, reactRefresh.configs.vite],
   },
   {
-    files: ['*.config.{ts,js}', 'tests/**/*.ts'],
+    files: ['*.config.{ts,js}', 'tests/**/*.{ts,cjs}'],
     languageOptions: { globals: globals.node },
   },
-  { files: ['**/*.js'], extends: [js.configs.recommended] },
+  { files: ['tests/browser/**/*.cjs'], languageOptions: { globals: { ...globals.node, ...globals.browser } } },
+  { files: ['**/*.{js,cjs}'], extends: [js.configs.recommended] },
 ])
+
