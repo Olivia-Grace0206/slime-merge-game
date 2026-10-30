@@ -250,20 +250,14 @@ export function GameBoard() {
         </div>
         {dragged && gesture.single && <div className="drag-sprite" style={{ left: gesture.single.current.x, top: gesture.single.current.y, width: 86 * scale, height: 90 * scale, '--group-color': plan ? GROUP_COLORS[0] : 'transparent' } as CSSProperties}><Slime tier={dragged.tier} />{plan && <span className="group-badge">1</span>}</div>}
       </div>
-      <aside className="camera-controls" aria-label="表示操作">
-        <span className="board-label">7 × 7</span>
-        <output data-testid="zoom" aria-label="ズーム倍率">{Math.round(camera.zoom * 100)}%</output>
-        <div className="zoom-buttons">{([-1, 1] as const).map(dir => <button key={dir} type="button" aria-label={dir === 1 ? '拡大' : '縮小'} onClick={() => {
-          abort(); changeCamera(zoomAt(cameraRef.current, viewRef.current, { x: view.width / 2, y: view.height / 2 }, cameraRef.current.zoom * (dir === 1 ? 1.2 : 1 / 1.2)))
-        }}>{dir === 1 ? '+' : '−'}</button>)}</div>
-        <button type="button" data-testid="reset-camera" onClick={resetCamera}>表示リセット</button>
-        <span className="control-hint">ホイール / ピンチ<br />空きマスでパン</span>
-      </aside>
     </section>
-    <footer className={`result-bar ${plan ? 'preview-active' : ''}`} role="status" data-testid="status">
+    <div className="sr-only" role="status" aria-live="polite" aria-atomic="true" data-testid="status">
       <strong>{text}</strong>
       {plan && <small>{plan.groups.map(g => `組${g.number} ${g.consumedIds.length}→${g.outputs.length}`).join(' / ')}{plan.remainderIds.length ? ` / 余り${plan.remainderIds.length}` : ''} · ↑出力先</small>}
-    </footer>
-    <GameMenu panel={panel} onClose={() => setPanel(null)} preset={preset} onPreset={reset} reducedEffects={reducedEffects} onEffects={setReducedEffects} />
+    </div>
+    <GameMenu panel={panel} onClose={() => setPanel(null)} preset={preset} onPreset={reset} reducedEffects={reducedEffects} onEffects={setReducedEffects}
+      onResetCamera={resetCamera} onZoom={dir => {
+        abort(); changeCamera(zoomAt(cameraRef.current, viewRef.current, { x: view.width / 2, y: view.height / 2 }, cameraRef.current.zoom * (dir === 1 ? 1.2 : 1 / 1.2)))
+      }} />
   </>
 }
