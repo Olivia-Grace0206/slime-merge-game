@@ -1,445 +1,269 @@
 import {
-  useEffect,
-  useRef,
-  useState,
-  type CSSProperties,
-  type PointerEvent as ReactPointerEvent,
+  useCallback, useEffect, useRef, useState,
+  type CSSProperties, type PointerEvent as ReactPointerEvent,
 } from 'react'
 import { MAX_TIER, type DropPlan, type InvalidReason } from '../domain/game'
 import type { GridPosition } from '../domain/grid'
 import { samePosition } from '../core/grid/coordinates'
 import { applyPlan } from '../core/merge/apply'
 import { planDrop } from '../core/merge/plan'
-import { panOffset, screenToCell, type Point } from '../core/input/coordinates'
-import { createPreset, PRESETS, type PresetId } from '../app/presets'
+import { screenToCell, type Point } from '../core/input/coordinates'
+import {
+  distance, fitView, initialCamera, midpoint, panCamera, screenToWorld, worldToScreen, zoomAt,
+  type Camera, type View,
+} from '../app/input/camera'
+import { idleGesture, transition, type GestureState } from '../app/input/gestures'
+import { createPreset, type PresetId } from '../app/presets'
 import { Slime } from './Slime'
+import { GameMenu, type Panel } from './GameMenu'
 
-const GROUP_COLORS = [
-  '#f19a37',
-  '#35b9cf',
-  '#a778df',
-  '#ed79a6',
-  '#81ac38',
-  '#657ddd',
-  '#b37b57',
-  '#ca9732',
-  '#568f99',
-  '#b76eaa',
-]
+const GROUP_COLORS = ['#e58522', '#1b9db7', '#9460ce', '#df6392', '#71992c', '#5970d1', '#a46a49', '#b9871f', '#427e89', '#a85b9a']
 const REASONS: Record<InvalidReason, string> = {
-  'invalid-state': '盤面を確認できません。配置をリセットしてください。',
-  'missing-source': '操作を取り消しました。',
-  'outside-board': '盤面の外です。元の場所へ戻しました。',
-  'same-cell': '同じ色のスライムへ、重ねて離してみよう。',
-  'different-tier': '同じTierのスライムに重ねてね。',
-  'too-few': 'マージには、ドラッグ中の1体を含めて3体以上必要です。',
-  'max-tier': `Tier ${MAX_TIER}は今の最終段階。消費せず元へ戻します。`,
-}
-type Gesture = {
-  pointerId: number
-  start: Point
-  current: Point
-  initialCamera: Point
-  sourceId: string | null
-  target: GridPosition | null
-  plan: DropPlan | null
+  'invalid-state': '盤面を確認できません。リセットしてください',
+  'missing-source': '操作を取り消しました',
+  'outside-board': '盤面外のため取り消しました',
+  'same-cell': '同じTierへ重ねてドロップ',
+  'different-tier': 'Tierが異なります',
+  'too-few': '対象が足りません（3体以上必要）',
+  'max-tier': `Tier ${MAX_TIER}は上限です（消費なし）`,
 }
 export function GameBoard() {
   const [game, setGame] = useState(() => createPreset('five'))
   const gameRef = useRef(game)
   const [preset, setPreset] = useState<PresetId>('five')
-  const [camera, setCamera] = useState<Point>({ x: 0, y: 0 })
+  const [camera, setCamera] = useState(initialCamera)
   const cameraRef = useRef(camera)
-  const [gesture, setGesture] = useState<Gesture | null>(null)
-  const active = useRef<Gesture | null>(null)
-  const world = useRef<HTMLDivElement>(null)
+  const [view, setView] = useState<View>(() => fitView(1, 1))
+  const viewRef = useRef(view)
+  const [gesture, setGesture] = useState<GestureState>(idleGesture)
+  const active = useRef(gesture)
+  const [preview, setPreview] = useState<DropPlan | null>(null)
+  const previewRef = useRef<{ target: GridPosition; plan: DropPlan } | null>(null)
   const viewport = useRef<HTMLDivElement>(null)
-  const [message, setMessage] = useState('左のスライムを、真ん中の仲間へ重ねてみよう！')
+  const [message, setMessage] = useState('同じTierへ重ねてドロップ')
   const [createdIds, setCreatedIds] = useState<readonly string[]>([])
   const [selected, setSelected] = useState<string | null>(null)
+  const [panel, setPanel] = useState<Panel | null>(null)
+  const [reducedEffects, setReducedEffects] = useState(false)
   const idSequence = useRef(0)
 
-  function clearGesture() {
-    const pointerId = active.current?.pointerId
-    active.current = null
-    setGesture(null)
-    if (pointerId !== undefined && viewport.current?.hasPointerCapture(pointerId))
-      viewport.current.releasePointerCapture(pointerId)
-  }
-  function cancel() {
-    if (active.current) {
-      const previousCamera = active.current.initialCamera
-      clearGesture()
-      setSelected(null)
-      cameraRef.current = previousCamera
-      setCamera(previousCamera)
-      setMessage('操作を取り消しました。スライムは元の場所にいます。')
+  const changeCamera = useCallback((next: Camera) => {
+    cameraRef.current = next
+    setCamera(next)
+  }, [])
+  const clearPreview = useCallback(() => {
+    previewRef.current = null
+    setPreview(null)
+    setSelected(null)
+  }, [])
+  const abort = useCallback((clearContacts = false) => {
+    const contacts = active.current.contacts
+    active.current = clearContacts ? idleGesture() : transition(active.current, { type: 'cancel' }).state
+    setGesture(active.current)
+    clearPreview()
+    if (clearContacts) for (const c of contacts) {
+      if (viewport.current?.hasPointerCapture(c.id)) viewport.current.releasePointerCapture(c.id)
     }
-  }
-  // Losing focus/capture/visibility is an abort, never an implicit drop.
+  }, [clearPreview])
+
   useEffect(() => {
-    const abort = () => {
-      const g = active.current
-      if (!g) return
-      active.current = null
-      setGesture(null)
-      if (viewport.current?.hasPointerCapture(g.pointerId))
-        viewport.current.releasePointerCapture(g.pointerId)
-      cameraRef.current = g.initialCamera
-      setCamera(g.initialCamera)
-      setMessage('操作を取り消しました。スライムは元の場所にいます。')
-    }
-    const visibility = () => {
-      if (document.hidden) abort()
-    }
+    const element = viewport.current
+    if (!element) return
+    const observer = new ResizeObserver(entries => {
+      const rect = entries[0]!.contentRect
+      // A changed fit invalidates gesture baselines. Refit on rotation/browser chrome changes.
+      abort(true)
+      const next = fitView(rect.width, rect.height)
+      viewRef.current = next
+      setView(next)
+      changeCamera(initialCamera())
+    })
+    observer.observe(element)
+    const blur = () => { abort(true) }
+    const visibility = () => { if (document.hidden) abort(true) }
     const escape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        abort()
-        setSelected(null)
-      }
+      if (e.key === 'Escape') { abort(); setMessage('操作を取り消しました') }
     }
-    window.addEventListener('blur', abort)
+    // Native, non-passive listener: prevent browser/page zoom only inside the game viewport.
+    const wheel = (e: WheelEvent) => {
+      e.preventDefault()
+      if (active.current.contacts.length) return
+      clearPreview()
+      const rect = element.getBoundingClientRect()
+      const point = { x: e.clientX - rect.left, y: e.clientY - rect.top }
+      const delta = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? rect.height : 1)
+      changeCamera(zoomAt(cameraRef.current, viewRef.current, point, cameraRef.current.zoom * Math.exp(-delta * 0.0015)))
+    }
+    element.addEventListener('wheel', wheel, { passive: false })
+    window.addEventListener('blur', blur)
     document.addEventListener('visibilitychange', visibility)
     window.addEventListener('keydown', escape)
     return () => {
-      window.removeEventListener('blur', abort)
+      observer.disconnect()
+      element.removeEventListener('wheel', wheel)
+      window.removeEventListener('blur', blur)
       document.removeEventListener('visibilitychange', visibility)
       window.removeEventListener('keydown', escape)
     }
-  }, [])
+  }, [abort, changeCamera, clearPreview])
 
+  function localPoint(e: { clientX: number; clientY: number }): Point {
+    const rect = viewport.current!.getBoundingClientRect()
+    return { x: e.clientX - rect.left, y: e.clientY - rect.top }
+  }
   function targetAt(point: Point): GridPosition | null {
-    const board = world.current?.getBoundingClientRect(),
-      view = viewport.current?.getBoundingClientRect()
-    if (
-      !board ||
-      !view ||
-      point.x < view.left ||
-      point.x >= view.right ||
-      point.y < view.top ||
-      point.y >= view.bottom
-    )
-      return null
-    const border = world.current?.clientLeft ?? 0
-    return screenToCell(
-      point,
-      { x: board.left + border, y: board.top + border },
-      (world.current?.clientWidth ?? board.width) / gameRef.current.bounds.width,
-      gameRef.current.bounds.origin,
-    )
+    const v = viewRef.current
+    if (point.x < 0 || point.x >= v.width || point.y < 0 || point.y >= v.height) return null
+    const p = screenToWorld(point, cameraRef.current, v)
+    if (p.x < 0 || p.x >= 700 || p.y < 0 || p.y >= 700) return null
+    return screenToCell(p, { x: 0, y: 0 }, 100, gameRef.current.bounds.origin)
+  }
+  function planAt(sourceId: string, point: Point): DropPlan | null {
+    const target = targetAt(point)
+    if (!target) return null
+    const previous = previewRef.current
+    if (previous && samePosition(previous.target, target)) return previous.plan
+    const plan = planDrop(gameRef.current, sourceId, target)
+    previewRef.current = { target, plan }
+    return plan
   }
   function commit(plan: DropPlan) {
-    if (plan.kind === 'invalid') {
-      setMessage(REASONS[plan.reason])
-      return
-    }
+    if (plan.kind === 'invalid') { setMessage(REASONS[plan.reason]); return }
     const result = applyPlan(gameRef.current, plan, () => `merge-${++idSequence.current}`)
-    if (!result.ok) {
-      setMessage('状態が変わったため、操作を安全に取り消しました。')
-      return
-    }
+    if (!result.ok) { setMessage('状態が変わったため取り消しました'); return }
     gameRef.current = result.state
     setGame(result.state)
     setCreatedIds(result.createdIds)
-    setMessage(
-      plan.kind === 'move'
-        ? 'ぷにっ。お引っ越しできたよ。'
-        : `マージ成功！ Tier ${plan.outputTier} × ${result.createdIds.length}体${plan.remainderIds.length ? `・元のTierを${plan.remainderIds.length}体キープ` : ''}`,
-    )
+    setMessage(plan.kind === 'move' ? '移動しました'
+      : `マージ成功 · Tier ${plan.outputTier} × ${result.createdIds.length}${plan.remainderIds.length ? ` · 余り${plan.remainderIds.length}体` : ''}`)
   }
   function down(e: ReactPointerEvent<HTMLDivElement>) {
-    if (active.current || !e.isPrimary || e.button !== 0) return
-    const point = { x: e.clientX, y: e.clientY },
-      target = targetAt(point)
-    const source = target && gameRef.current.slimes.find((s) => samePosition(s.position, target))
-    const g: Gesture = {
-      pointerId: e.pointerId,
-      start: point,
-      current: point,
-      initialCamera: cameraRef.current,
-      sourceId: source?.id ?? null,
-      target,
-      plan: null,
-    }
-    active.current = g
-    setGesture(g)
-    setSelected(null)
+    if (e.button !== 0 || panel) return
+    const point = localPoint(e)
+    const target = targetAt(point)
+    const source = target && gameRef.current.slimes.find(s => samePosition(s.position, target))
+    active.current = transition(active.current, { type: 'down', id: e.pointerId, point, sourceId: source?.id ?? null, camera: cameraRef.current }).state
+    setGesture(active.current)
+    clearPreview()
     e.currentTarget.setPointerCapture(e.pointerId)
   }
-  function update(e: ReactPointerEvent<HTMLDivElement>): Gesture | null {
+  function update(e: ReactPointerEvent<HTMLDivElement>) {
+    active.current = transition(active.current, { type: 'move', id: e.pointerId, point: localPoint(e) }).state
     const g = active.current
-    if (!g || e.pointerId !== g.pointerId) return null
-    const point = { x: e.clientX, y: e.clientY }
-    if (!g.sourceId) {
-      const nextCamera = panOffset(
-        g.start,
-        point,
-        g.initialCamera,
-        (viewport.current?.clientWidth ?? 400) * 0.3,
-      )
-      cameraRef.current = nextCamera
-      setCamera(nextCamera)
-      const next = { ...g, current: point }
-      active.current = next
-      setGesture(next)
-      return next
+    setGesture(g)
+    if (g.mode === 'pan' && g.single) changeCamera(panCamera(g.single.camera, viewRef.current, g.single.start, g.single.current))
+    if (g.mode === 'pinch' && g.pinch) {
+      const [a, b] = g.pinch.starts
+      const currentA = g.contacts.find(c => c.id === a.id)!, currentB = g.contacts.find(c => c.id === b.id)!
+      const ratio = distance(currentA.point, currentB.point) / Math.max(1, distance(a.point, b.point))
+      changeCamera(zoomAt(g.pinch.camera, viewRef.current, midpoint(a.point, b.point), g.pinch.camera.zoom * ratio, midpoint(currentA.point, currentB.point)))
     }
-    const target = targetAt(point)
-    const unchanged = target && g.target && samePosition(target, g.target)
-    const plan =
-      unchanged && g.plan ? g.plan : target ? planDrop(gameRef.current, g.sourceId, target) : null
-    const next = { ...g, current: point, target, plan }
-    active.current = next
-    setGesture(next)
-    return next
+    if (g.mode === 'drag' && g.single?.sourceId) setPreview(planAt(g.single.sourceId, g.single.current))
   }
   function up(e: ReactPointerEvent<HTMLDivElement>) {
-    const g = update(e)
-    if (!g) return
-    // Clear synchronously before commit: subsequent pointerup cannot apply twice.
-    clearGesture()
-    if (g.sourceId) {
-      if (Math.hypot(g.current.x - g.start.x, g.current.y - g.start.y) < 4) return
-      if (g.plan) commit(g.plan)
-      else setMessage('盤面の外です。元の場所へ戻しました。')
+    if (!active.current.contacts.some(c => c.id === e.pointerId)) return
+    const result = transition(active.current, { type: 'up', id: e.pointerId, point: localPoint(e) })
+    // Synchronous gate before commit/releasing capture prevents duplicate pointerup commits.
+    active.current = result.state
+    setGesture(result.state)
+    const drop = result.drop
+    const plan = drop?.sourceId ? planAt(drop.sourceId, drop.current) : null
+    clearPreview()
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId)
+    if (drop && distance(drop.start, drop.current) >= 4) {
+      if (plan) commit(plan)
+      else setMessage(REASONS['outside-board'])
     }
   }
+  function cancelPointer(e: ReactPointerEvent<HTMLDivElement>) {
+    if (!active.current.contacts.some(c => c.id === e.pointerId)) return
+    active.current = transition(active.current, { type: 'cancel', id: e.pointerId }).state
+    setGesture(active.current)
+    clearPreview()
+    setMessage('操作を取り消しました')
+  }
+  function resetCamera() { abort(); changeCamera(initialCamera()); setMessage('表示をリセットしました') }
   function reset(id: PresetId) {
-    clearGesture()
-    setSelected(null)
+    abort(true)
     const next = createPreset(id, gameRef.current.revision + 1)
     gameRef.current = next
     setGame(next)
     setPreset(id)
     setCreatedIds([])
-    cameraRef.current = { x: 0, y: 0 }
-    setCamera({ x: 0, y: 0 })
-    setMessage(
-      id === 'high'
-        ? `上段はTier ${MAX_TIER - 1}→${MAX_TIER}、下段は上限キャンセルを試せます。`
-        : '左の1体を、中央の仲間に重ねて離してね。',
-    )
+    changeCamera(initialCamera())
+    setMessage(id === 'high' ? '上段：Tier 39→40 / 下段：Tier 40上限' : '同じTierへ重ねてドロップ')
+    setPanel(null)
   }
-  const plan = gesture?.plan?.kind === 'merge' ? gesture.plan : null
-  const dragged = game.slimes.find((s) => s.id === gesture?.sourceId)
-  const previewText = plan
-    ? `Tier ${plan.outputTier} × ${plan.groups.reduce((n, g) => n + g.outputs.length, 0)}体に進化！`
-    : gesture?.plan?.kind === 'invalid' && gesture.plan.reason !== 'same-cell'
-      ? REASONS[gesture.plan.reason]
-      : message
-
-  return (
-    <>
-      <section className="game-layout">
-        <div className="pasture-card">
-          <div className="board-topline">
-            <span>🌼 はじまりの牧場</span>
-            <span>7 × 7</span>
-          </div>
-          <div
-            className="board-viewport"
-            ref={viewport}
-            data-testid="viewport"
-            onPointerDown={down}
-            onPointerMove={update}
-            onPointerUp={up}
-            onPointerCancel={(e) => {
-              if (active.current?.pointerId === e.pointerId) cancel()
-            }}
-            onLostPointerCapture={(e) => {
-              if (active.current?.pointerId === e.pointerId) cancel()
-            }}
-            onContextMenu={(e) => e.preventDefault()}
-          >
-            <div
-              className="board-world"
-              ref={world}
-              data-testid="board"
-              style={{ transform: `translate(${camera.x}px, ${camera.y}px)` }}
-            >
-              {Array.from({ length: game.bounds.width * game.bounds.height }, (_, index) => {
-                const position = {
-                  x: index % game.bounds.width,
-                  y: Math.floor(index / game.bounds.width),
-                }
-                const slime = game.slimes.find((s) => samePosition(s.position, position))
-                const group = plan?.groups.find((g) => slime && g.consumedIds.includes(slime.id))
-                const outputGroup = plan?.groups.find((g) =>
-                  g.outputs.some((p) => samePosition(p, position)),
-                )
-                const remainder = slime && plan?.remainderIds.includes(slime.id)
-                return (
-                  <button
-                    key={index}
-                    type="button"
-                    className={`cell ${(position.x + position.y) % 2 ? 'alternate' : ''} ${group ? 'grouped' : ''} ${remainder ? 'remainder' : ''} ${selected && slime?.id === selected ? 'selected' : ''}`}
-                    data-cell={`${position.x},${position.y}`}
-                    data-slime-id={slime?.id}
-                    data-tier={slime?.tier}
-                    data-group={group?.number}
-                    data-output={outputGroup?.number}
-                    data-remainder={remainder ? 'true' : undefined}
-                    aria-label={`${position.x + 1}列${position.y + 1}行${slime ? ` Tier ${slime.tier}` : ' 空きマス'}${group ? ` 組${group.number}` : ''}${remainder ? ' 余り・残ります' : ''}`}
-                    style={
-                      group
-                        ? ({
-                            '--group-color': GROUP_COLORS[(group.number - 1) % GROUP_COLORS.length],
-                          } as CSSProperties)
-                        : undefined
-                    }
-                    onKeyDown={(e) => {
-                      if (e.key !== 'Enter' && e.key !== ' ') return
-                      e.preventDefault()
-                      if (active.current) return
-                      if (selected) {
-                        commit(planDrop(gameRef.current, selected, position))
-                        setSelected(null)
-                      } else if (slime) setSelected(slime.id)
-                    }}
-                  >
-                    {slime && (
-                      <span
-                        key={slime.id}
-                        className={`slime-piece ${slime.id === dragged?.id ? 'source-ghost' : ''} ${createdIds.includes(slime.id) ? 'born' : ''}`}
-                      >
-                        <Slime tier={slime.tier} />
-                      </span>
-                    )}
-                    {group && <span className="group-badge">{group.number}</span>}
-                    {remainder && <span className="keep-badge">残る</span>}
-                    {outputGroup && <span className="output-mark">↑{outputGroup.number}</span>}
-                    {!slime && !outputGroup && (index === 6 || index === 43) && (
-                      <span className="tiny-flower">✿</span>
-                    )}
-                  </button>
-                )
-              })}
-            </div>
-            {dragged && gesture && (
-              <div
-                className="drag-sprite"
-                style={
-                  {
-                    left: gesture.current.x,
-                    top: gesture.current.y,
-                    '--group-color': plan ? GROUP_COLORS[0] : 'transparent',
-                  } as CSSProperties
-                }
-              >
-                <Slime tier={dragged.tier} />
-                {plan && <span className="group-badge">1</span>}
-              </div>
-            )}
-          </div>
-          <div
-            className={`result-bar ${plan ? 'preview-active' : ''}`}
-            role="status"
-            data-testid="status"
-          >
-            <span className="result-spark">{plan ? '✦' : '♡'}</span>
-            <div>
-              <strong>{previewText}</strong>
-              {plan && (
-                <small>
-                  {plan.groups
-                    .map((g) => `${g.number}組目 ${g.consumedIds.length}→${g.outputs.length}`)
-                    .join(' ／ ')}
-                  {plan.remainderIds.length ? ` ／ 余り${plan.remainderIds.length}体は残る` : ''}
-                  <br />
-                  ↑は出力予定セル。離すと確定します。
-                </small>
-              )}
-            </div>
-          </div>
-          <div className="board-footer">
-            <span>空きマスをドラッグで視点移動</span>
-            <button
-              type="button"
-              onClick={() => {
-                cancel()
-                cameraRef.current = { x: 0, y: 0 }
-                setCamera({ x: 0, y: 0 })
+  const plan = preview?.kind === 'merge' ? preview : null
+  const dragged = gesture.mode === 'drag' ? game.slimes.find(s => s.id === gesture.single?.sourceId) : undefined
+  const text = plan ? `Tier ${plan.outputTier} × ${plan.groups.reduce((n, g) => n + g.outputs.length, 0)}体`
+    : preview?.kind === 'invalid' && preview.reason !== 'same-cell' ? REASONS[preview.reason] : message
+  const topLeft = worldToScreen({ x: 0, y: 0 }, camera, view)
+  const scale = view.fit * camera.zoom
+  return <>
+    <header className="app-header">
+      <h1><span className="brand-icon" aria-hidden="true">♧</span> SLIME MERGE</h1>
+      <div className="session-stats"><span><b data-testid="slime-count">{game.slimes.length}</b>体</span><span>最高 <b data-testid="highest-tier">Tier {game.highestTierReached}</b></span></div>
+    </header>
+    <section className="game-layout" aria-label="ゲーム">
+      <nav className="edge-menu" aria-label="メニュー">
+        {([['help', '?', '遊び方'], ['presets', '▦', '検証'], ['appearance', '✦', '外見'], ['settings', '⚙', '設定']] as const).map(([id, icon, label]) =>
+          <button key={id} type="button" aria-label={id === 'appearance' ? 'スライム一覧・外見確認' : label} aria-haspopup="dialog" onClick={() => { abort(true); setPanel(id) }}><span aria-hidden="true">{icon}</span>{label}</button>)}
+      </nav>
+      <div className={`board-viewport ${reducedEffects ? 'reduced-effects' : ''}`} ref={viewport}
+        data-testid="viewport" data-gesture={gesture.mode} data-zoom={camera.zoom}
+        onPointerDown={down} onPointerMove={update} onPointerUp={up} onPointerCancel={cancelPointer}
+        onLostPointerCapture={cancelPointer} onContextMenu={e => e.preventDefault()}>
+        <div className="board-world" data-testid="board" style={{ transform: `translate(${topLeft.x}px, ${topLeft.y}px) scale(${scale})` }}>
+          {Array.from({ length: 49 }, (_, index) => {
+            const position = { x: index % 7, y: Math.floor(index / 7) }
+            const slime = game.slimes.find(s => samePosition(s.position, position))
+            const group = plan?.groups.find(g => slime && g.consumedIds.includes(slime.id))
+            const outputGroup = plan?.groups.find(g => g.outputs.some(p => samePosition(p, position)))
+            const remainder = slime && plan?.remainderIds.includes(slime.id)
+            return <button key={index} type="button"
+              className={`cell ${(position.x + position.y) % 2 ? 'alternate' : ''} ${group ? 'grouped' : ''} ${remainder ? 'remainder' : ''} ${selected && slime?.id === selected ? 'selected' : ''}`}
+              data-cell={`${position.x},${position.y}`} data-slime-id={slime?.id} data-tier={slime?.tier} data-group={group?.number} data-output={outputGroup?.number} data-remainder={remainder ? 'true' : undefined}
+              aria-label={`${position.x + 1}列${position.y + 1}行${slime ? ` Tier ${slime.tier}` : ' 空きマス'}${group ? ` 組${group.number}` : ''}${remainder ? ' 余り・残ります' : ''}`}
+              style={group ? { '--group-color': GROUP_COLORS[(group.number - 1) % GROUP_COLORS.length] } as CSSProperties : undefined}
+              onFocus={() => {
+                // Keyboard navigation keeps the focused cell visible even after camera pan/zoom.
+                if (active.current.contacts.length) return
+                const center = worldToScreen({ x: position.x * 100 + 50, y: position.y * 100 + 50 }, cameraRef.current, viewRef.current)
+                const margin = 50 * cameraRef.current.zoom * viewRef.current.fit
+                if (center.x < margin || center.x > viewRef.current.width - margin || center.y < margin || center.y > viewRef.current.height - margin)
+                  changeCamera({ ...cameraRef.current, center: { x: position.x * 100 + 50, y: position.y * 100 + 50 } })
               }}
-            >
-              視点を戻す ↺
+              onKeyDown={e => {
+                if (e.key !== 'Enter' && e.key !== ' ') return
+                e.preventDefault()
+                if (active.current.contacts.length) return
+                if (selected) { commit(planDrop(gameRef.current, selected, position)); setSelected(null) }
+                else if (slime) setSelected(slime.id)
+              }}>
+              {slime && <span key={slime.id} className={`slime-piece ${slime.id === dragged?.id ? 'source-ghost' : ''} ${createdIds.includes(slime.id) ? 'born' : ''}`}><Slime tier={slime.tier} /></span>}
+              {group && <span className="group-badge">{group.number}</span>}
+              {remainder && <span className="keep-badge">残る</span>}
+              {outputGroup && <span className="output-mark">↑{outputGroup.number}</span>}
             </button>
-          </div>
+          })}
         </div>
-        <aside className="side-panel">
-          <section className="instruction-card">
-            <span className="eyebrow">HOW TO MERGE</span>
-            <h2>重ねて、ぷにっと。</h2>
-            <p>
-              同じTierの仲間へドラッグ。
-              <br />
-              指を離すと、ひとつ上に進化！
-            </p>
-            <div className="recipe">
-              <span>3体</span>
-              <span>→</span>
-              <strong>1体</strong>
-            </div>
-            <div className="recipe best">
-              <span>5体</span>
-              <span>→</span>
-              <strong>2体</strong>
-              <small>1体おトク！</small>
-            </div>
-            <p className="hint">
-              斜めにつながる仲間も対象。
-              <br />
-              近くに置くだけではマージしません。
-            </p>
-            <div className="legend">
-              {GROUP_COLORS.slice(0, 3).map((color, i) => (
-                <span key={color}>
-                  <i style={{ background: color }} />組{i + 1}
-                </span>
-              ))}
-              <span>点線＝残る</span>
-            </div>
-          </section>
-          <section className="preset-card">
-            <span className="eyebrow">PHASE 1 · TEST PLAY</span>
-            <h2>おためし配置</h2>
-            <p>何度でも、好きなマージを。</p>
-            <div className="preset-grid">
-              {PRESETS.map((p) => (
-                <button
-                  type="button"
-                  key={p.id}
-                  aria-pressed={preset === p.id}
-                  onClick={() => reset(p.id)}
-                >
-                  {p.label}
-                </button>
-              ))}
-            </div>
-            <button type="button" className="reset-button" onClick={() => reset('five')}>
-              ↻ 最初の配置にリセット
-            </button>
-            <small>
-              開発・検証用の配置です。切替・リセットで試遊履歴も初期化します。高Tier試験の最高到達Tierは
-              {MAX_TIER}、ほかは1から。
-            </small>
-          </section>
-        </aside>
-      </section>
-      <div className="session-stats">
-        <span>
-          牧場の仲間 <b data-testid="slime-count">{game.slimes.length}</b>体
-        </span>
-        <span>
-          最高到達 <b data-testid="highest-tier">Tier {game.highestTierReached}</b>
-        </span>
-        <span>最終段階 Tier {MAX_TIER}</span>
+        {dragged && gesture.single && <div className="drag-sprite" style={{ left: gesture.single.current.x, top: gesture.single.current.y, width: 86 * scale, height: 90 * scale, '--group-color': plan ? GROUP_COLORS[0] : 'transparent' } as CSSProperties}><Slime tier={dragged.tier} />{plan && <span className="group-badge">1</span>}</div>}
       </div>
-      <p className="footnote">
-        Phase 1 試遊版 · Tier 4以降の見た目は仮デザイン · 保存機能は後続Phaseで追加予定
-        <br />
-        キーボード：Tabでマスへ移動 → Enter / Spaceで選択 →
-        移動先で再度Enter。Escで選択・ドラッグを解除。
-      </p>
-    </>
-  )
+      <aside className="camera-controls" aria-label="表示操作">
+        <span className="board-label">7 × 7</span>
+        <output data-testid="zoom" aria-label="ズーム倍率">{Math.round(camera.zoom * 100)}%</output>
+        <div className="zoom-buttons">{([-1, 1] as const).map(dir => <button key={dir} type="button" aria-label={dir === 1 ? '拡大' : '縮小'} onClick={() => {
+          abort(); changeCamera(zoomAt(cameraRef.current, viewRef.current, { x: view.width / 2, y: view.height / 2 }, cameraRef.current.zoom * (dir === 1 ? 1.2 : 1 / 1.2)))
+        }}>{dir === 1 ? '+' : '−'}</button>)}</div>
+        <button type="button" data-testid="reset-camera" onClick={resetCamera}>表示リセット</button>
+        <span className="control-hint">ホイール / ピンチ<br />空きマスでパン</span>
+      </aside>
+    </section>
+    <footer className={`result-bar ${plan ? 'preview-active' : ''}`} role="status" data-testid="status">
+      <strong>{text}</strong>
+      {plan && <small>{plan.groups.map(g => `組${g.number} ${g.consumedIds.length}→${g.outputs.length}`).join(' / ')}{plan.remainderIds.length ? ` / 余り${plan.remainderIds.length}` : ''} · ↑出力先</small>}
+    </footer>
+    <GameMenu panel={panel} onClose={() => setPanel(null)} preset={preset} onPreset={reset} reducedEffects={reducedEffects} onEffects={setReducedEffects} />
+  </>
 }

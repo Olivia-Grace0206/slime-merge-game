@@ -383,3 +383,19 @@ it('250 seeded mixed-tier layouts agree with an independent fixed-point connecti
     for (const old of state.slimes.filter(s => !consumed.has(s.id))) expect(result.state.slimes.find(s => s.id === old.id)).toEqual(old)
   }
 })
+it('M33/M36: 29→30, 30→31 and 39→40 work for both 3- and 5-body groups', () => {
+  for (const tier of [29, 30, 39]) for (const count of [3, 5]) {
+    const state = countBoard(count, tier), result = applyPlan(state, merge(state), ids())
+    expect(result.ok).toBe(true)
+    expect(result.state.slimes).toHaveLength(count === 3 ? 1 : 2)
+    expect(result.state.slimes.every(s => s.tier === tier + 1)).toBe(true)
+    expect(result.state.highestTierReached).toBe(tier + 1)
+  }
+})
+it('high preset explicitly contains Tier39 candidates and Tier40 capped individuals', () => {
+  const state = createPreset('high')
+  expect(state.slimes.filter(s => s.tier === 39)).toHaveLength(3)
+  expect(state.slimes.filter(s => s.tier === 40)).toHaveLength(3)
+  expect(applyPlan(state, planDrop(state, 'cap-0', {x:3,y:5}), ids()).state).toBe(state)
+  expect(isGameState({...state, highestTierReached:41})).toBe(false)
+})

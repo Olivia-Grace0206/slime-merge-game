@@ -1,0 +1,46 @@
+import { useEffect, useRef } from 'react'
+import { MAX_TIER } from '../domain/game'
+import { PRESETS, type PresetId } from '../app/presets'
+import { Slime } from './Slime'
+export type Panel = 'help' | 'presets' | 'appearance' | 'settings'
+const TITLES: Record<Panel, string> = { help: '遊び方', presets: '検証用プリセット', appearance: 'スライム一覧・外見確認', settings: '表示設定' }
+export function GameMenu({ panel, onClose, preset, onPreset, reducedEffects, onEffects }: {
+  panel: Panel | null; onClose: () => void; preset: PresetId; onPreset: (id: PresetId) => void
+  reducedEffects: boolean; onEffects: (value: boolean) => void
+}) {
+  const dialog = useRef<HTMLDialogElement>(null)
+  useEffect(() => {
+    if (panel && !dialog.current?.open) dialog.current?.showModal()
+    else if (!panel && dialog.current?.open) dialog.current.close()
+  }, [panel])
+  return <dialog ref={dialog} className={`menu-dialog ${panel === 'appearance' ? 'appearance-dialog' : ''}`} aria-labelledby="menu-title"
+    onCancel={onClose} onClose={onClose} onClick={e => { if (e.target === dialog.current) {
+      const rect = dialog.current.getBoundingClientRect()
+      if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) onClose()
+    } }}>
+    <div className="panel-header"><h2 id="menu-title">{panel ? TITLES[panel] : ''}</h2><button type="button" aria-label="閉じる" onClick={onClose}>×</button></div>
+    <div className={`panel-body ${reducedEffects ? 'reduced-effects' : ''}`}>
+      {panel === 'help' && <>
+        <p>同じTierのスライムへ重ね、離すとマージします。</p>
+        <div className="recipes"><strong>3体 → 上位1体</strong><strong>5体 → 上位2体</strong></div>
+        <ul><li>縦・横・斜めの8方向で連結。5体優先、次に3体、余りは保持。</li><li>枠の番号＝マージ組、↑＝出力予定セル、点線＝残る個体。</li><li>空きマスへの移動・隣接だけではマージしません。</li><li>空きマスからドラッグでパン。ホイール / 2本指ピンチでズーム。</li><li>2本指になると素材ドラッグを取り消します。全ての指を離すと再操作できます。</li><li>Tabでマス移動 → Enter / Spaceで選択 → 移動先で再度Enter。Escapeで取消。</li></ul>
+        <p className="muted">生成・売却・保存は未実装です。検証用プリセットで試遊できます。</p>
+      </>}
+      {panel === 'presets' && <>
+        <p>切替・リセットは新しい検証セッションです。最高到達Tierの履歴も初期化します。</p>
+        <div className="preset-grid">{PRESETS.map(p => <button type="button" key={p.id} aria-pressed={preset === p.id} onClick={() => onPreset(p.id)}>{p.label}</button>)}</div>
+        <button type="button" className="reset-button" onClick={() => onPreset('five')}>盤面リセット</button>
+        <p className="muted">高Tier試験：Tier 39→40とTier 40上限。通常配置の最高到達Tierは1、高Tier配置は40。</p>
+      </>}
+      {panel === 'appearance' && <>
+        <p className="muted">全40段階のデザイン試作です。正式な配色・名称・完成イラストの承認とは別です。</p>
+        {[['通常・単色', 1], ['模様', 11], ['宝石・発光', 21], ['星・カオス・超越', 31]].map(([label, start]) => <section key={start} className="tier-section"><h3>{label} · Tier {start}〜{Number(start) + 9}</h3><div className="tier-gallery">{Array.from({ length: 10 }, (_, i) => Number(start) + i).map(tier => <figure key={tier} data-preview-tier={tier}><div className="gallery-slime"><Slime tier={tier} /></div><figcaption>Tier {tier}{tier === 30 ? ' · 虹' : tier === MAX_TIER ? ' · 最終' : ''}</figcaption></figure>)}</div></section>)}
+      </>}
+      {panel === 'settings' && <>
+        <label className="setting-row"><input type="checkbox" checked={reducedEffects} onChange={e => onEffects(e.target.checked)} />発光・進化アニメーションを軽減</label>
+        <p className="muted">OSのモーション削減設定にも対応します。この表示設定は保存されません。</p>
+        <p>ズーム：75〜300%。100%は盤面全体が見えるフィット表示。画面サイズ変更時は表示をリセットします。</p>
+      </>}
+    </div>
+  </dialog>
+}

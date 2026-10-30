@@ -8,7 +8,7 @@ it.each([
   {},
   [],
   { ...valid, highestTierReached: 0 },
-  { ...valid, highestTierReached: 31 },
+  { ...valid, highestTierReached: 41 },
   { ...valid, highestTierReached: 1.5 },
   { ...valid, revision: -1 },
   { ...valid, revision: Infinity },

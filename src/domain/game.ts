@@ -1,6 +1,6 @@
 import type { GridPosition } from './grid'
 
-export const MAX_TIER = 30
+export const MAX_TIER = 40
 export function isTier(value: unknown): value is number {
   return typeof value === 'number' && Number.isInteger(value) && value >= 1 && value <= MAX_TIER
 }
