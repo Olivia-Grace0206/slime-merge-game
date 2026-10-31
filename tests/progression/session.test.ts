@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { freshSession, reduceSession, goldPayment, sessionRules, type Session } from '../../src/core/progression/session'
 import { encodeSession, decodeSession, isSession, commitStorage } from '../../src/core/progression/persistence'
 import { planDrop } from '../../src/core/merge/plan'
-import { purchaseUpgrade } from '../../src/core/progression/economy'
+import { purchaseUpgrade, beginGoldRush, payGoldRush, freshWallet } from '../../src/core/progression/economy'
 import { advanceGenerator } from '../../src/core/progression/generation'
 const zero = () => 0
 const full = (now = 100_000) => reduceSession(freshSession(0), {type:'tick'}, now, zero)
@@ -80,6 +80,16 @@ describe('integrated progression safety',()=>{
 })
 
 describe('gold event ledger and recovery',()=>{
+ it('legacy primitive rejects stale event and reused ID even after shopping',()=>{
+  const event=beginGoldRush('old-event',10,0)
+  let result=payGoldRush({...freshWallet(),gold:100},event)
+  expect(result.ok).toBe(true)
+  expect(payGoldRush(result.wallet,event).ok).toBe(false)
+  const purchase=purchaseUpgrade(result.wallet,'speed')
+  expect(payGoldRush(purchase.wallet,beginGoldRush('old-event',10,0)).ok).toBe(false)
+  for(let i=1;i<10;i++)result=payGoldRush(result.wallet,result.event)
+  expect(payGoldRush(result.wallet,beginGoldRush('old-event',10,0)).ok).toBe(false)
+ })
  function start(){return out(full(60_000),0,0)}
  it('activates once without consuming and all ten payments survive per-receipt reload',()=>{
   let s=start();const slime=s.game.slimes[0]!, id=s.event!.id, unit=s.event!.unitGOLD

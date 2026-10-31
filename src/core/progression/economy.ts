@@ -17,7 +17,7 @@ export const EXPERIMENTAL_ECONOMY = Object.freeze({
 
 export type UpgradeKey = 'speed' | 'tap' | 'storage'
 export type Upgrades = Readonly<Record<UpgradeKey, number>>
-export type Wallet = Readonly<{ gold: number; upgrades: Upgrades }>
+export type Wallet = Readonly<{ gold: number; upgrades: Upgrades; goldRushReceipts?: Readonly<Record<string, number>> }>
 export type ShopResult = Readonly<{ ok: boolean; wallet: Wallet; cost: number }>
 
 export function freshWallet(): Wallet {
@@ -27,6 +27,7 @@ export function freshWallet(): Wallet {
 export function isWallet(value: unknown): value is Wallet {
   if (!value || typeof value !== 'object') return false
   const w = value as Wallet
+  if (w.goldRushReceipts !== undefined && (!w.goldRushReceipts || typeof w.goldRushReceipts !== 'object' || Array.isArray(w.goldRushReceipts) || Object.entries(w.goldRushReceipts).some(([id, paid]) => !id.trim() || id.length > 100 || !Number.isSafeInteger(paid) || paid < 0 || paid > 10))) return false
   return Number.isSafeInteger(w.gold) && w.gold >= 0 &&
     !!w.upgrades && (['speed', 'tap', 'storage'] as const).every((key) =>
       Number.isSafeInteger(w.upgrades[key]) &&
@@ -63,6 +64,7 @@ export function purchaseUpgrade(wallet: Wallet, key: UpgradeKey): ShopResult {
   return {
     ok: true,
     wallet: {
+      ...wallet,
       gold: wallet.gold - cost,
       upgrades: { ...wallet.upgrades, [key]: level + 1 },
     },
@@ -105,7 +107,7 @@ export function sellSlime(game: GameState, wallet: Wallet, slimeId: string): Sal
  */
 export type GoldRush = Readonly<{ id: string; tier: number; attributeCount: number; paid: number; unitGOLD: number }>
 export function beginGoldRush(id: string, tier: number, attributeCount: number): GoldRush {
-  if (!id.trim() || !isTier(tier) || !Number.isSafeInteger(attributeCount) || attributeCount < 0 || attributeCount > 10)
+  if (!id.trim() || id.length > 100 || !isTier(tier) || !Number.isSafeInteger(attributeCount) || attributeCount < 0 || attributeCount > 10)
     throw new RangeError('Invalid event')
   const rate = EXPERIMENTAL_ECONOMY.goldRushRatePerPayment
   const penalty = EXPERIMENTAL_ECONOMY.goldRushAttributePenalty
@@ -113,18 +115,21 @@ export function beginGoldRush(id: string, tier: number, attributeCount: number):
   return { id, tier, attributeCount, paid: 0, unitGOLD }
 }
 
+/** Legacy API: wallet carries a receipt ledger. Production uses the bounded Session event ledger. */
 export function payGoldRush(wallet: Wallet, event: GoldRush): Readonly<{
   ok: boolean; wallet: Wallet; event: GoldRush
 }> {
   const reject = () => ({ ok: false, wallet, event })
-  if (!isWallet(wallet) || !event || !event.id?.trim() || !isTier(event.tier) ||
+  if (!isWallet(wallet) || !event || typeof event.id !== 'string' || !event.id.trim() || event.id.length > 100 || !isTier(event.tier) ||
       !Number.isSafeInteger(event.attributeCount) || event.attributeCount < 0 || event.attributeCount > 10 ||
       !Number.isSafeInteger(event.paid) || event.paid < 0 || event.paid >= 10 ||
       !Number.isSafeInteger(event.unitGOLD) || event.unitGOLD <= 0 ||
+      (Object.hasOwn(wallet.goldRushReceipts ?? {}, event.id) ? wallet.goldRushReceipts![event.id] : 0) !== event.paid ||
+      event.unitGOLD !== beginGoldRush(event.id, event.tier, event.attributeCount).unitGOLD ||
       !Number.isSafeInteger(wallet.gold + event.unitGOLD)) return reject()
   return {
     ok: true,
-    wallet: { ...wallet, gold: wallet.gold + event.unitGOLD },
+    wallet: { ...wallet, gold: wallet.gold + event.unitGOLD, goldRushReceipts: { ...wallet.goldRushReceipts, [event.id]: event.paid + 1 } },
     event: { ...event, paid: event.paid + 1 },
   }
 }
