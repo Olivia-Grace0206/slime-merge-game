@@ -110,3 +110,77 @@ h1 { margin: 0; font-size: 17px; letter-spacing: 1.1px; display: flex; align-ite
   .edge-menu button > span { font-size: 17px; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+/* Phase 2: production controls occupy the spare side rail; the central board retains its fit. */
+.normal-play { grid-template-columns: 180px minmax(0, 1fr) 180px; }
+.normal-play .edge-menu { align-items: center; }
+.normal-play .edge-menu button { width: 76px; }
+.wallet { color: #956612; }
+.progress-controls { min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 10px; }
+.progress-controls button { min-height: 48px; border: 1px solid #cbd7bc; border-radius: 15px; padding: 8px; background: #fffdf6; font-size: 13px; touch-action: manipulation; }
+.progress-controls small { display: block; margin-top: 3px; font-size: 11px; font-weight: 600; }
+.progress-controls .add-button { min-height: 76px; background: #b9e68e; border: 2px solid #82b05b; box-shadow: 0 3px 0 #8db569; font-size: 17px; }
+.progress-controls .add-button.armed { background: #ece3ff; border-color: #9270bb; box-shadow: 0 3px 0 #a08cbd; font-size: 14px; }
+.progress-controls .sale-zone { min-height: 68px; border: 2px dashed #bd9553; background: #fff1cf; }
+.progress-controls .sale-zone.sale-hover { background: #ffd57d; border: 3px solid #b07717; }
+.generator-readout { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 5px; font-size: 11px; }
+.generator-readout progress { width: 100%; height: 7px; accent-color: #82b05b; }
+.event-readout { color: #896111; font-size: 11px; min-height: 20px; text-align: center; }
+.gold-cell, .cell.gold-cell.alternate { background: #ffe395; border: 3px solid #c59b2b; box-shadow: inset 0 0 14px #f1b93990; }
+.gold-cell-label { position: absolute; top: 5px; left: 5px; color: #795313; font-size: 15px; z-index: 6; background: #fff1ba; border-radius: 6px; padding: 1px 4px; }
+.protected-badge { position: absolute; top: 4px; right: 6px; font-size: 19px; color: #7650a9; z-index: 6; }
+.detail-slime { width: 100px; height: 110px; margin: 8px auto; }
+.shop-item { background: #f0f5e8; padding: 12px; border-radius: 12px; margin-bottom: 10px; }
+.shop-item h3 { font-size: 14px; margin: 0; }
+.shop-item p { margin: 5px 0; }
+.shop-item button, .confirm-sale { width: 100%; min-height: 44px; border: 1px solid #83aa61; border-radius: 10px; background: #cae9aa; padding: 8px; }
+button:disabled { opacity: .52; cursor: default; }
+.storage-error { position: fixed; top: 52px; left: 8px; right: 8px; z-index: 30; padding: 8px; background: #fff0ee; color: #9a3029; border: 2px solid #cf7970; border-radius: 10px; display: flex; align-items: center; gap: 8px; font-size: 12px; }
+.storage-error span { flex: 1; }
+.storage-error button { min-height: 44px; padding: 5px; }
+.verification-banner { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px; font-size: 10px; text-align: center; }
+.verification-banner strong { color: #86649c; }
+.verification-banner button { min-height: 44px; padding: 5px; border: 1px solid #ccb9db; border-radius: 10px; background: #f4edfa; font-size: 10px; }
+.board-viewport[data-placing='true'] .cell:not([data-slime-id]) { background: #e4e0f4; outline: 2px dashed #aa98c2; outline-offset: -5px; }
+@media (max-width: 900px) and (min-height: 501px) {
+  .normal-play { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) 126px 44px; gap: 4px; }
+  .normal-play .board-viewport { grid-row: 1; }
+  .normal-play .edge-menu { grid-row: 3; gap: 4px; }
+  .normal-play .edge-menu button { width: auto; min-width: 0; min-height: 44px; padding: 3px; font-size: 10px; }
+  .normal-play .edge-menu button > span { font-size: 16px; }
+  .progress-controls { grid-row: 2; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 44px 60px 18px; grid-template-areas: 'readout accelerate' 'sale add' 'event event'; gap: 2px 6px; }
+  .generator-readout { grid-area: readout; padding: 4px; font-size: 10px; }
+  .accelerate-button { grid-area: accelerate; }
+  .progress-controls .add-button { grid-area: add; min-height: 60px; font-size: 15px; }
+  .progress-controls .sale-zone { grid-area: sale; min-height: 52px; }
+  .event-readout { grid-area: event; min-height: 18px; font-size: 10px; }
+  .progress-controls button { min-height: 44px; padding: 4px; font-size: 12px; }
+  .progress-controls small { font-size: 10px; }
+  .session-stats { gap: 6px; }
+  .session-stats > span:not(.wallet):first-of-type { display: none; }
+  .verification-banner { grid-row: 1; position: absolute; top: 50px; right: 8px; z-index: 8; background: #fffdf6e8; padding: 4px 8px; border-radius: 10px; flex-direction: row; gap: 8px; }
+  .verification-banner > span { display: none; }
+}
+@media (max-height: 500px) {
+  .normal-play { grid-template-columns: 74px minmax(0, 1fr) 160px; gap: 6px; }
+  .normal-play .edge-menu button { width: 74px; min-height: 44px; }
+  .progress-controls { gap: 5px; }
+  .progress-controls .add-button { min-height: 64px; font-size: 15px; }
+  .progress-controls .sale-zone { min-height: 56px; }
+  .progress-controls button { min-height: 44px; padding: 4px; }
+}
+@media (max-width: 360px) and (min-height: 501px) {
+  .brand-icon { display: none; }
+  h1 { font-size: 11px; }
+  .session-stats { gap: 4px; font-size: 9px; }
+  .normal-play .edge-menu button { flex-direction: column; gap: 1px; }
+}
+.coin-pop { display: inline-block; animation: coin-rise .6s ease-out; }
+.gold-burst { position: absolute; z-index: 10; top: 30%; font-size: 26px; font-weight: 900; color: #8b5f09; text-shadow: 0 1px 2px white; pointer-events: none; animation: coin-float .65s ease-out both; }
+@keyframes coin-rise { from { opacity: .2; transform: translateY(7px) scale(.85); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes coin-float { from { opacity: 1; transform: translateY(8px); } to { opacity: 0; transform: translateY(-30px); } }
+.reduced-effects .coin-pop, .reduced-effects .gold-burst { animation: none; }
+@media (max-height: 500px) and (min-width: 800px) {
+  .normal-play { grid-template-columns: 160px minmax(0, 1fr) 160px; }
+}
+/* Gold styling must not hide the existing merge-group preview frame. */
+.cell.gold-cell.grouped { box-shadow: inset 0 0 0 5px var(--group-color), inset 0 0 14px #f1b93990; }

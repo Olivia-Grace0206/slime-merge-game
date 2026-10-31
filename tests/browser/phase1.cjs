@@ -78,6 +78,7 @@ async function run() {
         process.env.GAME_URL || 'http://127.0.0.1:5173/slime-merge-game/',
       )
       assert.equal(response.status(), 200)
+      await choosePreset(page, '5体マージ')
       await page.locator('[data-slime-id="drag"]').waitFor()
       const cdp = await context.newCDPSession(page)
       const input = {

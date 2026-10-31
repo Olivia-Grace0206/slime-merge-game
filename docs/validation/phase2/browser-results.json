@@ -1,0 +1,988 @@
+{
+  "browser": "134.0.6998.35",
+  "checks": [
+    {
+      "name": "1920x1080 4x4 fit, no page scroll, buttons ≥44px and reachable",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 actual generation, large add/touch placement, cancel and occupied safety",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 shop dialog and settings stay within viewport",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 4x4 fit, no page scroll, buttons ≥44px and reachable",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 actual generation, large add/touch placement, cancel and occupied safety",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 shop dialog and settings stay within viewport",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 5 merge in normal play, persisted highest Tier and reload",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 sale drag/cancel/confirm, protected specimen and double-sale gate",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 funded shop updates all three effects atomically, repeat click uses expected Lv",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 gold ten receipts, reload mid-stream and relocation preserve single event",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 full-board rescue sale, capacity freeze, debug mode preserves normal save",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 corrupted save blocks autosave and original bytes survive retry/reload",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 4x4 fit, no page scroll, buttons ≥44px and reachable",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 actual generation, large add/touch placement, cancel and occupied safety",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 shop dialog and settings stay within viewport",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 4x4 fit, no page scroll, buttons ≥44px and reachable",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 actual generation, large add/touch placement, cancel and occupied safety",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 shop dialog and settings stay within viewport",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 4x4 fit, no page scroll, buttons ≥44px and reachable",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 actual generation, large add/touch placement, cancel and occupied safety",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 shop dialog and settings stay within viewport",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 4x4 fit, no page scroll, buttons ≥44px and reachable",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 actual generation, large add/touch placement, cancel and occupied safety",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 shop dialog and settings stay within viewport",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 4x4 fit, no page scroll, buttons ≥44px and reachable",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 actual generation, large add/touch placement, cancel and occupied safety",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 shop dialog and settings stay within viewport",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 5 merge in normal play, persisted highest Tier and reload",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 sale drag/cancel/confirm, protected specimen and double-sale gate",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 funded shop updates all three effects atomically, repeat click uses expected Lv",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 gold ten receipts, reload mid-stream and relocation preserve single event",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 full-board rescue sale, capacity freeze, debug mode preserves normal save",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 corrupted save blocks autosave and original bytes survive retry/reload",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 4x4 fit, no page scroll, buttons ≥44px and reachable",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 actual generation, large add/touch placement, cancel and occupied safety",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 shop dialog and settings stay within viewport",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 4x4 fit, no page scroll, buttons ≥44px and reachable",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 actual generation, large add/touch placement, cancel and occupied safety",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 shop dialog and settings stay within viewport",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 5 merge in normal play, persisted highest Tier and reload",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 sale drag/cancel/confirm, protected specimen and double-sale gate",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 funded shop updates all three effects atomically, repeat click uses expected Lv",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 gold ten receipts, reload mid-stream and relocation preserve single event",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 full-board rescue sale, capacity freeze, debug mode preserves normal save",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 corrupted save blocks autosave and original bytes survive retry/reload",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 4x4 fit, no page scroll, buttons ≥44px and reachable",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 actual generation, large add/touch placement, cancel and occupied safety",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 shop dialog and settings stay within viewport",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 5 merge in normal play, persisted highest Tier and reload",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 sale drag/cancel/confirm, protected specimen and double-sale gate",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 funded shop updates all three effects atomically, repeat click uses expected Lv",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 gold ten receipts, reload mid-stream and relocation preserve single event",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 full-board rescue sale, capacity freeze, debug mode preserves normal save",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 corrupted save blocks autosave and original bytes survive retry/reload",
+      "result": "PASS"
+    },
+    {
+      "name": "gold-cell merge keeps group frame, original merge result and ten non-consuming receipts",
+      "result": "PASS"
+    },
+    {
+      "name": "close/reopen tab resumes pending gold receipts without paying again",
+      "result": "PASS"
+    },
+    {
+      "name": "GOLD cap still permits explicitly confirmed rescue sale and capped receipts",
+      "result": "PASS"
+    },
+    {
+      "name": "blocked localStorage access shows recovery state without a white screen",
+      "result": "PASS"
+    },
+    {
+      "name": "two tabs: Web Lock and expected saved bytes prevent stale overwrite",
+      "result": "PASS"
+    },
+    {
+      "name": "quota error rolls back sale and rewards, retry commits once",
+      "result": "PASS"
+    }
+  ],
+  "errors": [],
+  "measurements": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "scrollWidth": 1920,
+      "clientWidth": 1920,
+      "scrollHeight": 1080,
+      "clientHeight": 1080,
+      "board": {
+        "x": 455,
+        "y": 60,
+        "width": 1010,
+        "height": 1010,
+        "right": 1465,
+        "bottom": 1070
+      },
+      "viewport": {
+        "x": 196,
+        "y": 56,
+        "width": 1528,
+        "height": 1018,
+        "right": 1724,
+        "bottom": 1074
+      },
+      "buttons": [
+        {
+          "text": "♜\nショップ",
+          "w": 76,
+          "h": 64,
+          "visible": true
+        },
+        {
+          "text": "?\n遊び方",
+          "w": 76,
+          "h": 64,
+          "visible": true
+        },
+        {
+          "text": "▦\n検証",
+          "w": 76,
+          "h": 64,
+          "visible": true
+        },
+        {
+          "text": "✦\n外見",
+          "w": 76,
+          "h": 64,
+          "visible": true
+        },
+        {
+          "text": "⚙\n設定",
+          "w": 76,
+          "h": 64,
+          "visible": true
+        },
+        {
+          "text": "⚡ 生成加速\n−1.0秒",
+          "w": 180,
+          "h": 56,
+          "visible": true
+        },
+        {
+          "text": "＋ スライム追加\n生成を待っています",
+          "w": 180,
+          "h": 76,
+          "visible": true
+        },
+        {
+          "text": "♧ 売却エリア\nここへドラッグ",
+          "w": 180,
+          "h": 68,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "scrollHeight": 900,
+      "clientHeight": 900,
+      "board": {
+        "x": 305,
+        "y": 60,
+        "width": 830,
+        "height": 830,
+        "right": 1135,
+        "bottom": 890
+      },
+      "viewport": {
+        "x": 196,
+        "y": 56,
+        "width": 1048,
+        "height": 838,
+        "right": 1244,
+        "bottom": 894
+      },
+      "buttons": [
+        {
+          "text": "♜\nショップ",
+          "w": 76,
+          "h": 64,
+          "visible": true
+        },
+        {
+          "text": "?\n遊び方",
+          "w": 76,
+          "h": 64,
+          "visible": true
+        },
+        {
+          "text": "▦\n検証",
+          "w": 76,
+          "h": 64,
+          "visible": true
+        },
+        {
+          "text": "✦\n外見",
+          "w": 76,
+          "h": 64,
+          "visible": true
+        },
+        {
+          "text": "⚙\n設定",
+          "w": 76,
+          "h": 64,
+          "visible": true
+        },
+        {
+          "text": "⚡ 生成加速\n−1.0秒",
+          "w": 180,
+          "h": 56,
+          "visible": true
+        },
+        {
+          "text": "＋ スライム追加\n生成を待っています",
+          "w": 180,
+          "h": 76,
+          "visible": true
+        },
+        {
+          "text": "♧ 売却エリア\nここへドラッグ",
+          "w": 180,
+          "h": 68,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "scrollWidth": 1366,
+      "clientWidth": 1366,
+      "scrollHeight": 768,
+      "clientHeight": 768,
+      "board": {
+        "x": 334,
+        "y": 60,
+        "width": 698,
+        "height": 698,
+        "right": 1032,
+        "bottom": 758
+      },
+      "viewport": {
+        "x": 196,
+        "y": 56,
+        "width": 974,
+        "height": 706,
+        "right": 1170,
+        "bottom": 762
+      },
+      "buttons": [
+        {
+          "text": "♜\nショップ",
+          "w": 76,
+          "h": 64,
+          "visible": true
+        },
+        {
+          "text": "?\n遊び方",
+          "w": 76,
+          "h": 64,
+          "visible": true
+        },
+        {
+          "text": "▦\n検証",
+          "w": 76,
+          "h": 64,
+          "visible": true
+        },
+        {
+          "text": "✦\n外見",
+          "w": 76,
+          "h": 64,
+          "visible": true
+        },
+        {
+          "text": "⚙\n設定",
+          "w": 76,
+          "h": 64,
+          "visible": true
+        },
+        {
+          "text": "⚡ 生成加速\n−1.0秒",
+          "w": 180,
+          "h": 56,
+          "visible": true
+        },
+        {
+          "text": "＋ スライム追加\n生成を待っています",
+          "w": 180,
+          "h": 76,
+          "visible": true
+        },
+        {
+          "text": "♧ 売却エリア\nここへドラッグ",
+          "w": 180,
+          "h": 68,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "scrollHeight": 720,
+      "clientHeight": 720,
+      "board": {
+        "x": 315,
+        "y": 60,
+        "width": 650,
+        "height": 650,
+        "right": 965,
+        "bottom": 710
+      },
+      "viewport": {
+        "x": 196,
+        "y": 56,
+        "width": 888,
+        "height": 658,
+        "right": 1084,
+        "bottom": 714
+      },
+      "buttons": [
+        {
+          "text": "♜\nショップ",
+          "w": 76,
+          "h": 64,
+          "visible": true
+        },
+        {
+          "text": "?\n遊び方",
+          "w": 76,
+          "h": 64,
+          "visible": true
+        },
+        {
+          "text": "▦\n検証",
+          "w": 76,
+          "h": 64,
+          "visible": true
+        },
+        {
+          "text": "✦\n外見",
+          "w": 76,
+          "h": 64,
+          "visible": true
+        },
+        {
+          "text": "⚙\n設定",
+          "w": 76,
+          "h": 64,
+          "visible": true
+        },
+        {
+          "text": "⚡ 生成加速\n−1.0秒",
+          "w": 180,
+          "h": 56,
+          "visible": true
+        },
+        {
+          "text": "＋ スライム追加\n生成を待っています",
+          "w": 180,
+          "h": 76,
+          "visible": true
+        },
+        {
+          "text": "♧ 売却エリア\nここへドラッグ",
+          "w": 180,
+          "h": 68,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "scrollHeight": 768,
+      "clientHeight": 768,
+      "board": {
+        "x": 200,
+        "y": 97,
+        "width": 624,
+        "height": 624,
+        "right": 824,
+        "bottom": 721
+      },
+      "viewport": {
+        "x": 196,
+        "y": 56,
+        "width": 632,
+        "height": 706,
+        "right": 828,
+        "bottom": 762
+      },
+      "buttons": [
+        {
+          "text": "♜\nショップ",
+          "w": 76,
+          "h": 64,
+          "visible": true
+        },
+        {
+          "text": "?\n遊び方",
+          "w": 76,
+          "h": 64,
+          "visible": true
+        },
+        {
+          "text": "▦\n検証",
+          "w": 76,
+          "h": 64,
+          "visible": true
+        },
+        {
+          "text": "✦\n外見",
+          "w": 76,
+          "h": 64,
+          "visible": true
+        },
+        {
+          "text": "⚙\n設定",
+          "w": 76,
+          "h": 64,
+          "visible": true
+        },
+        {
+          "text": "⚡ 生成加速\n−1.0秒",
+          "w": 180,
+          "h": 56,
+          "visible": true
+        },
+        {
+          "text": "＋ スライム追加\n生成を待っています",
+          "w": 180,
+          "h": 76,
+          "visible": true
+        },
+        {
+          "text": "♧ 売却エリア\nここへドラッグ",
+          "w": 180,
+          "h": 68,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "scrollHeight": 1024,
+      "clientHeight": 1024,
+      "board": {
+        "x": 8,
+        "y": 70,
+        "width": 752,
+        "height": 752,
+        "right": 760,
+        "bottom": 822
+      },
+      "viewport": {
+        "x": 4,
+        "y": 52,
+        "width": 760,
+        "height": 788,
+        "right": 764,
+        "bottom": 840
+      },
+      "buttons": [
+        {
+          "text": "♜\nショップ",
+          "w": 148.796875,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "?\n遊び方",
+          "w": 148.796875,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "▦\n検証",
+          "w": 148.796875,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "✦\n外見",
+          "w": 148.796875,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "⚙\n設定",
+          "w": 148.796875,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "⚡ 生成加速\n−1.0秒",
+          "w": 377,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "＋ スライム追加\n生成を待っています",
+          "w": 377,
+          "h": 60,
+          "visible": true
+        },
+        {
+          "text": "♧ 売却エリア\nここへドラッグ",
+          "w": 377,
+          "h": 60,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "scrollHeight": 844,
+      "clientHeight": 844,
+      "board": {
+        "x": 8,
+        "y": 169,
+        "width": 374,
+        "height": 374,
+        "right": 382,
+        "bottom": 543
+      },
+      "viewport": {
+        "x": 4,
+        "y": 52,
+        "width": 382,
+        "height": 608,
+        "right": 386,
+        "bottom": 660
+      },
+      "buttons": [
+        {
+          "text": "♜\nショップ",
+          "w": 73.203125,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "?\n遊び方",
+          "w": 73.203125,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "▦\n検証",
+          "w": 73.203125,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "✦\n外見",
+          "w": 73.203125,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "⚙\n設定",
+          "w": 73.203125,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "⚡ 生成加速\n−1.0秒",
+          "w": 188,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "＋ スライム追加\n生成を待っています",
+          "w": 188,
+          "h": 60,
+          "visible": true
+        },
+        {
+          "text": "♧ 売却エリア\nここへドラッグ",
+          "w": 188,
+          "h": 60,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "width": 375,
+      "height": 667,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "scrollHeight": 667,
+      "clientHeight": 667,
+      "board": {
+        "x": 8,
+        "y": 88,
+        "width": 359,
+        "height": 359,
+        "right": 367,
+        "bottom": 447
+      },
+      "viewport": {
+        "x": 4,
+        "y": 52,
+        "width": 367,
+        "height": 431,
+        "right": 371,
+        "bottom": 483
+      },
+      "buttons": [
+        {
+          "text": "♜\nショップ",
+          "w": 70.203125,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "?\n遊び方",
+          "w": 70.203125,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "▦\n検証",
+          "w": 70.203125,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "✦\n外見",
+          "w": 70.203125,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "⚙\n設定",
+          "w": 70.203125,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "⚡ 生成加速\n−1.0秒",
+          "w": 180.5,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "＋ スライム追加\n生成を待っています",
+          "w": 180.5,
+          "h": 60,
+          "visible": true
+        },
+        {
+          "text": "♧ 売却エリア\nここへドラッグ",
+          "w": 180.5,
+          "h": 60,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "scrollHeight": 568,
+      "clientHeight": 568,
+      "board": {
+        "x": 8,
+        "y": 66,
+        "width": 304,
+        "height": 304,
+        "right": 312,
+        "bottom": 370
+      },
+      "viewport": {
+        "x": 4,
+        "y": 52,
+        "width": 312,
+        "height": 332,
+        "right": 316,
+        "bottom": 384
+      },
+      "buttons": [
+        {
+          "text": "♜\nショップ",
+          "w": 59.203125,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "?\n遊び方",
+          "w": 59.203125,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "▦\n検証",
+          "w": 59.203125,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "✦\n外見",
+          "w": 59.203125,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "⚙\n設定",
+          "w": 59.203125,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "⚡ 生成加速\n−1.0秒",
+          "w": 153,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "＋ スライム追加\n生成を待っています",
+          "w": 153,
+          "h": 60,
+          "visible": true
+        },
+        {
+          "text": "♧ 売却エリア\nここへドラッグ",
+          "w": 153,
+          "h": 60,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "scrollWidth": 844,
+      "clientWidth": 844,
+      "scrollHeight": 390,
+      "clientHeight": 390,
+      "board": {
+        "x": 255,
+        "y": 48,
+        "width": 334,
+        "height": 334,
+        "right": 589,
+        "bottom": 382
+      },
+      "viewport": {
+        "x": 174,
+        "y": 44,
+        "width": 496,
+        "height": 342,
+        "right": 670,
+        "bottom": 386
+      },
+      "buttons": [
+        {
+          "text": "♜\nショップ",
+          "w": 74,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "?\n遊び方",
+          "w": 74,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "▦\n検証",
+          "w": 74,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "✦\n外見",
+          "w": 74,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "⚙\n設定",
+          "w": 74,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "text": "⚡ 生成加速\n−1.0秒",
+          "w": 160,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "text": "＋ スライム追加\n生成を待っています",
+          "w": 160,
+          "h": 64,
+          "visible": true
+        },
+        {
+          "text": "♧ 売却エリア\nここへドラッグ",
+          "w": 160,
+          "h": 56,
+          "visible": true
+        }
+      ]
+    }
+  ]
+}
