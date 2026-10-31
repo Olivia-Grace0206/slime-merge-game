@@ -20,6 +20,7 @@ export type DistributionProfile = Readonly<{
   centerSlope: number
   spreadRatio: number
   minimumSpread: number
+  maximumSpread?: number
 }>
 
 export type TierWeight = Readonly<{ tier: number; probability: number }>
@@ -33,11 +34,12 @@ export function tierWeights(
   if (
     !Number.isFinite(profile.centerSlope) || profile.centerSlope < 0 ||
     !Number.isFinite(profile.spreadRatio) || profile.spreadRatio <= 0 ||
-    !Number.isFinite(profile.minimumSpread) || profile.minimumSpread <= 0
+    !Number.isFinite(profile.minimumSpread) || profile.minimumSpread <= 0 ||
+    (profile.maximumSpread !== undefined && (!Number.isFinite(profile.maximumSpread) || profile.maximumSpread < profile.minimumSpread))
   ) throw new RangeError('Invalid distribution profile')
 
   const mu = 1 + profile.centerSlope * (highestTierReached - 1)
-  const sigma = Math.max(profile.minimumSpread, profile.spreadRatio * highestTierReached)
+  const sigma = Math.min(profile.maximumSpread ?? Infinity, Math.max(profile.minimumSpread, profile.spreadRatio * highestTierReached))
   const weights = Array.from({ length: highestTierReached }, (_, i) =>
     Math.exp(-((i + 1 - mu) ** 2) / (2 * sigma ** 2)),
   )
@@ -87,7 +89,7 @@ function checkRules(state: GeneratorState, rules: GeneratorRules, highestTier: n
   if (
     !isTier(highestTier) ||
     !Number.isSafeInteger(rules.intervalMs) || rules.intervalMs <= 0 ||
-    !Number.isSafeInteger(rules.capacity) || rules.capacity < 1 ||
+    !Number.isSafeInteger(rules.capacity) || rules.capacity < 1 || rules.capacity > 1000 ||
     !Number.isSafeInteger(rules.tapAdvanceMs) || rules.tapAdvanceMs <= 0 ||
     !Array.isArray(state.storedTiers) ||
     state.storedTiers.length > rules.capacity ||
@@ -112,6 +114,7 @@ function accrue(
   if (free === 0) return { ...state, progressMs: 0 }
   const availableMs = Math.min(Number.MAX_SAFE_INTEGER, state.progressMs + milliseconds)
   const generated = Math.min(free, Math.floor(availableMs / rules.intervalMs))
+  if (!Number.isSafeInteger(state.totalGenerated + generated)) throw new RangeError('Generation counter exhausted')
   const created = Array.from({ length: generated }, () =>
     drawTier(highestTier, randomUnit(), rules.distribution),
   )

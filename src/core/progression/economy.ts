@@ -47,7 +47,7 @@ const SHOP_BASE: Readonly<Record<UpgradeKey, number>> = {
 }
 
 export function upgradeCost(key: UpgradeKey, level: number): number {
-  if (!(key in SHOP_BASE) || !Number.isSafeInteger(level) || level < 0 || level > EXPERIMENTAL_ECONOMY.shopMaxLevel) {
+  if (!(Object.hasOwn(SHOP_BASE, key)) || !Number.isSafeInteger(level) || level < 0 || level > EXPERIMENTAL_ECONOMY.shopMaxLevel) {
     throw new RangeError('Invalid upgrade')
   }
   return Math.ceil(SHOP_BASE[key] * EXPERIMENTAL_ECONOMY.shopCostGrowth ** level)
@@ -55,7 +55,7 @@ export function upgradeCost(key: UpgradeKey, level: number): number {
 
 export function purchaseUpgrade(wallet: Wallet, key: UpgradeKey): ShopResult {
   const reject = (cost = 0): ShopResult => ({ ok: false, wallet, cost })
-  if (!isWallet(wallet) || !(key in SHOP_BASE)) return reject()
+  if (!isWallet(wallet) || !(Object.hasOwn(SHOP_BASE, key))) return reject()
   const level = wallet.upgrades[key]
   if (level >= EXPERIMENTAL_ECONOMY.shopMaxLevel) return reject()
   const cost = upgradeCost(key, level)
@@ -118,7 +118,7 @@ export function payGoldRush(wallet: Wallet, event: GoldRush): Readonly<{
 }> {
   const reject = () => ({ ok: false, wallet, event })
   if (!isWallet(wallet) || !event || !event.id?.trim() || !isTier(event.tier) ||
-      !Number.isSafeInteger(event.attributeCount) || event.attributeCount < 0 ||
+      !Number.isSafeInteger(event.attributeCount) || event.attributeCount < 0 || event.attributeCount > 10 ||
       !Number.isSafeInteger(event.paid) || event.paid < 0 || event.paid >= 10 ||
       !Number.isSafeInteger(event.unitGOLD) || event.unitGOLD <= 0 ||
       !Number.isSafeInteger(wallet.gold + event.unitGOLD)) return reject()
