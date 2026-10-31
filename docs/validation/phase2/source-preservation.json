@@ -1,0 +1,104 @@
+[
+  {
+    "path": ".github/workflows/ci.yml",
+    "before": "ad08660c5e5e92c3f885906ada8a9da5309c5180",
+    "after": "ad08660c5e5e92c3f885906ada8a9da5309c5180",
+    "unchanged": true
+  },
+  {
+    "path": "docs/specifications/Slime_Merge_Game_Specification_v0.2.2_2026-10-30.md",
+    "before": "e124be5f238a7e87eef2b869d00759704a88d8e1",
+    "after": "e124be5f238a7e87eef2b869d00759704a88d8e1",
+    "unchanged": true
+  },
+  {
+    "path": "docs/specifications/Slime_Merge_Game_Specification_v0.2.3_2026-10-30.md",
+    "before": "3e98fee4570107f03d1540d3de3609b9fde29b9a",
+    "after": "3e98fee4570107f03d1540d3de3609b9fde29b9a",
+    "unchanged": true
+  },
+  {
+    "path": "docs/specifications/Slime_Merge_Game_Specification_v0.2.4_2026-10-30.md",
+    "before": "ebf6cf1e13fb67aeb49e96dfed48bcc0174e7e43",
+    "after": "ebf6cf1e13fb67aeb49e96dfed48bcc0174e7e43",
+    "unchanged": true
+  },
+  {
+    "path": "docs/specifications/Slime_Merge_Game_Specification_v0.2.5_2026-10-30.md",
+    "before": "7efb58a119bf7b48409ef93c866bb5766d21e874",
+    "after": "7efb58a119bf7b48409ef93c866bb5766d21e874",
+    "unchanged": true
+  },
+  {
+    "path": "docs/specifications/Slime_Merge_Game_Specification_v0.2.6_2026-10-30.md",
+    "before": "5f6e753118eb4834d169e50c882a64e33ac3563a",
+    "after": "5f6e753118eb4834d169e50c882a64e33ac3563a",
+    "unchanged": true
+  },
+  {
+    "path": "docs/specifications/Slime_Merge_Game_Specification_v0.2.7_2026-10-31.md",
+    "before": "8c8176623eb92de5b1bd0ee7c0ae89872ae18193",
+    "after": "8c8176623eb92de5b1bd0ee7c0ae89872ae18193",
+    "unchanged": true
+  },
+  {
+    "path": "package-lock.json",
+    "before": "9da4251d6eee59bde59328cc4300dfd6db270c29",
+    "after": "9da4251d6eee59bde59328cc4300dfd6db270c29",
+    "unchanged": true
+  },
+  {
+    "path": "package.json",
+    "before": "d0d631b79bb55c173d266b07d8eb470520844ee5",
+    "after": "d0d631b79bb55c173d266b07d8eb470520844ee5",
+    "unchanged": true
+  },
+  {
+    "path": "src/app/input/camera.ts",
+    "before": "afd7d92268f56d2ef1a38d48bad564dabc73d46b",
+    "after": "afd7d92268f56d2ef1a38d48bad564dabc73d46b",
+    "unchanged": true
+  },
+  {
+    "path": "src/app/input/gestures.ts",
+    "before": "40a755be8e7644f5f87d5e7d2480c2ea9a9cf243",
+    "after": "40a755be8e7644f5f87d5e7d2480c2ea9a9cf243",
+    "unchanged": true
+  },
+  {
+    "path": "src/app/presets.ts",
+    "before": "56952c49fff7345d04ac9baab6d5544382755dd8",
+    "after": "56952c49fff7345d04ac9baab6d5544382755dd8",
+    "unchanged": true
+  },
+  {
+    "path": "src/core/board/state.ts",
+    "before": "e1e107aeb5744feac3327ee9edad769e6457e0fd",
+    "after": "e1e107aeb5744feac3327ee9edad769e6457e0fd",
+    "unchanged": true
+  },
+  {
+    "path": "src/core/merge/apply.ts",
+    "before": "ae628ae0af526f0c8052e10583bd2be1dfd956da",
+    "after": "ae628ae0af526f0c8052e10583bd2be1dfd956da",
+    "unchanged": true
+  },
+  {
+    "path": "src/core/merge/plan.ts",
+    "before": "7bb047406cd3f8b8a6bfd6f25d27eda5d79d55fb",
+    "after": "7bb047406cd3f8b8a6bfd6f25d27eda5d79d55fb",
+    "unchanged": true
+  },
+  {
+    "path": "src/domain/game.ts",
+    "before": "71b9834cb3187c0f5bb8cb578886d3d9e8e376e4",
+    "after": "71b9834cb3187c0f5bb8cb578886d3d9e8e376e4",
+    "unchanged": true
+  },
+  {
+    "path": "src/domain/grid.ts",
+    "before": "500e6c8de9ab5c13606f2f94e727feac52ce42c7",
+    "after": "500e6c8de9ab5c13606f2f94e727feac52ce42c7",
+    "unchanged": true
+  }
+]

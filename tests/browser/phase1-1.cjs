@@ -36,7 +36,7 @@ async function run(){
    const name=`${width}x${height}`,mobile=width<=700&&height>500
    const context=await browser.newContext({viewport:{width,height},hasTouch:true,isMobile:mobile,deviceScaleFactor:1})
    const page=await context.newPage();page.on('pageerror',e=>errors.push(String(e)));page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});page.on('requestfailed',r=>errors.push(r.url()+':'+r.failure()?.errorText))
-   await page.goto(process.env.GAME_URL||'http://127.0.0.1:5173/slime-merge-game/');await page.getByTestId('board').waitFor();await page.waitForTimeout(70)
+   await page.goto(process.env.GAME_URL||'http://127.0.0.1:5173/slime-merge-game/');await preset(page,'5体マージ');await page.getByTestId('board').waitFor();await page.waitForTimeout(70)
    await check(`${name} layout: no page scroll, complete maximal centered square and reachable controls`,async()=>{
     const m=await metrics(page);measurements.push(m)
     assert(m.scrollHeight<=m.clientHeight+1);assert(m.scrollWidth<=m.clientWidth+1)

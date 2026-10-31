@@ -11,7 +11,7 @@ async function snapshot(p){return p.evaluate(k=>JSON.parse(localStorage.getItem(
 async function until(fn){for(let i=0;i<80;i++){if(await fn())return;await new Promise(r=>setTimeout(r,10))}throw Error('condition timeout')}
 function fixture(now,{tiers=[],queue=[],gold=0,H=1,event=null,capacityLv=0}={}){return {version:2,savedAtMs:now,nextId:tiers.length+1,sequence:0,game:{bounds:{origin:{x:0,y:0},width:4,height:4},slimes:tiers.map((t,i)=>({id:`p-${i+1}`,tier:t,position:{x:i%4,y:Math.floor(i/4)}})),highestTierReached:Math.max(H,...tiers,...queue),revision:0},wallet:{gold,upgrades:{speed:0,tap:0,storage:capacityLv}},generator:{storedTiers:queue,progressMs:0,updatedAtMs:now,totalGenerated:queue.length},eventSequence:event?1:0,nextEventAtMs:now+60000,event,lastEvent:null,protectedIds:[],reducedEffects:false}}
 async function seed(p,options){const now=await p.evaluate(()=>Date.now()),s=fixture(now,options);await p.evaluate(([k,s])=>localStorage.setItem(k,JSON.stringify(s)),[key,s]);await p.reload();await p.getByTestId('board').waitFor();return s}
-async function add(p,x,y){const count=await p.locator('[data-slime-id]').count();await p.getByTestId('add-slime').click();await p.locator(`[data-cell="${x},${y}"]`).click();await until(async()=>await p.locator('[data-slime-id]').count()===count+1)}
+async function add(p,x,y){const count=await p.locator('[data-slime-id]').count();await p.getByTestId('add-slime').tap();await p.locator(`[data-cell="${x},${y}"]`).tap();await until(async()=>await p.locator('[data-slime-id]').count()===count+1)}
 async function drag(p,from,to,touch=false,cdp){const a=await center(p,from),b=await center(p,to);if(touch){await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{...a,id:0}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{...b,id:0}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]})}else{await p.mouse.move(a.x,a.y);await p.mouse.down();await p.mouse.move(b.x,b.y,{steps:8});await p.mouse.up()}await p.waitForTimeout(30)}
 async function metrics(p){return p.evaluate(()=>{const box=s=>{const n=document.querySelector(s),r=n.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height,right:r.right,bottom:r.bottom}};const d=document.documentElement;return {width:innerWidth,height:innerHeight,scrollWidth:d.scrollWidth,clientWidth:d.clientWidth,scrollHeight:d.scrollHeight,clientHeight:d.clientHeight,board:box('[data-testid="board"]'),viewport:box('[data-testid="viewport"]'),buttons:[...document.querySelectorAll('.edge-menu button,.progress-controls button')].map(n=>{const r=n.getBoundingClientRect(),hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);return {text:n.innerText,w:r.width,h:r.height,visible:r.x>=0&&r.y>=0&&r.right<=innerWidth+.5&&r.bottom<=innerHeight+.5&&!!hit&&n.contains(hit)}})}})}
 async function main(){let server,browser
@@ -46,6 +46,15 @@ try{
   if([1440,390,320,844].includes(width)){
    await check(name+' 5 merge in normal play, persisted highest Tier and reload',async()=>{
     await seed(p,{queue:[1,1,1,1,1]});for(const [x,y] of [[0,0],[1,0],[2,0],[0,1],[1,1]])await add(p,x,y)
+    const stateBeforeZoom=(await snapshot(p)).game
+    if(touch){
+      const a=await center(p,'[data-cell="0,0"]'),b=await center(p,'[data-cell="1,1"]')
+      await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{...a,id:0}]})
+      await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{...a,id:0},{...b,id:1}]})
+      await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:a.x-8,y:a.y-8,id:0},{x:b.x+8,y:b.y+8,id:1}]})
+      await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]})
+    }else{const a=await center(p,'[data-cell="0,0"]');await p.mouse.move(a.x,a.y);await p.mouse.wheel(0,-100);await p.waitForTimeout(20)}
+    assert.deepEqual((await snapshot(p)).game,stateBeforeZoom)
     await drag(p,'[data-cell="0,0"]','[data-cell="1,0"]',touch,cdp)
     await until(async()=>await p.locator('[data-tier="2"]').count()===2)
     await p.reload();assert.equal(await p.locator('[data-tier="2"]').count(),2);assert.equal((await snapshot(p)).game.highestTierReached,2)
@@ -66,7 +75,7 @@ try{
    })
    await check(name+' funded shop updates all three effects atomically, repeat click uses expected Lv',async()=>{
     await seed(p,{gold:1000});await p.getByRole('button',{name:'GOLDショップ'}).click()
-    for(const upgrade of ['speed','tap','storage'])await p.getByTestId(`buy-${upgrade}`).click()
+    for(const upgrade of ['speed','tap','storage'])await p.getByTestId(`buy-${upgrade}`).tap()
     await until(async()=>(await snapshot(p)).wallet.upgrades.storage===1)
     assert.deepEqual((await snapshot(p)).wallet.upgrades,{speed:1,tap:1,storage:1});assert.equal((await snapshot(p)).wallet.gold,952)
     await p.screenshot({path:path.join(dir,`shop-${name}.png`)});await p.getByRole('button',{name:'閉じる',exact:true}).click()
@@ -79,6 +88,10 @@ try{
     const before=await snapshot(p);await p.reload();assert.equal((await snapshot(p)).event.paid,before.event.paid)
     await drag(p,'[data-cell="0,0"]','[data-cell="1,1"]',touch,cdp)
     await p.screenshot({path:path.join(dir,`gold-${name}.png`)})
+    await p.evaluate(()=>{Object.defineProperty(document,'hidden',{configurable:true,get:()=>true});document.dispatchEvent(new Event('visibilitychange'))})
+    await p.waitForTimeout(40);const hiddenPaid=(await snapshot(p)).event.paid
+    await p.clock.runFor(10_000);assert.equal((await snapshot(p)).event.paid,hiddenPaid)
+    await p.evaluate(()=>{delete document.hidden;document.dispatchEvent(new Event('visibilitychange'))})
     await p.clock.runFor(8000);await until(async()=>(await snapshot(p)).event===null)
     const s=await snapshot(p);assert.equal(s.wallet.gold,510);assert.equal(s.lastEvent.receivedGOLD,510);assert.equal(s.game.slimes.length,1)
     await p.reload();await p.clock.runFor(5000);assert.equal((await snapshot(p)).wallet.gold,510)
@@ -89,7 +102,8 @@ try{
     await drag(p,'[data-cell="0,0"]','[data-testid="sale-zone"]',touch,cdp);await p.getByTestId('confirm-sale').click();await until(async()=>await p.locator('[data-slime-id]').count()===15)
     const before=await snapshot(p)
     await p.getByRole('button',{name:'検証',exact:true}).click();await p.getByRole('button',{name:'11体マージ',exact:true}).click();assert.equal(await p.locator('[data-cell]').count(),49)
-    await p.clock.runFor(1000);assert.deepEqual(await snapshot(p),before)
+    const entered=await snapshot(p);assert.deepEqual(entered.game,before.game);assert.deepEqual(entered.wallet,before.wallet)
+    await p.clock.runFor(1000);assert.deepEqual(await snapshot(p),entered)
     await p.getByRole('button',{name:'通常プレイへ戻る',exact:true}).click();assert.equal(await p.locator('[data-cell]').count(),16);assert.equal(await p.locator('[data-slime-id]').count(),15)
    })
    await check(name+' corrupted save blocks autosave and original bytes survive retry/reload',async()=>{
@@ -99,6 +113,22 @@ try{
   }
   await ctx.close()
  }
+ await check('close/reopen tab resumes pending gold receipts without paying again',async()=>{
+  const ctx=await browser.newContext(),p=await ctx.newPage();await p.clock.install({time:new Date('2026-10-31T00:00:00Z')});await p.goto(url)
+  const now=await p.evaluate(()=>Date.now()),event={id:'gold-1',sequence:1,cell:{x:0,y:0},expiresAtMs:now+45000,tier:10,sourceId:'p-1',attributeCount:0,paid:4,receivedGOLD:204,unitGOLD:51,nextPaymentAtMs:now+700}
+  await seed(p,{tiers:[10],gold:204,H:10,event});await p.close()
+  const q=await ctx.newPage();await q.clock.install({time:new Date(now)});await q.goto(url);assert.equal((await snapshot(q)).event.paid,4)
+  await q.clock.runFor(6000);await until(async()=>(await snapshot(q)).event===null);assert.equal((await snapshot(q)).wallet.gold,510);await ctx.close()
+ })
+ await check('GOLD cap still permits explicitly confirmed rescue sale and capped receipts',async()=>{
+  const ctx=await browser.newContext(),p=await ctx.newPage();await p.goto(url);await seed(p,{tiers:Array.from({length:16},(_,i)=>i+1),gold:Number.MAX_SAFE_INTEGER})
+  await drag(p,'[data-cell="0,0"]','[data-testid="sale-zone"]');assert((await p.getByRole('dialog').innerText()).includes('所持上限'))
+  await p.getByTestId('confirm-sale').click();await until(async()=>await p.locator('[data-slime-id]').count()===15);assert.equal((await snapshot(p)).wallet.gold,Number.MAX_SAFE_INTEGER);await ctx.close()
+ })
+ await check('blocked localStorage access shows recovery state without a white screen',async()=>{
+  const ctx=await browser.newContext();await ctx.addInitScript(()=>Object.defineProperty(window,'localStorage',{get(){throw new DOMException('blocked','SecurityError')}}))
+  const p=await ctx.newPage();await p.goto(url);assert(await p.getByRole('alert').isVisible());assert.equal(await p.locator('[data-cell]').count(),16);await ctx.close()
+ })
  await check('two tabs: Web Lock and expected saved bytes prevent stale overwrite',async()=>{
   const ctx=await browser.newContext(),a=await ctx.newPage(),b=await ctx.newPage();await a.goto(url);await b.goto(url)
   await a.getByRole('button',{name:/生成加速/}).click();await until(async()=>!!await snapshot(a))

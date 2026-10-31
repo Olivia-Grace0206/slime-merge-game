@@ -94,8 +94,8 @@ export function sellSlime(game: GameState, wallet: Wallet, slimeId: string): Sal
   if (!isGameState(game) || !isWallet(wallet) || !slimeId.trim()) return reject()
   const target = game.slimes.find((s) => s.id === slimeId)
   if (!target) return reject()
-  const earned = baseSaleValue(target.tier)
-  if (!Number.isSafeInteger(wallet.gold + earned) || game.revision >= Number.MAX_SAFE_INTEGER - 1) return reject()
+  const earned = Math.min(baseSaleValue(target.tier), Number.MAX_SAFE_INTEGER - wallet.gold)
+  if (game.revision >= Number.MAX_SAFE_INTEGER - 1) return reject()
   const next = { ...game, revision: game.revision + 1, slimes: game.slimes.filter((s) => s.id !== slimeId) }
   if (!isGameState(next)) return reject()
   return { ok: true, game: next, wallet: { ...wallet, gold: wallet.gold + earned }, earned }

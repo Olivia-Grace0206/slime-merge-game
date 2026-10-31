@@ -25,17 +25,18 @@ export function isSession(value: unknown): value is Session {
     (g.storedTiers.length === rules.capacity && g.progressMs !== 0)) return false
   if (s.lastEvent !== null && (!s.lastEvent || typeof s.lastEvent !== 'object' ||
     !/^gold-[1-9]\d*$/.test(s.lastEvent.id) || Number(s.lastEvent.id.slice(5)) > s.eventSequence ||
-    !integer(s.lastEvent.receivedGOLD) || s.lastEvent.receivedGOLD < 10)) return false
+    !integer(s.lastEvent.receivedGOLD) || s.lastEvent.receivedGOLD < 0)) return false
   const e = s.event
   if (e === null) return true
   if (!e || typeof e !== 'object' || !integer(e.sequence) || e.sequence < 1 || e.sequence !== s.eventSequence ||
     e.id !== `gold-${e.sequence}` || (s.lastEvent && Number(s.lastEvent.id.slice(5)) >= e.sequence) ||
     !inBounds(s.game.bounds, e.cell) || !integer(e.expiresAtMs) || !integer(e.nextPaymentAtMs) ||
+    !integer(e.cappedGOLD ?? 0) ||
     !integer(e.paid) || e.paid >= 10 || !integer(e.receivedGOLD) ||
     !integer(e.attributeCount) || e.attributeCount > 10) return false
-  if (e.tier === null) return e.sourceId === null && e.paid === 0 && e.receivedGOLD === 0 && e.unitGOLD === 0 && e.nextPaymentAtMs === 0 && e.attributeCount === 0
+  if (e.tier === null) return e.sourceId === null && e.paid === 0 && e.receivedGOLD === 0 && (e.cappedGOLD ?? 0) === 0 && e.unitGOLD === 0 && e.nextPaymentAtMs === 0 && e.attributeCount === 0
   return isValidGeneratedTier(e.tier, s.game.highestTierReached) && typeof e.sourceId === 'string' && !!e.sourceId.trim() &&
-    e.unitGOLD === goldPayment(e.tier, e.attributeCount) && e.receivedGOLD === e.paid * e.unitGOLD
+    e.unitGOLD === goldPayment(e.tier, e.attributeCount) && e.receivedGOLD + (e.cappedGOLD ?? 0) === e.paid * e.unitGOLD
 }
 export function encodeSession(s: Session): string {
   if (!isSession(s)) throw new RangeError('Invalid save')

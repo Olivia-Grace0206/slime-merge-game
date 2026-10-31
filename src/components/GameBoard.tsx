@@ -96,6 +96,7 @@ export function GameBoard() {
     active.current = clearContacts ? idleGesture() : transition(active.current, { type: 'cancel' }).state
     setGesture(active.current)
     clearPreview()
+    setSaleHover(false)
     if (clearContacts) for (const c of contacts) {
       if (viewport.current?.hasPointerCapture(c.id)) viewport.current.releasePointerCapture(c.id)
     }
@@ -247,6 +248,7 @@ export function GameBoard() {
     active.current = transition(active.current, { type: 'cancel', id: e.pointerId }).state
     setGesture(active.current)
     clearPreview()
+    setSaleHover(false)
     setMessage('操作を取り消しました')
   }
   function resetCamera() { abort(); changeCamera(initialCamera()); setMessage('表示をリセットしました') }
@@ -269,6 +271,7 @@ export function GameBoard() {
     gameRef.current = store.state.session.game; setGame(store.state.session.game)
     changeCamera(initialCamera()); setPanel(null); send({ type: 'tick' })
   }
+  const saleValue = (tier: number) => Math.min(baseSaleValue(tier), Number.MAX_SAFE_INTEGER - session.wallet.gold)
   const rules = sessionRules(session)
   const protectedIds = normal ? session.protectedIds : []
   const detail = game.slimes.find(s => s.id === detailId)
@@ -313,7 +316,7 @@ export function GameBoard() {
                 // Keyboard navigation keeps the focused cell visible even after camera pan/zoom.
                 if (active.current.contacts.length) return
                 const center = worldToScreen({ x: (position.x + .5) * 700 / game.bounds.width, y: (position.y + .5) * 700 / game.bounds.height }, cameraRef.current, viewRef.current)
-                const margin = 50 * cameraRef.current.zoom * viewRef.current.fit
+                const margin = 350 / game.bounds.width * cameraRef.current.zoom * viewRef.current.fit
                 if (center.x < margin || center.x > viewRef.current.width - margin || center.y < margin || center.y > viewRef.current.height - margin)
                   changeCamera({ ...cameraRef.current, center: { x: (position.x + .5) * 700 / game.bounds.width, y: (position.y + .5) * 700 / game.bounds.height } })
               }}
@@ -326,6 +329,7 @@ export function GameBoard() {
                 else if (slime) setSelected(slime.id)
               }}>
               {event && samePosition(event.cell, position) && <span className="gold-cell-label">● {event.tier === null ? 'GOLD' : `${event.paid}/10`}</span>}
+              {event && event.paid > 0 && samePosition(event.cell, position) && <span key={`${event.id}-${event.paid}`} className="gold-burst">+{session.wallet.gold === Number.MAX_SAFE_INTEGER ? '上限' : event.unitGOLD.toLocaleString()}</span>}
               {slime && protectedIds.includes(slime.id) && <span className="protected-badge" aria-label="売却保護">◆</span>}
               {slime && <span key={slime.id} style={{ width: 602 / game.bounds.width, height: 630 / game.bounds.height }} className={`slime-piece ${slime.id === dragged?.id ? 'source-ghost' : ''} ${createdIds.includes(slime.id) ? 'born' : ''}`}><Slime tier={slime.tier} /></span>}
               {group && <span className="group-badge">{group.number}</span>}
@@ -336,7 +340,7 @@ export function GameBoard() {
         </div>
         {dragged && gesture.single && <div className="drag-sprite" style={{ position: 'fixed', left: gesture.single.current.x + viewportOrigin.x, top: gesture.single.current.y + viewportOrigin.y, width: 602 / game.bounds.width * scale, height: 630 / game.bounds.height * scale, '--group-color': plan ? GROUP_COLORS[0] : 'transparent' } as CSSProperties}><Slime tier={dragged.tier} />{plan && <span className="group-badge">1</span>}</div>}
       </div>
-      {normal ? <aside className="progress-controls" aria-label="生成と売却">
+      {normal ? <aside className={`progress-controls ${session.reducedEffects ? 'reduced-effects' : ''}`} aria-label="生成と売却">
         <div className="generator-readout"><span>貯蔵 <b data-testid="storage-count">{session.generator.storedTiers.length}/{rules.capacity}</b></span>
           <span data-testid="generation-time">{session.generator.storedTiers.length >= rules.capacity ? '満杯・生成停止' : `次まで ${((rules.intervalMs - session.generator.progressMs) / 1000).toFixed(1)}秒`}</span>
           <progress aria-label="生成進捗" max={rules.intervalMs} value={session.generator.progressMs} /></div>
@@ -347,8 +351,8 @@ export function GameBoard() {
           setPlacing(placingRef.current !== null)
         }}>{placing ? '配置をキャンセル' : '＋ スライム追加'}<small>{placing ? '空きマスを選択' : session.generator.storedTiers.length ? `次は Tier ${session.generator.storedTiers[0]}` : '生成を待っています'}</small></button>
         <button type="button" className={`sale-zone ${saleHover ? 'sale-hover' : ''}`} ref={saleZone} data-testid="sale-zone" onClick={() => setMessage('売却エリアへスライムをドラッグしてください')}>
-          <span>♧ 売却エリア</span><small>{dragged ? protectedIds.includes(dragged.id) ? '保護中・売却不可' : `+${baseSaleValue(dragged.tier).toLocaleString()} GOLD` : 'ここへドラッグ'}</small></button>
-        {event && <div className="event-readout" data-testid="gold-event">● {event.tier === null ? '金マスに配置で10回報酬' : coinText}</div>}
+          <span>♧ 売却エリア</span><small>{dragged ? protectedIds.includes(dragged.id) ? '保護中・売却不可' : `+${saleValue(dragged.tier).toLocaleString()} GOLD` : 'ここへドラッグ'}</small></button>
+        {event && <div className="event-readout" data-testid="gold-event" aria-live="polite"><span key={`${event.id}-${event.paid}`} className={event.paid ? 'coin-pop' : ''}>● {event.tier === null ? '金マスに配置で10回報酬' : coinText}</span></div>}
         {!event && session.lastEvent && <div className="event-readout" data-testid="gold-completed">● {coinText}</div>}
       </aside> : <aside className="verification-banner"><strong>検証モード</strong><span>通常プレイのセーブは保全</span><button type="button" onClick={returnNormal}>通常プレイへ戻る</button></aside>}
     </section>
@@ -366,8 +370,9 @@ export function GameBoard() {
         const effect = (r: { intervalMs: number; capacity: number; tapAdvanceMs: number }) => key === 'speed' ? `${(r.intervalMs / 1000).toFixed(2)}秒` : key === 'tap' ? `${(r.tapAdvanceMs / 1000).toFixed(2)}秒短縮` : `${r.capacity}体`
         return <section key={key} className="shop-item"><h3>{label} · Lv {lv}</h3><p>{effect(rules)} → {max ? '最大Lv' : effect({ ...rules, ...nextRules })}</p><button type="button" data-testid={`buy-${key}`} disabled={!normal || !!storageError || max || session.wallet.gold < cost} onClick={() => send({ type: 'buy', key, expectedLevel: lv })}>{max ? '強化完了' : `${cost.toLocaleString()} GOLDで購入`}</button></section>
       })}<p className="muted">価格・生成分布・強化量は試遊用の仮設定です。</p>
-    </> : panel === 'slime' && detail ? <><div className="detail-slime"><Slime tier={detail.tier} /></div><p>Tier {detail.tier} · 無属性 · 売却 {baseSaleValue(detail.tier).toLocaleString()} GOLD</p><button className="reset-button" type="button" onClick={() => send({ type: 'protect', id: detail.id })}>{protectedIds.includes(detail.id) ? '売却保護を解除' : '売却から保護する'}</button><p className="muted">保護は売却のみを防ぎます。マージ素材には使用できます。</p></> : panel === 'sale' && sale ? <>
-      <div className="detail-slime"><Slime tier={sale.tier} /></div><p>Tier {sale.tier} を売却して <strong>+{baseSaleValue(sale.tier).toLocaleString()} GOLD</strong></p>
+    </> : panel === 'slime' && detail ? <><div className="detail-slime"><Slime tier={detail.tier} /></div><p>Tier {detail.tier} · 無属性 · 売却 {saleValue(detail.tier).toLocaleString()} GOLD</p><button className="reset-button" type="button" onClick={() => send({ type: 'protect', id: detail.id })}>{protectedIds.includes(detail.id) ? '売却保護を解除' : '売却から保護する'}</button><p className="muted">保護は売却のみを防ぎます。マージ素材には使用できます。</p></> : panel === 'sale' && sale ? <>
+      <div className="detail-slime"><Slime tier={sale.tier} /></div><p>Tier {sale.tier} を売却して <strong>+{saleValue(sale.tier).toLocaleString()} GOLD</strong></p>
+      {saleValue(sale.tier) < baseSaleValue(sale.tier) && <p role="alert">GOLDの所持上限です。上限を超える報酬は受け取れません。個体の整理として売却します。</p>}
       {protectedIds.includes(sale.id) ? <p>保護中のため売却できません。個体をタップして保護を解除してください。</p> : <button className="confirm-sale" data-testid="confirm-sale" type="button" disabled={!!storageError} onClick={() => { const id = saleId; setSaleId(null); setPanel(null); if (id) send({ type: 'sell', id }) }}>売却する</button>}
       <button className="reset-button" type="button" onClick={() => { setSaleId(null); setPanel(null) }}>キャンセル・盤面へ戻す</button>
     </> : undefined} normal={normal} onNormal={returnNormal} panel={panel} onClose={() => setPanel(null)} preset={preset} onPreset={reset} reducedEffects={normal ? session.reducedEffects : reducedEffects} onEffects={value => { if (normal) send({ type: 'effects', value }); else setReducedEffects(value) }}

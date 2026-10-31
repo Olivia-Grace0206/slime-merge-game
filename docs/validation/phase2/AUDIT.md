@@ -23,3 +23,17 @@
 BLOCKED: 初期段階で実装継続を妨げる仕様上の障害はなし。直接git認証なしのためGit Data APIで元HEADを親として反映する。Node22/npm10を既存の隔離runtimeから使用。外部実機/Safariは利用できる環境と区別する。
 
 各FIXの最終結果・対応テストは後続RESULTS/HANDOFFに追記する。既存231成功は安全性の証明に使用しない。
+
+## 修正後の判定（Checkpoint E）
+
+A01/A02/A06: PASSを追加試験で再確認。A03/A04/A05/A08/A09/A10/A11/A12: FIX対応済み、PASS（実施した自動試験の範囲）。A08は旧payGoldRush自体にも財布側のreceipt ledgerを追加し、古いevent/同IDの再開始/購入後も再支給を拒否。ゲーム本体はboundedな統合event ledgerを使用する。
+
+A07: PROVISIONAL。比較17条件×3seedとopening2policy×3seed。初案の広い分布は満杯整理が頻発するため幅上限を追加。価格/速度/頻度は未承認のまま。
+
+A13: PROVISIONAL。金報酬の高額な初案/最低差保証案を採用せず、基本価格の0.05へ減額。整数GOLD・最低1のため低Tierや属性差は丸めで同額になる。高TierはTier増加/少属性の優位を維持。丸め・倍率は試遊待ち。
+
+追加 A14: FIX→PASS。GOLDがMAX_SAFE_INTEGERでshopも最大だと売却拒否により満杯盤面を整理できない問題。実受取額を残り余地まで制限し、売却確認で0GOLD/上限警告を明示して整理可能にした。金イベントは受取分receivedGOLDと上限超過分cappedGOLDの和を支給済み回数×単価と照合し、上限でも10回を終える。Core/Reactブラウザ双方で検証。
+
+追加 A15: FIX→PASS。LocalStorageのgetter自体がSecurityErrorの場合に白画面になる可能性。遅延アクセスをadapter内部へ移し、原本読込失敗をエラーUIで表示。権限拒否/QuotaExceeded/別タブ書込競合をブラウザで再現。
+
+長時間の通常入力、仮想240時間、保存/復旧、二重入力、実Core botの比較まで実施。Windows/Safari/実機OS強制終了は未確認で、自動試験のPASSへ混ぜない。残存BLOCKEDはなし（HTTPS/localhostとWeb Locksが実行条件）。

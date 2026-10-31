@@ -1,3 +1,5 @@
+/// <reference types="node" />
+import { mkdirSync, writeFileSync } from 'node:fs'
 import { describe, it, expect } from 'vitest'
 import { freshSession, reduceSession, goldPayment, sessionRules, type Session } from '../../src/core/progression/session'
 import { encodeSession, decodeSession, isSession, commitStorage } from '../../src/core/progression/persistence'
@@ -127,9 +129,12 @@ describe('gold event ledger and recovery',()=>{
   expect(goldPayment(10,0)).toBeGreaterThan(goldPayment(10,3))
   for(let tier=1;tier<40;tier++)expect(goldPayment(tier,0)).toBeLessThanOrEqual(goldPayment(tier+1,0))
  })
- it('safe integer wallet overflow blocks payment without consuming receipt',()=>{
+ it('wallet cap settles receipt without overflow and never traps a full board',()=>{
   let s=start();s={...s,wallet:{...s.wallet,gold:Number.MAX_SAFE_INTEGER}}
-  expect(reduceSession(s,{type:'pay',eventId:s.event!.id,expectedPaid:0},s.event!.nextPaymentAtMs,zero)).toBe(s)
+  const n=reduceSession(s,{type:'pay',eventId:s.event!.id,expectedPaid:0},s.event!.nextPaymentAtMs,zero)
+  expect(n.wallet.gold).toBe(Number.MAX_SAFE_INTEGER);expect(n.event!.paid).toBe(1);expect(n.event!.receivedGOLD).toBe(0);expect(n.event!.cappedGOLD).toBe(s.event!.unitGOLD);expect(isSession(n)).toBe(true)
+  const sold=reduceSession(n,{type:'sell',id:n.game.slimes[0]!.id},n.savedAtMs,zero)
+  expect(sold.game.slimes).toHaveLength(0);expect(sold.wallet.gold).toBe(Number.MAX_SAFE_INTEGER)
  })
 })
 
@@ -175,5 +180,7 @@ describe('strict v2 persistence and failed writes',()=>{
    const loaded=decodeSession(encodeSession(s),s.savedAtMs);if(loaded.ok)s=loaded.session
   }
   expect(s.nextId).toBe(2401);expect(Number.isSafeInteger(s.wallet.gold)).toBe(true)
+  mkdirSync('docs/validation/phase2',{recursive:true})
+  writeFileSync('docs/validation/phase2/long-simulation.json',JSON.stringify({virtualHours:240,checkpoints:240,totalGenerated:s.generator.totalGenerated,nextId:s.nextId,gold:s.wallet.gold,eventSequence:s.eventSequence,uniqueIds:true,validEveryCheckpoint:true,roundTripEveryCheckpoint:true,storageBounded:true,errors:0},null,2))
  })
 })

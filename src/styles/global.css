@@ -174,3 +174,11 @@ button:disabled { opacity: .52; cursor: default; }
   .session-stats { gap: 4px; font-size: 9px; }
   .normal-play .edge-menu button { flex-direction: column; gap: 1px; }
 }
+.coin-pop { display: inline-block; animation: coin-rise .6s ease-out; }
+.gold-burst { position: absolute; z-index: 10; top: 30%; font-size: 26px; font-weight: 900; color: #8b5f09; text-shadow: 0 1px 2px white; pointer-events: none; animation: coin-float .65s ease-out both; }
+@keyframes coin-rise { from { opacity: .2; transform: translateY(7px) scale(.85); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes coin-float { from { opacity: 1; transform: translateY(8px); } to { opacity: 0; transform: translateY(-30px); } }
+.reduced-effects .coin-pop, .reduced-effects .gold-burst { animation: none; }
+@media (max-height: 500px) and (min-width: 800px) {
+  .normal-play { grid-template-columns: 160px minmax(0, 1fr) 160px; }
+}

@@ -15,7 +15,7 @@ export const EXPERIMENTAL_PHASE2 = Object.freeze({
 export type CellEvent = Readonly<{
   id: string; sequence: number; cell: GridPosition; expiresAtMs: number
   tier: number | null; sourceId: string | null; attributeCount: number
-  paid: number; receivedGOLD: number; unitGOLD: number; nextPaymentAtMs: number
+  paid: number; receivedGOLD: number; cappedGOLD?: number; unitGOLD: number; nextPaymentAtMs: number
 }>
 export type Session = Omit<ProgressionSnapshot, 'version'> & Readonly<{
   version: 2; sequence: number; eventSequence: number; nextEventAtMs: number
@@ -65,9 +65,9 @@ function schedule(s: Session, now: number, random: () => number): Session {
 function pay(s: Session, id: string, paid: number, now: number, random: () => number): Session {
   const e = s.event
   if (!e || e.id !== id || e.paid !== paid || e.tier === null || e.paid >= 10 || now < e.nextPaymentAtMs) return s
-  const gold = s.wallet.gold + e.unitGOLD
-  if (!Number.isSafeInteger(gold)) return s
-  const event = { ...e, paid: e.paid + 1, receivedGOLD: e.receivedGOLD + e.unitGOLD,
+  const credit = Math.min(e.unitGOLD, Number.MAX_SAFE_INTEGER - s.wallet.gold)
+  const gold = s.wallet.gold + credit
+  const event = { ...e, paid: e.paid + 1, receivedGOLD: e.receivedGOLD + credit, cappedGOLD: (e.cappedGOLD ?? 0) + e.unitGOLD - credit,
     nextPaymentAtMs: later(now, EXPERIMENTAL_PHASE2.paymentIntervalMs) }
   const next = { ...s, wallet: { ...s.wallet, gold }, event }
   return event.paid === 10 ? schedule({ ...next, event: null, lastEvent: { id: e.id, receivedGOLD: event.receivedGOLD } }, now, random) : next
