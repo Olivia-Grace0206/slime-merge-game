@@ -1,24 +1,17 @@
 # スライムマージゲーム — 最新仕様書への案内
 
-**仕様書の正本は、`Olivia-Grace0206/slime-merge-game` の `main` にある最新版の完全仕様書（Markdown）です。**
+正式正本は `Olivia-Grace0206/slime-merge-game` の **main → 本ファイル → 最新完全仕様書**。
 
-## このブランチの最新版
+## このブランチの次期完全仕様書
 
-- **[完全仕様書 v0.2.7（2026-10-31）](./Slime_Merge_Game_Specification_v0.2.7_2026-10-31.md)** — 限定UI改善、初期4×4・拡張4×4・合計4〜9区画目安、隣接ロック区画、大きい追加ボタン、発見履歴付き図鑑
-- [直前の完全仕様書 v0.2.6（2026-10-30）](./Slime_Merge_Game_Specification_v0.2.6_2026-10-30.md) — Tier40・金紫青・属性・覚醒の合意を原文保全
-- [直前の完全仕様書 v0.2.5（2026-10-30）](./Slime_Merge_Game_Specification_v0.2.5_2026-10-30.md) — Tier40、金マスの初期案、ズーム・画面方針（旧案として保全）
-- [直前の完全仕様書 v0.2.4（2026-10-30）](./Slime_Merge_Game_Specification_v0.2.4_2026-10-30.md) — 旧上限Tier30、最高到達履歴と正規分布型生成Tier
-- [直前の完全仕様書 v0.2.3（2026-10-30）](./Slime_Merge_Game_Specification_v0.2.3_2026-10-30.md) — 長期Tier 30〜40構想、進行度依存生成、GitHub正本化
-- [旧版の完全仕様書 v0.2.2（2026-10-30）](./Slime_Merge_Game_Specification_v0.2.2_2026-10-30.md) — Phase 1のマージ規則確定
+- **[v0.2.8（2026-11-01）](Slime_Merge_Game_Specification_v0.2.8_2026-11-01.md)**：Phase 2 Polish。ランダム空きセル追加・即売却・右クリック/長押し保護・金の空セル出現/途中離脱終了・350ms×10・生成/売却専用UI・バー補間。
+- [mainの現行正本 v0.2.7](Slime_Merge_Game_Specification_v0.2.7_2026-10-31.md)：このPRのマージまでは現行正本。旧版は変更しない。
+- [v0.2.6](Slime_Merge_Game_Specification_v0.2.6_2026-10-30.md) / [v0.2.5](Slime_Merge_Game_Specification_v0.2.5_2026-10-30.md) / [v0.2.4](Slime_Merge_Game_Specification_v0.2.4_2026-10-30.md) / [v0.2.3](Slime_Merge_Game_Specification_v0.2.3_2026-10-30.md) / [v0.2.2](Slime_Merge_Game_Specification_v0.2.2_2026-10-30.md)
 
-この案内ファイル（`docs/specifications/CURRENT.md`）は、次回以降のWork・ChatGPTから**固定パスで最新版へたどるため**に使用します。実際の詳細ルールはリンク先の完全仕様書に記載します。
+## 状態と運用
 
-## 正本運用ルール
+2026-11-01 JST。Phase 2 PR #8はmainへマージ済み（`55075e4b752c0084525770047f1e674eb2da23d6`）。今回の作業は同mainから新規 `feature/phase02-polish-gameplay-ui` と新規Draft PRで提案する。PR #8は再利用しない。mainへ直接Push/自動マージ/Public化/Pages公開なし。
 
-1. 仕様変更ごとに **v0.2.7 → 次版** のように版を増やし、旧版の完全仕様書を削除・上書きしない。
-2. **【合意】／【推奨・暫定】／【未決定】**を区別し、変更履歴と影響するテストを記録する。
-3. 仕様書は専用Feature BranchとPull Requestで更新し、ユーザー確認後に`main`へマージする。未マージのPR上の文書は次期案であり、`main`の現行正本を上書きしない。
-4. 次回Workは**GitHub `main` → この`CURRENT.md` → リンク先の最新版**の順に全文を読み、Projectに置かれた古い資料より優先する。GitHubを参照できない場合、推測で正本を再構成しない。
-5. 開発中はPrivate、ユーザーが最後にPublicへ変更する。仕様書の改訂だけでゲーム実装や一般公開は行わない。
+改訂時は旧完全仕様書を上書き/削除しない。【合意】【推奨・暫定】【未決定】を区別し、数値・閾値・デザインの仮設定を合意へ格上げしない。後のユーザーの直接指示が旧仕様より優先。Projectの古い添付をGitHub mainの正本より優先しない。
 
-**状態（2026-10-31）：** PR #7はmainへマージ済み（`9315898cd3ee24031f9e550a274f9dc6a234efe4`）、現行正本はv0.2.7。本文の「次期正本/未マージ」は当時の記録として保全する。Phase2は既存PR #8・`feature/phase02-generation-core-simulation`で独立監査後に実装・検証。数値は仮仕様として別記録し、完全仕様書v0.2.7を変更しない。[Phase2引き継ぎ](../PHASE2_HANDOFF.md)とPR本文で最新HEAD/CIを確認する。Phase3/4の属性・覚醒・紫/青・土地・正式発見図鑑は未実装。
+[Polish引き継ぎ](../PHASE2_POLISH_HANDOFF.md) / [監査](../validation/phase2-polish/AUDIT.md) / [検証](../validation/phase2-polish/RESULTS.md) / [バランス](../balance/phase2-polish/RESULTS.md)。旧文書のDraft/未実装は当時の記録として読む。属性/覚醒/紫青/土地/正式図鑑ロック/音は後続段階。
