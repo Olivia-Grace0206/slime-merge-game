@@ -79,7 +79,7 @@ function simulate(c: Scenario, seed: number, mergeAt = 5) {
               const dist=(p: typeof a)=> Math.min(9,...s.game.slimes.filter(x=>x.tier===tier).map(x=>Math.max(Math.abs(x.position.x-p.x),Math.abs(x.position.y-p.y))))
               return dist(a)-dist(b)
             })
-            if (empty[0]) cmd({type:'withdraw',target:empty[0],expectedId:s.nextId},now)
+            if (empty[0]) cmd({type:'withdraw',expectedId:s.nextId},now)
           } else break
         }
       }
@@ -121,9 +121,10 @@ function simulate(c: Scenario, seed: number, mergeAt = 5) {
     storageStoppedRatio:storageFull/now,boardBlockedRatio:Math.min(1,full/now),soldForSpace,timeline,durationMs:Math.min(now,limit)}
 }
 it('4x4 balance: seeded real-Core agent, seven axes and passive play; writes reproducible evidence',()=>{
-  mkdirSync('docs/balance/phase2',{recursive:true})
+  mkdirSync('docs/balance/phase2-polish/legacy-sensitivity',{recursive:true})
   const results=scenarios.flatMap(c=>[12,61,210].map(seed=>simulate(c,seed)))
   const opening=[3,5].flatMap(n=>[12,61,210].map(seed=>simulate({name:'opening-'+n},seed,n)))
-  writeFileSync('docs/balance/phase2/simulation.json',JSON.stringify({model:'4x4 real Core plans, 2s decision step; one tap per 2s active / 60s collection passive; 12h censor; 3 seeds per scenario. Not human play-time predictions.',results,opening},null,2))
+  writeFileSync('docs/balance/phase2-polish/legacy-sensitivity/simulation.json',JSON.stringify({model:'4x4 real Core plans, 2s decision step; one tap per 2s active / 60s collection passive; 12h censor; 3 seeds per scenario. Not human play-time predictions.',results,opening},null,2))
   expect(results).toHaveLength(51)
 },240_000)
+
