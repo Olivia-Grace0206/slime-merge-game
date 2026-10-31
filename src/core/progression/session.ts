@@ -2,29 +2,29 @@ import type { DropPlan } from '../../domain/game'
 import type { GridPosition } from '../../domain/grid'
 import { applyPlan } from '../merge/apply'
 import { samePosition } from '../grid/coordinates'
-import { advanceGenerator, tapGenerator, newGenerator, withdrawToCell, type GeneratorRules } from './generation'
+import { advanceGenerator, tapGenerator, newGenerator, withdrawRandom, emptyCells, type GeneratorRules } from './generation'
 import { freshWallet, generationRules, purchaseUpgrade, sellSlime, type UpgradeKey } from './economy'
 import type { ProgressionSnapshot } from './save'
 
 /** All numbers are provisional; selected by the 4x4 simulations, never user-approved balance. */
 export const EXPERIMENTAL_PHASE2 = Object.freeze({
-  centerSlope: 0.92, spreadRatio: 0.10, minimumSpread: 1, maximumSpread: 1.8,
+  centerSlope: 0.90, spreadRatio: 0.10, minimumSpread: 1, maximumSpread: 1.8,
   eventMinDelayMs: 60_000, eventExtraDelayMs: 60_000,
-  eventLifetimeMs: 45_000, paymentIntervalMs: 700, goldRewardRate: 0.05,
+  eventLifetimeMs: 45_000, paymentIntervalMs: 350, goldRewardRate: 0.05,
 })
 export type CellEvent = Readonly<{
-  id: string; sequence: number; cell: GridPosition; expiresAtMs: number
+  rewardVersion?: 1 | 2; id: string; sequence: number; cell: GridPosition; expiresAtMs: number
   tier: number | null; sourceId: string | null; attributeCount: number
   paid: number; receivedGOLD: number; cappedGOLD?: number; unitGOLD: number; nextPaymentAtMs: number
 }>
 export type Session = Omit<ProgressionSnapshot, 'version'> & Readonly<{
-  version: 2; sequence: number; eventSequence: number; nextEventAtMs: number
-  event: CellEvent | null; lastEvent: Readonly<{ id: string; receivedGOLD: number }> | null; protectedIds: readonly string[]; reducedEffects: boolean
+  version: 3; sequence: number; eventSequence: number; nextEventAtMs: number
+  event: CellEvent | null; lastEvent: Readonly<{ id: string; receivedGOLD: number; paid?: number }> | null; protectedIds: readonly string[]; reducedEffects: boolean
 }>
 export type Command =
   | { type: 'tick' }
   | { type: 'tap' }
-  | { type: 'withdraw'; target: GridPosition; expectedId: number }
+  | { type: 'withdraw'; expectedId: number }
   | { type: 'drop'; plan: DropPlan }
   | { type: 'sell'; id: string }
   | { type: 'buy'; key: UpgradeKey; expectedLevel: number }
@@ -33,7 +33,7 @@ export type Command =
   | { type: 'pay'; eventId: string; expectedPaid: number }
 
 export function freshSession(nowMs: number): Session {
-  return { version: 2, sequence: 0, savedAtMs: nowMs, nextId: 1,
+  return { version: 3, sequence: 0, savedAtMs: nowMs, nextId: 1,
     game: { bounds: { origin: { x: 0, y: 0 }, width: 4, height: 4 }, slimes: [], highestTierReached: 1, revision: 0 },
     wallet: freshWallet(), generator: newGenerator(nowMs),
     eventSequence: 0, nextEventAtMs: nowMs + EXPERIMENTAL_PHASE2.eventMinDelayMs,
@@ -42,11 +42,12 @@ export function freshSession(nowMs: number): Session {
 export function sessionRules(s: Session) {
   return { ...generationRules(s.wallet), distribution: EXPERIMENTAL_PHASE2 }
 }
-/** Tier growth and attribute penalty; minimum 1 GOLD and integer rounding can tie at low Tiers. */
-export function goldPayment(tier: number, attributeCount: number): number {
+/** Provisional linear low-Tier floor; high-Tier rate is unchanged. Old contracts keep version 1. */
+export function goldPayment(tier: number, attributeCount: number, rewardVersion: 1 | 2 = 2): number {
   if (!Number.isInteger(tier) || tier < 1 || tier > 40 || !Number.isInteger(attributeCount) || attributeCount < 0 || attributeCount > 10)
     throw new RangeError('Invalid reward input')
-  return Math.max(1, Math.floor(2 ** tier * EXPERIMENTAL_PHASE2.goldRewardRate / (1 + attributeCount * 0.25)))
+  const base = 2 ** tier * EXPERIMENTAL_PHASE2.goldRewardRate
+  return Math.max(1, Math.floor((rewardVersion === 1 ? base : Math.max(tier, base)) / (1 + attributeCount * 0.25)))
 }
 function unit(random: () => number): number {
   const n = random()
@@ -61,10 +62,20 @@ function later(now: number, delta: number) {
 function schedule(s: Session, now: number, random: () => number): Session {
   return { ...s, nextEventAtMs: later(now, EXPERIMENTAL_PHASE2.eventMinDelayMs + Math.floor(unit(random) * EXPERIMENTAL_PHASE2.eventExtraDelayMs)) }
 }
+/** Identity AND position are checked against the same transaction that credits GOLD. */
+function hasSource(s: Session, e: CellEvent): boolean {
+  return s.game.slimes.some(x => x.id === e.sourceId && samePosition(x.position, e.cell))
+}
+function finishEvent(s: Session, now: number, random: () => number): Session {
+  const e = s.event!
+  return schedule({ ...s, event: null, lastEvent: { id: e.id, receivedGOLD: e.receivedGOLD, paid: e.paid } }, now, random)
+}
 /** Pay only the current event and expected receipt, never a caller-provided old event object. */
 function pay(s: Session, id: string, paid: number, now: number, random: () => number): Session {
   const e = s.event
-  if (!e || e.id !== id || e.paid !== paid || e.tier === null || e.paid >= 10 || now < e.nextPaymentAtMs) return s
+  if (!e || e.id !== id || e.paid !== paid || e.tier === null || e.paid >= 10) return s
+  if (!hasSource(s, e)) return finishEvent(s, now, random)
+  if (now < e.nextPaymentAtMs) return s
   const credit = Math.min(e.unitGOLD, Number.MAX_SAFE_INTEGER - s.wallet.gold)
   const gold = s.wallet.gold + credit
   const event = { ...e, paid: e.paid + 1, receivedGOLD: e.receivedGOLD + credit, cappedGOLD: (e.cappedGOLD ?? 0) + e.unitGOLD - credit,
@@ -77,20 +88,23 @@ function events(s: Session, now: number, random: () => number, allowPayment: boo
   if (!next.event && now >= next.nextEventAtMs) {
     const sequence = next.eventSequence + 1
     if (!Number.isSafeInteger(sequence)) throw new RangeError('Event IDs exhausted')
-    const index = Math.floor(unit(random) * 16)
+    const cells = emptyCells(next.game)
+    if (!cells.length) return schedule(next, now, random)
+    const cell = cells[Math.floor(unit(random) * cells.length)]!
     next = { ...next, eventSequence: sequence, event: {
-      id: `gold-${sequence}`, sequence, cell: { x: index % 4, y: Math.floor(index / 4) },
+      id: `gold-${sequence}`, sequence, cell, rewardVersion: 2,
       expiresAtMs: later(now, EXPERIMENTAL_PHASE2.eventLifetimeMs), tier: null, sourceId: null,
       attributeCount: 0, paid: 0, receivedGOLD: 0, unitGOLD: 0, nextPaymentAtMs: 0,
     } }
   }
   const e = next.event
   if (!e) return next
+  if (e.tier !== null && !hasSource(next, e)) return finishEvent(next, now, random)
   if (e.tier === null) {
     if (now >= e.expiresAtMs) return schedule({ ...next, event: null }, now, random)
     const slime = next.game.slimes.find(x => samePosition(x.position, e.cell))
     if (slime) next = { ...next, event: { ...e, tier: slime.tier, sourceId: slime.id,
-      unitGOLD: goldPayment(slime.tier, 0), nextPaymentAtMs: later(now, EXPERIMENTAL_PHASE2.paymentIntervalMs) } }
+      unitGOLD: goldPayment(slime.tier, 0, e.rewardVersion ?? 1), nextPaymentAtMs: later(now, EXPERIMENTAL_PHASE2.paymentIntervalMs) } }
   } else if (allowPayment) next = pay(next, e.id, e.paid, now, random)
   return next
 }
@@ -98,6 +112,7 @@ function events(s: Session, now: number, random: () => number, allowPayment: boo
 export function reduceSession(s: Session, command: Command, now: number, random: () => number, rulesOverride?: GeneratorRules): Session {
   try {
     if (!Number.isSafeInteger(now) || now < 0 || s.sequence >= Number.MAX_SAFE_INTEGER - 1) return s
+    if (command.type === 'withdraw' && (!s.generator.storedTiers.length || !emptyCells(s.game).length)) return s
     let next = s
     // Rebase rollback once, granting zero elapsed time. It cannot bank future credit.
     if (now < s.generator.updatedAtMs) {
@@ -110,8 +125,8 @@ export function reduceSession(s: Session, command: Command, now: number, random:
     next = { ...next, generator: advanceGenerator(next.generator, now, next.game.highestTierReached, (rulesOverride ?? sessionRules(next)), random) }
     if (command.type === 'tap') next = { ...next, generator: tapGenerator(next.generator, next.game.highestTierReached, (rulesOverride ?? sessionRules(next)), random) }
     if (command.type === 'withdraw') {
-      if (command.expectedId !== s.nextId || s.nextId >= Number.MAX_SAFE_INTEGER - 2) return s
-      const result = withdrawToCell(next.game, next.generator, command.target, `p-${s.nextId}`)
+      if (command.expectedId !== s.nextId || s.nextId >= Number.MAX_SAFE_INTEGER - 2 || !s.generator.storedTiers.length || !emptyCells(s.game).length) return s
+      const result = withdrawRandom(next.game, next.generator, `p-${s.nextId}`, random)
       if (!result.ok) return s
       next = { ...next, game: result.game, generator: result.generator, nextId: s.nextId + 1 }
     }
@@ -154,3 +169,4 @@ export function reduceSession(s: Session, command: Command, now: number, random:
     return s
   }
 }
+

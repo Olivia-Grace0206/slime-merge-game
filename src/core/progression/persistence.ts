@@ -6,10 +6,10 @@ import { isValidGeneratedTier } from './generation'
 
 export const SAVE_KEY = 'slime-merge-normal-v2'
 const integer = (n: unknown): n is number => Number.isSafeInteger(n) && (n as number) >= 0
-export function isSession(value: unknown): value is Session {
+function validateSession(value: unknown, legacy = false): value is Session {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return false
   const s = value as Session
-  if (s.version !== 2 || !integer(s.savedAtMs) || !integer(s.sequence) || !integer(s.nextId) || s.nextId < 1 ||
+  if ((s.version as number) !== (legacy ? 2 : 3) || !integer(s.savedAtMs) || !integer(s.sequence) || !integer(s.nextId) || s.nextId < 1 ||
     !isGameState(s.game) || !isWallet(s.wallet) ||
     s.game.bounds.width !== 4 || s.game.bounds.height !== 4 || s.game.bounds.origin.x !== 0 || s.game.bounds.origin.y !== 0 ||
     s.game.slimes.some(x => x.id.length > 100 || (/^p-\d+$/.test(x.id) && Number(x.id.slice(2)) >= s.nextId)) ||
@@ -25,10 +25,10 @@ export function isSession(value: unknown): value is Session {
     (g.storedTiers.length === rules.capacity && g.progressMs !== 0)) return false
   if (s.lastEvent !== null && (!s.lastEvent || typeof s.lastEvent !== 'object' ||
     !/^gold-[1-9]\d*$/.test(s.lastEvent.id) || Number(s.lastEvent.id.slice(5)) > s.eventSequence ||
-    !integer(s.lastEvent.receivedGOLD) || s.lastEvent.receivedGOLD < 0)) return false
+    !integer(s.lastEvent.paid ?? 10) || (s.lastEvent.paid ?? 10) > 10 || !integer(s.lastEvent.receivedGOLD) || s.lastEvent.receivedGOLD < 0)) return false
   const e = s.event
   if (e === null) return true
-  if (!e || typeof e !== 'object' || !integer(e.sequence) || e.sequence < 1 || e.sequence !== s.eventSequence ||
+  if (!e || typeof e !== 'object' || (legacy ? e.rewardVersion !== undefined : ![1, 2].includes(e.rewardVersion ?? 0)) || !integer(e.sequence) || e.sequence < 1 || e.sequence !== s.eventSequence ||
     e.id !== `gold-${e.sequence}` || (s.lastEvent && Number(s.lastEvent.id.slice(5)) >= e.sequence) ||
     !inBounds(s.game.bounds, e.cell) || !integer(e.expiresAtMs) || !integer(e.nextPaymentAtMs) ||
     !integer(e.cappedGOLD ?? 0) ||
@@ -36,8 +36,9 @@ export function isSession(value: unknown): value is Session {
     !integer(e.attributeCount) || e.attributeCount > 10) return false
   if (e.tier === null) return e.sourceId === null && e.paid === 0 && e.receivedGOLD === 0 && (e.cappedGOLD ?? 0) === 0 && e.unitGOLD === 0 && e.nextPaymentAtMs === 0 && e.attributeCount === 0
   return isValidGeneratedTier(e.tier, s.game.highestTierReached) && typeof e.sourceId === 'string' && !!e.sourceId.trim() &&
-    e.unitGOLD === goldPayment(e.tier, e.attributeCount) && e.receivedGOLD + (e.cappedGOLD ?? 0) === e.paid * e.unitGOLD
+    e.unitGOLD === goldPayment(e.tier, e.attributeCount, legacy ? 1 : e.rewardVersion) && e.receivedGOLD + (e.cappedGOLD ?? 0) === e.paid * e.unitGOLD
 }
+export function isSession(value: unknown): value is Session { return validateSession(value) }
 export function encodeSession(s: Session): string {
   if (!isSession(s)) throw new RangeError('Invalid save')
   return JSON.stringify(s)
@@ -48,9 +49,14 @@ export function decodeSession(raw: string, now: number): LoadResult {
   try {
     const parsed: unknown = JSON.parse(raw)
     if (isSession(parsed)) return { ok: true, session: parsed, migrated: false }
+    if (validateSession(parsed, true)) {
+      // Freeze the old contract; never reprice or replay already-paid receipts.
+      const session: Session = { ...parsed, version: 3, event: parsed.event ? { ...parsed.event, rewardVersion: 1 } : null }
+      return { ok: true, session, migrated: true }
+    }
     if (isProgressionSnapshot(parsed)) {
       // v1 experimental 7x7 presets are not normal-play saves; never crop or silently discard them.
-      const migrated: Session = { ...freshSession(now), ...parsed, version: 2, sequence: 0, event: null }
+      const migrated: Session = { ...freshSession(now), ...parsed, version: 3, sequence: 0, event: null }
       if (isSession(migrated)) return { ok: true, session: migrated, migrated: true }
       return { ok: false, reason: '旧v1検証盤面は通常4×4へ自動変換できません（原本を保持）' }
     }
@@ -68,3 +74,4 @@ export function commitStorage(storage: StoragePort, expectedRaw: string | null, 
     return { ok: true, raw }
   } catch { return { ok: false, reason: '保存できません。空き容量・ブラウザの保存許可を確認し、再試行してください' } }
 }
+

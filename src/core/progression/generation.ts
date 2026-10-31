@@ -190,3 +190,21 @@ export function withdrawToCell(
 export function isValidGeneratedTier(tier: number, highest: number): boolean {
   return isTier(tier) && isTier(highest) && tier <= highest && tier <= MAX_TIER
 }
+
+/** Stable row-major empty-cell list. Event cells remain eligible for player placement. */
+export function emptyCells(game: GameState): readonly GridPosition[] {
+  const { origin, width, height } = game.bounds
+  return Array.from({ length: width * height }, (_, i) => ({ x: origin.x + i % width, y: origin.y + Math.floor(i / width) }))
+    .filter(position => !game.slimes.some(s => samePosition(s.position, position)))
+}
+
+/** One bounded draw, no rejection loop. Empty/full queues do not consume randomness. */
+export function withdrawRandom(game: GameState, generator: GeneratorState, newId: string, random: () => number): WithdrawResult {
+  const reject = { ok: false, game, generator }
+  if (!isGameState(game) || !generator.storedTiers.length) return reject
+  const cells = emptyCells(game)
+  if (!cells.length) return reject
+  const value = random()
+  if (!Number.isFinite(value) || value < 0 || value >= 1) return reject
+  return withdrawToCell(game, generator, cells[Math.floor(value * cells.length)]!, newId)
+}
