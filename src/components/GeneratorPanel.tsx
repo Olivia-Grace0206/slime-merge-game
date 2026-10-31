@@ -29,7 +29,7 @@ export function GeneratorPanel({ session, disabled, fullBoard, onAdd, onTap }: {
     <button type="button" data-testid="add-slime" className="add-button" disabled={disabled || fullBoard || !session.generator.storedTiers.length} onClick={onAdd}>
       <span className="generator-mascot"><Slime tier={session.generator.storedTiers[0] ?? 1} /></span>
       <span className="add-label">＋ スライム追加</span>
-      <small>{fullBoard ? '空きマスがありません' : session.generator.storedTiers.length ? `次は Tier ${session.generator.storedTiers[0]} · 1体追加` : '生成を待っています'}</small>
+      <small>{fullBoard ? '空きマスがありません' : session.generator.storedTiers.length ? `次は Tier ${session.generator.storedTiers[0]}` : '生成を待っています'}</small>
     </button>
     <div className="generator-readout"><span>貯蔵 <b data-testid="storage-count">{session.generator.storedTiers.length}/{rules.capacity}</b></span>
       <span ref={time} data-testid="generation-time">{full ? '満杯・生成停止' : `次まで ${((rules.intervalMs - session.generator.progressMs) / 1000).toFixed(1)}秒`}</span>

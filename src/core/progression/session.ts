@@ -6,7 +6,7 @@ import { advanceGenerator, tapGenerator, newGenerator, withdrawRandom, emptyCell
 import { freshWallet, generationRules, purchaseUpgrade, sellSlime, type UpgradeKey } from './economy'
 import type { ProgressionSnapshot } from './save'
 
-/** All numbers are provisional; selected by the 4x4 simulations, never user-approved balance. */
+/** Distribution/reward/cooldown values are provisional. 350ms × 10 is the approved initial cadence. */
 export const EXPERIMENTAL_PHASE2 = Object.freeze({
   centerSlope: 0.90, spreadRatio: 0.10, minimumSpread: 1, maximumSpread: 1.8,
   eventMinDelayMs: 60_000, eventExtraDelayMs: 60_000,

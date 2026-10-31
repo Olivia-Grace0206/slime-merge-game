@@ -77,10 +77,18 @@ export function GameBoard() {
         (s.generator.storedTiers.length < sessionRules(s).capacity && now - s.generator.updatedAtMs + s.generator.progressMs >= sessionRules(s).intervalMs) ||
         (s.event?.tier !== null && s.event && now >= s.event.nextPaymentAtMs)) send({ type: 'tick' })
     }
-    const timer = window.setInterval(pulse, 50)
+    const timer = window.setInterval(pulse, 250)
     document.addEventListener('visibilitychange', pulse)
     return () => { clearInterval(timer); document.removeEventListener('visibilitychange', pulse) }
   }, [send, store])
+
+  useEffect(() => {
+    const event = session.event
+    if (!normal || storageError || !event || event.tier === null) return
+    // Schedule the saved deadline directly; ordinary polling stays inexpensive.
+    const timer = window.setTimeout(() => { if (!document.hidden) send({ type: 'tick' }) }, Math.max(0, event.nextPaymentAtMs - Date.now()))
+    return () => clearTimeout(timer)
+  }, [normal, session.event, storageError, send])
 
 
   const changeCamera = useCallback((next: Camera) => {
