@@ -27,10 +27,10 @@
 | Lint | 警告0 / lint.txt |
 | Vitest | 267件成功（既存231含む）/ vitest.txt |
 | TypeScript / Build | 成功 / build.txt |
-| Phase2 React UI | 59成功 / browser-results.json・browser-run.txt |
+| Phase2 React UI | 60成功 / browser-results.json・browser-run.txt |
 | 既存Core/drag回帰 | 54成功 / regression/results.json |
 | 既存10サイズ/zoom/pinch/pan/取消 | 120成功 / viewport-regression/browser-results.json |
-| 合計ブラウザ | 233成功、pageerror/console error 0 |
+| 合計ブラウザ | 234成功、pageerror/console error 0 |
 | 長時間 | 仮想240時間・2400生成/売却・240 save round trip、重複ID/破損0 / long-simulation.json |
 | バランス | 17条件×3seed＋opening6本 / ../../balance/phase2/simulation.json |
 

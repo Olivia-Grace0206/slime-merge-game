@@ -37,3 +37,5 @@ A13: PROVISIONAL。金報酬の高額な初案/最低差保証案を採用せず
 追加 A15: FIX→PASS。LocalStorageのgetter自体がSecurityErrorの場合に白画面になる可能性。遅延アクセスをadapter内部へ移し、原本読込失敗をエラーUIで表示。権限拒否/QuotaExceeded/別タブ書込競合をブラウザで再現。
 
 長時間の通常入力、仮想240時間、保存/復旧、二重入力、実Core botの比較まで実施。Windows/Safari/実機OS強制終了は未確認で、自動試験のPASSへ混ぜない。残存BLOCKEDはなし（HTTPS/localhostとWeb Locksが実行条件）。
+
+追加 A16: FIX→PASS。金セルのbox-shadowが既存groupedのマージ枠を上書きするケースを修正。金の発光と組別色枠を同時に保持し、実Reactブラウザで枠色・金セル上3体マージ・進化結果・個体非消費の10報酬を追加確認した。

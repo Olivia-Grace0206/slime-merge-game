@@ -182,3 +182,5 @@ button:disabled { opacity: .52; cursor: default; }
 @media (max-height: 500px) and (min-width: 800px) {
   .normal-play { grid-template-columns: 160px minmax(0, 1fr) 160px; }
 }
+/* Gold styling must not hide the existing merge-group preview frame. */
+.cell.gold-cell.grouped { box-shadow: inset 0 0 0 5px var(--group-color), inset 0 0 14px #f1b93990; }

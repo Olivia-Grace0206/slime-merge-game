@@ -218,6 +218,10 @@
       "result": "PASS"
     },
     {
+      "name": "gold-cell merge keeps group frame, original merge result and ten non-consuming receipts",
+      "result": "PASS"
+    },
+    {
       "name": "close/reopen tab resumes pending gold receipts without paying again",
       "result": "PASS"
     },

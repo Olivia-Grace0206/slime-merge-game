@@ -1,6 +1,6 @@
 {
   "src/main.tsx": "da587b0283059574161ca94c3d31270a08716ca0b1e00a4888a9bff3dd2874d0",
-  "src/styles/global.css": "27b633f817c229947da7aee86b6d76275e1f1be7b75b315f8726c2c9ab24be96",
+  "src/styles/global.css": "7e1c076fe62f77975db9488252e418be5a8cdd099f97530071dc6adf64ca709b",
   "src/app/presets.ts": "b05268d894145fef64a22e77214bde40aa075858e8974f29222cb74de84682fb",
   "src/app/sessionStore.ts": "316c6b9876d29f0004b149ce05c7b5ae3fadba7970a32780ba0b470d36c6da22",
   "src/app/App.tsx": "491f4bccd0da50b199ceaffdb3f2d71cf133ce16be05a3f227eb4da653f673a8",
@@ -29,7 +29,7 @@
   "tests/merge/merge.test.ts": "c3031b968bae32f3aea6b2797db862c82492a91f1c244d9445c19cc30ec8eac3",
   "tests/input/coordinates.test.ts": "a059b77ca4d83ee016ab00471e4061748deffa6b501811601cfdcedd97bd8829",
   "tests/browser/phase1-1.cjs": "ca0e3c13e6ed597a08265a2ea0ec0130cc11ac93e5d8ba0c9559eb9046ce099b",
-  "tests/browser/phase2.cjs": "aec1f7bc39a2521cff2233ed8d7b2494fe263a96375c6518aeb2e992050e4928",
+  "tests/browser/phase2.cjs": "a0c512ba0cedb1045c90c006ed63772eceae54d2337c93ee99776030d801098f",
   "tests/browser/phase1.cjs": "fb0d91057b3de870aa0eaedc3f50195bd1ae6bb5bf78885ecee7c0de57d231b0",
   "tests/board/state.test.ts": "39982758c91a4fd7d4f8e1d2c7da6ed221d9d07a828df48b92aeedee3a60f7ba",
   "tests/progression/session.test.ts": "9ed40fc39434af36f41ed4973794bc2faead4d3b42717d64380b205c52eb2af0",

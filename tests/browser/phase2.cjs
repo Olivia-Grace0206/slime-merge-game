@@ -113,6 +113,15 @@ try{
   }
   await ctx.close()
  }
+ await check('gold-cell merge keeps group frame, original merge result and ten non-consuming receipts',async()=>{
+  const ctx=await browser.newContext({viewport:{width:1440,height:900}}),p=await ctx.newPage();await p.clock.install({time:new Date('2026-10-31T00:00:00Z')});await p.goto(url)
+  const now=await p.evaluate(()=>Date.now()),event={id:'gold-1',sequence:1,cell:{x:1,y:0},expiresAtMs:now+45000,tier:null,sourceId:null,attributeCount:0,paid:0,receivedGOLD:0,unitGOLD:0,nextPaymentAtMs:0}
+  await seed(p,{tiers:[1,1,1],event});await p.clock.runFor(1000)
+  const a=await center(p,'[data-cell="0,0"]'),b=await center(p,'[data-cell="1,0"]');await p.mouse.move(a.x,a.y);await p.mouse.down();await p.mouse.move(b.x,b.y,{steps:8})
+  const shadow=await p.locator('[data-cell="1,0"]').evaluate(n=>getComputedStyle(n).boxShadow);assert(shadow.includes('229, 133, 34'),shadow)
+  await p.mouse.up();await until(async()=>await p.locator('[data-tier="2"]').count()===1)
+  await p.clock.runFor(10000);await until(async()=>(await snapshot(p)).event===null);assert.equal((await snapshot(p)).wallet.gold,10);assert.equal((await snapshot(p)).game.slimes.length,1);await ctx.close()
+ })
  await check('close/reopen tab resumes pending gold receipts without paying again',async()=>{
   const ctx=await browser.newContext(),p=await ctx.newPage();await p.clock.install({time:new Date('2026-10-31T00:00:00Z')});await p.goto(url)
   const now=await p.evaluate(()=>Date.now()),event={id:'gold-1',sequence:1,cell:{x:0,y:0},expiresAtMs:now+45000,tier:10,sourceId:'p-1',attributeCount:0,paid:4,receivedGOLD:204,unitGOLD:51,nextPaymentAtMs:now+700}
