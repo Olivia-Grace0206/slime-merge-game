@@ -184,8 +184,8 @@ describe('strict v2 persistence and failed writes',()=>{
    const loaded=decodeSession(encodeSession(s),s.savedAtMs);if(loaded.ok)s=loaded.session
   }
   expect(s.nextId).toBe(2401);expect(Number.isSafeInteger(s.wallet.gold)).toBe(true)
-  mkdirSync('docs/validation/phase3b/regression/regression-session',{recursive:true})
-  writeFileSync('docs/validation/phase3b/regression/regression-session/long-simulation.json',JSON.stringify({virtualHours:240,checkpoints:240,totalGenerated:s.generator.totalGenerated,nextId:s.nextId,gold:s.wallet.gold,eventSequence:s.eventSequence,uniqueIds:true,validEveryCheckpoint:true,roundTripEveryCheckpoint:true,storageBounded:true,errors:0},null,2))
+  mkdirSync('docs/validation/phase3b1/regression-phase3b/regression/regression-session',{recursive:true})
+  writeFileSync('docs/validation/phase3b1/regression-phase3b/regression/regression-session/long-simulation.json',JSON.stringify({virtualHours:240,checkpoints:240,totalGenerated:s.generator.totalGenerated,nextId:s.nextId,gold:s.wallet.gold,eventSequence:s.eventSequence,uniqueIds:true,validEveryCheckpoint:true,roundTripEveryCheckpoint:true,storageBounded:true,errors:0},null,2))
  })
 })
 

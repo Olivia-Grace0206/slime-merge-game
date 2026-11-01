@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { sessionRules, type Session } from '../core/progression/session'
-import { focusCandidates, FOCUS_COST } from '../core/progression/focus'
+import { FOCUS_COST } from '../core/progression/focus'
 import { SlimeTrio, StorageBox } from './ProgressIcons'
 
 /** Presentation only: never creates stock, dispatches commands or writes storage. */
@@ -9,8 +9,8 @@ export function GeneratorPanel({ session, disabled, fullBoard, onAdd, onTap, onM
 }) {
   const bar = useRef<HTMLProgressElement>(null), time = useRef<HTMLSpanElement>(null)
   const rules = sessionRules(session), full = session.generator.storedTiers.length >= rules.capacity
-  const focused = session.generationMode === 'focused', eligible = focusCandidates(session.game,session.generator).length
-  const unavailable = focused ? eligible < FOCUS_COST : !session.generator.storedTiers.length
+  const focused = session.generationMode === 'focused'
+  const unavailable = focused ? session.generator.storedTiers.length < FOCUS_COST : !session.generator.storedTiers.length
   useEffect(() => {
     let frame = 0, previous = -Infinity
     const paint = (stamp: number) => {
@@ -29,10 +29,10 @@ export function GeneratorPanel({ session, disabled, fullBoard, onAdd, onTap, onM
   }, [session, disabled, full, rules.intervalMs])
   return <section className={`generator-panel ${full ? 'storage-full' : ''}`} aria-label="スライム生成装置">
     <h2><span aria-hidden="true">✦</span> スライム生成</h2>
-    <button type="button" data-testid="add-slime" className="add-button" disabled={disabled || fullBoard || unavailable} onClick={onAdd}>
+    <button type="button" data-testid="add-slime" className="add-button" title={focused ? '属性付き・高Tierを含む貯蔵先頭10体を消費します' : '貯蔵先頭1体を追加します'} disabled={disabled || fullBoard || unavailable} onClick={onAdd}>
       <span className="generator-mascot"><SlimeTrio /></span>
       <span className="add-label">{focused ? <>属性重視<small>10体→1体</small></> : '＋ スライム追加'}</span>
-      <small>{fullBoard ? '空きマスがありません' : focused ? `安全素材 ${eligible}/10体` : session.generator.storedTiers.length ? 'ランダムな空きマスへ' : '生成を待っています'}</small>
+      <small>{fullBoard ? '空きマスがありません' : focused ? '貯蔵10体で使用可能' : session.generator.storedTiers.length ? 'ランダムな空きマスへ' : '生成を待っています'}</small>
     </button>
     <div className="generator-readout"><span className="storage-count"><StorageBox /><b data-testid="storage-count">{session.generator.storedTiers.length} / {rules.capacity}</b></span>
       <span ref={time} data-testid="generation-time">{full ? '満杯・生成停止' : `次まで ${((rules.intervalMs - session.generator.progressMs) / 1000).toFixed(1)}秒`}</span>

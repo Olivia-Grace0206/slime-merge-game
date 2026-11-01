@@ -24,7 +24,7 @@ it('independent conservation audit: 20k mixed saved transactions with stale requ
    if(choice===8)c={type:'withdraw',expectedId:0,expectedMode:s.generationMode}
    const before=JSON.stringify(s),next=reduceSession(s,c,now,random)
    expect(JSON.stringify(s)).toBe(before)
-   if(!isSession(next)){mkdirSync('docs/validation/phase3b/audit',{recursive:true});writeFileSync('docs/validation/phase3b/audit/failed-transaction.json',JSON.stringify({initialSeed,step,command:c,before:s,after:next},null,2))}
+   if(!isSession(next)){mkdirSync('docs/validation/phase3b1/regression-phase3b/audit',{recursive:true});writeFileSync('docs/validation/phase3b1/regression-phase3b/audit/failed-transaction.json',JSON.stringify({initialSeed,step,command:c,before:s,after:next},null,2))}
    expect(isSession(next)).toBe(true)
    expect(next.game.highestTierReached).toBeGreaterThanOrEqual(s.game.highestTierReached)
    expect(new Set(next.game.slimes.map(x=>x.id)).size).toBe(next.game.slimes.length)
@@ -42,5 +42,5 @@ it('independent conservation audit: 20k mixed saved transactions with stale requ
   }
   reports.push({seed:initialSeed,attempts:5000,counts,uniqueIndividualIds:seen.size,highestTier:s.game.highestTierReached,generated:s.generator.totalGenerated,natureGenerated:s.nature.totalGenerated,focusedGenerated:s.focusedGenerated,saveChecks:50,violations:0})
  }
- mkdirSync('docs/validation/phase3b/audit',{recursive:true});writeFileSync('docs/validation/phase3b/audit/transactions.json',JSON.stringify({oracle:'Ownership/ID/cell/count/immutability/save invariants, separate from effect formulas. Same implementation agent; no third-party review claimed.',reports},null,2))
+ mkdirSync('docs/validation/phase3b1/regression-phase3b/audit',{recursive:true});writeFileSync('docs/validation/phase3b1/regression-phase3b/audit/transactions.json',JSON.stringify({oracle:'Ownership/ID/cell/count/immutability/save invariants, separate from effect formulas. Same implementation agent; no third-party review claimed.',reports},null,2))
 },120000)

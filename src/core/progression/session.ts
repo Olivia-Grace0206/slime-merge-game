@@ -1,5 +1,5 @@
 import { boardEffects, drawSpecialCell } from '../attributes/effects'
-import { focusCandidates, FOCUS_COST, withdrawFocused, type GenerationMode } from './focus'
+import { FOCUS_COST, withdrawFocused, type GenerationMode } from './focus'
 import { RESEARCH_CAPS, EXPERIMENTAL_RESEARCH, researchCost, frequencyCost } from './research'
 import type { DropPlan } from '../../domain/game'
 import type { GridPosition } from '../../domain/grid'
@@ -125,7 +125,7 @@ export function reduceSession(s: Session, command: Command, now: number, random:
     if (!Number.isSafeInteger(now) || now < 0 || s.sequence >= Number.MAX_SAFE_INTEGER - 1) return s
     if (command.type === 'withdraw' && (command.expectedId !== s.nextId || (command.expectedMode ?? 'normal') !== s.generationMode ||
       !s.generator.storedTiers.length || !emptyCells(s.game).length ||
-      (s.generationMode === 'focused' && focusCandidates(s.game,s.generator).length < FOCUS_COST))) return s
+      (s.generationMode === 'focused' && s.generator.storedTiers.length < FOCUS_COST))) return s
     if (command.type === 'generation-mode' && command.value !== 'normal' && command.value !== 'focused') return s
     const oldRules = rulesOverride ?? sessionRules(s), oldNatureInterval = boardEffects(s.game).natureIntervalMs
 
