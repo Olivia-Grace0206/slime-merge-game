@@ -1,0 +1,134 @@
+[
+  {
+    "path": "docs/validation/phase3a/final-attributes/merge-1366x768.webp",
+    "width": 1366,
+    "height": 768,
+    "sha256": "44e9ddb1c3a4c7e5f1368cb8c95b1eaef99fd6a35d53c80339dde7f357e001fe"
+  },
+  {
+    "path": "docs/validation/phase3a/final-attributes/detail-1366x768.webp",
+    "width": 1366,
+    "height": 768,
+    "sha256": "55fe6c0213f22bbd6e1e03fe214cd1af27810c50979845dac18691425c61e1a1"
+  },
+  {
+    "path": "docs/validation/phase3a/final-attributes/attributes-1920x1080.webp",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "3a1724044469ae5f1b8fa9044bf9fb7fc25ff78d4dde7dadcd778e7ed1b01a31"
+  },
+  {
+    "path": "docs/validation/phase3a/final-attributes/swap-320x568.webp",
+    "width": 320,
+    "height": 568,
+    "sha256": "bf43652e6e628aae8d6d7b3a1c541d81b81af156ed1086754710cef067bbf083"
+  },
+  {
+    "path": "docs/validation/phase3a/final-attributes/detail-320x568.webp",
+    "width": 320,
+    "height": 568,
+    "sha256": "df317a99dff587bdc4a962583d1c5a6cc42e54e196859fba8f6afac9e5601933"
+  },
+  {
+    "path": "docs/validation/phase3a/final-attributes/attributes-768x1024.webp",
+    "width": 768,
+    "height": 1024,
+    "sha256": "ae98c83ee492a3c45c93ad84ccf84bc3aa08fcbf004250508f568c804d477a22"
+  },
+  {
+    "path": "docs/validation/phase3a/final-attributes/attributes-1366x768.webp",
+    "width": 1366,
+    "height": 768,
+    "sha256": "1ee35a35f170733e2caec06d61465afac180d949155015dc0077fa23b7ca0b39"
+  },
+  {
+    "path": "docs/validation/phase3a/final-attributes/detail-390x844.webp",
+    "width": 390,
+    "height": 844,
+    "sha256": "db8424a8f3ace006b233b66cd25cb9c3d098da53487178c466c63397474e6c6e"
+  },
+  {
+    "path": "docs/validation/phase3a/final-attributes/attributes-390x844.webp",
+    "width": 390,
+    "height": 844,
+    "sha256": "d53b57e93546403890ad23f2b7c8b22472261ee0812328889904893d622a5bdf"
+  },
+  {
+    "path": "docs/validation/phase3a/final-attributes/swap-390x844.webp",
+    "width": 390,
+    "height": 844,
+    "sha256": "5dc9de7b2299f81815c22a60901ef3ebdb96403ff54c3ff621afde80b521cc4a"
+  },
+  {
+    "path": "docs/validation/phase3a/final-attributes/attributes-320x568.webp",
+    "width": 320,
+    "height": 568,
+    "sha256": "957751879c2667cfc76db8ea942e8ae18bbc1817c3d6c4211df46b5718bf9aa1"
+  },
+  {
+    "path": "docs/validation/phase3a/final-attributes/attributes-844x390.webp",
+    "width": 844,
+    "height": 390,
+    "sha256": "ff046262bf8403ccb1adb786355267ecb7f355b18bc1edd1c89c2e17792f5020"
+  },
+  {
+    "path": "docs/validation/phase3a/final-attributes/merge-390x844.webp",
+    "width": 390,
+    "height": 844,
+    "sha256": "8f6916ea04c5b2ea57b35cff057a624a3e9f591c1e8fd64656d538cde5c4a4cc"
+  },
+  {
+    "path": "docs/validation/phase3a/final-attributes/swap-1366x768.webp",
+    "width": 1366,
+    "height": 768,
+    "sha256": "e2a66e48997b7f6450a2aab8cb1179a48e0c446c51c313e64c07d22f99edbdf9"
+  },
+  {
+    "path": "docs/validation/phase3a/final-attributes/attributes-1440x900.webp",
+    "width": 1440,
+    "height": 900,
+    "sha256": "3704d9d9a0007bfc685010c6d74f1f584cb4fbb1611de5e1074c49b6fc069711"
+  },
+  {
+    "path": "docs/validation/phase3a/final-attributes/attributes-1024x768.webp",
+    "width": 1024,
+    "height": 768,
+    "sha256": "015911ca1ce41880eb505b38437da9b142e6161864abb17490cd3603ee9cb70e"
+  },
+  {
+    "path": "docs/validation/phase3a/final-attributes/attributes-375x667.webp",
+    "width": 375,
+    "height": 667,
+    "sha256": "d005db394ed3b1eeea23aa13b7ebfa0a6f3f604425289762e31fabfba6ae3d4f"
+  },
+  {
+    "path": "docs/validation/phase3a/final-attributes/merge-320x568.webp",
+    "width": 320,
+    "height": 568,
+    "sha256": "75640aae404a6b018bb542d57e085c706a5914f7bfd56b431e1c97adcbfc8637"
+  },
+  {
+    "path": "docs/validation/phase3a/final-attributes/attributes-1280x720.webp",
+    "width": 1280,
+    "height": 720,
+    "sha256": "943a8e4102827453e900f15d495cd81ebc663502e4727b45f04161e83a7cae72"
+  },
+  {
+    "path": "docs/validation/phase3a/final-ui/prices-320x568.webp",
+    "width": 320,
+    "height": 568,
+    "sha256": "c67bca96aa0a410ca53de71b8e40a39e23a2beb1707b6a89cb41554c437da1dc"
+  },
+  {
+    "path": "docs/validation/phase3a/final-ui/prices-1920x1080.webp",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "19fa759ff890e941fca18da14c652f48435363da8368cdfa994fc46a27b431f0"
+  },
+  {
+    "path": "docs/validation/phase3a/final-ui/prices-390x844.webp",
+    "width": 390,
+    "height": 844,
+    "sha256": "4e5cf726ccd11c1f859677f1a6505991220eede77ddc9032c16182f64fad20b8"
+  }
+]

@@ -6,7 +6,8 @@ const sizes=[[1920,1080],[1440,900],[1366,768],[1280,720],[1024,768],[768,1024],
 fs.mkdirSync(dir,{recursive:true})
 async function check(name,fn){try{await fn();checks.push({name,result:'PASS'});console.log('PASS',name)}catch(e){checks.push({name,result:'FAIL',error:String(e)});throw e}}
 async function center(p,s){const r=await p.locator(s).boundingBox();assert(r);return{x:r.x+r.width/2,y:r.y+r.height/2}}
-const snap=p=>p.evaluate(k=>JSON.parse(localStorage.getItem(k)),key)
+// Legacy absence and schema5's explicit empty attributes represent the same individual.
+const snap=p=>p.evaluate(k=>{const s=JSON.parse(localStorage.getItem(k));if(s){s.game.slimes=s.game.slimes.map(x=>({...x,attributes:x.attributes??[]}));s.generator.storedAttributes??=s.generator.storedTiers.map(()=>[])}return s},key)
 async function until(fn){for(let i=0;i<100;i++){if(await fn())return;await new Promise(r=>setTimeout(r,15))}throw Error('condition timeout')}
 function fixture(now,{tiers=[],gold=1234567,cap=40,unlocked=false,queue=[1,2,1]}={}){const caps=[5,10,15,20,25,29,30,31,32,33,34,35,36,37,38,39,40];return{version:4,savedAtMs:now,nextId:tiers.length+1,sequence:0,researchLevel:caps.indexOf(cap),researchMaxTier:cap,goldCellUnlocked:unlocked,goldFrequencyLevel:0,goldFormat:'full',game:{bounds:{origin:{x:0,y:0},width:4,height:4},slimes:tiers.map((t,i)=>({id:`p-${i+1}`,tier:t,position:{x:i%4,y:Math.floor(i/4)}})),highestTierReached:Math.max(1,...tiers,...queue),revision:0},wallet:{gold,upgrades:{speed:0,tap:0,storage:0}},generator:{storedTiers:queue,progressMs:0,updatedAtMs:now,totalGenerated:queue.length},eventSequence:0,nextEventAtMs:now+60000,event:null,lastEvent:null,protectedIds:tiers.length>=2?['p-2']:[],reducedEffects:true}}
 async function seed(p,opts){const now=await p.evaluate(()=>Date.now()),s=fixture(now,opts);await p.evaluate(([k,v])=>localStorage.setItem(k,JSON.stringify(v)),[key,s]);await p.reload();await p.getByTestId('board').waitFor();return s}

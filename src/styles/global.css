@@ -334,3 +334,7 @@ progress::-webkit-progress-value { background: linear-gradient(90deg,#79b65b,#ab
 .merge-attribute-preview { border-color:#ad692c; color:#694322; background:#fff8eaed; max-height:30%; overflow:hidden; }
 .attribute-roster { display:grid; gap:8px; } .attribute-roster button { min-height:52px; border:1px solid #c7d6c0; border-radius:12px; background:#f7fbf1; text-align:left; padding:8px 12px; color:inherit; cursor:pointer; } .attribute-roster span { display:block; font-size:14px; margin-top:4px; }
 @media (max-width:700px) { .attribute-badge { font-size:23px; } }
+/* Drag art is already screen-sized, unlike the transformed board art. */
+.drag-sprite { container-type: inline-size; }
+.drag-sprite .attribute-badge { font-size: clamp(6px, 9cqw, 18px); padding: 0 1px; gap: 1px; }
+.detail-slime .attribute-badge { font-size: 10px; padding: 0 2px; gap: 1px; }

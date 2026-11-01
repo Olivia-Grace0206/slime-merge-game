@@ -1,0 +1,1554 @@
+{
+  "checks": [
+    {
+      "name": "1920x1080 one-screen board unchanged and menu reachable, face/Tier/badges separate",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 different Tier exchanges only positions + IDs/attributes/protection preserved/reload",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 touch-accessible attribute list/details with explicit inactive effects",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 5merge preview guarantees copied Lv + both outputs, remainder untouched",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 overflow switches to clear swap preview; research/MAX40/two-input exchange",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 pinch/pointercancel/Escape/rotation never commit previewed swap",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 FIFO attribute withdrawal + immediate protected sale / actual receipt",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 one-screen board unchanged and menu reachable, face/Tier/badges separate",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 different Tier exchanges only positions + IDs/attributes/protection preserved/reload",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 touch-accessible attribute list/details with explicit inactive effects",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 5merge preview guarantees copied Lv + both outputs, remainder untouched",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 overflow switches to clear swap preview; research/MAX40/two-input exchange",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 pinch/pointercancel/Escape/rotation never commit previewed swap",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 FIFO attribute withdrawal + immediate protected sale / actual receipt",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 one-screen board unchanged and menu reachable, face/Tier/badges separate",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 different Tier exchanges only positions + IDs/attributes/protection preserved/reload",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 touch-accessible attribute list/details with explicit inactive effects",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 5merge preview guarantees copied Lv + both outputs, remainder untouched",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 overflow switches to clear swap preview; research/MAX40/two-input exchange",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 pinch/pointercancel/Escape/rotation never commit previewed swap",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 FIFO attribute withdrawal + immediate protected sale / actual receipt",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 one-screen board unchanged and menu reachable, face/Tier/badges separate",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 different Tier exchanges only positions + IDs/attributes/protection preserved/reload",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 touch-accessible attribute list/details with explicit inactive effects",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 5merge preview guarantees copied Lv + both outputs, remainder untouched",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 overflow switches to clear swap preview; research/MAX40/two-input exchange",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 pinch/pointercancel/Escape/rotation never commit previewed swap",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 FIFO attribute withdrawal + immediate protected sale / actual receipt",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 one-screen board unchanged and menu reachable, face/Tier/badges separate",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 different Tier exchanges only positions + IDs/attributes/protection preserved/reload",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 touch-accessible attribute list/details with explicit inactive effects",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 5merge preview guarantees copied Lv + both outputs, remainder untouched",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 overflow switches to clear swap preview; research/MAX40/two-input exchange",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 pinch/pointercancel/Escape/rotation never commit previewed swap",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 FIFO attribute withdrawal + immediate protected sale / actual receipt",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 one-screen board unchanged and menu reachable, face/Tier/badges separate",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 different Tier exchanges only positions + IDs/attributes/protection preserved/reload",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 touch-accessible attribute list/details with explicit inactive effects",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 5merge preview guarantees copied Lv + both outputs, remainder untouched",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 overflow switches to clear swap preview; research/MAX40/two-input exchange",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 pinch/pointercancel/Escape/rotation never commit previewed swap",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 FIFO attribute withdrawal + immediate protected sale / actual receipt",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 one-screen board unchanged and menu reachable, face/Tier/badges separate",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 different Tier exchanges only positions + IDs/attributes/protection preserved/reload",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 touch-accessible attribute list/details with explicit inactive effects",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 5merge preview guarantees copied Lv + both outputs, remainder untouched",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 overflow switches to clear swap preview; research/MAX40/two-input exchange",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 pinch/pointercancel/Escape/rotation never commit previewed swap",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 FIFO attribute withdrawal + immediate protected sale / actual receipt",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 one-screen board unchanged and menu reachable, face/Tier/badges separate",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 different Tier exchanges only positions + IDs/attributes/protection preserved/reload",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 touch-accessible attribute list/details with explicit inactive effects",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 5merge preview guarantees copied Lv + both outputs, remainder untouched",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 overflow switches to clear swap preview; research/MAX40/two-input exchange",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 pinch/pointercancel/Escape/rotation never commit previewed swap",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 FIFO attribute withdrawal + immediate protected sale / actual receipt",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 one-screen board unchanged and menu reachable, face/Tier/badges separate",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 different Tier exchanges only positions + IDs/attributes/protection preserved/reload",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 touch-accessible attribute list/details with explicit inactive effects",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 5merge preview guarantees copied Lv + both outputs, remainder untouched",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 overflow switches to clear swap preview; research/MAX40/two-input exchange",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 pinch/pointercancel/Escape/rotation never commit previewed swap",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 FIFO attribute withdrawal + immediate protected sale / actual receipt",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 one-screen board unchanged and menu reachable, face/Tier/badges separate",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 different Tier exchanges only positions + IDs/attributes/protection preserved/reload",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 touch-accessible attribute list/details with explicit inactive effects",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 5merge preview guarantees copied Lv + both outputs, remainder untouched",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 overflow switches to clear swap preview; research/MAX40/two-input exchange",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 pinch/pointercancel/Escape/rotation never commit previewed swap",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 FIFO attribute withdrawal + immediate protected sale / actual receipt",
+      "result": "PASS"
+    },
+    {
+      "name": "390 GOLD active swap by p-1 closes frozen attribute contract without transferring receipts",
+      "result": "PASS"
+    },
+    {
+      "name": "390 GOLD active swap by p-2 closes frozen attribute contract without transferring receipts",
+      "result": "PASS"
+    },
+    {
+      "name": "Quota during attributed swap keeps original bytes, individuals and attributes in UI",
+      "result": "PASS"
+    },
+    {
+      "name": "Quota during attributed merge keeps original bytes, individuals and attributes in UI",
+      "result": "PASS"
+    }
+  ],
+  "errors": [],
+  "measurements": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "scroll": [
+        1920,
+        1080
+      ],
+      "board": {
+        "x": 455,
+        "y": 60,
+        "w": 1010,
+        "h": 1010,
+        "right": 1465,
+        "bottom": 1070
+      },
+      "tier": {
+        "x": 560.32861328125,
+        "y": 266.55401611328125,
+        "w": 41.84283447265625,
+        "h": 33.32098388671875,
+        "right": 602.1714477539062,
+        "bottom": 299.875
+      },
+      "face": {
+        "x": 568.2642822265625,
+        "y": 201.6254425048828,
+        "w": 27.79754638671875,
+        "h": 21.687957763671875,
+        "right": 596.0618286132812,
+        "bottom": 223.3134002685547
+      },
+      "eyes": {
+        "x": 540.4667358398438,
+        "y": 181.49307250976562,
+        "w": 81.5665283203125,
+        "h": 11.542861938476562,
+        "right": 622.0332641601562,
+        "bottom": 193.0359344482422
+      },
+      "badges": [
+        {
+          "x": 478.604248046875,
+          "y": 233.9544677734375,
+          "w": 59.36004638671875,
+          "h": 27.2564697265625,
+          "right": 537.9642944335938,
+          "bottom": 261.2109375,
+          "font": 20
+        },
+        {
+          "x": 543.5553588867188,
+          "y": 233.9544677734375,
+          "w": 59.36004638671875,
+          "h": 27.2564697265625,
+          "right": 602.9154052734375,
+          "bottom": 261.2109375,
+          "font": 20
+        },
+        {
+          "x": 608.5064697265625,
+          "y": 233.9544677734375,
+          "w": 75.411865234375,
+          "h": 27.2564697265625,
+          "right": 683.9183349609375,
+          "bottom": 261.2109375,
+          "font": 20
+        }
+      ],
+      "menus": [
+        {
+          "x": 50,
+          "y": 312,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 388,
+          "text": "♜\nショップ"
+        },
+        {
+          "x": 50,
+          "y": 398,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 474,
+          "text": "◇\n属性"
+        },
+        {
+          "x": 50,
+          "y": 484,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 560,
+          "text": "?\n遊び方"
+        },
+        {
+          "x": 50,
+          "y": 570,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 646,
+          "text": "▦\n検証"
+        },
+        {
+          "x": 50,
+          "y": 656,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 732,
+          "text": "✦\n外見"
+        },
+        {
+          "x": 50,
+          "y": 742,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 818,
+          "text": "⚙\n設定"
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "scroll": [
+        1440,
+        900
+      ],
+      "board": {
+        "x": 305,
+        "y": 60,
+        "w": 830,
+        "h": 830,
+        "right": 1135,
+        "bottom": 890
+      },
+      "tier": {
+        "x": 391.55712890625,
+        "y": 229.74240112304688,
+        "w": 34.3857421875,
+        "h": 27.382598876953125,
+        "right": 425.94287109375,
+        "bottom": 257.125
+      },
+      "face": {
+        "x": 398.07855224609375,
+        "y": 176.38525390625,
+        "w": 22.843536376953125,
+        "h": 17.822784423828125,
+        "right": 420.9220886230469,
+        "bottom": 194.20803833007812
+      },
+      "eyes": {
+        "x": 375.23504638671875,
+        "y": 159.84085083007812,
+        "w": 67.0299072265625,
+        "h": 9.4857177734375,
+        "right": 442.26495361328125,
+        "bottom": 169.32656860351562
+      },
+      "badges": [
+        {
+          "x": 324.3975524902344,
+          "y": 202.95266723632812,
+          "w": 48.781005859375,
+          "h": 22.398895263671875,
+          "right": 373.1785583496094,
+          "bottom": 225.3515625,
+          "font": 20
+        },
+        {
+          "x": 377.773193359375,
+          "y": 202.95266723632812,
+          "w": 48.781036376953125,
+          "h": 22.398895263671875,
+          "right": 426.5542297363281,
+          "bottom": 225.3515625,
+          "font": 20
+        },
+        {
+          "x": 431.14886474609375,
+          "y": 202.95266723632812,
+          "w": 61.97210693359375,
+          "h": 22.398895263671875,
+          "right": 493.1209716796875,
+          "bottom": 225.3515625,
+          "font": 20
+        }
+      ],
+      "menus": [
+        {
+          "x": 50,
+          "y": 222,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 298,
+          "text": "♜\nショップ"
+        },
+        {
+          "x": 50,
+          "y": 308,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 384,
+          "text": "◇\n属性"
+        },
+        {
+          "x": 50,
+          "y": 394,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 470,
+          "text": "?\n遊び方"
+        },
+        {
+          "x": 50,
+          "y": 480,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 556,
+          "text": "▦\n検証"
+        },
+        {
+          "x": 50,
+          "y": 566,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 642,
+          "text": "✦\n外見"
+        },
+        {
+          "x": 50,
+          "y": 652,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 728,
+          "text": "⚙\n設定"
+        }
+      ]
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "scroll": [
+        1366,
+        768
+      ],
+      "board": {
+        "x": 334,
+        "y": 60,
+        "w": 698,
+        "h": 698,
+        "right": 1032,
+        "bottom": 758
+      },
+      "tier": {
+        "x": 406.79144287109375,
+        "y": 202.7472381591797,
+        "w": 28.9171142578125,
+        "h": 23.027755737304688,
+        "right": 435.70855712890625,
+        "bottom": 225.77499389648438
+      },
+      "face": {
+        "x": 412.27569580078125,
+        "y": 157.87579345703125,
+        "w": 19.210601806640625,
+        "h": 14.988311767578125,
+        "right": 431.4862976074219,
+        "bottom": 172.86410522460938
+      },
+      "eyes": {
+        "x": 393.06512451171875,
+        "y": 143.96255493164062,
+        "w": 56.3697509765625,
+        "h": 7.977142333984375,
+        "right": 449.43487548828125,
+        "bottom": 151.939697265625
+      },
+      "badges": [
+        {
+          "x": 352.80548095703125,
+          "y": 180.21803283691406,
+          "w": 39.527374267578125,
+          "h": 18.836654663085938,
+          "right": 392.3328552246094,
+          "bottom": 199.0546875,
+          "font": 19.124
+        },
+        {
+          "x": 396.19677734375,
+          "y": 180.21803283691406,
+          "w": 39.527374267578125,
+          "h": 18.836654663085938,
+          "right": 435.7241516113281,
+          "bottom": 199.0546875,
+          "font": 19.124
+        },
+        {
+          "x": 439.58807373046875,
+          "y": 180.21803283691406,
+          "w": 50.12200927734375,
+          "h": 18.836654663085938,
+          "right": 489.7100830078125,
+          "bottom": 199.0546875,
+          "font": 19.124
+        }
+      ],
+      "menus": [
+        {
+          "x": 50,
+          "y": 156,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 232,
+          "text": "♜\nショップ"
+        },
+        {
+          "x": 50,
+          "y": 242,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 318,
+          "text": "◇\n属性"
+        },
+        {
+          "x": 50,
+          "y": 328,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 404,
+          "text": "?\n遊び方"
+        },
+        {
+          "x": 50,
+          "y": 414,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 490,
+          "text": "▦\n検証"
+        },
+        {
+          "x": 50,
+          "y": 500,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 576,
+          "text": "✦\n外見"
+        },
+        {
+          "x": 50,
+          "y": 586,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 662,
+          "text": "⚙\n設定"
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "scroll": [
+        1280,
+        720
+      ],
+      "board": {
+        "x": 315,
+        "y": 60,
+        "w": 650,
+        "h": 650,
+        "right": 965,
+        "bottom": 710
+      },
+      "tier": {
+        "x": 382.78570556640625,
+        "y": 192.93080139160156,
+        "w": 26.9285888671875,
+        "h": 21.444198608398438,
+        "right": 409.71429443359375,
+        "bottom": 214.375
+      },
+      "face": {
+        "x": 387.8928527832031,
+        "y": 151.14508056640625,
+        "w": 17.889495849609375,
+        "h": 13.957595825195312,
+        "right": 405.7823486328125,
+        "bottom": 165.10267639160156
+      },
+      "eyes": {
+        "x": 370.00335693359375,
+        "y": 138.18861389160156,
+        "w": 52.4932861328125,
+        "h": 7.4285736083984375,
+        "right": 422.49664306640625,
+        "bottom": 145.6171875
+      },
+      "badges": [
+        {
+          "x": 335.1239013671875,
+          "y": 171.95089721679688,
+          "w": 35.27117919921875,
+          "h": 17.541290283203125,
+          "right": 370.39508056640625,
+          "bottom": 189.4921875,
+          "font": 17.92
+        },
+        {
+          "x": 373.9932861328125,
+          "y": 171.95089721679688,
+          "w": 35.271209716796875,
+          "h": 17.541290283203125,
+          "right": 409.2644958496094,
+          "bottom": 189.4921875,
+          "font": 17.92
+        },
+        {
+          "x": 412.86273193359375,
+          "y": 171.95089721679688,
+          "w": 44.52789306640625,
+          "h": 17.541290283203125,
+          "right": 457.390625,
+          "bottom": 189.4921875,
+          "font": 17.92
+        }
+      ],
+      "menus": [
+        {
+          "x": 50,
+          "y": 132,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 208,
+          "text": "♜\nショップ"
+        },
+        {
+          "x": 50,
+          "y": 218,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 294,
+          "text": "◇\n属性"
+        },
+        {
+          "x": 50,
+          "y": 304,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 380,
+          "text": "?\n遊び方"
+        },
+        {
+          "x": 50,
+          "y": 390,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 466,
+          "text": "▦\n検証"
+        },
+        {
+          "x": 50,
+          "y": 476,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 552,
+          "text": "✦\n外見"
+        },
+        {
+          "x": 50,
+          "y": 562,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 638,
+          "text": "⚙\n設定"
+        }
+      ]
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "scroll": [
+        1024,
+        768
+      ],
+      "board": {
+        "x": 200,
+        "y": 97,
+        "w": 624,
+        "h": 624,
+        "right": 824,
+        "bottom": 721
+      },
+      "tier": {
+        "x": 265.07427978515625,
+        "y": 224.6135711669922,
+        "w": 25.8514404296875,
+        "h": 20.58642578125,
+        "right": 290.92572021484375,
+        "bottom": 245.1999969482422
+      },
+      "face": {
+        "x": 269.9771423339844,
+        "y": 184.49929809570312,
+        "w": 17.173919677734375,
+        "h": 13.399276733398438,
+        "right": 287.15106201171875,
+        "bottom": 197.89857482910156
+      },
+      "eyes": {
+        "x": 252.80322265625,
+        "y": 172.06106567382812,
+        "w": 50.3935546875,
+        "h": 7.131439208984375,
+        "right": 303.19677734375,
+        "bottom": 179.1925048828125
+      },
+      "badges": [
+        {
+          "x": 228.2192840576172,
+          "y": 204.47286987304688,
+          "w": 28.511795043945312,
+          "h": 16.839630126953125,
+          "right": 256.7310791015625,
+          "bottom": 221.3125,
+          "font": 14.336
+        },
+        {
+          "x": 260.18536376953125,
+          "y": 204.47286987304688,
+          "w": 28.51177978515625,
+          "h": 16.839630126953125,
+          "right": 288.6971435546875,
+          "bottom": 221.3125,
+          "font": 14.336
+        },
+        {
+          "x": 292.15142822265625,
+          "y": 204.47286987304688,
+          "w": 35.6153564453125,
+          "h": 16.839630126953125,
+          "right": 327.76678466796875,
+          "bottom": 221.3125,
+          "font": 14.336
+        }
+      ],
+      "menus": [
+        {
+          "x": 50,
+          "y": 156,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 232,
+          "text": "♜\nショップ"
+        },
+        {
+          "x": 50,
+          "y": 242,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 318,
+          "text": "◇\n属性"
+        },
+        {
+          "x": 50,
+          "y": 328,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 404,
+          "text": "?\n遊び方"
+        },
+        {
+          "x": 50,
+          "y": 414,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 490,
+          "text": "▦\n検証"
+        },
+        {
+          "x": 50,
+          "y": 500,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 576,
+          "text": "✦\n外見"
+        },
+        {
+          "x": 50,
+          "y": 586,
+          "w": 96,
+          "h": 76,
+          "right": 146,
+          "bottom": 662,
+          "text": "⚙\n設定"
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "scroll": [
+        768,
+        1024
+      ],
+      "board": {
+        "x": 8,
+        "y": 70,
+        "w": 752,
+        "h": 752,
+        "right": 760,
+        "bottom": 822
+      },
+      "tier": {
+        "x": 86.42285919189453,
+        "y": 223.7907257080078,
+        "w": 31.15428924560547,
+        "h": 24.809280395507812,
+        "right": 117.5771484375,
+        "bottom": 248.60000610351562
+      },
+      "face": {
+        "x": 92.33142852783203,
+        "y": 175.44786071777344,
+        "w": 20.696792602539062,
+        "h": 16.147857666015625,
+        "right": 113.0282211303711,
+        "bottom": 191.59571838378906
+      },
+      "eyes": {
+        "x": 71.6346435546875,
+        "y": 160.45822143554688,
+        "w": 60.730712890625,
+        "h": 8.594284057617188,
+        "right": 132.3653564453125,
+        "bottom": 169.05250549316406
+      },
+      "badges": [
+        {
+          "x": 42.41071701049805,
+          "y": 199.51856994628906,
+          "w": 34.1589241027832,
+          "h": 20.293930053710938,
+          "right": 76.56964111328125,
+          "bottom": 219.8125,
+          "font": 14
+        },
+        {
+          "x": 80.73250579833984,
+          "y": 199.51856994628906,
+          "w": 34.15892791748047,
+          "h": 20.293930053710938,
+          "right": 114.89143371582031,
+          "bottom": 219.8125,
+          "font": 14
+        },
+        {
+          "x": 119.05429077148438,
+          "y": 199.51856994628906,
+          "w": 42.518218994140625,
+          "h": 20.293930053710938,
+          "right": 161.572509765625,
+          "bottom": 219.8125,
+          "font": 14
+        }
+      ],
+      "menus": [
+        {
+          "x": 4.015625,
+          "y": 974,
+          "w": 123.328125,
+          "h": 44,
+          "right": 127.34375,
+          "bottom": 1018,
+          "text": "♜\nショップ"
+        },
+        {
+          "x": 131.34375,
+          "y": 974,
+          "w": 123.328125,
+          "h": 44,
+          "right": 254.671875,
+          "bottom": 1018,
+          "text": "◇\n属性"
+        },
+        {
+          "x": 258.671875,
+          "y": 974,
+          "w": 123.328125,
+          "h": 44,
+          "right": 382,
+          "bottom": 1018,
+          "text": "?\n遊び方"
+        },
+        {
+          "x": 386,
+          "y": 974,
+          "w": 123.328125,
+          "h": 44,
+          "right": 509.328125,
+          "bottom": 1018,
+          "text": "▦\n検証"
+        },
+        {
+          "x": 513.328125,
+          "y": 974,
+          "w": 123.328125,
+          "h": 44,
+          "right": 636.65625,
+          "bottom": 1018,
+          "text": "✦\n外見"
+        },
+        {
+          "x": 640.65625,
+          "y": 974,
+          "w": 123.328125,
+          "h": 44,
+          "right": 763.984375,
+          "bottom": 1018,
+          "text": "⚙\n設定"
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "scroll": [
+        390,
+        844
+      ],
+      "board": {
+        "x": 8,
+        "y": 169,
+        "w": 374,
+        "h": 374,
+        "right": 382,
+        "bottom": 543
+      },
+      "tier": {
+        "x": 47.00285720825195,
+        "y": 245.48634338378906,
+        "w": 15.494285583496094,
+        "h": 12.338668823242188,
+        "right": 62.49714279174805,
+        "bottom": 257.82501220703125
+      },
+      "face": {
+        "x": 49.941429138183594,
+        "y": 221.4434814453125,
+        "w": 10.293350219726562,
+        "h": 8.030975341796875,
+        "right": 60.234779357910156,
+        "bottom": 229.47445678710938
+      },
+      "eyes": {
+        "x": 39.64807891845703,
+        "y": 213.988525390625,
+        "w": 30.203842163085938,
+        "h": 4.2742919921875,
+        "right": 69.85192108154297,
+        "bottom": 218.2628173828125
+      },
+      "badges": [
+        {
+          "x": 12.558124542236328,
+          "y": 233.41482543945312,
+          "w": 24.468616485595703,
+          "h": 10.092987060546875,
+          "right": 37.02674102783203,
+          "bottom": 243.5078125,
+          "font": 23
+        },
+        {
+          "x": 39.09709930419922,
+          "y": 233.41482543945312,
+          "w": 24.468616485595703,
+          "h": 10.092987060546875,
+          "right": 63.56571578979492,
+          "bottom": 243.5078125,
+          "font": 23
+        },
+        {
+          "x": 65.63607788085938,
+          "y": 233.41482543945312,
+          "w": 31.305801391601562,
+          "h": 10.092987060546875,
+          "right": 96.94187927246094,
+          "bottom": 243.5078125,
+          "font": 23
+        }
+      ],
+      "menus": [
+        {
+          "x": 4.015625,
+          "y": 794,
+          "w": 60.328125,
+          "h": 44,
+          "right": 64.34375,
+          "bottom": 838,
+          "text": "♜\nショップ"
+        },
+        {
+          "x": 68.34375,
+          "y": 794,
+          "w": 60.328125,
+          "h": 44,
+          "right": 128.671875,
+          "bottom": 838,
+          "text": "◇\n属性"
+        },
+        {
+          "x": 132.671875,
+          "y": 794,
+          "w": 60.328125,
+          "h": 44,
+          "right": 193,
+          "bottom": 838,
+          "text": "?\n遊び方"
+        },
+        {
+          "x": 197,
+          "y": 794,
+          "w": 60.328125,
+          "h": 44,
+          "right": 257.328125,
+          "bottom": 838,
+          "text": "▦\n検証"
+        },
+        {
+          "x": 261.328125,
+          "y": 794,
+          "w": 60.328125,
+          "h": 44,
+          "right": 321.65625,
+          "bottom": 838,
+          "text": "✦\n外見"
+        },
+        {
+          "x": 325.65625,
+          "y": 794,
+          "w": 60.328125,
+          "h": 44,
+          "right": 385.984375,
+          "bottom": 838,
+          "text": "⚙\n設定"
+        }
+      ]
+    },
+    {
+      "width": 375,
+      "height": 667,
+      "scroll": [
+        375,
+        667
+      ],
+      "board": {
+        "x": 8,
+        "y": 88,
+        "w": 359,
+        "h": 359,
+        "right": 367,
+        "bottom": 447
+      },
+      "tier": {
+        "x": 45.43857192993164,
+        "y": 161.418701171875,
+        "w": 14.872856140136719,
+        "h": 11.843795776367188,
+        "right": 60.31142807006836,
+        "bottom": 173.2624969482422
+      },
+      "face": {
+        "x": 48.25928497314453,
+        "y": 138.3401336669922,
+        "w": 9.880512237548828,
+        "h": 7.7088775634765625,
+        "right": 58.13979721069336,
+        "bottom": 146.04901123046875
+      },
+      "eyes": {
+        "x": 38.3787727355957,
+        "y": 131.18417358398438,
+        "w": 28.99245834350586,
+        "h": 4.1028594970703125,
+        "right": 67.37123107910156,
+        "bottom": 135.2870330810547
+      },
+      "badges": [
+        {
+          "x": 12.375312805175781,
+          "y": 149.83132934570312,
+          "w": 23.48725128173828,
+          "h": 9.688201904296875,
+          "right": 35.86256408691406,
+          "bottom": 159.51953125,
+          "font": 23
+        },
+        {
+          "x": 37.84988784790039,
+          "y": 149.83132934570312,
+          "w": 23.487255096435547,
+          "h": 9.688201904296875,
+          "right": 61.33714294433594,
+          "bottom": 159.51953125,
+          "font": 23
+        },
+        {
+          "x": 63.324462890625,
+          "y": 149.83132934570312,
+          "w": 30.05022430419922,
+          "h": 9.688201904296875,
+          "right": 93.37468719482422,
+          "bottom": 159.51953125,
+          "font": 23
+        }
+      ],
+      "menus": [
+        {
+          "x": 4.015625,
+          "y": 617,
+          "w": 57.828125,
+          "h": 44,
+          "right": 61.84375,
+          "bottom": 661,
+          "text": "♜\nショップ"
+        },
+        {
+          "x": 65.84375,
+          "y": 617,
+          "w": 57.828125,
+          "h": 44,
+          "right": 123.671875,
+          "bottom": 661,
+          "text": "◇\n属性"
+        },
+        {
+          "x": 127.671875,
+          "y": 617,
+          "w": 57.828125,
+          "h": 44,
+          "right": 185.5,
+          "bottom": 661,
+          "text": "?\n遊び方"
+        },
+        {
+          "x": 189.5,
+          "y": 617,
+          "w": 57.828125,
+          "h": 44,
+          "right": 247.328125,
+          "bottom": 661,
+          "text": "▦\n検証"
+        },
+        {
+          "x": 251.328125,
+          "y": 617,
+          "w": 57.828125,
+          "h": 44,
+          "right": 309.15625,
+          "bottom": 661,
+          "text": "✦\n外見"
+        },
+        {
+          "x": 313.15625,
+          "y": 617,
+          "w": 57.828125,
+          "h": 44,
+          "right": 370.984375,
+          "bottom": 661,
+          "text": "⚙\n設定"
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "scroll": [
+        320,
+        568
+      ],
+      "board": {
+        "x": 8,
+        "y": 66,
+        "w": 304,
+        "h": 304,
+        "right": 312,
+        "bottom": 370
+      },
+      "tier": {
+        "x": 39.702857971191406,
+        "y": 128.17071533203125,
+        "w": 12.594284057617188,
+        "h": 10.029281616210938,
+        "right": 52.297142028808594,
+        "bottom": 138.1999969482422
+      },
+      "face": {
+        "x": 42.091426849365234,
+        "y": 108.62785339355469,
+        "w": 8.36678695678711,
+        "h": 6.527862548828125,
+        "right": 50.458213806152344,
+        "bottom": 115.15571594238281
+      },
+      "eyes": {
+        "x": 33.724639892578125,
+        "y": 102.5682144165039,
+        "w": 24.550716400146484,
+        "h": 3.4742813110351562,
+        "right": 58.27535629272461,
+        "bottom": 106.04249572753906
+      },
+      "badges": [
+        {
+          "x": 11.704999923706055,
+          "y": 118.35856628417969,
+          "w": 19.888927459716797,
+          "h": 8.203933715820312,
+          "right": 31.59392738342285,
+          "bottom": 126.5625,
+          "font": 23
+        },
+        {
+          "x": 33.27678680419922,
+          "y": 118.35856628417969,
+          "w": 19.888927459716797,
+          "h": 8.203933715820312,
+          "right": 53.165714263916016,
+          "bottom": 126.5625,
+          "font": 23
+        },
+        {
+          "x": 54.84857177734375,
+          "y": 118.35856628417969,
+          "w": 25.446426391601562,
+          "h": 8.203933715820312,
+          "right": 80.29499816894531,
+          "bottom": 126.5625,
+          "font": 23
+        }
+      ],
+      "menus": [
+        {
+          "x": 3.984375,
+          "y": 518,
+          "w": 48.671875,
+          "h": 44,
+          "right": 52.65625,
+          "bottom": 562,
+          "text": "♜\nショップ"
+        },
+        {
+          "x": 56.65625,
+          "y": 518,
+          "w": 48.671875,
+          "h": 44,
+          "right": 105.328125,
+          "bottom": 562,
+          "text": "◇\n属性"
+        },
+        {
+          "x": 109.328125,
+          "y": 518,
+          "w": 48.671875,
+          "h": 44,
+          "right": 158,
+          "bottom": 562,
+          "text": "?\n遊び方"
+        },
+        {
+          "x": 162,
+          "y": 518,
+          "w": 48.671875,
+          "h": 44,
+          "right": 210.671875,
+          "bottom": 562,
+          "text": "▦\n検証"
+        },
+        {
+          "x": 214.671875,
+          "y": 518,
+          "w": 48.671875,
+          "h": 44,
+          "right": 263.34375,
+          "bottom": 562,
+          "text": "✦\n外見"
+        },
+        {
+          "x": 267.34375,
+          "y": 518,
+          "w": 48.671875,
+          "h": 44,
+          "right": 316.015625,
+          "bottom": 562,
+          "text": "⚙\n設定"
+        }
+      ]
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "scroll": [
+        844,
+        390
+      ],
+      "board": {
+        "x": 255,
+        "y": 48,
+        "w": 334,
+        "h": 334,
+        "right": 589,
+        "bottom": 382
+      },
+      "tier": {
+        "x": 289.8314208984375,
+        "y": 116.30598449707031,
+        "w": 13.837158203125,
+        "h": 11.019020080566406,
+        "right": 303.6685791015625,
+        "bottom": 127.32500457763672
+      },
+      "face": {
+        "x": 292.4557189941406,
+        "y": 94.83455657958984,
+        "w": 9.19244384765625,
+        "h": 7.172050476074219,
+        "right": 301.6481628417969,
+        "bottom": 102.00660705566406
+      },
+      "eyes": {
+        "x": 283.26324462890625,
+        "y": 88.17692565917969,
+        "w": 26.9735107421875,
+        "h": 3.817138671875,
+        "right": 310.23675537109375,
+        "bottom": 91.99406433105469
+      },
+      "badges": [
+        {
+          "x": 270.2834777832031,
+          "y": 105.5255355834961,
+          "w": 15.171661376953125,
+          "h": 9.013526916503906,
+          "right": 285.45513916015625,
+          "bottom": 114.5390625,
+          "font": 14
+        },
+        {
+          "x": 287.3040771484375,
+          "y": 105.5255355834961,
+          "w": 15.171630859375,
+          "h": 9.013526916503906,
+          "right": 302.4757080078125,
+          "bottom": 114.5390625,
+          "font": 14
+        },
+        {
+          "x": 304.32464599609375,
+          "y": 105.5255355834961,
+          "w": 18.8843994140625,
+          "h": 9.013526916503906,
+          "right": 323.20904541015625,
+          "bottom": 114.5390625,
+          "font": 14
+        }
+      ],
+      "menus": [
+        {
+          "x": 46,
+          "y": 73,
+          "w": 84,
+          "h": 44,
+          "right": 130,
+          "bottom": 117,
+          "text": "♜\nショップ"
+        },
+        {
+          "x": 46,
+          "y": 121,
+          "w": 84,
+          "h": 44,
+          "right": 130,
+          "bottom": 165,
+          "text": "◇\n属性"
+        },
+        {
+          "x": 46,
+          "y": 169,
+          "w": 84,
+          "h": 44,
+          "right": 130,
+          "bottom": 213,
+          "text": "?\n遊び方"
+        },
+        {
+          "x": 46,
+          "y": 217,
+          "w": 84,
+          "h": 44,
+          "right": 130,
+          "bottom": 261,
+          "text": "▦\n検証"
+        },
+        {
+          "x": 46,
+          "y": 265,
+          "w": 84,
+          "h": 44,
+          "right": 130,
+          "bottom": 309,
+          "text": "✦\n外見"
+        },
+        {
+          "x": 46,
+          "y": 313,
+          "w": 84,
+          "h": 44,
+          "right": 130,
+          "bottom": 357,
+          "text": "⚙\n設定"
+        }
+      ]
+    }
+  ],
+  "browser": "134.0.6998.35"
+}
