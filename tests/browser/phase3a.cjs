@@ -34,8 +34,8 @@ try{
  await drag(p,cdp,touch,'[data-slime-id="p-1"]','[data-slime-id="p-2"]',async()=>{assert(await p.getByTestId('swap-preview').isVisible());assert.equal(await p.locator('.swap-cell').count(),2);assert.equal(await p.getByTestId('attribute-preview').count(),0);assert(await p.locator('.drag-sprite').evaluate(n=>{const r=n.getBoundingClientRect(),tier=n.querySelector('.tier-pill').getBoundingClientRect(),face=n.querySelector('.smile').getBoundingClientRect();return [...n.querySelectorAll('.attribute-badge')].every(x=>{const b=x.getBoundingClientRect();return b.x>=r.x-1&&b.right<=r.right+1&&b.bottom<=tier.y+1&&b.y>=face.bottom-1})}),'drag badges stay within sprite and do not cover face/Tier');await p.screenshot({path:path.join(dir,`swap-${name}.png`)})})
  await until(async()=>(await snap(p)).game.revision===1);const after=await snap(p);assert.equal(after.game.slimes.length,2);assert.deepEqual(after.game.slimes.map(s=>[s.id,s.tier,s.attributes]),before.game.slimes.map(s=>[s.id,s.tier,s.attributes]));assert.deepEqual(after.protectedIds,['p-1']);assert.deepEqual(after.game.slimes[0].position,{x:1,y:0});assert.equal(after.wallet.gold,before.wallet.gold);await p.reload();assert.deepEqual((await snap(p)).game,after.game)
  })
- await check(name+' touch-accessible attribute list/details with explicit inactive effects',async()=>{
- await p.getByRole('button',{name:'属性',exact:true}).click();await p.locator('.attribute-roster button').first().click();assert((await p.locator('.panel-body').innerText()).includes('炎Lv2・黄金Lv3・氷Lv99'));assert((await p.locator('.panel-body').innerText()).includes('特殊効果は次段階'));await p.screenshot({path:path.join(dir,`detail-${name}.png`)});await p.getByRole('button',{name:'閉じる',exact:true}).click()
+ await check(name+' touch-accessible attribute list/details with actual effects and provisional values',async()=>{
+ await p.getByRole('button',{name:'属性',exact:true}).click();await p.locator('.attribute-roster button').first().click();assert((await p.locator('.panel-body').innerText()).includes('炎Lv2・黄金Lv3・氷Lv99'));assert((await p.locator('.panel-body').innerText()).includes('効果量は仮設定'));await p.screenshot({path:path.join(dir,`detail-${name}.png`)});await p.getByRole('button',{name:'閉じる',exact:true}).click()
  })
  await check(name+' 5merge preview guarantees copied Lv + both outputs, remainder untouched',async()=>{
  await seed(p,[1,1,1,1,1,1],[[{id:'fire',level:2}],[],[],[{id:'ice',level:3}],[],[]])
@@ -56,8 +56,8 @@ try{
  })
  await check(name+' FIFO attribute withdrawal + immediate protected sale / actual receipt',async()=>{
  await seed(p,[1,2],attrs);await p.getByTestId('add-slime').click();await until(async()=>(await snap(p)).game.slimes.length===3);assert.deepEqual((await snap(p)).game.slimes[2].attributes,[{id:'ice',level:2}])
- const old=(await snap(p)).wallet.gold;await drag(p,cdp,touch,'[data-slime-id="p-2"]','[data-testid="sale-zone"]');await until(async()=>(await snap(p)).game.slimes.length===2);assert.equal((await snap(p)).wallet.gold,old+4)
- await drag(p,cdp,touch,'[data-slime-id="p-1"]','[data-testid="sale-zone"]');assert.equal((await snap(p)).game.slimes.length,2);assert.equal((await snap(p)).wallet.gold,old+4)
+ const old=(await snap(p)).wallet.gold;await drag(p,cdp,touch,'[data-slime-id="p-2"]','[data-testid="sale-zone"]');await until(async()=>(await snap(p)).game.slimes.length===2);assert.equal((await snap(p)).wallet.gold,old+10)
+ await drag(p,cdp,touch,'[data-slime-id="p-1"]','[data-testid="sale-zone"]');assert.equal((await snap(p)).game.slimes.length,2);assert.equal((await snap(p)).wallet.gold,old+10)
  })
  await ctx.close()
  }

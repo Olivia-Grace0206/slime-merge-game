@@ -33,10 +33,10 @@ try{
    await p.screenshot({path:path.join(dir,`screen-${name}.png`)})
   })
   await check(name+' actual generation, one-click random addition, no placement mode or tap modal',async()=>{
-   await p.clock.runFor(10_000);await until(async()=>!!(await snapshot(p))?.generator.storedTiers.length)
+   await p.clock.runFor(15_000);await until(async()=>!!(await snapshot(p))?.generator.storedTiers.length)
    await add(p);assert.equal((await snapshot(p)).generator.storedTiers.length,0)
    assert(await p.getByTestId('add-slime').isDisabled())
-   for(let i=0;i<10;i++)await p.getByRole('button',{name:/生成加速/}).click()
+   for(let i=0;i<15;i++)await p.getByRole('button',{name:/生成加速/}).click()
    await until(async()=>(await snapshot(p)).generator.storedTiers.length===1)
    await add(p);assert.equal(await p.locator('[data-slime-id]').count(),2)
    await p.locator('[data-slime-id]').first().tap();assert.equal(await p.getByRole('dialog').isVisible(),false)
