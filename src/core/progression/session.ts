@@ -1,3 +1,4 @@
+import { RESEARCH_CAPS, EXPERIMENTAL_RESEARCH, researchCost, frequencyCost } from './research'
 import type { DropPlan } from '../../domain/game'
 import type { GridPosition } from '../../domain/grid'
 import { applyPlan } from '../merge/apply'
@@ -18,10 +19,14 @@ export type CellEvent = Readonly<{
   paid: number; receivedGOLD: number; cappedGOLD?: number; unitGOLD: number; nextPaymentAtMs: number
 }>
 export type Session = Omit<ProgressionSnapshot, 'version'> & Readonly<{
-  version: 3; sequence: number; eventSequence: number; nextEventAtMs: number
+  version: 4; researchLevel: number; researchMaxTier: number; goldCellUnlocked: boolean; goldFrequencyLevel: number; goldFormat: 'full' | 'compact'; sequence: number; eventSequence: number; nextEventAtMs: number
   event: CellEvent | null; lastEvent: Readonly<{ id: string; receivedGOLD: number; paid?: number }> | null; protectedIds: readonly string[]; reducedEffects: boolean
 }>
 export type Command =
+  | { type: 'research'; expectedLevel: number }
+  | { type: 'gold-unlock' }
+  | { type: 'gold-frequency'; expectedLevel: number }
+  | { type: 'gold-format'; value: 'full' | 'compact' }
   | { type: 'tick' }
   | { type: 'tap' }
   | { type: 'withdraw'; expectedId: number }
@@ -33,14 +38,14 @@ export type Command =
   | { type: 'pay'; eventId: string; expectedPaid: number }
 
 export function freshSession(nowMs: number): Session {
-  return { version: 3, sequence: 0, savedAtMs: nowMs, nextId: 1,
+  return { version: 4, researchLevel: 0, researchMaxTier: 5, goldCellUnlocked: false, goldFrequencyLevel: 0, goldFormat: 'full', sequence: 0, savedAtMs: nowMs, nextId: 1,
     game: { bounds: { origin: { x: 0, y: 0 }, width: 4, height: 4 }, slimes: [], highestTierReached: 1, revision: 0 },
     wallet: freshWallet(), generator: newGenerator(nowMs),
     eventSequence: 0, nextEventAtMs: nowMs + EXPERIMENTAL_PHASE2.eventMinDelayMs,
     event: null, lastEvent: null, protectedIds: [], reducedEffects: false }
 }
 export function sessionRules(s: Session) {
-  return { ...generationRules(s.wallet), distribution: EXPERIMENTAL_PHASE2 }
+  return generationRules(s.wallet)
 }
 /** Provisional linear low-Tier floor; high-Tier rate is unchanged. Old contracts keep version 1. */
 export function goldPayment(tier: number, attributeCount: number, rewardVersion: 1 | 2 = 2): number {
@@ -60,7 +65,7 @@ function later(now: number, delta: number) {
   return n
 }
 function schedule(s: Session, now: number, random: () => number): Session {
-  return { ...s, nextEventAtMs: later(now, EXPERIMENTAL_PHASE2.eventMinDelayMs + Math.floor(unit(random) * EXPERIMENTAL_PHASE2.eventExtraDelayMs)) }
+  return { ...s, nextEventAtMs: later(now, Math.round((EXPERIMENTAL_PHASE2.eventMinDelayMs + Math.floor(unit(random) * EXPERIMENTAL_PHASE2.eventExtraDelayMs)) * (1 - s.goldFrequencyLevel * EXPERIMENTAL_RESEARCH.frequencyDiscount))) }
 }
 /** Identity AND position are checked against the same transaction that credits GOLD. */
 function hasSource(s: Session, e: CellEvent): boolean {
@@ -85,7 +90,7 @@ function pay(s: Session, id: string, paid: number, now: number, random: () => nu
 }
 function events(s: Session, now: number, random: () => number, allowPayment: boolean): Session {
   let next = s
-  if (!next.event && now >= next.nextEventAtMs) {
+  if (next.goldCellUnlocked && !next.event && now >= next.nextEventAtMs) {
     const sequence = next.eventSequence + 1
     if (!Number.isSafeInteger(sequence)) throw new RangeError('Event IDs exhausted')
     const cells = emptyCells(next.game)
@@ -132,7 +137,7 @@ export function reduceSession(s: Session, command: Command, now: number, random:
     }
     if (command.type === 'drop') {
       let id = next.nextId
-      const result = applyPlan(next.game, command.plan, () => `p-${id++}`)
+      const result = applyPlan(next.game, command.plan, () => `p-${id++}`, next.researchMaxTier)
       if (!result.ok) return s
       next = { ...next, game: result.state, nextId: id,
         protectedIds: next.protectedIds.filter(x => result.state.slimes.some(y => y.id === x)) }
@@ -151,6 +156,26 @@ export function reduceSession(s: Session, command: Command, now: number, random:
       const ratio = next.generator.progressMs / sessionRules(next).intervalMs
       next = { ...next, wallet: result.wallet }
       next = { ...next, generator: { ...next.generator, progressMs: Math.floor(ratio * sessionRules(next).intervalMs) } }
+    }
+    if (command.type === 'research') {
+      const lv = next.researchLevel
+      if (command.expectedLevel !== lv || lv >= RESEARCH_CAPS.length - 1) return s
+      const cost = researchCost(lv)
+      if (next.wallet.gold < cost) return s
+      next = { ...next, wallet: { ...next.wallet, gold: next.wallet.gold - cost }, researchLevel: lv + 1, researchMaxTier: RESEARCH_CAPS[lv + 1]! }
+    }
+    if (command.type === 'gold-unlock') {
+      if (next.goldCellUnlocked || next.wallet.gold < EXPERIMENTAL_RESEARCH.goldUnlockCost) return s
+      next = schedule({ ...next, wallet: { ...next.wallet, gold: next.wallet.gold - EXPERIMENTAL_RESEARCH.goldUnlockCost }, goldCellUnlocked: true }, now, random)
+    }
+    if (command.type === 'gold-frequency') {
+      const lv = next.goldFrequencyLevel, cost = frequencyCost(lv)
+      if (!next.goldCellUnlocked || command.expectedLevel !== lv || lv >= EXPERIMENTAL_RESEARCH.frequencyMaxLevel || next.wallet.gold < cost) return s
+      next = { ...next, wallet: { ...next.wallet, gold: next.wallet.gold - cost }, goldFrequencyLevel: lv + 1 }
+    }
+    if (command.type === 'gold-format') {
+      if (command.value !== 'full' && command.value !== 'compact') return s
+      next = { ...next, goldFormat: command.value }
     }
     if (command.type === 'protect') {
       if (!next.game.slimes.some(x => x.id === command.id)) return s

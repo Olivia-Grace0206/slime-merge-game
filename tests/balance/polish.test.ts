@@ -1,7 +1,9 @@
 /// <reference types="node" />
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { it, expect } from 'vitest'
-import { freshSession, reduceSession, sessionRules, goldPayment, type Command } from '../../src/core/progression/session'
+import { freshSession as newSession, reduceSession, sessionRules, goldPayment, type Command } from '../../src/core/progression/session'
+// Legacy regression fixture: research40 and GOLD already unlocked, as migrated pre-research saves.
+const freshSession = (now: number) => ({ ...newSession(now), researchLevel: 16, researchMaxTier: 40, goldCellUnlocked: true })
 import { tierWeights, type DistributionProfile } from '../../src/core/progression/generation'
 import { planDrop } from '../../src/core/merge/plan'
 import { upgradeCost } from '../../src/core/progression/economy'
@@ -51,6 +53,6 @@ it('Polish 4x4 progression: three distributions, seeded random placements and ac
  const results=profiles.flatMap(p=>[12,61,210,513,901].map(seed=>simulate(p,seed)))
  const distributions=profiles.flatMap(p=>[5,10,20,30,40].map(H=>{const w=tierWeights(H,p);return{slope:p.centerSlope,H,mean:w.reduce((a,b)=>a+b.tier*b.probability,0),pHighest:w.at(-1)!.probability,pNearHighest:w.filter(x=>x.tier>=H-1).reduce((a,b)=>a+b.probability,0)}}))
  const rewards=[1,2,3,4,5,10,20,30,40].map(tier=>({tier,sale:2**tier,old:goldPayment(tier,0,1),linearFloor:goldPayment(tier,0),additive:Math.max(1,Math.floor(2**tier*.05))+tier-1,doubleRate:Math.max(1,Math.floor(2**tier*.1)),attributes3:goldPayment(tier,3),totalToSale:10*goldPayment(tier,0)/(2**tier)}))
- mkdirSync('docs/balance/phase2-polish',{recursive:true});writeFileSync('docs/balance/phase2-polish/simulation.json',JSON.stringify({model:'4x4 actual Core; random FIFO; one board action / 2s plus tap, 5 preferred then 3 at >=13, periodic duplicate sale / 30s, shops bought when affordable. Seek gold then hold source. Five fixed seeds, six-hour censor; receipt times 350ms. Bot comparison, not a human time forecast.',results,distributions,rewards},null,2))
+ mkdirSync('docs/balance/phase2-polish-followup/legacy-gaussian',{recursive:true});writeFileSync('docs/balance/phase2-polish-followup/legacy-gaussian/simulation.json',JSON.stringify({model:'4x4 actual Core; random FIFO; one board action / 2s plus tap, 5 preferred then 3 at >=13, periodic duplicate sale / 30s, shops bought when affordable. Seek gold then hold source. Five fixed seeds, six-hour censor; receipt times 350ms. Bot comparison, not a human time forecast.',results,distributions,rewards},null,2))
  expect(results).toHaveLength(15)
 },240000)

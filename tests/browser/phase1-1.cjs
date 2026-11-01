@@ -95,7 +95,7 @@ async function run(){
       await page.locator('.panel-body').evaluate(n=>n.scrollTop=0)
       if(width===1440)await dialog.screenshot({path:path.join(dir,'tier1-40.png'),type:'png'})
      }
-     if(label==='設定') {await page.getByRole('checkbox').check();await page.getByRole('checkbox').uncheck()}
+     if(label==='設定') {await page.getByRole('checkbox', {name:'発光・進化アニメーションを軽減'}).check();await page.getByRole('checkbox', {name:'発光・進化アニメーションを軽減'}).uncheck()}
      await page.getByRole('button',{name:'閉じる',exact:true}).click();assert(await opener.evaluate(n=>n===document.activeElement))
     }
     await page.getByRole('button',{name:'遊び方',exact:true}).click();await page.keyboard.press('Escape');assert(!await page.getByRole('dialog').isVisible())

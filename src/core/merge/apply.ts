@@ -1,11 +1,11 @@
-import type { DropPlan, GameState, Slime } from '../../domain/game'
+import { MAX_TIER, isTier, type DropPlan, type GameState, type Slime } from '../../domain/game'
 import { isGameState, stateSnapshot } from '../board/state'
 import { cellKey } from '../grid/coordinates'
 import { compareNear, splitCount } from './plan'
 
 export type ApplyResult = Readonly<{ ok: boolean; state: GameState; createdIds: readonly string[] }>
 /** Applies the displayed plan itself. No candidate re-selection during commit. */
-export function applyPlan(state: GameState, plan: DropPlan, nextId: () => string): ApplyResult {
+export function applyPlan(state: GameState, plan: DropPlan, nextId: () => string, researchMaxTier = MAX_TIER): ApplyResult {
   const reject = (): ApplyResult => ({ ok: false, state, createdIds: [] })
   if (plan.kind === 'invalid' || !isGameState(state) || plan.snapshot !== stateSnapshot(state))
     return reject()
@@ -19,6 +19,7 @@ export function applyPlan(state: GameState, plan: DropPlan, nextId: () => string
         s.id === plan.sourceId ? { ...s, position: { ...plan.target } } : s,
       )
     } else {
+      if (!isTier(researchMaxTier) || plan.outputTier > researchMaxTier) return reject()
       const target = state.slimes.find((s) => cellKey(s.position) === cellKey(plan.target))
       const consumed = plan.groups.flatMap((g) => g.consumedIds)
       const consumedSet = new Set(consumed)

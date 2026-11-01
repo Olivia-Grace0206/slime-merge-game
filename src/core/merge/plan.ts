@@ -1,5 +1,6 @@
 import {
   MAX_TIER,
+  isTier,
   type DropPlan,
   type GameState,
   type MergeGroup,
@@ -60,7 +61,7 @@ export function splitCount(count: number): readonly (3 | 5)[] {
   return groups
 }
 /** Pure planning only: no IDs, randomness, mutation, DOM or React. */
-export function planDrop(state: GameState, sourceId: string, target: GridPosition): DropPlan {
+export function planDrop(state: GameState, sourceId: string, target: GridPosition, researchMaxTier = MAX_TIER): DropPlan {
   if (!isGameState(state)) return { kind: 'invalid', reason: 'invalid-state' }
   const source = state.slimes.find((s) => s.id === sourceId)
   if (!source) return { kind: 'invalid', reason: 'missing-source' }
@@ -71,6 +72,7 @@ export function planDrop(state: GameState, sourceId: string, target: GridPositio
   if (!destination) return { ...base, kind: 'move' }
   if (destination.tier !== source.tier) return { kind: 'invalid', reason: 'different-tier' }
   if (source.tier >= MAX_TIER) return { kind: 'invalid', reason: 'max-tier' }
+  if (!isTier(researchMaxTier) || source.tier + 1 > researchMaxTier) return { kind: 'invalid', reason: 'research-locked' }
   const connected = connectedSlimes(state, sourceId, destination.id)
   const sizes = splitCount(connected.length + 1)
   if (!sizes.length) return { kind: 'invalid', reason: 'too-few' }

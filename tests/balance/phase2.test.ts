@@ -1,7 +1,9 @@
 /// <reference types="node" />
 import { it, expect } from 'vitest'
 import { writeFileSync, mkdirSync } from 'node:fs'
-import { freshSession, reduceSession, sessionRules } from '../../src/core/progression/session'
+import { freshSession as newSession, reduceSession, sessionRules } from '../../src/core/progression/session'
+// Legacy regression fixture: research40 and GOLD already unlocked, as migrated pre-research saves.
+const freshSession = (now: number) => ({ ...newSession(now), researchLevel: 16, researchMaxTier: 40, goldCellUnlocked: true })
 import { advanceGenerator, tapGenerator, type DistributionProfile } from '../../src/core/progression/generation'
 import { planDrop } from '../../src/core/merge/plan'
 import { baseSaleValue, upgradeCost, type UpgradeKey } from '../../src/core/progression/economy'
@@ -121,10 +123,10 @@ function simulate(c: Scenario, seed: number, mergeAt = 5) {
     storageStoppedRatio:storageFull/now,boardBlockedRatio:Math.min(1,full/now),soldForSpace,timeline,durationMs:Math.min(now,limit)}
 }
 it('4x4 balance: seeded real-Core agent, seven axes and passive play; writes reproducible evidence',()=>{
-  mkdirSync('docs/balance/phase2-polish/legacy-sensitivity',{recursive:true})
+  mkdirSync('docs/balance/phase2-polish-followup/legacy-sensitivity',{recursive:true})
   const results=scenarios.flatMap(c=>[12,61,210].map(seed=>simulate(c,seed)))
   const opening=[3,5].flatMap(n=>[12,61,210].map(seed=>simulate({name:'opening-'+n},seed,n)))
-  writeFileSync('docs/balance/phase2-polish/legacy-sensitivity/simulation.json',JSON.stringify({model:'4x4 real Core plans, 2s decision step; one tap per 2s active / 60s collection passive; 12h censor; 3 seeds per scenario. Not human play-time predictions.',results,opening},null,2))
+  writeFileSync('docs/balance/phase2-polish-followup/legacy-sensitivity/simulation.json',JSON.stringify({model:'4x4 real Core plans, 2s decision step; one tap per 2s active / 60s collection passive; 12h censor; 3 seeds per scenario. Not human play-time predictions.',results,opening},null,2))
   expect(results).toHaveLength(51)
 },240_000)
 

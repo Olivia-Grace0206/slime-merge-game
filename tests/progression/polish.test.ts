@@ -1,5 +1,7 @@
 import { describe, it, expect } from 'vitest'
-import { freshSession, reduceSession, goldPayment, EXPERIMENTAL_PHASE2, type Session } from '../../src/core/progression/session'
+import { freshSession as newSession, reduceSession, goldPayment, EXPERIMENTAL_PHASE2, type Session } from '../../src/core/progression/session'
+// Legacy regression fixture: research40 and GOLD already unlocked, as migrated pre-research saves.
+const freshSession = (now: number) => ({ ...newSession(now), researchLevel: 16, researchMaxTier: 40, goldCellUnlocked: true })
 import { withdrawRandom } from '../../src/core/progression/generation'
 import { encodeSession, decodeSession, isSession, commitStorage } from '../../src/core/progression/persistence'
 import { planDrop } from '../../src/core/merge/plan'
@@ -120,7 +122,7 @@ describe('explicit migration and protection',()=>{
   if(state==='detached')legacy.game.slimes=[]
   const raw=JSON.stringify(legacy),load=decodeSession(raw,1000)
   expect(load.ok).toBe(true);if(!load.ok)return
-  expect(load.migrated).toBe(true);expect(load.session.version).toBe(3);expect(load.session.wallet).toEqual(legacy.wallet)
+  expect(load.migrated).toBe(true);expect(load.session.version).toBe(4);expect(load.session.wallet).toEqual(legacy.wallet)
   expect(load.session.generator).toEqual(legacy.generator);expect(isSession(load.session)).toBe(true)
   if(state==='active') {const n=pay(load.session);expect(n.wallet.gold-load.session.wallet.gold).toBe(1)}
   if(state==='detached'){const n=pay(load.session);expect(n.event).toBeNull();expect(n.wallet.gold).toBe(legacy.wallet.gold)}

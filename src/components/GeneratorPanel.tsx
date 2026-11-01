@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { sessionRules, type Session } from '../core/progression/session'
-import { Slime } from './Slime'
+import { SlimeTrio, StorageBox } from './ProgressIcons'
 
 /** Presentation only: never creates stock, dispatches commands or writes storage. */
 export function GeneratorPanel({ session, disabled, fullBoard, onAdd, onTap }: {
@@ -24,14 +24,14 @@ export function GeneratorPanel({ session, disabled, fullBoard, onAdd, onTap }: {
     sync(); document.addEventListener('visibilitychange', sync)
     return () => { cancelAnimationFrame(frame); document.removeEventListener('visibilitychange', sync) }
   }, [session, disabled, full, rules.intervalMs])
-  return <section className="generator-panel" aria-label="スライム生成装置">
+  return <section className={`generator-panel ${full ? 'storage-full' : ''}`} aria-label="スライム生成装置">
     <h2><span aria-hidden="true">✦</span> スライム生成</h2>
     <button type="button" data-testid="add-slime" className="add-button" disabled={disabled || fullBoard || !session.generator.storedTiers.length} onClick={onAdd}>
-      <span className="generator-mascot"><Slime tier={session.generator.storedTiers[0] ?? 1} /></span>
+      <span className="generator-mascot"><SlimeTrio /></span>
       <span className="add-label">＋ スライム追加</span>
-      <small>{fullBoard ? '空きマスがありません' : session.generator.storedTiers.length ? `次は Tier ${session.generator.storedTiers[0]}` : '生成を待っています'}</small>
+      <small>{fullBoard ? '空きマスがありません' : session.generator.storedTiers.length ? 'ランダムな空きマスへ' : '生成を待っています'}</small>
     </button>
-    <div className="generator-readout"><span>貯蔵 <b data-testid="storage-count">{session.generator.storedTiers.length}/{rules.capacity}</b></span>
+    <div className="generator-readout"><span className="storage-count"><StorageBox /><b data-testid="storage-count">{session.generator.storedTiers.length} / {rules.capacity}</b></span>
       <span ref={time} data-testid="generation-time">{full ? '満杯・生成停止' : `次まで ${((rules.intervalMs - session.generator.progressMs) / 1000).toFixed(1)}秒`}</span>
       <progress ref={bar} aria-label="生成進捗" max={rules.intervalMs} value={full ? rules.intervalMs : session.generator.progressMs} />
     </div>

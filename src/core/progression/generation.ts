@@ -1,3 +1,4 @@
+import { GENERATION_WEIGHT_ROWS } from './tierTable'
 import { MAX_TIER, isTier, type GameState, type Slime } from '../../domain/game'
 import type { GridPosition } from '../../domain/grid'
 import { inBounds, isGameState } from '../board/state'
@@ -23,14 +24,21 @@ export type DistributionProfile = Readonly<{
   maximumSpread?: number
 }>
 
+export type GenerationProfile = DistributionProfile | Readonly<{ rows: readonly Readonly<Record<number, number>>[] }>
+
 export type TierWeight = Readonly<{ tier: number; probability: number }>
 
-/** Discrete, truncated Gaussian; never rounds a continuous draw into a boundary bucket. */
+/** Production defaults to the explicit table. Profile is a legacy simulation-only Gaussian override. */
 export function tierWeights(
   highestTierReached: number,
-  profile: DistributionProfile = EXPERIMENTAL_GENERATION,
+  profile?: GenerationProfile,
 ): readonly TierWeight[] {
   if (!isTier(highestTierReached)) throw new RangeError('Invalid highest Tier')
+  if (!profile || 'rows' in profile) {
+    const row = (profile && 'rows' in profile ? profile.rows : GENERATION_WEIGHT_ROWS)[highestTierReached - 1]!
+    if (!row || Object.entries(row).some(([t, w]) => !isTier(+t) || +t > highestTierReached || !Number.isInteger(w) || w < 0) || Object.values(row).reduce((a, b) => a + b, 0) !== 10000) throw new RangeError('Invalid weight table')
+    return Array.from({ length: highestTierReached }, (_, i) => ({ tier: i + 1, probability: (row[i + 1] ?? 0) / 10_000 }))
+  }
   if (
     !Number.isFinite(profile.centerSlope) || profile.centerSlope < 0 ||
     !Number.isFinite(profile.spreadRatio) || profile.spreadRatio <= 0 ||
@@ -52,7 +60,7 @@ export function tierWeights(
 export function drawTier(
   highestTierReached: number,
   unit: number,
-  profile: DistributionProfile = EXPERIMENTAL_GENERATION,
+  profile?: GenerationProfile,
 ): number {
   if (!Number.isFinite(unit) || unit < 0 || unit >= 1) {
     throw new RangeError('Random value must be within [0, 1)')
@@ -63,7 +71,7 @@ export function drawTier(
     cumulative += entry.probability
     if (unit < cumulative) return entry.tier
   }
-  return entries[entries.length - 1]!.tier
+  return [...entries].reverse().find(entry => entry.probability > 0)!.tier
 }
 
 export type GeneratorState = Readonly<{
@@ -77,7 +85,7 @@ export type GeneratorRules = Readonly<{
   intervalMs: number
   capacity: number
   tapAdvanceMs: number
-  distribution?: DistributionProfile
+  distribution?: GenerationProfile | undefined
 }>
 
 export function newGenerator(nowMs: number): GeneratorState {
@@ -167,7 +175,7 @@ export function withdrawToCell(
   const reject = (): WithdrawResult => ({ ok: false, game, generator })
   if (
     !isGameState(game) || !inBounds(game.bounds, target) ||
-    !generator.storedTiers.length || !isTier(generator.storedTiers[0]) ||
+    !generator.storedTiers.length || !isValidGeneratedTier(generator.storedTiers[0]!, game.highestTierReached) ||
     !newId.trim() || game.slimes.some((s) => s.id === newId) ||
     game.slimes.some((s) => samePosition(s.position, target))
   ) return reject()
@@ -175,7 +183,7 @@ export function withdrawToCell(
   const nextGame: GameState = {
     ...game,
     slimes: [...game.slimes, slime],
-    highestTierReached: Math.max(game.highestTierReached, slime.tier),
+    highestTierReached: game.highestTierReached,
     revision: game.revision + 1,
   }
   if (!isGameState(nextGame)) return reject()

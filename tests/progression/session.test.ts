@@ -1,7 +1,9 @@
 /// <reference types="node" />
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { describe, it, expect } from 'vitest'
-import { freshSession, reduceSession, goldPayment, sessionRules, type Session } from '../../src/core/progression/session'
+import { freshSession as newSession, reduceSession, goldPayment, sessionRules, type Session } from '../../src/core/progression/session'
+// Legacy regression fixture: research40 and GOLD already unlocked, as migrated pre-research saves.
+const freshSession = (now: number) => ({ ...newSession(now), researchLevel: 16, researchMaxTier: 40, goldCellUnlocked: true })
 import { encodeSession, decodeSession, isSession, commitStorage } from '../../src/core/progression/persistence'
 import { planDrop } from '../../src/core/merge/plan'
 import { purchaseUpgrade, beginGoldRush, payGoldRush, freshWallet } from '../../src/core/progression/economy'
@@ -182,8 +184,8 @@ describe('strict v2 persistence and failed writes',()=>{
    const loaded=decodeSession(encodeSession(s),s.savedAtMs);if(loaded.ok)s=loaded.session
   }
   expect(s.nextId).toBe(2401);expect(Number.isSafeInteger(s.wallet.gold)).toBe(true)
-  mkdirSync('docs/validation/phase2-polish',{recursive:true})
-  writeFileSync('docs/validation/phase2-polish/long-simulation.json',JSON.stringify({virtualHours:240,checkpoints:240,totalGenerated:s.generator.totalGenerated,nextId:s.nextId,gold:s.wallet.gold,eventSequence:s.eventSequence,uniqueIds:true,validEveryCheckpoint:true,roundTripEveryCheckpoint:true,storageBounded:true,errors:0},null,2))
+  mkdirSync('docs/validation/phase2-polish-followup',{recursive:true})
+  writeFileSync('docs/validation/phase2-polish-followup/long-simulation.json',JSON.stringify({virtualHours:240,checkpoints:240,totalGenerated:s.generator.totalGenerated,nextId:s.nextId,gold:s.wallet.gold,eventSequence:s.eventSequence,uniqueIds:true,validEveryCheckpoint:true,roundTripEveryCheckpoint:true,storageBounded:true,errors:0},null,2))
  })
 })
 

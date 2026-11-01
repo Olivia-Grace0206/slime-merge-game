@@ -25,6 +25,7 @@ export type InvalidReason =
   | 'different-tier'
   | 'too-few'
   | 'max-tier'
+  | 'research-locked'
 type PlanBase = Readonly<{ sourceId: string; target: GridPosition; snapshot: string }>
 export type MovePlan = PlanBase & Readonly<{ kind: 'move' }>
 export type MergePlan = PlanBase &

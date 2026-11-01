@@ -259,3 +259,50 @@ progress::-webkit-progress-value { background: linear-gradient(90deg,#79b65b,#ab
 }
 
 .wallet.reduced-effects { animation: none; }
+
+/* Phase2 follow-up: preserve board/layout dimensions; only restyle existing allocated space. */
+.generator-mascot svg { width: 100%; height: 100%; overflow: visible; }
+.storage-count { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; }
+.storage-box { width: 32px; height: 30px; flex: 0 0 auto; }
+.storage-count b { font-size: 27px; line-height: 1.05; font-variant-numeric: tabular-nums; color: #5c6947; white-space: nowrap; }
+.storage-full .storage-count { color: #a76826; background: #fff0c7; border-radius: 10px; }
+.session-stats .wallet { display: flex; align-items: center; min-width: 0; gap: 5px; border-radius: 20px; padding: 3px 10px; background: #fff3cc; border: 1px solid #e0be71; }
+.session-stats .wallet b { font-size: clamp(17px, 1.7vw, 27px); font-variant-numeric: tabular-nums; min-width: 0; }
+.wallet small { font-size: 10px; }
+.gold-bag { width: 32px; height: 36px; flex: 0 0 auto; }
+.price-layer { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 8; }
+.price-anchor { position: absolute; transform: translateX(-50%); text-align: center; pointer-events: none; }
+.price-tag { display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1px 3px; max-width: 100%; border: 1.5px solid #d4aa54; border-radius: 18px; background: linear-gradient(#fffdf0, #ffe6a6); color: #6c4a18; padding: 3px 6px; box-shadow: 0 2px 4px #55350f30, inset 0 2px #fff9; font-size: clamp(11px, 1.15vw, 18px); line-height: 1.1; pointer-events: none; font-variant-numeric: tabular-nums; }
+.price-tag b { min-width: 0; overflow-wrap: normal; }
+.price-tag small { flex-basis: 100%; font-size: 9px; }
+.drag-price { position: absolute; bottom: calc(50% + 48px); left: 50%; width: 140px; transform: translateX(-50%); text-align: center; }
+.research-notice { position: fixed; top: 65px; left: 50%; transform: translateX(-50%); z-index: 30; max-width: 90vw; border-radius: 20px; background: #fff6d8; border: 2px solid #d6b167; padding: 8px 12px; font-size: 13px; pointer-events: none; }
+.research-shop { background: #eef4e7; border-radius: 18px; padding: 12px; }
+.research-history { font-size: 12px; overflow-wrap: anywhere; }
+@media (max-width: 900px) and (min-height: 501px) {
+  .storage-count { gap: 3px; }
+  .storage-count b { font-size: 20px; }
+  .storage-box { width: 23px; height: 22px; }
+  .session-stats { flex: 1; justify-content: flex-end; min-width: 0; }
+  .session-stats > span:not(.wallet) { display: none; }
+  .session-stats .wallet { max-width: 100%; padding: 2px 5px; gap: 3px; }
+  .session-stats .wallet b { font-size: clamp(12px, 3.6vw, 21px); }
+  .gold-bag { width: 23px; height: 27px; }
+  .wallet small { font-size: 8px; }
+  .price-tag { font-size: 11px; padding: 2px 4px; }
+}
+@media (max-width: 360px) and (min-height: 501px) {
+  .storage-count b { font-size: 18px; }
+  .storage-box { width: 18px; height: 20px; }
+  .app-header h1 { font-size: 11px; letter-spacing: 0; }
+  .brand-icon { display: none; }
+}
+@media (max-height: 500px) {
+  .storage-count b { font-size: 21px; }
+  .storage-box { width: 25px; height: 22px; }
+}
+
+.price-coin { width: 15px; height: 15px; flex: 0 0 auto; }
+.generator-mascot { width: 104px; }
+@media (max-width: 900px) and (min-height: 501px) { .generator-mascot { width: 62px; height: 44px; } .price-coin { width: 11px; height: 11px; } }
+@media (max-height: 500px) { .generator-mascot { width: 70px; height: 50px; } }
