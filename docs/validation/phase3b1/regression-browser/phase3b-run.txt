@@ -1,0 +1,85 @@
+(node:1355) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS 1920x1080 normal/focus buttons reachable without shrinking board or page scroll
+PASS 1920x1080 mode toggle and reload keep10 materials; focus consumes exactly10 once
+PASS 1920x1080 attributed/high Tier stock included and FIFO count enables the mode
+PASS 1920x1080 full board rejects focus without spending FIFO stock
+PASS 1920x1080 dark risk preview consumes no draw; group loss keeps both bodies/other attributes
+PASS 1920x1080 actual sale quote and price tags include fire/gold/dark and equal receipt
+PASS 1920x1080 ice/lightning/luck/combo summaries and actual Lv effects are readable
+PASS 1920x1080 nature additional production is stored once and survives reload
+PASS 1440x900 normal/focus buttons reachable without shrinking board or page scroll
+PASS 1440x900 mode toggle and reload keep10 materials; focus consumes exactly10 once
+PASS 1440x900 attributed/high Tier stock included and FIFO count enables the mode
+PASS 1440x900 full board rejects focus without spending FIFO stock
+PASS 1440x900 dark risk preview consumes no draw; group loss keeps both bodies/other attributes
+PASS 1440x900 actual sale quote and price tags include fire/gold/dark and equal receipt
+PASS 1440x900 ice/lightning/luck/combo summaries and actual Lv effects are readable
+PASS 1440x900 nature additional production is stored once and survives reload
+PASS 1366x768 normal/focus buttons reachable without shrinking board or page scroll
+PASS 1366x768 mode toggle and reload keep10 materials; focus consumes exactly10 once
+PASS 1366x768 attributed/high Tier stock included and FIFO count enables the mode
+PASS 1366x768 full board rejects focus without spending FIFO stock
+PASS 1366x768 dark risk preview consumes no draw; group loss keeps both bodies/other attributes
+PASS 1366x768 actual sale quote and price tags include fire/gold/dark and equal receipt
+PASS 1366x768 ice/lightning/luck/combo summaries and actual Lv effects are readable
+PASS 1366x768 nature additional production is stored once and survives reload
+PASS 1280x720 normal/focus buttons reachable without shrinking board or page scroll
+PASS 1280x720 mode toggle and reload keep10 materials; focus consumes exactly10 once
+PASS 1280x720 attributed/high Tier stock included and FIFO count enables the mode
+PASS 1280x720 full board rejects focus without spending FIFO stock
+PASS 1280x720 dark risk preview consumes no draw; group loss keeps both bodies/other attributes
+PASS 1280x720 actual sale quote and price tags include fire/gold/dark and equal receipt
+PASS 1280x720 ice/lightning/luck/combo summaries and actual Lv effects are readable
+PASS 1280x720 nature additional production is stored once and survives reload
+PASS 1024x768 normal/focus buttons reachable without shrinking board or page scroll
+PASS 1024x768 mode toggle and reload keep10 materials; focus consumes exactly10 once
+PASS 1024x768 attributed/high Tier stock included and FIFO count enables the mode
+PASS 1024x768 full board rejects focus without spending FIFO stock
+PASS 1024x768 dark risk preview consumes no draw; group loss keeps both bodies/other attributes
+PASS 1024x768 actual sale quote and price tags include fire/gold/dark and equal receipt
+PASS 1024x768 ice/lightning/luck/combo summaries and actual Lv effects are readable
+PASS 1024x768 nature additional production is stored once and survives reload
+PASS 768x1024 normal/focus buttons reachable without shrinking board or page scroll
+PASS 768x1024 mode toggle and reload keep10 materials; focus consumes exactly10 once
+PASS 768x1024 attributed/high Tier stock included and FIFO count enables the mode
+PASS 768x1024 full board rejects focus without spending FIFO stock
+PASS 768x1024 dark risk preview consumes no draw; group loss keeps both bodies/other attributes
+PASS 768x1024 actual sale quote and price tags include fire/gold/dark and equal receipt
+PASS 768x1024 ice/lightning/luck/combo summaries and actual Lv effects are readable
+PASS 768x1024 nature additional production is stored once and survives reload
+PASS 390x844 normal/focus buttons reachable without shrinking board or page scroll
+PASS 390x844 mode toggle and reload keep10 materials; focus consumes exactly10 once
+PASS 390x844 attributed/high Tier stock included and FIFO count enables the mode
+PASS 390x844 full board rejects focus without spending FIFO stock
+PASS 390x844 dark risk preview consumes no draw; group loss keeps both bodies/other attributes
+PASS 390x844 actual sale quote and price tags include fire/gold/dark and equal receipt
+PASS 390x844 ice/lightning/luck/combo summaries and actual Lv effects are readable
+PASS 390x844 nature additional production is stored once and survives reload
+PASS 375x667 normal/focus buttons reachable without shrinking board or page scroll
+PASS 375x667 mode toggle and reload keep10 materials; focus consumes exactly10 once
+PASS 375x667 attributed/high Tier stock included and FIFO count enables the mode
+PASS 375x667 full board rejects focus without spending FIFO stock
+PASS 375x667 dark risk preview consumes no draw; group loss keeps both bodies/other attributes
+PASS 375x667 actual sale quote and price tags include fire/gold/dark and equal receipt
+PASS 375x667 ice/lightning/luck/combo summaries and actual Lv effects are readable
+PASS 375x667 nature additional production is stored once and survives reload
+PASS 320x568 normal/focus buttons reachable without shrinking board or page scroll
+PASS 320x568 mode toggle and reload keep10 materials; focus consumes exactly10 once
+PASS 320x568 attributed/high Tier stock included and FIFO count enables the mode
+PASS 320x568 full board rejects focus without spending FIFO stock
+PASS 320x568 dark risk preview consumes no draw; group loss keeps both bodies/other attributes
+PASS 320x568 actual sale quote and price tags include fire/gold/dark and equal receipt
+PASS 320x568 ice/lightning/luck/combo summaries and actual Lv effects are readable
+PASS 320x568 nature additional production is stored once and survives reload
+PASS 844x390 normal/focus buttons reachable without shrinking board or page scroll
+PASS 844x390 mode toggle and reload keep10 materials; focus consumes exactly10 once
+PASS 844x390 attributed/high Tier stock included and FIFO count enables the mode
+PASS 844x390 full board rejects focus without spending FIFO stock
+PASS 844x390 dark risk preview consumes no draw; group loss keeps both bodies/other attributes
+PASS 844x390 actual sale quote and price tags include fire/gold/dark and equal receipt
+PASS 844x390 ice/lightning/luck/combo summaries and actual Lv effects are readable
+PASS 844x390 nature additional production is stored once and survives reload
+PASS 3merge risk label does not promise two outputs
+PASS focus Quota preserves original materials/mode/UI; reload and native click execute once
+82 []
