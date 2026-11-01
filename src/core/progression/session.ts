@@ -1,4 +1,5 @@
-import { EXPERIMENTAL_ATTRIBUTES } from '../../domain/attributes'
+import { boardEffects, drawSpecialCell } from '../attributes/effects'
+import { focusCandidates, FOCUS_COST, withdrawFocused, type GenerationMode } from './focus'
 import { RESEARCH_CAPS, EXPERIMENTAL_RESEARCH, researchCost, frequencyCost } from './research'
 import type { DropPlan } from '../../domain/game'
 import type { GridPosition } from '../../domain/grid'
@@ -20,7 +21,7 @@ export type CellEvent = Readonly<{
   paid: number; receivedGOLD: number; cappedGOLD?: number; unitGOLD: number; nextPaymentAtMs: number
 }>
 export type Session = Omit<ProgressionSnapshot, 'version'> & Readonly<{
-  version: 5; researchLevel: number; researchMaxTier: number; goldCellUnlocked: boolean; goldFrequencyLevel: number; goldFormat: 'full' | 'compact'; sequence: number; eventSequence: number; nextEventAtMs: number
+  version: 6; generationMode: GenerationMode; focusedGenerated: number; nature: Readonly<{progressMs: number; updatedAtMs: number; totalGenerated: number}>; researchLevel: number; researchMaxTier: number; goldCellUnlocked: boolean; goldFrequencyLevel: number; goldFormat: 'full' | 'compact'; sequence: number; eventSequence: number; nextEventAtMs: number
   event: CellEvent | null; lastEvent: Readonly<{ id: string; receivedGOLD: number; paid?: number }> | null; protectedIds: readonly string[]; reducedEffects: boolean
 }>
 export type Command =
@@ -28,9 +29,10 @@ export type Command =
   | { type: 'gold-unlock' }
   | { type: 'gold-frequency'; expectedLevel: number }
   | { type: 'gold-format'; value: 'full' | 'compact' }
+  | { type: 'generation-mode'; value: GenerationMode }
   | { type: 'tick' }
   | { type: 'tap' }
-  | { type: 'withdraw'; expectedId: number }
+  | { type: 'withdraw'; expectedId: number; expectedMode?: GenerationMode }
   | { type: 'drop'; plan: DropPlan }
   | { type: 'sell'; id: string }
   | { type: 'buy'; key: UpgradeKey; expectedLevel: number }
@@ -39,14 +41,17 @@ export type Command =
   | { type: 'pay'; eventId: string; expectedPaid: number }
 
 export function freshSession(nowMs: number): Session {
-  return { version: 5, researchLevel: 0, researchMaxTier: 5, goldCellUnlocked: false, goldFrequencyLevel: 0, goldFormat: 'full', sequence: 0, savedAtMs: nowMs, nextId: 1,
+  return { version: 6, generationMode: 'normal', focusedGenerated: 0, nature: {progressMs: 0, updatedAtMs: nowMs, totalGenerated: 0}, researchLevel: 0, researchMaxTier: 5, goldCellUnlocked: false, goldFrequencyLevel: 0, goldFormat: 'full', sequence: 0, savedAtMs: nowMs, nextId: 1,
     game: { bounds: { origin: { x: 0, y: 0 }, width: 4, height: 4 }, slimes: [], highestTierReached: 1, revision: 0 },
     wallet: freshWallet(), generator: { ...newGenerator(nowMs), storedAttributes: [] },
     eventSequence: 0, nextEventAtMs: nowMs + EXPERIMENTAL_PHASE2.eventMinDelayMs,
     event: null, lastEvent: null, protectedIds: [], reducedEffects: false }
 }
 export function sessionRules(s: Session) {
-  return { ...generationRules(s.wallet), attributeChance: EXPERIMENTAL_ATTRIBUTES.generationChance }
+  const base = generationRules(s.wallet), effects = boardEffects(s.game)
+  const intervalMs = Math.round(base.intervalMs * (1 - effects.iceReduction))
+  return { ...base, intervalMs, tapAdvanceMs: Math.min(Math.floor(intervalMs * 0.75), Math.round(base.tapAdvanceMs * (1 + effects.tapBonus))), attributeChance: effects.normalChance }
+
 }
 /** Provisional linear low-Tier floor; high-Tier rate is unchanged. Old contracts keep version 1. */
 export function goldPayment(tier: number, attributeCount: number, rewardVersion: 1 | 2 = 2): number {
@@ -96,7 +101,7 @@ function events(s: Session, now: number, random: () => number, allowPayment: boo
     if (!Number.isSafeInteger(sequence)) throw new RangeError('Event IDs exhausted')
     const cells = emptyCells(next.game)
     if (!cells.length) return schedule(next, now, random)
-    const cell = cells[Math.floor(unit(random) * cells.length)]!
+    const cell = drawSpecialCell(next.game, cells, random)
     next = { ...next, eventSequence: sequence, event: {
       id: `gold-${sequence}`, sequence, cell, rewardVersion: 2,
       expiresAtMs: later(now, EXPERIMENTAL_PHASE2.eventLifetimeMs), tier: null, sourceId: null,
@@ -118,23 +123,40 @@ function events(s: Session, now: number, random: () => number, allowPayment: boo
 export function reduceSession(s: Session, command: Command, now: number, random: () => number, rulesOverride?: GeneratorRules): Session {
   try {
     if (!Number.isSafeInteger(now) || now < 0 || s.sequence >= Number.MAX_SAFE_INTEGER - 1) return s
-    if (command.type === 'withdraw' && (!s.generator.storedTiers.length || !emptyCells(s.game).length)) return s
+    if (command.type === 'withdraw' && (command.expectedId !== s.nextId || (command.expectedMode ?? 'normal') !== s.generationMode ||
+      !s.generator.storedTiers.length || !emptyCells(s.game).length ||
+      (s.generationMode === 'focused' && focusCandidates(s.game,s.generator).length < FOCUS_COST))) return s
+    if (command.type === 'generation-mode' && command.value !== 'normal' && command.value !== 'focused') return s
+    const oldRules = rulesOverride ?? sessionRules(s), oldNatureInterval = boardEffects(s.game).natureIntervalMs
+
     let next = s
     // Rebase rollback once, granting zero elapsed time. It cannot bank future credit.
     if (now < s.generator.updatedAtMs) {
-      next = { ...next, generator: { ...next.generator, updatedAtMs: now },
+      next = { ...next, nature: {...next.nature, updatedAtMs: now}, generator: { ...next.generator, updatedAtMs: now },
         nextEventAtMs: later(now, Math.max(0, s.nextEventAtMs - s.savedAtMs)),
         event: s.event ? { ...s.event,
           expiresAtMs: later(now, Math.max(0, s.event.expiresAtMs - s.savedAtMs)),
           nextPaymentAtMs: s.event.tier === null ? 0 : later(now, EXPERIMENTAL_PHASE2.paymentIntervalMs) } : null }
     }
     next = { ...next, generator: advanceGenerator(next.generator, now, next.game.highestTierReached, (rulesOverride ?? sessionRules(next)), random) }
+    // Ordinary production has capacity priority. Nature shares the bounded storage, never banks a full queue.
+    if (oldNatureInterval !== null) {
+      const produced = advanceGenerator({...next.generator, progressMs: next.nature.progressMs, updatedAtMs: next.nature.updatedAtMs}, now,
+        next.game.highestTierReached, {...oldRules, intervalMs: oldNatureInterval}, random)
+      const delta = produced.totalGenerated - next.generator.totalGenerated
+      next = {...next, generator: {...produced, progressMs: next.generator.progressMs}, nature: {
+        progressMs: produced.progressMs, updatedAtMs: now, totalGenerated: next.nature.totalGenerated + delta}}
+      if (next.generator.storedTiers.length === oldRules.capacity) next = {...next,generator:{...next.generator,progressMs:0}}
+    } else next = {...next,nature:{...next.nature,progressMs:0,updatedAtMs:now}}
+    const progressRatio = next.generator.progressMs / oldRules.intervalMs
+    const natureRatio = oldNatureInterval ? next.nature.progressMs / oldNatureInterval : 0
+    if (command.type === 'generation-mode') next = {...next, generationMode:command.value}
     if (command.type === 'tap') next = { ...next, generator: tapGenerator(next.generator, next.game.highestTierReached, (rulesOverride ?? sessionRules(next)), random) }
     if (command.type === 'withdraw') {
       if (command.expectedId !== s.nextId || s.nextId >= Number.MAX_SAFE_INTEGER - 2 || !s.generator.storedTiers.length || !emptyCells(s.game).length) return s
-      const result = withdrawRandom(next.game, next.generator, `p-${s.nextId}`, random)
+      const result = s.generationMode === 'focused' ? withdrawFocused(next.game,next.generator,`p-${s.nextId}`,boardEffects(next.game).focusChance,random) : withdrawRandom(next.game, next.generator, `p-${s.nextId}`, random)
       if (!result.ok) return s
-      next = { ...next, game: result.game, generator: result.generator, nextId: s.nextId + 1 }
+      next = { ...next, game: result.game, generator: result.generator, nextId: s.nextId + 1, focusedGenerated: next.focusedGenerated + (s.generationMode === 'focused' ? 1 : 0) }
     }
     if (command.type === 'drop') {
       let id = next.nextId
@@ -154,9 +176,7 @@ export function reduceSession(s: Session, command: Command, now: number, random:
       const result = purchaseUpgrade(next.wallet, command.key)
       if (!result.ok) return s
       // Resolve elapsed time at old speed first, then carry fractional progress into the new interval.
-      const ratio = next.generator.progressMs / sessionRules(next).intervalMs
       next = { ...next, wallet: result.wallet }
-      next = { ...next, generator: { ...next.generator, progressMs: Math.floor(ratio * sessionRules(next).intervalMs) } }
     }
     if (command.type === 'research') {
       const lv = next.researchLevel
@@ -184,6 +204,11 @@ export function reduceSession(s: Session, command: Command, now: number, random:
         ? next.protectedIds.filter(x => x !== command.id) : [...next.protectedIds, command.id] }
     }
     if (command.type === 'effects') next = { ...next, reducedEffects: command.value }
+    const newRules = rulesOverride ?? sessionRules(next), newNatureInterval = boardEffects(next.game).natureIntervalMs
+    if (newRules.intervalMs !== oldRules.intervalMs)
+      next = {...next, generator:{...next.generator, progressMs:Math.min(newRules.intervalMs-1,Math.floor(progressRatio*newRules.intervalMs))}}
+    if (newNatureInterval !== oldNatureInterval)
+      next = {...next, nature:{...next.nature, progressMs:newNatureInterval ? Math.min(newNatureInterval-1,Math.floor(natureRatio*newNatureInterval)) : 0}}
     if (command.type === 'pay') {
       // Explicit replay requests must not fall through to normal tick payment.
       const paid = pay(next, command.eventId, command.expectedPaid, now, random)

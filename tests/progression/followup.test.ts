@@ -37,9 +37,9 @@ describe('table discovery contract', () => {
     const s = freshSession(0), funded = { ...s, wallet: { ...s.wallet, gold: 10000 } }, r = cmd(funded, { type: 'research', expectedLevel: 0 })
     expect(r.researchMaxTier).toBe(10); expect(r.game.highestTierReached).toBe(1)
     expect(sessionRules(r).distribution).toBeUndefined()
-    const generated = reduceSession(r, { type: 'tick' }, 100000, () => 1 - Number.EPSILON)
+    const generated = reduceSession(r, { type: 'tick' }, 150000, () => 1 - Number.EPSILON)
     expect(generated.generator.storedTiers).toEqual(Array(10).fill(1))
-    const load = decodeSession(encodeSession(generated), 100000)
+    const load = decodeSession(encodeSession(generated), 150000)
     expect(load.ok && tierWeights(load.session.game.highestTierReached)).toEqual(tierWeights(1))
   })
   it('forged stored Tier cannot discover a Tier during withdrawal', () => {
@@ -64,7 +64,7 @@ describe('table discovery contract', () => {
 })
 describe('research transactions and materials', () => {
   it('real new game has research5 and GOLD locked', () => {
-    expect(freshSession(0)).toMatchObject({ version: 5, researchLevel: 0, researchMaxTier: 5, goldCellUnlocked: false, goldFrequencyLevel: 0, goldFormat: 'full' })
+    expect(freshSession(0)).toMatchObject({ version: 6, researchLevel: 0, researchMaxTier: 5, goldCellUnlocked: false, goldFrequencyLevel: 0, goldFormat: 'full' })
     expect(isSession(freshSession(0))).toBe(true)
   })
   it.each(RESEARCH_CAPS.slice(1).map((cap, i) => [i, cap]))('stage %i unlocks cap %i once, without discovery', (lv, cap) => {

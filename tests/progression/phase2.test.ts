@@ -45,7 +45,7 @@ describe('Phase 2 generated Tier distribution (EXPERIMENTAL values)', () => {
 
 describe('Phase 2 elapsed-time storage and click acceleration', () => {
   const rules = generationRules(freshWallet())
-  it('starts with a 10s interval, 10 capacity and separate tap advance', () => {
+  it('starts with the revised 15s interval, 10 capacity and separate tap advance', () => {
     expect(rules.intervalMs).toBe(EXPERIMENTAL_GENERATION.baseIntervalMs)
     expect(rules.capacity).toBe(10)
     expect(rules.tapAdvanceMs).toBe(1000)
@@ -55,7 +55,7 @@ describe('Phase 2 elapsed-time storage and click acceleration', () => {
     const a = advanceGenerator(s, 3100, 1, rules, () => 0)
     expect(a.storedTiers).toEqual([])
     expect(a.progressMs).toBe(3000)
-    const b = advanceGenerator(a, 20100, 1, rules, () => 0)
+    const b = advanceGenerator(a, 30100, 1, rules, () => 0)
     expect(b.storedTiers).toEqual([1, 1])
     expect(b.progressMs).toBe(0)
     expect(s.storedTiers).toEqual([])
@@ -71,10 +71,10 @@ describe('Phase 2 elapsed-time storage and click acceleration', () => {
     expect(b.progressMs).toBe(0)
     expect(calls).toBe(10)
   })
-  it('10 taps accumulate to one generated unit, without wall-clock effects', () => {
+  it('15 taps accumulate to one generated unit, without wall-clock effects', () => {
     let g = newGenerator(120)
-    for (let i = 0; i < 9; i++) g = tapGenerator(g, 1, rules, () => 0)
-    expect(g.progressMs).toBe(9000)
+    for (let i = 0; i < 14; i++) g = tapGenerator(g, 1, rules, () => 0)
+    expect(g.progressMs).toBe(14000)
     expect(g.storedTiers).toEqual([])
     g = tapGenerator(g, 1, rules, () => 0)
     expect(g.storedTiers).toEqual([1])
@@ -84,7 +84,7 @@ describe('Phase 2 elapsed-time storage and click acceleration', () => {
   it('clock rollback and corrupt random input do not create phantom slimes', () => {
     const old = newGenerator(5000)
     expect(advanceGenerator(old, 1000, 1, rules, () => 0)).toBe(old)
-    expect(() => advanceGenerator(old, 15_000, 1, rules, () => 1)).toThrow(RangeError)
+    expect(() => advanceGenerator(old, 20_000, 1, rules, () => 1)).toThrow(RangeError)
   })
   it('storage withdraw is atomic and checks occupied/duplicate/out-of-board', () => {
     const board = createPreset('five')
@@ -133,7 +133,7 @@ describe('Phase 2 GOLD economy and event primitive', () => {
     expect(a.ok).toBe(true)
     expect(a.cost).toBe(upgradeCost('speed', 0))
     expect(a.wallet.upgrades.speed).toBe(1)
-    expect(generationRules(a.wallet).intervalMs).toBeLessThan(10_000)
+    expect(generationRules(a.wallet).intervalMs).toBeLessThan(15_000)
     expect(upgradeCost('speed', 1)).toBeGreaterThan(upgradeCost('speed', 0))
     expect(purchaseUpgrade(w, 'storage').wallet).toBe(w)
     expect(purchaseUpgrade(w, 'tap').wallet).toBe(w)

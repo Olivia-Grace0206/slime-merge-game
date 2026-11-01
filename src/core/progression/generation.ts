@@ -11,7 +11,7 @@ import { samePosition } from '../grid/coordinates'
  * They are isolated so simulation and later player feedback can replace them.
  */
 export const EXPERIMENTAL_GENERATION = Object.freeze({
-  baseIntervalMs: 10_000,
+  baseIntervalMs: 15_000,
   initialCapacity: 10,
   baseTapAdvanceMs: 1_000,
   centerSlope: 0.75,

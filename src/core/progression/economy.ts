@@ -1,3 +1,4 @@
+import { saleValue } from '../attributes/effects'
 import { isTier, type GameState } from '../../domain/game'
 import { isGameState } from '../board/state'
 import { EXPERIMENTAL_GENERATION, type GeneratorRules } from './generation'
@@ -72,13 +73,22 @@ export function purchaseUpgrade(wallet: Wallet, key: UpgradeKey): ShopResult {
   }
 }
 
-export function generationRules(wallet: Wallet): GeneratorRules {
+export function legacyGenerationRules(wallet: Wallet): GeneratorRules {
   if (!isWallet(wallet)) throw new RangeError('Invalid wallet')
   return {
-    intervalMs: Math.max(2_000, Math.round(EXPERIMENTAL_GENERATION.baseIntervalMs * 0.9 ** wallet.upgrades.speed)),
+    intervalMs: Math.max(2_000, Math.round(10_000 * 0.9 ** wallet.upgrades.speed)),
     tapAdvanceMs: EXPERIMENTAL_GENERATION.baseTapAdvanceMs + wallet.upgrades.tap * 350,
     capacity: EXPERIMENTAL_GENERATION.initialCapacity + wallet.upgrades.storage * 3,
   }
+}
+
+/** Phase3B provisional slower pace. Attributes are applied by sessionRules. */
+export const GENERATION_PACE = Object.freeze({speedFactor:0.95, tapPerLevelMs:200, minimumIntervalMs:2000})
+export function generationRules(wallet: Wallet): GeneratorRules {
+  if (!isWallet(wallet)) throw new RangeError('Invalid wallet')
+  return { intervalMs: Math.max(GENERATION_PACE.minimumIntervalMs, Math.round(EXPERIMENTAL_GENERATION.baseIntervalMs * GENERATION_PACE.speedFactor ** wallet.upgrades.speed)),
+    tapAdvanceMs: EXPERIMENTAL_GENERATION.baseTapAdvanceMs + wallet.upgrades.tap * GENERATION_PACE.tapPerLevelMs,
+    capacity: EXPERIMENTAL_GENERATION.initialCapacity + wallet.upgrades.storage * 3 }
 }
 
 export type SaleResult = Readonly<{
@@ -94,7 +104,7 @@ export function sellSlime(game: GameState, wallet: Wallet, slimeId: string): Sal
   if (!isGameState(game) || !isWallet(wallet) || !slimeId.trim()) return reject()
   const target = game.slimes.find((s) => s.id === slimeId)
   if (!target) return reject()
-  const earned = Math.min(baseSaleValue(target.tier), Number.MAX_SAFE_INTEGER - wallet.gold)
+  const earned = saleValue(target, Number.MAX_SAFE_INTEGER - wallet.gold)
   if (game.revision >= Number.MAX_SAFE_INTEGER - 1) return reject()
   const next = { ...game, revision: game.revision + 1, slimes: game.slimes.filter((s) => s.id !== slimeId) }
   if (!isGameState(next)) return reject()

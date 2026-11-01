@@ -1,4 +1,5 @@
-import { mutateAttributes } from '../attributes/inheritance'
+import { geneticsForGroup } from '../attributes/effects'
+import { randomUnit, mutateAttributes } from '../attributes/inheritance'
 import { MAX_TIER, isTier, type DropPlan, type GameState, type Slime } from '../../domain/game'
 import { isGameState, stateSnapshot } from '../board/state'
 import { cellKey } from '../grid/coordinates'
@@ -61,7 +62,11 @@ export function applyPlan(state: GameState, plan: DropPlan, nextId: () => string
           .sort((a, b) => compareNear(plan.target, a, b))
           .slice(0, sizes[i] === 5 ? 2 : 1)
         if (JSON.stringify(group.outputs) !== JSON.stringify(expected)) return reject()
-        const attributes = random ? mutateAttributes(group.attributes ?? [], random, mutationChance) : group.attributes
+        const genetics = geneticsForGroup(state, group.consumedIds)
+        let attributes = random ? mutateAttributes(group.attributes ?? [], random, mutationChance ?? genetics.mutationChance) : group.attributes
+        // Shared per group, after mutation; only inherited dark is exposed to loss.
+        if (random && genetics.darkLossChance > 0 && randomUnit(random) < genetics.darkLossChance)
+          attributes = attributes?.filter(a => a.id !== 'dark')
         for (const position of group.outputs) {
           const id = nextId()
           // Reject even reuse of consumed IDs, so a stale drag can never target an output.
