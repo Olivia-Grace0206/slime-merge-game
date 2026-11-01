@@ -27,6 +27,8 @@ export type InvalidReason =
   | 'max-tier'
   | 'research-locked'
 type PlanBase = Readonly<{ sourceId: string; target: GridPosition; snapshot: string }>
+export type SwapReason = 'different-tier' | 'too-few' | 'max-tier' | 'research-locked' | 'attribute-limit'
+export type SwapPlan = PlanBase & Readonly<{ kind: 'swap'; targetId: string; sourcePosition: GridPosition; reason: SwapReason }>
 export type MovePlan = PlanBase & Readonly<{ kind: 'move' }>
 export type MergePlan = PlanBase &
   Readonly<{
@@ -35,4 +37,5 @@ export type MergePlan = PlanBase &
     groups: readonly MergeGroup[]
     remainderIds: readonly string[]
   }>
-export type DropPlan = MovePlan | MergePlan | Readonly<{ kind: 'invalid'; reason: InvalidReason }>
+export type DropPlan = MovePlan | SwapPlan | MergePlan | Readonly<{ kind: 'invalid'; reason: InvalidReason }>
+

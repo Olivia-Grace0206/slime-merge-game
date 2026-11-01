@@ -319,3 +319,10 @@ progress::-webkit-progress-value { background: linear-gradient(90deg,#79b65b,#ab
   .wide-gold .wallet { margin-left: auto; }
   .wide-gold .wallet b, .wide-gold .wallet small { flex-shrink: 0; }
 }
+
+
+/* Phase 3A: swaps have arrows and dashed frames in addition to a distinct color. */
+.cell.swap-cell { outline: 5px dashed #3958bb; outline-offset: -6px; z-index: 2; }
+.swap-badge { position:absolute; left:5%; top:4%; z-index:8; border-radius:50%; padding:2px 8px; font-size:28px; color:white; background:#3958bb; pointer-events:none; }
+.operation-preview { position:absolute; top:5px; left:50%; transform:translateX(-50%); z-index:12; max-width:calc(100% - 12px); padding:5px 12px; border:2px solid #3958bb; border-radius:16px; background:#f4f6ffed; color:#263575; text-align:center; pointer-events:none; font-size:13px; }
+.operation-preview small { display:block; font-size:11px; }

@@ -5,6 +5,7 @@ import {
   type GameState,
   type MergeGroup,
   type Slime,
+  type SwapReason,
 } from '../../domain/game'
 import type { GridPosition } from '../../domain/grid'
 import { cellKey, samePosition } from '../grid/coordinates'
@@ -63,6 +64,7 @@ export function splitCount(count: number): readonly (3 | 5)[] {
 /** Pure planning only: no IDs, randomness, mutation, DOM or React. */
 export function planDrop(state: GameState, sourceId: string, target: GridPosition, researchMaxTier = MAX_TIER): DropPlan {
   if (!isGameState(state)) return { kind: 'invalid', reason: 'invalid-state' }
+  if (!isTier(researchMaxTier)) return { kind: 'invalid', reason: 'invalid-state' }
   const source = state.slimes.find((s) => s.id === sourceId)
   if (!source) return { kind: 'invalid', reason: 'missing-source' }
   if (!inBounds(state.bounds, target)) return { kind: 'invalid', reason: 'outside-board' }
@@ -70,12 +72,13 @@ export function planDrop(state: GameState, sourceId: string, target: GridPositio
   const base = { sourceId, target: { ...target }, snapshot: stateSnapshot(state) }
   const destination = state.slimes.find((s) => samePosition(s.position, target))
   if (!destination) return { ...base, kind: 'move' }
-  if (destination.tier !== source.tier) return { kind: 'invalid', reason: 'different-tier' }
-  if (source.tier >= MAX_TIER) return { kind: 'invalid', reason: 'max-tier' }
-  if (!isTier(researchMaxTier) || source.tier + 1 > researchMaxTier) return { kind: 'invalid', reason: 'research-locked' }
+  const swap = (reason: SwapReason): DropPlan => ({ ...base, kind: 'swap', targetId: destination.id, sourcePosition: { ...source.position }, reason })
+  if (destination.tier !== source.tier) return swap('different-tier')
+  if (source.tier >= MAX_TIER) return swap('max-tier')
+  if (!isTier(researchMaxTier) || source.tier + 1 > researchMaxTier) return swap('research-locked')
   const connected = connectedSlimes(state, sourceId, destination.id)
   const sizes = splitCount(connected.length + 1)
-  if (!sizes.length) return { kind: 'invalid', reason: 'too-few' }
+  if (!sizes.length) return swap('too-few')
   const ordered = [
     source,
     destination,
@@ -104,3 +107,4 @@ export function planDrop(state: GameState, sourceId: string, target: GridPositio
     remainderIds: ordered.slice(cursor).map((s) => s.id),
   }
 }
+

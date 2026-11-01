@@ -1,0 +1,14 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> slime-merge-game@0.0.0 test
+> vitest --run
+
+
+ RUN  v5.0.5 /workspace/scratch/1214ce4e74e0/slime-merge-game
+
+
+ Test Files  14 passed (14)
+      Tests  394 passed (394)
+   Start at  05:21:46
+   Duration  96.24s (tests 97%, transform 2%, import 1%)
+

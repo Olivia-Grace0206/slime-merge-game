@@ -1,7 +1,7 @@
 import { MAX_TIER, isTier, type DropPlan, type GameState, type Slime } from '../../domain/game'
 import { isGameState, stateSnapshot } from '../board/state'
 import { cellKey } from '../grid/coordinates'
-import { compareNear, splitCount } from './plan'
+import { compareNear, splitCount, planDrop } from './plan'
 
 export type ApplyResult = Readonly<{ ok: boolean; state: GameState; createdIds: readonly string[] }>
 /** Applies the displayed plan itself. No candidate re-selection during commit. */
@@ -12,12 +12,17 @@ export function applyPlan(state: GameState, plan: DropPlan, nextId: () => string
   try {
     const source = state.slimes.find((s) => s.id === plan.sourceId)
     if (!source) return reject()
+    // Revalidate canonical intent, including merge priority and every consumed ID.
+    if (JSON.stringify(plan) !== JSON.stringify(planDrop(state, plan.sourceId, plan.target, researchMaxTier))) return reject()
     let slimes: readonly Slime[]
     const createdIds: string[] = []
     if (plan.kind === 'move') {
       slimes = state.slimes.map((s) =>
         s.id === plan.sourceId ? { ...s, position: { ...plan.target } } : s,
       )
+    } else if (plan.kind === 'swap') {
+      slimes = state.slimes.map(s => s.id === source.id ? { ...s, position: { ...plan.target } }
+        : s.id === plan.targetId ? { ...s, position: { ...plan.sourcePosition } } : s)
     } else {
       if (!isTier(researchMaxTier) || plan.outputTier > researchMaxTier) return reject()
       const target = state.slimes.find((s) => cellKey(s.position) === cellKey(plan.target))
@@ -78,3 +83,4 @@ export function applyPlan(state: GameState, plan: DropPlan, nextId: () => string
     return reject()
   }
 }
+

@@ -189,7 +189,7 @@ export function GameBoard() {
     gameRef.current = result.state
     setGame(result.state)
     setCreatedIds(result.createdIds)
-    setMessage(plan.kind === 'move' ? '移動しました'
+    setMessage(plan.kind === 'swap' ? '位置を交換しました' : plan.kind === 'move' ? '移動しました'
       : `マージ成功 · Tier ${plan.outputTier} × ${result.createdIds.length}${plan.remainderIds.length ? ` · 余り${plan.remainderIds.length}体` : ''}`)
   }
   function down(e: ReactPointerEvent<HTMLDivElement>) {
@@ -294,10 +294,11 @@ export function GameBoard() {
   const event = normal ? session.event : null
   const coinText = event?.tier !== null && event ? `+${event.unitGOLD.toLocaleString()} · ${event.paid}/10` : session.lastEvent ? (session.lastEvent.paid !== undefined && session.lastEvent.paid < 10 ? `${session.lastEvent.paid}/10 終了 · 未払い失効` : '10/10 完了') : ''
   const plan = preview?.kind === 'merge' ? preview : null
+  const swap = preview?.kind === 'swap' ? preview : null
   const dragged = gesture.mode === 'drag' ? game.slimes.find(s => s.id === gesture.single?.sourceId) : undefined
   const showPrices = normal && saleHover && !!dragged && gesture.mode === 'drag'
   const priceTag = (tier: number, id: string) => <span className="price-tag" data-testid="sale-price" data-for={id} title={`${saleValue(tier).toLocaleString('en-US')} GOLD`}><svg className="price-coin" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8" fill="#ffd66f" stroke="#b68a32" strokeWidth="2"/><path d="M12 6H8v8h4M10 5v10" fill="none" stroke="#a57425" strokeWidth="1.5"/></svg><b>{saleValue(tier).toLocaleString('en-US').split(',').map((part, i, a) => <span key={i}>{part}{i < a.length - 1 ? ',' : ''}<wbr /></span>)}</b>{protectedIds.includes(id) && <small>保護中</small>}</span>
-  const text = plan ? `Tier ${plan.outputTier} × ${plan.groups.reduce((n, g) => n + g.outputs.length, 0)}体`
+  const text = swap ? `⇄ 位置交換${swap.reason === 'research-locked' ? ' · 研究未解放（消費なし）' : ''}` : plan ? `Tier ${plan.outputTier} × ${plan.groups.reduce((n, g) => n + g.outputs.length, 0)}体`
     : preview?.kind === 'invalid' && preview.reason !== 'same-cell' ? REASONS[preview.reason] : message
   const topLeft = worldToScreen({ x: 0, y: 0 }, camera, view)
   const scale = view.fit * camera.zoom
@@ -330,7 +331,7 @@ export function GameBoard() {
             const outputGroup = plan?.groups.find(g => g.outputs.some(p => samePosition(p, position)))
             const remainder = slime && plan?.remainderIds.includes(slime.id)
             return <button key={index} type="button"
-              className={`cell ${event && samePosition(event.cell, position) ? 'gold-cell' : ''} ${(position.x + position.y) % 2 ? 'alternate' : ''} ${group ? 'grouped' : ''} ${remainder ? 'remainder' : ''} ${selected && slime?.id === selected ? 'selected' : ''}`}
+              className={`cell ${event && samePosition(event.cell, position) ? 'gold-cell' : ''} ${(position.x + position.y) % 2 ? 'alternate' : ''} ${swap && (slime?.id === swap.sourceId || slime?.id === swap.targetId) ? 'swap-cell' : ''} ${group ? 'grouped' : ''} ${remainder ? 'remainder' : ''} ${selected && slime?.id === selected ? 'selected' : ''}`}
               data-protected={slime && protectedIds.includes(slime.id) ? 'true' : undefined} data-gold-cell={event && samePosition(event.cell, position) ? event.id : undefined}
               data-cell={`${position.x},${position.y}`} data-slime-id={slime?.id} data-tier={slime?.tier} data-group={group?.number} data-output={outputGroup?.number} data-remainder={remainder ? 'true' : undefined}
               title={slime && normal ? `Tier ${slime.tier} · +${saleValue(slime.tier).toLocaleString()} GOLD${protectedIds.includes(slime.id) ? ' · 売却保護中' : ''}` : undefined}
@@ -362,12 +363,14 @@ export function GameBoard() {
               {event && event.paid > 0 && samePosition(event.cell, position) && <span key={`${event.id}-${event.paid}`} className="gold-burst">+{session.wallet.gold === Number.MAX_SAFE_INTEGER ? '上限' : event.unitGOLD.toLocaleString()}</span>}
               {slime && protectedIds.includes(slime.id) && <span className="protected-badge" aria-label="売却保護"><svg viewBox="0 0 20 23" width="18" height="20" aria-hidden="true"><path d="M5 10V6a5 5 0 0 1 10 0v4" fill="none" stroke="currentColor" strokeWidth="3"/><rect x="2" y="9" width="16" height="13" rx="3" fill="#fff4c5" stroke="currentColor" strokeWidth="2"/><path d="M10 14v4" stroke="currentColor" strokeWidth="2"/></svg></span>}
               {slime && <span key={slime.id} style={{ width: 602 / game.bounds.width, height: 630 / game.bounds.height }} className={`slime-piece ${slime.id === dragged?.id ? 'source-ghost' : ''} ${createdIds.includes(slime.id) ? 'born' : ''}`}><Slime tier={slime.tier} /></span>}
+              {swap && (slime?.id === swap.sourceId || slime?.id === swap.targetId) && <span className="swap-badge" aria-label="位置交換">⇄</span>}
               {group && <span className="group-badge">{group.number}</span>}
               {remainder && <span className="keep-badge">残る</span>}
               {outputGroup && <span className="output-mark">↑{outputGroup.number}</span>}
             </button>
           })}
         </div>
+        {swap && <div className="operation-preview" data-testid="swap-preview"><strong>⇄ 位置交換</strong><small>{swap.reason === 'research-locked' ? '研究未解放 · 素材消費なし' : swap.reason === 'attribute-limit' ? '属性上限3種類（仮）· 全属性保持' : '2体の位置だけ交換'}</small></div>}
         {showPrices && <div className="price-layer" aria-label="全スライムの売却受取額">{game.slimes.map(slime => {
           const point = worldToScreen({ x: (slime.position.x + .5) * 700 / game.bounds.width, y: (slime.position.y + .04) * 700 / game.bounds.height }, camera, view)
           return <div className="price-anchor" key={slime.id} style={{ left: point.x, top: point.y, width: Math.min(140, 700 / game.bounds.width * scale - 5) }}>{priceTag(slime.tier, slime.id)}</div>
@@ -387,7 +390,7 @@ export function GameBoard() {
         {!event && session.lastEvent && <div className="event-readout" data-testid="gold-completed">● {coinText}</div>}
       </aside> : <aside className="verification-banner"><strong>検証モード</strong><span>通常プレイのセーブは保全</span><button type="button" onClick={returnNormal}>通常プレイへ戻る</button></aside>}
     </section>
-    {preview?.kind === 'invalid' && preview.reason === 'research-locked' && <div className="research-notice" role="alert">研究上限 Tier {session.researchMaxTier} · ショップで解放できます（消費なし）</div>}
+    {swap?.reason === 'research-locked' && <div className="research-notice" role="alert">研究上限 Tier {session.researchMaxTier} · ショップで解放できます（消費なし）</div>}
     {storageError && <div className="storage-error" role="alert"><span>{storageError}</span><button type="button" onClick={() => { setStorageError(store.retry().error); send({ type: 'tick' }) }}>再試行</button><button type="button" onClick={() => window.location.reload()}>再読み込み</button></div>}
     <div className="sr-only" role="status" aria-live="polite" aria-atomic="true" data-testid="status">
       <strong>{text}</strong>
@@ -414,4 +417,5 @@ export function GameBoard() {
       }} />
   </>
 }
+
 
