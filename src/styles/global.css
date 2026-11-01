@@ -326,3 +326,11 @@ progress::-webkit-progress-value { background: linear-gradient(90deg,#79b65b,#ab
 .swap-badge { position:absolute; left:5%; top:4%; z-index:8; border-radius:50%; padding:2px 8px; font-size:28px; color:white; background:#3958bb; pointer-events:none; }
 .operation-preview { position:absolute; top:5px; left:50%; transform:translateX(-50%); z-index:12; max-width:calc(100% - 12px); padding:5px 12px; border:2px solid #3958bb; border-radius:16px; background:#f4f6ffed; color:#263575; text-align:center; pointer-events:none; font-size:13px; }
 .operation-preview small { display:block; font-size:11px; }
+
+.attribute-badges { position:absolute; left:7%; right:7%; top:83%; height:13%; display:flex; justify-content:center; gap:3%; z-index:6; pointer-events:none; }
+.attribute-badge { display:inline-flex; align-items:center; justify-content:center; gap:2px; background:#fffdf1; color:#37435a; border:1px solid currentColor; border-radius:30%; padding:0 3px; line-height:1; font-size:clamp(14px, 1.4vw, 20px); box-shadow:0 1px 2px #0003; }
+.attribute-badge small { font-size:.8em; }
+.attribute-fire { color:#ab361e; } .attribute-gold { color:#8b6510; } .attribute-dark { color:#674a86; } .attribute-ice { color:#146482; } .attribute-lightning { color:#866300; } .attribute-nature { color:#2a7032; } .attribute-luck { color:#217259; } .attribute-mutation { color:#9f3983; } .attribute-light { color:#7d640e; } .attribute-magnet { color:#3d54a5; }
+.merge-attribute-preview { border-color:#ad692c; color:#694322; background:#fff8eaed; max-height:30%; overflow:hidden; }
+.attribute-roster { display:grid; gap:8px; } .attribute-roster button { min-height:52px; border:1px solid #c7d6c0; border-radius:12px; background:#f7fbf1; text-align:left; padding:8px 12px; color:inherit; cursor:pointer; } .attribute-roster span { display:block; font-size:14px; margin-top:4px; }
+@media (max-width:700px) { .attribute-badge { font-size:23px; } }

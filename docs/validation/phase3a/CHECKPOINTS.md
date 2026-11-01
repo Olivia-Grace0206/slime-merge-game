@@ -6,3 +6,5 @@ Git clone認証不可のためGitHub App取得、ローカルsnapshotを基準�
 設計: DropPlan.swap。マージ優先・不成立のみ交換。不正/保存失敗は交換へfallbackしない。GOLDのID+位置照合を保持。属性はreadonly配列{id,level}、属性数3/Lv99は技術暫定。貯蔵はstoredTiersを保ち同順storedAttributesを追加、FIFOを最小差分で拡張。schema5は属性必須、旧schemaは無属性を明示補完。変異は確定時に組ごと一度、5体固有優遇なし。SessionStoreは変更しない。
 
 B: swap Core/プレビュー実装中。以降のSHAはGit履歴と最終PR本文を参照。
+
+C/D: 10属性、生成時抽選/FIFO属性、組ごと継承/+1（暫定）、組1%新規属性変異（暫定）、3属性超過swap、属性バッジ/一覧/詳細/継承プレビュー、schema5とv1〜4移行を実装。重点414テスト成功、型チェック/Build成功。既存fixtureを無属性へ明示し、旧取消をswap期待へ更新。SessionStoreは原文保全。途中失敗ログは最終成功件数に含めない。

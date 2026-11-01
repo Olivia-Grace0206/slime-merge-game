@@ -1,3 +1,4 @@
+import { isAttributes } from '../../domain/attributes'
 import { isTier, type BoardBounds, type GameState } from '../../domain/game'
 import type { GridPosition } from '../../domain/grid'
 import { cellKey, isGridPosition } from '../grid/coordinates'
@@ -40,6 +41,7 @@ export function isGameState(value: unknown): value is GameState {
       !slime.id.trim() ||
       ids.has(slime.id) ||
       !isTier(slime.tier) ||
+      (slime.attributes !== undefined && !isAttributes(slime.attributes)) ||
       slime.tier > s.highestTierReached ||
       !inBounds(b, slime.position)
     )
@@ -59,6 +61,7 @@ export function stateSnapshot(state: GameState): string {
     state.revision,
     [...state.slimes]
       .sort((a, b) => a.id.localeCompare(b.id))
-      .map((s) => [s.id, s.tier, s.position.x, s.position.y]),
+      .map((s) => [s.id, s.tier, s.position.x, s.position.y, s.attributes ?? []]),
   ])
 }
+

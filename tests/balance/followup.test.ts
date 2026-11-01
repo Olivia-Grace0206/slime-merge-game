@@ -26,7 +26,7 @@ function simulate(name: string, seed: number, policy: Policy = 'balanced', multi
   const research: { atMs: number; from: number; to: number; cost: number }[] = []
   function cmd(c: Command, time: number) {
     const old = s, before = s.generator.totalGenerated
-    s = reduceSession(s, c, time, random, { ...sessionRules(s), distribution: profile })
+    s = reduceSession(s, c, time, random, { ...sessionRules(s), attributeChance:0, attributeMutationChance:0, distribution: profile })
     const n = s.generator.totalGenerated - before, H = String(old.game.highestTierReached)
     const stage = stages[H] ??= { generated: 0, tiers: {}, boardLow: 0, steps: 0 }
     for (const t of s.generator.storedTiers.slice(n ? -n : s.generator.storedTiers.length)) { stage.tiers[t] = (stage.tiers[t] ?? 0) + 1; stage.generated++; generated++; if (t <= 2) low++ }
@@ -117,3 +117,4 @@ it('follow-up actual 4x4 table/economy/policy comparisons with censored endgame 
   expect(distribution).toHaveLength(12); expect(policies).toHaveLength(12)
   expect(prices.every(r => r.saleGOLD > 0 && r.research.length > 0)).toBe(true)
 }, 480000)
+

@@ -2,8 +2,8 @@ import { useEffect, useRef, type ReactNode } from 'react'
 import { MAX_TIER } from '../domain/game'
 import { PRESETS, type PresetId } from '../app/presets'
 import { Slime } from './Slime'
-export type Panel = 'help' | 'presets' | 'appearance' | 'settings' | 'shop' | 'slime'
-const TITLES: Record<Panel, string> = { help: '遊び方', presets: '検証用プリセット', appearance: 'スライム一覧・外見確認', settings: '表示設定', shop: 'GOLDショップ', slime: 'スライム詳細' }
+export type Panel = 'help' | 'presets' | 'appearance' | 'settings' | 'shop' | 'slime' | 'attributes'
+const TITLES: Record<Panel, string> = { attributes: 'スライムの属性', help: '遊び方', presets: '検証用プリセット', appearance: 'スライム一覧・外見確認', settings: '表示設定', shop: 'GOLDショップ', slime: 'スライム詳細' }
 export function GameMenu({ panel, onClose, preset, onPreset, reducedEffects, onEffects, onZoom, onResetCamera, extra, normal, onNormal }: {
   extra?: ReactNode; normal: boolean; onNormal: () => void
   panel: Panel | null; onClose: () => void; preset: PresetId; onPreset: (id: PresetId) => void
@@ -24,6 +24,7 @@ export function GameMenu({ panel, onClose, preset, onPreset, reducedEffects, onE
     <div className={`panel-body ${reducedEffects ? 'reduced-effects' : ''}`}>
       {extra}
       {panel === 'help' && <>
+        <p>マージできない占有マスへのドロップは位置交換（⇄点線枠）。マージが成立する場合は進化を優先します。</p><p>属性メニューで各個体の種類・Lvを確認できます。特殊効果は次段階で実装します。</p>
         <p>同じTierのスライムへ重ね、離すとマージします。</p>
         <div className="recipes"><strong>3体 → 上位1体</strong><strong>5体 → 上位2体</strong></div>
         <ul><li>縦・横・斜めの8方向で連結。5体優先、次に3体、余りは保持。</li><li>枠の番号＝マージ組、↑＝出力予定セル、点線＝残る個体。</li><li>空きマスへの移動・隣接だけではマージしません。</li><li>空きマスからドラッグでパン。ホイール / 2本指ピンチでズーム。</li><li>2本指になると素材ドラッグを取り消します。全ての指を離すと再操作できます。</li><li>Tabでマス移動 → Enter / Spaceで選択 → 移動先で再度Enter。Escapeで取消。</li></ul>
@@ -53,4 +54,5 @@ export function GameMenu({ panel, onClose, preset, onPreset, reducedEffects, onE
     </div>
   </dialog>
 }
+
 

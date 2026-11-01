@@ -14,7 +14,7 @@ function simulate(profile:DistributionProfile,seed:number){
  const random=rng(seed);let s=freshSession(0), fullSteps=0, stopped=0, mergeReady=0, steps=0, samples=0, tierSum=0, near=0, merges=0, sales=0, goldIncome=0, saleIncome=0
  const reached:Record<string,number|null>={5:null,10:null,20:null,30:null,40:null}
  const dt=2000,limit=6*3600000
- function cmd(c:Command,now:number){const old=s,beforeGenerated=s.generator.totalGenerated;s=reduceSession(s,c,now,random,{...sessionRules(s),distribution:profile});
+ function cmd(c:Command,now:number){const old=s,beforeGenerated=s.generator.totalGenerated;s=reduceSession(s,c,now,random,{...sessionRules(s), attributeChance:0, attributeMutationChance:0,distribution:profile});
   goldIncome+=Math.max(0,s.wallet.gold-old.wallet.gold-(c.type==='sell'?Math.min(2**(old.game.slimes.find(x=>x.id===c.id)?.tier??0),Number.MAX_SAFE_INTEGER-old.wallet.gold):0))
   const n=s.generator.totalGenerated-beforeGenerated
   if(n>0){const created=s.generator.storedTiers.slice(-n);samples+=n;for(const t of created){tierSum+=t;if(t>=old.game.highestTierReached-1)near++}}
@@ -56,3 +56,4 @@ it('Polish 4x4 progression: three distributions, seeded random placements and ac
  mkdirSync('docs/balance/phase2-polish-followup/legacy-gaussian',{recursive:true});writeFileSync('docs/balance/phase2-polish-followup/legacy-gaussian/simulation.json',JSON.stringify({model:'4x4 actual Core; random FIFO; one board action / 2s plus tap, 5 preferred then 3 at >=13, periodic duplicate sale / 30s, shops bought when affordable. Seek gold then hold source. Five fixed seeds, six-hour censor; receipt times 350ms. Bot comparison, not a human time forecast.',results,distributions,rewards},null,2))
  expect(results).toHaveLength(15)
 },240000)
+

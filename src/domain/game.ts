@@ -1,10 +1,11 @@
+import type { Attributes } from './attributes'
 import type { GridPosition } from './grid'
 
 export const MAX_TIER = 40
 export function isTier(value: unknown): value is number {
   return typeof value === 'number' && Number.isInteger(value) && value >= 1 && value <= MAX_TIER
 }
-export type Slime = Readonly<{ id: string; tier: number; position: GridPosition }>
+export type Slime = Readonly<{ id: string; tier: number; position: GridPosition; attributes?: Attributes }>
 export type BoardBounds = Readonly<{ origin: GridPosition; width: number; height: number }>
 export type GameState = Readonly<{
   bounds: BoardBounds
@@ -15,6 +16,7 @@ export type GameState = Readonly<{
 export type MergeGroup = Readonly<{
   number: number
   consumedIds: readonly string[]
+  attributes?: Attributes
   outputs: readonly GridPosition[]
 }>
 export type InvalidReason =

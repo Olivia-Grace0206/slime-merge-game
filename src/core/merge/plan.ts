@@ -1,3 +1,4 @@
+import { inheritAttributes } from '../attributes/inheritance'
 import {
   MAX_TIER,
   isTier,
@@ -91,10 +92,13 @@ export function planDrop(state: GameState, sourceId: string, target: GridPositio
   for (const size of sizes) {
     const members = ordered.slice(cursor, cursor + size)
     cursor += size
+    const attributes = inheritAttributes(members.map(s => s.attributes ?? []))
+    if (attributes === null) return swap('attribute-limit')
     const cells = members.map((s) => s.position).sort((a, b) => compareNear(target, a, b))
     // Target is uniquely distance zero in the first group, hence always first.
     groups.push({
       number: groups.length + 1,
+      ...(members.some(s => s.attributes !== undefined) ? { attributes: attributes! } : {}),
       consumedIds: members.map((s) => s.id),
       outputs: cells.slice(0, size === 5 ? 2 : 1).map((p) => ({ ...p })),
     })
