@@ -209,6 +209,9 @@ export function reduceSession(s: Session, command: Command, now: number, random:
       next = {...next, generator:{...next.generator, progressMs:Math.min(newRules.intervalMs-1,Math.floor(progressRatio*newRules.intervalMs))}}
     if (newNatureInterval !== oldNatureInterval)
       next = {...next, nature:{...next.nature, progressMs:newNatureInterval ? Math.min(newNatureInterval-1,Math.floor(natureRatio*newNatureInterval)) : 0}}
+    // A click can fill the last slot AFTER ordinary/nature accrual. Pause both clocks atomically.
+    if (next.generator.storedTiers.length === newRules.capacity)
+      next = {...next,generator:{...next.generator,progressMs:0},nature:{...next.nature,progressMs:0}}
     if (command.type === 'pay') {
       // Explicit replay requests must not fall through to normal tick payment.
       const paid = pay(next, command.eventId, command.expectedPaid, now, random)

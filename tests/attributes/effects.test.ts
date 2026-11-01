@@ -173,6 +173,13 @@ describe('nature production, merge genetics and deterministic finalization',()=>
   const removed=reduceSession(produced,{type:'sell',id:'p-1'},180000,quiet)
   expect(removed.nature.progressMs).toBe(0);expect(boardEffects(removed.game).natureIntervalMs).toBeNull()
  })
+ it('tap filling the final stock slot clears nature progress in the same save',()=>{
+  const s=stock(board([a('nature')]),Array(9).fill(1))
+  const ready={...s,generator:{...s.generator,progressMs:14000},nature:{...s.nature,progressMs:5000}}
+  const next=reduceSession(ready,{type:'tap'},0,quiet)
+  expect(next.generator.storedTiers).toHaveLength(10);expect(next.nature.progressMs).toBe(0)
+  expect(isSession(next)).toBe(true);expect(decodeSession(encodeSession(next),0).ok).toBe(true)
+ })
  it('nature clock rollback rebases without credit and movement keeps one aggregate timer',()=>{
   const s={...board([a('nature')]),savedAtMs:100000,generator:{...freshSession(0).generator,updatedAtMs:100000},nature:{progressMs:500,totalGenerated:0,updatedAtMs:100000}}
   const n=reduceSession(s,{type:'tick'},1,quiet);expect(n.nature.progressMs).toBe(500);expect(n.nature.updatedAtMs).toBe(1)
