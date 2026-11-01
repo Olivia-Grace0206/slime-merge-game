@@ -357,3 +357,7 @@ progress::-webkit-progress-value { background: linear-gradient(90deg,#79b65b,#ab
 .mode-button { flex:0 0 44px; }
 
 .add-label small { display:block; margin:0; line-height:1.1; }
+
+/* Risk must remain above the held sprite and before optional group details. */
+.operation-preview { z-index:30; }
+.merge-attribute-preview > .dark-risk { display:block; font-size:11px; line-height:1.3; }

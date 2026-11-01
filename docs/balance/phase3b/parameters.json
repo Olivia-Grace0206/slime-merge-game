@@ -1,0 +1,2564 @@
+{
+  "provisional": true,
+  "pace": [
+    {
+      "base": 10000,
+      "factor": 0.9,
+      "tap": 350,
+      "lv": 0,
+      "intervalMs": 10000,
+      "naturalPerMinute": 6,
+      "tenClickSeconds": 10,
+      "unboundedFloorLv": 16,
+      "floorReachableAtShop16": true,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.3425,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6608333333333334,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.4141666666666667,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6977777777777778,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 10000,
+      "factor": 0.9,
+      "tap": 350,
+      "lv": 1,
+      "intervalMs": 9000,
+      "naturalPerMinute": 6.666666666666667,
+      "tenClickSeconds": 13.5,
+      "unboundedFloorLv": 16,
+      "floorReachableAtShop16": true,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.41194444444444445,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6963888888888888,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.48388888888888887,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.7336111111111111,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 10000,
+      "factor": 0.9,
+      "tap": 350,
+      "lv": 5,
+      "intervalMs": 5905,
+      "naturalPerMinute": 10.160880609652837,
+      "tenClickSeconds": 27.5,
+      "unboundedFloorLv": 16,
+      "floorReachableAtShop16": true,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.6197222222222222,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.8033333333333333,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.6916666666666667,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.8411111111111111,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 10000,
+      "factor": 0.9,
+      "tap": 350,
+      "lv": 10,
+      "intervalMs": 3487,
+      "naturalPerMinute": 17.20676799541153,
+      "tenClickSeconds": 26.15,
+      "unboundedFloorLv": 16,
+      "floorReachableAtShop16": true,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.7919444444444445,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.8922222222222222,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.8280555555555555,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.9113888888888889,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 10000,
+      "factor": 0.9,
+      "tap": 350,
+      "lv": 16,
+      "intervalMs": 2000,
+      "naturalPerMinute": 30,
+      "tenClickSeconds": 15,
+      "unboundedFloorLv": 16,
+      "floorReachableAtShop16": true,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.8955555555555555,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.9455555555555556,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.8963888888888889,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.9463888888888888,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 12000,
+      "factor": 0.95,
+      "tap": 100,
+      "lv": 0,
+      "intervalMs": 12000,
+      "naturalPerMinute": 5,
+      "tenClickSeconds": 10,
+      "unboundedFloorLv": 35,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.2025,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.5894444444444444,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.30916666666666665,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6436111111111111,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 12000,
+      "factor": 0.95,
+      "tap": 100,
+      "lv": 1,
+      "intervalMs": 11400,
+      "naturalPerMinute": 5.2631578947368425,
+      "tenClickSeconds": 11,
+      "unboundedFloorLv": 35,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.2386111111111111,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6075,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.3447222222222222,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6619444444444444,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 12000,
+      "factor": 0.95,
+      "tap": 100,
+      "lv": 5,
+      "intervalMs": 9285,
+      "naturalPerMinute": 6.462035541195476,
+      "tenClickSeconds": 15,
+      "unboundedFloorLv": 35,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.37833333333333335,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6791666666666667,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.4836111111111111,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.7336111111111111,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 12000,
+      "factor": 0.95,
+      "tap": 100,
+      "lv": 10,
+      "intervalMs": 7185,
+      "naturalPerMinute": 8.350730688935283,
+      "tenClickSeconds": 20,
+      "unboundedFloorLv": 35,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.5172222222222222,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.7505555555555555,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.6213888888888889,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.805,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 12000,
+      "factor": 0.95,
+      "tap": 100,
+      "lv": 16,
+      "intervalMs": 5282,
+      "naturalPerMinute": 11.359333585762968,
+      "tenClickSeconds": 26,
+      "unboundedFloorLv": 35,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.6547222222222222,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.8216666666666667,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.7580555555555556,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.875,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 12000,
+      "factor": 0.95,
+      "tap": 200,
+      "lv": 0,
+      "intervalMs": 12000,
+      "naturalPerMinute": 5,
+      "tenClickSeconds": 10,
+      "unboundedFloorLv": 35,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.2025,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.5894444444444444,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.30916666666666665,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6436111111111111,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 12000,
+      "factor": 0.95,
+      "tap": 200,
+      "lv": 1,
+      "intervalMs": 11400,
+      "naturalPerMinute": 5.2631578947368425,
+      "tenClickSeconds": 12,
+      "unboundedFloorLv": 35,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.2386111111111111,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6075,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.34555555555555556,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6625,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 12000,
+      "factor": 0.95,
+      "tap": 200,
+      "lv": 5,
+      "intervalMs": 9285,
+      "naturalPerMinute": 6.462035541195476,
+      "tenClickSeconds": 20,
+      "unboundedFloorLv": 35,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.37833333333333335,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6791666666666667,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.5177777777777778,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.7513888888888889,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 12000,
+      "factor": 0.95,
+      "tap": 200,
+      "lv": 10,
+      "intervalMs": 7185,
+      "naturalPerMinute": 8.350730688935283,
+      "tenClickSeconds": 30,
+      "unboundedFloorLv": 35,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.5172222222222222,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.7505555555555555,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.6230555555555556,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.8066666666666666,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 12000,
+      "factor": 0.95,
+      "tap": 200,
+      "lv": 16,
+      "intervalMs": 5282,
+      "naturalPerMinute": 11.359333585762968,
+      "tenClickSeconds": 39.61,
+      "unboundedFloorLv": 35,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.6547222222222222,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.8216666666666667,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.7925,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.8925,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 12000,
+      "factor": 0.97,
+      "tap": 100,
+      "lv": 0,
+      "intervalMs": 12000,
+      "naturalPerMinute": 5,
+      "tenClickSeconds": 10,
+      "unboundedFloorLv": 59,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.2025,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.5894444444444444,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.30916666666666665,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6436111111111111,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 12000,
+      "factor": 0.97,
+      "tap": 100,
+      "lv": 1,
+      "intervalMs": 11640,
+      "naturalPerMinute": 5.154639175257732,
+      "tenClickSeconds": 11,
+      "unboundedFloorLv": 59,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.2063888888888889,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.5908333333333333,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.3433333333333333,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6611111111111111,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 12000,
+      "factor": 0.97,
+      "tap": 100,
+      "lv": 5,
+      "intervalMs": 10305,
+      "naturalPerMinute": 5.822416302765648,
+      "tenClickSeconds": 15,
+      "unboundedFloorLv": 59,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.30916666666666665,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6433333333333333,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.41555555555555557,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6986111111111111,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 12000,
+      "factor": 0.97,
+      "tap": 100,
+      "lv": 10,
+      "intervalMs": 8849,
+      "naturalPerMinute": 6.780427166911515,
+      "tenClickSeconds": 20,
+      "unboundedFloorLv": 59,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.4127777777777778,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6966666666666667,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.5513888888888889,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.7683333333333333,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 12000,
+      "factor": 0.97,
+      "tap": 100,
+      "lv": 16,
+      "intervalMs": 7371,
+      "naturalPerMinute": 8.14000814000814,
+      "tenClickSeconds": 26,
+      "unboundedFloorLv": 59,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.5163888888888889,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.75,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.6227777777777778,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.8052777777777778,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 12000,
+      "factor": 0.97,
+      "tap": 200,
+      "lv": 0,
+      "intervalMs": 12000,
+      "naturalPerMinute": 5,
+      "tenClickSeconds": 10,
+      "unboundedFloorLv": 59,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.2025,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.5894444444444444,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.30916666666666665,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6436111111111111,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 12000,
+      "factor": 0.97,
+      "tap": 200,
+      "lv": 1,
+      "intervalMs": 11640,
+      "naturalPerMinute": 5.154639175257732,
+      "tenClickSeconds": 12,
+      "unboundedFloorLv": 59,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.2063888888888889,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.5908333333333333,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.3441666666666667,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6616666666666666,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 12000,
+      "factor": 0.97,
+      "tap": 200,
+      "lv": 5,
+      "intervalMs": 10305,
+      "naturalPerMinute": 5.822416302765648,
+      "tenClickSeconds": 20,
+      "unboundedFloorLv": 59,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.30916666666666665,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6433333333333333,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.4502777777777778,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.7163888888888889,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 12000,
+      "factor": 0.97,
+      "tap": 200,
+      "lv": 10,
+      "intervalMs": 8849,
+      "naturalPerMinute": 6.780427166911515,
+      "tenClickSeconds": 30,
+      "unboundedFloorLv": 59,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.4127777777777778,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6966666666666667,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.6194444444444445,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.8033333333333333,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 12000,
+      "factor": 0.97,
+      "tap": 200,
+      "lv": 16,
+      "intervalMs": 7371,
+      "naturalPerMinute": 8.14000814000814,
+      "tenClickSeconds": 42,
+      "unboundedFloorLv": 59,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.5163888888888889,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.75,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.6575,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.8238888888888889,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 15000,
+      "factor": 0.95,
+      "tap": 100,
+      "lv": 0,
+      "intervalMs": 15000,
+      "naturalPerMinute": 4,
+      "tenClickSeconds": 10,
+      "unboundedFloorLv": 40,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.4825,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.13361111111111112,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.5544444444444444,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 15000,
+      "factor": 0.95,
+      "tap": 100,
+      "lv": 1,
+      "intervalMs": 14250,
+      "naturalPerMinute": 4.2105263157894735,
+      "tenClickSeconds": 11,
+      "unboundedFloorLv": 40,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.024722222222222222,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.5013888888888889,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.17277777777777778,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.5733333333333334,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 15000,
+      "factor": 0.95,
+      "tap": 100,
+      "lv": 5,
+      "intervalMs": 11607,
+      "naturalPerMinute": 5.169294391315585,
+      "tenClickSeconds": 15,
+      "unboundedFloorLv": 40,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.20694444444444443,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.5908333333333333,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.37833333333333335,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6788888888888889,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 15000,
+      "factor": 0.95,
+      "tap": 100,
+      "lv": 10,
+      "intervalMs": 8981,
+      "naturalPerMinute": 6.680770515532791,
+      "tenClickSeconds": 20,
+      "unboundedFloorLv": 40,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.41194444444444445,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6963888888888888,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.5513888888888889,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.7680555555555556,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 15000,
+      "factor": 0.95,
+      "tap": 100,
+      "lv": 16,
+      "intervalMs": 6602,
+      "naturalPerMinute": 9.088155104513783,
+      "tenClickSeconds": 26,
+      "unboundedFloorLv": 40,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.5519444444444445,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.7686111111111111,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.6569444444444444,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.8230555555555555,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 15000,
+      "factor": 0.95,
+      "tap": 200,
+      "lv": 0,
+      "intervalMs": 15000,
+      "naturalPerMinute": 4,
+      "tenClickSeconds": 10,
+      "unboundedFloorLv": 40,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.4825,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.13361111111111112,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.5544444444444444,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 15000,
+      "factor": 0.95,
+      "tap": 200,
+      "lv": 1,
+      "intervalMs": 14250,
+      "naturalPerMinute": 4.2105263157894735,
+      "tenClickSeconds": 12,
+      "unboundedFloorLv": 40,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.024722222222222222,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.5013888888888889,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.2036111111111111,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.5894444444444444,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 15000,
+      "factor": 0.95,
+      "tap": 200,
+      "lv": 5,
+      "intervalMs": 11607,
+      "naturalPerMinute": 5.169294391315585,
+      "tenClickSeconds": 20,
+      "unboundedFloorLv": 40,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.20694444444444443,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.5908333333333333,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.41333333333333333,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6969444444444445,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 15000,
+      "factor": 0.95,
+      "tap": 200,
+      "lv": 10,
+      "intervalMs": 8981,
+      "naturalPerMinute": 6.680770515532791,
+      "tenClickSeconds": 30,
+      "unboundedFloorLv": 40,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.41194444444444445,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6963888888888888,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.6194444444444445,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.8033333333333333,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 15000,
+      "factor": 0.95,
+      "tap": 200,
+      "lv": 16,
+      "intervalMs": 6602,
+      "naturalPerMinute": 9.088155104513783,
+      "tenClickSeconds": 42,
+      "unboundedFloorLv": 40,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.5519444444444445,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.7686111111111111,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.6919444444444445,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.8413888888888889,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 15000,
+      "factor": 0.97,
+      "tap": 100,
+      "lv": 0,
+      "intervalMs": 15000,
+      "naturalPerMinute": 4,
+      "tenClickSeconds": 10,
+      "unboundedFloorLv": 67,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.4825,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.13361111111111112,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.5544444444444444,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 15000,
+      "factor": 0.97,
+      "tap": 100,
+      "lv": 1,
+      "intervalMs": 14550,
+      "naturalPerMinute": 4.123711340206185,
+      "tenClickSeconds": 11,
+      "unboundedFloorLv": 67,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.48444444444444446,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.16972222222222222,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.5722222222222222,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 15000,
+      "factor": 0.97,
+      "tap": 100,
+      "lv": 5,
+      "intervalMs": 12881,
+      "naturalPerMinute": 4.658023445384675,
+      "tenClickSeconds": 15,
+      "unboundedFloorLv": 67,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.13277777777777777,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.5538888888888889,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.27805555555555556,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6275,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 15000,
+      "factor": 0.97,
+      "tap": 100,
+      "lv": 10,
+      "intervalMs": 11061,
+      "naturalPerMinute": 5.424464334147003,
+      "tenClickSeconds": 20,
+      "unboundedFloorLv": 67,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.24194444444444443,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6088888888888889,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.41555555555555557,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6983333333333334,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 15000,
+      "factor": 0.97,
+      "tap": 100,
+      "lv": 16,
+      "intervalMs": 9214,
+      "naturalPerMinute": 6.5118298241805945,
+      "tenClickSeconds": 26,
+      "unboundedFloorLv": 67,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.3788888888888889,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6794444444444444,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.5527777777777778,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.7691666666666667,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 15000,
+      "factor": 0.97,
+      "tap": 200,
+      "lv": 0,
+      "intervalMs": 15000,
+      "naturalPerMinute": 4,
+      "tenClickSeconds": 10,
+      "unboundedFloorLv": 67,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.4825,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.13361111111111112,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.5544444444444444,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 15000,
+      "factor": 0.97,
+      "tap": 200,
+      "lv": 1,
+      "intervalMs": 14550,
+      "naturalPerMinute": 4.123711340206185,
+      "tenClickSeconds": 12,
+      "unboundedFloorLv": 67,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.48444444444444446,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.17194444444444446,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.5727777777777778,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 15000,
+      "factor": 0.97,
+      "tap": 200,
+      "lv": 5,
+      "intervalMs": 12881,
+      "naturalPerMinute": 4.658023445384675,
+      "tenClickSeconds": 20,
+      "unboundedFloorLv": 67,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.13277777777777777,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.5538888888888889,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.3441666666666667,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6616666666666666,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 15000,
+      "factor": 0.97,
+      "tap": 200,
+      "lv": 10,
+      "intervalMs": 11061,
+      "naturalPerMinute": 5.424464334147003,
+      "tenClickSeconds": 30,
+      "unboundedFloorLv": 67,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.24194444444444443,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6088888888888889,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.4513888888888889,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.7175,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 15000,
+      "factor": 0.97,
+      "tap": 200,
+      "lv": 16,
+      "intervalMs": 9214,
+      "naturalPerMinute": 6.5118298241805945,
+      "tenClickSeconds": 42,
+      "unboundedFloorLv": 67,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.3788888888888889,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6794444444444444,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.6211111111111111,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.8047222222222222,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 18000,
+      "factor": 0.95,
+      "tap": 100,
+      "lv": 0,
+      "intervalMs": 18000,
+      "naturalPerMinute": 3.3333333333333335,
+      "tenClickSeconds": 10,
+      "unboundedFloorLv": 43,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0,
+          "withdrawn": 200
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.37527777777777777,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0,
+          "withdrawn": 233
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.4647222222222222,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 18000,
+      "factor": 0.95,
+      "tap": 100,
+      "lv": 1,
+      "intervalMs": 17100,
+      "naturalPerMinute": 3.508771929824561,
+      "tenClickSeconds": 11,
+      "unboundedFloorLv": 43,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0,
+          "withdrawn": 210
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.3952777777777778,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.004166666666666667,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.4847222222222222,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 18000,
+      "factor": 0.95,
+      "tap": 100,
+      "lv": 5,
+      "intervalMs": 13928,
+      "naturalPerMinute": 4.30786904078116,
+      "tenClickSeconds": 15,
+      "unboundedFloorLv": 43,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.05694444444444444,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.5183333333333333,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.21083333333333334,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.5927777777777777,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 18000,
+      "factor": 0.95,
+      "tap": 100,
+      "lv": 10,
+      "intervalMs": 10777,
+      "naturalPerMinute": 5.567412081284217,
+      "tenClickSeconds": 20,
+      "unboundedFloorLv": 43,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.27444444444444444,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6258333333333334,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.4166666666666667,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6991666666666667,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 18000,
+      "factor": 0.95,
+      "tap": 100,
+      "lv": 16,
+      "intervalMs": 7922,
+      "naturalPerMinute": 7.573844988639233,
+      "tenClickSeconds": 26,
+      "unboundedFloorLv": 43,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.48138888888888887,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.7319444444444444,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.6211111111111111,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.8044444444444444,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 18000,
+      "factor": 0.95,
+      "tap": 200,
+      "lv": 0,
+      "intervalMs": 18000,
+      "naturalPerMinute": 3.3333333333333335,
+      "tenClickSeconds": 10,
+      "unboundedFloorLv": 43,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0,
+          "withdrawn": 200
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.37527777777777777,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0,
+          "withdrawn": 233
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.4647222222222222,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 18000,
+      "factor": 0.95,
+      "tap": 200,
+      "lv": 1,
+      "intervalMs": 17100,
+      "naturalPerMinute": 3.508771929824561,
+      "tenClickSeconds": 12,
+      "unboundedFloorLv": 43,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0,
+          "withdrawn": 210
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.3952777777777778,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.0125,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.48583333333333334,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 18000,
+      "factor": 0.95,
+      "tap": 200,
+      "lv": 5,
+      "intervalMs": 13928,
+      "naturalPerMinute": 4.30786904078116,
+      "tenClickSeconds": 20,
+      "unboundedFloorLv": 43,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.05694444444444444,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.5183333333333333,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.27694444444444444,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6269444444444444,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 18000,
+      "factor": 0.95,
+      "tap": 200,
+      "lv": 10,
+      "intervalMs": 10777,
+      "naturalPerMinute": 5.567412081284217,
+      "tenClickSeconds": 30,
+      "unboundedFloorLv": 43,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.27444444444444444,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6258333333333334,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.4847222222222222,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.7341666666666666,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 18000,
+      "factor": 0.95,
+      "tap": 200,
+      "lv": 16,
+      "intervalMs": 7922,
+      "naturalPerMinute": 7.573844988639233,
+      "tenClickSeconds": 42,
+      "unboundedFloorLv": 43,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.48138888888888887,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.7319444444444444,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.6236111111111111,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.8066666666666666,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 18000,
+      "factor": 0.97,
+      "tap": 100,
+      "lv": 0,
+      "intervalMs": 18000,
+      "naturalPerMinute": 3.3333333333333335,
+      "tenClickSeconds": 10,
+      "unboundedFloorLv": 73,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0,
+          "withdrawn": 200
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.37527777777777777,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0,
+          "withdrawn": 233
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.4647222222222222,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 18000,
+      "factor": 0.97,
+      "tap": 100,
+      "lv": 1,
+      "intervalMs": 17460,
+      "naturalPerMinute": 3.4364261168384878,
+      "tenClickSeconds": 11,
+      "unboundedFloorLv": 73,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0,
+          "withdrawn": 206
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.39305555555555555,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.48333333333333334,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 18000,
+      "factor": 0.97,
+      "tap": 100,
+      "lv": 5,
+      "intervalMs": 15457,
+      "naturalPerMinute": 3.8817364300963964,
+      "tenClickSeconds": 15,
+      "unboundedFloorLv": 73,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0,
+          "withdrawn": 232
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.46444444444444444,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.1686111111111111,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.5719444444444445,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 18000,
+      "factor": 0.97,
+      "tap": 100,
+      "lv": 10,
+      "intervalMs": 13274,
+      "naturalPerMinute": 4.520114509567576,
+      "tenClickSeconds": 20,
+      "unboundedFloorLv": 73,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.09916666666666667,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.5366666666666666,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.3113888888888889,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6447222222222222,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 18000,
+      "factor": 0.97,
+      "tap": 100,
+      "lv": 16,
+      "intervalMs": 11057,
+      "naturalPerMinute": 5.4264266980193545,
+      "tenClickSeconds": 26,
+      "unboundedFloorLv": 73,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.24194444444444443,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6088888888888889,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.4502777777777778,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.7163888888888889,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 18000,
+      "factor": 0.97,
+      "tap": 200,
+      "lv": 0,
+      "intervalMs": 18000,
+      "naturalPerMinute": 3.3333333333333335,
+      "tenClickSeconds": 10,
+      "unboundedFloorLv": 73,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0,
+          "withdrawn": 200
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.37527777777777777,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0,
+          "withdrawn": 233
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.4647222222222222,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 18000,
+      "factor": 0.97,
+      "tap": 200,
+      "lv": 1,
+      "intervalMs": 17460,
+      "naturalPerMinute": 3.4364261168384878,
+      "tenClickSeconds": 12,
+      "unboundedFloorLv": 73,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0,
+          "withdrawn": 206
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.39305555555555555,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.4841666666666667,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 18000,
+      "factor": 0.97,
+      "tap": 200,
+      "lv": 5,
+      "intervalMs": 15457,
+      "naturalPerMinute": 3.8817364300963964,
+      "tenClickSeconds": 20,
+      "unboundedFloorLv": 73,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0,
+          "withdrawn": 232
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.46444444444444444,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.20666666666666667,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.5908333333333333,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 18000,
+      "factor": 0.97,
+      "tap": 200,
+      "lv": 10,
+      "intervalMs": 13274,
+      "naturalPerMinute": 4.520114509567576,
+      "tenClickSeconds": 30,
+      "unboundedFloorLv": 73,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.09916666666666667,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.5366666666666666,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.4122222222222222,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6963888888888888,
+          "withdrawn": 120
+        }
+      ]
+    },
+    {
+      "base": 18000,
+      "factor": 0.97,
+      "tap": 200,
+      "lv": 16,
+      "intervalMs": 11057,
+      "naturalPerMinute": 5.4264266980193545,
+      "tenClickSeconds": 42,
+      "unboundedFloorLv": 73,
+      "floorReachableAtShop16": false,
+      "stockScenarios": [
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.24194444444444443,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 0,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.6088888888888889,
+          "withdrawn": 120
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 30,
+          "fullRatio": 0.5519444444444445,
+          "withdrawn": 240
+        },
+        {
+          "clicksPerMinute": 10,
+          "withdrawEverySeconds": 60,
+          "fullRatio": 0.7688888888888888,
+          "withdrawn": 120
+        }
+      ]
+    }
+  ],
+  "levels": [
+    {
+      "lv": 1,
+      "linear": 1,
+      "diminishing": 1,
+      "fireBaseFraction": 0.08,
+      "goldMultiplier": 1.15,
+      "darkMultiplier": 2
+    },
+    {
+      "lv": 5,
+      "linear": 2.2,
+      "diminishing": 1.6965784284662087,
+      "fireBaseFraction": 0.1357262742772967,
+      "goldMultiplier": 1.2544867642699313,
+      "darkMultiplier": 2.696578428466209
+    },
+    {
+      "lv": 10,
+      "linear": 3.6999999999999997,
+      "diminishing": 1.9965784284662087,
+      "fireBaseFraction": 0.1597262742772967,
+      "goldMultiplier": 1.2994867642699313,
+      "darkMultiplier": 2.9965784284662087
+    },
+    {
+      "lv": 20,
+      "linear": 6.7,
+      "diminishing": 2.2965784284662085,
+      "fireBaseFraction": 0.18372627427729668,
+      "goldMultiplier": 1.3444867642699312,
+      "darkMultiplier": 3.2965784284662085
+    },
+    {
+      "lv": 50,
+      "linear": 15.7,
+      "diminishing": 2.6931568569324176,
+      "fireBaseFraction": 0.21545254855459342,
+      "goldMultiplier": 1.4039735285398627,
+      "darkMultiplier": 3.6931568569324176
+    },
+    {
+      "lv": 99,
+      "linear": 30.4,
+      "diminishing": 2.988806986023883,
+      "fireBaseFraction": 0.23910455888191062,
+      "goldMultiplier": 1.4483210479035824,
+      "darkMultiplier": 3.988806986023883
+    }
+  ],
+  "maxima": [
+    {
+      "id": "ice",
+      "iceReduction": 0.25,
+      "tapBonus": 0,
+      "natureIntervalMs": null,
+      "normalChance": 0.03,
+      "focusChance": 0.35,
+      "magnetWeights": [
+        1
+      ]
+    },
+    {
+      "id": "lightning",
+      "iceReduction": 0,
+      "tapBonus": 0.5,
+      "natureIntervalMs": null,
+      "normalChance": 0.03,
+      "focusChance": 0.35,
+      "magnetWeights": [
+        1
+      ]
+    },
+    {
+      "id": "nature",
+      "iceReduction": 0,
+      "tapBonus": 0,
+      "natureIntervalMs": 40000,
+      "normalChance": 0.03,
+      "focusChance": 0.35,
+      "magnetWeights": [
+        1
+      ]
+    },
+    {
+      "id": "luck",
+      "iceReduction": 0,
+      "tapBonus": 0,
+      "natureIntervalMs": null,
+      "normalChance": 0.15,
+      "focusChance": 0.83,
+      "magnetWeights": [
+        1
+      ]
+    },
+    {
+      "id": "magnet",
+      "iceReduction": 0,
+      "tapBonus": 0,
+      "natureIntervalMs": null,
+      "normalChance": 0.03,
+      "focusChance": 0.35,
+      "magnetWeights": [
+        4
+      ]
+    }
+  ],
+  "config": {
+    "levelSlope": 0.3,
+    "fireRate": 0.08,
+    "goldRate": 0.15,
+    "darkRate": 1,
+    "saleComboRate": 0.05,
+    "darkLossChance": 0.2,
+    "lightRate": 0.1,
+    "lightCap": 0.25,
+    "iceRate": 0.015,
+    "iceCap": 0.25,
+    "lightningRate": 0.06,
+    "lightningCap": 0.5,
+    "iceComboRate": 0.005,
+    "tapComboRate": 0.04,
+    "natureBaseMs": 180000,
+    "natureMinimumMs": 40000,
+    "luckRate": 0.0075,
+    "luckComboRate": 0.005,
+    "luckCap": 0.12,
+    "normalChance": 0.03,
+    "normalChanceCap": 0.15,
+    "focusChance": 0.35,
+    "focusChanceCap": 0.85,
+    "focusLuckScale": 4,
+    "mutationBase": 0.01,
+    "mutationRate": 0.01,
+    "mutationComboRate": 0.005,
+    "mutationCap": 0.06,
+    "magnetRadius": 2,
+    "magnetRate": 0.6,
+    "magnetWeightCap": 4
+  },
+  "darkComparison": {
+    "chance": 0.2,
+    "group": {
+      "expectedDarkOutputs": 1.6,
+      "variance": 0.64,
+      "anyLoss": 0.2
+    },
+    "perOutput": {
+      "expectedDarkOutputs": 1.6,
+      "variance": 0.32,
+      "anyLoss": 0.36
+    },
+    "adopted": "one shared trial per merge group; no five-merge bonus"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "uniqueChecks": 530,
+  "failed": 0,
+  "browser": "Chromium134 headless shell / Playwright1.51.1",
+  "realDevices": false,
+  "suites": [
+    {
+      "suite": "phase1-1",
+      "passed": 120,
+      "failed": 0,
+      "evidence": "docs/validation/phase3b/browser-results/phase1-1.json"
+    },
+    {
+      "suite": "phase3a",
+      "passed": 74,
+      "failed": 0,
+      "evidence": "docs/validation/phase3b/browser-results/phase3a.json"
+    },
+    {
+      "suite": "followup",
+      "passed": 101,
+      "failed": 0,
+      "evidence": "docs/validation/phase3b/browser-results/followup.json"
+    },
+    {
+      "suite": "polish-input",
+      "passed": 36,
+      "failed": 0,
+      "evidence": "docs/validation/phase3b/browser-results/polish-input.json"
+    },
+    {
+      "suite": "phase2-polish",
+      "passed": 60,
+      "failed": 0,
+      "evidence": "docs/validation/phase3b/browser-results/phase2-polish.json"
+    },
+    {
+      "suite": "phase1",
+      "passed": 54,
+      "failed": 0,
+      "evidence": "docs/validation/phase3b/browser-results/phase1.json"
+    },
+    {
+      "suite": "followup-compare",
+      "passed": 3,
+      "failed": 0,
+      "evidence": "docs/validation/phase3b/browser-results/followup-compare.json"
+    },
+    {
+      "suite": "phase3b",
+      "passed": 82,
+      "failed": 0,
+      "evidence": "docs/validation/phase3b/browser-results/phase3b.json"
+    }
+  ]
+}

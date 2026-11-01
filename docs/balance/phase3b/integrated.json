@@ -1,0 +1,3377 @@
+{
+  "provisional": true,
+  "model": "Actual immutable production Session/Core,4x4,8h right censor,5s decision; click every30s (2/min); random FIFO; actual move/merge/sell/research/shop. No oracle auto merge. Explicit Lv5 Tier1 showcase loadouts: production/place-support holders retained, sale/genetic/combo holders join ordinary legal merges/sales; showcase conditions, not naturally earned build forecasts. 3seeds×2shop policies×8styles. Focus tries safe10 else falls back normal on stock pressure. GOLD events use normal tick cadence, no extra privileged receipt scheduling. Ideal inventory experiment separate, no research or spatial cost.",
+  "summaries": [
+    {
+      "style": "normal",
+      "metrics": {
+        "generatedPerMinute": {
+          "mean": 6.235483006687329,
+          "min": 5.386666666666667,
+          "max": 7.158120805369127,
+          "standardDeviation": 0.8266075691426539
+        },
+        "adds": {
+          "mean": 1861.6666666666667,
+          "min": 1615,
+          "max": 2239,
+          "standardDeviation": 258.9811232932281
+        },
+        "taps": {
+          "mean": 601.6666666666666,
+          "min": 501,
+          "max": 653,
+          "standardDeviation": 48.26892259921377
+        },
+        "attributes": {
+          "mean": 57.166666666666664,
+          "min": 47,
+          "max": 70,
+          "standardDeviation": 8.173466556826153
+        },
+        "averageGoldPerMinute": {
+          "mean": 14351516232.510704,
+          "min": 12910474531.049128,
+          "max": 17032769025.809395,
+          "standardDeviation": 1486780674.5446446
+        },
+        "boardFullRatio": {
+          "mean": 0.025249453476928824,
+          "min": 0.015277777777777777,
+          "max": 0.036926147704590816,
+          "standardDeviation": 0.0075887223212640674
+        },
+        "stockFullRatio": {
+          "mean": 0.07801914482094847,
+          "min": 0,
+          "max": 0.16633399866932802,
+          "standardDeviation": 0.07819253149317942
+        }
+      },
+      "milestones": {
+        "5": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 4441666.666666667,
+          "minMs": 3035000,
+          "maxMs": 7040000
+        },
+        "10": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 7858333.333333333,
+          "minMs": 6025000,
+          "maxMs": 9860000
+        },
+        "20": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 10684166.666666666,
+          "minMs": 8450000,
+          "maxMs": 12225000
+        },
+        "30": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 13760833.333333334,
+          "minMs": 11300000,
+          "maxMs": 15385000
+        },
+        "40": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 18057500,
+          "minMs": 15030000,
+          "maxMs": 19590000
+        }
+      }
+    },
+    {
+      "style": "focus",
+      "metrics": {
+        "generatedPerMinute": {
+          "mean": 5.788541666666667,
+          "min": 5.114583333333333,
+          "max": 6.714583333333334,
+          "standardDeviation": 0.5784014604245883
+        },
+        "adds": {
+          "mean": 587.8333333333334,
+          "min": 531,
+          "max": 708,
+          "standardDeviation": 66.87405243357763
+        },
+        "taps": {
+          "mean": 960,
+          "min": 960,
+          "max": 960,
+          "standardDeviation": 0
+        },
+        "attributes": {
+          "mean": 178.5,
+          "min": 147,
+          "max": 212,
+          "standardDeviation": 19.71251717395151
+        },
+        "averageGoldPerMinute": {
+          "mean": 150333.03680555554,
+          "min": 4.777083333333334,
+          "max": 605119.2708333334,
+          "standardDeviation": 218781.82499146461
+        },
+        "boardFullRatio": {
+          "mean": 0.002777777777777778,
+          "min": 0,
+          "max": 0.0046875,
+          "standardDeviation": 0.0017846231417950548
+        },
+        "stockFullRatio": {
+          "mean": 0.07149884259259259,
+          "min": 0.06111111111111111,
+          "max": 0.08836805555555556,
+          "standardDeviation": 0.011318244665360237
+        }
+      },
+      "milestones": {
+        "5": {
+          "reached": 5,
+          "runs": 6,
+          "meanMs": 11955000,
+          "minMs": 8760000,
+          "maxMs": 19765000
+        },
+        "10": {
+          "reached": 5,
+          "runs": 6,
+          "meanMs": 18822000,
+          "minMs": 16320000,
+          "maxMs": 25705000
+        },
+        "20": {
+          "reached": 4,
+          "runs": 6,
+          "meanMs": 25793750,
+          "minMs": 24770000,
+          "maxMs": 26635000
+        },
+        "30": {
+          "reached": 0,
+          "runs": 6,
+          "meanMs": null,
+          "minMs": null,
+          "maxMs": null
+        },
+        "40": {
+          "reached": 0,
+          "runs": 6,
+          "meanMs": null,
+          "minMs": null,
+          "maxMs": null
+        }
+      }
+    },
+    {
+      "style": "ice-lightning",
+      "metrics": {
+        "generatedPerMinute": {
+          "mean": 6.500063654940195,
+          "min": 5.613168724279835,
+          "max": 7.47037307973665,
+          "standardDeviation": 0.8635724359033994
+        },
+        "adds": {
+          "mean": 1677.3333333333333,
+          "min": 1363,
+          "max": 1989,
+          "standardDeviation": 199.40968437421043
+        },
+        "taps": {
+          "mean": 521.8333333333334,
+          "min": 455,
+          "max": 607,
+          "standardDeviation": 50.26402512953198
+        },
+        "attributes": {
+          "mean": 51.166666666666664,
+          "min": 33,
+          "max": 69,
+          "standardDeviation": 13.234005020736877
+        },
+        "averageGoldPerMinute": {
+          "mean": 15825906182.345016,
+          "min": 12810016806.92155,
+          "max": 19604027999.60569,
+          "standardDeviation": 2054683786.7213087
+        },
+        "boardFullRatio": {
+          "mean": 0.029558704609911366,
+          "min": 0.01727921009325288,
+          "max": 0.038172527802825366,
+          "standardDeviation": 0.008675627779617888
+        },
+        "stockFullRatio": {
+          "mean": 0.10087951625249165,
+          "min": 0,
+          "max": 0.2046070460704607,
+          "standardDeviation": 0.10091293762072509
+        }
+      },
+      "milestones": {
+        "5": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 3091666.6666666665,
+          "minMs": 1455000,
+          "maxMs": 4860000
+        },
+        "10": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 5359166.666666667,
+          "minMs": 4285000,
+          "maxMs": 7015000
+        },
+        "20": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 8289166.666666667,
+          "minMs": 6780000,
+          "maxMs": 10165000
+        },
+        "30": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 11621666.666666666,
+          "minMs": 9895000,
+          "maxMs": 13580000
+        },
+        "40": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 15666666.666666666,
+          "minMs": 13670000,
+          "maxMs": 18230000
+        }
+      }
+    },
+    {
+      "style": "nature",
+      "metrics": {
+        "generatedPerMinute": {
+          "mean": 6.71413457827146,
+          "min": 5.968489341983318,
+          "max": 7.4865543205449985,
+          "standardDeviation": 0.7361604385216389
+        },
+        "adds": {
+          "mean": 1704.6666666666667,
+          "min": 1584,
+          "max": 1881,
+          "standardDeviation": 110.17965127715533
+        },
+        "taps": {
+          "mean": 513,
+          "min": 464,
+          "max": 543,
+          "standardDeviation": 27.934447074057747
+        },
+        "attributes": {
+          "mean": 54.666666666666664,
+          "min": 42,
+          "max": 69,
+          "standardDeviation": 9.030811456096044
+        },
+        "averageGoldPerMinute": {
+          "mean": 17920927312.870705,
+          "min": 14369263222.987906,
+          "max": 22680489270.607548,
+          "standardDeviation": 2878496041.356641
+        },
+        "boardFullRatio": {
+          "mean": 0.033617994588711515,
+          "min": 0.020080321285140562,
+          "max": 0.04625313732520617,
+          "standardDeviation": 0.009550074005996195
+        },
+        "stockFullRatio": {
+          "mean": 0.09554739847212064,
+          "min": 0,
+          "max": 0.19469343850842596,
+          "standardDeviation": 0.09557610352247999
+        }
+      },
+      "milestones": {
+        "5": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 2728333.3333333335,
+          "minMs": 2245000,
+          "maxMs": 3690000
+        },
+        "10": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 5544166.666666667,
+          "minMs": 4560000,
+          "maxMs": 6255000
+        },
+        "20": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 8340833.333333333,
+          "minMs": 7290000,
+          "maxMs": 8965000
+        },
+        "30": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 11381666.666666666,
+          "minMs": 10130000,
+          "maxMs": 12120000
+        },
+        "40": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 15404166.666666666,
+          "minMs": 13945000,
+          "maxMs": 16290000
+        }
+      }
+    },
+    {
+      "style": "luck-mutation",
+      "metrics": {
+        "generatedPerMinute": {
+          "mean": 6.2887226260301405,
+          "min": 5.411647585863614,
+          "max": 7.309568480300188,
+          "standardDeviation": 0.8619533577113891
+        },
+        "adds": {
+          "mean": 1840.5,
+          "min": 1540,
+          "max": 2067,
+          "standardDeviation": 185.7998475062166
+        },
+        "taps": {
+          "mean": 591.6666666666666,
+          "min": 533,
+          "max": 669,
+          "standardDeviation": 43.34999679610394
+        },
+        "attributes": {
+          "mean": 55.5,
+          "min": 49,
+          "max": 63,
+          "standardDeviation": 4.958158260214505
+        },
+        "averageGoldPerMinute": {
+          "mean": 19350486854.78803,
+          "min": 13335081190.475424,
+          "max": 35423214586.63415,
+          "standardDeviation": 7560370502.6445675
+        },
+        "boardFullRatio": {
+          "mean": 0.02385858251680607,
+          "min": 0.011199601791936287,
+          "max": 0.04065040650406504,
+          "standardDeviation": 0.009810342639338242
+        },
+        "stockFullRatio": {
+          "mean": 0.08314551955992576,
+          "min": 0,
+          "max": 0.17979987492182614,
+          "standardDeviation": 0.08342582777271171
+        }
+      },
+      "milestones": {
+        "5": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 4423333.333333333,
+          "minMs": 3210000,
+          "maxMs": 5675000
+        },
+        "10": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 7484166.666666667,
+          "minMs": 5580000,
+          "maxMs": 9060000
+        },
+        "20": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 10274166.666666666,
+          "minMs": 8540000,
+          "maxMs": 12200000
+        },
+        "30": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 13414166.666666666,
+          "minMs": 11335000,
+          "maxMs": 15405000
+        },
+        "40": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 17763333.333333332,
+          "minMs": 15990000,
+          "maxMs": 20090000
+        }
+      }
+    },
+    {
+      "style": "sale",
+      "metrics": {
+        "generatedPerMinute": {
+          "mean": 6.273586163978571,
+          "min": 5.390906491278238,
+          "max": 7.205035971223022,
+          "standardDeviation": 0.8612585471419556
+        },
+        "adds": {
+          "mean": 1769.1666666666667,
+          "min": 1565,
+          "max": 1984,
+          "standardDeviation": 163.0801609297982
+        },
+        "taps": {
+          "mean": 570.3333333333334,
+          "min": 524,
+          "max": 636,
+          "standardDeviation": 34.8265543642906
+        },
+        "attributes": {
+          "mean": 58.166666666666664,
+          "min": 53,
+          "max": 67,
+          "standardDeviation": 5.047001309908907
+        },
+        "averageGoldPerMinute": {
+          "mean": 17307292349.606873,
+          "min": 14170825617.34892,
+          "max": 21895889223.650593,
+          "standardDeviation": 2730247872.174226
+        },
+        "boardFullRatio": {
+          "mean": 0.024760010019181933,
+          "min": 0.016013726050900772,
+          "max": 0.03906001905366783,
+          "standardDeviation": 0.008647704885569254
+        },
+        "stockFullRatio": {
+          "mean": 0.08517346767197771,
+          "min": 0,
+          "max": 0.17815179422038743,
+          "standardDeviation": 0.08526371667482092
+        }
+      },
+      "milestones": {
+        "5": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 3606666.6666666665,
+          "minMs": 1915000,
+          "maxMs": 4710000
+        },
+        "10": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 6859166.666666667,
+          "minMs": 5850000,
+          "maxMs": 8245000
+        },
+        "20": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 9794166.666666666,
+          "minMs": 9030000,
+          "maxMs": 11215000
+        },
+        "30": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 12969166.666666666,
+          "minMs": 11840000,
+          "maxMs": 14545000
+        },
+        "40": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 17127500,
+          "minMs": 15745000,
+          "maxMs": 19105000
+        }
+      }
+    },
+    {
+      "style": "light-magnet",
+      "metrics": {
+        "generatedPerMinute": {
+          "mean": 6.273177261981679,
+          "min": 5.382410423452768,
+          "max": 7.2015503875969,
+          "standardDeviation": 0.8904058738641119
+        },
+        "adds": {
+          "mean": 1640.6666666666667,
+          "min": 1376,
+          "max": 1991,
+          "standardDeviation": 209.66057224846918
+        },
+        "taps": {
+          "mean": 529.1666666666666,
+          "min": 435,
+          "max": 593,
+          "standardDeviation": 50.604402531356456
+        },
+        "attributes": {
+          "mean": 49.333333333333336,
+          "min": 38,
+          "max": 75,
+          "standardDeviation": 12.160957564636465
+        },
+        "averageGoldPerMinute": {
+          "mean": 16999310369.291166,
+          "min": 15077651726.657503,
+          "max": 18621715226.29759,
+          "standardDeviation": 1046393569.0833515
+        },
+        "boardFullRatio": {
+          "mean": 0.03246534151068727,
+          "min": 0.02052117263843648,
+          "max": 0.054684512428298276,
+          "standardDeviation": 0.01130449959741746
+        },
+        "stockFullRatio": {
+          "mean": 0.09208563893069864,
+          "min": 0,
+          "max": 0.19005736137667303,
+          "standardDeviation": 0.0921333503134951
+        }
+      },
+      "milestones": {
+        "5": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 3375000,
+          "minMs": 2460000,
+          "maxMs": 3990000
+        },
+        "10": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 5512500,
+          "minMs": 4395000,
+          "maxMs": 6345000
+        },
+        "20": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 8552500,
+          "minMs": 6565000,
+          "maxMs": 9865000
+        },
+        "30": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 11926666.666666666,
+          "minMs": 9500000,
+          "maxMs": 13345000
+        },
+        "40": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 15893333.333333334,
+          "minMs": 13075000,
+          "maxMs": 17810000
+        }
+      }
+    },
+    {
+      "style": "combo",
+      "metrics": {
+        "generatedPerMinute": {
+          "mean": 6.303652582087731,
+          "min": 5.389162561576355,
+          "max": 7.220275344180226,
+          "standardDeviation": 0.8920444607104016
+        },
+        "adds": {
+          "mean": 1765.1666666666667,
+          "min": 1405,
+          "max": 2071,
+          "standardDeviation": 218.03777705301948
+        },
+        "taps": {
+          "mean": 565,
+          "min": 519,
+          "max": 614,
+          "standardDeviation": 38.71261637588793
+        },
+        "attributes": {
+          "mean": 55.5,
+          "min": 38,
+          "max": 68,
+          "standardDeviation": 10.259142264341596
+        },
+        "averageGoldPerMinute": {
+          "mean": 16558226184.980757,
+          "min": 13867061599.377245,
+          "max": 19758769573.420143,
+          "standardDeviation": 2143115393.3828492
+        },
+        "boardFullRatio": {
+          "mean": 0.02669314621538116,
+          "min": 0.01572241799945785,
+          "max": 0.040413533834586464,
+          "standardDeviation": 0.009671560462769463
+        },
+        "stockFullRatio": {
+          "mean": 0.08485463780924012,
+          "min": 0,
+          "max": 0.17387218045112782,
+          "standardDeviation": 0.08488769898257492
+        }
+      },
+      "milestones": {
+        "5": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 3868333.3333333335,
+          "minMs": 3510000,
+          "maxMs": 4350000
+        },
+        "10": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 6578333.333333333,
+          "minMs": 5935000,
+          "maxMs": 7830000
+        },
+        "20": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 9628333.333333334,
+          "minMs": 8600000,
+          "maxMs": 11220000
+        },
+        "30": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 12930833.333333334,
+          "minMs": 11550000,
+          "maxMs": 14310000
+        },
+        "40": {
+          "reached": 6,
+          "runs": 6,
+          "meanMs": 16963333.333333332,
+          "minMs": 15590000,
+          "maxMs": 18445000
+        }
+      }
+    }
+  ],
+  "results": [
+    {
+      "style": "normal",
+      "seed": 12,
+      "policy": "research",
+      "initialLoadout": [],
+      "durationMs": 18930000,
+      "highest": 40,
+      "milestones": {
+        "5": 3035000,
+        "10": 8275000,
+        "20": 11325000,
+        "30": 14265000,
+        "40": 18930000
+      },
+      "generated": 1721,
+      "natureGenerated": 20,
+      "generatedPerMinute": 5.454833597464343,
+      "adds": 1720,
+      "taps": 631,
+      "focus": 0,
+      "attributes": 56,
+      "sales": 515,
+      "saleGold": 3972988550379,
+      "eventGold": 100266164167,
+      "averageGoldPerMinute": 12910474531.049128,
+      "researchBuys": 16,
+      "firstResearchMs": 3070000,
+      "boardFullRatio": 0.017696777601690437,
+      "stockFullRatio": 0,
+      "maxAttributeLv": 3,
+      "endingEffects": {
+        "iceReduction": 0.015,
+        "tapBonus": 0,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "normal",
+      "seed": 61,
+      "policy": "research",
+      "initialLoadout": [],
+      "durationMs": 18000000,
+      "highest": 40,
+      "milestones": {
+        "5": 3680000,
+        "10": 6135000,
+        "20": 9615000,
+        "30": 13495000,
+        "40": 18000000
+      },
+      "generated": 1616,
+      "natureGenerated": 3,
+      "generatedPerMinute": 5.386666666666667,
+      "adds": 1615,
+      "taps": 600,
+      "focus": 0,
+      "attributes": 47,
+      "sales": 481,
+      "saleGold": 3727909223151,
+      "eventGold": 290370348944,
+      "averageGoldPerMinute": 13394265240.316668,
+      "researchBuys": 16,
+      "firstResearchMs": 3570000,
+      "boardFullRatio": 0.015277777777777777,
+      "stockFullRatio": 0,
+      "maxAttributeLv": 3,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": null,
+        "normalChance": 0.0375,
+        "focusChance": 0.38
+      }
+    },
+    {
+      "style": "normal",
+      "seed": 210,
+      "policy": "research",
+      "initialLoadout": [],
+      "durationMs": 18170000,
+      "highest": 40,
+      "milestones": {
+        "5": 6180000,
+        "10": 8305000,
+        "20": 11005000,
+        "30": 13885000,
+        "40": 18170000
+      },
+      "generated": 1634,
+      "natureGenerated": 2,
+      "generatedPerMinute": 5.395707209686297,
+      "adds": 1633,
+      "taps": 605,
+      "focus": 0,
+      "attributes": 48,
+      "sales": 499,
+      "saleGold": 3744907266337,
+      "eventGold": 205420382973,
+      "averageGoldPerMinute": 13044560206.857458,
+      "researchBuys": 16,
+      "firstResearchMs": 3420000,
+      "boardFullRatio": 0.022564667033571822,
+      "stockFullRatio": 0,
+      "maxAttributeLv": 3,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": 180000,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "normal",
+      "seed": 12,
+      "policy": "production",
+      "initialLoadout": [],
+      "durationMs": 18625000,
+      "highest": 40,
+      "milestones": {
+        "5": 3035000,
+        "10": 8550000,
+        "20": 11485000,
+        "30": 14235000,
+        "40": 18625000
+      },
+      "generated": 2222,
+      "natureGenerated": 17,
+      "generatedPerMinute": 7.158120805369127,
+      "adds": 2203,
+      "taps": 620,
+      "focus": 0,
+      "attributes": 70,
+      "sales": 576,
+      "saleGold": 5059175574741,
+      "eventGold": 228079810354,
+      "averageGoldPerMinute": 17032769025.809395,
+      "researchBuys": 16,
+      "firstResearchMs": 3070000,
+      "boardFullRatio": 0.02738255033557047,
+      "stockFullRatio": 0.15221476510067114,
+      "maxAttributeLv": 3,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "normal",
+      "seed": 61,
+      "policy": "production",
+      "initialLoadout": [],
+      "durationMs": 15030000,
+      "highest": 40,
+      "milestones": {
+        "5": 3680000,
+        "10": 6025000,
+        "20": 8450000,
+        "30": 11300000,
+        "40": 15030000
+      },
+      "generated": 1779,
+      "natureGenerated": 0,
+      "generatedPerMinute": 7.1017964071856285,
+      "adds": 1760,
+      "taps": 501,
+      "focus": 0,
+      "attributes": 58,
+      "sales": 452,
+      "saleGold": 3317129543828,
+      "eventGold": 243005864433,
+      "averageGoldPerMinute": 14212117398.247505,
+      "researchBuys": 16,
+      "firstResearchMs": 3570000,
+      "boardFullRatio": 0.036926147704590816,
+      "stockFullRatio": 0.16633399866932802,
+      "maxAttributeLv": 3,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "normal",
+      "seed": 210,
+      "policy": "production",
+      "initialLoadout": [],
+      "durationMs": 19590000,
+      "highest": 40,
+      "milestones": {
+        "5": 7040000,
+        "10": 9860000,
+        "20": 12225000,
+        "30": 15385000,
+        "40": 19590000
+      },
+      "generated": 2258,
+      "natureGenerated": 1,
+      "generatedPerMinute": 6.915773353751915,
+      "adds": 2239,
+      "taps": 653,
+      "focus": 0,
+      "attributes": 64,
+      "sales": 576,
+      "saleGold": 4706223995448,
+      "eventGold": 359394443696,
+      "averageGoldPerMinute": 15514910992.784073,
+      "researchBuys": 16,
+      "firstResearchMs": 3420000,
+      "boardFullRatio": 0.03164880040837162,
+      "stockFullRatio": 0.1495661051556917,
+      "maxAttributeLv": 3,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "focus",
+      "seed": 12,
+      "policy": "research",
+      "initialLoadout": [],
+      "durationMs": 28800000,
+      "highest": 13,
+      "milestones": {
+        "5": 19765000,
+        "10": 25705000,
+        "20": null,
+        "30": null,
+        "40": null
+      },
+      "generated": 2619,
+      "natureGenerated": 165,
+      "generatedPerMinute": 5.45625,
+      "adds": 540,
+      "taps": 960,
+      "focus": 229,
+      "attributes": 180,
+      "sales": 392,
+      "saleGold": 15637,
+      "eventGold": 1368,
+      "averageGoldPerMinute": 35.427083333333336,
+      "researchBuys": 2,
+      "firstResearchMs": 9450000,
+      "boardFullRatio": 0.0008680555555555555,
+      "stockFullRatio": 0.06111111111111111,
+      "maxAttributeLv": 3,
+      "endingEffects": {
+        "iceReduction": 0.015,
+        "tapBonus": 0,
+        "natureIntervalMs": 41860,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "focus",
+      "seed": 61,
+      "policy": "research",
+      "initialLoadout": [],
+      "durationMs": 28800000,
+      "highest": 22,
+      "milestones": {
+        "5": 11245000,
+        "10": 16480000,
+        "20": 26070000,
+        "30": null,
+        "40": null
+      },
+      "generated": 2567,
+      "natureGenerated": 77,
+      "generatedPerMinute": 5.347916666666666,
+      "adds": 564,
+      "taps": 960,
+      "focus": 221,
+      "attributes": 180,
+      "sales": 310,
+      "saleGold": 15881208,
+      "eventGold": 1480027,
+      "averageGoldPerMinute": 36169.239583333336,
+      "researchBuys": 4,
+      "firstResearchMs": 10230000,
+      "boardFullRatio": 0.0038194444444444443,
+      "stockFullRatio": 0.06302083333333333,
+      "maxAttributeLv": 3,
+      "endingEffects": {
+        "iceReduction": 0.0195,
+        "tapBonus": 0,
+        "natureIntervalMs": 90000,
+        "normalChance": 0.0375,
+        "focusChance": 0.38
+      }
+    },
+    {
+      "style": "focus",
+      "seed": 210,
+      "policy": "research",
+      "initialLoadout": [],
+      "durationMs": 28800000,
+      "highest": 21,
+      "milestones": {
+        "5": 8760000,
+        "10": 17280000,
+        "20": 26635000,
+        "30": null,
+        "40": null
+      },
+      "generated": 2455,
+      "natureGenerated": 10,
+      "generatedPerMinute": 5.114583333333333,
+      "adds": 531,
+      "taps": 960,
+      "focus": 212,
+      "attributes": 147,
+      "sales": 298,
+      "saleGold": 11851614,
+      "eventGold": 1125729,
+      "averageGoldPerMinute": 27036.13125,
+      "researchBuys": 4,
+      "firstResearchMs": 8775000,
+      "boardFullRatio": 0.0046875,
+      "stockFullRatio": 0.06649305555555556,
+      "maxAttributeLv": 2,
+      "endingEffects": {
+        "iceReduction": 0.06,
+        "tapBonus": 0,
+        "natureIntervalMs": null,
+        "normalChance": 0.045,
+        "focusChance": 0.41
+      }
+    },
+    {
+      "style": "focus",
+      "seed": 12,
+      "policy": "production",
+      "initialLoadout": [],
+      "durationMs": 28800000,
+      "highest": 4,
+      "milestones": {
+        "5": null,
+        "10": null,
+        "20": null,
+        "30": null,
+        "40": null
+      },
+      "generated": 2732,
+      "natureGenerated": 162,
+      "generatedPerMinute": 5.691666666666666,
+      "adds": 536,
+      "taps": 960,
+      "focus": 243,
+      "attributes": 186,
+      "sales": 471,
+      "saleGold": 2120,
+      "eventGold": 173,
+      "averageGoldPerMinute": 4.777083333333334,
+      "researchBuys": 1,
+      "firstResearchMs": 10620000,
+      "boardFullRatio": 0,
+      "stockFullRatio": 0.06371527777777777,
+      "maxAttributeLv": 3,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0.06,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "focus",
+      "seed": 61,
+      "policy": "production",
+      "initialLoadout": [],
+      "durationMs": 28800000,
+      "highest": 26,
+      "milestones": {
+        "5": 11245000,
+        "10": 16320000,
+        "20": 24770000,
+        "30": null,
+        "40": null
+      },
+      "generated": 3223,
+      "natureGenerated": 24,
+      "generatedPerMinute": 6.714583333333334,
+      "adds": 708,
+      "taps": 960,
+      "focus": 278,
+      "attributes": 212,
+      "sales": 416,
+      "saleGold": 260610528,
+      "eventGold": 29846722,
+      "averageGoldPerMinute": 605119.2708333334,
+      "researchBuys": 5,
+      "firstResearchMs": 10230000,
+      "boardFullRatio": 0.002777777777777778,
+      "stockFullRatio": 0.08836805555555556,
+      "maxAttributeLv": 3,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0.06,
+        "natureIntervalMs": 180000,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "focus",
+      "seed": 210,
+      "policy": "production",
+      "initialLoadout": [],
+      "durationMs": 28800000,
+      "highest": 25,
+      "milestones": {
+        "5": 8760000,
+        "10": 18325000,
+        "20": 25700000,
+        "30": null,
+        "40": null
+      },
+      "generated": 3075,
+      "natureGenerated": 11,
+      "generatedPerMinute": 6.40625,
+      "adds": 648,
+      "taps": 960,
+      "focus": 268,
+      "attributes": 166,
+      "sales": 379,
+      "saleGold": 99198373,
+      "eventGold": 12945647,
+      "averageGoldPerMinute": 233633.375,
+      "researchBuys": 5,
+      "firstResearchMs": 8775000,
+      "boardFullRatio": 0.0045138888888888885,
+      "stockFullRatio": 0.08628472222222222,
+      "maxAttributeLv": 2,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "ice-lightning",
+      "seed": 12,
+      "policy": "research",
+      "initialLoadout": [
+        [
+          {
+            "id": "ice",
+            "level": 5
+          },
+          {
+            "id": "lightning",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 18230000,
+      "highest": 40,
+      "milestones": {
+        "5": 4860000,
+        "10": 7015000,
+        "20": 10165000,
+        "30": 13580000,
+        "40": 18230000
+      },
+      "generated": 1723,
+      "natureGenerated": 12,
+      "generatedPerMinute": 5.670872188699946,
+      "adds": 1722,
+      "taps": 607,
+      "focus": 0,
+      "attributes": 67,
+      "sales": 497,
+      "saleGold": 4489891941201,
+      "eventGold": 242963684773,
+      "averageGoldPerMinute": 15577144133.759737,
+      "researchBuys": 16,
+      "firstResearchMs": 3180000,
+      "boardFullRatio": 0.01727921009325288,
+      "stockFullRatio": 0,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0.03393156856932417,
+        "tapBonus": 0.16965784284662086,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "ice-lightning",
+      "seed": 61,
+      "policy": "research",
+      "initialLoadout": [
+        [
+          {
+            "id": "ice",
+            "level": 5
+          },
+          {
+            "id": "lightning",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 16125000,
+      "highest": 40,
+      "milestones": {
+        "5": 2960000,
+        "10": 5065000,
+        "20": 8355000,
+        "30": 12120000,
+        "40": 16125000
+      },
+      "generated": 1514,
+      "natureGenerated": 2,
+      "generatedPerMinute": 5.633488372093023,
+      "adds": 1513,
+      "taps": 537,
+      "focus": 0,
+      "attributes": 40,
+      "sales": 439,
+      "saleGold": 3620744556893,
+      "eventGold": 312868645567,
+      "averageGoldPerMinute": 14636700288.223255,
+      "researchBuys": 16,
+      "firstResearchMs": 2990000,
+      "boardFullRatio": 0.01984496124031008,
+      "stockFullRatio": 0,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0.03393156856932417,
+        "tapBonus": 0.22965784284662089,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "ice-lightning",
+      "seed": 210,
+      "policy": "research",
+      "initialLoadout": [
+        [
+          {
+            "id": "ice",
+            "level": 5
+          },
+          {
+            "id": "lightning",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 14580000,
+      "highest": 40,
+      "milestones": {
+        "5": 1455000,
+        "10": 4285000,
+        "20": 7105000,
+        "30": 10470000,
+        "40": 14580000
+      },
+      "generated": 1364,
+      "natureGenerated": 1,
+      "generatedPerMinute": 5.613168724279835,
+      "adds": 1363,
+      "taps": 486,
+      "focus": 0,
+      "attributes": 33,
+      "sales": 384,
+      "saleGold": 3518620434857,
+      "eventGold": 322211629234,
+      "averageGoldPerMinute": 15805893267.864197,
+      "researchBuys": 16,
+      "firstResearchMs": 1525000,
+      "boardFullRatio": 0.02709190672153635,
+      "stockFullRatio": 0,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0.03393156856932417,
+        "tapBonus": 0.16965784284662086,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "ice-lightning",
+      "seed": 12,
+      "policy": "production",
+      "initialLoadout": [
+        [
+          {
+            "id": "ice",
+            "level": 5
+          },
+          {
+            "id": "lightning",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 16635000,
+      "highest": 40,
+      "milestones": {
+        "5": 4860000,
+        "10": 6410000,
+        "20": 9820000,
+        "30": 12780000,
+        "40": 16635000
+      },
+      "generated": 2008,
+      "natureGenerated": 2,
+      "generatedPerMinute": 7.242560865644725,
+      "adds": 1989,
+      "taps": 554,
+      "focus": 0,
+      "attributes": 69,
+      "sales": 475,
+      "saleGold": 3384643268078,
+      "eventGold": 166933891641,
+      "averageGoldPerMinute": 12810016806.92155,
+      "researchBuys": 16,
+      "firstResearchMs": 3180000,
+      "boardFullRatio": 0.038172527802825366,
+      "stockFullRatio": 0.19657348963029755,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0.03393156856932417,
+        "tapBonus": 0.16965784284662086,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "ice-lightning",
+      "seed": 61,
+      "policy": "production",
+      "initialLoadout": [
+        [
+          {
+            "id": "ice",
+            "level": 5
+          },
+          {
+            "id": "lightning",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 14760000,
+      "highest": 40,
+      "milestones": {
+        "5": 2960000,
+        "10": 5040000,
+        "20": 7510000,
+        "30": 10885000,
+        "40": 14760000
+      },
+      "generated": 1813,
+      "natureGenerated": 0,
+      "generatedPerMinute": 7.369918699186992,
+      "adds": 1794,
+      "taps": 492,
+      "focus": 0,
+      "attributes": 46,
+      "sales": 434,
+      "saleGold": 4662783425340,
+      "eventGold": 159807462563,
+      "averageGoldPerMinute": 19604027999.60569,
+      "researchBuys": 16,
+      "firstResearchMs": 2990000,
+      "boardFullRatio": 0.03692411924119241,
+      "stockFullRatio": 0.2046070460704607,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0.03393156856932417,
+        "tapBonus": 0.16965784284662086,
+        "natureIntervalMs": null,
+        "normalChance": 0.042499999999999996,
+        "focusChance": 0.39999999999999997
+      }
+    },
+    {
+      "style": "ice-lightning",
+      "seed": 210,
+      "policy": "production",
+      "initialLoadout": [
+        [
+          {
+            "id": "ice",
+            "level": 5
+          },
+          {
+            "id": "lightning",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 13670000,
+      "highest": 40,
+      "milestones": {
+        "5": 1455000,
+        "10": 4340000,
+        "20": 6780000,
+        "30": 9895000,
+        "40": 13670000
+      },
+      "generated": 1702,
+      "natureGenerated": 1,
+      "generatedPerMinute": 7.47037307973665,
+      "adds": 1683,
+      "taps": 455,
+      "focus": 0,
+      "attributes": 52,
+      "sales": 407,
+      "saleGold": 3602955116276,
+      "eventGold": 161228522899,
+      "averageGoldPerMinute": 16521654597.695683,
+      "researchBuys": 16,
+      "firstResearchMs": 1525000,
+      "boardFullRatio": 0.038039502560351136,
+      "stockFullRatio": 0.20409656181419167,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0.04893156856932417,
+        "tapBonus": 0.16965784284662086,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "nature",
+      "seed": 12,
+      "policy": "research",
+      "initialLoadout": [
+        [
+          {
+            "id": "nature",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 16290000,
+      "highest": 40,
+      "milestones": {
+        "5": 2250000,
+        "10": 6255000,
+        "20": 8965000,
+        "30": 12120000,
+        "40": 16290000
+      },
+      "generated": 1624,
+      "natureGenerated": 160,
+      "generatedPerMinute": 5.98158379373849,
+      "adds": 1623,
+      "taps": 543,
+      "focus": 0,
+      "attributes": 57,
+      "sales": 442,
+      "saleGold": 4064546250889,
+      "eventGold": 97103209724,
+      "averageGoldPerMinute": 15328358970.950275,
+      "researchBuys": 16,
+      "firstResearchMs": 2340000,
+      "boardFullRatio": 0.027624309392265192,
+      "stockFullRatio": 0,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": 106096,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "nature",
+      "seed": 61,
+      "policy": "research",
+      "initialLoadout": [
+        [
+          {
+            "id": "nature",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 16185000,
+      "highest": 40,
+      "milestones": {
+        "5": 3690000,
+        "10": 6165000,
+        "20": 8755000,
+        "30": 11905000,
+        "40": 16185000
+      },
+      "generated": 1610,
+      "natureGenerated": 157,
+      "generatedPerMinute": 5.968489341983318,
+      "adds": 1609,
+      "taps": 539,
+      "focus": 0,
+      "attributes": 53,
+      "sales": 427,
+      "saleGold": 4806026877201,
+      "eventGold": 234924775914,
+      "averageGoldPerMinute": 18687494543.52178,
+      "researchBuys": 16,
+      "firstResearchMs": 3210000,
+      "boardFullRatio": 0.020080321285140562,
+      "stockFullRatio": 0,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0.015,
+        "tapBonus": 0,
+        "natureIntervalMs": 106096,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "nature",
+      "seed": 210,
+      "policy": "research",
+      "initialLoadout": [
+        [
+          {
+            "id": "nature",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 15900000,
+      "highest": 40,
+      "milestones": {
+        "5": 2245000,
+        "10": 4890000,
+        "20": 8150000,
+        "30": 11570000,
+        "40": 15900000
+      },
+      "generated": 1586,
+      "natureGenerated": 160,
+      "generatedPerMinute": 5.9849056603773585,
+      "adds": 1584,
+      "taps": 530,
+      "focus": 0,
+      "attributes": 42,
+      "sales": 420,
+      "saleGold": 5550981516043,
+      "eventGold": 459348140668,
+      "averageGoldPerMinute": 22680489270.607548,
+      "researchBuys": 16,
+      "firstResearchMs": 2295000,
+      "boardFullRatio": 0.02610062893081761,
+      "stockFullRatio": 0,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": 66751,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "nature",
+      "seed": 12,
+      "policy": "production",
+      "initialLoadout": [
+        [
+          {
+            "id": "nature",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 15295000,
+      "highest": 40,
+      "milestones": {
+        "5": 2250000,
+        "10": 5730000,
+        "20": 8560000,
+        "30": 11515000,
+        "40": 15295000
+      },
+      "generated": 1900,
+      "natureGenerated": 73,
+      "generatedPerMinute": 7.453416149068323,
+      "adds": 1881,
+      "taps": 509,
+      "focus": 0,
+      "attributes": 69,
+      "sales": 445,
+      "saleGold": 3463945696980,
+      "eventGold": 199018986280,
+      "averageGoldPerMinute": 14369263222.987906,
+      "researchBuys": 16,
+      "firstResearchMs": 2340000,
+      "boardFullRatio": 0.042824452435436415,
+      "stockFullRatio": 0.19189277541680289,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": 106096,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "nature",
+      "seed": 61,
+      "policy": "production",
+      "initialLoadout": [
+        [
+          {
+            "id": "nature",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 14810000,
+      "highest": 40,
+      "milestones": {
+        "5": 3690000,
+        "10": 5665000,
+        "20": 8325000,
+        "30": 11050000,
+        "40": 14810000
+      },
+      "generated": 1829,
+      "natureGenerated": 68,
+      "generatedPerMinute": 7.409858203916272,
+      "adds": 1810,
+      "taps": 493,
+      "focus": 0,
+      "attributes": 61,
+      "sales": 435,
+      "saleGold": 3735123431506,
+      "eventGold": 304623996742,
+      "averageGoldPerMinute": 16366296130.64686,
+      "researchBuys": 16,
+      "firstResearchMs": 3210000,
+      "boardFullRatio": 0.03882511816340311,
+      "stockFullRatio": 0.18669817690749493,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": 106096,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "nature",
+      "seed": 210,
+      "policy": "production",
+      "initialLoadout": [
+        [
+          {
+            "id": "nature",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 13945000,
+      "highest": 40,
+      "milestones": {
+        "5": 2245000,
+        "10": 4560000,
+        "20": 7290000,
+        "30": 10130000,
+        "40": 13945000
+      },
+      "generated": 1740,
+      "natureGenerated": 59,
+      "generatedPerMinute": 7.4865543205449985,
+      "adds": 1721,
+      "taps": 464,
+      "focus": 0,
+      "attributes": 46,
+      "sales": 404,
+      "saleGold": 4380897028197,
+      "eventGold": 289204854195,
+      "averageGoldPerMinute": 20093661738.50986,
+      "researchBuys": 16,
+      "firstResearchMs": 2295000,
+      "boardFullRatio": 0.04625313732520617,
+      "stockFullRatio": 0.19469343850842596,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0.034499999999999996,
+        "tapBonus": 0,
+        "natureIntervalMs": 106096,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "luck-mutation",
+      "seed": 12,
+      "policy": "research",
+      "initialLoadout": [
+        [
+          {
+            "id": "luck",
+            "level": 5
+          },
+          {
+            "id": "mutation",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 16905000,
+      "highest": 40,
+      "milestones": {
+        "5": 3210000,
+        "10": 5835000,
+        "20": 8900000,
+        "30": 12475000,
+        "40": 16905000
+      },
+      "generated": 1541,
+      "natureGenerated": 24,
+      "generatedPerMinute": 5.469387755102041,
+      "adds": 1540,
+      "taps": 563,
+      "focus": 0,
+      "attributes": 51,
+      "sales": 443,
+      "saleGold": 4322939717055,
+      "eventGold": 196458258891,
+      "averageGoldPerMinute": 16040454218.086956,
+      "researchBuys": 16,
+      "firstResearchMs": 3275000,
+      "boardFullRatio": 0.021591245193729666,
+      "stockFullRatio": 0,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0.015,
+        "tapBonus": 0,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "luck-mutation",
+      "seed": 61,
+      "policy": "research",
+      "initialLoadout": [
+        [
+          {
+            "id": "luck",
+            "level": 5
+          },
+          {
+            "id": "mutation",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 18615000,
+      "highest": 40,
+      "milestones": {
+        "5": 5635000,
+        "10": 8660000,
+        "20": 11580000,
+        "30": 14250000,
+        "40": 18615000
+      },
+      "generated": 1679,
+      "natureGenerated": 9,
+      "generatedPerMinute": 5.411764705882353,
+      "adds": 1679,
+      "taps": 620,
+      "focus": 0,
+      "attributes": 57,
+      "sales": 521,
+      "saleGold": 3879267667206,
+      "eventGold": 257941272139,
+      "averageGoldPerMinute": 13335081190.475424,
+      "researchBuys": 16,
+      "firstResearchMs": 3300000,
+      "boardFullRatio": 0.013967230727907601,
+      "stockFullRatio": 0,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": null,
+        "normalChance": 0.0375,
+        "focusChance": 0.38
+      }
+    },
+    {
+      "style": "luck-mutation",
+      "seed": 210,
+      "policy": "research",
+      "initialLoadout": [
+        [
+          {
+            "id": "luck",
+            "level": 5
+          },
+          {
+            "id": "mutation",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 20090000,
+      "highest": 40,
+      "milestones": {
+        "5": 4405000,
+        "10": 9060000,
+        "20": 12200000,
+        "30": 15405000,
+        "40": 20090000
+      },
+      "generated": 1812,
+      "natureGenerated": 9,
+      "generatedPerMinute": 5.411647585863614,
+      "adds": 1812,
+      "taps": 669,
+      "focus": 0,
+      "attributes": 53,
+      "sales": 551,
+      "saleGold": 4497010737878,
+      "eventGold": 168557230028,
+      "averageGoldPerMinute": 13934000899.669489,
+      "researchBuys": 16,
+      "firstResearchMs": 3480000,
+      "boardFullRatio": 0.011199601791936287,
+      "stockFullRatio": 0,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": 180000,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "luck-mutation",
+      "seed": 12,
+      "policy": "production",
+      "initialLoadout": [
+        [
+          {
+            "id": "luck",
+            "level": 5
+          },
+          {
+            "id": "mutation",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 15990000,
+      "highest": 40,
+      "milestones": {
+        "5": 3210000,
+        "10": 5580000,
+        "20": 8540000,
+        "30": 11335000,
+        "40": 15990000
+      },
+      "generated": 1948,
+      "natureGenerated": 17,
+      "generatedPerMinute": 7.309568480300188,
+      "adds": 1929,
+      "taps": 533,
+      "focus": 0,
+      "attributes": 49,
+      "sales": 471,
+      "saleGold": 9040136613363,
+      "eventGold": 400150073975,
+      "averageGoldPerMinute": 35423214586.63415,
+      "researchBuys": 16,
+      "firstResearchMs": 3275000,
+      "boardFullRatio": 0.04065040650406504,
+      "stockFullRatio": 0.17979987492182614,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0.06,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "luck-mutation",
+      "seed": 61,
+      "policy": "production",
+      "initialLoadout": [
+        [
+          {
+            "id": "luck",
+            "level": 5
+          },
+          {
+            "id": "mutation",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 17655000,
+      "highest": 40,
+      "milestones": {
+        "5": 5675000,
+        "10": 7915000,
+        "20": 10105000,
+        "30": 13520000,
+        "40": 17655000
+      },
+      "generated": 2085,
+      "natureGenerated": 6,
+      "generatedPerMinute": 7.085811384876806,
+      "adds": 2067,
+      "taps": 588,
+      "focus": 0,
+      "attributes": 60,
+      "sales": 536,
+      "saleGold": 4718326212717,
+      "eventGold": 219239873058,
+      "averageGoldPerMinute": 16780173613.50892,
+      "researchBuys": 16,
+      "firstResearchMs": 3300000,
+      "boardFullRatio": 0.028037383177570093,
+      "stockFullRatio": 0.1577456811101671,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "luck-mutation",
+      "seed": 210,
+      "policy": "production",
+      "initialLoadout": [
+        [
+          {
+            "id": "luck",
+            "level": 5
+          },
+          {
+            "id": "mutation",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 17325000,
+      "highest": 40,
+      "milestones": {
+        "5": 4405000,
+        "10": 7855000,
+        "20": 10320000,
+        "30": 13500000,
+        "40": 17325000
+      },
+      "generated": 2034,
+      "natureGenerated": 9,
+      "generatedPerMinute": 7.044155844155844,
+      "adds": 2016,
+      "taps": 577,
+      "focus": 0,
+      "attributes": 63,
+      "sales": 510,
+      "saleGold": 5732850128579,
+      "eventGold": 212511395548,
+      "averageGoldPerMinute": 20589996620.35325,
+      "researchBuys": 16,
+      "firstResearchMs": 3480000,
+      "boardFullRatio": 0.027705627705627706,
+      "stockFullRatio": 0.16132756132756132,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "sale",
+      "seed": 12,
+      "policy": "research",
+      "initialLoadout": [
+        [
+          {
+            "id": "fire",
+            "level": 5
+          },
+          {
+            "id": "gold",
+            "level": 5
+          },
+          {
+            "id": "dark",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 17265000,
+      "highest": 40,
+      "milestones": {
+        "5": 1915000,
+        "10": 5850000,
+        "20": 9210000,
+        "30": 12565000,
+        "40": 17265000
+      },
+      "generated": 1566,
+      "natureGenerated": 12,
+      "generatedPerMinute": 5.442224152910512,
+      "adds": 1565,
+      "taps": 575,
+      "focus": 0,
+      "attributes": 53,
+      "sales": 471,
+      "saleGold": 5625042331364,
+      "eventGold": 138210673648,
+      "averageGoldPerMinute": 20028681164.246742,
+      "researchBuys": 16,
+      "firstResearchMs": 1940000,
+      "boardFullRatio": 0.01853460758760498,
+      "stockFullRatio": 0,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "sale",
+      "seed": 61,
+      "policy": "research",
+      "initialLoadout": [
+        [
+          {
+            "id": "fire",
+            "level": 5
+          },
+          {
+            "id": "gold",
+            "level": 5
+          },
+          {
+            "id": "dark",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 17485000,
+      "highest": 40,
+      "milestones": {
+        "5": 4195000,
+        "10": 6645000,
+        "20": 9710000,
+        "30": 13020000,
+        "40": 17485000
+      },
+      "generated": 1571,
+      "natureGenerated": 0,
+      "generatedPerMinute": 5.390906491278238,
+      "adds": 1570,
+      "taps": 582,
+      "focus": 0,
+      "attributes": 53,
+      "sales": 478,
+      "saleGold": 4291624438712,
+      "eventGold": 163470784720,
+      "averageGoldPerMinute": 15287715951.153559,
+      "researchBuys": 16,
+      "firstResearchMs": 3360000,
+      "boardFullRatio": 0.016013726050900772,
+      "stockFullRatio": 0,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": null,
+        "normalChance": 0.0375,
+        "focusChance": 0.38
+      }
+    },
+    {
+      "style": "sale",
+      "seed": 210,
+      "policy": "research",
+      "initialLoadout": [
+        [
+          {
+            "id": "fire",
+            "level": 5
+          },
+          {
+            "id": "gold",
+            "level": 5
+          },
+          {
+            "id": "dark",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 19105000,
+      "highest": 40,
+      "milestones": {
+        "5": 4710000,
+        "10": 8245000,
+        "20": 11215000,
+        "30": 14545000,
+        "40": 19105000
+      },
+      "generated": 1722,
+      "natureGenerated": 3,
+      "generatedPerMinute": 5.408008374771002,
+      "adds": 1721,
+      "taps": 636,
+      "focus": 0,
+      "attributes": 55,
+      "sales": 533,
+      "saleGold": 4818096231832,
+      "eventGold": 311900938127,
+      "averageGoldPerMinute": 16110956827.92672,
+      "researchBuys": 16,
+      "firstResearchMs": 3330000,
+      "boardFullRatio": 0.017011253598534413,
+      "stockFullRatio": 0,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "sale",
+      "seed": 12,
+      "policy": "production",
+      "initialLoadout": [
+        [
+          {
+            "id": "fire",
+            "level": 5
+          },
+          {
+            "id": "gold",
+            "level": 5
+          },
+          {
+            "id": "dark",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 16680000,
+      "highest": 40,
+      "milestones": {
+        "5": 1915000,
+        "10": 7275000,
+        "20": 9955000,
+        "30": 13080000,
+        "40": 16680000
+      },
+      "generated": 2003,
+      "natureGenerated": 4,
+      "generatedPerMinute": 7.205035971223022,
+      "adds": 1984,
+      "taps": 556,
+      "focus": 0,
+      "attributes": 60,
+      "sales": 482,
+      "saleGold": 3742972230609,
+      "eventGold": 196517291014,
+      "averageGoldPerMinute": 14170825617.34892,
+      "researchBuys": 16,
+      "firstResearchMs": 1940000,
+      "boardFullRatio": 0.024880095923261392,
+      "stockFullRatio": 0.1657673860911271,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "sale",
+      "seed": 61,
+      "policy": "production",
+      "initialLoadout": [
+        [
+          {
+            "id": "fire",
+            "level": 5
+          },
+          {
+            "id": "gold",
+            "level": 5
+          },
+          {
+            "id": "dark",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 15745000,
+      "highest": 40,
+      "milestones": {
+        "5": 4195000,
+        "10": 6150000,
+        "20": 9030000,
+        "30": 11840000,
+        "40": 15745000
+      },
+      "generated": 1876,
+      "natureGenerated": 0,
+      "generatedPerMinute": 7.148936170212766,
+      "adds": 1858,
+      "taps": 524,
+      "focus": 0,
+      "attributes": 67,
+      "sales": 457,
+      "saleGold": 4089640855935,
+      "eventGold": 200789065034,
+      "averageGoldPerMinute": 16349685313.314701,
+      "researchBuys": 16,
+      "firstResearchMs": 3360000,
+      "boardFullRatio": 0.03906001905366783,
+      "stockFullRatio": 0.17815179422038743,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "sale",
+      "seed": 210,
+      "policy": "production",
+      "initialLoadout": [
+        [
+          {
+            "id": "fire",
+            "level": 5
+          },
+          {
+            "id": "gold",
+            "level": 5
+          },
+          {
+            "id": "dark",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 16485000,
+      "highest": 40,
+      "milestones": {
+        "5": 4710000,
+        "10": 6990000,
+        "20": 9645000,
+        "30": 12765000,
+        "40": 16485000
+      },
+      "generated": 1936,
+      "natureGenerated": 0,
+      "generatedPerMinute": 7.0464058234758875,
+      "adds": 1917,
+      "taps": 549,
+      "focus": 0,
+      "attributes": 61,
+      "sales": 486,
+      "saleGold": 5735636484659,
+      "eventGold": 280259079539,
+      "averageGoldPerMinute": 21895889223.650593,
+      "researchBuys": 16,
+      "firstResearchMs": 3330000,
+      "boardFullRatio": 0.03306035790112223,
+      "stockFullRatio": 0.16712162572035183,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "light-magnet",
+      "seed": 12,
+      "policy": "research",
+      "initialLoadout": [
+        [
+          {
+            "id": "light",
+            "level": 5
+          }
+        ],
+        [
+          {
+            "id": "magnet",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 16730000,
+      "highest": 40,
+      "milestones": {
+        "5": 3690000,
+        "10": 6050000,
+        "20": 9085000,
+        "30": 12620000,
+        "40": 16730000
+      },
+      "generated": 1501,
+      "natureGenerated": 5,
+      "generatedPerMinute": 5.3831440526001195,
+      "adds": 1500,
+      "taps": 557,
+      "focus": 0,
+      "attributes": 41,
+      "sales": 440,
+      "saleGold": 3872393004834,
+      "eventGold": 331758884949,
+      "averageGoldPerMinute": 15077651726.657503,
+      "researchBuys": 16,
+      "firstResearchMs": 3570000,
+      "boardFullRatio": 0.024506873879258817,
+      "stockFullRatio": 0,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": 180000,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "light-magnet",
+      "seed": 61,
+      "policy": "research",
+      "initialLoadout": [
+        [
+          {
+            "id": "light",
+            "level": 5
+          }
+        ],
+        [
+          {
+            "id": "magnet",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 15350000,
+      "highest": 40,
+      "milestones": {
+        "5": 2460000,
+        "10": 4590000,
+        "20": 7815000,
+        "30": 11300000,
+        "40": 15350000
+      },
+      "generated": 1377,
+      "natureGenerated": 2,
+      "generatedPerMinute": 5.382410423452768,
+      "adds": 1376,
+      "taps": 511,
+      "focus": 0,
+      "attributes": 38,
+      "sales": 400,
+      "saleGold": 4102041916913,
+      "eventGold": 229286381477,
+      "averageGoldPerMinute": 16930273479.048859,
+      "researchBuys": 16,
+      "firstResearchMs": 2490000,
+      "boardFullRatio": 0.02052117263843648,
+      "stockFullRatio": 0,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "light-magnet",
+      "seed": 210,
+      "policy": "research",
+      "initialLoadout": [
+        [
+          {
+            "id": "light",
+            "level": 5
+          }
+        ],
+        [
+          {
+            "id": "magnet",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 17810000,
+      "highest": 40,
+      "milestones": {
+        "5": 3960000,
+        "10": 6030000,
+        "20": 9435000,
+        "30": 13345000,
+        "40": 17810000
+      },
+      "generated": 1598,
+      "natureGenerated": 2,
+      "generatedPerMinute": 5.38349241998877,
+      "adds": 1597,
+      "taps": 593,
+      "focus": 0,
+      "attributes": 50,
+      "sales": 442,
+      "saleGold": 5184506750883,
+      "eventGold": 343039052123,
+      "averageGoldPerMinute": 18621715226.29759,
+      "researchBuys": 16,
+      "firstResearchMs": 3720000,
+      "boardFullRatio": 0.027231892195395846,
+      "stockFullRatio": 0,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "light-magnet",
+      "seed": 12,
+      "policy": "production",
+      "initialLoadout": [
+        [
+          {
+            "id": "light",
+            "level": 5
+          }
+        ],
+        [
+          {
+            "id": "magnet",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 15480000,
+      "highest": 40,
+      "milestones": {
+        "5": 3690000,
+        "10": 5665000,
+        "20": 8550000,
+        "30": 11700000,
+        "40": 15480000
+      },
+      "generated": 1858,
+      "natureGenerated": 2,
+      "generatedPerMinute": 7.2015503875969,
+      "adds": 1839,
+      "taps": 516,
+      "focus": 0,
+      "attributes": 44,
+      "sales": 450,
+      "saleGold": 4291571623950,
+      "eventGold": 108762263850,
+      "averageGoldPerMinute": 17055557704.651163,
+      "researchBuys": 16,
+      "firstResearchMs": 3570000,
+      "boardFullRatio": 0.029715762273901807,
+      "stockFullRatio": 0.18184754521963825,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "light-magnet",
+      "seed": 61,
+      "policy": "production",
+      "initialLoadout": [
+        [
+          {
+            "id": "light",
+            "level": 5
+          }
+        ],
+        [
+          {
+            "id": "magnet",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 13075000,
+      "highest": 40,
+      "milestones": {
+        "5": 2460000,
+        "10": 4395000,
+        "20": 6565000,
+        "30": 9500000,
+        "40": 13075000
+      },
+      "generated": 1560,
+      "natureGenerated": 0,
+      "generatedPerMinute": 7.1586998087954115,
+      "adds": 1541,
+      "taps": 435,
+      "focus": 0,
+      "attributes": 48,
+      "sales": 360,
+      "saleGold": 3633982719854,
+      "eventGold": 171271308406,
+      "averageGoldPerMinute": 17461968772.13002,
+      "researchBuys": 16,
+      "firstResearchMs": 2490000,
+      "boardFullRatio": 0.054684512428298276,
+      "stockFullRatio": 0.19005736137667303,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": null,
+        "normalChance": 0.0375,
+        "focusChance": 0.38
+      }
+    },
+    {
+      "style": "light-magnet",
+      "seed": 210,
+      "policy": "production",
+      "initialLoadout": [
+        [
+          {
+            "id": "light",
+            "level": 5
+          }
+        ],
+        [
+          {
+            "id": "magnet",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 16915000,
+      "highest": 40,
+      "milestones": {
+        "5": 3990000,
+        "10": 6345000,
+        "20": 9865000,
+        "30": 13095000,
+        "40": 16915000
+      },
+      "generated": 2010,
+      "natureGenerated": 2,
+      "generatedPerMinute": 7.129766479456103,
+      "adds": 1991,
+      "taps": 563,
+      "focus": 0,
+      "attributes": 75,
+      "sales": 482,
+      "saleGold": 4445463046176,
+      "eventGold": 304464972445,
+      "averageGoldPerMinute": 16848695306.961866,
+      "researchBuys": 16,
+      "firstResearchMs": 4015000,
+      "boardFullRatio": 0.0381318356488324,
+      "stockFullRatio": 0.18060892698788059,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0.06,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "combo",
+      "seed": 12,
+      "policy": "research",
+      "initialLoadout": [
+        [
+          {
+            "id": "ice",
+            "level": 5
+          },
+          {
+            "id": "lightning",
+            "level": 5
+          }
+        ],
+        [
+          {
+            "id": "luck",
+            "level": 5
+          },
+          {
+            "id": "mutation",
+            "level": 5
+          }
+        ],
+        [
+          {
+            "id": "light",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 18445000,
+      "highest": 40,
+      "milestones": {
+        "5": 3510000,
+        "10": 6480000,
+        "20": 9720000,
+        "30": 13740000,
+        "40": 18445000
+      },
+      "generated": 1671,
+      "natureGenerated": 12,
+      "generatedPerMinute": 5.435619409053944,
+      "adds": 1671,
+      "taps": 614,
+      "focus": 0,
+      "attributes": 61,
+      "sales": 503,
+      "saleGold": 5468156246384,
+      "eventGold": 274718096592,
+      "averageGoldPerMinute": 18681076745.923553,
+      "researchBuys": 16,
+      "firstResearchMs": 3270000,
+      "boardFullRatio": 0.01572241799945785,
+      "stockFullRatio": 0,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "combo",
+      "seed": 61,
+      "policy": "research",
+      "initialLoadout": [
+        [
+          {
+            "id": "ice",
+            "level": 5
+          },
+          {
+            "id": "lightning",
+            "level": 5
+          }
+        ],
+        [
+          {
+            "id": "luck",
+            "level": 5
+          },
+          {
+            "id": "mutation",
+            "level": 5
+          }
+        ],
+        [
+          {
+            "id": "light",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 15590000,
+      "highest": 40,
+      "milestones": {
+        "5": 3745000,
+        "10": 5960000,
+        "20": 8600000,
+        "30": 11550000,
+        "40": 15590000
+      },
+      "generated": 1406,
+      "natureGenerated": 2,
+      "generatedPerMinute": 5.411161000641437,
+      "adds": 1405,
+      "taps": 519,
+      "focus": 0,
+      "attributes": 38,
+      "sales": 414,
+      "saleGold": 4739877311865,
+      "eventGold": 394109648962,
+      "averageGoldPerMinute": 19758769573.420143,
+      "researchBuys": 16,
+      "firstResearchMs": 3180000,
+      "boardFullRatio": 0.01667735728030789,
+      "stockFullRatio": 0,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "combo",
+      "seed": 210,
+      "policy": "research",
+      "initialLoadout": [
+        [
+          {
+            "id": "ice",
+            "level": 5
+          },
+          {
+            "id": "lightning",
+            "level": 5
+          }
+        ],
+        [
+          {
+            "id": "luck",
+            "level": 5
+          },
+          {
+            "id": "mutation",
+            "level": 5
+          }
+        ],
+        [
+          {
+            "id": "light",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 18270000,
+      "highest": 40,
+      "milestones": {
+        "5": 4350000,
+        "10": 7830000,
+        "20": 11220000,
+        "30": 14310000,
+        "40": 18270000
+      },
+      "generated": 1641,
+      "natureGenerated": 0,
+      "generatedPerMinute": 5.389162561576355,
+      "adds": 1640,
+      "taps": 609,
+      "focus": 0,
+      "attributes": 46,
+      "sales": 493,
+      "saleGold": 4020766994359,
+      "eventGold": 305702122306,
+      "averageGoldPerMinute": 14208437164.745485,
+      "researchBuys": 16,
+      "firstResearchMs": 3570000,
+      "boardFullRatio": 0.019704433497536946,
+      "stockFullRatio": 0,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "combo",
+      "seed": 12,
+      "policy": "production",
+      "initialLoadout": [
+        [
+          {
+            "id": "ice",
+            "level": 5
+          },
+          {
+            "id": "lightning",
+            "level": 5
+          }
+        ],
+        [
+          {
+            "id": "luck",
+            "level": 5
+          },
+          {
+            "id": "mutation",
+            "level": 5
+          }
+        ],
+        [
+          {
+            "id": "light",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 15980000,
+      "highest": 40,
+      "milestones": {
+        "5": 3510000,
+        "10": 5935000,
+        "20": 8845000,
+        "30": 12110000,
+        "40": 15980000
+      },
+      "generated": 1923,
+      "natureGenerated": 2,
+      "generatedPerMinute": 7.220275344180226,
+      "adds": 1904,
+      "taps": 532,
+      "focus": 0,
+      "attributes": 62,
+      "sales": 454,
+      "saleGold": 4194749285237,
+      "eventGold": 189449019025,
+      "averageGoldPerMinute": 16461320291.346685,
+      "researchBuys": 16,
+      "firstResearchMs": 3270000,
+      "boardFullRatio": 0.03285356695869837,
+      "stockFullRatio": 0.16958698372966208,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "combo",
+      "seed": 61,
+      "policy": "production",
+      "initialLoadout": [
+        [
+          {
+            "id": "ice",
+            "level": 5
+          },
+          {
+            "id": "lightning",
+            "level": 5
+          }
+        ],
+        [
+          {
+            "id": "luck",
+            "level": 5
+          },
+          {
+            "id": "mutation",
+            "level": 5
+          }
+        ],
+        [
+          {
+            "id": "light",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 15960000,
+      "highest": 40,
+      "milestones": {
+        "5": 3745000,
+        "10": 6315000,
+        "20": 9045000,
+        "30": 12200000,
+        "40": 15960000
+      },
+      "generated": 1919,
+      "natureGenerated": 1,
+      "generatedPerMinute": 7.214285714285714,
+      "adds": 1900,
+      "taps": 532,
+      "focus": 0,
+      "attributes": 58,
+      "sales": 495,
+      "saleGold": 4209795692945,
+      "eventGold": 145340308584,
+      "averageGoldPerMinute": 16372691735.071428,
+      "researchBuys": 16,
+      "firstResearchMs": 3180000,
+      "boardFullRatio": 0.040413533834586464,
+      "stockFullRatio": 0.17387218045112782,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    },
+    {
+      "style": "combo",
+      "seed": 210,
+      "policy": "production",
+      "initialLoadout": [
+        [
+          {
+            "id": "ice",
+            "level": 5
+          },
+          {
+            "id": "lightning",
+            "level": 5
+          }
+        ],
+        [
+          {
+            "id": "luck",
+            "level": 5
+          },
+          {
+            "id": "mutation",
+            "level": 5
+          }
+        ],
+        [
+          {
+            "id": "light",
+            "level": 5
+          }
+        ]
+      ],
+      "durationMs": 17535000,
+      "highest": 40,
+      "milestones": {
+        "5": 4350000,
+        "10": 6950000,
+        "20": 10340000,
+        "30": 13675000,
+        "40": 17535000
+      },
+      "generated": 2090,
+      "natureGenerated": 3,
+      "generatedPerMinute": 7.151411462788708,
+      "adds": 2071,
+      "taps": 584,
+      "focus": 0,
+      "attributes": 68,
+      "sales": 518,
+      "saleGold": 3799964008455,
+      "eventGold": 252684743963,
+      "averageGoldPerMinute": 13867061599.377245,
+      "researchBuys": 16,
+      "firstResearchMs": 3570000,
+      "boardFullRatio": 0.034787567721699456,
+      "stockFullRatio": 0.1656686626746507,
+      "maxAttributeLv": 5,
+      "endingEffects": {
+        "iceReduction": 0,
+        "tapBonus": 0,
+        "natureIntervalMs": null,
+        "normalChance": 0.03,
+        "focusChance": 0.35
+      }
+    }
+  ],
+  "ideal": [
+    {
+      "seed": 12,
+      "generated": 671,
+      "milestones": {
+        "5": 750000,
+        "10": 2130000,
+        "20": 4710000,
+        "30": 7245000,
+        "40": 10065000
+      },
+      "highest": 40
+    },
+    {
+      "seed": 61,
+      "generated": 631,
+      "milestones": {
+        "5": 795000,
+        "10": 2040000,
+        "20": 4365000,
+        "30": 6720000,
+        "40": 9465000
+      },
+      "highest": 40
+    },
+    {
+      "seed": 210,
+      "generated": 632,
+      "milestones": {
+        "5": 750000,
+        "10": 2010000,
+        "20": 4635000,
+        "30": 7155000,
+        "40": 9480000
+      },
+      "highest": 40
+    }
+  ],
+  "weights": [
+    {
+      "H": 1,
+      "weights": [
+        {
+          "tier": 1,
+          "probability": 1
+        }
+      ]
+    },
+    {
+      "H": 5,
+      "weights": [
+        {
+          "tier": 1,
+          "probability": 0.35
+        },
+        {
+          "tier": 2,
+          "probability": 0.3
+        },
+        {
+          "tier": 3,
+          "probability": 0.23
+        },
+        {
+          "tier": 4,
+          "probability": 0.118
+        },
+        {
+          "tier": 5,
+          "probability": 0.002
+        }
+      ]
+    },
+    {
+      "H": 10,
+      "weights": [
+        {
+          "tier": 1,
+          "probability": 0
+        },
+        {
+          "tier": 2,
+          "probability": 0
+        },
+        {
+          "tier": 3,
+          "probability": 0
+        },
+        {
+          "tier": 4,
+          "probability": 0
+        },
+        {
+          "tier": 5,
+          "probability": 0
+        },
+        {
+          "tier": 6,
+          "probability": 0.15
+        },
+        {
+          "tier": 7,
+          "probability": 0.25
+        },
+        {
+          "tier": 8,
+          "probability": 0.4
+        },
+        {
+          "tier": 9,
+          "probability": 0.198
+        },
+        {
+          "tier": 10,
+          "probability": 0.002
+        }
+      ]
+    },
+    {
+      "H": 20,
+      "weights": [
+        {
+          "tier": 1,
+          "probability": 0
+        },
+        {
+          "tier": 2,
+          "probability": 0
+        },
+        {
+          "tier": 3,
+          "probability": 0
+        },
+        {
+          "tier": 4,
+          "probability": 0
+        },
+        {
+          "tier": 5,
+          "probability": 0
+        },
+        {
+          "tier": 6,
+          "probability": 0
+        },
+        {
+          "tier": 7,
+          "probability": 0
+        },
+        {
+          "tier": 8,
+          "probability": 0
+        },
+        {
+          "tier": 9,
+          "probability": 0
+        },
+        {
+          "tier": 10,
+          "probability": 0
+        },
+        {
+          "tier": 11,
+          "probability": 0
+        },
+        {
+          "tier": 12,
+          "probability": 0
+        },
+        {
+          "tier": 13,
+          "probability": 0
+        },
+        {
+          "tier": 14,
+          "probability": 0
+        },
+        {
+          "tier": 15,
+          "probability": 0
+        },
+        {
+          "tier": 16,
+          "probability": 0.15
+        },
+        {
+          "tier": 17,
+          "probability": 0.25
+        },
+        {
+          "tier": 18,
+          "probability": 0.4
+        },
+        {
+          "tier": 19,
+          "probability": 0.198
+        },
+        {
+          "tier": 20,
+          "probability": 0.002
+        }
+      ]
+    },
+    {
+      "H": 40,
+      "weights": [
+        {
+          "tier": 1,
+          "probability": 0
+        },
+        {
+          "tier": 2,
+          "probability": 0
+        },
+        {
+          "tier": 3,
+          "probability": 0
+        },
+        {
+          "tier": 4,
+          "probability": 0
+        },
+        {
+          "tier": 5,
+          "probability": 0
+        },
+        {
+          "tier": 6,
+          "probability": 0
+        },
+        {
+          "tier": 7,
+          "probability": 0
+        },
+        {
+          "tier": 8,
+          "probability": 0
+        },
+        {
+          "tier": 9,
+          "probability": 0
+        },
+        {
+          "tier": 10,
+          "probability": 0
+        },
+        {
+          "tier": 11,
+          "probability": 0
+        },
+        {
+          "tier": 12,
+          "probability": 0
+        },
+        {
+          "tier": 13,
+          "probability": 0
+        },
+        {
+          "tier": 14,
+          "probability": 0
+        },
+        {
+          "tier": 15,
+          "probability": 0
+        },
+        {
+          "tier": 16,
+          "probability": 0
+        },
+        {
+          "tier": 17,
+          "probability": 0
+        },
+        {
+          "tier": 18,
+          "probability": 0
+        },
+        {
+          "tier": 19,
+          "probability": 0
+        },
+        {
+          "tier": 20,
+          "probability": 0
+        },
+        {
+          "tier": 21,
+          "probability": 0
+        },
+        {
+          "tier": 22,
+          "probability": 0
+        },
+        {
+          "tier": 23,
+          "probability": 0
+        },
+        {
+          "tier": 24,
+          "probability": 0
+        },
+        {
+          "tier": 25,
+          "probability": 0
+        },
+        {
+          "tier": 26,
+          "probability": 0
+        },
+        {
+          "tier": 27,
+          "probability": 0
+        },
+        {
+          "tier": 28,
+          "probability": 0
+        },
+        {
+          "tier": 29,
+          "probability": 0
+        },
+        {
+          "tier": 30,
+          "probability": 0
+        },
+        {
+          "tier": 31,
+          "probability": 0
+        },
+        {
+          "tier": 32,
+          "probability": 0
+        },
+        {
+          "tier": 33,
+          "probability": 0
+        },
+        {
+          "tier": 34,
+          "probability": 0
+        },
+        {
+          "tier": 35,
+          "probability": 0
+        },
+        {
+          "tier": 36,
+          "probability": 0.15
+        },
+        {
+          "tier": 37,
+          "probability": 0.25
+        },
+        {
+          "tier": 38,
+          "probability": 0.4
+        },
+        {
+          "tier": 39,
+          "probability": 0.198
+        },
+        {
+          "tier": 40,
+          "probability": 0.002
+        }
+      ]
+    }
+  ]
+}

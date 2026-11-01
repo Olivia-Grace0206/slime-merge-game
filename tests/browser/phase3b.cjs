@@ -55,7 +55,7 @@ try{
    await set(p,{tiers:Array(5).fill(1),attrs:[[{id:'fire',level:1},{id:'gold',level:1},{id:'dark',level:1}],[],[],[],[]]})
    await p.evaluate(()=>{window.draws=0;Math.random=()=>{window.draws++;return 0}})
    await drag(p,cdp,touch,'[data-slime-id="p-1"]','[data-slime-id="p-2"]',async()=>{
-    assert((await p.getByTestId('attribute-preview').innerText()).includes('闇のみ消失 仮20%'));assert.equal(await p.evaluate(()=>window.draws),0)
+    assert((await p.getByTestId('attribute-preview').innerText()).includes('闇のみ消失 仮20%'));assert.equal(await p.evaluate(()=>window.draws),0);assert(await p.getByTestId('dark-risk').evaluate(n=>{const a=n.getBoundingClientRect(),b=n.parentElement.getBoundingClientRect();return a.y>=b.y&&a.bottom<=b.bottom&&Number(getComputedStyle(n.parentElement).zIndex)>Number(getComputedStyle(document.querySelector('.drag-sprite')).zIndex)}),'risk must be unclipped above held sprite')
     await p.screenshot({path:path.join(dir,`dark-risk-${name}.png`)})
    });await until(async()=>(await snap(p)).game.highestTierReached===2)
    const s=await snap(p);assert.equal(s.game.slimes.length,2);for(const out of s.game.slimes)assert.deepEqual(out.attributes.map(a=>a.id),['fire','gold'])
@@ -83,6 +83,12 @@ try{
   })
   await ctx.close()
  }
+ await check('3merge risk label does not promise two outputs',async()=>{
+  const ctx=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true}),p=await ctx.newPage(),cdp=await ctx.newCDPSession(p)
+  await p.goto('http://127.0.0.1:5173/slime-merge-game/');await set(p,{tiers:[1,1,1],attrs:[[{id:'dark',level:1}],[],[]]})
+  await drag(p,cdp,true,'[data-slime-id="p-1"]','[data-slime-id="p-2"]',async()=>{assert((await p.getByTestId('dark-risk').innerText()).includes('20%/組'));assert(!(await p.getByTestId('dark-risk').innerText()).includes('2出力'))})
+  await until(async()=>(await snap(p)).game.highestTierReached===2);assert.equal((await snap(p)).game.slimes.length,1);await ctx.close()
+ })
  await check('focus Quota preserves original materials/mode/UI; reload and native click execute once',async()=>{
   const ctx=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true}),p=await ctx.newPage();await p.clock.install({time:new Date('2026-11-01T04:00:00Z')});await p.goto('http://127.0.0.1:5173/slime-merge-game/')
   const now=await p.evaluate(()=>Date.now());await set(p,{generationMode:'focused',generator:{storedTiers:Array(10).fill(1),storedAttributes:Array.from({length:10},()=>[]),totalGenerated:10,progressMs:0,updatedAtMs:now}})

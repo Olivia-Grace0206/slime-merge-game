@@ -1,0 +1,104 @@
+(node:6) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS 1920x1080 genuine fresh research5, GOLD lock and zero events after70s
+PASS 1920x1080 no Tier forecast, original trio art, large stock/full GOLD and default hidden prices
+PASS 1920x1080 full16 + dragged price tags, protected status, alignment, legible exact values
+PASS 1920x1080 cancel and pinch clear price labels without selling
+PASS 1920x1080 MAX_SAFE full GOLD fits header; cap receipt price is0 for all specimens
+PASS 1920x1080 compact setting persists through reload; full display restores
+PASS 1920x1080 research5 blocked8 merge gives notice and swaps only positions, preserving all materials
+PASS 1920x1080 research keyboard purchase atomic, synchronous double click charged once, then merge succeeds
+PASS 1920x1080 GOLD unlock/frequency locks, keyboard unlock and save restoration
+PASS 1920x1080 zoom75..300 and pan keep prices tied to cell centers; orientation aborts drag
+PASS 1440x900 genuine fresh research5, GOLD lock and zero events after70s
+PASS 1440x900 no Tier forecast, original trio art, large stock/full GOLD and default hidden prices
+PASS 1440x900 full16 + dragged price tags, protected status, alignment, legible exact values
+PASS 1440x900 cancel and pinch clear price labels without selling
+PASS 1440x900 MAX_SAFE full GOLD fits header; cap receipt price is0 for all specimens
+PASS 1440x900 compact setting persists through reload; full display restores
+PASS 1440x900 research5 blocked8 merge gives notice and swaps only positions, preserving all materials
+PASS 1440x900 research keyboard purchase atomic, synchronous double click charged once, then merge succeeds
+PASS 1440x900 GOLD unlock/frequency locks, keyboard unlock and save restoration
+PASS 1440x900 zoom75..300 and pan keep prices tied to cell centers; orientation aborts drag
+PASS 1366x768 genuine fresh research5, GOLD lock and zero events after70s
+PASS 1366x768 no Tier forecast, original trio art, large stock/full GOLD and default hidden prices
+PASS 1366x768 full16 + dragged price tags, protected status, alignment, legible exact values
+PASS 1366x768 cancel and pinch clear price labels without selling
+PASS 1366x768 MAX_SAFE full GOLD fits header; cap receipt price is0 for all specimens
+PASS 1366x768 compact setting persists through reload; full display restores
+PASS 1366x768 research5 blocked8 merge gives notice and swaps only positions, preserving all materials
+PASS 1366x768 research keyboard purchase atomic, synchronous double click charged once, then merge succeeds
+PASS 1366x768 GOLD unlock/frequency locks, keyboard unlock and save restoration
+PASS 1366x768 zoom75..300 and pan keep prices tied to cell centers; orientation aborts drag
+PASS 1280x720 genuine fresh research5, GOLD lock and zero events after70s
+PASS 1280x720 no Tier forecast, original trio art, large stock/full GOLD and default hidden prices
+PASS 1280x720 full16 + dragged price tags, protected status, alignment, legible exact values
+PASS 1280x720 cancel and pinch clear price labels without selling
+PASS 1280x720 MAX_SAFE full GOLD fits header; cap receipt price is0 for all specimens
+PASS 1280x720 compact setting persists through reload; full display restores
+PASS 1280x720 research5 blocked8 merge gives notice and swaps only positions, preserving all materials
+PASS 1280x720 research keyboard purchase atomic, synchronous double click charged once, then merge succeeds
+PASS 1280x720 GOLD unlock/frequency locks, keyboard unlock and save restoration
+PASS 1280x720 zoom75..300 and pan keep prices tied to cell centers; orientation aborts drag
+PASS 1024x768 genuine fresh research5, GOLD lock and zero events after70s
+PASS 1024x768 no Tier forecast, original trio art, large stock/full GOLD and default hidden prices
+PASS 1024x768 full16 + dragged price tags, protected status, alignment, legible exact values
+PASS 1024x768 cancel and pinch clear price labels without selling
+PASS 1024x768 MAX_SAFE full GOLD fits header; cap receipt price is0 for all specimens
+PASS 1024x768 compact setting persists through reload; full display restores
+PASS 1024x768 research5 blocked8 merge gives notice and swaps only positions, preserving all materials
+PASS 1024x768 research keyboard purchase atomic, synchronous double click charged once, then merge succeeds
+PASS 1024x768 GOLD unlock/frequency locks, keyboard unlock and save restoration
+PASS 1024x768 zoom75..300 and pan keep prices tied to cell centers; orientation aborts drag
+PASS 768x1024 genuine fresh research5, GOLD lock and zero events after70s
+PASS 768x1024 no Tier forecast, original trio art, large stock/full GOLD and default hidden prices
+PASS 768x1024 full16 + dragged price tags, protected status, alignment, legible exact values
+PASS 768x1024 cancel and pinch clear price labels without selling
+PASS 768x1024 MAX_SAFE full GOLD fits header; cap receipt price is0 for all specimens
+PASS 768x1024 compact setting persists through reload; full display restores
+PASS 768x1024 research5 blocked8 merge gives notice and swaps only positions, preserving all materials
+PASS 768x1024 research keyboard purchase atomic, synchronous double click charged once, then merge succeeds
+PASS 768x1024 GOLD unlock/frequency locks, keyboard unlock and save restoration
+PASS 768x1024 zoom75..300 and pan keep prices tied to cell centers; orientation aborts drag
+PASS 390x844 genuine fresh research5, GOLD lock and zero events after70s
+PASS 390x844 no Tier forecast, original trio art, large stock/full GOLD and default hidden prices
+PASS 390x844 full16 + dragged price tags, protected status, alignment, legible exact values
+PASS 390x844 cancel and pinch clear price labels without selling
+PASS 390x844 MAX_SAFE full GOLD fits header; cap receipt price is0 for all specimens
+PASS 390x844 compact setting persists through reload; full display restores
+PASS 390x844 research5 blocked8 merge gives notice and swaps only positions, preserving all materials
+PASS 390x844 research keyboard purchase atomic, synchronous double click charged once, then merge succeeds
+PASS 390x844 GOLD unlock/frequency locks, keyboard unlock and save restoration
+PASS 390x844 zoom75..300 and pan keep prices tied to cell centers; orientation aborts drag
+PASS 375x667 genuine fresh research5, GOLD lock and zero events after70s
+PASS 375x667 no Tier forecast, original trio art, large stock/full GOLD and default hidden prices
+PASS 375x667 full16 + dragged price tags, protected status, alignment, legible exact values
+PASS 375x667 cancel and pinch clear price labels without selling
+PASS 375x667 MAX_SAFE full GOLD fits header; cap receipt price is0 for all specimens
+PASS 375x667 compact setting persists through reload; full display restores
+PASS 375x667 research5 blocked8 merge gives notice and swaps only positions, preserving all materials
+PASS 375x667 research keyboard purchase atomic, synchronous double click charged once, then merge succeeds
+PASS 375x667 GOLD unlock/frequency locks, keyboard unlock and save restoration
+PASS 375x667 zoom75..300 and pan keep prices tied to cell centers; orientation aborts drag
+PASS 320x568 genuine fresh research5, GOLD lock and zero events after70s
+PASS 320x568 no Tier forecast, original trio art, large stock/full GOLD and default hidden prices
+PASS 320x568 full16 + dragged price tags, protected status, alignment, legible exact values
+PASS 320x568 cancel and pinch clear price labels without selling
+PASS 320x568 MAX_SAFE full GOLD fits header; cap receipt price is0 for all specimens
+PASS 320x568 compact setting persists through reload; full display restores
+PASS 320x568 research5 blocked8 merge gives notice and swaps only positions, preserving all materials
+PASS 320x568 research keyboard purchase atomic, synchronous double click charged once, then merge succeeds
+PASS 320x568 GOLD unlock/frequency locks, keyboard unlock and save restoration
+PASS 320x568 zoom75..300 and pan keep prices tied to cell centers; orientation aborts drag
+PASS 844x390 genuine fresh research5, GOLD lock and zero events after70s
+PASS 844x390 no Tier forecast, original trio art, large stock/full GOLD and default hidden prices
+PASS 844x390 full16 + dragged price tags, protected status, alignment, legible exact values
+PASS 844x390 cancel and pinch clear price labels without selling
+PASS 844x390 MAX_SAFE full GOLD fits header; cap receipt price is0 for all specimens
+PASS 844x390 compact setting persists through reload; full display restores
+PASS 844x390 research5 blocked8 merge gives notice and swaps only positions, preserving all materials
+PASS 844x390 research keyboard purchase atomic, synchronous double click charged once, then merge succeeds
+PASS 844x390 GOLD unlock/frequency locks, keyboard unlock and save restoration
+PASS 844x390 zoom75..300 and pan keep prices tied to cell centers; orientation aborts drag
+PASS Quota research purchase retains previous GOLD/cap/raw and exposes failure
+101 checks []
