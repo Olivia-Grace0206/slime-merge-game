@@ -1,4 +1,4 @@
-import type { Attributes } from './attributes'
+import type { Attributes, AwakeningAllocation } from './attributes'
 import type { GridPosition } from './grid'
 
 export const MAX_TIER = 40
@@ -17,6 +17,7 @@ export type MergeGroup = Readonly<{
   number: number
   consumedIds: readonly string[]
   attributes?: Attributes
+  awakening?: AwakeningAllocation
   outputs: readonly GridPosition[]
 }>
 export type InvalidReason =

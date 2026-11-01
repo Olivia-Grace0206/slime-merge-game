@@ -23,7 +23,7 @@ describe('attribute model and deterministic genetics',()=>{
   expect(isAttributes([{id,level:1}])).toBe(true);expect(isAttributes([{id,level:99}])).toBe(true)
   expect(drawAttributes(stream(0,(ATTRIBUTE_IDS.indexOf(id)+.5)/10))).toEqual([{id,level:1}])
  })
- it.each([Array(1),null,{},[{id:'water',level:1}],[{id:'fire',level:0}],[{id:'fire',level:100}],[{id:'fire',level:1.2}],[{id:'fire',level:NaN}],[{id:'fire',level:1},{id:'fire',level:2}],[{id:'fire',level:1,awakened:true}]])('reject invalid attributes %j',a=>expect(isAttributes(a)).toBe(false))
+ it.each([Array(1),null,{},[{id:'water',level:1}],[{id:'fire',level:0}],[{id:'fire',level:100}],[{id:'fire',level:1.2}],[{id:'fire',level:NaN}],[{id:'fire',level:1},{id:'fire',level:2}],[{id:'fire',level:1,awakened:'invalid'}]])('reject invalid attributes %j',a=>expect(isAttributes(a)).toBe(false))
  it('none, boundary probability, seeded reproducibility and invalid randomness',()=>{
   expect(isAttributes([])).toBe(true);expect(drawAttributes(()=>.08)).toEqual([])
   const a=seed(),b=seed();expect(Array.from({length:1000},()=>drawAttributes(a))).toEqual(Array.from({length:1000},()=>drawAttributes(b)))

@@ -1,3 +1,4 @@
+import { withAwakenings } from '../attributes/awakening'
 import { geneticsForGroup } from '../attributes/effects'
 import { randomUnit, mutateAttributes } from '../attributes/inheritance'
 import { MAX_TIER, isTier, type DropPlan, type GameState, type Slime } from '../../domain/game'
@@ -67,13 +68,13 @@ export function applyPlan(state: GameState, plan: DropPlan, nextId: () => string
         // Shared per group, after mutation; only inherited dark is exposed to loss.
         if (random && genetics.darkLossChance > 0 && randomUnit(random) < genetics.darkLossChance)
           attributes = attributes?.filter(a => a.id !== 'dark')
-        for (const position of group.outputs) {
+        for (const [outputIndex,position] of group.outputs.entries()) {
           const id = nextId()
           // Reject even reuse of consumed IDs, so a stale drag can never target an output.
           if (typeof id !== 'string' || !id.trim() || ids.has(id)) return reject()
           ids.add(id)
           createdIds.push(id)
-          outputs.push({ id, tier: plan.outputTier, position: { ...position }, ...(attributes !== undefined ? { attributes: attributes.map(a => ({ ...a })) } : {}) })
+          outputs.push({ id, tier: plan.outputTier, position: { ...position }, ...(attributes !== undefined ? { attributes: withAwakenings(attributes,group.awakening?.outputs[outputIndex]??[]) } : {}) })
         }
       }
       slimes = [...state.slimes.filter((s) => !consumedSet.has(s.id)), ...outputs]

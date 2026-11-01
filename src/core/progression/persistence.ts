@@ -24,6 +24,8 @@ function validateSession(value: unknown, version = 6): value is Session {
     !integer(s.goldFrequencyLevel) || s.goldFrequencyLevel > EXPERIMENTAL_RESEARCH.frequencyMaxLevel ||
     (!s.goldCellUnlocked && (s.goldFrequencyLevel !== 0 || s.event !== null)) ||
     !['full', 'compact'].includes(s.goldFormat))) return false
+  // Awakening is a new schema feature; never reinterpret an old schema6 flag.
+  if (s.game.slimes.some(x=>x.attributes?.some(a=>a.awakened !== undefined)) || (Array.isArray(s.generator?.storedAttributes) && s.generator.storedAttributes.some(attrs=>Array.isArray(attrs) && attrs.some(a=>a?.awakened !== undefined)))) return false
   const g = s.generator, rules = version < 6 ? legacyGenerationRules(s.wallet) : sessionRules(s)
   if (version === 6) {
     const n = s.nature, interval = boardEffects(s.game).natureIntervalMs

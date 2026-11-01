@@ -1,0 +1,140 @@
+(node:30) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:43) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ RUN  v5.0.5 /workspace/scratch/1214ce4e74e0/slime-merge-game-phase3c
+
+(node:76) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ tests/attributes/awakening.test.ts (21 tests | 6 failed) 2742ms
+   ❯ approved concentrated awakening allocation (21)
+     × merge 3 preserves groups, bodies and remainder without cloning flags 13ms
+     × merge 5 preserves groups, bodies and remainder without cloning flags 1ms
+     × merge 8 preserves groups, bodies and remainder without cloning flags 1ms
+     × merge 11 preserves groups, bodies and remainder without cloning flags 1ms
+     × merge 13 preserves groups, bodies and remainder without cloning flags 2ms
+     × merge 15 preserves groups, bodies and remainder without cloning flags 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/attributes/awakening.test.ts > approved concentrated awakening allocation > merge 3 preserves groups, bodies and remainder without cloning flags
+AssertionError: expected +0 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/attributes/awakening.test.ts:45:89
+     43|   expect(result.state.slimes.filter(s=>s.tier===3).length).toBe(plan.g…
+     44|   for(const id of plan.remainderIds)expect(result.state.slimes.find(s=…
+     45|   expect(result.state.slimes.flatMap(s=>s.attributes??[]).filter(a=>a.…
+       |                                                                                         ^
+     46|  })
+     47|  it('normal attributes copy while awakening stays first',()=>expect(wi…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  tests/attributes/awakening.test.ts > approved concentrated awakening allocation > merge 5 preserves groups, bodies and remainder without cloning flags
+AssertionError: expected +0 to be 2 // Object.is equality
+
+- Expected
++ Received
+
+- 2
++ 0
+
+ ❯ tests/attributes/awakening.test.ts:45:89
+     43|   expect(result.state.slimes.filter(s=>s.tier===3).length).toBe(plan.g…
+     44|   for(const id of plan.remainderIds)expect(result.state.slimes.find(s=…
+     45|   expect(result.state.slimes.flatMap(s=>s.attributes??[]).filter(a=>a.…
+       |                                                                                         ^
+     46|  })
+     47|  it('normal attributes copy while awakening stays first',()=>expect(wi…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  tests/attributes/awakening.test.ts > approved concentrated awakening allocation > merge 8 preserves groups, bodies and remainder without cloning flags
+AssertionError: expected +0 to be 3 // Object.is equality
+
+- Expected
++ Received
+
+- 3
++ 0
+
+ ❯ tests/attributes/awakening.test.ts:45:89
+     43|   expect(result.state.slimes.filter(s=>s.tier===3).length).toBe(plan.g…
+     44|   for(const id of plan.remainderIds)expect(result.state.slimes.find(s=…
+     45|   expect(result.state.slimes.flatMap(s=>s.attributes??[]).filter(a=>a.…
+       |                                                                                         ^
+     46|  })
+     47|  it('normal attributes copy while awakening stays first',()=>expect(wi…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  tests/attributes/awakening.test.ts > approved concentrated awakening allocation > merge 11 preserves groups, bodies and remainder without cloning flags
+AssertionError: expected 1 to be 5 // Object.is equality
+
+- Expected
++ Received
+
+- 5
++ 1
+
+ ❯ tests/attributes/awakening.test.ts:45:89
+     43|   expect(result.state.slimes.filter(s=>s.tier===3).length).toBe(plan.g…
+     44|   for(const id of plan.remainderIds)expect(result.state.slimes.find(s=…
+     45|   expect(result.state.slimes.flatMap(s=>s.attributes??[]).filter(a=>a.…
+       |                                                                                         ^
+     46|  })
+     47|  it('normal attributes copy while awakening stays first',()=>expect(wi…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  tests/attributes/awakening.test.ts > approved concentrated awakening allocation > merge 13 preserves groups, bodies and remainder without cloning flags
+AssertionError: expected +0 to be 5 // Object.is equality
+
+- Expected
++ Received
+
+- 5
++ 0
+
+ ❯ tests/attributes/awakening.test.ts:45:89
+     43|   expect(result.state.slimes.filter(s=>s.tier===3).length).toBe(plan.g…
+     44|   for(const id of plan.remainderIds)expect(result.state.slimes.find(s=…
+     45|   expect(result.state.slimes.flatMap(s=>s.attributes??[]).filter(a=>a.…
+       |                                                                                         ^
+     46|  })
+     47|  it('normal attributes copy while awakening stays first',()=>expect(wi…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  tests/attributes/awakening.test.ts > approved concentrated awakening allocation > merge 15 preserves groups, bodies and remainder without cloning flags
+AssertionError: expected +0 to be 6 // Object.is equality
+
+- Expected
++ Received
+
+- 6
++ 0
+
+ ❯ tests/attributes/awakening.test.ts:45:89
+     43|   expect(result.state.slimes.filter(s=>s.tier===3).length).toBe(plan.g…
+     44|   for(const id of plan.remainderIds)expect(result.state.slimes.find(s=…
+     45|   expect(result.state.slimes.flatMap(s=>s.attributes??[]).filter(a=>a.…
+       |                                                                                         ^
+     46|  })
+     47|  it('normal attributes copy while awakening stays first',()=>expect(wi…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed | 15 passed (21)
+   Start at  08:22:08
+   Duration  3.04s (tests 94%, transform 5%, import 1%)
+
