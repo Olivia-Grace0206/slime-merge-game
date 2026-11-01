@@ -11,7 +11,7 @@ async function center(p,selector){const r=await p.locator(selector).boundingBox(
 async function snapshot(p){return p.evaluate(k=>{const s=JSON.parse(localStorage.getItem(k));if(s){s.game.slimes=s.game.slimes.map(x=>({...x,attributes:x.attributes??[]}));s.generator.storedAttributes??=s.generator.storedTiers.map(()=>[])}return s},key)}
 async function until(fn){for(let i=0;i<80;i++){if(await fn())return;await new Promise(r=>setTimeout(r,10))}throw Error('condition timeout')}
 function fixture(now,{tiers=[],queue=[],gold=0,H=1,event=null,capacityLv=0}={}){return {version:3,savedAtMs:now,nextId:tiers.length+1,sequence:0,game:{bounds:{origin:{x:0,y:0},width:4,height:4},slimes:tiers.map((t,i)=>({id:`p-${i+1}`,tier:t,position:{x:i%4,y:Math.floor(i/4)}})),highestTierReached:Math.max(H,...tiers,...queue),revision:0},wallet:{gold,upgrades:{speed:0,tap:0,storage:capacityLv}},generator:{storedTiers:queue,progressMs:0,updatedAtMs:now,totalGenerated:queue.length},eventSequence:event?1:0,nextEventAtMs:now+60000,event,lastEvent:null,protectedIds:[],reducedEffects:false}}
-async function seed(p,options){const now=await p.evaluate(()=>Date.now()),s=fixture(now,options);await p.evaluate(([k,s])=>localStorage.setItem(k,JSON.stringify(s)),[key,s]);await p.reload();await p.getByTestId('board').waitFor();return s}
+async function seed(p,options){const now=await p.evaluate(()=>Date.now()),s=fixture(now,options);await p.evaluate(([k,s])=>localStorage.setItem(k,JSON.stringify(s)),[key,s]);await p.reload();await p.getByTestId('board').waitFor();await p.waitForTimeout(80);return s}
 async function add(p){const count=await p.locator('[data-slime-id]').count();await p.getByTestId('add-slime').tap();await until(async()=>await p.locator('[data-slime-id]').count()===count+1)}
 async function drag(p,from,to,touch=false,cdp){const a=await center(p,from),b=await center(p,to);if(touch){await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{...a,id:0}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{...b,id:0}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]})}else{await p.mouse.move(a.x,a.y);await p.mouse.down();await p.mouse.move(b.x,b.y,{steps:8});await p.mouse.up()}await p.waitForTimeout(30)}
 async function metrics(p){return p.evaluate(()=>{const box=s=>{const n=document.querySelector(s),r=n.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height,right:r.right,bottom:r.bottom}};const d=document.documentElement;return {width:innerWidth,height:innerHeight,scrollWidth:d.scrollWidth,clientWidth:d.clientWidth,scrollHeight:d.scrollHeight,clientHeight:d.clientHeight,board:box('[data-testid="board"]'),viewport:box('[data-testid="viewport"]'),buttons:[...document.querySelectorAll('.edge-menu button,.progress-controls button')].map(n=>{const r=n.getBoundingClientRect(),hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);return {text:n.innerText,w:r.width,h:r.height,visible:r.x>=0&&r.y>=0&&r.right<=innerWidth+.5&&r.bottom<=innerHeight+.5&&!!hit&&n.contains(hit)}})}})}
@@ -33,10 +33,10 @@ try{
    await p.screenshot({path:path.join(dir,`screen-${name}.png`)})
   })
   await check(name+' actual generation, one-click random addition, no placement mode or tap modal',async()=>{
-   await p.clock.runFor(10_000);await until(async()=>!!(await snapshot(p))?.generator.storedTiers.length)
+   await p.clock.runFor(15_000);await until(async()=>!!(await snapshot(p))?.generator.storedTiers.length)
    await add(p);assert.equal((await snapshot(p)).generator.storedTiers.length,0)
    assert(await p.getByTestId('add-slime').isDisabled())
-   for(let i=0;i<10;i++)await p.getByRole('button',{name:/生成加速/}).click()
+   for(let i=0;i<15;i++)await p.getByRole('button',{name:/生成加速/}).click()
    await until(async()=>(await snapshot(p)).generator.storedTiers.length===1)
    await add(p);assert.equal(await p.locator('[data-slime-id]').count(),2)
    await p.locator('[data-slime-id]').first().tap();assert.equal(await p.getByRole('dialog').isVisible(),false)

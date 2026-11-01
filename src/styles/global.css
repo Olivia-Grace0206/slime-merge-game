@@ -338,3 +338,26 @@ progress::-webkit-progress-value { background: linear-gradient(90deg,#79b65b,#ab
 .drag-sprite { container-type: inline-size; }
 .drag-sprite .attribute-badge { font-size: clamp(6px, 9cqw, 18px); padding: 0 1px; gap: 1px; }
 .detail-slime .attribute-badge { font-size: 10px; padding: 0 2px; gap: 1px; }
+
+/* Phase3B actions share the existing control row; board allocation is unchanged. */
+.generator-actions { display:flex; gap:4px; min-width:0; }
+.generator-actions .accelerate-button { flex:1; min-width:0; }
+.mode-button { min-width:44px; min-height:44px; padding:3px; border:1px solid #92b875; border-radius:11px; background:#fffdf6; color:#38592b; font-size:11px; }
+.mode-button small { display:block; font-size:9px; }
+.mode-button[aria-pressed="true"] { background:#e9dafa; border-color:#a27bb7; }
+.dark-risk { color:#754092; }
+.effect-details { padding-left:20px; font-size:13px; line-height:1.65; }
+@media(max-width:900px) and (min-height:501px) {
+  .generator-actions { grid-column:2; grid-row:2; height:44px; }
+  .generator-actions .accelerate-button { width:auto; font-size:9px; }
+  .mode-button { font-size:10px; }
+}
+.progress-controls .generator-actions .accelerate-button { min-width:44px; }
+.generator-actions { gap:3px; }
+.mode-button { flex:0 0 44px; }
+
+.add-label small { display:block; margin:0; line-height:1.1; }
+
+/* Risk must remain above the held sprite and before optional group details. */
+.operation-preview { z-index:30; }
+.merge-attribute-preview > .dark-risk { display:block; font-size:11px; line-height:1.3; }

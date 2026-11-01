@@ -6,7 +6,7 @@ import { freshSession as newSession, reduceSession as currentReduceSession, gold
 const freshSession = (now: number) => ({ ...newSession(now), researchLevel: 16, researchMaxTier: 40, goldCellUnlocked: true })
 import { encodeSession, decodeSession, isSession, commitStorage } from '../../src/core/progression/persistence'
 import { planDrop } from '../../src/core/merge/plan'
-import { purchaseUpgrade, beginGoldRush, payGoldRush, freshWallet } from '../../src/core/progression/economy'
+import { legacyGenerationRules, purchaseUpgrade, beginGoldRush, payGoldRush, freshWallet } from '../../src/core/progression/economy'
 import { advanceGenerator, emptyCells, withdrawToCell } from '../../src/core/progression/generation'
 const zero = () => 0
 const full = (now = 100_000) => reduceSession(freshSession(0), {type:'tick'}, now, zero)
@@ -80,7 +80,7 @@ describe('integrated progression safety',()=>{
  it('rejects inherited shop keys and overflow generation counter',()=>{
   expect(purchaseUpgrade({gold:100,upgrades:{speed:0,tap:0,storage:0}},'toString' as 'speed').ok).toBe(false)
   const s=freshSession(0)
-  expect(()=>advanceGenerator({...s.generator,totalGenerated:Number.MAX_SAFE_INTEGER},10000,1,sessionRules(s),zero)).toThrow()
+  expect(()=>advanceGenerator({...s.generator,totalGenerated:Number.MAX_SAFE_INTEGER},15000,1,sessionRules(s),zero)).toThrow()
  })
  it('invalid random discards a complete attempted operation',()=>{
   const s=freshSession(0);expect(reduceSession(s,{type:'tick'},10000,()=>NaN)).toBe(s)
@@ -184,8 +184,8 @@ describe('strict v2 persistence and failed writes',()=>{
    const loaded=decodeSession(encodeSession(s),s.savedAtMs);if(loaded.ok)s=loaded.session
   }
   expect(s.nextId).toBe(2401);expect(Number.isSafeInteger(s.wallet.gold)).toBe(true)
-  mkdirSync('docs/validation/phase3a/regression-session',{recursive:true})
-  writeFileSync('docs/validation/phase3a/regression-session/long-simulation.json',JSON.stringify({virtualHours:240,checkpoints:240,totalGenerated:s.generator.totalGenerated,nextId:s.nextId,gold:s.wallet.gold,eventSequence:s.eventSequence,uniqueIds:true,validEveryCheckpoint:true,roundTripEveryCheckpoint:true,storageBounded:true,errors:0},null,2))
+  mkdirSync('docs/validation/phase3b/regression/regression-session',{recursive:true})
+  writeFileSync('docs/validation/phase3b/regression/regression-session/long-simulation.json',JSON.stringify({virtualHours:240,checkpoints:240,totalGenerated:s.generator.totalGenerated,nextId:s.nextId,gold:s.wallet.gold,eventSequence:s.eventSequence,uniqueIds:true,validEveryCheckpoint:true,roundTripEveryCheckpoint:true,storageBounded:true,errors:0},null,2))
  })
 })
 
@@ -193,5 +193,5 @@ describe('strict v2 persistence and failed writes',()=>{
 
 // Phase3A: legacy economy fixtures remain un-attributed; production attribute trials are tested separately.
 function reduceSession(...args: Parameters<typeof currentReduceSession>) {
-  return currentReduceSession(args[0], args[1], args[2], args[3], args[4] ?? { ...sessionRules(args[0]), attributeChance: 0, attributeMutationChance: 0 })
+  return currentReduceSession(args[0], args[1], args[2], args[3], args[4] ?? { ...legacyGenerationRules(args[0].wallet), attributeChance: 0, attributeMutationChance: 0 })
 }

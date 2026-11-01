@@ -90,19 +90,19 @@ describe('storage, migration and atomic replay',()=>{
   const rawSession={...s,version,wallet:{...s.wallet,gold:4567},goldCellUnlocked:true,protectedIds:['p-1'],generator:{...s.generator,storedTiers:[1,39,40],totalGenerated:3},eventSequence:3,event:{id:'gold-3',sequence:3,cell:{x:0,y:0},tier:40,sourceId:'p-1',attributeCount:0,paid:4,receivedGOLD:4*unit,unitGOLD:unit,nextPaymentAtMs:1400,expiresAtMs:45000,...(version!==2?{rewardVersion:2}:{})}}
   if(version===1){ rawSession.event=null as never } // v1 had no event contract
   const raw=JSON.stringify(rawSession),d=decodeSession(raw,0);expect(d.ok).toBe(true);if(!d.ok)throw Error(d.reason)
-  expect(d.session.version).toBe(5);expect(d.migrated).toBe(true);expect(d.session.game.highestTierReached).toBe(40);expect(d.session.game.slimes[0]!.attributes).toEqual([])
+  expect(d.session.version).toBe(6);expect(d.migrated).toBe(true);expect(d.session.game.highestTierReached).toBe(40);expect(d.session.game.slimes[0]!.attributes).toEqual([])
   expect(d.session.generator.storedTiers).toEqual([1,39,40]);expect(d.session.generator.storedAttributes).toEqual([[],[],[]]);expect(d.session.wallet.gold).toBe(4567)
   if(version!==1){expect(d.session.protectedIds).toEqual(['p-1']);expect(d.session.event?.unitGOLD).toBe(unit);expect(d.session.event?.paid).toBe(4)}
  })
  it('schema4 research/format/frequency lock fields preserved exactly',()=>{
   const s={...freshSession(0),version:4,goldFrequencyLevel:3,goldCellUnlocked:true,goldFormat:'compact',wallet:{gold:123,upgrades:{speed:1,tap:2,storage:3}}}
-  const d=decodeSession(JSON.stringify(s),0);expect(d.ok&&d.session).toMatchObject({...s,version:5})
+  const d=decodeSession(JSON.stringify(s),0);expect(d.ok&&d.session).toMatchObject({...s,version:6})
  })
  it('FIFO stores generation-time attributes; occupied withdrawal and reload never reroll',()=>{
-  const s=reduceSession(freshSession(0),{type:'tick'},10000,stream(.9,0,.35))
+  const s=reduceSession(freshSession(0),{type:'tick'},15000,stream(.9,0,.35))
   expect(s.generator.storedAttributes).toEqual([[{id:'ice',level:1}]]);expect(s.generator.storedTiers).toEqual([1])
-  const restored=decodeSession(encodeSession(s),10000);if(!restored.ok)throw Error('save')
-  const n=reduceSession(restored.session,{type:'withdraw',expectedId:1},10000,quiet);expect(n.game.slimes[0]!.attributes).toEqual([{id:'ice',level:1}])
+  const restored=decodeSession(encodeSession(s),15000);if(!restored.ok)throw Error('save')
+  const n=reduceSession(restored.session,{type:'withdraw',expectedId:1},15000,quiet);expect(n.game.slimes[0]!.attributes).toEqual([{id:'ice',level:1}])
   const q={...s.generator,storedTiers:[1,1],storedAttributes:[fire(3),[]],totalGenerated:2}
   expect(withdrawToCell(n.game,q,n.game.slimes[0]!.position,'new')).toEqual({ok:false,game:n.game,generator:q})
   expect(n.generator.storedTiers).toEqual([]);expect(n.generator.storedAttributes).toEqual([])

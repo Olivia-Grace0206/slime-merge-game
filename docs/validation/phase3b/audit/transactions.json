@@ -1,0 +1,89 @@
+{
+  "oracle": "Ownership/ID/cell/count/immutability/save invariants, separate from effect formulas. Same implementation agent; no third-party review claimed.",
+  "reports": [
+    {
+      "seed": 12,
+      "attempts": 5000,
+      "counts": {
+        "tick": 462,
+        "withdraw": 1576,
+        "generation-mode": 521,
+        "tap": 504,
+        "sell": 483,
+        "protect": 497,
+        "drop": 506,
+        "buy": 451
+      },
+      "uniqueIndividualIds": 658,
+      "highestTier": 6,
+      "generated": 2281,
+      "natureGenerated": 134,
+      "focusedGenerated": 191,
+      "saveChecks": 50,
+      "violations": 0
+    },
+    {
+      "seed": 61,
+      "attempts": 5000,
+      "counts": {
+        "withdraw": 1475,
+        "tap": 545,
+        "tick": 481,
+        "buy": 509,
+        "generation-mode": 490,
+        "drop": 498,
+        "protect": 501,
+        "sell": 501
+      },
+      "uniqueIndividualIds": 820,
+      "highestTier": 4,
+      "generated": 2557,
+      "natureGenerated": 99,
+      "focusedGenerated": 208,
+      "saveChecks": 50,
+      "violations": 0
+    },
+    {
+      "seed": 210,
+      "attempts": 5000,
+      "counts": {
+        "tick": 499,
+        "generation-mode": 492,
+        "buy": 481,
+        "withdraw": 1562,
+        "tap": 508,
+        "sell": 456,
+        "protect": 489,
+        "drop": 513
+      },
+      "uniqueIndividualIds": 576,
+      "highestTier": 4,
+      "generated": 1985,
+      "natureGenerated": 181,
+      "focusedGenerated": 166,
+      "saveChecks": 50,
+      "violations": 0
+    },
+    {
+      "seed": 901,
+      "attempts": 5000,
+      "counts": {
+        "tap": 496,
+        "tick": 518,
+        "buy": 486,
+        "generation-mode": 506,
+        "withdraw": 1494,
+        "protect": 504,
+        "sell": 495,
+        "drop": 501
+      },
+      "uniqueIndividualIds": 501,
+      "highestTier": 7,
+      "generated": 1799,
+      "natureGenerated": 115,
+      "focusedGenerated": 150,
+      "saveChecks": 50,
+      "violations": 0
+    }
+  ]
+}

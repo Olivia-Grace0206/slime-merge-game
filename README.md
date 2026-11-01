@@ -1,3 +1,21 @@
+# Phase 3B — 属性効果・属性重視生成・ペース調整
+
+Phase3A [PR #10](https://github.com/Olivia-Grace0206/slime-merge-game/pull/10)はmain `13f56c0`へマージ済み。この変更は最新mainから作成した `feature/phase03b-attribute-effects-generation-modes` の新規Draft PRです。mainマージは試遊後のユーザー判断。Private/Pages設定は維持。
+
+- 通常はFIFO1体。生成パネルの「通常/属性」切替で、無属性・低Tierの貯蔵10体を属性率の高い1体へ変換できます。属性付き・発見Tier付近・盤面保護個体は消費しません。出力は素材の最低Tier、属性は保証されません。
+- 基本15秒、速度強化×.95/Lv、クリック1秒+200ms/Lvへ減速。属性重視35%/通常3%をはじめ、効果量と上限は**未承認の仮値**です。
+- 炎/黄金/闇の売却、氷/雷の生成支援、自然の追加貯蔵、幸運/変異、光の隣接支援、磁力の位置誘引と3複合効果が発動。「属性」→個体でLvごとの効果、合計支援、売値を確認できます。
+- 闇はマージ時に闇だけ仮20%で消失。5体は組単位の共通判定。プレビューで予告し、スライム本体・他属性・Tier進化は維持。
+- schema6。旧1〜5の個体/属性/GOLD/研究/保護/貯蔵/金報酬台帳を保持し、旧生成進捗を比率で移行。保存成功後にだけ反映。
+
+Node22/npm10で `npm ci` → `npm run lint` → `npm test -- --run` → `npm run build`。試遊はGitHub Desktopで上記ブランチをPull後、`npm ci` / `npm run dev`、通常 `http://localhost:5173/slime-merge-game/`。安全な保存にWeb Locks/LocalStorageが必要です。
+
+[仕様の正本案内](docs/specifications/CURRENT.md) / [完全仕様v0.3.1](docs/specifications/Slime_Merge_Game_Specification_v0.3.1_2026-11-01.md) / [引き継ぎ](docs/PHASE3B_HANDOFF.md) / [検証](docs/validation/phase3b/RESULTS.md) / [比較](docs/balance/phase3b/RESULTS.md)。属性重視専用ではTier進行が遅くなるため、通常との併用を試してください。覚醒/紫青、全体ビジュアル改修/音は後続です。
+
+---
+
+以下はPhase3A以前のREADME（履歴）。未マージ/属性効果未実装/10秒生成等は当時の状態です。
+
 # Phase 3A — スライム入れ替え・属性育成基盤
 
 2026-11-01 JST。main `225449c`（PR #9マージ済み）から `feature/phase03a-swap-attribute-core`。新規Draft PRはユーザー試遊/レビュー待ち、main未マージ。Private/Pages設定は維持。

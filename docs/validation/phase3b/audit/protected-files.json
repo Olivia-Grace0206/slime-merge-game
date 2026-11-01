@@ -1,0 +1,56 @@
+[
+  {
+    "path": "src/core/merge/plan.ts",
+    "baselineBlob": "73df60d3b1c8ea83c9b0586a92af7e8305c221e2",
+    "currentBlob": "73df60d3b1c8ea83c9b0586a92af7e8305c221e2",
+    "unchanged": true
+  },
+  {
+    "path": "src/core/board/state.ts",
+    "baselineBlob": "fa7695a174a1b2a597a2d3ca5c35eef83afc2f58",
+    "currentBlob": "fa7695a174a1b2a597a2d3ca5c35eef83afc2f58",
+    "unchanged": true
+  },
+  {
+    "path": "src/core/progression/tierTable.ts",
+    "baselineBlob": "70996ddc1cafc448d6b94fd78c2fdc14cdc8149e",
+    "currentBlob": "70996ddc1cafc448d6b94fd78c2fdc14cdc8149e",
+    "unchanged": true
+  },
+  {
+    "path": "src/core/progression/research.ts",
+    "baselineBlob": "8c05b00bbec574d084b59c492aab86dbd3729e76",
+    "currentBlob": "8c05b00bbec574d084b59c492aab86dbd3729e76",
+    "unchanged": true
+  },
+  {
+    "path": "src/app/sessionStore.ts",
+    "baselineBlob": "d261823066577e8e67863399507ce131932141ac",
+    "currentBlob": "d261823066577e8e67863399507ce131932141ac",
+    "unchanged": true
+  },
+  {
+    "path": "src/domain/attributes.ts",
+    "baselineBlob": "b2ec9ca656b21f43e84a1ca95316b39c0abb55af",
+    "currentBlob": "b2ec9ca656b21f43e84a1ca95316b39c0abb55af",
+    "unchanged": true
+  },
+  {
+    "path": "package.json",
+    "baselineBlob": "d0d631b79bb55c173d266b07d8eb470520844ee5",
+    "currentBlob": "d0d631b79bb55c173d266b07d8eb470520844ee5",
+    "unchanged": true
+  },
+  {
+    "path": "package-lock.json",
+    "baselineBlob": "9da4251d6eee59bde59328cc4300dfd6db270c29",
+    "currentBlob": "9da4251d6eee59bde59328cc4300dfd6db270c29",
+    "unchanged": true
+  },
+  {
+    "path": ".github/workflows/ci.yml",
+    "baselineBlob": "ad08660c5e5e92c3f885906ada8a9da5309c5180",
+    "currentBlob": "ad08660c5e5e92c3f885906ada8a9da5309c5180",
+    "unchanged": true
+  }
+]

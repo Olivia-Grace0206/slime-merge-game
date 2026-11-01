@@ -80,7 +80,7 @@ try{
   })
   await check(width+' v2 4/10 migrates frozen unit then sale ends ledger; save failure retains both sides',async()=>{
    let now=await p.evaluate(()=>Date.now()),s=fixture(now,{tiers:[5],gold:4});s.version=2;s.eventSequence=1;s.event={id:'gold-1',sequence:1,cell:{x:0,y:0},expiresAtMs:now+45000,tier:5,sourceId:'p-1',attributeCount:0,paid:4,receivedGOLD:4,unitGOLD:1,nextPaymentAtMs:now+5000};await p.evaluate(([k,s])=>localStorage.setItem(k,JSON.stringify(s)),[key,s]);await p.reload()
-   await drag(p,'[data-cell="0,0"]','[data-testid="sale-zone"]');await until(async()=>(await snapshot(p)).event===null);assert.equal((await snapshot(p)).wallet.gold,36);assert.equal((await snapshot(p)).version,5)
+   await drag(p,'[data-cell="0,0"]','[data-testid="sale-zone"]');await until(async()=>(await snapshot(p)).event===null);assert.equal((await snapshot(p)).wallet.gold,36);assert.equal((await snapshot(p)).version,6)
    await seed(p,{tiers:[1],queue:[1]});const raw=await p.evaluate(k=>localStorage.getItem(k),key);await p.evaluate(()=>{Storage.prototype.setItem=()=>{throw new DOMException('quota','QuotaExceededError')}})
    await p.getByTestId('add-slime').click();await until(async()=>await p.getByRole('alert').isVisible());assert.equal(await p.evaluate(k=>localStorage.getItem(k),key),raw);assert.equal(await p.locator('[data-slime-id]').count(),1);await p.reload()
   })
@@ -88,11 +88,11 @@ try{
    await seed(p,{gold:1000});await p.getByRole('button',{name:/生成加速/}).click();await until(async()=>(await snapshot(p)).generator.progressMs>=1000)
    await p.waitForTimeout(80);assert(await p.locator('progress').evaluate(n=>n.value)>=(await snapshot(p)).generator.progressMs)
    await p.getByRole('button',{name:'GOLDショップ',exact:true}).click();await p.getByTestId('buy-speed').click();await until(async()=>(await snapshot(p)).wallet.upgrades.speed===1);await p.getByRole('button',{name:'閉じる',exact:true}).click()
-   assert.equal(await p.locator('progress').evaluate(n=>n.max),9000);await p.reload();await p.waitForTimeout(80)
+   assert.equal(await p.locator('progress').evaluate(n=>n.max),14250);await p.reload();await p.waitForTimeout(80)
    const shown=await p.locator('progress').evaluate(n=>n.value),real=(await snapshot(p)).generator.progressMs;assert(shown>=real&&shown-real<1500)
   })
   await check(width+' full-capacity visual stop, tap/speed/reload display and Tier2/4 shape distinction',async()=>{
-   await seed(p,{queue:Array(10).fill(1),tiers:[2,4]});await p.waitForTimeout(100);assert((await p.getByTestId('generation-time').innerText()).includes('満杯'));assert.equal(await p.locator('progress').evaluate(n=>n.value),10000)
+   await seed(p,{queue:Array(10).fill(1),tiers:[2,4]});await p.waitForTimeout(100);assert((await p.getByTestId('generation-time').innerText()).includes('満杯'));assert.equal(await p.locator('progress').evaluate(n=>n.value),15000)
    assert.equal(await p.locator('[data-tier="4"] .violet-drop').count(),1);assert.equal(await p.locator('[data-tier="2"] .violet-drop').count(),0)
    await p.screenshot({path:path.join(dir,`populated-${width}.png`)})
   })

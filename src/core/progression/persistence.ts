@@ -1,14 +1,15 @@
+import { boardEffects } from '../attributes/effects'
 import { isAttributes } from '../../domain/attributes'
 import { RESEARCH_CAPS, legacyResearchLevel, EXPERIMENTAL_RESEARCH } from './research'
 import { isProgressionSnapshot } from './save'
 import { freshSession, goldPayment, sessionRules, type Session } from './session'
 import { inBounds, isGameState } from '../board/state'
-import { isWallet } from './economy'
+import { legacyGenerationRules, isWallet } from './economy'
 import { isValidGeneratedTier } from './generation'
 
 export const SAVE_KEY = 'slime-merge-normal-v2'
 const integer = (n: unknown): n is number => Number.isSafeInteger(n) && (n as number) >= 0
-function validateSession(value: unknown, version = 5): value is Session {
+function validateSession(value: unknown, version = 6): value is Session {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return false
   const s = value as Session
   if ((s.version as number) !== version || !integer(s.savedAtMs) || !integer(s.sequence) || !integer(s.nextId) || s.nextId < 1 ||
@@ -23,14 +24,22 @@ function validateSession(value: unknown, version = 5): value is Session {
     !integer(s.goldFrequencyLevel) || s.goldFrequencyLevel > EXPERIMENTAL_RESEARCH.frequencyMaxLevel ||
     (!s.goldCellUnlocked && (s.goldFrequencyLevel !== 0 || s.event !== null)) ||
     !['full', 'compact'].includes(s.goldFormat))) return false
-  const g = s.generator, rules = sessionRules(s)
+  const g = s.generator, rules = version < 6 ? legacyGenerationRules(s.wallet) : sessionRules(s)
+  if (version === 6) {
+    const n = s.nature, interval = boardEffects(s.game).natureIntervalMs
+    if (!['normal','focused'].includes(s.generationMode) || !integer(s.focusedGenerated) ||
+      !n || !integer(n.progressMs) || !integer(n.updatedAtMs) || n.updatedAtMs > s.savedAtMs || !integer(n.totalGenerated) ||
+      !g || n.totalGenerated > g.totalGenerated || s.focusedGenerated > Math.floor(g.totalGenerated / 10) ||
+      (interval === null ? n.progressMs !== 0 : n.progressMs >= interval) ||
+      (Array.isArray(g.storedTiers) && g.storedTiers.length === rules.capacity && n.progressMs !== 0)) return false
+  }
   if (!g || !Array.isArray(g.storedTiers) || g.storedTiers.length > rules.capacity ||
     Array.from(g.storedTiers).some(t => !isValidGeneratedTier(t, s.game.highestTierReached)) ||
     !integer(g.totalGenerated) || g.totalGenerated < g.storedTiers.length ||
     !integer(g.progressMs) || g.progressMs >= rules.intervalMs ||
     !integer(g.updatedAtMs) || g.updatedAtMs > s.savedAtMs ||
     (g.storedTiers.length === rules.capacity && g.progressMs !== 0)) return false
-  if (version === 5 && (s.game.slimes.some(x => !isAttributes(x.attributes)) || !Array.isArray(g.storedAttributes) || g.storedAttributes.length !== g.storedTiers.length || !Array.from(g.storedAttributes).every(isAttributes))) return false
+  if (version >= 5 && (s.game.slimes.some(x => !isAttributes(x.attributes)) || !Array.isArray(g.storedAttributes) || g.storedAttributes.length !== g.storedTiers.length || !Array.from(g.storedAttributes).every(isAttributes))) return false
   if (version < 5 && (s.game.slimes.some(x => x.attributes !== undefined && (!isAttributes(x.attributes) || x.attributes.length > 0)) || (g.storedAttributes !== undefined && (!Array.isArray(g.storedAttributes) || g.storedAttributes.some(a => !isAttributes(a) || a.length > 0))))) return false
   if (s.lastEvent !== null && (!s.lastEvent || typeof s.lastEvent !== 'object' ||
     !/^gold-[1-9]\d*$/.test(s.lastEvent.id) || Number(s.lastEvent.id.slice(5)) > s.eventSequence ||
@@ -51,6 +60,11 @@ function attributeMigration(s: Pick<Session, 'game' | 'generator'>) {
   return { game: { ...s.game, slimes: s.game.slimes.map(x => ({ ...x, attributes: [] })) },
     generator: { ...s.generator, storedAttributes: s.generator.storedTiers.map(() => []) } }
 }
+/** Validate legacy milliseconds first; preserve fraction without generating or repricing an event. */
+function rebaseLegacyProgress(s: Session): Session {
+  const oldInterval = legacyGenerationRules(s.wallet).intervalMs, newInterval = sessionRules(s).intervalMs
+  return {...s,generator:{...s.generator,progressMs:Math.floor(s.generator.progressMs / oldInterval * newInterval)}}
+}
 export function isSession(value: unknown): value is Session { return validateSession(value) }
 export function encodeSession(s: Session): string {
   if (!isSession(s)) throw new RangeError('Invalid save')
@@ -62,19 +76,21 @@ export function decodeSession(raw: string, now: number): LoadResult {
   try {
     const parsed: unknown = JSON.parse(raw)
     if (isSession(parsed)) return { ok: true, session: parsed, migrated: false }
-    for (const version of [4, 3, 2]) if (validateSession(parsed, version)) {
-      const researchLevel = version === 4 ? parsed.researchLevel : legacyResearchLevel(parsed.game.highestTierReached)
-      const session: Session = { ...parsed, ...attributeMigration(parsed), version: 5, researchLevel, researchMaxTier: RESEARCH_CAPS[researchLevel]!,
-        goldCellUnlocked: version === 4 ? parsed.goldCellUnlocked : true, goldFrequencyLevel: version === 4 ? parsed.goldFrequencyLevel : 0, goldFormat: version === 4 ? parsed.goldFormat : 'full',
+    for (const version of [5, 4, 3, 2]) if (validateSession(parsed, version)) {
+      const researchLevel = version >= 4 ? parsed.researchLevel : legacyResearchLevel(parsed.game.highestTierReached)
+      const session: Session = { ...parsed, ...(version < 5 ? attributeMigration(parsed) : {}), version: 6, generationMode: 'normal', focusedGenerated: 0, nature: {progressMs:0,updatedAtMs:parsed.generator.updatedAtMs,totalGenerated:0}, researchLevel, researchMaxTier: RESEARCH_CAPS[researchLevel]!,
+        goldCellUnlocked: version >= 4 ? parsed.goldCellUnlocked : true, goldFrequencyLevel: version >= 4 ? parsed.goldFrequencyLevel : 0, goldFormat: version >= 4 ? parsed.goldFormat : 'full',
         event: parsed.event ? { ...parsed.event, rewardVersion: version === 2 ? 1 : parsed.event.rewardVersion! } : null }
-      if (isSession(session)) return { ok: true, session, migrated: true }
+      const rebased = rebaseLegacyProgress(session)
+      if (isSession(rebased)) return { ok: true, session: rebased, migrated: true }
     }
     if (isProgressionSnapshot(parsed) && parsed.game.slimes.every(x => x.attributes === undefined || (isAttributes(x.attributes) && x.attributes.length === 0)) && (parsed.generator.storedAttributes === undefined || (Array.isArray(parsed.generator.storedAttributes) && parsed.generator.storedAttributes.every(a => isAttributes(a) && a.length === 0)))) {
       // v1 experimental 7x7 presets are not normal-play saves; never crop or silently discard them.
       const researchLevel = legacyResearchLevel(parsed.game.highestTierReached)
-      const migrated: Session = { ...freshSession(now), ...parsed, ...attributeMigration(parsed), version: 5, sequence: 0, event: null,
+      const migrated: Session = { ...freshSession(now), ...parsed, ...attributeMigration(parsed), version: 6, nature:{progressMs:0,updatedAtMs:parsed.generator.updatedAtMs,totalGenerated:0}, sequence: 0, event: null,
         researchLevel, researchMaxTier: RESEARCH_CAPS[researchLevel]!, goldCellUnlocked: true }
-      if (isSession(migrated)) return { ok: true, session: migrated, migrated: true }
+      const rebased = rebaseLegacyProgress(migrated)
+      if (isSession(rebased)) return { ok: true, session: rebased, migrated: true }
       return { ok: false, reason: '旧v1検証盤面は通常4×4へ自動変換できません（原本を保持）' }
     }
     return { ok: false, reason: '保存形式または内容が不正です。原本を保持しています' }

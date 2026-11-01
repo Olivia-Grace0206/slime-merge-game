@@ -122,8 +122,8 @@ describe('explicit migration and protection',()=>{
   if(state==='detached')legacy.game.slimes=[]
   const raw=JSON.stringify(legacy),load=decodeSession(raw,1000)
   expect(load.ok).toBe(true);if(!load.ok)return
-  expect(load.migrated).toBe(true);expect(load.session.version).toBe(5);expect(load.session.wallet).toEqual(legacy.wallet)
-  expect(load.session.generator).toEqual(legacy.generator);expect(isSession(load.session)).toBe(true)
+  expect(load.migrated).toBe(true);expect(load.session.version).toBe(6);expect(load.session.wallet).toEqual(legacy.wallet)
+  expect(load.session.generator).toEqual({...legacy.generator,progressMs:Math.floor(legacy.generator.progressMs*1.5)});expect(isSession(load.session)).toBe(true)
   if(state==='active') {const n=pay(load.session);expect(n.wallet.gold-load.session.wallet.gold).toBe(1)}
   if(state==='detached'){const n=pay(load.session);expect(n.event).toBeNull();expect(n.wallet.gold).toBe(legacy.wallet.gold)}
  })
