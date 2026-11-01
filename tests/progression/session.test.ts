@@ -1,14 +1,20 @@
 /// <reference types="node" />
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { describe, it, expect } from 'vitest'
-import { freshSession, reduceSession, goldPayment, sessionRules, type Session } from '../../src/core/progression/session'
+import { freshSession as newSession, reduceSession, goldPayment, sessionRules, type Session } from '../../src/core/progression/session'
+// Legacy regression fixture: research40 and GOLD already unlocked, as migrated pre-research saves.
+const freshSession = (now: number) => ({ ...newSession(now), researchLevel: 16, researchMaxTier: 40, goldCellUnlocked: true })
 import { encodeSession, decodeSession, isSession, commitStorage } from '../../src/core/progression/persistence'
 import { planDrop } from '../../src/core/merge/plan'
 import { purchaseUpgrade, beginGoldRush, payGoldRush, freshWallet } from '../../src/core/progression/economy'
-import { advanceGenerator } from '../../src/core/progression/generation'
+import { advanceGenerator, emptyCells, withdrawToCell } from '../../src/core/progression/generation'
 const zero = () => 0
 const full = (now = 100_000) => reduceSession(freshSession(0), {type:'tick'}, now, zero)
-const out = (s: Session, x: number, y: number, now = s.savedAtMs) => reduceSession(s,{type:'withdraw',target:{x,y},expectedId:s.nextId},now,zero)
+const out = (s: Session, x: number, y: number, now = s.savedAtMs) => {
+ const cells=emptyCells(s.game), index=cells.findIndex(p=>p.x===x&&p.y===y)
+ if(index<0)return s
+ return reduceSession(s,{type:'withdraw',expectedId:s.nextId},now,()=> (index+.5)/cells.length)
+}
 
 describe('integrated progression safety',()=>{
  it('4x4 empty normal start, full storage never banks offline time',()=>{
@@ -19,8 +25,8 @@ describe('integrated progression safety',()=>{
  })
  it('withdraw rejects double request, occupied, negative and locked/outside without loss',()=>{
   const start=full(),s=out(start,0,0)
-  for(const target of [{x:0,y:0},{x:4,y:0},{x:-1,y:0}])expect(out(s,target.x,target.y)).toBe(s)
-  expect(reduceSession(s,{type:'withdraw',target:{x:1,y:0},expectedId:start.nextId},s.savedAtMs,zero)).toBe(s)
+  for(const target of [{x:0,y:0},{x:4,y:0},{x:-1,y:0}])expect(withdrawToCell(s.game,s.generator,target,'new').ok).toBe(false)
+  expect(reduceSession(s,{type:'withdraw',expectedId:start.nextId},s.savedAtMs,zero)).toBe(s)
   expect(s.generator.storedTiers.length).toBe(9)
  })
  it('normal 3/5 merge uses the original planner and preserves highest-ever Tier after sale',()=>{
@@ -109,15 +115,13 @@ describe('gold event ledger and recovery',()=>{
   expect(s.event).toBeNull();expect(s.lastEvent).toEqual({id,receivedGOLD:10*unit})
   expect(reduceSession(s,{type:'pay',eventId:id,expectedPaid:0},s.savedAtMs+100_000,zero)).toBe(s)
  })
- it('same event ID cannot reset after relocation, selling or tab suspension',()=>{
+ it('relocation expires unpaid receipts and the same event ID cannot restart',()=>{
   let s=start();const e=s.event!, id=s.game.slimes[0]!.id
   s=reduceSession(s,{type:'drop',plan:planDrop(s.game,id,{x:1,y:1})},s.savedAtMs,zero)
+  expect(s.event).toBeNull();expect(s.lastEvent!.id).toBe(e.id)
+  expect(reduceSession(s,{type:'pay',eventId:e.id,expectedPaid:0},s.savedAtMs+1000,zero)).toBe(s)
   s=reduceSession(s,{type:'sell',id},s.savedAtMs,zero)
-  const before=s.wallet.gold
-  s=reduceSession(s,{type:'tick'},s.savedAtMs+86400_000,zero)
-  expect(s.event!.paid).toBe(1);expect(s.wallet.gold).toBe(before+e.unitGOLD)
-  expect(s.event!.id).toBe(e.id)
-  s=reduceSession(s,{type:'tick'},s.savedAtMs,zero);expect(s.event!.paid).toBe(1)
+  expect(s.wallet.gold).toBe(2)
  })
  it('waiting events expire, random cell is in bounds, there is a cooldown',()=>{
   let s=full(60_000);expect(s.event!.cell).toEqual({x:0,y:0})
@@ -180,7 +184,8 @@ describe('strict v2 persistence and failed writes',()=>{
    const loaded=decodeSession(encodeSession(s),s.savedAtMs);if(loaded.ok)s=loaded.session
   }
   expect(s.nextId).toBe(2401);expect(Number.isSafeInteger(s.wallet.gold)).toBe(true)
-  mkdirSync('docs/validation/phase2',{recursive:true})
-  writeFileSync('docs/validation/phase2/long-simulation.json',JSON.stringify({virtualHours:240,checkpoints:240,totalGenerated:s.generator.totalGenerated,nextId:s.nextId,gold:s.wallet.gold,eventSequence:s.eventSequence,uniqueIds:true,validEveryCheckpoint:true,roundTripEveryCheckpoint:true,storageBounded:true,errors:0},null,2))
+  mkdirSync('docs/validation/phase2-polish-followup',{recursive:true})
+  writeFileSync('docs/validation/phase2-polish-followup/long-simulation.json',JSON.stringify({virtualHours:240,checkpoints:240,totalGenerated:s.generator.totalGenerated,nextId:s.nextId,gold:s.wallet.gold,eventSequence:s.eventSequence,uniqueIds:true,validEveryCheckpoint:true,roundTripEveryCheckpoint:true,storageBounded:true,errors:0},null,2))
  })
 })
+

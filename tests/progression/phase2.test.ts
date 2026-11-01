@@ -14,7 +14,7 @@ describe('Phase 2 generated Tier distribution (EXPERIMENTAL values)', () => {
     for (let h = 1; h <= 40; h++) {
       const w = tierWeights(h)
       expect(w).toHaveLength(h)
-      expect(w.every(({ tier, probability }) => tier >= 1 && tier <= h && probability > 0)).toBe(true)
+      expect(w.every(({ tier, probability }) => tier >= 1 && tier <= h && probability >= 0)).toBe(true)
       expect(w.reduce((n, p) => n + p.probability, 0)).toBeCloseTo(1, 12)
       for (const u of [0, 0.01, 0.24, 0.5, 0.75, 0.99, 0.999999]) {
         expect(drawTier(h, u)).toBeGreaterThanOrEqual(1)

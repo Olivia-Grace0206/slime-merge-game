@@ -1,0 +1,23 @@
+{
+  "baseCommit": "55075e4b752c0084525770047f1e674eb2da23d6",
+  "protectedOriginalGitHubBlobs": {
+    ".github/workflows/ci.yml": "ad08660c5e5e92c3f885906ada8a9da5309c5180",
+    "docs/specifications/Slime_Merge_Game_Specification_v0.2.2_2026-10-30.md": "e124be5f238a7e87eef2b869d00759704a88d8e1",
+    "docs/specifications/Slime_Merge_Game_Specification_v0.2.3_2026-10-30.md": "3e98fee4570107f03d1540d3de3609b9fde29b9a",
+    "docs/specifications/Slime_Merge_Game_Specification_v0.2.4_2026-10-30.md": "ebf6cf1e13fb67aeb49e96dfed48bcc0174e7e43",
+    "docs/specifications/Slime_Merge_Game_Specification_v0.2.5_2026-10-30.md": "7efb58a119bf7b48409ef93c866bb5766d21e874",
+    "docs/specifications/Slime_Merge_Game_Specification_v0.2.6_2026-10-30.md": "5f6e753118eb4834d169e50c882a64e33ac3563a",
+    "docs/specifications/Slime_Merge_Game_Specification_v0.2.7_2026-10-31.md": "8c8176623eb92de5b1bd0ee7c0ae89872ae18193",
+    "package-lock.json": "9da4251d6eee59bde59328cc4300dfd6db270c29",
+    "package.json": "d0d631b79bb55c173d266b07d8eb470520844ee5",
+    "src/app/input/camera.ts": "afd7d92268f56d2ef1a38d48bad564dabc73d46b",
+    "src/app/input/gestures.ts": "40a755be8e7644f5f87d5e7d2480c2ea9a9cf243",
+    "src/core/board/state.ts": "e1e107aeb5744feac3327ee9edad769e6457e0fd",
+    "src/core/merge/apply.ts": "ae628ae0af526f0c8052e10583bd2be1dfd956da",
+    "src/core/merge/plan.ts": "7bb047406cd3f8b8a6bfd6f25d27eda5d79d55fb",
+    "src/domain/game.ts": "71b9834cb3187c0f5bb8cb578886d3d9e8e376e4",
+    "src/domain/grid.ts": "500e6c8de9ab5c13606f2f94e727feac52ce42c7"
+  },
+  "localBytesMatchOriginal": true,
+  "remoteMethod": "Base tree inheritance; confirm final remote tree against these SHAs. Local snapshot transport final LF was corrected before final npm ci/lint/test/build."
+}

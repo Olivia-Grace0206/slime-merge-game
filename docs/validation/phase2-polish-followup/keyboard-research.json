@@ -1,0 +1,16 @@
+{
+  "result": "PASS",
+  "input": "native Keyboard Enter on focused research button",
+  "before": {
+    "gold": 96,
+    "cap": 5,
+    "H": 5
+  },
+  "after": {
+    "gold": 0,
+    "cap": 10,
+    "H": 5,
+    "version": 4
+  },
+  "browser": "134.0.6998.35"
+}

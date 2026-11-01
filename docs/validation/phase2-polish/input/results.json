@@ -1,0 +1,150 @@
+{
+  "browser": "134.0.6998.35",
+  "checks": [
+    {
+      "name": "1366 full board rejects without stock loss; eight one-click additions remain distinct and do not auto-merge",
+      "result": "PASS"
+    },
+    {
+      "name": "1366 release outside sale, touch cancel and two-finger release over sale never sell",
+      "result": "PASS"
+    },
+    {
+      "name": "1366 native 600ms hold toggles once without movement; contextmenu cannot toggle a second time",
+      "result": "PASS"
+    },
+    {
+      "name": "1366 movement threshold, second finger inside/outside board and pointercancel cancel a pending hold",
+      "result": "PASS"
+    },
+    {
+      "name": "1366 drag sale preview exposes Tier/price and protected refusal without a modal",
+      "result": "PASS"
+    },
+    {
+      "name": "1366 keyboard protection/detail and direct sale; protected merge material remains allowed",
+      "result": "PASS"
+    },
+    {
+      "name": "1366 real touchscreen shop tap works without virtual clock",
+      "result": "PASS"
+    },
+    {
+      "name": "1366 interpolated bar advances between commits; hidden tab stops drawing and resynchronizes",
+      "result": "PASS"
+    },
+    {
+      "name": "1366 v2 4/10 migrates frozen unit then sale ends ledger; save failure retains both sides",
+      "result": "PASS"
+    },
+    {
+      "name": "1366 acceleration and speed purchase rebase display; reload follows authoritative progress",
+      "result": "PASS"
+    },
+    {
+      "name": "1366 full-capacity visual stop, tap/speed/reload display and Tier2/4 shape distinction",
+      "result": "PASS"
+    },
+    {
+      "name": "390 full board rejects without stock loss; eight one-click additions remain distinct and do not auto-merge",
+      "result": "PASS"
+    },
+    {
+      "name": "390 release outside sale, touch cancel and two-finger release over sale never sell",
+      "result": "PASS"
+    },
+    {
+      "name": "390 native 600ms hold toggles once without movement; contextmenu cannot toggle a second time",
+      "result": "PASS"
+    },
+    {
+      "name": "390 movement threshold, second finger inside/outside board and pointercancel cancel a pending hold",
+      "result": "PASS"
+    },
+    {
+      "name": "390 drag sale preview exposes Tier/price and protected refusal without a modal",
+      "result": "PASS"
+    },
+    {
+      "name": "390 keyboard protection/detail and direct sale; protected merge material remains allowed",
+      "result": "PASS"
+    },
+    {
+      "name": "390 real touchscreen shop tap works without virtual clock",
+      "result": "PASS"
+    },
+    {
+      "name": "390 interpolated bar advances between commits; hidden tab stops drawing and resynchronizes",
+      "result": "PASS"
+    },
+    {
+      "name": "390 v2 4/10 migrates frozen unit then sale ends ledger; save failure retains both sides",
+      "result": "PASS"
+    },
+    {
+      "name": "390 acceleration and speed purchase rebase display; reload follows authoritative progress",
+      "result": "PASS"
+    },
+    {
+      "name": "390 full-capacity visual stop, tap/speed/reload display and Tier2/4 shape distinction",
+      "result": "PASS"
+    },
+    {
+      "name": "320 full board rejects without stock loss; eight one-click additions remain distinct and do not auto-merge",
+      "result": "PASS"
+    },
+    {
+      "name": "320 release outside sale, touch cancel and two-finger release over sale never sell",
+      "result": "PASS"
+    },
+    {
+      "name": "320 native 600ms hold toggles once without movement; contextmenu cannot toggle a second time",
+      "result": "PASS"
+    },
+    {
+      "name": "320 movement threshold, second finger inside/outside board and pointercancel cancel a pending hold",
+      "result": "PASS"
+    },
+    {
+      "name": "320 drag sale preview exposes Tier/price and protected refusal without a modal",
+      "result": "PASS"
+    },
+    {
+      "name": "320 keyboard protection/detail and direct sale; protected merge material remains allowed",
+      "result": "PASS"
+    },
+    {
+      "name": "320 real touchscreen shop tap works without virtual clock",
+      "result": "PASS"
+    },
+    {
+      "name": "320 interpolated bar advances between commits; hidden tab stops drawing and resynchronizes",
+      "result": "PASS"
+    },
+    {
+      "name": "320 v2 4/10 migrates frozen unit then sale ends ledger; save failure retains both sides",
+      "result": "PASS"
+    },
+    {
+      "name": "320 acceleration and speed purchase rebase display; reload follows authoritative progress",
+      "result": "PASS"
+    },
+    {
+      "name": "320 full-capacity visual stop, tap/speed/reload display and Tier2/4 shape distinction",
+      "result": "PASS"
+    },
+    {
+      "name": "gold receipt save failure preserves 4/10, then reload completes once",
+      "result": "PASS"
+    },
+    {
+      "name": "hidden gold tab pauses receipts and resumes with one payment, not a catch-up batch",
+      "result": "PASS"
+    },
+    {
+      "name": "two active gold tabs serialize receipts and stale writer stops",
+      "result": "PASS"
+    }
+  ],
+  "errors": []
+}

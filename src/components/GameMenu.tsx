@@ -2,8 +2,8 @@ import { useEffect, useRef, type ReactNode } from 'react'
 import { MAX_TIER } from '../domain/game'
 import { PRESETS, type PresetId } from '../app/presets'
 import { Slime } from './Slime'
-export type Panel = 'help' | 'presets' | 'appearance' | 'settings' | 'shop' | 'slime' | 'sale'
-const TITLES: Record<Panel, string> = { help: '遊び方', presets: '検証用プリセット', appearance: 'スライム一覧・外見確認', settings: '表示設定', shop: 'GOLDショップ', slime: 'スライム詳細', sale: '売却確認' }
+export type Panel = 'help' | 'presets' | 'appearance' | 'settings' | 'shop' | 'slime'
+const TITLES: Record<Panel, string> = { help: '遊び方', presets: '検証用プリセット', appearance: 'スライム一覧・外見確認', settings: '表示設定', shop: 'GOLDショップ', slime: 'スライム詳細' }
 export function GameMenu({ panel, onClose, preset, onPreset, reducedEffects, onEffects, onZoom, onResetCamera, extra, normal, onNormal }: {
   extra?: ReactNode; normal: boolean; onNormal: () => void
   panel: Panel | null; onClose: () => void; preset: PresetId; onPreset: (id: PresetId) => void
@@ -28,7 +28,7 @@ export function GameMenu({ panel, onClose, preset, onPreset, reducedEffects, onE
         <div className="recipes"><strong>3体 → 上位1体</strong><strong>5体 → 上位2体</strong></div>
         <ul><li>縦・横・斜めの8方向で連結。5体優先、次に3体、余りは保持。</li><li>枠の番号＝マージ組、↑＝出力予定セル、点線＝残る個体。</li><li>空きマスへの移動・隣接だけではマージしません。</li><li>空きマスからドラッグでパン。ホイール / 2本指ピンチでズーム。</li><li>2本指になると素材ドラッグを取り消します。全ての指を離すと再操作できます。</li><li>Tabでマス移動 → Enter / Spaceで選択 → 移動先で再度Enter。Escapeで取消。</li></ul>
         <p>設定から拡大・縮小・表示リセットを操作できます。キーボードではTabで設定を選び、Enterで開いて操作します。</p>
-        <p className="muted">時間で貯蔵→スライム追加→空きマスを選択。加速は生成待ち時間を短縮します。売却エリアへドラッグし、確認後にGOLD獲得。ショップで強化できます。通常プレイは自動保存されます。</p>
+        <p className="muted">時間で貯蔵→スライム追加を1回押すとランダムな空きマスへ1体配置。加速は生成待ち時間を短縮します。売却エリアへドロップすると即売却。右クリック／長押し（約500ms）で売却保護。Pキーでも保護、Iキーで詳細。Enterで個体選択後、売却エリアへTab→Enterでも売却できます。保護はマージを妨げません。金マスから対象を動かすと残り報酬は失効します。ショップで強化できます。通常プレイは自動保存されます。</p>
       </>}
       {panel === 'presets' && <>
         <p>7×7検証セッションへ切り替えます。通常4×4プレイの保存には影響しません。</p><button type="button" className="reset-button" onClick={onNormal}>通常プレイへ戻る</button>
@@ -53,3 +53,4 @@ export function GameMenu({ panel, onClose, preset, onPreset, reducedEffects, onE
     </div>
   </dialog>
 }
+
