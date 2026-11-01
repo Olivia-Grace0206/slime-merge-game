@@ -1,0 +1,18 @@
+{
+  "checks": [
+    {
+      "name": "1366 matching populated fixture, trio, no forecast or persistent prices",
+      "result": "PASS"
+    },
+    {
+      "name": "390 matching populated fixture, trio, no forecast or persistent prices",
+      "result": "PASS"
+    },
+    {
+      "name": "320 matching populated fixture, trio, no forecast or persistent prices",
+      "result": "PASS"
+    }
+  ],
+  "errors": [],
+  "browser": "134.0.6998.35"
+}

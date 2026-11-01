@@ -1,6 +1,6 @@
 import type { GameState } from '../../domain/game'
 import { isGameState } from '../board/state'
-import { legacyGenerationRules, isWallet, type Wallet } from './economy'
+import { legacyGenerationRules, isLegacyWallet, type Wallet } from './economy'
 import { isValidGeneratedTier, type GeneratorState } from './generation'
 
 /**
@@ -24,7 +24,7 @@ export function isProgressionSnapshot(value: unknown): value is ProgressionSnaps
   if (s.version !== PROGRESSION_SAVE_VERSION ||
     !Number.isSafeInteger(s.savedAtMs) || s.savedAtMs < 0 ||
     !Number.isSafeInteger(s.nextId) || s.nextId < 0 ||
-    !isGameState(s.game) || !isWallet(s.wallet) ||
+    !isGameState(s.game) || !isLegacyWallet(s.wallet) ||
     !s.generator || !Array.isArray(s.generator.storedTiers)) return false
   const g = s.generator
   const rules = legacyGenerationRules(s.wallet)

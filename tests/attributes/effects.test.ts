@@ -3,7 +3,7 @@ import { ATTRIBUTE_IDS, type AttributeId, type Attributes } from '../../src/doma
 import { boardEffects, levelPower, supportMultiplier, saleValue, geneticsForGroup, specialCellWeights, drawSpecialCell, comboPower } from '../../src/core/attributes/effects'
 import { freshSession, reduceSession, sessionRules, goldPayment, type Session } from '../../src/core/progression/session'
 import { generationRules, legacyGenerationRules, sellSlime } from '../../src/core/progression/economy'
-import { focusCandidates, withdrawFocused } from '../../src/core/progression/focus'
+import { withdrawFocused } from '../../src/core/progression/focus'
 import { planDrop } from '../../src/core/merge/plan'
 import { decodeSession, encodeSession, isSession } from '../../src/core/progression/persistence'
 import { SessionStore } from '../../src/app/sessionStore'
@@ -96,24 +96,24 @@ describe('safe focused generation and persistence',()=>{
   expect(n.generator).toEqual(s.generator);expect(n.generationMode).toBe('focused')
   expect(decodeSession(encodeSession(n),0)).toEqual({ok:true,session:n,migrated:false})
  })
- it('consumes safe ten, never raises Tier and preserves other FIFO/attrs/protection',()=>{
+ it('consumes FIFO ten including traits/high Tiers, preserving the remaining queue/protection',()=>{
   let s=stock(board([a('fire')],5),[4,1,2,3,1,2,3,1,2,3,1,1], [a('ice'),...Array.from({length:11},()=>[])])
   s={...s,wallet:{...s.wallet,upgrades:{...s.wallet.upgrades,storage:1}},generationMode:'focused',protectedIds:['p-1']}
-  expect(focusCandidates(s.game,s.generator)).not.toContain(0)
+  expect(s.generator.storedAttributes?.[0]).toEqual(a('ice'))
   const n=reduceSession(s,{type:'withdraw',expectedId:s.nextId,expectedMode:'focused'},0,stream(.5,0,0))
   expect(n.game.slimes).toHaveLength(2);expect(n.game.slimes[1]).toMatchObject({tier:1,attributes:a('fire')})
-  expect(n.generator.storedTiers).toEqual([4,3]);expect(n.generator.storedAttributes).toEqual([a('ice'),[]])
+  expect(n.generator.storedTiers).toEqual([1,1]);expect(n.generator.storedAttributes).toEqual([[],[]])
   expect(n.protectedIds).toEqual(['p-1']);expect(n.game.highestTierReached).toBe(5);expect(n.focusedGenerated).toBe(1)
   expect(isSession(n)).toBe(true)
  })
- it.each(['short','attributed','high-tier','full-board','wrong-mode','stale-id'])('%s rejection consumes no RNG or materials',kind=>{
+ it.each(['short','attributed','high-tier','full-board','wrong-mode','stale-id'])('%s obeys FIFO counts, without trait/Tier exceptions',kind=>{
   let s={...stock(),generationMode:'focused'} as Session
   if(kind==='short')s=stock(s,Array(9).fill(1))
   if(kind==='attributed')s=stock(s,Array(10).fill(1),Array.from({length:10},()=>a('fire')))
   if(kind==='high-tier')s=stock({...s,game:{...s.game,highestTierReached:3}},Array(10).fill(3))
   if(kind==='full-board')s=stock({...board(Array.from({length:16},()=>[])),generationMode:'focused'})
   const random=vi.fn(quiet),n=reduceSession(s,{type:'withdraw',expectedId:kind==='stale-id'?99:s.nextId,expectedMode:kind==='wrong-mode'?'normal':'focused'},100000,random)
-  expect(n).toBe(s);expect(random).not.toHaveBeenCalled()
+  if(kind==='attributed'||kind==='high-tier'){expect(n.game.slimes).toHaveLength(1);expect(n.generator.storedTiers).toHaveLength(0);expect(random).toHaveBeenCalled()}else{expect(n).toBe(s);expect(random).not.toHaveBeenCalled()}
  })
  it('failed attribute roll yields one un-attributed specimen, repeat same ID cannot double spend',()=>{
   const s={...stock(),generationMode:'focused'} as Session

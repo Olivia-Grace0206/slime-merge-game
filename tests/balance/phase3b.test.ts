@@ -4,13 +4,13 @@ import { boardEffects, EFFECTS, levelPower, saleValue, specialCellWeights } from
 import { drawAttributes } from '../../src/core/attributes/inheritance'
 import { advanceGenerator, newGenerator, drawTier, tierWeights } from '../../src/core/progression/generation'
 import { freshSession, reduceSession, sessionRules, type Command } from '../../src/core/progression/session'
-import { focusCandidates, withdrawFocused } from '../../src/core/progression/focus'
+import { withdrawFocused } from '../../src/core/progression/focus'
 import { upgradeCost } from '../../src/core/progression/economy'
 import { researchCost } from '../../src/core/progression/research'
 import { planDrop, compareNear } from '../../src/core/merge/plan'
 import { isSession, decodeSession, encodeSession } from '../../src/core/progression/persistence'
 import type { Attributes } from '../../src/domain/attributes'
-const dir='docs/balance/phase3b'
+const dir='docs/balance/phase3b1/regression-phase3b'
 const rng=(seed:number)=>()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296}
 const write=(name:string,data:unknown)=>{mkdirSync(dir,{recursive:true});writeFileSync(`${dir}/${name}.json`,JSON.stringify(data,null,2))}
 it('compares provisional pace, Lv curves and bounded maximum support',()=>{
@@ -37,14 +37,14 @@ it('compares provisional pace, Lv curves and bounded maximum support',()=>{
  write('parameters',{provisional:true,pace,levels,maxima,config:EFFECTS,darkComparison:{chance:.2,group:{expectedDarkOutputs:1.6,variance:.64,anyLoss:.2},perOutput:{expectedDarkOutputs:1.6,variance:.32,anyLoss:.36},adopted:'one shared trial per merge group; no five-merge bonus'}})
  expect(pace).toHaveLength(65);expect(levels.at(-1)!.diminishing).toBeLessThan(3)
 })
-it('100-resource comparisons of normal, safe-stock A, future-generation B and focus probabilities',()=>{
+it('100-resource comparisons of normal, FIFO-stock A, future-generation B and focus probabilities',()=>{
  const results=[1,5,10,20,40].flatMap(H=>[.2,.35,.5].flatMap(chance=>Array.from({length:30},(_,i)=>i+1).map(seed=>{
   const random=rng(seed),s=freshSession(0),game={...s.game,highestTierReached:H}
   let generator={...newGenerator(0),storedTiers:Array.from({length:100},()=>drawTier(H,random())),storedAttributes:[] as Attributes[],totalGenerated:100}
   generator.storedAttributes=generator.storedTiers.map(()=>drawAttributes(random,.03))
   const original=[...generator.storedTiers],normalAttributes=generator.storedAttributes.filter(a=>a.length).length,normalGold=generator.storedTiers.reduce((n,t,i)=>n+saleValue({tier:t,attributes:generator.storedAttributes[i]!}),0)
   let conversions=0,newAttributes=0,outGOLD=0;const outputTiers:number[]=[]
-  while(focusCandidates(game,generator).length>=10){
+  while(generator.storedTiers.length>=10){
    const result=withdrawFocused(game,generator,'focused',chance,random);if(!result.ok)throw Error('focus')
    generator={...result.generator,storedTiers:[...result.generator.storedTiers],storedAttributes:[...(result.generator.storedAttributes??[])]}
    const out=result.game.slimes[0]!;conversions++;newAttributes+=out.attributes!.length?1:0;outGOLD+=saleValue(out);outputTiers.push(out.tier)
@@ -55,8 +55,8 @@ it('100-resource comparisons of normal, safe-stock A, future-generation B and fo
    A:{conversions,count:generator.storedTiers.length+conversions,retainedCount:generator.storedTiers.length,attributes:normalAttributes+newAttributes,newAttributes,gold:outGOLD+remainingGold,goldOpportunityCost:normalGold-outGOLD-remainingGold,outputTierHistogram:histogram(outputTiers)},
    B:{count:10,attributes:B.filter(x=>x.attributes.length).length,gold:B.reduce((n,x)=>n+saleValue(x),0),tierHistogram:histogram(B.map(x=>x.tier))}}
  })))
- write('generation-modes',{provisional:true,model:'100 fresh normal draws (3% existing attributes) for A; safe un-attributed H-2 stock only, attrs retained. A min consumed Tier. B ten future cycles→one normal weighted Tier with focused chance. No board constraint for resource experiment. GOLD is immediate liquidation opportunity, not actual play income.',analytic:[.2,.35,.5].map(chance=>({chance,normalOutputs:100,normalAttributes:3,tenSafeConversionsOutputs:10,tenSafeConversionsNewAttributes:10*chance,BAttributes:10*chance})),results})
- expect(results).toHaveLength(450);expect(results.every(x=>x.A.count<=100&&x.A.attributes>=x.normal.attributes)).toBe(true)
+ write('generation-modes',{provisional:true,model:'100 fresh normal draws (3% existing attributes) for A; FIFO head10 regardless of attributes/Tier. A min consumed Tier. B ten future cycles→one normal weighted Tier with focused chance. No board constraint for resource experiment. GOLD is immediate liquidation opportunity, not actual play income.',analytic:[.2,.35,.5].map(chance=>({chance,normalOutputs:100,normalAttributes:3,tenSafeConversionsOutputs:10,tenSafeConversionsNewAttributes:10*chance,BAttributes:10*chance})),results})
+ expect(results).toHaveLength(450);expect(results.every(x=>x.A.count===10&&x.A.conversions===10&&x.A.retainedCount===0)).toBe(true)
 })
 function histogram(values:readonly number[]){const r:Record<number,number>={};for(const v of values)r[v]=(r[v]??0)+1;return r}
 type Style='normal'|'focus'|'ice-lightning'|'nature'|'luck-mutation'|'sale'|'light-magnet'|'combo'
@@ -91,7 +91,7 @@ function play(style:Style,seed:number,policy:'research'|'production') {
    if(p.kind==='merge'&&!p.groups.some(g=>g.consumedIds.some(id=>supportIds.has(id)||id===source))&&(p.groups.some(g=>g.consumedIds.length===5)||s.game.slimes.length>=12||p.outputTier>s.game.highestTierReached)){chosen=p;break}
   }if(chosen)break}
   if(chosen)cmd({type:'drop',plan:chosen},now)
-  else if(style==='focus'&&focusCandidates(s.game,s.generator).length>=10&&s.game.slimes.length<16){
+  else if(style==='focus'&&s.generator.storedTiers.length>=10&&s.game.slimes.length<16){
    cmd({type:'generation-mode',value:'focused'},now);cmd({type:'withdraw',expectedId:s.nextId,expectedMode:'focused'},now);cmd({type:'generation-mode',value:'normal'},now)
   }else if(s.generator.storedTiers.length&&s.game.slimes.length<16&&(style!=='focus'||s.generator.storedTiers.length>=sessionRules(s).capacity||s.generator.storedAttributes?.[0]?.length))cmd({type:'withdraw',expectedId:s.nextId,expectedMode:'normal'},now)
   else{
@@ -131,6 +131,6 @@ it('multiple seeds and buying policies integrate effects and focused mode on con
   return{seed,generated:n-1,milestones,highest:H}})
  const summaries=styles.map(style=>{const r=results.filter(x=>x.style===style),keys=['generatedPerMinute','adds','taps','attributes','averageGoldPerMinute','boardFullRatio','stockFullRatio'] as const
   return{style,metrics:Object.fromEntries(keys.map(k=>{const v=r.map(x=>x[k]),mean=v.reduce((a,b)=>a+b,0)/v.length;return[k,{mean,min:Math.min(...v),max:Math.max(...v),standardDeviation:Math.sqrt(v.reduce((a,b)=>a+(b-mean)**2,0)/v.length)}]})),milestones:Object.fromEntries([5,10,20,30,40].map(t=>{const v=r.map(x=>x.milestones[t]).filter((n):n is number=>n!==null);return[t,{reached:v.length,runs:r.length,meanMs:v.length?v.reduce((a,b)=>a+b,0)/v.length:null,minMs:v.length?Math.min(...v):null,maxMs:v.length?Math.max(...v):null}]}))}})
- write('integrated',{provisional:true,model:'Actual immutable production Session/Core,4x4,8h right censor,5s decision; click every30s (2/min); random FIFO; actual move/merge/sell/research/shop. No oracle auto merge. Explicit Lv5 Tier1 showcase loadouts: production/place-support holders retained, sale/genetic/combo holders join ordinary legal merges/sales; showcase conditions, not naturally earned build forecasts. 3seeds×2shop policies×8styles. Focus tries safe10 else falls back normal on stock pressure. GOLD events use normal tick cadence, no extra privileged receipt scheduling. Ideal inventory experiment separate, no research or spatial cost.',summaries,results,ideal,weights:[1,5,10,20,40].map(H=>({H,weights:tierWeights(H)}))})
+ write('integrated',{provisional:true,model:'Actual immutable production Session/Core,4x4,8h right censor,5s decision; click every30s (2/min); random FIFO; actual move/merge/sell/research/shop. No oracle auto merge. Explicit Lv5 Tier1 showcase loadouts: production/place-support holders retained, sale/genetic/combo holders join ordinary legal merges/sales; showcase conditions, not naturally earned build forecasts. 3seeds×2shop policies×8styles. Focus consumes FIFO10 else falls back normal on stock pressure. GOLD events use normal tick cadence, no extra privileged receipt scheduling. Ideal inventory experiment separate, no research or spatial cost.',summaries,results,ideal,weights:[1,5,10,20,40].map(H=>({H,weights:tierWeights(H)}))})
  expect(results).toHaveLength(48);expect(results.every(x=>Number.isFinite(x.averageGoldPerMinute)&&x.highest<=40)).toBe(true)
 },480000)

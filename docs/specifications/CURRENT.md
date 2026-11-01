@@ -2,10 +2,10 @@
 
 正式正本はGitHub **main → CURRENT.md → 最新完全仕様書**。
 
-- main現行は **[v0.3.0](Slime_Merge_Game_Specification_v0.3.0_2026-11-01.md)**。Phase3A [PR #10](https://github.com/Olivia-Grace0206/slime-merge-game/pull/10)は2026-11-01にmain `13f56c0ca3b45b7f947c1e11682e2b11e22da5cd`へマージ済み。main CI 41287693282成功を確認。
-- このPhase3Bブランチの次期正本は **[v0.3.1](Slime_Merge_Game_Specification_v0.3.1_2026-11-01.md)**。通常/属性重視生成、減速、10属性効果/複合、schema6。今回の新規Draft PRがmainへマージされた後はこちらを現行正本とする。
-- 全旧版を原文保全。v0.3.0/CURRENT旧記述の「PR #10未マージ」や、過去文書のDraft/未実装は当時の記録。本案内の実際のマージ状態が優先。
+- main現行正本は **[v0.3.1](Slime_Merge_Game_Specification_v0.3.1_2026-11-01.md)**。Phase3B [PR #11](https://github.com/Olivia-Grace0206/slime-merge-game/pull/11)は2026-11-01にmain `e3096b8c23caad7e17067700f6e9e9c74dc255c0`へマージ済み。main CI [41302209242](https://github.com/Olivia-Grace0206/slime-merge-game/actions/runs/41302209242)成功・HEAD一致を確認。
+- このPhase3B.1ブランチの次期正本は **[v0.3.2](Slime_Merge_Game_Specification_v0.3.2_2026-11-01.md)**。FIFO先頭10体・無料属性解除・貯蔵最大160体（仮）・10SVGアイコン・属性効果一覧。新規Draft PRがmainへマージされた後はこちらを現行正本とする。
+- 全旧版/改版履歴を原文保全。v0.3.1の「PR #11 Draft」/安全素材や過去の未マージ・未実装表現は当時の履歴。現在の状態は本案内とv0.3.2先頭の改訂節を優先。
 
-新規 `feature/phase03b-attribute-effects-generation-modes`。main未マージ・Private/Pages設定維持。数値はすべて仮仕様で、実装により承認済みへ変更しない。
+新規 `feature/phase03b1-attribute-management-polish`。main未マージ、Private/Pages設定維持。FIFO10体/無料一括解除/属性UIは合意、容量・価格などの具体値は仮仕様。schema6維持。
 
-[Phase3B引き継ぎ](../PHASE3B_HANDOFF.md) / [検証](../validation/phase3b/RESULTS.md) / [監査](../validation/phase3b/AUDIT.md) / [バランス比較](../balance/phase3b/RESULTS.md)。Phase3Cの紫青/覚醒、3Dの完成装飾は未実装。
+[Phase3B.1引き継ぎ](../PHASE3B1_HANDOFF.md) / [検証](../validation/phase3b1/RESULTS.md) / [監査](../validation/phase3b1/AUDIT.md) / [容量・価格・性能比較](../balance/phase3b1/RESULTS.md)。Phase3C紫青/覚醒、全体アート/音は未実装。

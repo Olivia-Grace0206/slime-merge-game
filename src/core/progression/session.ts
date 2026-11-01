@@ -1,12 +1,13 @@
+import { stripAttributes } from '../attributes/strip'
 import { boardEffects, drawSpecialCell } from '../attributes/effects'
-import { focusCandidates, FOCUS_COST, withdrawFocused, type GenerationMode } from './focus'
+import { FOCUS_COST, withdrawFocused, type GenerationMode } from './focus'
 import { RESEARCH_CAPS, EXPERIMENTAL_RESEARCH, researchCost, frequencyCost } from './research'
 import type { DropPlan } from '../../domain/game'
 import type { GridPosition } from '../../domain/grid'
 import { applyPlan } from '../merge/apply'
 import { samePosition } from '../grid/coordinates'
 import { advanceGenerator, tapGenerator, newGenerator, withdrawRandom, emptyCells, type GeneratorRules } from './generation'
-import { freshWallet, generationRules, purchaseUpgrade, sellSlime, type UpgradeKey } from './economy'
+import { freshWallet, GENERATION_PACE, generationRules, purchaseUpgrade, sellSlime, type UpgradeKey } from './economy'
 import type { ProgressionSnapshot } from './save'
 
 /** Distribution/reward/cooldown values are provisional. 350ms × 10 is the approved initial cadence. */
@@ -35,6 +36,7 @@ export type Command =
   | { type: 'withdraw'; expectedId: number; expectedMode?: GenerationMode }
   | { type: 'drop'; plan: DropPlan }
   | { type: 'sell'; id: string }
+  | { type: 'strip-attributes'; id: string }
   | { type: 'buy'; key: UpgradeKey; expectedLevel: number }
   | { type: 'protect'; id: string }
   | { type: 'effects'; value: boolean }
@@ -50,7 +52,7 @@ export function freshSession(nowMs: number): Session {
 export function sessionRules(s: Session) {
   const base = generationRules(s.wallet), effects = boardEffects(s.game)
   const intervalMs = Math.round(base.intervalMs * (1 - effects.iceReduction))
-  return { ...base, intervalMs, tapAdvanceMs: Math.min(Math.floor(intervalMs * 0.75), Math.round(base.tapAdvanceMs * (1 + effects.tapBonus))), attributeChance: effects.normalChance }
+  return { ...base, intervalMs, tapAdvanceMs: Math.min(Math.floor(intervalMs * GENERATION_PACE.maxTapIntervalFraction), Math.round(base.tapAdvanceMs * (1 + effects.tapBonus))), attributeChance: effects.normalChance }
 
 }
 /** Provisional linear low-Tier floor; high-Tier rate is unchanged. Old contracts keep version 1. */
@@ -125,8 +127,10 @@ export function reduceSession(s: Session, command: Command, now: number, random:
     if (!Number.isSafeInteger(now) || now < 0 || s.sequence >= Number.MAX_SAFE_INTEGER - 1) return s
     if (command.type === 'withdraw' && (command.expectedId !== s.nextId || (command.expectedMode ?? 'normal') !== s.generationMode ||
       !s.generator.storedTiers.length || !emptyCells(s.game).length ||
-      (s.generationMode === 'focused' && focusCandidates(s.game,s.generator).length < FOCUS_COST))) return s
+      (s.generationMode === 'focused' && s.generator.storedTiers.length < FOCUS_COST))) return s
     if (command.type === 'generation-mode' && command.value !== 'normal' && command.value !== 'focused') return s
+    const stripped = command.type === 'strip-attributes' ? stripAttributes(s.game,command.id) : null
+    if(stripped && (!stripped.ok || !stripped.changed))return s
     const oldRules = rulesOverride ?? sessionRules(s), oldNatureInterval = boardEffects(s.game).natureIntervalMs
 
     let next = s
@@ -171,6 +175,7 @@ export function reduceSession(s: Session, command: Command, now: number, random:
       if (!result.ok) return s
       next = { ...next, game: result.game, wallet: result.wallet }
     }
+    if(stripped)next={...next,game:stripped.game}
     if (command.type === 'buy') {
       if (!Object.hasOwn(next.wallet.upgrades, command.key) || next.wallet.upgrades[command.key] !== command.expectedLevel) return s
       const result = purchaseUpgrade(next.wallet, command.key)

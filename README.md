@@ -1,3 +1,21 @@
+# Phase 3B.1 — FIFO属性生成・無料属性解除・貯蔵拡張・属性UI
+
+Phase3B [PR #11](https://github.com/Olivia-Grace0206/slime-merge-game/pull/11)は2026-11-01にmain `e3096b8c23caad7e17067700f6e9e9c74dc255c0`へマージ済み。main CI成功を確認し、新規 `feature/phase03b1-attribute-management-polish` から別Draft PR。main未マージ・Private/Pages設定維持。
+
+- 属性重視は**属性付き/高Tierも含むFIFO先頭10体**→1体。出力は10体の最低Tier、属性35%+幸運（仮）・確定保証なし。9体以下/盤面満杯は不可。通常のFIFO1体出庫は維持。
+- 売却の上の水色「属性解除」へドラッグ＆ドロップすると**無料で全属性だけ解除**。個体/ID/Tier/元の位置/売却保護/GOLDを保持。保護個体も解除でき、無属性は変更なし。個体をキーボードで選択して解除ボタンからも操作可能。
+- 貯蔵は仮に+5/Lv・最大Lv30/160体、価格ceil(20×1.35^Lv)。速度/クリック最大Lv16・基本生成15秒・属性効果量を維持。購入済みLv/在庫は保持。
+- 10属性は共通の形状別SVG。「属性」メニューから未所持を含む効果/条件/Lv/上限・3複合を確認できる。ダイアログ内をスクロール可能。
+- schema6維持、旧1〜5対応・保存成功後公開・金報酬契約/自然時計を保全。Vitest659件、ブラウザ626件/10サイズ（エミュレーション）、Lint/Build成功。実機は未確認。
+
+試遊：GitHub Desktopで上記ブランチをFetch/Pullし、Node22/npm10で `npm ci` → `npm run dev`、通常 `http://localhost:5173/slime-merge-game/`。検証は `npm run lint` / `npm test -- --run` / `npm run build`。安全な保存にWeb Locks/LocalStorageが必要。
+
+[正本案内](docs/specifications/CURRENT.md) / [完全仕様v0.3.2](docs/specifications/Slime_Merge_Game_Specification_v0.3.2_2026-11-01.md) / [引き継ぎ](docs/PHASE3B1_HANDOFF.md) / [検証・操作画像](docs/validation/phase3b1/RESULTS.md) / [監査](docs/validation/phase3b1/AUDIT.md) / [容量比較](docs/balance/phase3b1/RESULTS.md)。最新GitHub HEAD/同SHAのCIは新規Draft PR本文に記載。試遊後にマージ判断。Phase3Cの紫青/覚醒・全面リッチ化は今回未実装。
+
+---
+
+以下はPhase3B以前のREADME全文（履歴）。当時のDraft/安全素材/旧容量の説明は、上記の現行説明により更新されています。
+
 # Phase 3B — 属性効果・属性重視生成・ペース調整
 
 Phase3A [PR #10](https://github.com/Olivia-Grace0206/slime-merge-game/pull/10)はmain `13f56c0`へマージ済み。この変更は最新mainから作成した `feature/phase03b-attribute-effects-generation-modes` の新規Draft PRです。mainマージは試遊後のユーザー判断。Private/Pages設定は維持。

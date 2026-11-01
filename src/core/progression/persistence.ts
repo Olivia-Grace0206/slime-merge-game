@@ -4,7 +4,7 @@ import { RESEARCH_CAPS, legacyResearchLevel, EXPERIMENTAL_RESEARCH } from './res
 import { isProgressionSnapshot } from './save'
 import { freshSession, goldPayment, sessionRules, type Session } from './session'
 import { inBounds, isGameState } from '../board/state'
-import { legacyGenerationRules, isWallet } from './economy'
+import { legacyGenerationRules, isWallet, isLegacyWallet } from './economy'
 import { isValidGeneratedTier } from './generation'
 
 export const SAVE_KEY = 'slime-merge-normal-v2'
@@ -13,7 +13,7 @@ function validateSession(value: unknown, version = 6): value is Session {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return false
   const s = value as Session
   if ((s.version as number) !== version || !integer(s.savedAtMs) || !integer(s.sequence) || !integer(s.nextId) || s.nextId < 1 ||
-    !isGameState(s.game) || !isWallet(s.wallet) ||
+    !isGameState(s.game) || !(version<6?isLegacyWallet(s.wallet):isWallet(s.wallet)) ||
     s.game.bounds.width !== 4 || s.game.bounds.height !== 4 || s.game.bounds.origin.x !== 0 || s.game.bounds.origin.y !== 0 ||
     s.game.slimes.some(x => x.id.length > 100 || (/^p-\d+$/.test(x.id) && Number(x.id.slice(2)) >= s.nextId)) ||
     !Array.isArray(s.protectedIds) || new Set(s.protectedIds).size !== s.protectedIds.length ||

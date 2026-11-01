@@ -1,0 +1,233 @@
+[
+  {
+    "path": "screenshots/management-1920x1080.webp",
+    "source": "browser/management-1920x1080.png",
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "sha256": "dcdd1b5269df00fd2db6fb99e67ac799e26d6d87a6484afa4d08179ff133eed4",
+    "bytes": 238172,
+    "format": "lossless WebP, no cropping or resizing"
+  },
+  {
+    "path": "screenshots/management-1440x900.webp",
+    "source": "browser/management-1440x900.png",
+    "dimensions": [
+      1440,
+      900
+    ],
+    "sha256": "b971bdd57f6e4913436b823cfa280b639e2fa935a283642ea6b31e841b0754d3",
+    "bytes": 149946,
+    "format": "lossless WebP, no cropping or resizing"
+  },
+  {
+    "path": "screenshots/management-1366x768.webp",
+    "source": "browser/management-1366x768.png",
+    "dimensions": [
+      1366,
+      768
+    ],
+    "sha256": "bc72864888699a02a7805cd1d2694df38c429338973bc63d274d8d924f311cd0",
+    "bytes": 153570,
+    "format": "lossless WebP, no cropping or resizing"
+  },
+  {
+    "path": "screenshots/management-1280x720.webp",
+    "source": "browser/management-1280x720.png",
+    "dimensions": [
+      1280,
+      720
+    ],
+    "sha256": "28d63b4d18981ae37f48331dda747447415dca3f2f500a7f739d1c5ff8e2e6d6",
+    "bytes": 144388,
+    "format": "lossless WebP, no cropping or resizing"
+  },
+  {
+    "path": "screenshots/management-1024x768.webp",
+    "source": "browser/management-1024x768.png",
+    "dimensions": [
+      1024,
+      768
+    ],
+    "sha256": "10d93f70e391bde96815e15f4657575774419dd305f003836018eaeaef1efd11",
+    "bytes": 105090,
+    "format": "lossless WebP, no cropping or resizing"
+  },
+  {
+    "path": "screenshots/management-768x1024.webp",
+    "source": "browser/management-768x1024.png",
+    "dimensions": [
+      768,
+      1024
+    ],
+    "sha256": "3ddc966e052d38715ade335458d7cb941641c5d30a2e896238ca82246be4f579",
+    "bytes": 71968,
+    "format": "lossless WebP, no cropping or resizing"
+  },
+  {
+    "path": "screenshots/management-390x844.webp",
+    "source": "browser/management-390x844.png",
+    "dimensions": [
+      390,
+      844
+    ],
+    "sha256": "409cef248a12c14fd52f1257462a52e7f4baf1f60e55d8866cec7cb5f7d743ce",
+    "bytes": 82400,
+    "format": "lossless WebP, no cropping or resizing"
+  },
+  {
+    "path": "screenshots/management-375x667.webp",
+    "source": "browser/management-375x667.png",
+    "dimensions": [
+      375,
+      667
+    ],
+    "sha256": "6bafc182dcbee0d4cdf67862f332aca65749a3c33e23027f8416981939c76125",
+    "bytes": 58248,
+    "format": "lossless WebP, no cropping or resizing"
+  },
+  {
+    "path": "screenshots/management-320x568.webp",
+    "source": "browser/management-320x568.png",
+    "dimensions": [
+      320,
+      568
+    ],
+    "sha256": "eb883a8446ba01437f743f1fabbe1a2212e6d77a0dd1a3aa4799c1deed4ba933",
+    "bytes": 47682,
+    "format": "lossless WebP, no cropping or resizing"
+  },
+  {
+    "path": "screenshots/management-844x390.webp",
+    "source": "browser/management-844x390.png",
+    "dimensions": [
+      844,
+      390
+    ],
+    "sha256": "3efb098c7632715ace05b2b6185ea4e2171241e042087dee13777fe2db3987dd",
+    "bytes": 77916,
+    "format": "lossless WebP, no cropping or resizing"
+  },
+  {
+    "path": "screenshots/strip-1366x768.webp",
+    "source": "browser/strip-1366x768.png",
+    "dimensions": [
+      1366,
+      768
+    ],
+    "sha256": "ee66eb7ae3451112ae213ba75a339870a24f034e7a2fc8799ee16b9bc45f29c8",
+    "bytes": 161104,
+    "format": "lossless WebP, no cropping or resizing"
+  },
+  {
+    "path": "screenshots/strip-390x844.webp",
+    "source": "browser/strip-390x844.png",
+    "dimensions": [
+      390,
+      844
+    ],
+    "sha256": "05bf0d2c0f73da20bb94b8325b8e6b6df0d7d971ba2f1a391c9c07674193a374",
+    "bytes": 83796,
+    "format": "lossless WebP, no cropping or resizing"
+  },
+  {
+    "path": "screenshots/strip-320x568.webp",
+    "source": "browser/strip-320x568.png",
+    "dimensions": [
+      320,
+      568
+    ],
+    "sha256": "a086535e149c0f89ee5275355eba19d0978daac320d3e7f5ffc07758d72732ef",
+    "bytes": 52826,
+    "format": "lossless WebP, no cropping or resizing"
+  },
+  {
+    "path": "screenshots/strip-844x390.webp",
+    "source": "browser/strip-844x390.png",
+    "dimensions": [
+      844,
+      390
+    ],
+    "sha256": "42316bc195314f13e65a76317a649d39149bad4eb2a197a49ccfc33bed59bbfb",
+    "bytes": 82764,
+    "format": "lossless WebP, no cropping or resizing"
+  },
+  {
+    "path": "screenshots/guide-1366x768.webp",
+    "source": "browser/guide-1366x768.png",
+    "dimensions": [
+      1366,
+      768
+    ],
+    "sha256": "d4a7f49b88ba7592c105ee54ad72ace90b5796f7b059256e2f53f99514368ebf",
+    "bytes": 150374,
+    "format": "lossless WebP, no cropping or resizing"
+  },
+  {
+    "path": "screenshots/guide-390x844.webp",
+    "source": "browser/guide-390x844.png",
+    "dimensions": [
+      390,
+      844
+    ],
+    "sha256": "f9691b11b6850bf2cc34252b56c22fc47680b668567aef9e5e47f0ae0c3cc11b",
+    "bytes": 32480,
+    "format": "lossless WebP, no cropping or resizing"
+  },
+  {
+    "path": "screenshots/guide-320x568.webp",
+    "source": "browser/guide-320x568.png",
+    "dimensions": [
+      320,
+      568
+    ],
+    "sha256": "22ac758f01401325dc0ba48b8966d22067f8ac57abb8de836c02eb17057b1c72",
+    "bytes": 23980,
+    "format": "lossless WebP, no cropping or resizing"
+  },
+  {
+    "path": "screenshots/guide-844x390.webp",
+    "source": "browser/guide-844x390.png",
+    "dimensions": [
+      844,
+      390
+    ],
+    "sha256": "c1e1fe85d9e7142c963c401bf08adf84e3538c5dfd793e50185bad8e4553a06c",
+    "bytes": 62454,
+    "format": "lossless WebP, no cropping or resizing"
+  },
+  {
+    "path": "screenshots/detail-1366x768.webp",
+    "source": "browser/detail-1366x768.png",
+    "dimensions": [
+      1366,
+      768
+    ],
+    "sha256": "5d53c2ec763d3109743d1e25db1e191db8c83fb2113594692ec6fdc34cec9116",
+    "bytes": 162570,
+    "format": "lossless WebP, no cropping or resizing"
+  },
+  {
+    "path": "screenshots/detail-390x844.webp",
+    "source": "browser/detail-390x844.png",
+    "dimensions": [
+      390,
+      844
+    ],
+    "sha256": "d4c45a996676a5ff265dcde16414fdd2a4d3e4c0559cedf842db3cfcd4f9ac11",
+    "bytes": 72306,
+    "format": "lossless WebP, no cropping or resizing"
+  },
+  {
+    "path": "screenshots/detail-320x568.webp",
+    "source": "browser/detail-320x568.png",
+    "dimensions": [
+      320,
+      568
+    ],
+    "sha256": "0cf7dee54745d49fb60d605c15bcadf11adaf084cd35524103d041c73663b3ea",
+    "bytes": 34940,
+    "format": "lossless WebP, no cropping or resizing"
+  }
+]

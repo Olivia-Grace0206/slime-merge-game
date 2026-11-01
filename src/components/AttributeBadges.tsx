@@ -1,6 +1,10 @@
 import type { Attributes } from '../domain/attributes'
 import { ATTRIBUTE_LABELS } from './attributeLabels'
-/** Text glyphs avoid platform emoji gaps; separate edge layer never covers face/Tier. */
+import { AttributeIcon } from './AttributeIcon'
+/** Separate edge layer keeps the face and Tier visible. Parent cell exposes name/Lv to assistive tech. */
 export function AttributeBadges({ attributes = [] }: { attributes?: Attributes }) {
-  return <span className="attribute-badges" data-testid="attribute-badges">{attributes.map(a => <span className={`attribute-badge attribute-${a.id}`} key={a.id} title={`${ATTRIBUTE_LABELS[a.id][0]} Lv${a.level}`} data-attribute={a.id}><b>{ATTRIBUTE_LABELS[a.id][1]}</b><small>{a.level}</small></span>)}</span>
+ return <span className="attribute-badges" data-testid="attribute-badges">{attributes.map(a=><span className={`attribute-badge attribute-${a.id}`} key={a.id} title={`${ATTRIBUTE_LABELS[a.id]} Lv${a.level}`} aria-label={`${ATTRIBUTE_LABELS[a.id]} Lv${a.level}`} data-attribute={a.id}><AttributeIcon id={a.id}/><small>{a.level}</small></span>)}</span>
+}
+export function AttributeTokens({attributes=[]}:{attributes?:Attributes|undefined}){
+ return <span className="attribute-tokens">{attributes.length?attributes.map(a=><span key={a.id} className={`attribute-token attribute-${a.id}`}><AttributeIcon id={a.id}/><span>{ATTRIBUTE_LABELS[a.id]}Lv{a.level}</span></span>):'無属性'}</span>
 }

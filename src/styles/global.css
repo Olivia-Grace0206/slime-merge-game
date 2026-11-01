@@ -361,3 +361,58 @@ progress::-webkit-progress-value { background: linear-gradient(90deg,#79b65b,#ab
 /* Risk must remain above the held sprite and before optional group details. */
 .operation-preview { z-index:30; }
 .merge-attribute-preview > .dark-risk { display:block; font-size:11px; line-height:1.3; }
+
+/* Two separate destinations use the existing right rail; no board allocation changes. */
+.drop-actions { margin-top:auto; display:flex; flex-direction:column; gap:8px; min-width:0; }
+.progress-controls .drop-actions .sale-zone { margin-top:0; }
+.progress-controls .strip-zone { min-height:78px; border:2px solid #72b6c6; border-radius:18px; background:linear-gradient(#f7feff,#def2f7); color:#235b6c; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; }
+.strip-icon { width:26px; height:26px; flex-shrink:0; }
+.progress-controls .strip-zone small { font-size:10px; margin:0; line-height:1.25; }
+.progress-controls .strip-hover { background:#c4f0fa; outline:3px solid #4b9db5; outline-offset:-6px; }
+.strip-preview { border-color:#428da5; background:#effdfffa; color:#245f72; }
+@media(max-width:900px) and (min-height:501px) {
+ .drop-actions { grid-area:sale; height:106px; display:grid; grid-template-rows:50px 50px; gap:6px; margin:0; }
+ .progress-controls .drop-actions .sale-zone,.progress-controls .strip-zone { height:50px; min-height:50px; padding:2px 3px; border-radius:12px; font-size:11px; display:grid; grid-template-columns:22px minmax(0,1fr); grid-template-rows:20px 20px; column-gap:2px; }
+ .drop-actions .shipping-art,.strip-icon { grid-column:1; grid-row:1 / 3; width:22px; height:22px; font-size:26px; }
+ .drop-actions .shipping-art i { font-size:12px; left:10px; top:0; }
+ .drop-actions button > span:not(.shipping-art) { grid-column:2; grid-row:1; }
+ .progress-controls .drop-actions button small { grid-column:2; grid-row:2; font-size:8px; margin:0; line-height:1.1; overflow-wrap:anywhere; }
+}
+@media(max-height:500px) {
+ .drop-actions { margin-top:auto; display:grid; grid-template-rows:44px 44px; gap:4px; }
+ .progress-controls .drop-actions .sale-zone,.progress-controls .strip-zone { min-height:44px; height:44px; padding:2px 4px; flex-direction:row; flex-wrap:wrap; column-gap:4px; font-size:11px; border-radius:12px; }
+ .drop-actions .shipping-art,.strip-icon { width:22px; height:20px; font-size:25px; }
+ .drop-actions .shipping-art i { font-size:12px; left:10px; top:0; }
+ .progress-controls .drop-actions button small { flex-basis:100%; font-size:8px; margin:0; }
+ .progress-controls .add-button { width:94px; height:94px; min-height:94px; }
+ .generator-mascot { width:62px; height:36px; }
+}
+@media(max-width:360px) and (min-height:501px) {
+ .large-storage .storage-box { display:none; }
+ .large-storage .storage-count b { font-size:18px; }
+}
+.progress-controls .drop-actions .sale-zone { grid-area:auto; }
+.attribute-icon { width:1em; height:1em; display:inline-block; vertical-align:-.15em; flex:0 0 auto; }
+.attribute-badge .attribute-icon { width:1em; height:1em; }
+.attribute-tokens { display:inline-flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:3px 7px; }
+.attribute-token { display:inline-flex; align-items:center; gap:3px; }
+.attribute-token .attribute-icon { width:1.15em; height:1.15em; }
+.attribute-roster .attribute-tokens { display:flex; justify-content:flex-start; margin-top:4px; font-size:13px; }
+.attribute-roster .attribute-token,.attribute-roster .attribute-token span { display:inline-flex; margin:0; font-size:13px; }
+.attribute-guide { display:grid; gap:8px; }
+.attribute-card { border:1px solid #d2ddcd; border-radius:12px; background:#fafcf5; overflow:hidden; }
+.attribute-card summary { min-height:46px; padding:8px 10px; cursor:pointer; display:flex; align-items:center; gap:8px; color:#304c43; }
+.attribute-card summary::before { content:'＋'; color:#5e7a57; }
+.attribute-card[open] summary::before { content:'−'; }
+.attribute-card summary .attribute-icon { width:24px; height:24px; }
+.attribute-card summary small { margin-left:auto; font-size:10px; text-align:right; max-width:52%; }
+.attribute-card > div { color:#304c43; border-top:1px solid #dce5d6; padding:8px 12px; font-size:12px; }
+.attribute-card p { margin:4px 0; overflow-wrap:anywhere; }
+.combination-card { padding:8px 10px; background:#f2f4e9; border-radius:12px; margin-bottom:8px; }
+.combination-card h4 { display:flex; align-items:center; flex-wrap:wrap; gap:4px; font-size:12px; margin:0; }
+.combination-card h4 .attribute-icon { width:20px; height:20px; }
+.combination-card p { margin:5px 0 0; font-size:12px; }
+.attribute-badges { left:3%; right:3%; gap:2px; }
+.attribute-badge { padding:0 1px; gap:1px; }
+.attribute-badge small { font-size:.6em; font-weight:700; }
+.drag-sprite .attribute-badge { font-size:clamp(7px,13cqw,18px); padding:0; gap:1px; }

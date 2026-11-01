@@ -11,10 +11,14 @@ export const EXPERIMENTAL_ECONOMY = Object.freeze({
   priceBase: 2,
   priceGrowth: 2,
   shopCostGrowth: 1.7,
-  shopMaxLevel: 16,
   goldRushRatePerPayment: 0.2,
   goldRushAttributePenalty: 0.25,
 })
+
+/** Storage alone expands; speed/tap keep the Phase3B level limit. All storage values are provisional. */
+export const STORAGE_UPGRADE = Object.freeze({perLevel:5,maxLevel:30,costGrowth:1.35})
+export const UPGRADE_MAX_LEVEL = Object.freeze({speed:16,tap:16,storage:STORAGE_UPGRADE.maxLevel})
+const LEGACY_MAX_LEVEL = Object.freeze({speed:16,tap:16,storage:16})
 
 export type UpgradeKey = 'speed' | 'tap' | 'storage'
 export type Upgrades = Readonly<Record<UpgradeKey, number>>
@@ -25,7 +29,7 @@ export function freshWallet(): Wallet {
   return { gold: 0, upgrades: { speed: 0, tap: 0, storage: 0 } }
 }
 
-export function isWallet(value: unknown): value is Wallet {
+function validWallet(value: unknown, limits: Readonly<Record<UpgradeKey,number>>): value is Wallet {
   if (!value || typeof value !== 'object') return false
   const w = value as Wallet
   if (w.goldRushReceipts !== undefined && (!w.goldRushReceipts || typeof w.goldRushReceipts !== 'object' || Array.isArray(w.goldRushReceipts) || Object.entries(w.goldRushReceipts).some(([id, paid]) => !id.trim() || id.length > 100 || !Number.isSafeInteger(paid) || paid < 0 || paid > 10))) return false
@@ -33,8 +37,12 @@ export function isWallet(value: unknown): value is Wallet {
     !!w.upgrades && (['speed', 'tap', 'storage'] as const).every((key) =>
       Number.isSafeInteger(w.upgrades[key]) &&
       w.upgrades[key] >= 0 &&
-      w.upgrades[key] <= EXPERIMENTAL_ECONOMY.shopMaxLevel)
+      w.upgrades[key] <= limits[key])
 }
+
+export function isWallet(value:unknown):value is Wallet{return validWallet(value,UPGRADE_MAX_LEVEL)}
+/** Old schemas must be checked against their historical limits, before capacity is re-evaluated. */
+export function isLegacyWallet(value:unknown):value is Wallet{return validWallet(value,LEGACY_MAX_LEVEL)}
 
 /** Tier 40 is finite and safe, unlike unbounded exponential growth. */
 export function baseSaleValue(tier: number): number {
@@ -49,17 +57,17 @@ const SHOP_BASE: Readonly<Record<UpgradeKey, number>> = {
 }
 
 export function upgradeCost(key: UpgradeKey, level: number): number {
-  if (!(Object.hasOwn(SHOP_BASE, key)) || !Number.isSafeInteger(level) || level < 0 || level > EXPERIMENTAL_ECONOMY.shopMaxLevel) {
+  if (!(Object.hasOwn(SHOP_BASE, key)) || !Number.isSafeInteger(level) || level < 0 || level > UPGRADE_MAX_LEVEL[key]) {
     throw new RangeError('Invalid upgrade')
   }
-  return Math.ceil(SHOP_BASE[key] * EXPERIMENTAL_ECONOMY.shopCostGrowth ** level)
+  return Math.ceil(SHOP_BASE[key] * (key==='storage'?STORAGE_UPGRADE.costGrowth:EXPERIMENTAL_ECONOMY.shopCostGrowth) ** level)
 }
 
 export function purchaseUpgrade(wallet: Wallet, key: UpgradeKey): ShopResult {
   const reject = (cost = 0): ShopResult => ({ ok: false, wallet, cost })
   if (!isWallet(wallet) || !(Object.hasOwn(SHOP_BASE, key))) return reject()
   const level = wallet.upgrades[key]
-  if (level >= EXPERIMENTAL_ECONOMY.shopMaxLevel) return reject()
+  if (level >= UPGRADE_MAX_LEVEL[key]) return reject()
   const cost = upgradeCost(key, level)
   if (wallet.gold < cost) return reject(cost)
   return {
@@ -74,7 +82,7 @@ export function purchaseUpgrade(wallet: Wallet, key: UpgradeKey): ShopResult {
 }
 
 export function legacyGenerationRules(wallet: Wallet): GeneratorRules {
-  if (!isWallet(wallet)) throw new RangeError('Invalid wallet')
+  if (!isLegacyWallet(wallet)) throw new RangeError('Invalid wallet')
   return {
     intervalMs: Math.max(2_000, Math.round(10_000 * 0.9 ** wallet.upgrades.speed)),
     tapAdvanceMs: EXPERIMENTAL_GENERATION.baseTapAdvanceMs + wallet.upgrades.tap * 350,
@@ -83,12 +91,12 @@ export function legacyGenerationRules(wallet: Wallet): GeneratorRules {
 }
 
 /** Phase3B provisional slower pace. Attributes are applied by sessionRules. */
-export const GENERATION_PACE = Object.freeze({speedFactor:0.95, tapPerLevelMs:200, minimumIntervalMs:2000})
+export const GENERATION_PACE = Object.freeze({speedFactor:0.95, tapPerLevelMs:200, minimumIntervalMs:2000,maxTapIntervalFraction:0.75})
 export function generationRules(wallet: Wallet): GeneratorRules {
   if (!isWallet(wallet)) throw new RangeError('Invalid wallet')
   return { intervalMs: Math.max(GENERATION_PACE.minimumIntervalMs, Math.round(EXPERIMENTAL_GENERATION.baseIntervalMs * GENERATION_PACE.speedFactor ** wallet.upgrades.speed)),
     tapAdvanceMs: EXPERIMENTAL_GENERATION.baseTapAdvanceMs + wallet.upgrades.tap * GENERATION_PACE.tapPerLevelMs,
-    capacity: EXPERIMENTAL_GENERATION.initialCapacity + wallet.upgrades.storage * 3 }
+    capacity: EXPERIMENTAL_GENERATION.initialCapacity + wallet.upgrades.storage * STORAGE_UPGRADE.perLevel }
 }
 
 export type SaleResult = Readonly<{
