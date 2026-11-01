@@ -38,3 +38,7 @@
 前回発見メモ：比較botのrulesOverrideを固定したまま購入すると生成進捗上限が不整合になる場合があった。実ルールに対する相対倍率を維持する修正と回帰を再作成する。支援power0の不要計算省略は数学を変えず負荷を抑える。1280×720で金受領表示＋127在庫時に右レールmin-content由来の2pxオーバーフローがあり、短いPC画面用minmax(0,1fr)/padding縮小を再評価する。distをブラウザ検証中に再buildしない。長時間仮想時計はfastForwardを使い、性能は実時計と分離する。
 
 実機・他ブラウザ・スクリーンリーダーの実利用は未確認。全Tierアート・音・土地・正式図鑑は対象外。
+
+## 復旧checkpointの再試験結果
+
+npm ci・Lint・Build成功。全Vitest680件/26ファイル成功（659既存＋21新規、174.73秒）。今回の証跡はvalidation/phase3c/recovery-full-vitest.txt。復旧Draft PRは https://github.com/Olivia-Grace0206/slime-merge-game/pull/13 。最新のGitHub HEADと同SHAのCIはPR本文を参照する。

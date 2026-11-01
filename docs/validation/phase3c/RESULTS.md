@@ -6,7 +6,7 @@
 - Lint成功：recovery-lint.txt。
 - 関連4ファイル178件成功：recovery-tests.txt。新規の覚醒21件を含む。
 - Build/型チェック成功：recovery-build.txt。
-- 全回帰はrecovery-full-vitest.txt（実行終了後に件数を確定する）。
+- 全回帰680件/26ファイル成功（既存659＋新規21、174.73秒）：recovery-full-vitest.txt。
 - ブラウザ・10サイズ・画像・紫青・schema7は復旧未完了。前回の画像/結果は今回のブランチに存在しない。
 
 32,768配分は同じ実装関数の再計算ではなく、入力属性別個数から独立した上限min(入力数,出力数)と集中条件を照合する。第三者レビューではない。テストの旧未知プロパティcaseはawakened boolean採用に合わせ非boolean拒否へ変更し、削除していない。
