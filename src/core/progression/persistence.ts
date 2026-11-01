@@ -1,3 +1,4 @@
+import { isAttributes } from '../../domain/attributes'
 import { RESEARCH_CAPS, legacyResearchLevel, EXPERIMENTAL_RESEARCH } from './research'
 import { isProgressionSnapshot } from './save'
 import { freshSession, goldPayment, sessionRules, type Session } from './session'
@@ -7,7 +8,7 @@ import { isValidGeneratedTier } from './generation'
 
 export const SAVE_KEY = 'slime-merge-normal-v2'
 const integer = (n: unknown): n is number => Number.isSafeInteger(n) && (n as number) >= 0
-function validateSession(value: unknown, version = 4): value is Session {
+function validateSession(value: unknown, version = 5): value is Session {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return false
   const s = value as Session
   if ((s.version as number) !== version || !integer(s.savedAtMs) || !integer(s.sequence) || !integer(s.nextId) || s.nextId < 1 ||
@@ -17,18 +18,20 @@ function validateSession(value: unknown, version = 4): value is Session {
     !Array.isArray(s.protectedIds) || new Set(s.protectedIds).size !== s.protectedIds.length ||
     s.protectedIds.some(x => typeof x !== 'string' || !s.game.slimes.some(y => y.id === x)) ||
     typeof s.reducedEffects !== 'boolean' || !integer(s.eventSequence) || !integer(s.nextEventAtMs)) return false
-  if (version === 4 && (!integer(s.researchLevel) || s.researchLevel >= RESEARCH_CAPS.length || RESEARCH_CAPS[s.researchLevel] !== s.researchMaxTier ||
+  if (version >= 4 && (!integer(s.researchLevel) || s.researchLevel >= RESEARCH_CAPS.length || RESEARCH_CAPS[s.researchLevel] !== s.researchMaxTier ||
     s.researchMaxTier < s.game.highestTierReached || typeof s.goldCellUnlocked !== 'boolean' ||
     !integer(s.goldFrequencyLevel) || s.goldFrequencyLevel > EXPERIMENTAL_RESEARCH.frequencyMaxLevel ||
     (!s.goldCellUnlocked && (s.goldFrequencyLevel !== 0 || s.event !== null)) ||
     !['full', 'compact'].includes(s.goldFormat))) return false
   const g = s.generator, rules = sessionRules(s)
   if (!g || !Array.isArray(g.storedTiers) || g.storedTiers.length > rules.capacity ||
-    g.storedTiers.some(t => !isValidGeneratedTier(t, s.game.highestTierReached)) ||
+    Array.from(g.storedTiers).some(t => !isValidGeneratedTier(t, s.game.highestTierReached)) ||
     !integer(g.totalGenerated) || g.totalGenerated < g.storedTiers.length ||
     !integer(g.progressMs) || g.progressMs >= rules.intervalMs ||
     !integer(g.updatedAtMs) || g.updatedAtMs > s.savedAtMs ||
     (g.storedTiers.length === rules.capacity && g.progressMs !== 0)) return false
+  if (version === 5 && (s.game.slimes.some(x => !isAttributes(x.attributes)) || !Array.isArray(g.storedAttributes) || g.storedAttributes.length !== g.storedTiers.length || !Array.from(g.storedAttributes).every(isAttributes))) return false
+  if (version < 5 && (s.game.slimes.some(x => x.attributes !== undefined && (!isAttributes(x.attributes) || x.attributes.length > 0)) || (g.storedAttributes !== undefined && (!Array.isArray(g.storedAttributes) || g.storedAttributes.some(a => !isAttributes(a) || a.length > 0))))) return false
   if (s.lastEvent !== null && (!s.lastEvent || typeof s.lastEvent !== 'object' ||
     !/^gold-[1-9]\d*$/.test(s.lastEvent.id) || Number(s.lastEvent.id.slice(5)) > s.eventSequence ||
     !integer(s.lastEvent.paid ?? 10) || (s.lastEvent.paid ?? 10) > 10 || !integer(s.lastEvent.receivedGOLD) || s.lastEvent.receivedGOLD < 0)) return false
@@ -44,6 +47,10 @@ function validateSession(value: unknown, version = 4): value is Session {
   return isValidGeneratedTier(e.tier, s.game.highestTierReached) && typeof e.sourceId === 'string' && !!e.sourceId.trim() &&
     e.unitGOLD === goldPayment(e.tier, e.attributeCount, version === 2 ? 1 : e.rewardVersion) && e.receivedGOLD + (e.cappedGOLD ?? 0) === e.paid * e.unitGOLD
 }
+function attributeMigration(s: Pick<Session, 'game' | 'generator'>) {
+  return { game: { ...s.game, slimes: s.game.slimes.map(x => ({ ...x, attributes: [] })) },
+    generator: { ...s.generator, storedAttributes: s.generator.storedTiers.map(() => []) } }
+}
 export function isSession(value: unknown): value is Session { return validateSession(value) }
 export function encodeSession(s: Session): string {
   if (!isSession(s)) throw new RangeError('Invalid save')
@@ -55,17 +62,17 @@ export function decodeSession(raw: string, now: number): LoadResult {
   try {
     const parsed: unknown = JSON.parse(raw)
     if (isSession(parsed)) return { ok: true, session: parsed, migrated: false }
-    for (const version of [3, 2]) if (validateSession(parsed, version)) {
-      const researchLevel = legacyResearchLevel(parsed.game.highestTierReached)
-      const session: Session = { ...parsed, version: 4, researchLevel, researchMaxTier: RESEARCH_CAPS[researchLevel]!,
-        goldCellUnlocked: true, goldFrequencyLevel: 0, goldFormat: 'full',
+    for (const version of [4, 3, 2]) if (validateSession(parsed, version)) {
+      const researchLevel = version === 4 ? parsed.researchLevel : legacyResearchLevel(parsed.game.highestTierReached)
+      const session: Session = { ...parsed, ...attributeMigration(parsed), version: 5, researchLevel, researchMaxTier: RESEARCH_CAPS[researchLevel]!,
+        goldCellUnlocked: version === 4 ? parsed.goldCellUnlocked : true, goldFrequencyLevel: version === 4 ? parsed.goldFrequencyLevel : 0, goldFormat: version === 4 ? parsed.goldFormat : 'full',
         event: parsed.event ? { ...parsed.event, rewardVersion: version === 2 ? 1 : parsed.event.rewardVersion! } : null }
       if (isSession(session)) return { ok: true, session, migrated: true }
     }
-    if (isProgressionSnapshot(parsed)) {
+    if (isProgressionSnapshot(parsed) && parsed.game.slimes.every(x => x.attributes === undefined || (isAttributes(x.attributes) && x.attributes.length === 0)) && (parsed.generator.storedAttributes === undefined || (Array.isArray(parsed.generator.storedAttributes) && parsed.generator.storedAttributes.every(a => isAttributes(a) && a.length === 0)))) {
       // v1 experimental 7x7 presets are not normal-play saves; never crop or silently discard them.
       const researchLevel = legacyResearchLevel(parsed.game.highestTierReached)
-      const migrated: Session = { ...freshSession(now), ...parsed, version: 4, sequence: 0, event: null,
+      const migrated: Session = { ...freshSession(now), ...parsed, ...attributeMigration(parsed), version: 5, sequence: 0, event: null,
         researchLevel, researchMaxTier: RESEARCH_CAPS[researchLevel]!, goldCellUnlocked: true }
       if (isSession(migrated)) return { ok: true, session: migrated, migrated: true }
       return { ok: false, reason: '旧v1検証盤面は通常4×4へ自動変換できません（原本を保持）' }
@@ -84,4 +91,5 @@ export function commitStorage(storage: StoragePort, expectedRaw: string | null, 
     return { ok: true, raw }
   } catch { return { ok: false, reason: '保存できません。空き容量・ブラウザの保存許可を確認し、再試行してください' } }
 }
+
 

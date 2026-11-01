@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { freshSession, reduceSession, sessionRules, type Session } from '../../src/core/progression/session'
+import { freshSession, reduceSession as currentReduceSession, sessionRules, type Session } from '../../src/core/progression/session'
 import { tierWeights, drawTier, withdrawToCell } from '../../src/core/progression/generation'
 import { RESEARCH_CAPS, researchCost, legacyResearchLevel, frequencyCost } from '../../src/core/progression/research'
 import { GENERATION_WEIGHT_ROWS } from '../../src/core/progression/tierTable'
@@ -11,7 +11,7 @@ const cmd = (s: Session, c: Parameters<typeof reduceSession>[1]) => reduceSessio
 function board(tier: number, count: number, cap = 5): Session {
   const s = freshSession(0), researchLevel = legacyResearchLevel(cap)
   return { ...s, nextId: count + 1, researchLevel, researchMaxTier: RESEARCH_CAPS[researchLevel]!, game: { ...s.game, highestTierReached: tier,
-    slimes: Array.from({ length: count }, (_, i) => ({ id: `p-${i + 1}`, tier, position: { x: i % 4, y: Math.floor(i / 4) } })) } }
+    slimes: Array.from({ length: count }, (_, i) => ({ id: `p-${i + 1}`, tier, position: { x: i % 4, y: Math.floor(i / 4) }, attributes: [] })) } }
 }
 describe('table discovery contract', () => {
   it.each(Array.from({ length: 40 }, (_, i) => i + 1))('H=%i complete normalized row, zero beyond discovery, seeded frequencies and boundaries', H => {
@@ -43,7 +43,7 @@ describe('table discovery contract', () => {
     expect(load.ok && tierWeights(load.session.game.highestTierReached)).toEqual(tierWeights(1))
   })
   it('forged stored Tier cannot discover a Tier during withdrawal', () => {
-    const s = freshSession(0), g = { ...s.generator, storedTiers: [2], totalGenerated: 1 }
+    const s = freshSession(0), g = { ...s.generator, storedTiers: [2], storedAttributes: [2].map(() => []), totalGenerated: 1 }
     expect(withdrawToCell(s.game, g, { x: 0, y: 0 }, 'x').ok).toBe(false)
   })
   it('seeded IID frequencies agree with the configured rare probabilities', () => {
@@ -64,7 +64,7 @@ describe('table discovery contract', () => {
 })
 describe('research transactions and materials', () => {
   it('real new game has research5 and GOLD locked', () => {
-    expect(freshSession(0)).toMatchObject({ version: 4, researchLevel: 0, researchMaxTier: 5, goldCellUnlocked: false, goldFrequencyLevel: 0, goldFormat: 'full' })
+    expect(freshSession(0)).toMatchObject({ version: 5, researchLevel: 0, researchMaxTier: 5, goldCellUnlocked: false, goldFrequencyLevel: 0, goldFormat: 'full' })
     expect(isSession(freshSession(0))).toBe(true)
   })
   it.each(RESEARCH_CAPS.slice(1).map((cap, i) => [i, cap]))('stage %i unlocks cap %i once, without discovery', (lv, cap) => {
@@ -75,7 +75,7 @@ describe('research transactions and materials', () => {
   })
   it.each([3, 5, 8, 11, 16])('blocked %i specimens: preview/apply/session preserve every material, queue and GOLD', count => {
     const s = board(5, count), target = { x: 1, y: 0 }
-    expect(planDrop(s.game, 'p-1', target, 5)).toEqual({ kind: 'invalid', reason: 'research-locked' })
+    expect(planDrop(s.game, 'p-1', target, 5)).toMatchObject({ kind: 'swap', reason: 'research-locked' })
     const unrestricted = planDrop(s.game, 'p-1', target)
     let calls = 0
     expect(applyPlan(s.game, unrestricted, () => String(calls++), 5)).toEqual({ ok: false, state: s.game, createdIds: [] })
@@ -86,7 +86,7 @@ describe('research transactions and materials', () => {
   })
   it('insufficient GOLD / final cap40 / malformed cap refuse without loss; below cap succeeds', () => {
     const s = freshSession(0); expect(cmd(s, { type: 'research', expectedLevel: 0 })).toBe(s)
-    const t = board(40, 3, 40); expect(planDrop(t.game, 'p-1', { x: 1, y: 0 }, 40).kind).toBe('invalid')
+    const t = board(40, 3, 40); expect(planDrop(t.game, 'p-1', { x: 1, y: 0 }, 40).kind).toBe('swap')
     expect(cmd(t, { type: 'research', expectedLevel: 16 })).toBe(t)
     expect(isSession({ ...s, researchLevel: -1, researchMaxTier: undefined })).toBe(false)
     const a = board(4, 3); expect(cmd(a, { type: 'drop', plan: planDrop(a.game, 'p-1', { x: 1, y: 0 }, 5) }).game.highestTierReached).toBe(5)
@@ -111,7 +111,7 @@ describe('GOLD unlock, format and migration', () => {
     expect(event.event?.tier).toBeNull(); expect(event.event).not.toBeNull(); expect(isSession(event)).toBe(true)
   })
   it.each([1, 2, 3])('legacy v%i preserves high Tiers, FIFO, GOLD and free research/event access', version => {
-    const s = board(33, 3, 35), saved = { ...s, generator: { ...s.generator, storedTiers: [2, 31, 33], totalGenerated: 3 }, wallet: { ...s.wallet, gold: 12345 } }
+    const s = board(33, 3, 35), saved = { ...s, generator: { ...s.generator, storedTiers: [2, 31, 33], storedAttributes: [2, 31, 33].map(() => []), totalGenerated: 3 }, wallet: { ...s.wallet, gold: 12345 } }
     const legacy = { ...saved, version } as Record<string, unknown>
     for (const key of ['researchLevel', 'researchMaxTier', 'goldCellUnlocked', 'goldFrequencyLevel', 'goldFormat']) delete legacy[key]
     const raw = JSON.stringify(legacy), load = decodeSession(raw, 0)
@@ -146,3 +146,9 @@ describe('GOLD unlock, format and migration', () => {
     }
   })
 })
+
+
+// Phase3A: legacy economy fixtures remain un-attributed; production attribute trials are tested separately.
+function reduceSession(...args: Parameters<typeof currentReduceSession>) {
+  return currentReduceSession(args[0], args[1], args[2], args[3], args[4] ?? { ...sessionRules(args[0]), attributeChance: 0, attributeMutationChance: 0 })
+}

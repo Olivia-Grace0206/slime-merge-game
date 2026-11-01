@@ -163,16 +163,17 @@ async function run(){
     assert.match(await page.getByTestId('status').innerText(),/マージ成功/)
     await page.getByTestId('viewport').dispatchEvent('pointerup',{pointerId:1,clientX:b.x,clientY:b.y});assert.deepEqual(await placements(page),after)
    })
-   await check(`${name} zoomed different-tier/outside drop, Escape, pointercancel, lost capture, blur preserve state`,async()=>{
-    await preset(page,'高Tier試験');await cameraAction(page,'拡大');const e=await center(page,'[data-cell="3,0"]');await page.mouse.move(e.x,e.y);await page.mouse.down();await page.mouse.move(e.x+8,e.y);await page.mouse.up()
+   await check(`${name} zoomed different-tier swaps; outside/Escape/cancel/lost capture/blur preserve state`,async()=>{
     for(const mode of ['different','outside','escape','pointercancel','lostpointercapture','blur']){
+     // Phase3A different-tier swaps change positions; restore each independent cancellation fixture.
+     await preset(page,'高Tier試験');await cameraAction(page,'拡大');const e=await center(page,'[data-cell="3,0"]');await page.mouse.move(e.x,e.y);await page.mouse.down();await page.mouse.move(e.x+8,e.y);await page.mouse.up()
      const before=await placements(page),a=await center(page,'[data-slime-id="seed-0"]'),b=await center(page,mode==='different'?'[data-slime-id="cap-1"]':'[data-slime-id="seed-1"]')
      await page.mouse.move(a.x,a.y);await page.mouse.down();await page.mouse.move(b.x,b.y)
      if(mode==='outside')await page.mouse.move(1,1)
      if(mode==='escape')await page.keyboard.press('Escape')
      if(mode==='pointercancel'||mode==='lostpointercapture')await page.getByTestId('viewport').dispatchEvent(mode,{pointerId:1})
      if(mode==='blur')await page.evaluate(()=>window.dispatchEvent(new Event('blur')))
-     await page.mouse.up();assert.deepEqual(await placements(page),before,mode)
+     await page.mouse.up();if(mode==='different'){const after=await placements(page);assert.equal(after.find(s=>s.id==='seed-0').cell,before.find(s=>s.id==='cap-1').cell);assert.equal(after.find(s=>s.id==='cap-1').cell,before.find(s=>s.id==='seed-0').cell)}else assert.deepEqual(await placements(page),before,mode)
     }
    })
    await check(`${name} resize/rotation cancels pending drag and safely refits then merges`,async()=>{
@@ -193,3 +194,4 @@ async function run(){
  console.log(JSON.stringify({passed:checks.filter(c=>c.result==='PASS').length,failed:checks.filter(c=>c.result==='FAIL').length,errors,dir}))
 }
 run().catch(e=>{console.error(e);process.exitCode=1})
+

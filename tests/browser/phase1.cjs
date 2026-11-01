@@ -203,21 +203,20 @@ async function run() {
           },
         )
       }
-      await check(`${width}px Tier40 blocked without consumption`, async () => {
+      await check(`${width}px Tier40 swap without consumption`, async () => {
         await choosePreset(page, '高Tier試験')
         const before = await placements(page)
         await input.start(await center(page, '[data-slime-id="cap-0"]'))
         await input.move(await center(page, '[data-slime-id="cap-1"]'))
         await input.end()
-        assert.deepEqual(await placements(page), before)
-        assert.match(await page.getByTestId('status').innerText(), /上限/)
+        const after=await placements(page); assert.deepEqual(after.map(s=>[s.id,s.tier]), before.map(s=>[s.id,s.tier])); assert.equal(after.find(s=>s.id==='cap-0').cell,before.find(s=>s.id==='cap-1').cell); assert.match(await page.getByTestId('status').innerText(), /交換/)
       })
-      await check(`${width}px different-tier drop cancelled`, async () => {
+      await check(`${width}px different-tier drop exchanges positions`, async () => {
         const before = await placements(page)
         await input.start(await center(page, '[data-slime-id="drag"]'))
         await input.move(await center(page, '[data-slime-id="cap-1"]'))
         await input.end()
-        assert.deepEqual(await placements(page), before)
+        const after=await placements(page);assert.equal(after.find(s=>s.id==='drag').cell,before.find(s=>s.id==='cap-1').cell);assert.equal(after.find(s=>s.id==='cap-1').cell,before.find(s=>s.id==='drag').cell)
       })
       await check(`${width}px empty cell moves without merging`, async () => {
         await choosePreset(page, '3体マージ')
@@ -395,3 +394,4 @@ run().catch((e) => {
   console.error(e)
   process.exitCode = 1
 })
+

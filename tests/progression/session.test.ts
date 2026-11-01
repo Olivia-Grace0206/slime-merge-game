@@ -1,7 +1,7 @@
 /// <reference types="node" />
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { describe, it, expect } from 'vitest'
-import { freshSession as newSession, reduceSession, goldPayment, sessionRules, type Session } from '../../src/core/progression/session'
+import { freshSession as newSession, reduceSession as currentReduceSession, goldPayment, sessionRules, type Session } from '../../src/core/progression/session'
 // Legacy regression fixture: research40 and GOLD already unlocked, as migrated pre-research saves.
 const freshSession = (now: number) => ({ ...newSession(now), researchLevel: 16, researchMaxTier: 40, goldCellUnlocked: true })
 import { encodeSession, decodeSession, isSession, commitStorage } from '../../src/core/progression/persistence'
@@ -50,7 +50,7 @@ describe('integrated progression safety',()=>{
  })
  it('full 16 different Tiers can always sell a chosen unprotected specimen',()=>{
   let s=freshSession(0)
-  s={...s,nextId:17,game:{...s.game,highestTierReached:16,slimes:Array.from({length:16},(_,i)=>({id:`p-${i+1}`,tier:i+1,position:{x:i%4,y:Math.floor(i/4)}}))}}
+  s={...s,nextId:17,game:{...s.game,highestTierReached:16,slimes:Array.from({length:16},(_,i)=>({id:`p-${i+1}`,tier:i+1,attributes:[],position:{x:i%4,y:Math.floor(i/4)}}))}}
   expect(isSession(s)).toBe(true)
   const highest=s.game.slimes[15]!
   const next=reduceSession(s,{type:'sell',id:'p-1'},0,zero)
@@ -184,8 +184,14 @@ describe('strict v2 persistence and failed writes',()=>{
    const loaded=decodeSession(encodeSession(s),s.savedAtMs);if(loaded.ok)s=loaded.session
   }
   expect(s.nextId).toBe(2401);expect(Number.isSafeInteger(s.wallet.gold)).toBe(true)
-  mkdirSync('docs/validation/phase2-polish-followup',{recursive:true})
-  writeFileSync('docs/validation/phase2-polish-followup/long-simulation.json',JSON.stringify({virtualHours:240,checkpoints:240,totalGenerated:s.generator.totalGenerated,nextId:s.nextId,gold:s.wallet.gold,eventSequence:s.eventSequence,uniqueIds:true,validEveryCheckpoint:true,roundTripEveryCheckpoint:true,storageBounded:true,errors:0},null,2))
+  mkdirSync('docs/validation/phase3a/regression-session',{recursive:true})
+  writeFileSync('docs/validation/phase3a/regression-session/long-simulation.json',JSON.stringify({virtualHours:240,checkpoints:240,totalGenerated:s.generator.totalGenerated,nextId:s.nextId,gold:s.wallet.gold,eventSequence:s.eventSequence,uniqueIds:true,validEveryCheckpoint:true,roundTripEveryCheckpoint:true,storageBounded:true,errors:0},null,2))
  })
 })
 
+
+
+// Phase3A: legacy economy fixtures remain un-attributed; production attribute trials are tested separately.
+function reduceSession(...args: Parameters<typeof currentReduceSession>) {
+  return currentReduceSession(args[0], args[1], args[2], args[3], args[4] ?? { ...sessionRules(args[0]), attributeChance: 0, attributeMutationChance: 0 })
+}

@@ -1,16 +1,16 @@
 import { describe, it, expect } from 'vitest'
-import { freshSession as newSession, reduceSession, goldPayment, EXPERIMENTAL_PHASE2, type Session } from '../../src/core/progression/session'
+import { freshSession as newSession, reduceSession as currentReduceSession, goldPayment, sessionRules, EXPERIMENTAL_PHASE2, type Session } from '../../src/core/progression/session'
 // Legacy regression fixture: research40 and GOLD already unlocked, as migrated pre-research saves.
 const freshSession = (now: number) => ({ ...newSession(now), researchLevel: 16, researchMaxTier: 40, goldCellUnlocked: true })
 import { withdrawRandom } from '../../src/core/progression/generation'
 import { encodeSession, decodeSession, isSession, commitStorage } from '../../src/core/progression/persistence'
 import { planDrop } from '../../src/core/merge/plan'
 const zero = () => 0
-function ready() { const s=freshSession(0); return {...s,generator:{...s.generator,storedTiers:[1,1,1],totalGenerated:3}} }
+function ready() { const s=freshSession(0); return {...s,generator:{...s.generator,storedTiers: [1,1,1], storedAttributes: [1,1,1].map(() => []),totalGenerated:3}} }
 function add(s:Session, random=zero) { return reduceSession(s,{type:'withdraw',expectedId:s.nextId},s.savedAtMs,random) }
 function active(tier=5) {
  let s=reduceSession(freshSession(0),{type:'tick'},60000,zero)
- s={...s,game:{...s.game,highestTierReached:tier},generator:{...s.generator,storedTiers:[tier],totalGenerated:1}}
+ s={...s,game:{...s.game,highestTierReached:tier},generator:{...s.generator,storedTiers: [tier], storedAttributes: [tier].map(() => []),totalGenerated:1}}
  return add(s)
 }
 function pay(s:Session) { return reduceSession(s,{type:'pay',eventId:s.event!.id,expectedPaid:s.event!.paid},s.event!.nextPaymentAtMs,zero) }
@@ -24,11 +24,11 @@ describe('one-click random FIFO transaction',()=>{
   expect(isSession(n)).toBe(true)
  })
  it('one free cell always chosen including highest valid random',()=>{
-  const s=ready();const game={...s.game,slimes:Array.from({length:15},(_,i)=>({id:`x-${i}`,tier:1,position:{x:i%4,y:Math.floor(i/4)}}))}
+  const s=ready();const game={...s.game,slimes:Array.from({length:15},(_,i)=>({id:`x-${i}`,tier:1,position: {x:i%4,y:Math.floor(i/4)}, attributes: []}))}
   for(const n of [0,.2,.999999])expect(withdrawRandom(game,s.generator,'new',()=>n).game.slimes[15]!.position).toEqual({x:3,y:3})
  })
  it('full board / empty stock rejects without calling random, even after elapsed time',()=>{
-  const s=ready();const full={...s,game:{...s.game,slimes:Array.from({length:16},(_,i)=>({id:`x-${i}`,tier:1,position:{x:i%4,y:Math.floor(i/4)}}))}}
+  const s=ready();const full={...s,game:{...s.game,slimes:Array.from({length:16},(_,i)=>({id:`x-${i}`,tier:1,position: {x:i%4,y:Math.floor(i/4)}, attributes: []}))}}
   const fail=()=>{throw Error('must not draw')}
   expect(reduceSession(full,{type:'withdraw',expectedId:1},100000,fail)).toBe(full)
   const empty=freshSession(0);expect(reduceSession(empty,{type:'withdraw',expectedId:1},100000,fail)).toBe(empty)
@@ -68,7 +68,7 @@ describe('gold source identity and atomic exit',()=>{
   const s=ready(),n=add(s)
   const spawn=reduceSession(n,{type:'tick'},60000,zero)
   expect(spawn.event!.cell).toEqual({x:1,y:0});expect(spawn.event!.tier).toBeNull()
-  const full={...s,game:{...s.game,slimes:Array.from({length:16},(_,i)=>({id:`x-${i}`,tier:1,position:{x:i%4,y:Math.floor(i/4)}}))}}
+  const full={...s,game:{...s.game,slimes:Array.from({length:16},(_,i)=>({id:`x-${i}`,tier:1,position: {x:i%4,y:Math.floor(i/4)}, attributes: []}))}}
   const blocked=reduceSession(full,{type:'tick'},60000,zero)
   expect(blocked.event).toBeNull();expect(blocked.eventSequence).toBe(0);expect(blocked.nextEventAtMs).toBe(120000)
  })
@@ -78,7 +78,7 @@ describe('gold source identity and atomic exit',()=>{
   if(kind==='move')s=reduceSession(s,{type:'drop',plan:planDrop(s.game,source,{x:3,y:3})},s.event!.nextPaymentAtMs,zero)
   if(kind==='sell')s=reduceSession(s,{type:'sell',id:source},s.event!.nextPaymentAtMs,zero)
   if(kind==='merge'){
-   s={...s,nextId:10,game:{...s.game,slimes:[...s.game.slimes,{id:'p-8',tier:5,position:{x:1,y:0}},{id:'p-9',tier:5,position:{x:1,y:1}}]}}
+   s={...s,nextId:10,game:{...s.game,slimes:[...s.game.slimes,{id:'p-8',tier:5,position: {x:1,y:0}, attributes: []},{id:'p-9',tier:5,position: {x:1,y:1}, attributes: []}]}}
    s=reduceSession(s,{type:'drop',plan:planDrop(s.game,'p-8',{x:0,y:0})},s.event!.nextPaymentAtMs,zero)
   }
   expect(s.event).toBeNull();expect(s.lastEvent).toEqual({id,receivedGOLD:received,paid:4})
@@ -122,7 +122,7 @@ describe('explicit migration and protection',()=>{
   if(state==='detached')legacy.game.slimes=[]
   const raw=JSON.stringify(legacy),load=decodeSession(raw,1000)
   expect(load.ok).toBe(true);if(!load.ok)return
-  expect(load.migrated).toBe(true);expect(load.session.version).toBe(4);expect(load.session.wallet).toEqual(legacy.wallet)
+  expect(load.migrated).toBe(true);expect(load.session.version).toBe(5);expect(load.session.wallet).toEqual(legacy.wallet)
   expect(load.session.generator).toEqual(legacy.generator);expect(isSession(load.session)).toBe(true)
   if(state==='active') {const n=pay(load.session);expect(n.wallet.gold-load.session.wallet.gold).toBe(1)}
   if(state==='detached'){const n=pay(load.session);expect(n.event).toBeNull();expect(n.wallet.gold).toBe(legacy.wallet.gold)}
@@ -144,3 +144,9 @@ describe('explicit migration and protection',()=>{
   for(let a=0;a<10;a++)expect(goldPayment(tier,a)).toBeGreaterThanOrEqual(goldPayment(tier,a+1))
  })
 })
+
+
+// Phase3A: legacy economy fixtures remain un-attributed; production attribute trials are tested separately.
+function reduceSession(...args: Parameters<typeof currentReduceSession>) {
+  return currentReduceSession(args[0], args[1], args[2], args[3], args[4] ?? { ...sessionRules(args[0]), attributeChance: 0, attributeMutationChance: 0 })
+}

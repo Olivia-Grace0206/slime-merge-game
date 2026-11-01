@@ -127,7 +127,7 @@ describe('M08–M17: connected component and explicit drop rules', () => {
       slime('b', 3, 1),
     ])
     expect(connectedSlimes(state, 'drag', 'a').map((s) => s.id)).toEqual(['a'])
-    expect(planDrop(state, 'drag', { x: 1, y: 1 })).toEqual({ kind: 'invalid', reason: 'too-few' })
+    expect(planDrop(state, 'drag', { x: 1, y: 1 })).toMatchObject({ kind: 'swap', reason: 'too-few' })
   })
   it('M11 M12: adjacency and empty-cell movement never merge', () => {
     const state = countBoard(3),
@@ -138,21 +138,21 @@ describe('M08–M17: connected component and explicit drop rules', () => {
     expect(out.state.slimes.map((s) => s.id)).toEqual(state.slimes.map((s) => s.id))
     expect(out.state.slimes.every((s) => s.tier === 1)).toBe(true)
   })
-  it('M13: cancels different-tier occupied drop', () => {
+  it('M13: Phase3A exchanges different-tier occupied drop', () => {
     const state = board([slime('drag', 0, 0), slime('a', 1, 1, 2)])
     const p = planDrop(state, 'drag', { x: 1, y: 1 })
-    expect(p).toEqual({ kind: 'invalid', reason: 'different-tier' })
-    expect(applyPlan(state, p, ids()).state).toBe(state)
+    expect(p).toMatchObject({ kind: 'swap', reason: 'different-tier' })
+    expect(applyPlan(state, p, ids()).state.slimes.map(x => [x.id,x.tier])).toEqual(state.slimes.map(x => [x.id,x.tier]))
   })
   it('M14: two individuals never merge', () =>
-    expect(planDrop(countBoard(2), 'drag', target)).toEqual({ kind: 'invalid', reason: 'too-few' }))
+    expect(planDrop(countBoard(2), 'drag', target)).toMatchObject({ kind: 'swap', reason: 'too-few' }))
   it('M15: source is counted once when originally adjacent', () => {
     const state = board([slime('drag', 1, 2), slime('a', 1, 1), slime('b', 2, 1)])
     expect(merge(state, { x: 1, y: 1 }).groups[0]?.consumedIds).toEqual(['drag', 'a', 'b'])
   })
   it('M15: removing source also removes its bridging path', () => {
     const state = board([slime('a', 1, 1), slime('drag', 2, 2), slime('b', 3, 3), slime('c', 4, 4)])
-    expect(planDrop(state, 'drag', { x: 1, y: 1 })).toEqual({ kind: 'invalid', reason: 'too-few' })
+    expect(planDrop(state, 'drag', { x: 1, y: 1 })).toMatchObject({ kind: 'swap', reason: 'too-few' })
   })
   it('M17: generated tier does not automatically chain with adjacent upper tiers', () => {
     const state = board([
@@ -306,7 +306,7 @@ describe('atomic failures and stale/double commits', () => {
     const state = countBoard(3),
       p = planDrop(state, 'drag', position)
     expect(p).toEqual({ kind: 'invalid', reason: 'outside-board' })
-    expect(applyPlan(state, p, ids()).state).toBe(state)
+    expect(applyPlan(state, p, ids()).state.slimes.map(x => [x.id,x.tier])).toEqual(state.slimes.map(x => [x.id,x.tier]))
   })
   it('source self drop and unknown source do not modify state', () => {
     const state = countBoard(3)
@@ -325,11 +325,11 @@ describe('M33–M35: tier cap and historical maximum', () => {
       expect(result.state.highestTierReached).toBe(tier + 1)
     },
   )
-  it('M34: cap produces no plan and consumes nothing', () => {
+  it('M34: cap exchanges positions and consumes nothing', () => {
     const state = countBoard(5, MAX_TIER),
       p = planDrop(state, 'drag', target)
-    expect(p).toEqual({ kind: 'invalid', reason: 'max-tier' })
-    expect(applyPlan(state, p, ids()).state).toBe(state)
+    expect(p).toMatchObject({ kind: 'swap', reason: 'max-tier' })
+    expect(applyPlan(state, p, ids()).state.slimes.map(x => [x.id,x.tier])).toEqual(state.slimes.map(x => [x.id,x.tier]))
   })
   it('M35: moving and lower-tier consumption do not decrease historical record', () => {
     const state = { ...countBoard(5), highestTierReached: MAX_TIER }
@@ -369,7 +369,7 @@ it('250 seeded mixed-tier layouts agree with an independent fixed-point connecti
     }
     const p = planDrop(state, source.id, destination.position)
     const total = reached.size + 1
-    if (total < 3) { expect(p.kind).toBe('invalid'); continue }
+    if (total < 3) { expect(p.kind).toBe('swap'); continue }
     expect(p.kind).toBe('merge')
     if (p.kind !== 'merge') throw Error('oracle expected merge')
     const result = applyPlan(state, freeze(p), ids())
@@ -396,6 +396,7 @@ it('high preset explicitly contains Tier39 candidates and Tier40 capped individu
   const state = createPreset('high')
   expect(state.slimes.filter(s => s.tier === 39)).toHaveLength(3)
   expect(state.slimes.filter(s => s.tier === 40)).toHaveLength(3)
-  expect(applyPlan(state, planDrop(state, 'cap-0', {x:3,y:5}), ids()).state).toBe(state)
+  expect(applyPlan(state, planDrop(state, 'cap-0', {x:3,y:5}), ids()).state.slimes.find(x => x.id === 'cap-0')?.position).toEqual({x:3,y:5})
   expect(isGameState({...state, highestTierReached:41})).toBe(false)
 })
+

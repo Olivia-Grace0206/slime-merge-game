@@ -1,3 +1,4 @@
+import { EXPERIMENTAL_ATTRIBUTES } from '../../domain/attributes'
 import { RESEARCH_CAPS, EXPERIMENTAL_RESEARCH, researchCost, frequencyCost } from './research'
 import type { DropPlan } from '../../domain/game'
 import type { GridPosition } from '../../domain/grid'
@@ -19,7 +20,7 @@ export type CellEvent = Readonly<{
   paid: number; receivedGOLD: number; cappedGOLD?: number; unitGOLD: number; nextPaymentAtMs: number
 }>
 export type Session = Omit<ProgressionSnapshot, 'version'> & Readonly<{
-  version: 4; researchLevel: number; researchMaxTier: number; goldCellUnlocked: boolean; goldFrequencyLevel: number; goldFormat: 'full' | 'compact'; sequence: number; eventSequence: number; nextEventAtMs: number
+  version: 5; researchLevel: number; researchMaxTier: number; goldCellUnlocked: boolean; goldFrequencyLevel: number; goldFormat: 'full' | 'compact'; sequence: number; eventSequence: number; nextEventAtMs: number
   event: CellEvent | null; lastEvent: Readonly<{ id: string; receivedGOLD: number; paid?: number }> | null; protectedIds: readonly string[]; reducedEffects: boolean
 }>
 export type Command =
@@ -38,14 +39,14 @@ export type Command =
   | { type: 'pay'; eventId: string; expectedPaid: number }
 
 export function freshSession(nowMs: number): Session {
-  return { version: 4, researchLevel: 0, researchMaxTier: 5, goldCellUnlocked: false, goldFrequencyLevel: 0, goldFormat: 'full', sequence: 0, savedAtMs: nowMs, nextId: 1,
+  return { version: 5, researchLevel: 0, researchMaxTier: 5, goldCellUnlocked: false, goldFrequencyLevel: 0, goldFormat: 'full', sequence: 0, savedAtMs: nowMs, nextId: 1,
     game: { bounds: { origin: { x: 0, y: 0 }, width: 4, height: 4 }, slimes: [], highestTierReached: 1, revision: 0 },
-    wallet: freshWallet(), generator: newGenerator(nowMs),
+    wallet: freshWallet(), generator: { ...newGenerator(nowMs), storedAttributes: [] },
     eventSequence: 0, nextEventAtMs: nowMs + EXPERIMENTAL_PHASE2.eventMinDelayMs,
     event: null, lastEvent: null, protectedIds: [], reducedEffects: false }
 }
 export function sessionRules(s: Session) {
-  return generationRules(s.wallet)
+  return { ...generationRules(s.wallet), attributeChance: EXPERIMENTAL_ATTRIBUTES.generationChance }
 }
 /** Provisional linear low-Tier floor; high-Tier rate is unchanged. Old contracts keep version 1. */
 export function goldPayment(tier: number, attributeCount: number, rewardVersion: 1 | 2 = 2): number {
@@ -108,8 +109,8 @@ function events(s: Session, now: number, random: () => number, allowPayment: boo
   if (e.tier === null) {
     if (now >= e.expiresAtMs) return schedule({ ...next, event: null }, now, random)
     const slime = next.game.slimes.find(x => samePosition(x.position, e.cell))
-    if (slime) next = { ...next, event: { ...e, tier: slime.tier, sourceId: slime.id,
-      unitGOLD: goldPayment(slime.tier, 0, e.rewardVersion ?? 1), nextPaymentAtMs: later(now, EXPERIMENTAL_PHASE2.paymentIntervalMs) } }
+    if (slime) next = { ...next, event: { ...e, tier: slime.tier, sourceId: slime.id, attributeCount: slime.attributes?.length ?? 0,
+      unitGOLD: goldPayment(slime.tier, slime.attributes?.length ?? 0, e.rewardVersion ?? 1), nextPaymentAtMs: later(now, EXPERIMENTAL_PHASE2.paymentIntervalMs) } }
   } else if (allowPayment) next = pay(next, e.id, e.paid, now, random)
   return next
 }
@@ -137,7 +138,7 @@ export function reduceSession(s: Session, command: Command, now: number, random:
     }
     if (command.type === 'drop') {
       let id = next.nextId
-      const result = applyPlan(next.game, command.plan, () => `p-${id++}`, next.researchMaxTier)
+      const result = applyPlan(next.game, command.plan, () => `p-${id++}`, next.researchMaxTier, random, rulesOverride?.attributeMutationChance)
       if (!result.ok) return s
       next = { ...next, game: result.state, nextId: id,
         protectedIds: next.protectedIds.filter(x => result.state.slimes.some(y => y.id === x)) }
@@ -194,4 +195,5 @@ export function reduceSession(s: Session, command: Command, now: number, random:
     return s
   }
 }
+
 

@@ -1,0 +1,55 @@
+{
+  "passed": 448,
+  "failed": 0,
+  "runs": [
+    {
+      "file": "docs/validation/phase3a/final-attributes/results.json",
+      "passed": 74,
+      "failed": 0,
+      "browser": "134.0.6998.35",
+      "sha256": "0ab5e71214f83bf80419ad72dc549c99c2b2990fba9f7503fed0be4aa62f104f"
+    },
+    {
+      "file": "docs/validation/phase3a/final-compare/results.json",
+      "passed": 3,
+      "failed": 0,
+      "browser": "134.0.6998.35",
+      "sha256": "1d7c7a26a10bdcf978853e49afb4197a0d7e2d084027b851cf7a920098279b64"
+    },
+    {
+      "file": "docs/validation/phase3a/final-input/results.json",
+      "passed": 36,
+      "failed": 0,
+      "browser": "134.0.6998.35",
+      "sha256": "7694e1e477f32da6b7c9c5aa3da5b66752fa8d73fadfc979885d09a030269126"
+    },
+    {
+      "file": "docs/validation/phase3a/final-merge/results.json",
+      "passed": 54,
+      "failed": 0,
+      "browser": "134.0.6998.35",
+      "sha256": "d376e96c99fe3da73c8debad81c7ff60fdd0082a53ca7e027ac23a9c3d91ea2e"
+    },
+    {
+      "file": "docs/validation/phase3a/final-phase2/browser-results.json",
+      "passed": 60,
+      "failed": 0,
+      "browser": "134.0.6998.35",
+      "sha256": "1a7f4c30bcbbca2858ec68511ac17afc3685896ce847c9638a816fa64a3d29e0"
+    },
+    {
+      "file": "docs/validation/phase3a/final-ui/results.json",
+      "passed": 101,
+      "failed": 0,
+      "browser": "134.0.6998.35",
+      "sha256": "139ba799e243d34cc080cbd4e1f0162daaf6dc4f77b3e3a5c96042e3ebe4ced3"
+    },
+    {
+      "file": "docs/validation/phase3a/final-viewport/browser-results.json",
+      "passed": 120,
+      "failed": 0,
+      "browser": "134.0.6998.35",
+      "sha256": "551a66b010688cf466f7c1430488118b6732e0f4125f5e9e86c6e2041987fd9e"
+    }
+  ]
+}

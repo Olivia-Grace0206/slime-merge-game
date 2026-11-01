@@ -1,6 +1,8 @@
+import type { Attributes } from '../domain/attributes'
+import { AttributeBadges } from './AttributeBadges'
 import type { CSSProperties } from 'react'
 /** Tier body, face and badge are independent layers. Future trait/aura slots stay separate. */
-export function Slime({ tier }: { tier: number }) {
+export function Slime({ tier, attributes }: { tier: number; attributes?: Attributes | undefined }) {
   const colors = ['#82d963', '#6ebff4', '#fb828a']
   const color = tier === 4 ? '#c9a0ed' : colors[tier - 1] ?? `hsl(${(tier * 47 + 12) % 360} 77% 72%)`
   const family = tier <= 10 ? 'plain' : tier <= 20 ? 'patterned' : tier <= 30 ? 'gem radiant' : 'cosmic radiant'
@@ -10,7 +12,9 @@ export function Slime({ tier }: { tier: number }) {
     {tier >= 21 && <span className="crown">{tier === 40 ? '♛' : tier >= 31 ? '✧' : '◆'}</span>}
     <span className="slime-body"><span className="shine" /><span className="eyes"><i /><i /></span><span className="blush left" /><span className="blush right" /><span className="smile" /></span>
     {tier >= 31 && <span className="tier-orbit" />}
+    <AttributeBadges {...(attributes ? { attributes } : {})} />
     <span className="tier-pill">{tier}</span>
   </span>
 }
+
 

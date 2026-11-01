@@ -1,0 +1,2421 @@
+{
+  "model": "4x4 real Core plans, 2s decision step; one tap per 2s active / 60s collection passive; 12h censor; 3 seeds per scenario. Not human play-time predictions.",
+  "results": [
+    {
+      "name": "adopted",
+      "seed": 12,
+      "mergeAt": 5,
+      "first3": 592000,
+      "first5": 50000,
+      "firstPurchase": 120000,
+      "reached": {
+        "5": 1316000,
+        "10": 1918000,
+        "20": 4200000,
+        "30": 6834000,
+        "40": 9450000
+      },
+      "endingH": 40,
+      "earned": 7050179183778,
+      "spent": 333632,
+      "eventGold": 135682740306,
+      "storageStoppedRatio": 0.8050793650793651,
+      "boardBlockedRatio": 0.008253968253968255,
+      "soldForSpace": 39,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 17,
+          "gold": 721243,
+          "earned": 1054875,
+          "spent": 333632,
+          "stored": 57
+        },
+        {
+          "hours": 2,
+          "H": 31,
+          "gold": 18355632765,
+          "earned": 18355966397,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 9450000
+    },
+    {
+      "name": "adopted",
+      "seed": 61,
+      "mergeAt": 5,
+      "first3": 878000,
+      "first5": 56000,
+      "firstPurchase": 104000,
+      "reached": {
+        "5": 1044000,
+        "10": 1920000,
+        "20": 3990000,
+        "30": 6586000,
+        "40": 9384000
+      },
+      "endingH": 40,
+      "earned": 5535907225174,
+      "spent": 333632,
+      "eventGold": 100300093350,
+      "storageStoppedRatio": 0.8201193520886616,
+      "boardBlockedRatio": 0.010017050298380221,
+      "soldForSpace": 47,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 18,
+          "gold": 1401993,
+          "earned": 1735625,
+          "spent": 333632,
+          "stored": 57
+        },
+        {
+          "hours": 2,
+          "H": 31,
+          "gold": 35607355627,
+          "earned": 35607689259,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 9384000
+    },
+    {
+      "name": "adopted",
+      "seed": 210,
+      "mergeAt": 5,
+      "first3": 766000,
+      "first5": 50000,
+      "firstPurchase": 120000,
+      "reached": {
+        "5": 834000,
+        "10": 1464000,
+        "20": 3984000,
+        "30": 6582000,
+        "40": 9262000
+      },
+      "endingH": 40,
+      "earned": 6137307380480,
+      "spent": 333632,
+      "eventGold": 51795581510,
+      "storageStoppedRatio": 0.8497084862880587,
+      "boardBlockedRatio": 0.009285251565536601,
+      "soldForSpace": 43,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 18,
+          "gold": 1478116,
+          "earned": 1811748,
+          "spent": 333632,
+          "stored": 57
+        },
+        {
+          "hours": 2,
+          "H": 32,
+          "gold": 35369834269,
+          "earned": 35370167901,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 9262000
+    },
+    {
+      "name": "slow-generation",
+      "seed": 12,
+      "mergeAt": 5,
+      "first3": 1168000,
+      "first5": 72000,
+      "firstPurchase": 98000,
+      "reached": {
+        "5": 3596000,
+        "10": 4200000,
+        "20": 6450000,
+        "30": 8878000,
+        "40": 11550000
+      },
+      "endingH": 40,
+      "earned": 7882801461670,
+      "spent": 333632,
+      "eventGold": 265475202906,
+      "storageStoppedRatio": 0.6226839826839827,
+      "boardBlockedRatio": 0.007792207792207792,
+      "soldForSpace": 45,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 5,
+          "gold": 172,
+          "earned": 1482,
+          "spent": 1310,
+          "stored": 0
+        },
+        {
+          "hours": 2,
+          "H": 22,
+          "gold": 42502468,
+          "earned": 42836100,
+          "spent": 333632,
+          "stored": 57
+        },
+        {
+          "hours": 3,
+          "H": 37,
+          "gold": 1077854944282,
+          "earned": 1077855277914,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 11550000
+    },
+    {
+      "name": "slow-generation",
+      "seed": 61,
+      "mergeAt": 5,
+      "first3": 748000,
+      "first5": 82000,
+      "firstPurchase": 98000,
+      "reached": {
+        "5": 3286000,
+        "10": 4344000,
+        "20": 6592000,
+        "30": 9506000,
+        "40": 11998000
+      },
+      "endingH": 40,
+      "earned": 5536606285322,
+      "spent": 333632,
+      "eventGold": 121866096178,
+      "storageStoppedRatio": 0.6369394899149858,
+      "boardBlockedRatio": 0.007834639106517752,
+      "soldForSpace": 47,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 7,
+          "gold": 15,
+          "earned": 1615,
+          "spent": 1600,
+          "stored": 0
+        },
+        {
+          "hours": 2,
+          "H": 22,
+          "gold": 24580319,
+          "earned": 24913951,
+          "spent": 333632,
+          "stored": 57
+        },
+        {
+          "hours": 3,
+          "H": 34,
+          "gold": 190176974582,
+          "earned": 190177308214,
+          "spent": 333632,
+          "stored": 58
+        }
+      ],
+      "durationMs": 11998000
+    },
+    {
+      "name": "slow-generation",
+      "seed": 210,
+      "mergeAt": 5,
+      "first3": 1732000,
+      "first5": 72000,
+      "firstPurchase": 150000,
+      "reached": {
+        "5": 3418000,
+        "10": 4238000,
+        "20": 6524000,
+        "30": 9252000,
+        "40": 11658000
+      },
+      "endingH": 40,
+      "earned": 5289912146403,
+      "spent": 333632,
+      "eventGold": 168715448765,
+      "storageStoppedRatio": 0.6232629953679877,
+      "boardBlockedRatio": 0.005489792417224223,
+      "soldForSpace": 32,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 5,
+          "gold": 144,
+          "earned": 1454,
+          "spent": 1310,
+          "stored": 0
+        },
+        {
+          "hours": 2,
+          "H": 22,
+          "gold": 47030664,
+          "earned": 47364296,
+          "spent": 333632,
+          "stored": 57
+        },
+        {
+          "hours": 3,
+          "H": 36,
+          "gold": 348498251658,
+          "earned": 348498585290,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 11658000
+    },
+    {
+      "name": "fast-generation",
+      "seed": 12,
+      "mergeAt": 5,
+      "first3": 300000,
+      "first5": 22000,
+      "firstPurchase": 90000,
+      "reached": {
+        "5": 492000,
+        "10": 1266000,
+        "20": 3678000,
+        "30": 6448000,
+        "40": 9148000
+      },
+      "endingH": 40,
+      "earned": 5390988921910,
+      "spent": 333632,
+      "eventGold": 106238703130,
+      "storageStoppedRatio": 0.9304766069086139,
+      "boardBlockedRatio": 0.009838216003498032,
+      "soldForSpace": 45,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 19,
+          "gold": 3835274,
+          "earned": 4168906,
+          "spent": 333632,
+          "stored": 57
+        },
+        {
+          "hours": 2,
+          "H": 32,
+          "gold": 40120359822,
+          "earned": 40120693454,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 9148000
+    },
+    {
+      "name": "fast-generation",
+      "seed": 61,
+      "mergeAt": 5,
+      "first3": 374000,
+      "first5": 34000,
+      "firstPurchase": 90000,
+      "reached": {
+        "5": 944000,
+        "10": 1882000,
+        "20": 4014000,
+        "30": 6466000,
+        "40": 9266000
+      },
+      "endingH": 40,
+      "earned": 7583059365654,
+      "spent": 333632,
+      "eventGold": 146321772710,
+      "storageStoppedRatio": 0.9242391538959638,
+      "boardBlockedRatio": 0.008417871789337363,
+      "soldForSpace": 39,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 18,
+          "gold": 1245912,
+          "earned": 1579544,
+          "spent": 333632,
+          "stored": 58
+        },
+        {
+          "hours": 2,
+          "H": 32,
+          "gold": 44827713152,
+          "earned": 44828046784,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 9266000
+    },
+    {
+      "name": "fast-generation",
+      "seed": 210,
+      "mergeAt": 5,
+      "first3": 330000,
+      "first5": 22000,
+      "firstPurchase": 90000,
+      "reached": {
+        "5": 580000,
+        "10": 1650000,
+        "20": 4088000,
+        "30": 6564000,
+        "40": 9142000
+      },
+      "endingH": 40,
+      "earned": 5123909349587,
+      "spent": 333632,
+      "eventGold": 87801754577,
+      "storageStoppedRatio": 0.9238678626121198,
+      "boardBlockedRatio": 0.006344344782323342,
+      "soldForSpace": 29,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 18,
+          "gold": 1468960,
+          "earned": 1802592,
+          "spent": 333632,
+          "stored": 58
+        },
+        {
+          "hours": 2,
+          "H": 32,
+          "gold": 30950218178,
+          "earned": 30950551810,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 9142000
+    },
+    {
+      "name": "weak-tap",
+      "seed": 12,
+      "mergeAt": 5,
+      "first3": 412000,
+      "first5": 52000,
+      "firstPurchase": 108000,
+      "reached": {
+        "5": 3690000,
+        "10": 4312000,
+        "20": 6506000,
+        "30": 9150000,
+        "40": 11946000
+      },
+      "endingH": 40,
+      "earned": 7438760309105,
+      "spent": 333632,
+      "eventGold": 108934895187,
+      "storageStoppedRatio": 0.6145990289636698,
+      "boardBlockedRatio": 0.006361962163067136,
+      "soldForSpace": 38,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 4,
+          "gold": 141,
+          "earned": 1451,
+          "spent": 1310,
+          "stored": 0
+        },
+        {
+          "hours": 2,
+          "H": 22,
+          "gold": 31745904,
+          "earned": 32079536,
+          "spent": 333632,
+          "stored": 57
+        },
+        {
+          "hours": 3,
+          "H": 35,
+          "gold": 528774997788,
+          "earned": 528775331420,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 11946000
+    },
+    {
+      "name": "weak-tap",
+      "seed": 61,
+      "mergeAt": 5,
+      "first3": 1590000,
+      "first5": 78000,
+      "firstPurchase": 76000,
+      "reached": {
+        "5": 3266000,
+        "10": 4346000,
+        "20": 6540000,
+        "30": 9190000,
+        "40": 11638000
+      },
+      "endingH": 40,
+      "earned": 5421606337163,
+      "spent": 333632,
+      "eventGold": 62690480795,
+      "storageStoppedRatio": 0.6056023371713353,
+      "boardBlockedRatio": 0.007045884172538237,
+      "soldForSpace": 41,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 5,
+          "gold": 19,
+          "earned": 1619,
+          "spent": 1600,
+          "stored": 0
+        },
+        {
+          "hours": 2,
+          "H": 22,
+          "gold": 37356459,
+          "earned": 37690091,
+          "spent": 333632,
+          "stored": 57
+        },
+        {
+          "hours": 3,
+          "H": 36,
+          "gold": 628637249575,
+          "earned": 628637583207,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 11638000
+    },
+    {
+      "name": "weak-tap",
+      "seed": 210,
+      "mergeAt": 5,
+      "first3": 1352000,
+      "first5": 70000,
+      "firstPurchase": 120000,
+      "reached": {
+        "5": 3600000,
+        "10": 4312000,
+        "20": 6500000,
+        "30": 9052000,
+        "40": 11690000
+      },
+      "endingH": 40,
+      "earned": 5897290854424,
+      "spent": 333632,
+      "eventGold": 136208139884,
+      "storageStoppedRatio": 0.6070145423438836,
+      "boardBlockedRatio": 0.0070145423438836615,
+      "soldForSpace": 41,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 5,
+          "gold": 249,
+          "earned": 1559,
+          "spent": 1310,
+          "stored": 0
+        },
+        {
+          "hours": 2,
+          "H": 22,
+          "gold": 36084037,
+          "earned": 36417669,
+          "spent": 333632,
+          "stored": 57
+        },
+        {
+          "hours": 3,
+          "H": 36,
+          "gold": 579745198720,
+          "earned": 579745532352,
+          "spent": 333632,
+          "stored": 58
+        }
+      ],
+      "durationMs": 11690000
+    },
+    {
+      "name": "strong-tap",
+      "seed": 12,
+      "mergeAt": 5,
+      "first3": 502000,
+      "first5": 28000,
+      "firstPurchase": 74000,
+      "reached": {
+        "5": 686000,
+        "10": 1524000,
+        "20": 3914000,
+        "30": 6708000,
+        "40": 9376000
+      },
+      "endingH": 40,
+      "earned": 7490647181644,
+      "spent": 333632,
+      "eventGold": 119414783712,
+      "storageStoppedRatio": 0.9069965870307167,
+      "boardBlockedRatio": 0.0074658703071672355,
+      "soldForSpace": 35,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 18,
+          "gold": 3046995,
+          "earned": 3380627,
+          "spent": 333632,
+          "stored": 57
+        },
+        {
+          "hours": 2,
+          "H": 32,
+          "gold": 20980655482,
+          "earned": 20980989114,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 9376000
+    },
+    {
+      "name": "strong-tap",
+      "seed": 61,
+      "mergeAt": 5,
+      "first3": 450000,
+      "first5": 42000,
+      "firstPurchase": 78000,
+      "reached": {
+        "5": 732000,
+        "10": 1890000,
+        "20": 4768000,
+        "30": 7434000,
+        "40": 9742000
+      },
+      "endingH": 40,
+      "earned": 5141265908850,
+      "spent": 333632,
+      "eventGold": 148897904518,
+      "storageStoppedRatio": 0.9076165058509547,
+      "boardBlockedRatio": 0.008622459453910901,
+      "soldForSpace": 42,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 16,
+          "gold": 155216,
+          "earned": 488848,
+          "spent": 333632,
+          "stored": 57
+        },
+        {
+          "hours": 2,
+          "H": 29,
+          "gold": 3579139046,
+          "earned": 3579472678,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 9742000
+    },
+    {
+      "name": "strong-tap",
+      "seed": 210,
+      "mergeAt": 5,
+      "first3": 478000,
+      "first5": 28000,
+      "firstPurchase": 90000,
+      "reached": {
+        "5": 726000,
+        "10": 1732000,
+        "20": 3760000,
+        "30": 5996000,
+        "40": 8736000
+      },
+      "endingH": 40,
+      "earned": 8008278134142,
+      "spent": 333632,
+      "eventGold": 66079419014,
+      "storageStoppedRatio": 0.9033882783882784,
+      "boardBlockedRatio": 0.010073260073260074,
+      "soldForSpace": 44,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 19,
+          "gold": 3419814,
+          "earned": 3753446,
+          "spent": 333632,
+          "stored": 58
+        },
+        {
+          "hours": 2,
+          "H": 34,
+          "gold": 162110748258,
+          "earned": 162111081890,
+          "spent": 333632,
+          "stored": 58
+        }
+      ],
+      "durationMs": 8736000
+    },
+    {
+      "name": "small-storage",
+      "seed": 12,
+      "mergeAt": 5,
+      "first3": 592000,
+      "first5": 50000,
+      "firstPurchase": 120000,
+      "reached": {
+        "5": 1316000,
+        "10": 1884000,
+        "20": 3982000,
+        "30": 6058000,
+        "40": 7646000
+      },
+      "endingH": 40,
+      "earned": 2769174211362,
+      "spent": 333632,
+      "eventGold": 88721834426,
+      "storageStoppedRatio": 0.7708605806957887,
+      "boardBlockedRatio": 0.010986136541982735,
+      "soldForSpace": 42,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 17,
+          "gold": 923083,
+          "earned": 1256715,
+          "spent": 333632,
+          "stored": 28
+        },
+        {
+          "hours": 2,
+          "H": 37,
+          "gold": 427423490229,
+          "earned": 427423823861,
+          "spent": 333632,
+          "stored": 29
+        }
+      ],
+      "durationMs": 7646000
+    },
+    {
+      "name": "small-storage",
+      "seed": 61,
+      "mergeAt": 5,
+      "first3": 878000,
+      "first5": 56000,
+      "firstPurchase": 104000,
+      "reached": {
+        "5": 1044000,
+        "10": 1766000,
+        "20": 3150000,
+        "30": 4890000,
+        "40": 6532000
+      },
+      "endingH": 40,
+      "earned": 2814304806461,
+      "spent": 333632,
+      "eventGold": 32919458285,
+      "storageStoppedRatio": 0.7556644213104715,
+      "boardBlockedRatio": 0.009185548071034905,
+      "soldForSpace": 30,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 22,
+          "gold": 20264365,
+          "earned": 20597997,
+          "spent": 333632,
+          "stored": 28
+        }
+      ],
+      "durationMs": 6532000
+    },
+    {
+      "name": "small-storage",
+      "seed": 210,
+      "mergeAt": 5,
+      "first3": 766000,
+      "first5": 50000,
+      "firstPurchase": 120000,
+      "reached": {
+        "5": 834000,
+        "10": 1462000,
+        "20": 3378000,
+        "30": 5514000,
+        "40": 7368000
+      },
+      "endingH": 40,
+      "earned": 5133763675941,
+      "spent": 333632,
+      "eventGold": 54776819019,
+      "storageStoppedRatio": 0.8224755700325733,
+      "boardBlockedRatio": 0.01031487513572204,
+      "soldForSpace": 38,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 20,
+          "gold": 10164699,
+          "earned": 10498331,
+          "spent": 333632,
+          "stored": 29
+        },
+        {
+          "hours": 2,
+          "H": 39,
+          "gold": 2357496482176,
+          "earned": 2357496815808,
+          "spent": 333632,
+          "stored": 28
+        }
+      ],
+      "durationMs": 7368000
+    },
+    {
+      "name": "large-storage",
+      "seed": 12,
+      "mergeAt": 5,
+      "first3": 592000,
+      "first5": 50000,
+      "firstPurchase": 120000,
+      "reached": {
+        "5": 1316000,
+        "10": 2030000,
+        "20": 6148000,
+        "30": 10814000,
+        "40": 15180000
+      },
+      "endingH": 40,
+      "earned": 8994092913021,
+      "spent": 333632,
+      "eventGold": 144002301357,
+      "storageStoppedRatio": 0.8683794466403162,
+      "boardBlockedRatio": 0.005533596837944664,
+      "soldForSpace": 42,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 14,
+          "gold": 41699,
+          "earned": 272283,
+          "spent": 230584,
+          "stored": 109
+        },
+        {
+          "hours": 2,
+          "H": 22,
+          "gold": 56104930,
+          "earned": 56438562,
+          "spent": 333632,
+          "stored": 115
+        },
+        {
+          "hours": 3,
+          "H": 29,
+          "gold": 13341129398,
+          "earned": 13341463030,
+          "spent": 333632,
+          "stored": 115
+        },
+        {
+          "hours": 4,
+          "H": 38,
+          "gold": 2708407941715,
+          "earned": 2708408275347,
+          "spent": 333632,
+          "stored": 115
+        }
+      ],
+      "durationMs": 15180000
+    },
+    {
+      "name": "large-storage",
+      "seed": 61,
+      "mergeAt": 5,
+      "first3": 878000,
+      "first5": 56000,
+      "firstPurchase": 104000,
+      "reached": {
+        "5": 1044000,
+        "10": 1882000,
+        "20": 5334000,
+        "30": 9630000,
+        "40": 13850000
+      },
+      "endingH": 40,
+      "earned": 10124489835860,
+      "spent": 333632,
+      "eventGold": 311860725236,
+      "storageStoppedRatio": 0.8661371841155234,
+      "boardBlockedRatio": 0.004187725631768953,
+      "soldForSpace": 29,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 15,
+          "gold": 28702,
+          "earned": 362334,
+          "spent": 333632,
+          "stored": 115
+        },
+        {
+          "hours": 2,
+          "H": 24,
+          "gold": 165580484,
+          "earned": 165914116,
+          "spent": 333632,
+          "stored": 115
+        },
+        {
+          "hours": 3,
+          "H": 33,
+          "gold": 64451358326,
+          "earned": 64451691958,
+          "spent": 333632,
+          "stored": 116
+        }
+      ],
+      "durationMs": 13850000
+    },
+    {
+      "name": "large-storage",
+      "seed": 210,
+      "mergeAt": 5,
+      "first3": 766000,
+      "first5": 50000,
+      "firstPurchase": 120000,
+      "reached": {
+        "5": 834000,
+        "10": 1460000,
+        "20": 5096000,
+        "30": 8940000,
+        "40": 13104000
+      },
+      "endingH": 40,
+      "earned": 7781281223410,
+      "spent": 333632,
+      "eventGold": 175589709048,
+      "storageStoppedRatio": 0.8823260073260073,
+      "boardBlockedRatio": 0.004884004884004884,
+      "soldForSpace": 32,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 15,
+          "gold": 229958,
+          "earned": 563590,
+          "spent": 333632,
+          "stored": 115
+        },
+        {
+          "hours": 2,
+          "H": 25,
+          "gold": 406856350,
+          "earned": 407189982,
+          "spent": 333632,
+          "stored": 116
+        },
+        {
+          "hours": 3,
+          "H": 34,
+          "gold": 219326587481,
+          "earned": 219326921113,
+          "spent": 333632,
+          "stored": 116
+        }
+      ],
+      "durationMs": 13104000
+    },
+    {
+      "name": "original-wide-low",
+      "seed": 12,
+      "mergeAt": 5,
+      "first3": 164000,
+      "first5": 50000,
+      "firstPurchase": 90000,
+      "reached": {
+        "5": 222000,
+        "10": 408000,
+        "20": 2710000,
+        "30": 6518000,
+        "40": 10918000
+      },
+      "endingH": 40,
+      "earned": 8280680496571,
+      "spent": 333632,
+      "eventGold": 1308184469,
+      "storageStoppedRatio": 0.9512731269463272,
+      "boardBlockedRatio": 0.29639128045429564,
+      "soldForSpace": 1618,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 21,
+          "gold": 41203937,
+          "earned": 41537569,
+          "spent": 333632,
+          "stored": 57
+        },
+        {
+          "hours": 2,
+          "H": 31,
+          "gold": 33621214918,
+          "earned": 33621548550,
+          "spent": 333632,
+          "stored": 57
+        },
+        {
+          "hours": 3,
+          "H": 39,
+          "gold": 6623145295861,
+          "earned": 6623145629493,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 10918000
+    },
+    {
+      "name": "original-wide-low",
+      "seed": 61,
+      "mergeAt": 5,
+      "first3": 230000,
+      "first5": 56000,
+      "firstPurchase": 102000,
+      "reached": {
+        "5": 194000,
+        "10": 444000,
+        "20": 2338000,
+        "30": 5856000,
+        "40": 11206000
+      },
+      "endingH": 40,
+      "earned": 18171635943168,
+      "spent": 333632,
+      "eventGold": 3343038162,
+      "storageStoppedRatio": 0.9530608602534356,
+      "boardBlockedRatio": 0.3089416384079957,
+      "soldForSpace": 1731,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 24,
+          "gold": 115106161,
+          "earned": 115439793,
+          "spent": 333632,
+          "stored": 57
+        },
+        {
+          "hours": 2,
+          "H": 31,
+          "gold": 36504908667,
+          "earned": 36505242299,
+          "spent": 333632,
+          "stored": 58
+        },
+        {
+          "hours": 3,
+          "H": 39,
+          "gold": 12248496233007,
+          "earned": 12248496566639,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 11206000
+    },
+    {
+      "name": "original-wide-low",
+      "seed": 210,
+      "mergeAt": 5,
+      "first3": 222000,
+      "first5": 50000,
+      "firstPurchase": 90000,
+      "reached": {
+        "5": 236000,
+        "10": 440000,
+        "20": 2608000,
+        "30": 6110000,
+        "40": 13430000
+      },
+      "endingH": 40,
+      "earned": 18188218292362,
+      "spent": 333632,
+      "eventGold": 34081351174,
+      "storageStoppedRatio": 0.9600893521965749,
+      "boardBlockedRatio": 0.32598659717051376,
+      "soldForSpace": 2189,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 22,
+          "gold": 48512875,
+          "earned": 48846507,
+          "spent": 333632,
+          "stored": 57
+        },
+        {
+          "hours": 2,
+          "H": 31,
+          "gold": 41709806135,
+          "earned": 41710139767,
+          "spent": 333632,
+          "stored": 57
+        },
+        {
+          "hours": 3,
+          "H": 36,
+          "gold": 968437171981,
+          "earned": 968437505613,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 13430000
+    },
+    {
+      "name": "high-tier-high",
+      "seed": 12,
+      "mergeAt": 5,
+      "first3": 248000,
+      "first5": 50000,
+      "firstPurchase": 90000,
+      "reached": {
+        "5": 180000,
+        "10": 312000,
+        "20": 916000,
+        "30": 1908000,
+        "40": 3028000
+      },
+      "endingH": 40,
+      "earned": 2752388354198,
+      "spent": 333632,
+      "eventGold": 59388037686,
+      "storageStoppedRatio": 0.8586525759577279,
+      "boardBlockedRatio": 0.022457067371202115,
+      "soldForSpace": 34,
+      "timeline": [],
+      "durationMs": 3028000
+    },
+    {
+      "name": "high-tier-high",
+      "seed": 61,
+      "mergeAt": 5,
+      "first3": 280000,
+      "first5": 56000,
+      "firstPurchase": 102000,
+      "reached": {
+        "5": 164000,
+        "10": 298000,
+        "20": 918000,
+        "30": 1944000,
+        "40": 2936000
+      },
+      "endingH": 40,
+      "earned": 2424980949556,
+      "spent": 333632,
+      "eventGold": 46167011330,
+      "storageStoppedRatio": 0.861716621253406,
+      "boardBlockedRatio": 0.02316076294277929,
+      "soldForSpace": 34,
+      "timeline": [],
+      "durationMs": 2936000
+    },
+    {
+      "name": "high-tier-high",
+      "seed": 210,
+      "mergeAt": 5,
+      "first3": 210000,
+      "first5": 50000,
+      "firstPurchase": 90000,
+      "reached": {
+        "5": 158000,
+        "10": 264000,
+        "20": 780000,
+        "30": 1762000,
+        "40": 2820000
+      },
+      "endingH": 40,
+      "earned": 1932442529259,
+      "spent": 333632,
+      "eventGold": 45283294545,
+      "storageStoppedRatio": 0.8652482269503546,
+      "boardBlockedRatio": 0.02624113475177305,
+      "soldForSpace": 37,
+      "timeline": [],
+      "durationMs": 2820000
+    },
+    {
+      "name": "gentle-sale",
+      "seed": 12,
+      "mergeAt": 5,
+      "first3": 718000,
+      "first5": 50000,
+      "firstPurchase": 120000,
+      "reached": {
+        "5": 1766000,
+        "10": 2360000,
+        "20": 4230000,
+        "30": 7040000,
+        "40": 9750000
+      },
+      "endingH": 40,
+      "earned": 201382929092,
+      "spent": 333632,
+      "eventGold": 201178288102,
+      "storageStoppedRatio": 0.7292307692307692,
+      "boardBlockedRatio": 0.007589743589743589,
+      "soldForSpace": 37,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 17,
+          "gold": 3645,
+          "earned": 32658,
+          "spent": 29013,
+          "stored": 40
+        },
+        {
+          "hours": 2,
+          "H": 30,
+          "gold": 218590679,
+          "earned": 218924311,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 9750000
+    },
+    {
+      "name": "gentle-sale",
+      "seed": 61,
+      "mergeAt": 5,
+      "first3": 890000,
+      "first5": 56000,
+      "firstPurchase": 108000,
+      "reached": {
+        "5": 1948000,
+        "10": 2400000,
+        "20": 3926000,
+        "30": 6220000,
+        "40": 8694000
+      },
+      "endingH": 40,
+      "earned": 177032507458,
+      "spent": 333632,
+      "eventGold": 176840266607,
+      "storageStoppedRatio": 0.6956521739130435,
+      "boardBlockedRatio": 0.009431792040487693,
+      "soldForSpace": 41,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 18,
+          "gold": 1340,
+          "earned": 30353,
+          "spent": 29013,
+          "stored": 40
+        },
+        {
+          "hours": 2,
+          "H": 34,
+          "gold": 1944911267,
+          "earned": 1945244899,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 8694000
+    },
+    {
+      "name": "gentle-sale",
+      "seed": 210,
+      "mergeAt": 5,
+      "first3": 898000,
+      "first5": 50000,
+      "firstPurchase": 150000,
+      "reached": {
+        "5": 1218000,
+        "10": 2398000,
+        "20": 4560000,
+        "30": 6884000,
+        "40": 9354000
+      },
+      "endingH": 40,
+      "earned": 97031572277,
+      "spent": 333632,
+      "eventGold": 96866091134,
+      "storageStoppedRatio": 0.7254650416933932,
+      "boardBlockedRatio": 0.008124866367329484,
+      "soldForSpace": 38,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 16,
+          "gold": 356,
+          "earned": 11754,
+          "spent": 11398,
+          "stored": 36
+        },
+        {
+          "hours": 2,
+          "H": 31,
+          "gold": 254281033,
+          "earned": 254614665,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 9354000
+    },
+    {
+      "name": "steep-sale",
+      "seed": 12,
+      "mergeAt": 5,
+      "first3": 380000,
+      "first5": 50000,
+      "firstPurchase": 120000,
+      "reached": {
+        "5": 1366000,
+        "10": 2116000,
+        "20": 4428000,
+        "30": 7200000,
+        "40": 9688000
+      },
+      "endingH": 40,
+      "earned": 164425417123010,
+      "spent": 333632,
+      "eventGold": 131689441046,
+      "storageStoppedRatio": 0.8168868703550785,
+      "boardBlockedRatio": 0.007844756399669695,
+      "soldForSpace": 38,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 16,
+          "gold": 1870951,
+          "earned": 2204583,
+          "spent": 333632,
+          "stored": 57
+        },
+        {
+          "hours": 2,
+          "H": 30,
+          "gold": 90567160549,
+          "earned": 90567494181,
+          "spent": 333632,
+          "stored": 58
+        }
+      ],
+      "durationMs": 9688000
+    },
+    {
+      "name": "steep-sale",
+      "seed": 61,
+      "mergeAt": 5,
+      "first3": 956000,
+      "first5": 56000,
+      "firstPurchase": 104000,
+      "reached": {
+        "5": 1138000,
+        "10": 1972000,
+        "20": 4526000,
+        "30": 7138000,
+        "40": 10040000
+      },
+      "endingH": 40,
+      "earned": 328072107342386,
+      "spent": 333632,
+      "eventGold": 198091260883,
+      "storageStoppedRatio": 0.8422310756972111,
+      "boardBlockedRatio": 0.008565737051792829,
+      "soldForSpace": 43,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 16,
+          "gold": 1569911,
+          "earned": 1903543,
+          "spent": 333632,
+          "stored": 57
+        },
+        {
+          "hours": 2,
+          "H": 30,
+          "gold": 80812535490,
+          "earned": 80812869122,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 10040000
+    },
+    {
+      "name": "steep-sale",
+      "seed": 210,
+      "mergeAt": 5,
+      "first3": 860000,
+      "first5": 50000,
+      "firstPurchase": 120000,
+      "reached": {
+        "5": 1008000,
+        "10": 1462000,
+        "20": 3894000,
+        "30": 6610000,
+        "40": 9268000
+      },
+      "endingH": 40,
+      "earned": 250197845230265,
+      "spent": 333632,
+      "eventGold": 153878737944,
+      "storageStoppedRatio": 0.8474320241691843,
+      "boardBlockedRatio": 0.008416055243849805,
+      "soldForSpace": 39,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 18,
+          "gold": 8836233,
+          "earned": 9169865,
+          "spent": 333632,
+          "stored": 57
+        },
+        {
+          "hours": 2,
+          "H": 32,
+          "gold": 576698764987,
+          "earned": 576699098619,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 9268000
+    },
+    {
+      "name": "gentle-shop",
+      "seed": 12,
+      "mergeAt": 5,
+      "first3": 612000,
+      "first5": 50000,
+      "firstPurchase": 120000,
+      "reached": {
+        "5": 794000,
+        "10": 1374000,
+        "20": 3568000,
+        "30": 6264000,
+        "40": 8818000
+      },
+      "endingH": 40,
+      "earned": 6455478059628,
+      "spent": 10512,
+      "eventGold": 65977402234,
+      "storageStoppedRatio": 0.8750283511000226,
+      "boardBlockedRatio": 0.007031072805624858,
+      "soldForSpace": 31,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 20,
+          "gold": 5483362,
+          "earned": 5493874,
+          "spent": 10512,
+          "stored": 57
+        },
+        {
+          "hours": 2,
+          "H": 33,
+          "gold": 67861757926,
+          "earned": 67861768438,
+          "spent": 10512,
+          "stored": 57
+        }
+      ],
+      "durationMs": 8818000
+    },
+    {
+      "name": "gentle-shop",
+      "seed": 61,
+      "mergeAt": 5,
+      "first3": 480000,
+      "first5": 56000,
+      "firstPurchase": 104000,
+      "reached": {
+        "5": 764000,
+        "10": 1668000,
+        "20": 4104000,
+        "30": 6642000,
+        "40": 9148000
+      },
+      "endingH": 40,
+      "earned": 5024280202171,
+      "spent": 10512,
+      "eventGold": 74563192101,
+      "storageStoppedRatio": 0.8839090511587232,
+      "boardBlockedRatio": 0.007433318758198513,
+      "soldForSpace": 34,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 18,
+          "gold": 1704771,
+          "earned": 1715283,
+          "spent": 10512,
+          "stored": 57
+        },
+        {
+          "hours": 2,
+          "H": 32,
+          "gold": 29562059890,
+          "earned": 29562070402,
+          "spent": 10512,
+          "stored": 57
+        }
+      ],
+      "durationMs": 9148000
+    },
+    {
+      "name": "gentle-shop",
+      "seed": 210,
+      "mergeAt": 5,
+      "first3": 720000,
+      "first5": 50000,
+      "firstPurchase": 120000,
+      "reached": {
+        "5": 816000,
+        "10": 1586000,
+        "20": 4096000,
+        "30": 6822000,
+        "40": 9300000
+      },
+      "endingH": 40,
+      "earned": 6085570156777,
+      "spent": 10512,
+      "eventGold": 208063725989,
+      "storageStoppedRatio": 0.8838709677419355,
+      "boardBlockedRatio": 0.007311827956989247,
+      "soldForSpace": 34,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 17,
+          "gold": 1165768,
+          "earned": 1176280,
+          "spent": 10512,
+          "stored": 57
+        },
+        {
+          "hours": 2,
+          "H": 31,
+          "gold": 19153236011,
+          "earned": 19153246523,
+          "spent": 10512,
+          "stored": 57
+        }
+      ],
+      "durationMs": 9300000
+    },
+    {
+      "name": "steep-shop",
+      "seed": 12,
+      "mergeAt": 5,
+      "first3": 696000,
+      "first5": 50000,
+      "firstPurchase": 120000,
+      "reached": {
+        "5": 1616000,
+        "10": 2172000,
+        "20": 4188000,
+        "30": 6776000,
+        "40": 9388000
+      },
+      "endingH": 40,
+      "earned": 5457796677115,
+      "spent": 12045766,
+      "eventGold": 78034903963,
+      "storageStoppedRatio": 0.7515977844056242,
+      "boardBlockedRatio": 0.007669365146996165,
+      "soldForSpace": 36,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 17,
+          "gold": 96942,
+          "earned": 971185,
+          "spent": 874243,
+          "stored": 45
+        },
+        {
+          "hours": 2,
+          "H": 31,
+          "gold": 19236994370,
+          "earned": 19249040136,
+          "spent": 12045766,
+          "stored": 58
+        }
+      ],
+      "durationMs": 9388000
+    },
+    {
+      "name": "steep-shop",
+      "seed": 61,
+      "mergeAt": 5,
+      "first3": 626000,
+      "first5": 56000,
+      "firstPurchase": 104000,
+      "reached": {
+        "5": 1632000,
+        "10": 2370000,
+        "20": 4288000,
+        "30": 6916000,
+        "40": 9566000
+      },
+      "endingH": 40,
+      "earned": 6707077250564,
+      "spent": 12045766,
+      "eventGold": 119848070560,
+      "storageStoppedRatio": 0.7371942295630357,
+      "boardBlockedRatio": 0.00669036169767928,
+      "soldForSpace": 32,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 17,
+          "gold": 65872,
+          "earned": 580161,
+          "spent": 514289,
+          "stored": 45
+        },
+        {
+          "hours": 2,
+          "H": 31,
+          "gold": 12264275279,
+          "earned": 12276321045,
+          "spent": 12045766,
+          "stored": 57
+        }
+      ],
+      "durationMs": 9566000
+    },
+    {
+      "name": "steep-shop",
+      "seed": 210,
+      "mergeAt": 5,
+      "first3": 900000,
+      "first5": 50000,
+      "firstPurchase": 120000,
+      "reached": {
+        "5": 1166000,
+        "10": 2234000,
+        "20": 4338000,
+        "30": 6964000,
+        "40": 9590000
+      },
+      "endingH": 40,
+      "earned": 6008906866702,
+      "spent": 12045766,
+      "eventGold": 89200680540,
+      "storageStoppedRatio": 0.7555787278415016,
+      "boardBlockedRatio": 0.009801876955161626,
+      "soldForSpace": 47,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 17,
+          "gold": 14046,
+          "earned": 528335,
+          "spent": 514289,
+          "stored": 42
+        },
+        {
+          "hours": 2,
+          "H": 31,
+          "gold": 13527742710,
+          "earned": 13539788476,
+          "spent": 12045766,
+          "stored": 57
+        }
+      ],
+      "durationMs": 9590000
+    },
+    {
+      "name": "rare-gold",
+      "seed": 12,
+      "mergeAt": 5,
+      "first3": 670000,
+      "first5": 50000,
+      "firstPurchase": 120000,
+      "reached": {
+        "5": 918000,
+        "10": 1586000,
+        "20": 4092000,
+        "30": 6746000,
+        "40": 9336000
+      },
+      "endingH": 40,
+      "earned": 6455433173108,
+      "spent": 333632,
+      "eventGold": 224568900258,
+      "storageStoppedRatio": 0.8476863753213367,
+      "boardBlockedRatio": 0.011568123393316195,
+      "soldForSpace": 54,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 17,
+          "gold": 1667878,
+          "earned": 2001510,
+          "spent": 333632,
+          "stored": 58
+        },
+        {
+          "hours": 2,
+          "H": 32,
+          "gold": 21043347798,
+          "earned": 21043681430,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 9336000
+    },
+    {
+      "name": "rare-gold",
+      "seed": 61,
+      "mergeAt": 5,
+      "first3": 890000,
+      "first5": 56000,
+      "firstPurchase": 104000,
+      "reached": {
+        "5": 1156000,
+        "10": 2268000,
+        "20": 4400000,
+        "30": 6954000,
+        "40": 9990000
+      },
+      "endingH": 40,
+      "earned": 7336739495896,
+      "spent": 333632,
+      "eventGold": 42184925474,
+      "storageStoppedRatio": 0.8102102102102102,
+      "boardBlockedRatio": 0.008608608608608608,
+      "soldForSpace": 43,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 16,
+          "gold": 54412,
+          "earned": 388044,
+          "spent": 333632,
+          "stored": 58
+        },
+        {
+          "hours": 2,
+          "H": 30,
+          "gold": 11063426033,
+          "earned": 11063759665,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 9990000
+    },
+    {
+      "name": "rare-gold",
+      "seed": 210,
+      "mergeAt": 5,
+      "first3": 1080000,
+      "first5": 50000,
+      "firstPurchase": 120000,
+      "reached": {
+        "5": 1080000,
+        "10": 1710000,
+        "20": 4014000,
+        "30": 6358000,
+        "40": 8634000
+      },
+      "endingH": 40,
+      "earned": 4910623571310,
+      "spent": 333632,
+      "eventGold": 15597771470,
+      "storageStoppedRatio": 0.8065786425758629,
+      "boardBlockedRatio": 0.009034051424600417,
+      "soldForSpace": 39,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 18,
+          "gold": 1347599,
+          "earned": 1681231,
+          "spent": 333632,
+          "stored": 58
+        },
+        {
+          "hours": 2,
+          "H": 34,
+          "gold": 61756155452,
+          "earned": 61756489084,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 8634000
+    },
+    {
+      "name": "frequent-gold",
+      "seed": 12,
+      "mergeAt": 5,
+      "first3": 798000,
+      "first5": 50000,
+      "firstPurchase": 120000,
+      "reached": {
+        "5": 1338000,
+        "10": 2010000,
+        "20": 4290000,
+        "30": 6854000,
+        "40": 9984000
+      },
+      "endingH": 40,
+      "earned": 7650149510716,
+      "spent": 333632,
+      "eventGold": 184518077466,
+      "storageStoppedRatio": 0.8147035256410257,
+      "boardBlockedRatio": 0.007411858974358974,
+      "soldForSpace": 37,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 17,
+          "gold": 505715,
+          "earned": 839347,
+          "spent": 333632,
+          "stored": 57
+        },
+        {
+          "hours": 2,
+          "H": 31,
+          "gold": 15713946271,
+          "earned": 15714279903,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 9984000
+    },
+    {
+      "name": "frequent-gold",
+      "seed": 61,
+      "mergeAt": 5,
+      "first3": 718000,
+      "first5": 56000,
+      "firstPurchase": 104000,
+      "reached": {
+        "5": 986000,
+        "10": 1972000,
+        "20": 4014000,
+        "30": 6444000,
+        "40": 8986000
+      },
+      "endingH": 40,
+      "earned": 5829042159304,
+      "spent": 333632,
+      "eventGold": 264867944010,
+      "storageStoppedRatio": 0.8099265524148676,
+      "boardBlockedRatio": 0.009125306031604719,
+      "soldForSpace": 41,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 18,
+          "gold": 877409,
+          "earned": 1211041,
+          "spent": 333632,
+          "stored": 57
+        },
+        {
+          "hours": 2,
+          "H": 33,
+          "gold": 51988690060,
+          "earned": 51989023692,
+          "spent": 333632,
+          "stored": 58
+        }
+      ],
+      "durationMs": 8986000
+    },
+    {
+      "name": "frequent-gold",
+      "seed": 210,
+      "mergeAt": 5,
+      "first3": 922000,
+      "first5": 50000,
+      "firstPurchase": 120000,
+      "reached": {
+        "5": 1116000,
+        "10": 2700000,
+        "20": 5116000,
+        "30": 7770000,
+        "40": 10128000
+      },
+      "endingH": 40,
+      "earned": 6006325748769,
+      "spent": 333632,
+      "eventGold": 167479127057,
+      "storageStoppedRatio": 0.7890995260663507,
+      "boardBlockedRatio": 0.009281200631911532,
+      "soldForSpace": 47,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 13,
+          "gold": 7138,
+          "earned": 75238,
+          "spent": 68100,
+          "stored": 45
+        },
+        {
+          "hours": 2,
+          "H": 27,
+          "gold": 1565822279,
+          "earned": 1566155911,
+          "spent": 333632,
+          "stored": 58
+        }
+      ],
+      "durationMs": 10128000
+    },
+    {
+      "name": "no-gold",
+      "seed": 12,
+      "mergeAt": 5,
+      "first3": 654000,
+      "first5": 50000,
+      "firstPurchase": 120000,
+      "reached": {
+        "5": 1500000,
+        "10": 2180000,
+        "20": 4702000,
+        "30": 7436000,
+        "40": 10406000
+      },
+      "endingH": 40,
+      "earned": 7448833596252,
+      "spent": 333632,
+      "eventGold": 0,
+      "storageStoppedRatio": 0.8118393234672304,
+      "boardBlockedRatio": 0.007880069190851432,
+      "soldForSpace": 41,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 15,
+          "gold": 2076,
+          "earned": 335708,
+          "spent": 333632,
+          "stored": 54
+        },
+        {
+          "hours": 2,
+          "H": 29,
+          "gold": 3796861980,
+          "earned": 3797195612,
+          "spent": 333632,
+          "stored": 58
+        }
+      ],
+      "durationMs": 10406000
+    },
+    {
+      "name": "no-gold",
+      "seed": 61,
+      "mergeAt": 5,
+      "first3": 838000,
+      "first5": 56000,
+      "firstPurchase": 120000,
+      "reached": {
+        "5": 1402000,
+        "10": 2086000,
+        "20": 4524000,
+        "30": 7006000,
+        "40": 9470000
+      },
+      "endingH": 40,
+      "earned": 5440336517234,
+      "spent": 333632,
+      "eventGold": 0,
+      "storageStoppedRatio": 0.8023231256599789,
+      "boardBlockedRatio": 0.009081309398099261,
+      "soldForSpace": 43,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 17,
+          "gold": 196402,
+          "earned": 530034,
+          "spent": 333632,
+          "stored": 57
+        },
+        {
+          "hours": 2,
+          "H": 30,
+          "gold": 10725769522,
+          "earned": 10726103154,
+          "spent": 333632,
+          "stored": 58
+        }
+      ],
+      "durationMs": 9470000
+    },
+    {
+      "name": "no-gold",
+      "seed": 210,
+      "mergeAt": 5,
+      "first3": 414000,
+      "first5": 50000,
+      "firstPurchase": 120000,
+      "reached": {
+        "5": 1142000,
+        "10": 1902000,
+        "20": 4510000,
+        "30": 7168000,
+        "40": 9774000
+      },
+      "endingH": 40,
+      "earned": 4872892971766,
+      "spent": 333632,
+      "eventGold": 0,
+      "storageStoppedRatio": 0.822999795375486,
+      "boardBlockedRatio": 0.008594229588704727,
+      "soldForSpace": 42,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 17,
+          "gold": 515510,
+          "earned": 849142,
+          "spent": 333632,
+          "stored": 57
+        },
+        {
+          "hours": 2,
+          "H": 30,
+          "gold": 5755167670,
+          "earned": 5755501302,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 9774000
+    },
+    {
+      "name": "passive-60s",
+      "seed": 12,
+      "mergeAt": 5,
+      "first3": 1620000,
+      "first5": 60000,
+      "firstPurchase": 180000,
+      "reached": {
+        "5": 2760000,
+        "10": 3960000,
+        "20": 6480000,
+        "30": 9780000,
+        "40": 13020000
+      },
+      "endingH": 40,
+      "earned": 4025730691848,
+      "spent": 333632,
+      "eventGold": 8866779820,
+      "storageStoppedRatio": 0.3596006144393241,
+      "boardBlockedRatio": 0.17972350230414746,
+      "soldForSpace": 39,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 7,
+          "gold": 274,
+          "earned": 1584,
+          "spent": 1310,
+          "stored": 0
+        },
+        {
+          "hours": 2,
+          "H": 22,
+          "gold": 16997336,
+          "earned": 17330968,
+          "spent": 333632,
+          "stored": 44
+        },
+        {
+          "hours": 3,
+          "H": 33,
+          "gold": 34397117392,
+          "earned": 34397451024,
+          "spent": 333632,
+          "stored": 44
+        }
+      ],
+      "durationMs": 13020000
+    },
+    {
+      "name": "passive-60s",
+      "seed": 61,
+      "mergeAt": 5,
+      "first3": 660000,
+      "first5": 60000,
+      "firstPurchase": 180000,
+      "reached": {
+        "5": 2820000,
+        "10": 4080000,
+        "20": 6360000,
+        "30": 9600000,
+        "40": 12720000
+      },
+      "endingH": 40,
+      "earned": 3258467108444,
+      "spent": 333632,
+      "eventGold": 9800124040,
+      "storageStoppedRatio": 0.35455974842767296,
+      "boardBlockedRatio": 0.17452830188679244,
+      "soldForSpace": 37,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 6,
+          "gold": 166,
+          "earned": 1080,
+          "spent": 914,
+          "stored": 0
+        },
+        {
+          "hours": 2,
+          "H": 22,
+          "gold": 28520236,
+          "earned": 28853868,
+          "spent": 333632,
+          "stored": 44
+        },
+        {
+          "hours": 3,
+          "H": 33,
+          "gold": 58313486114,
+          "earned": 58313819746,
+          "spent": 333632,
+          "stored": 44
+        }
+      ],
+      "durationMs": 12720000
+    },
+    {
+      "name": "passive-60s",
+      "seed": 210,
+      "mergeAt": 5,
+      "first3": 540000,
+      "first5": 60000,
+      "firstPurchase": 180000,
+      "reached": {
+        "5": 2940000,
+        "10": 4080000,
+        "20": 6180000,
+        "30": 9120000,
+        "40": 12720000
+      },
+      "endingH": 40,
+      "earned": 3636291468500,
+      "spent": 333632,
+      "eventGold": 8623489180,
+      "storageStoppedRatio": 0.355188679245283,
+      "boardBlockedRatio": 0.2169811320754717,
+      "soldForSpace": 46,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 7,
+          "gold": 2,
+          "earned": 1084,
+          "spent": 1082,
+          "stored": 0
+        },
+        {
+          "hours": 2,
+          "H": 23,
+          "gold": 36562328,
+          "earned": 36895960,
+          "spent": 333632,
+          "stored": 43
+        },
+        {
+          "hours": 3,
+          "H": 33,
+          "gold": 93144442262,
+          "earned": 93144775894,
+          "spent": 333632,
+          "stored": 44
+        }
+      ],
+      "durationMs": 12720000
+    }
+  ],
+  "opening": [
+    {
+      "name": "opening-3",
+      "seed": 12,
+      "mergeAt": 3,
+      "first3": 22000,
+      "first5": 2194000,
+      "firstPurchase": 180000,
+      "reached": {
+        "5": 1584000,
+        "10": 3388000,
+        "20": 5638000,
+        "30": 8080000,
+        "40": 11022000
+      },
+      "endingH": 40,
+      "earned": 5925342597194,
+      "spent": 333632,
+      "eventGold": 77143304048,
+      "storageStoppedRatio": 0.7733623661767375,
+      "boardBlockedRatio": 0.0065323897659227,
+      "soldForSpace": 36,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 11,
+          "gold": 395,
+          "earned": 10397,
+          "spent": 10002,
+          "stored": 33
+        },
+        {
+          "hours": 2,
+          "H": 26,
+          "gold": 342708973,
+          "earned": 343042605,
+          "spent": 333632,
+          "stored": 58
+        },
+        {
+          "hours": 3,
+          "H": 39,
+          "gold": 3403337467358,
+          "earned": 3403337800990,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 11022000
+    },
+    {
+      "name": "opening-3",
+      "seed": 61,
+      "mergeAt": 3,
+      "first3": 30000,
+      "first5": 234000,
+      "firstPurchase": 150000,
+      "reached": {
+        "5": 1848000,
+        "10": 2668000,
+        "20": 4916000,
+        "30": 7492000,
+        "40": 10048000
+      },
+      "endingH": 40,
+      "earned": 5020053464253,
+      "spent": 333632,
+      "eventGold": 60523149493,
+      "storageStoppedRatio": 0.7693073248407644,
+      "boardBlockedRatio": 0.008359872611464968,
+      "soldForSpace": 42,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 14,
+          "gold": 8635,
+          "earned": 124442,
+          "spent": 115807,
+          "stored": 46
+        },
+        {
+          "hours": 2,
+          "H": 29,
+          "gold": 2445004207,
+          "earned": 2445337839,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 10048000
+    },
+    {
+      "name": "opening-3",
+      "seed": 210,
+      "mergeAt": 3,
+      "first3": 22000,
+      "first5": 992000,
+      "firstPurchase": 180000,
+      "reached": {
+        "5": 1340000,
+        "10": 3140000,
+        "20": 5394000,
+        "30": 8066000,
+        "40": 10764000
+      },
+      "endingH": 40,
+      "earned": 4377337483891,
+      "spent": 333632,
+      "eventGold": 35668348321,
+      "storageStoppedRatio": 0.7822370865849126,
+      "boardBlockedRatio": 0.008547008547008548,
+      "soldForSpace": 46,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 12,
+          "gold": 2576,
+          "earned": 22879,
+          "spent": 20303,
+          "stored": 39
+        },
+        {
+          "hours": 2,
+          "H": 26,
+          "gold": 648035175,
+          "earned": 648368807,
+          "spent": 333632,
+          "stored": 58
+        }
+      ],
+      "durationMs": 10764000
+    },
+    {
+      "name": "opening-5",
+      "seed": 12,
+      "mergeAt": 5,
+      "first3": 592000,
+      "first5": 50000,
+      "firstPurchase": 120000,
+      "reached": {
+        "5": 1316000,
+        "10": 1918000,
+        "20": 4200000,
+        "30": 6834000,
+        "40": 9450000
+      },
+      "endingH": 40,
+      "earned": 7050179183778,
+      "spent": 333632,
+      "eventGold": 135682740306,
+      "storageStoppedRatio": 0.8050793650793651,
+      "boardBlockedRatio": 0.008253968253968255,
+      "soldForSpace": 39,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 17,
+          "gold": 721243,
+          "earned": 1054875,
+          "spent": 333632,
+          "stored": 57
+        },
+        {
+          "hours": 2,
+          "H": 31,
+          "gold": 18355632765,
+          "earned": 18355966397,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 9450000
+    },
+    {
+      "name": "opening-5",
+      "seed": 61,
+      "mergeAt": 5,
+      "first3": 878000,
+      "first5": 56000,
+      "firstPurchase": 104000,
+      "reached": {
+        "5": 1044000,
+        "10": 1920000,
+        "20": 3990000,
+        "30": 6586000,
+        "40": 9384000
+      },
+      "endingH": 40,
+      "earned": 5535907225174,
+      "spent": 333632,
+      "eventGold": 100300093350,
+      "storageStoppedRatio": 0.8201193520886616,
+      "boardBlockedRatio": 0.010017050298380221,
+      "soldForSpace": 47,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 18,
+          "gold": 1401993,
+          "earned": 1735625,
+          "spent": 333632,
+          "stored": 57
+        },
+        {
+          "hours": 2,
+          "H": 31,
+          "gold": 35607355627,
+          "earned": 35607689259,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 9384000
+    },
+    {
+      "name": "opening-5",
+      "seed": 210,
+      "mergeAt": 5,
+      "first3": 766000,
+      "first5": 50000,
+      "firstPurchase": 120000,
+      "reached": {
+        "5": 834000,
+        "10": 1464000,
+        "20": 3984000,
+        "30": 6582000,
+        "40": 9262000
+      },
+      "endingH": 40,
+      "earned": 6137307380480,
+      "spent": 333632,
+      "eventGold": 51795581510,
+      "storageStoppedRatio": 0.8497084862880587,
+      "boardBlockedRatio": 0.009285251565536601,
+      "soldForSpace": 43,
+      "timeline": [
+        {
+          "hours": 1,
+          "H": 18,
+          "gold": 1478116,
+          "earned": 1811748,
+          "spent": 333632,
+          "stored": 57
+        },
+        {
+          "hours": 2,
+          "H": 32,
+          "gold": 35369834269,
+          "earned": 35370167901,
+          "spent": 333632,
+          "stored": 57
+        }
+      ],
+      "durationMs": 9262000
+    }
+  ]
+}

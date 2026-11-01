@@ -29,13 +29,13 @@ function simulate(c: Scenario, seed: number, mergeAt = 5) {
   const reached: Record<string, number | null> = { 5: null, 10: null, 20: null, 30: null, 40: null }, timeline: unknown[] = []
   const dt = 2000, limit = 12 * 3600_000
   function cmd(command: Parameters<typeof reduceSession>[1], now: number) {
-    const base=sessionRules(s)
+    const base={...sessionRules(s),attributeChance:0,attributeMutationChance:0}
     s = reduceSession(s, command, now, random, {...base, capacity:Math.max(s.generator.storedTiers.length,Math.round(base.capacity*(c.capacity??1))), intervalMs:Math.round(base.intervalMs*(c.speed??1)), distribution:c.distribution??base.distribution})
   }
   let now: number
   for (now = dt; now <= limit; now += dt) {
     if(!Number.isSafeInteger(s.wallet.gold)||s.wallet.gold<0)throw Error(c.name+' invalid wallet at '+now+': '+s.wallet.gold)
-    const actual = sessionRules(s), rules = { ...actual, intervalMs: Math.round(actual.intervalMs * (c.speed ?? 1)),
+    const actual = {...sessionRules(s),attributeChance:0,attributeMutationChance:0}, rules = { ...actual, intervalMs: Math.round(actual.intervalMs * (c.speed ?? 1)),
       capacity: Math.max(s.generator.storedTiers.length, Math.round(actual.capacity * (c.capacity ?? 1))),
       tapAdvanceMs: Math.round(actual.tapAdvanceMs * (c.tap ?? 1)), distribution: c.distribution ?? actual.distribution }
     // Scenario overrides are isolated here. Production reduceSession still owns merge/sale/purchase/events.
@@ -123,10 +123,11 @@ function simulate(c: Scenario, seed: number, mergeAt = 5) {
     storageStoppedRatio:storageFull/now,boardBlockedRatio:Math.min(1,full/now),soldForSpace,timeline,durationMs:Math.min(now,limit)}
 }
 it('4x4 balance: seeded real-Core agent, seven axes and passive play; writes reproducible evidence',()=>{
-  mkdirSync('docs/balance/phase2-polish-followup/legacy-sensitivity',{recursive:true})
+  mkdirSync('docs/validation/phase3a/regression-balance/legacy-sensitivity',{recursive:true})
   const results=scenarios.flatMap(c=>[12,61,210].map(seed=>simulate(c,seed)))
   const opening=[3,5].flatMap(n=>[12,61,210].map(seed=>simulate({name:'opening-'+n},seed,n)))
-  writeFileSync('docs/balance/phase2-polish-followup/legacy-sensitivity/simulation.json',JSON.stringify({model:'4x4 real Core plans, 2s decision step; one tap per 2s active / 60s collection passive; 12h censor; 3 seeds per scenario. Not human play-time predictions.',results,opening},null,2))
+  writeFileSync('docs/validation/phase3a/regression-balance/legacy-sensitivity/simulation.json',JSON.stringify({model:'4x4 real Core plans, 2s decision step; one tap per 2s active / 60s collection passive; 12h censor; 3 seeds per scenario. Not human play-time predictions.',results,opening},null,2))
   expect(results).toHaveLength(51)
 },240_000)
+
 

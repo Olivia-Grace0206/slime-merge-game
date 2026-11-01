@@ -1,23 +1,29 @@
+import { mutateAttributes } from '../attributes/inheritance'
 import { MAX_TIER, isTier, type DropPlan, type GameState, type Slime } from '../../domain/game'
 import { isGameState, stateSnapshot } from '../board/state'
 import { cellKey } from '../grid/coordinates'
-import { compareNear, splitCount } from './plan'
+import { compareNear, splitCount, planDrop } from './plan'
 
 export type ApplyResult = Readonly<{ ok: boolean; state: GameState; createdIds: readonly string[] }>
 /** Applies the displayed plan itself. No candidate re-selection during commit. */
-export function applyPlan(state: GameState, plan: DropPlan, nextId: () => string, researchMaxTier = MAX_TIER): ApplyResult {
+export function applyPlan(state: GameState, plan: DropPlan, nextId: () => string, researchMaxTier = MAX_TIER, random?: () => number, mutationChance?: number): ApplyResult {
   const reject = (): ApplyResult => ({ ok: false, state, createdIds: [] })
   if (plan.kind === 'invalid' || !isGameState(state) || plan.snapshot !== stateSnapshot(state))
     return reject()
   try {
     const source = state.slimes.find((s) => s.id === plan.sourceId)
     if (!source) return reject()
+    // Revalidate canonical intent, including merge priority and every consumed ID.
+    if (JSON.stringify(plan) !== JSON.stringify(planDrop(state, plan.sourceId, plan.target, researchMaxTier))) return reject()
     let slimes: readonly Slime[]
     const createdIds: string[] = []
     if (plan.kind === 'move') {
       slimes = state.slimes.map((s) =>
         s.id === plan.sourceId ? { ...s, position: { ...plan.target } } : s,
       )
+    } else if (plan.kind === 'swap') {
+      slimes = state.slimes.map(s => s.id === source.id ? { ...s, position: { ...plan.target } }
+        : s.id === plan.targetId ? { ...s, position: { ...plan.sourcePosition } } : s)
     } else {
       if (!isTier(researchMaxTier) || plan.outputTier > researchMaxTier) return reject()
       const target = state.slimes.find((s) => cellKey(s.position) === cellKey(plan.target))
@@ -55,13 +61,14 @@ export function applyPlan(state: GameState, plan: DropPlan, nextId: () => string
           .sort((a, b) => compareNear(plan.target, a, b))
           .slice(0, sizes[i] === 5 ? 2 : 1)
         if (JSON.stringify(group.outputs) !== JSON.stringify(expected)) return reject()
+        const attributes = random ? mutateAttributes(group.attributes ?? [], random, mutationChance) : group.attributes
         for (const position of group.outputs) {
           const id = nextId()
           // Reject even reuse of consumed IDs, so a stale drag can never target an output.
           if (typeof id !== 'string' || !id.trim() || ids.has(id)) return reject()
           ids.add(id)
           createdIds.push(id)
-          outputs.push({ id, tier: plan.outputTier, position: { ...position } })
+          outputs.push({ id, tier: plan.outputTier, position: { ...position }, ...(attributes !== undefined ? { attributes: attributes.map(a => ({ ...a })) } : {}) })
         }
       }
       slimes = [...state.slimes.filter((s) => !consumedSet.has(s.id)), ...outputs]
@@ -78,3 +85,4 @@ export function applyPlan(state: GameState, plan: DropPlan, nextId: () => string
     return reject()
   }
 }
+

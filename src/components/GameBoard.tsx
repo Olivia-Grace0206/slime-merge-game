@@ -1,3 +1,4 @@
+import { attributeText } from './attributeLabels'
 import { GoldBag } from './ProgressIcons'
 import { RESEARCH_CAPS, researchCost, frequencyCost, EXPERIMENTAL_RESEARCH } from '../core/progression/research'
 import {
@@ -55,6 +56,7 @@ export function GameBoard() {
   const viewRef = useRef(view)
   const [gesture, setGesture] = useState<GestureState>(idleGesture)
   const active = useRef(gesture)
+  const gestureViewport = useRef({ width: 0, height: 0 })
   const [preview, setPreview] = useState<DropPlan | null>(null)
   const previewRef = useRef<{ target: GridPosition; plan: DropPlan } | null>(null)
   const viewport = useRef<HTMLDivElement>(null)
@@ -189,13 +191,14 @@ export function GameBoard() {
     gameRef.current = result.state
     setGame(result.state)
     setCreatedIds(result.createdIds)
-    setMessage(plan.kind === 'move' ? '移動しました'
+    setMessage(plan.kind === 'swap' ? '位置を交換しました' : plan.kind === 'move' ? '移動しました'
       : `マージ成功 · Tier ${plan.outputTier} × ${result.createdIds.length}${plan.remainderIds.length ? ` · 余り${plan.remainderIds.length}体` : ''}`)
   }
   function down(e: ReactPointerEvent<HTMLDivElement>) {
     touchContext.current = e.pointerType !== 'mouse'
     if (e.button !== 0 || panel || (normalRef.current && store.state.error)) return
     cancelHold()
+    if (!active.current.contacts.length) gestureViewport.current = { width: window.innerWidth, height: window.innerHeight }
     const point = localPoint(e)
     const rect = e.currentTarget.getBoundingClientRect()
     setViewportOrigin({ x: rect.left, y: rect.top })
@@ -238,6 +241,10 @@ export function GameBoard() {
     return !!r && e.clientX >= r.left && e.clientX < r.right && e.clientY >= r.top && e.clientY < r.bottom
   }
   function up(e: ReactPointerEvent<HTMLDivElement>) {
+    // ResizeObserver/resize notifications can arrive after pointerup; never use the old gesture geometry.
+    if (gestureViewport.current.width !== window.innerWidth || gestureViewport.current.height !== window.innerHeight) { abort(true); return }
+    const rect = e.currentTarget.getBoundingClientRect()
+    if (Math.abs(rect.width - viewRef.current.width) > 1 || Math.abs(rect.height - viewRef.current.height) > 1) { abort(true); return }
     if (!active.current.contacts.some(c => c.id === e.pointerId)) return
     cancelHold()
     const result = transition(active.current, { type: 'up', id: e.pointerId, point: localPoint(e) })
@@ -294,10 +301,11 @@ export function GameBoard() {
   const event = normal ? session.event : null
   const coinText = event?.tier !== null && event ? `+${event.unitGOLD.toLocaleString()} · ${event.paid}/10` : session.lastEvent ? (session.lastEvent.paid !== undefined && session.lastEvent.paid < 10 ? `${session.lastEvent.paid}/10 終了 · 未払い失効` : '10/10 完了') : ''
   const plan = preview?.kind === 'merge' ? preview : null
+  const swap = preview?.kind === 'swap' ? preview : null
   const dragged = gesture.mode === 'drag' ? game.slimes.find(s => s.id === gesture.single?.sourceId) : undefined
   const showPrices = normal && saleHover && !!dragged && gesture.mode === 'drag'
   const priceTag = (tier: number, id: string) => <span className="price-tag" data-testid="sale-price" data-for={id} title={`${saleValue(tier).toLocaleString('en-US')} GOLD`}><svg className="price-coin" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8" fill="#ffd66f" stroke="#b68a32" strokeWidth="2"/><path d="M12 6H8v8h4M10 5v10" fill="none" stroke="#a57425" strokeWidth="1.5"/></svg><b>{saleValue(tier).toLocaleString('en-US').split(',').map((part, i, a) => <span key={i}>{part}{i < a.length - 1 ? ',' : ''}<wbr /></span>)}</b>{protectedIds.includes(id) && <small>保護中</small>}</span>
-  const text = plan ? `Tier ${plan.outputTier} × ${plan.groups.reduce((n, g) => n + g.outputs.length, 0)}体`
+  const text = swap ? `⇄ 位置交換${swap.reason === 'research-locked' ? ' · 研究未解放（消費なし）' : ''}` : plan ? `Tier ${plan.outputTier} × ${plan.groups.reduce((n, g) => n + g.outputs.length, 0)}体`
     : preview?.kind === 'invalid' && preview.reason !== 'same-cell' ? REASONS[preview.reason] : message
   const topLeft = worldToScreen({ x: 0, y: 0 }, camera, view)
   const scale = view.fit * camera.zoom
@@ -309,7 +317,7 @@ export function GameBoard() {
     <section className={`game-layout ${normal ? 'normal-play' : 'debug-play'}`} aria-label="ゲーム">
       <nav className="edge-menu" aria-label="メニュー">
         {normal && <button type="button" aria-label="GOLDショップ" onClick={() => { abort(true); setPanel('shop') }}><span aria-hidden="true">♜</span>ショップ</button>}
-        {([['help', '?', '遊び方'], ['presets', '▦', '検証'], ['appearance', '✦', '外見'], ['settings', '⚙', '設定']] as const).map(([id, icon, label]) =>
+        {([['attributes', '◇', '属性'], ['help', '?', '遊び方'], ['presets', '▦', '検証'], ['appearance', '✦', '外見'], ['settings', '⚙', '設定']] as const).map(([id, icon, label]) =>
           <button key={id} type="button" aria-label={id === 'appearance' ? 'スライム一覧・外見確認' : label} aria-haspopup="dialog" onClick={() => { abort(true); setPanel(id) }}><span aria-hidden="true">{icon}</span>{label}</button>)}
       </nav>
       <div className={`board-viewport ${(normal ? session.reducedEffects : reducedEffects) ? 'reduced-effects' : ''}`} ref={viewport}
@@ -330,11 +338,11 @@ export function GameBoard() {
             const outputGroup = plan?.groups.find(g => g.outputs.some(p => samePosition(p, position)))
             const remainder = slime && plan?.remainderIds.includes(slime.id)
             return <button key={index} type="button"
-              className={`cell ${event && samePosition(event.cell, position) ? 'gold-cell' : ''} ${(position.x + position.y) % 2 ? 'alternate' : ''} ${group ? 'grouped' : ''} ${remainder ? 'remainder' : ''} ${selected && slime?.id === selected ? 'selected' : ''}`}
+              className={`cell ${event && samePosition(event.cell, position) ? 'gold-cell' : ''} ${(position.x + position.y) % 2 ? 'alternate' : ''} ${swap && (slime?.id === swap.sourceId || slime?.id === swap.targetId) ? 'swap-cell' : ''} ${group ? 'grouped' : ''} ${remainder ? 'remainder' : ''} ${selected && slime?.id === selected ? 'selected' : ''}`}
               data-protected={slime && protectedIds.includes(slime.id) ? 'true' : undefined} data-gold-cell={event && samePosition(event.cell, position) ? event.id : undefined}
               data-cell={`${position.x},${position.y}`} data-slime-id={slime?.id} data-tier={slime?.tier} data-group={group?.number} data-output={outputGroup?.number} data-remainder={remainder ? 'true' : undefined}
-              title={slime && normal ? `Tier ${slime.tier} · +${saleValue(slime.tier).toLocaleString()} GOLD${protectedIds.includes(slime.id) ? ' · 売却保護中' : ''}` : undefined}
-              aria-label={`${position.x + 1}列${position.y + 1}行${slime ? ` Tier ${slime.tier}` : ' 空きマス'}${group ? ` 組${group.number}` : ''}${remainder ? ' 余り・残ります' : ''}${slime && protectedIds.includes(slime.id) ? ' 売却保護中' : ''}`}
+              title={slime && normal ? `Tier ${slime.tier} · ${attributeText(slime.attributes)} · +${saleValue(slime.tier).toLocaleString()} GOLD${protectedIds.includes(slime.id) ? ' · 売却保護中' : ''}` : undefined}
+              aria-label={`${position.x + 1}列${position.y + 1}行${slime ? ` Tier ${slime.tier} ${attributeText(slime.attributes)}` : ' 空きマス'}${group ? ` 組${group.number}` : ''}${remainder ? ' 余り・残ります' : ''}${slime && protectedIds.includes(slime.id) ? ' 売却保護中' : ''}`}
               aria-description={normal && slime ? 'Pキーで売却保護、Iキーで詳細。Enterで選択後、売却エリアへTabしてEnterで売却。' : undefined}
               style={{ width: 700 / game.bounds.width, height: 700 / game.bounds.height, ...(group ? { '--group-color': GROUP_COLORS[(group.number - 1) % GROUP_COLORS.length] } : {}) } as CSSProperties}
               onFocus={() => {
@@ -361,18 +369,21 @@ export function GameBoard() {
               {event && samePosition(event.cell, position) && <span className="gold-cell-label">● {event.tier === null ? 'GOLD' : `${event.paid}/10`}</span>}
               {event && event.paid > 0 && samePosition(event.cell, position) && <span key={`${event.id}-${event.paid}`} className="gold-burst">+{session.wallet.gold === Number.MAX_SAFE_INTEGER ? '上限' : event.unitGOLD.toLocaleString()}</span>}
               {slime && protectedIds.includes(slime.id) && <span className="protected-badge" aria-label="売却保護"><svg viewBox="0 0 20 23" width="18" height="20" aria-hidden="true"><path d="M5 10V6a5 5 0 0 1 10 0v4" fill="none" stroke="currentColor" strokeWidth="3"/><rect x="2" y="9" width="16" height="13" rx="3" fill="#fff4c5" stroke="currentColor" strokeWidth="2"/><path d="M10 14v4" stroke="currentColor" strokeWidth="2"/></svg></span>}
-              {slime && <span key={slime.id} style={{ width: 602 / game.bounds.width, height: 630 / game.bounds.height }} className={`slime-piece ${slime.id === dragged?.id ? 'source-ghost' : ''} ${createdIds.includes(slime.id) ? 'born' : ''}`}><Slime tier={slime.tier} /></span>}
+              {slime && <span key={slime.id} style={{ width: 602 / game.bounds.width, height: 630 / game.bounds.height }} className={`slime-piece ${slime.id === dragged?.id ? 'source-ghost' : ''} ${createdIds.includes(slime.id) ? 'born' : ''}`}><Slime tier={slime.tier} attributes={slime.attributes} /></span>}
+              {swap && (slime?.id === swap.sourceId || slime?.id === swap.targetId) && <span className="swap-badge" aria-label="位置交換">⇄</span>}
               {group && <span className="group-badge">{group.number}</span>}
               {remainder && <span className="keep-badge">残る</span>}
               {outputGroup && <span className="output-mark">↑{outputGroup.number}</span>}
             </button>
           })}
         </div>
+        {plan && <div className="operation-preview merge-attribute-preview" data-testid="attribute-preview"><strong>マージ → Tier {plan.outputTier}</strong>{plan.groups.map(g => <small key={g.number}>組{g.number} ×{g.outputs.length}：{attributeText(g.attributes)}</small>)}<small>変異 仮1%/組・空き属性枠のみ</small></div>}
+        {swap && <div className="operation-preview" data-testid="swap-preview"><strong>⇄ 位置交換</strong><small>{swap.reason === 'research-locked' ? '研究未解放 · 素材消費なし' : swap.reason === 'attribute-limit' ? '属性上限3種類（仮）· 全属性保持' : '2体の位置だけ交換'}</small></div>}
         {showPrices && <div className="price-layer" aria-label="全スライムの売却受取額">{game.slimes.map(slime => {
           const point = worldToScreen({ x: (slime.position.x + .5) * 700 / game.bounds.width, y: (slime.position.y + .04) * 700 / game.bounds.height }, camera, view)
           return <div className="price-anchor" key={slime.id} style={{ left: point.x, top: point.y, width: Math.min(140, 700 / game.bounds.width * scale - 5) }}>{priceTag(slime.tier, slime.id)}</div>
         })}</div>}
-        {dragged && gesture.single && <div className="drag-sprite" style={{ position: 'fixed', left: gesture.single.current.x + viewportOrigin.x, top: gesture.single.current.y + viewportOrigin.y, width: 602 / game.bounds.width * scale, height: 630 / game.bounds.height * scale, '--group-color': plan ? GROUP_COLORS[0] : 'transparent' } as CSSProperties}><Slime tier={dragged.tier} />{showPrices && <div className="drag-price">{priceTag(dragged.tier, dragged.id)}</div>}{plan && <span className="group-badge">1</span>}</div>}
+        {dragged && gesture.single && <div className="drag-sprite" style={{ position: 'fixed', left: gesture.single.current.x + viewportOrigin.x, top: gesture.single.current.y + viewportOrigin.y, width: 602 / game.bounds.width * scale, height: 630 / game.bounds.height * scale, '--group-color': plan ? GROUP_COLORS[0] : 'transparent' } as CSSProperties}><Slime tier={dragged.tier} attributes={dragged.attributes} />{showPrices && <div className="drag-price">{priceTag(dragged.tier, dragged.id)}</div>}{plan && <span className="group-badge">1</span>}</div>}
       </div>
       {normal ? <aside className={`progress-controls ${session.reducedEffects ? 'reduced-effects' : ''}`} aria-label="生成と売却">
         <GeneratorPanel session={session} disabled={!!storageError} fullBoard={game.slimes.length >= 16} onTap={() => send({ type: 'tap' })} onAdd={() => {
@@ -387,13 +398,13 @@ export function GameBoard() {
         {!event && session.lastEvent && <div className="event-readout" data-testid="gold-completed">● {coinText}</div>}
       </aside> : <aside className="verification-banner"><strong>検証モード</strong><span>通常プレイのセーブは保全</span><button type="button" onClick={returnNormal}>通常プレイへ戻る</button></aside>}
     </section>
-    {preview?.kind === 'invalid' && preview.reason === 'research-locked' && <div className="research-notice" role="alert">研究上限 Tier {session.researchMaxTier} · ショップで解放できます（消費なし）</div>}
+    {swap?.reason === 'research-locked' && <div className="research-notice" role="alert">研究上限 Tier {session.researchMaxTier} · ショップで解放できます（消費なし）</div>}
     {storageError && <div className="storage-error" role="alert"><span>{storageError}</span><button type="button" onClick={() => { setStorageError(store.retry().error); send({ type: 'tick' }) }}>再試行</button><button type="button" onClick={() => window.location.reload()}>再読み込み</button></div>}
     <div className="sr-only" role="status" aria-live="polite" aria-atomic="true" data-testid="status">
       <strong>{text}</strong>
       {plan && <small>{plan.groups.map(g => `組${g.number} ${g.consumedIds.length}→${g.outputs.length}`).join(' / ')}{plan.remainderIds.length ? ` / 余り${plan.remainderIds.length}` : ''} · ↑出力先</small>}
     </div>
-    <GameMenu extra={panel === 'settings' ? <label className="setting-row"><input type="checkbox" data-testid="compact-gold" checked={session.goldFormat === 'compact'} disabled={!normal || !!storageError} onChange={e => send({ type: 'gold-format', value: e.target.checked ? 'compact' : 'full' })} />GOLDをK/Mなどで短縮表示</label> : panel === 'shop' ? <>
+    <GameMenu extra={panel === 'attributes' ? <><p>属性の種類とLvを育てられます。特殊効果は次段階で実装。現在の売値・生成速度は属性で変わりません。</p><div className="attribute-roster">{game.slimes.map(s => <button type="button" key={s.id} onClick={() => { setDetailId(s.id); setPanel('slime') }}><b>Tier {s.tier} · {s.position.x + 1}列{s.position.y + 1}行</b><span>{attributeText(s.attributes)}</span></button>)}{!game.slimes.length && <p>盤面にスライムを追加してください。</p>}</div></> : panel === 'settings' ? <label className="setting-row"><input type="checkbox" data-testid="compact-gold" checked={session.goldFormat === 'compact'} disabled={!normal || !!storageError} onChange={e => send({ type: 'gold-format', value: e.target.checked ? 'compact' : 'full' })} />GOLDをK/Mなどで短縮表示</label> : panel === 'shop' ? <>
       <p className="shop-wallet">所持 GOLD：{session.wallet.gold.toLocaleString()}</p>
       {(['speed', 'tap', 'storage'] as const).map(key => {
         const lv = session.wallet.upgrades[key], cost = upgradeCost(key, lv), max = lv >= EXPERIMENTAL_ECONOMY.shopMaxLevel
@@ -408,10 +419,11 @@ export function GameBoard() {
       {session.researchLevel < RESEARCH_CAPS.length - 1 ? <><p>次の進化上限：Tier {RESEARCH_CAPS[session.researchLevel + 1]} ／ 必要 {researchCost(session.researchLevel).toLocaleString()} GOLD</p><button type="button" data-testid="buy-research" disabled={!!storageError || session.wallet.gold < researchCost(session.researchLevel)} onClick={() => send({ type: 'research', expectedLevel: session.researchLevel })}>{session.wallet.gold < researchCost(session.researchLevel) ? 'GOLD不足 · ' : ''}{researchCost(session.researchLevel).toLocaleString()} GOLDで研究</button></> : <p>最終研究完了！ Tier40まで進化できます。</p>}
       <p className="research-history">解放済み：{RESEARCH_CAPS.slice(0, session.researchLevel + 1).map(cap => `Tier${cap}`).join(' / ')}</p></section>
       <p className="muted">価格・生成分布・強化量は試遊用の仮設定です。</p>
-    </> : panel === 'slime' && detail ? <><div className="detail-slime"><Slime tier={detail.tier} /></div><p>Tier {detail.tier} · 無属性 · 売却 {saleValue(detail.tier).toLocaleString()} GOLD</p><button className="reset-button" type="button" onClick={() => send({ type: 'protect', id: detail.id })}>{protectedIds.includes(detail.id) ? '売却保護を解除' : '売却から保護する'}</button><p className="muted">保護は売却のみを防ぎます。マージ素材には使用できます。</p></> : undefined} normal={normal} onNormal={returnNormal} panel={panel} onClose={() => setPanel(null)} preset={preset} onPreset={reset} reducedEffects={normal ? session.reducedEffects : reducedEffects} onEffects={value => { if (normal) send({ type: 'effects', value }); else setReducedEffects(value) }}
+    </> : panel === 'slime' && detail ? <><div className="detail-slime"><Slime tier={detail.tier} attributes={detail.attributes} /></div><p>Tier {detail.tier} · {attributeText(detail.attributes)} · 売却 {saleValue(detail.tier).toLocaleString()} GOLD</p><button className="reset-button" type="button" onClick={() => send({ type: 'protect', id: detail.id })}>{protectedIds.includes(detail.id) ? '売却保護を解除' : '売却から保護する'}</button><p className="muted">属性の特殊効果は次段階で実装します。</p><p className="muted">保護は売却のみを防ぎます。マージ素材には使用できます。</p></> : undefined} normal={normal} onNormal={returnNormal} panel={panel} onClose={() => setPanel(null)} preset={preset} onPreset={reset} reducedEffects={normal ? session.reducedEffects : reducedEffects} onEffects={value => { if (normal) send({ type: 'effects', value }); else setReducedEffects(value) }}
       onResetCamera={resetCamera} onZoom={dir => {
         abort(); changeCamera(zoomAt(cameraRef.current, viewRef.current, { x: view.width / 2, y: view.height / 2 }, cameraRef.current.zoom * (dir === 1 ? 1.2 : 1 / 1.2)))
       }} />
   </>
 }
+
 

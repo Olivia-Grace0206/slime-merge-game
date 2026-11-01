@@ -1,3 +1,20 @@
+# Phase 3A — スライム入れ替え・属性育成基盤
+
+2026-11-01 JST。main `225449c`（PR #9マージ済み）から `feature/phase03a-swap-attribute-core`。新規Draft PRはユーザー試遊/レビュー待ち、main未マージ。Private/Pages設定は維持。
+
+- マージ可能なら従来の3/5/大量マージを優先。異Tier・2体不足・Tier40・研究上限・暫定属性上限では⇄位置交換（ID/属性/保護を保持）。
+- 属性10種を生成時に仮3%で付与。FIFOでTierと属性を保持。通常属性は5体両出力へコピー。最高Lv2体以上で+1、属性3種/Lv99/変異1%/組は**未承認の暫定値**。
+- 「属性」メニューで個体一覧→種類/Lv/売値/保護を確認。属性特殊効果・複合効果・闇消滅・紫青/覚醒は後続。今回の属性で売値や生成速度は変化しない。
+- schema5。v1〜4を明示移行、旧GOLD/研究/金支給契約/保護/貯蔵を保全。保存成功後に反映。
+
+[最新仕様案内](docs/specifications/CURRENT.md) / [完全仕様v0.3.0](docs/specifications/Slime_Merge_Game_Specification_v0.3.0_2026-11-01.md) / [引き継ぎ](docs/PHASE3A_HANDOFF.md) / [検証](docs/validation/phase3a/RESULTS.md) / [比較](docs/balance/phase3a/RESULTS.md)。最終HEAD・同SHAのCIは新規Draft PR本文に記録。
+
+Node22/npm10で `npm ci` → `npm run lint` → `npm test -- --run` → `npm run build`。`npm run dev` でlocalhost起動（安全な保存にはWeb Locks/LocalStorageが必要）。ブラウザrunnerはアプリ依存を追加せず別環境のPlaywright1.51.1を`PLAYWRIGHT_MODULE`で指定する。
+
+---
+
+以下はPhase2 PolishまでのREADME（履歴）。Draft/属性未実装等は当時の状態。
+
 # スライムマージゲーム
 
 時間生成→貯蔵→ランダムに1体追加→3/5体マージ→売却→GOLDで強化するReactブラウザゲーム。
@@ -71,3 +88,4 @@ phase2.cjsは最新Polish契約の回帰へ委譲。native touchと仮想時計�
 [CURRENT](docs/specifications/CURRENT.md) → [完全仕様書v0.2.9](docs/specifications/Slime_Merge_Game_Specification_v0.2.9_2026-11-01.md)。main採用まではv0.2.7が現行正本。属性/覚醒/紫青/土地/正式図鑑/全Tierリッチ化/効果音は後続。
 
 GOLDは初期フル桁（例1,234,567 GOLD）。設定でK/M省略へ切替・保存。生成UIは独自3匹スライムと収納数。次Tier予告なし。セーブを初期化せず既存の到達/所持/イベントを保全する。
+

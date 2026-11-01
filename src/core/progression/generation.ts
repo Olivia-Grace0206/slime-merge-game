@@ -1,3 +1,5 @@
+import { isAttributes, type Attributes } from '../../domain/attributes'
+import { drawAttributes } from '../attributes/inheritance'
 import { GENERATION_WEIGHT_ROWS } from './tierTable'
 import { MAX_TIER, isTier, type GameState, type Slime } from '../../domain/game'
 import type { GridPosition } from '../../domain/grid'
@@ -76,6 +78,7 @@ export function drawTier(
 
 export type GeneratorState = Readonly<{
   storedTiers: readonly number[]
+  storedAttributes?: readonly Attributes[]
   progressMs: number
   updatedAtMs: number
   totalGenerated: number
@@ -86,6 +89,8 @@ export type GeneratorRules = Readonly<{
   capacity: number
   tapAdvanceMs: number
   distribution?: GenerationProfile | undefined
+  attributeChance?: number
+  attributeMutationChance?: number
 }>
 
 export function newGenerator(nowMs: number): GeneratorState {
@@ -101,7 +106,9 @@ function checkRules(state: GeneratorState, rules: GeneratorRules, highestTier: n
     !Number.isSafeInteger(rules.tapAdvanceMs) || rules.tapAdvanceMs <= 0 ||
     !Array.isArray(state.storedTiers) ||
     state.storedTiers.length > rules.capacity ||
-    state.storedTiers.some((t) => !isTier(t) || t > highestTier) ||
+    (state.storedAttributes !== undefined && (!Array.isArray(state.storedAttributes) || state.storedAttributes.length !== state.storedTiers.length || !Array.from(state.storedAttributes).every(isAttributes))) ||
+    (rules.attributeChance !== undefined && (!Number.isFinite(rules.attributeChance) || rules.attributeChance < 0 || rules.attributeChance > 1)) ||
+    Array.from(state.storedTiers).some((t) => !isTier(t) || t > highestTier) ||
     !Number.isSafeInteger(state.updatedAtMs) || state.updatedAtMs < 0 ||
     !Number.isSafeInteger(state.progressMs) || state.progressMs < 0 ||
     !Number.isSafeInteger(state.totalGenerated) || state.totalGenerated < state.storedTiers.length
@@ -123,14 +130,17 @@ function accrue(
   const availableMs = Math.min(Number.MAX_SAFE_INTEGER, state.progressMs + milliseconds)
   const generated = Math.min(free, Math.floor(availableMs / rules.intervalMs))
   if (!Number.isSafeInteger(state.totalGenerated + generated)) throw new RangeError('Generation counter exhausted')
-  const created = Array.from({ length: generated }, () =>
-    drawTier(highestTier, randomUnit(), rules.distribution),
-  )
+  const created = Array.from({ length: generated }, () => {
+    const tier = drawTier(highestTier, randomUnit(), rules.distribution)
+    const attributes = rules.attributeChance !== undefined ? drawAttributes(randomUnit, rules.attributeChance) : []
+    return { tier, attributes }
+  })
   // Full capacity pauses the timer. Time while full is never banked as future credit.
   const progressMs = generated === free ? 0 : availableMs - generated * rules.intervalMs
   return {
     ...state,
-    storedTiers: [...state.storedTiers, ...created],
+    storedTiers: [...state.storedTiers, ...created.map(x => x.tier)],
+    ...((state.storedAttributes !== undefined || rules.attributeChance !== undefined) ? { storedAttributes: [...(state.storedAttributes ?? state.storedTiers.map(() => [])), ...created.map(x => x.attributes)] } : {}),
     progressMs,
     totalGenerated: state.totalGenerated + created.length,
   }
@@ -176,10 +186,11 @@ export function withdrawToCell(
   if (
     !isGameState(game) || !inBounds(game.bounds, target) ||
     !generator.storedTiers.length || !isValidGeneratedTier(generator.storedTiers[0]!, game.highestTierReached) ||
+    (generator.storedAttributes !== undefined && (!Array.isArray(generator.storedAttributes) || generator.storedAttributes.length !== generator.storedTiers.length || !Array.from(generator.storedAttributes).every(isAttributes))) ||
     !newId.trim() || game.slimes.some((s) => s.id === newId) ||
     game.slimes.some((s) => samePosition(s.position, target))
   ) return reject()
-  const slime: Slime = { id: newId, tier: generator.storedTiers[0]!, position: { ...target } }
+  const slime: Slime = { id: newId, tier: generator.storedTiers[0]!, position: { ...target }, ...(generator.storedAttributes !== undefined ? { attributes: generator.storedAttributes[0]!.map((a: Attributes[number]) => ({ ...a })) } : {}) }
   const nextGame: GameState = {
     ...game,
     slimes: [...game.slimes, slime],
@@ -190,7 +201,7 @@ export function withdrawToCell(
   return {
     ok: true,
     game: nextGame,
-    generator: { ...generator, storedTiers: generator.storedTiers.slice(1) },
+    generator: { ...generator, storedTiers: generator.storedTiers.slice(1), ...(generator.storedAttributes !== undefined ? { storedAttributes: generator.storedAttributes.slice(1) } : {}) },
   }
 }
 
@@ -216,3 +227,4 @@ export function withdrawRandom(game: GameState, generator: GeneratorState, newId
   if (!Number.isFinite(value) || value < 0 || value >= 1) return reject
   return withdrawToCell(game, generator, cells[Math.floor(value * cells.length)]!, newId)
 }
+
