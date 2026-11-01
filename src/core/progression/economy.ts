@@ -91,7 +91,7 @@ export function legacyGenerationRules(wallet: Wallet): GeneratorRules {
 }
 
 /** Phase3B provisional slower pace. Attributes are applied by sessionRules. */
-export const GENERATION_PACE = Object.freeze({speedFactor:0.95, tapPerLevelMs:200, minimumIntervalMs:2000})
+export const GENERATION_PACE = Object.freeze({speedFactor:0.95, tapPerLevelMs:200, minimumIntervalMs:2000,maxTapIntervalFraction:0.75})
 export function generationRules(wallet: Wallet): GeneratorRules {
   if (!isWallet(wallet)) throw new RangeError('Invalid wallet')
   return { intervalMs: Math.max(GENERATION_PACE.minimumIntervalMs, Math.round(EXPERIMENTAL_GENERATION.baseIntervalMs * GENERATION_PACE.speedFactor ** wallet.upgrades.speed)),

@@ -392,3 +392,27 @@ progress::-webkit-progress-value { background: linear-gradient(90deg,#79b65b,#ab
  .large-storage .storage-count b { font-size:18px; }
 }
 .progress-controls .drop-actions .sale-zone { grid-area:auto; }
+.attribute-icon { width:1em; height:1em; display:inline-block; vertical-align:-.15em; flex:0 0 auto; }
+.attribute-badge .attribute-icon { width:1em; height:1em; }
+.attribute-tokens { display:inline-flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:3px 7px; }
+.attribute-token { display:inline-flex; align-items:center; gap:3px; }
+.attribute-token .attribute-icon { width:1.15em; height:1.15em; }
+.attribute-roster .attribute-tokens { display:flex; justify-content:flex-start; margin-top:4px; font-size:13px; }
+.attribute-roster .attribute-token,.attribute-roster .attribute-token span { display:inline-flex; margin:0; font-size:13px; }
+.attribute-guide { display:grid; gap:8px; }
+.attribute-card { border:1px solid #d2ddcd; border-radius:12px; background:#fafcf5; overflow:hidden; }
+.attribute-card summary { min-height:46px; padding:8px 10px; cursor:pointer; display:flex; align-items:center; gap:8px; color:#304c43; }
+.attribute-card summary::before { content:'＋'; color:#5e7a57; }
+.attribute-card[open] summary::before { content:'−'; }
+.attribute-card summary .attribute-icon { width:24px; height:24px; }
+.attribute-card summary small { margin-left:auto; font-size:10px; text-align:right; max-width:52%; }
+.attribute-card > div { color:#304c43; border-top:1px solid #dce5d6; padding:8px 12px; font-size:12px; }
+.attribute-card p { margin:4px 0; overflow-wrap:anywhere; }
+.combination-card { padding:8px 10px; background:#f2f4e9; border-radius:12px; margin-bottom:8px; }
+.combination-card h4 { display:flex; align-items:center; flex-wrap:wrap; gap:4px; font-size:12px; margin:0; }
+.combination-card h4 .attribute-icon { width:20px; height:20px; }
+.combination-card p { margin:5px 0 0; font-size:12px; }
+.attribute-badges { left:3%; right:3%; gap:2px; }
+.attribute-badge { padding:0 1px; gap:1px; }
+.attribute-badge small { font-size:.6em; font-weight:700; }
+.drag-sprite .attribute-badge { font-size:clamp(7px,13cqw,18px); padding:0; gap:1px; }

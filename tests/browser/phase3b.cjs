@@ -25,9 +25,9 @@ try{
   const touch=width<900,name=`${width}x${height}`,ctx=await browser.newContext({viewport:{width,height},hasTouch:true,isMobile:width<=700&&height>500}),p=await ctx.newPage(),cdp=await ctx.newCDPSession(p)
   p.on('pageerror',e=>errors.push(String(e)));p.on('console',m=>{if(m.type()==='error')errors.push(m.text())})
   await p.clock.install({time:new Date('2026-11-01T04:00:00Z')});await p.goto(process.env.GAME_URL||'http://127.0.0.1:5173/slime-merge-game/')
-  const safeStock=()=>({storedTiers:Array(10).fill(1),storedAttributes:Array.from({length:10},()=>[]),totalGenerated:10,progressMs:0,updatedAtMs:1793505600000})
+  const fifoStock=()=>({storedTiers:Array(10).fill(1),storedAttributes:Array.from({length:10},()=>[]),totalGenerated:10,progressMs:0,updatedAtMs:1793505600000})
   await check(name+' normal/focus buttons reachable without shrinking board or page scroll',async()=>{
-   const now=await p.evaluate(()=>Date.now()),generator={...safeStock(),updatedAtMs:now};await set(p,{generator})
+   const now=await p.evaluate(()=>Date.now()),generator={...fifoStock(),updatedAtMs:now};await set(p,{generator})
    const measure=await p.evaluate(()=>{const rect=s=>{const r=document.querySelector(s).getBoundingClientRect();return{x:r.x,y:r.y,w:r.width,h:r.height,right:r.right,bottom:r.bottom}}
     return{width:innerWidth,height:innerHeight,scroll:[document.documentElement.scrollWidth,document.documentElement.scrollHeight],board:rect('[data-testid=board]'),mode:rect('.mode-button'),tap:rect('.accelerate-button'),add:rect('.add-button')}})
    assert.deepEqual(measure.scroll,[width,height]);assert(Math.abs(measure.board.w-[1010,830,698,650,624,752,374,359,304,334][sizes.findIndex(x=>x[0]===width)])<=1,JSON.stringify(measure))
@@ -41,14 +41,14 @@ try{
    await p.evaluate(()=>Math.random=()=>.99);await p.getByTestId('add-slime').click();await until(async()=>(await snap(p)).focusedGenerated===1)
    const s=await snap(p);assert.equal(s.generator.storedTiers.length,0);assert.equal(s.game.slimes.length,1);assert.equal(s.game.slimes[0].tier,1);assert.deepEqual(s.game.slimes[0].attributes,[]);assert(await p.getByTestId('add-slime').isDisabled());await p.reload();assert.equal((await snap(p)).focusedGenerated,1)
   })
-  await check(name+' attributed/high Tier stock excluded and insufficient safe materials disabled',async()=>{
+  await check(name+' attributed/high Tier stock included and FIFO count enables the mode',async()=>{
    const now=await p.evaluate(()=>Date.now()),s=fixture(now,[5],[])
-   await set(p,{game:s.game,nextId:s.nextId,generationMode:'focused',generator:{...safeStock(),updatedAtMs:now,storedTiers:[5,...Array(9).fill(1)],storedAttributes:[[],[{id:'fire',level:1}],...Array.from({length:8},()=>[])]}})
-   assert(await p.getByTestId('add-slime').isDisabled());assert((await p.getByTestId('add-slime').innerText()).includes('8/10'))
+   await set(p,{game:s.game,nextId:s.nextId,generationMode:'focused',generator:{...fifoStock(),updatedAtMs:now,storedTiers:[5,...Array(9).fill(1)],storedAttributes:[[],[{id:'fire',level:1}],...Array.from({length:8},()=>[])]}})
+   assert(!(await p.getByTestId('add-slime').isDisabled()));assert((await p.getByTestId('add-slime').innerText()).includes('貯蔵10体で使用可能'))
    const before=(await snap(p)).generator;await p.getByTestId('generation-mode').click();await until(async()=>(await snap(p)).generationMode==='normal');assert.deepEqual((await snap(p)).generator.storedTiers,before.storedTiers);assert.deepEqual((await snap(p)).generator.storedAttributes,before.storedAttributes)
   })
-  await check(name+' full board rejects focus without spending safe stock',async()=>{
-   const now=await p.evaluate(()=>Date.now());await set(p,{tiers:Array(16).fill(1),generationMode:'focused',generator:{...safeStock(),updatedAtMs:now}})
+  await check(name+' full board rejects focus without spending FIFO stock',async()=>{
+   const now=await p.evaluate(()=>Date.now());await set(p,{tiers:Array(16).fill(1),generationMode:'focused',generator:{...fifoStock(),updatedAtMs:now}})
    assert(await p.getByTestId('add-slime').isDisabled());assert.equal((await snap(p)).generator.storedTiers.length,10)
   })
   await check(name+' dark risk preview consumes no draw; group loss keeps both bodies/other attributes',async()=>{

@@ -7,7 +7,7 @@ import type { GridPosition } from '../../domain/grid'
 import { applyPlan } from '../merge/apply'
 import { samePosition } from '../grid/coordinates'
 import { advanceGenerator, tapGenerator, newGenerator, withdrawRandom, emptyCells, type GeneratorRules } from './generation'
-import { freshWallet, generationRules, purchaseUpgrade, sellSlime, type UpgradeKey } from './economy'
+import { freshWallet, GENERATION_PACE, generationRules, purchaseUpgrade, sellSlime, type UpgradeKey } from './economy'
 import type { ProgressionSnapshot } from './save'
 
 /** Distribution/reward/cooldown values are provisional. 350ms × 10 is the approved initial cadence. */
@@ -52,7 +52,7 @@ export function freshSession(nowMs: number): Session {
 export function sessionRules(s: Session) {
   const base = generationRules(s.wallet), effects = boardEffects(s.game)
   const intervalMs = Math.round(base.intervalMs * (1 - effects.iceReduction))
-  return { ...base, intervalMs, tapAdvanceMs: Math.min(Math.floor(intervalMs * 0.75), Math.round(base.tapAdvanceMs * (1 + effects.tapBonus))), attributeChance: effects.normalChance }
+  return { ...base, intervalMs, tapAdvanceMs: Math.min(Math.floor(intervalMs * GENERATION_PACE.maxTapIntervalFraction), Math.round(base.tapAdvanceMs * (1 + effects.tapBonus))), attributeChance: effects.normalChance }
 
 }
 /** Provisional linear low-Tier floor; high-Tier rate is unchanged. Old contracts keep version 1. */
