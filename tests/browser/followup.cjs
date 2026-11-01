@@ -13,9 +13,9 @@ async function seed(p,opts){const now=await p.evaluate(()=>Date.now()),s=fixture
 async function pointer(p,cdp,touch,type,a){if(touch)await cdp.send('Input.dispatchTouchEvent',{type:type==='down'?'touchStart':type==='move'?'touchMove':type==='cancel'?'touchCancel':'touchEnd',touchPoints:type==='up'||type==='cancel'?[]:[{...a,id:0}]});else if(type==='down'){await p.mouse.move(a.x,a.y);await p.mouse.down()}else if(type==='move')await p.mouse.move(a.x,a.y,{steps:3});else if(type==='cancel')await p.keyboard.press('Escape');else await p.mouse.up()}
 async function main(){let browser,server
 try{
- server=spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','5173','--strictPort']);await new Promise((resolve,reject)=>{server.stdout.on('data',d=>{if(String(d).includes('Local:'))resolve()});server.on('exit',reject)})
+ if(!process.env.GAME_URL){server=spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','5173','--strictPort']);await new Promise((resolve,reject)=>{server.stdout.on('data',d=>{if(String(d).includes('Local:'))resolve()});server.on('exit',reject)})}
  browser=await chromium.launch({headless:true,args:['--no-sandbox']})
- const url='http://127.0.0.1:5173/slime-merge-game/'
+ const url=process.env.GAME_URL||'http://127.0.0.1:5173/slime-merge-game/'
  for(const [width,height] of sizes){
   const label=`${width}x${height}`,touch=width<900,ctx=await browser.newContext({viewport:{width,height},hasTouch:true,isMobile:width<=700&&height>500,deviceScaleFactor:1}),p=await ctx.newPage(),cdp=await ctx.newCDPSession(p)
   p.on('pageerror',e=>errors.push(String(e)));p.on('console',m=>{if(m.type()==='error')errors.push(m.text())})
@@ -42,8 +42,8 @@ try{
    const a=await center(p,'[data-cell="0,0"]'),b=await center(p,'[data-testid="sale-zone"]');await pointer(p,cdp,touch,'down',a);await pointer(p,cdp,touch,'move',b);for(const n of await p.getByTestId('sale-price').all())assert.equal(await n.getAttribute('title'),'0 GOLD');await pointer(p,cdp,touch,'cancel');if(!touch)await p.mouse.up()
   })
   await check(label+' compact setting persists through reload; full display restores',async()=>{await p.getByRole('button',{name:'設定',exact:true}).click();await p.getByTestId('compact-gold').click();await until(async()=>(await snap(p)).goldFormat==='compact');await p.getByRole('button',{name:'閉じる',exact:true}).click();assert(!((await p.getByTestId('gold').innerText()).includes(',')));await p.reload();await p.getByRole('button',{name:'設定',exact:true}).click();assert(await p.getByTestId('compact-gold').isChecked());await p.getByTestId('compact-gold').click();await until(async()=>(await snap(p)).goldFormat==='full');await p.getByRole('button',{name:'閉じる',exact:true}).click()})
-  await check(label+' research5 blocked8 merge gives visible notice and preserves all materials',async()=>{
-   await seed(p,{tiers:Array(8).fill(5),cap:5,gold:1000,queue:[1]});const before=(await snap(p)).game,a=await center(p,'[data-cell="0,0"]'),b=await center(p,'[data-cell="1,0"]');await pointer(p,cdp,touch,'down',a);await pointer(p,cdp,touch,'move',b);assert(await p.locator('.research-notice').isVisible());await pointer(p,cdp,touch,'up');assert.deepEqual((await snap(p)).game,before)
+  await check(label+' research5 blocked8 merge gives notice and swaps only positions, preserving all materials',async()=>{
+   await seed(p,{tiers:Array(8).fill(5),cap:5,gold:1000,queue:[1]});const before=(await snap(p)).game,a=await center(p,'[data-cell="0,0"]'),b=await center(p,'[data-cell="1,0"]');await pointer(p,cdp,touch,'down',a);await pointer(p,cdp,touch,'move',b);assert(await p.locator('.research-notice').isVisible());await pointer(p,cdp,touch,'up');await until(async()=>(await snap(p)).game.revision===before.revision+1);const after=(await snap(p)).game;assert.deepEqual(after.slimes.map(s=>[s.id,s.tier,s.attributes??[]]),before.slimes.map(s=>[s.id,s.tier,s.attributes??[]]));assert.deepEqual(after.slimes[0].position,before.slimes[1].position);assert.deepEqual(after.slimes[1].position,before.slimes[0].position)
   })
   await check(label+' research keyboard purchase atomic, synchronous double click charged once, then merge succeeds',async()=>{
    await p.getByRole('button',{name:'GOLDショップ',exact:true}).click();await p.getByTestId('buy-research').scrollIntoViewIfNeeded();await p.getByTestId('buy-research').evaluate(b=>{b.click();b.click()});await until(async()=>(await snap(p)).researchMaxTier===10);const s=await snap(p);assert.equal(s.wallet.gold,904);assert.equal(s.game.highestTierReached,5)
@@ -70,3 +70,4 @@ try{
  assert.deepEqual(errors,[])
 }finally{fs.writeFileSync(path.join(dir,'results.json'),JSON.stringify({checks,errors,measurements,browser:browser?.version()},null,2));console.log(checks.length,'checks',checks.filter(x=>x.result==='FAIL'));await browser?.close();server?.kill()}}
 main().catch(e=>{console.error(e);process.exitCode=1})
+

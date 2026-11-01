@@ -25,12 +25,12 @@ function validateSession(value: unknown, version = 5): value is Session {
     !['full', 'compact'].includes(s.goldFormat))) return false
   const g = s.generator, rules = sessionRules(s)
   if (!g || !Array.isArray(g.storedTiers) || g.storedTiers.length > rules.capacity ||
-    g.storedTiers.some(t => !isValidGeneratedTier(t, s.game.highestTierReached)) ||
+    Array.from(g.storedTiers).some(t => !isValidGeneratedTier(t, s.game.highestTierReached)) ||
     !integer(g.totalGenerated) || g.totalGenerated < g.storedTiers.length ||
     !integer(g.progressMs) || g.progressMs >= rules.intervalMs ||
     !integer(g.updatedAtMs) || g.updatedAtMs > s.savedAtMs ||
     (g.storedTiers.length === rules.capacity && g.progressMs !== 0)) return false
-  if (version === 5 && (s.game.slimes.some(x => !isAttributes(x.attributes)) || !Array.isArray(g.storedAttributes) || g.storedAttributes.length !== g.storedTiers.length || !g.storedAttributes.every(isAttributes))) return false
+  if (version === 5 && (s.game.slimes.some(x => !isAttributes(x.attributes)) || !Array.isArray(g.storedAttributes) || g.storedAttributes.length !== g.storedTiers.length || !Array.from(g.storedAttributes).every(isAttributes))) return false
   if (version < 5 && (s.game.slimes.some(x => x.attributes !== undefined && (!isAttributes(x.attributes) || x.attributes.length > 0)) || (g.storedAttributes !== undefined && (!Array.isArray(g.storedAttributes) || g.storedAttributes.some(a => !isAttributes(a) || a.length > 0))))) return false
   if (s.lastEvent !== null && (!s.lastEvent || typeof s.lastEvent !== 'object' ||
     !/^gold-[1-9]\d*$/.test(s.lastEvent.id) || Number(s.lastEvent.id.slice(5)) > s.eventSequence ||

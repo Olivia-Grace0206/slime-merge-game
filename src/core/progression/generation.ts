@@ -106,9 +106,9 @@ function checkRules(state: GeneratorState, rules: GeneratorRules, highestTier: n
     !Number.isSafeInteger(rules.tapAdvanceMs) || rules.tapAdvanceMs <= 0 ||
     !Array.isArray(state.storedTiers) ||
     state.storedTiers.length > rules.capacity ||
-    (state.storedAttributes !== undefined && (!Array.isArray(state.storedAttributes) || state.storedAttributes.length !== state.storedTiers.length || !state.storedAttributes.every(isAttributes))) ||
+    (state.storedAttributes !== undefined && (!Array.isArray(state.storedAttributes) || state.storedAttributes.length !== state.storedTiers.length || !Array.from(state.storedAttributes).every(isAttributes))) ||
     (rules.attributeChance !== undefined && (!Number.isFinite(rules.attributeChance) || rules.attributeChance < 0 || rules.attributeChance > 1)) ||
-    state.storedTiers.some((t) => !isTier(t) || t > highestTier) ||
+    Array.from(state.storedTiers).some((t) => !isTier(t) || t > highestTier) ||
     !Number.isSafeInteger(state.updatedAtMs) || state.updatedAtMs < 0 ||
     !Number.isSafeInteger(state.progressMs) || state.progressMs < 0 ||
     !Number.isSafeInteger(state.totalGenerated) || state.totalGenerated < state.storedTiers.length
@@ -186,11 +186,11 @@ export function withdrawToCell(
   if (
     !isGameState(game) || !inBounds(game.bounds, target) ||
     !generator.storedTiers.length || !isValidGeneratedTier(generator.storedTiers[0]!, game.highestTierReached) ||
-    (generator.storedAttributes !== undefined && (!Array.isArray(generator.storedAttributes) || generator.storedAttributes.length !== generator.storedTiers.length || !generator.storedAttributes.every(isAttributes))) ||
+    (generator.storedAttributes !== undefined && (!Array.isArray(generator.storedAttributes) || generator.storedAttributes.length !== generator.storedTiers.length || !Array.from(generator.storedAttributes).every(isAttributes))) ||
     !newId.trim() || game.slimes.some((s) => s.id === newId) ||
     game.slimes.some((s) => samePosition(s.position, target))
   ) return reject()
-  const slime: Slime = { id: newId, tier: generator.storedTiers[0]!, position: { ...target }, ...(generator.storedAttributes !== undefined ? { attributes: generator.storedAttributes[0]!.map(a => ({ ...a })) } : {}) }
+  const slime: Slime = { id: newId, tier: generator.storedTiers[0]!, position: { ...target }, ...(generator.storedAttributes !== undefined ? { attributes: generator.storedAttributes[0]!.map((a: Attributes[number]) => ({ ...a })) } : {}) }
   const nextGame: GameState = {
     ...game,
     slimes: [...game.slimes, slime],

@@ -7,7 +7,8 @@ const key='slime-merge-normal-v2',checks=[],errors=[]
 fs.mkdirSync(dir,{recursive:true})
 async function check(name,fn){try{await fn();checks.push({name,result:'PASS'});console.log('PASS',name)}catch(e){checks.push({name,result:'FAIL',error:String(e)});throw e}}
 async function center(p,selector){const r=await p.locator(selector).boundingBox();assert(r);return {x:r.x+r.width/2,y:r.y+r.height/2}}
-async function snapshot(p){return p.evaluate(k=>JSON.parse(localStorage.getItem(k)),key)}
+// Compare legacy absence with schema5's explicit empty attributes semantically.
+async function snapshot(p){return p.evaluate(k=>{const s=JSON.parse(localStorage.getItem(k));if(s){s.game.slimes=s.game.slimes.map(x=>({...x,attributes:x.attributes??[]}));s.generator.storedAttributes??=s.generator.storedTiers.map(()=>[])}return s},key)}
 async function until(fn){for(let i=0;i<80;i++){if(await fn())return;await new Promise(r=>setTimeout(r,10))}throw Error('condition timeout')}
 function fixture(now,{tiers=[],queue=[],gold=0,H=1,event=null,capacityLv=0}={}){return {version:3,savedAtMs:now,nextId:tiers.length+1,sequence:0,game:{bounds:{origin:{x:0,y:0},width:4,height:4},slimes:tiers.map((t,i)=>({id:`p-${i+1}`,tier:t,position:{x:i%4,y:Math.floor(i/4)}})),highestTierReached:Math.max(H,...tiers,...queue),revision:0},wallet:{gold,upgrades:{speed:0,tap:0,storage:capacityLv}},generator:{storedTiers:queue,progressMs:0,updatedAtMs:now,totalGenerated:queue.length},eventSequence:event?1:0,nextEventAtMs:now+60000,event,lastEvent:null,protectedIds:[],reducedEffects:false}}
 async function seed(p,options){const now=await p.evaluate(()=>Date.now()),s=fixture(now,options);await p.evaluate(([k,s])=>localStorage.setItem(k,JSON.stringify(s)),[key,s]);await p.reload();await p.getByTestId('board').waitFor();return s}
@@ -79,7 +80,7 @@ try{
   })
   await check(width+' v2 4/10 migrates frozen unit then sale ends ledger; save failure retains both sides',async()=>{
    let now=await p.evaluate(()=>Date.now()),s=fixture(now,{tiers:[5],gold:4});s.version=2;s.eventSequence=1;s.event={id:'gold-1',sequence:1,cell:{x:0,y:0},expiresAtMs:now+45000,tier:5,sourceId:'p-1',attributeCount:0,paid:4,receivedGOLD:4,unitGOLD:1,nextPaymentAtMs:now+5000};await p.evaluate(([k,s])=>localStorage.setItem(k,JSON.stringify(s)),[key,s]);await p.reload()
-   await drag(p,'[data-cell="0,0"]','[data-testid="sale-zone"]');await until(async()=>(await snapshot(p)).event===null);assert.equal((await snapshot(p)).wallet.gold,36);assert.equal((await snapshot(p)).version,4)
+   await drag(p,'[data-cell="0,0"]','[data-testid="sale-zone"]');await until(async()=>(await snapshot(p)).event===null);assert.equal((await snapshot(p)).wallet.gold,36);assert.equal((await snapshot(p)).version,5)
    await seed(p,{tiers:[1],queue:[1]});const raw=await p.evaluate(k=>localStorage.getItem(k),key);await p.evaluate(()=>{Storage.prototype.setItem=()=>{throw new DOMException('quota','QuotaExceededError')}})
    await p.getByTestId('add-slime').click();await until(async()=>await p.getByRole('alert').isVisible());assert.equal(await p.evaluate(k=>localStorage.getItem(k),key),raw);assert.equal(await p.locator('[data-slime-id]').count(),1);await p.reload()
   })
@@ -123,3 +124,4 @@ try{
  assert.equal(errors.length,0,errors.join('\n'))
 }finally{fs.writeFileSync(path.join(dir,'results.json'),JSON.stringify({browser:browser?.version(),checks,errors},null,2));console.log(`${checks.filter(x=>x.result==='PASS').length} PASS / ${checks.filter(x=>x.result==='FAIL').length} FAIL`);await browser?.close();server?.kill()}}
 main().catch(e=>{console.error(e);process.exitCode=1})
+

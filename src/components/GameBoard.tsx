@@ -56,6 +56,7 @@ export function GameBoard() {
   const viewRef = useRef(view)
   const [gesture, setGesture] = useState<GestureState>(idleGesture)
   const active = useRef(gesture)
+  const gestureViewport = useRef({ width: 0, height: 0 })
   const [preview, setPreview] = useState<DropPlan | null>(null)
   const previewRef = useRef<{ target: GridPosition; plan: DropPlan } | null>(null)
   const viewport = useRef<HTMLDivElement>(null)
@@ -197,6 +198,7 @@ export function GameBoard() {
     touchContext.current = e.pointerType !== 'mouse'
     if (e.button !== 0 || panel || (normalRef.current && store.state.error)) return
     cancelHold()
+    if (!active.current.contacts.length) gestureViewport.current = { width: window.innerWidth, height: window.innerHeight }
     const point = localPoint(e)
     const rect = e.currentTarget.getBoundingClientRect()
     setViewportOrigin({ x: rect.left, y: rect.top })
@@ -239,6 +241,10 @@ export function GameBoard() {
     return !!r && e.clientX >= r.left && e.clientX < r.right && e.clientY >= r.top && e.clientY < r.bottom
   }
   function up(e: ReactPointerEvent<HTMLDivElement>) {
+    // ResizeObserver/resize notifications can arrive after pointerup; never use the old gesture geometry.
+    if (gestureViewport.current.width !== window.innerWidth || gestureViewport.current.height !== window.innerHeight) { abort(true); return }
+    const rect = e.currentTarget.getBoundingClientRect()
+    if (Math.abs(rect.width - viewRef.current.width) > 1 || Math.abs(rect.height - viewRef.current.height) > 1) { abort(true); return }
     if (!active.current.contacts.some(c => c.id === e.pointerId)) return
     cancelHold()
     const result = transition(active.current, { type: 'up', id: e.pointerId, point: localPoint(e) })
@@ -371,7 +377,7 @@ export function GameBoard() {
             </button>
           })}
         </div>
-        {plan && <div className="operation-preview merge-attribute-preview" data-testid="attribute-preview"><strong>マージ → Tier {plan.outputTier}</strong>{plan.groups.map(g => <small key={g.number}>組{g.number} ×{g.outputs.length}：{attributeText(g.attributes)}</small>)}<small>低確率で新属性（仮1%/組）</small></div>}
+        {plan && <div className="operation-preview merge-attribute-preview" data-testid="attribute-preview"><strong>マージ → Tier {plan.outputTier}</strong>{plan.groups.map(g => <small key={g.number}>組{g.number} ×{g.outputs.length}：{attributeText(g.attributes)}</small>)}<small>変異 仮1%/組・空き属性枠のみ</small></div>}
         {swap && <div className="operation-preview" data-testid="swap-preview"><strong>⇄ 位置交換</strong><small>{swap.reason === 'research-locked' ? '研究未解放 · 素材消費なし' : swap.reason === 'attribute-limit' ? '属性上限3種類（仮）· 全属性保持' : '2体の位置だけ交換'}</small></div>}
         {showPrices && <div className="price-layer" aria-label="全スライムの売却受取額">{game.slimes.map(slime => {
           const point = worldToScreen({ x: (slime.position.x + .5) * 700 / game.bounds.width, y: (slime.position.y + .04) * 700 / game.bounds.height }, camera, view)
