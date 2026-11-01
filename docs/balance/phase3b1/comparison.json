@@ -1,0 +1,966 @@
+{
+  "provisional": true,
+  "stockModel": "One-hour pure stock model, fixed15s ordinary production/3% attributes, service FIFO10→1 at60/180/600s, output immediately handled externally; no claim of a constrained4x4 playthrough.3seeds. Tier weights/effects unchanged.",
+  "performanceModel": "100 trials/size,16×T40/3attrsLv99 and up to160 stored3attrs; encode/decode/atomic in-memory StoragePort write/one-day bounded generation. Wall timings observational, not device guarantees. Exact58 is legacy stock comparison; modernLv10 capacity60 used for save validity.",
+  "proposals": [
+    {
+      "name": "previous",
+      "perLevel": 3,
+      "maxLevel": 16,
+      "growth": 1.7,
+      "maxCapacity": 58,
+      "levels": [
+        {
+          "lv": 0,
+          "capacity": 10,
+          "cumulativeGOLD": 0,
+          "nextGOLD": 20,
+          "oneTierSaleCoveringCumulative": 1
+        },
+        {
+          "lv": 1,
+          "capacity": 13,
+          "cumulativeGOLD": 20,
+          "nextGOLD": 34,
+          "oneTierSaleCoveringCumulative": 5
+        },
+        {
+          "lv": 5,
+          "capacity": 25,
+          "cumulativeGOLD": 379,
+          "nextGOLD": 284,
+          "oneTierSaleCoveringCumulative": 9
+        },
+        {
+          "lv": 10,
+          "capacity": 40,
+          "cumulativeGOLD": 5735,
+          "nextGOLD": 4032,
+          "oneTierSaleCoveringCumulative": 13
+        },
+        {
+          "lv": 16,
+          "capacity": 58,
+          "cumulativeGOLD": 139010,
+          "nextGOLD": null,
+          "oneTierSaleCoveringCumulative": 18
+        }
+      ]
+    },
+    {
+      "name": "A",
+      "perLevel": 4,
+      "maxLevel": 30,
+      "growth": 1.35,
+      "maxCapacity": 130,
+      "levels": [
+        {
+          "lv": 0,
+          "capacity": 10,
+          "cumulativeGOLD": 0,
+          "nextGOLD": 20,
+          "oneTierSaleCoveringCumulative": 1
+        },
+        {
+          "lv": 1,
+          "capacity": 14,
+          "cumulativeGOLD": 20,
+          "nextGOLD": 27,
+          "oneTierSaleCoveringCumulative": 5
+        },
+        {
+          "lv": 5,
+          "capacity": 30,
+          "cumulativeGOLD": 201,
+          "nextGOLD": 90,
+          "oneTierSaleCoveringCumulative": 8
+        },
+        {
+          "lv": 10,
+          "capacity": 50,
+          "cumulativeGOLD": 1096,
+          "nextGOLD": 403,
+          "oneTierSaleCoveringCumulative": 11
+        },
+        {
+          "lv": 16,
+          "capacity": 74,
+          "cumulativeGOLD": 6905,
+          "nextGOLD": 2435,
+          "oneTierSaleCoveringCumulative": 13
+        },
+        {
+          "lv": 20,
+          "capacity": 90,
+          "cumulativeGOLD": 23054,
+          "nextGOLD": 8086,
+          "oneTierSaleCoveringCumulative": 15
+        },
+        {
+          "lv": 30,
+          "capacity": 130,
+          "cumulativeGOLD": 464445,
+          "nextGOLD": null,
+          "oneTierSaleCoveringCumulative": 19
+        }
+      ]
+    },
+    {
+      "name": "B",
+      "perLevel": 5,
+      "maxLevel": 30,
+      "growth": 1.35,
+      "maxCapacity": 160,
+      "levels": [
+        {
+          "lv": 0,
+          "capacity": 10,
+          "cumulativeGOLD": 0,
+          "nextGOLD": 20,
+          "oneTierSaleCoveringCumulative": 1
+        },
+        {
+          "lv": 1,
+          "capacity": 15,
+          "cumulativeGOLD": 20,
+          "nextGOLD": 27,
+          "oneTierSaleCoveringCumulative": 5
+        },
+        {
+          "lv": 5,
+          "capacity": 35,
+          "cumulativeGOLD": 201,
+          "nextGOLD": 90,
+          "oneTierSaleCoveringCumulative": 8
+        },
+        {
+          "lv": 10,
+          "capacity": 60,
+          "cumulativeGOLD": 1096,
+          "nextGOLD": 403,
+          "oneTierSaleCoveringCumulative": 11
+        },
+        {
+          "lv": 16,
+          "capacity": 90,
+          "cumulativeGOLD": 6905,
+          "nextGOLD": 2435,
+          "oneTierSaleCoveringCumulative": 13
+        },
+        {
+          "lv": 20,
+          "capacity": 110,
+          "cumulativeGOLD": 23054,
+          "nextGOLD": 8086,
+          "oneTierSaleCoveringCumulative": 15
+        },
+        {
+          "lv": 30,
+          "capacity": 160,
+          "cumulativeGOLD": 464445,
+          "nextGOLD": null,
+          "oneTierSaleCoveringCumulative": 19
+        }
+      ]
+    },
+    {
+      "name": "C",
+      "perLevel": 5,
+      "maxLevel": 40,
+      "growth": 1.35,
+      "maxCapacity": 210,
+      "levels": [
+        {
+          "lv": 0,
+          "capacity": 10,
+          "cumulativeGOLD": 0,
+          "nextGOLD": 20,
+          "oneTierSaleCoveringCumulative": 1
+        },
+        {
+          "lv": 1,
+          "capacity": 15,
+          "cumulativeGOLD": 20,
+          "nextGOLD": 27,
+          "oneTierSaleCoveringCumulative": 5
+        },
+        {
+          "lv": 5,
+          "capacity": 35,
+          "cumulativeGOLD": 201,
+          "nextGOLD": 90,
+          "oneTierSaleCoveringCumulative": 8
+        },
+        {
+          "lv": 10,
+          "capacity": 60,
+          "cumulativeGOLD": 1096,
+          "nextGOLD": 403,
+          "oneTierSaleCoveringCumulative": 11
+        },
+        {
+          "lv": 16,
+          "capacity": 90,
+          "cumulativeGOLD": 6905,
+          "nextGOLD": 2435,
+          "oneTierSaleCoveringCumulative": 13
+        },
+        {
+          "lv": 20,
+          "capacity": 110,
+          "cumulativeGOLD": 23054,
+          "nextGOLD": 8086,
+          "oneTierSaleCoveringCumulative": 15
+        },
+        {
+          "lv": 30,
+          "capacity": 160,
+          "cumulativeGOLD": 464445,
+          "nextGOLD": 162571,
+          "oneTierSaleCoveringCumulative": 19
+        },
+        {
+          "lv": 40,
+          "capacity": 210,
+          "cumulativeGOLD": 9339224,
+          "nextGOLD": null,
+          "oneTierSaleCoveringCumulative": 24
+        }
+      ]
+    }
+  ],
+  "priceCurves": [
+    {
+      "growth": 1.25,
+      "levels": [
+        {
+          "lv": 1,
+          "next": 25,
+          "cumulative": 20
+        },
+        {
+          "lv": 5,
+          "next": 62,
+          "cumulative": 166
+        },
+        {
+          "lv": 10,
+          "next": 187,
+          "cumulative": 671
+        },
+        {
+          "lv": 16,
+          "next": 711,
+          "cumulative": 2771
+        },
+        {
+          "lv": 20,
+          "next": 1735,
+          "cumulative": 6870
+        },
+        {
+          "lv": 30,
+          "next": 16156,
+          "cumulative": 64559
+        }
+      ]
+    },
+    {
+      "growth": 1.35,
+      "levels": [
+        {
+          "lv": 1,
+          "next": 27,
+          "cumulative": 20
+        },
+        {
+          "lv": 5,
+          "next": 90,
+          "cumulative": 201
+        },
+        {
+          "lv": 10,
+          "next": 403,
+          "cumulative": 1096
+        },
+        {
+          "lv": 16,
+          "next": 2435,
+          "cumulative": 6905
+        },
+        {
+          "lv": 20,
+          "next": 8086,
+          "cumulative": 23054
+        },
+        {
+          "lv": 30,
+          "next": 162571,
+          "cumulative": 464445
+        }
+      ]
+    },
+    {
+      "growth": 1.5,
+      "levels": [
+        {
+          "lv": 1,
+          "next": 30,
+          "cumulative": 20
+        },
+        {
+          "lv": 5,
+          "next": 152,
+          "cumulative": 265
+        },
+        {
+          "lv": 10,
+          "next": 1154,
+          "cumulative": 2269
+        },
+        {
+          "lv": 16,
+          "next": 13137,
+          "cumulative": 26238
+        },
+        {
+          "lv": 20,
+          "next": 66506,
+          "cumulative": 132976
+        },
+        {
+          "lv": 30,
+          "next": 3835022,
+          "cumulative": 7670013
+        }
+      ]
+    },
+    {
+      "growth": 1.7,
+      "levels": [
+        {
+          "lv": 1,
+          "next": 34,
+          "cumulative": 20
+        },
+        {
+          "lv": 5,
+          "next": 284,
+          "cumulative": 379
+        },
+        {
+          "lv": 10,
+          "next": 4032,
+          "cumulative": 5735
+        },
+        {
+          "lv": 16,
+          "next": 97323,
+          "cumulative": 139010
+        },
+        {
+          "lv": 20,
+          "next": 812847,
+          "cumulative": 1161189
+        },
+        {
+          "lv": 30,
+          "next": 163869315,
+          "cumulative": 234099005
+        }
+      ]
+    }
+  ],
+  "stock": [
+    {
+      "capacity": 10,
+      "serviceSeconds": 60,
+      "seed": 12,
+      "generated": 200,
+      "fullRatio": 0.17222222222222222,
+      "focused": 20,
+      "stockConsumed": 200,
+      "netCompression": 180,
+      "outputAttributes": 7,
+      "consumedAttributedSpecimens": 9,
+      "remaining": 0
+    },
+    {
+      "capacity": 10,
+      "serviceSeconds": 60,
+      "seed": 61,
+      "generated": 200,
+      "fullRatio": 0.17222222222222222,
+      "focused": 20,
+      "stockConsumed": 200,
+      "netCompression": 180,
+      "outputAttributes": 5,
+      "consumedAttributedSpecimens": 7,
+      "remaining": 0
+    },
+    {
+      "capacity": 10,
+      "serviceSeconds": 60,
+      "seed": 210,
+      "generated": 200,
+      "fullRatio": 0.17222222222222222,
+      "focused": 20,
+      "stockConsumed": 200,
+      "netCompression": 180,
+      "outputAttributes": 4,
+      "consumedAttributedSpecimens": 3,
+      "remaining": 0
+    },
+    {
+      "capacity": 10,
+      "serviceSeconds": 180,
+      "seed": 12,
+      "generated": 200,
+      "fullRatio": 0.17222222222222222,
+      "focused": 20,
+      "stockConsumed": 200,
+      "netCompression": 180,
+      "outputAttributes": 7,
+      "consumedAttributedSpecimens": 9,
+      "remaining": 0
+    },
+    {
+      "capacity": 10,
+      "serviceSeconds": 180,
+      "seed": 61,
+      "generated": 200,
+      "fullRatio": 0.17222222222222222,
+      "focused": 20,
+      "stockConsumed": 200,
+      "netCompression": 180,
+      "outputAttributes": 5,
+      "consumedAttributedSpecimens": 7,
+      "remaining": 0
+    },
+    {
+      "capacity": 10,
+      "serviceSeconds": 180,
+      "seed": 210,
+      "generated": 200,
+      "fullRatio": 0.17222222222222222,
+      "focused": 20,
+      "stockConsumed": 200,
+      "netCompression": 180,
+      "outputAttributes": 4,
+      "consumedAttributedSpecimens": 3,
+      "remaining": 0
+    },
+    {
+      "capacity": 10,
+      "serviceSeconds": 600,
+      "seed": 12,
+      "generated": 60,
+      "fullRatio": 0.7516666666666667,
+      "focused": 6,
+      "stockConsumed": 60,
+      "netCompression": 54,
+      "outputAttributes": 5,
+      "consumedAttributedSpecimens": 3,
+      "remaining": 0
+    },
+    {
+      "capacity": 10,
+      "serviceSeconds": 600,
+      "seed": 61,
+      "generated": 60,
+      "fullRatio": 0.7516666666666667,
+      "focused": 6,
+      "stockConsumed": 60,
+      "netCompression": 54,
+      "outputAttributes": 1,
+      "consumedAttributedSpecimens": 1,
+      "remaining": 0
+    },
+    {
+      "capacity": 10,
+      "serviceSeconds": 600,
+      "seed": 210,
+      "generated": 60,
+      "fullRatio": 0.7516666666666667,
+      "focused": 6,
+      "stockConsumed": 60,
+      "netCompression": 54,
+      "outputAttributes": 0,
+      "consumedAttributedSpecimens": 1,
+      "remaining": 0
+    },
+    {
+      "capacity": 58,
+      "serviceSeconds": 60,
+      "seed": 12,
+      "generated": 240,
+      "fullRatio": 0,
+      "focused": 24,
+      "stockConsumed": 240,
+      "netCompression": 216,
+      "outputAttributes": 5,
+      "consumedAttributedSpecimens": 9,
+      "remaining": 0
+    },
+    {
+      "capacity": 58,
+      "serviceSeconds": 60,
+      "seed": 61,
+      "generated": 240,
+      "fullRatio": 0,
+      "focused": 24,
+      "stockConsumed": 240,
+      "netCompression": 216,
+      "outputAttributes": 8,
+      "consumedAttributedSpecimens": 8,
+      "remaining": 0
+    },
+    {
+      "capacity": 58,
+      "serviceSeconds": 60,
+      "seed": 210,
+      "generated": 240,
+      "fullRatio": 0,
+      "focused": 24,
+      "stockConsumed": 240,
+      "netCompression": 216,
+      "outputAttributes": 3,
+      "consumedAttributedSpecimens": 6,
+      "remaining": 0
+    },
+    {
+      "capacity": 58,
+      "serviceSeconds": 180,
+      "seed": 12,
+      "generated": 240,
+      "fullRatio": 0,
+      "focused": 20,
+      "stockConsumed": 200,
+      "netCompression": 180,
+      "outputAttributes": 6,
+      "consumedAttributedSpecimens": 6,
+      "remaining": 40
+    },
+    {
+      "capacity": 58,
+      "serviceSeconds": 180,
+      "seed": 61,
+      "generated": 240,
+      "fullRatio": 0,
+      "focused": 20,
+      "stockConsumed": 200,
+      "netCompression": 180,
+      "outputAttributes": 7,
+      "consumedAttributedSpecimens": 5,
+      "remaining": 40
+    },
+    {
+      "capacity": 58,
+      "serviceSeconds": 180,
+      "seed": 210,
+      "generated": 240,
+      "fullRatio": 0,
+      "focused": 20,
+      "stockConsumed": 200,
+      "netCompression": 180,
+      "outputAttributes": 3,
+      "consumedAttributedSpecimens": 1,
+      "remaining": 40
+    },
+    {
+      "capacity": 58,
+      "serviceSeconds": 600,
+      "seed": 12,
+      "generated": 108,
+      "fullRatio": 0.5513888888888889,
+      "focused": 6,
+      "stockConsumed": 60,
+      "netCompression": 54,
+      "outputAttributes": 0,
+      "consumedAttributedSpecimens": 0,
+      "remaining": 48
+    },
+    {
+      "capacity": 58,
+      "serviceSeconds": 600,
+      "seed": 61,
+      "generated": 108,
+      "fullRatio": 0.5513888888888889,
+      "focused": 6,
+      "stockConsumed": 60,
+      "netCompression": 54,
+      "outputAttributes": 2,
+      "consumedAttributedSpecimens": 0,
+      "remaining": 48
+    },
+    {
+      "capacity": 58,
+      "serviceSeconds": 600,
+      "seed": 210,
+      "generated": 108,
+      "fullRatio": 0.5513888888888889,
+      "focused": 6,
+      "stockConsumed": 60,
+      "netCompression": 54,
+      "outputAttributes": 1,
+      "consumedAttributedSpecimens": 1,
+      "remaining": 48
+    },
+    {
+      "capacity": 100,
+      "serviceSeconds": 60,
+      "seed": 12,
+      "generated": 240,
+      "fullRatio": 0,
+      "focused": 24,
+      "stockConsumed": 240,
+      "netCompression": 216,
+      "outputAttributes": 5,
+      "consumedAttributedSpecimens": 9,
+      "remaining": 0
+    },
+    {
+      "capacity": 100,
+      "serviceSeconds": 60,
+      "seed": 61,
+      "generated": 240,
+      "fullRatio": 0,
+      "focused": 24,
+      "stockConsumed": 240,
+      "netCompression": 216,
+      "outputAttributes": 8,
+      "consumedAttributedSpecimens": 8,
+      "remaining": 0
+    },
+    {
+      "capacity": 100,
+      "serviceSeconds": 60,
+      "seed": 210,
+      "generated": 240,
+      "fullRatio": 0,
+      "focused": 24,
+      "stockConsumed": 240,
+      "netCompression": 216,
+      "outputAttributes": 3,
+      "consumedAttributedSpecimens": 6,
+      "remaining": 0
+    },
+    {
+      "capacity": 100,
+      "serviceSeconds": 180,
+      "seed": 12,
+      "generated": 240,
+      "fullRatio": 0,
+      "focused": 20,
+      "stockConsumed": 200,
+      "netCompression": 180,
+      "outputAttributes": 6,
+      "consumedAttributedSpecimens": 6,
+      "remaining": 40
+    },
+    {
+      "capacity": 100,
+      "serviceSeconds": 180,
+      "seed": 61,
+      "generated": 240,
+      "fullRatio": 0,
+      "focused": 20,
+      "stockConsumed": 200,
+      "netCompression": 180,
+      "outputAttributes": 7,
+      "consumedAttributedSpecimens": 5,
+      "remaining": 40
+    },
+    {
+      "capacity": 100,
+      "serviceSeconds": 180,
+      "seed": 210,
+      "generated": 240,
+      "fullRatio": 0,
+      "focused": 20,
+      "stockConsumed": 200,
+      "netCompression": 180,
+      "outputAttributes": 3,
+      "consumedAttributedSpecimens": 1,
+      "remaining": 40
+    },
+    {
+      "capacity": 100,
+      "serviceSeconds": 600,
+      "seed": 12,
+      "generated": 150,
+      "fullRatio": 0.3761111111111111,
+      "focused": 6,
+      "stockConsumed": 60,
+      "netCompression": 54,
+      "outputAttributes": 1,
+      "consumedAttributedSpecimens": 0,
+      "remaining": 90
+    },
+    {
+      "capacity": 100,
+      "serviceSeconds": 600,
+      "seed": 61,
+      "generated": 150,
+      "fullRatio": 0.3761111111111111,
+      "focused": 6,
+      "stockConsumed": 60,
+      "netCompression": 54,
+      "outputAttributes": 4,
+      "consumedAttributedSpecimens": 0,
+      "remaining": 90
+    },
+    {
+      "capacity": 100,
+      "serviceSeconds": 600,
+      "seed": 210,
+      "generated": 150,
+      "fullRatio": 0.3761111111111111,
+      "focused": 6,
+      "stockConsumed": 60,
+      "netCompression": 54,
+      "outputAttributes": 1,
+      "consumedAttributedSpecimens": 1,
+      "remaining": 90
+    },
+    {
+      "capacity": 160,
+      "serviceSeconds": 60,
+      "seed": 12,
+      "generated": 240,
+      "fullRatio": 0,
+      "focused": 24,
+      "stockConsumed": 240,
+      "netCompression": 216,
+      "outputAttributes": 5,
+      "consumedAttributedSpecimens": 9,
+      "remaining": 0
+    },
+    {
+      "capacity": 160,
+      "serviceSeconds": 60,
+      "seed": 61,
+      "generated": 240,
+      "fullRatio": 0,
+      "focused": 24,
+      "stockConsumed": 240,
+      "netCompression": 216,
+      "outputAttributes": 8,
+      "consumedAttributedSpecimens": 8,
+      "remaining": 0
+    },
+    {
+      "capacity": 160,
+      "serviceSeconds": 60,
+      "seed": 210,
+      "generated": 240,
+      "fullRatio": 0,
+      "focused": 24,
+      "stockConsumed": 240,
+      "netCompression": 216,
+      "outputAttributes": 3,
+      "consumedAttributedSpecimens": 6,
+      "remaining": 0
+    },
+    {
+      "capacity": 160,
+      "serviceSeconds": 180,
+      "seed": 12,
+      "generated": 240,
+      "fullRatio": 0,
+      "focused": 20,
+      "stockConsumed": 200,
+      "netCompression": 180,
+      "outputAttributes": 6,
+      "consumedAttributedSpecimens": 6,
+      "remaining": 40
+    },
+    {
+      "capacity": 160,
+      "serviceSeconds": 180,
+      "seed": 61,
+      "generated": 240,
+      "fullRatio": 0,
+      "focused": 20,
+      "stockConsumed": 200,
+      "netCompression": 180,
+      "outputAttributes": 7,
+      "consumedAttributedSpecimens": 5,
+      "remaining": 40
+    },
+    {
+      "capacity": 160,
+      "serviceSeconds": 180,
+      "seed": 210,
+      "generated": 240,
+      "fullRatio": 0,
+      "focused": 20,
+      "stockConsumed": 200,
+      "netCompression": 180,
+      "outputAttributes": 3,
+      "consumedAttributedSpecimens": 1,
+      "remaining": 40
+    },
+    {
+      "capacity": 160,
+      "serviceSeconds": 600,
+      "seed": 12,
+      "generated": 210,
+      "fullRatio": 0.12555555555555556,
+      "focused": 6,
+      "stockConsumed": 60,
+      "netCompression": 54,
+      "outputAttributes": 2,
+      "consumedAttributedSpecimens": 0,
+      "remaining": 150
+    },
+    {
+      "capacity": 160,
+      "serviceSeconds": 600,
+      "seed": 61,
+      "generated": 210,
+      "fullRatio": 0.12555555555555556,
+      "focused": 6,
+      "stockConsumed": 60,
+      "netCompression": 54,
+      "outputAttributes": 2,
+      "consumedAttributedSpecimens": 0,
+      "remaining": 150
+    },
+    {
+      "capacity": 160,
+      "serviceSeconds": 600,
+      "seed": 210,
+      "generated": 210,
+      "fullRatio": 0.12555555555555556,
+      "focused": 6,
+      "stockConsumed": 60,
+      "netCompression": 54,
+      "outputAttributes": 0,
+      "consumedAttributedSpecimens": 1,
+      "remaining": 150
+    }
+  ],
+  "timings": [
+    {
+      "count": 10,
+      "actualCapacity": 10,
+      "storageLevel": 0,
+      "jsonCharacters": 3807,
+      "jsonUTF8Bytes": 3807,
+      "nextUpgradeGOLD": 20,
+      "timing": {
+        "encode": {
+          "meanMs": 0.07616310000000226,
+          "p95Ms": 0.17459299999995892,
+          "maxMs": 0.3671920000000455
+        },
+        "decode": {
+          "meanMs": 0.10062068000000238,
+          "p95Ms": 0.1874819999999886,
+          "maxMs": 0.5606640000000311
+        },
+        "write": {
+          "meanMs": 0.06679355000000044,
+          "p95Ms": 0.1384390000000053,
+          "maxMs": 0.19649600000002465
+        },
+        "generate": {
+          "meanMs": 0.07357823000000224,
+          "p95Ms": 0.15267900000003465,
+          "maxMs": 0.26116300000001047
+        }
+      }
+    },
+    {
+      "count": 58,
+      "actualCapacity": 60,
+      "storageLevel": 10,
+      "jsonCharacters": 7888,
+      "jsonUTF8Bytes": 7888,
+      "nextUpgradeGOLD": 403,
+      "timing": {
+        "encode": {
+          "meanMs": 0.0707035500000029,
+          "p95Ms": 0.15325099999995473,
+          "maxMs": 0.34798299999999927
+        },
+        "decode": {
+          "meanMs": 0.09315526999999747,
+          "p95Ms": 0.14586899999994785,
+          "maxMs": 0.19003599999996368
+        },
+        "write": {
+          "meanMs": 0.06084412999999699,
+          "p95Ms": 0.11734599999999773,
+          "maxMs": 0.3787800000000061
+        },
+        "generate": {
+          "meanMs": 0.2094374699999969,
+          "p95Ms": 0.37631599999997434,
+          "maxMs": 0.5404039999999668
+        }
+      }
+    },
+    {
+      "count": 100,
+      "actualCapacity": 100,
+      "storageLevel": 18,
+      "jsonCharacters": 11459,
+      "jsonUTF8Bytes": 11459,
+      "nextUpgradeGOLD": 4437,
+      "timing": {
+        "encode": {
+          "meanMs": 0.08364907000000812,
+          "p95Ms": 0.16361600000004728,
+          "maxMs": 0.3064310000000887
+        },
+        "decode": {
+          "meanMs": 0.1362748299999953,
+          "p95Ms": 0.28217499999993834,
+          "maxMs": 0.3805929999999762
+        },
+        "write": {
+          "meanMs": 0.0775898000000052,
+          "p95Ms": 0.15098700000010012,
+          "maxMs": 0.40229599999997845
+        },
+        "generate": {
+          "meanMs": 0.3254640299999903,
+          "p95Ms": 0.49649699999997665,
+          "maxMs": 0.8362879999999677
+        }
+      }
+    },
+    {
+      "count": 160,
+      "actualCapacity": 160,
+      "storageLevel": 30,
+      "jsonCharacters": 16559,
+      "jsonUTF8Bytes": 16559,
+      "nextUpgradeGOLD": 162571,
+      "timing": {
+        "encode": {
+          "meanMs": 0.10641152999999917,
+          "p95Ms": 0.16809299999999894,
+          "maxMs": 0.40631200000007084
+        },
+        "decode": {
+          "meanMs": 0.20745548000000555,
+          "p95Ms": 0.5266219999999748,
+          "maxMs": 0.7755769999999984
+        },
+        "write": {
+          "meanMs": 0.10805454000000396,
+          "p95Ms": 0.21121800000003077,
+          "maxMs": 0.4221149999999625
+        },
+        "generate": {
+          "meanMs": 0.5214709400000095,
+          "p95Ms": 0.7742449999999508,
+          "maxMs": 0.9647019999999884
+        }
+      }
+    }
+  ]
+}

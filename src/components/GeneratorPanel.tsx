@@ -27,7 +27,7 @@ export function GeneratorPanel({ session, disabled, fullBoard, onAdd, onTap, onM
     sync(); document.addEventListener('visibilitychange', sync)
     return () => { cancelAnimationFrame(frame); document.removeEventListener('visibilitychange', sync) }
   }, [session, disabled, full, rules.intervalMs])
-  return <section className={`generator-panel ${full ? 'storage-full' : ''}`} aria-label="スライム生成装置">
+  return <section className={`generator-panel ${full ? 'storage-full' : ''} ${rules.capacity>=100?'large-storage':''}`} aria-label="スライム生成装置">
     <h2><span aria-hidden="true">✦</span> スライム生成</h2>
     <button type="button" data-testid="add-slime" className="add-button" title={focused ? '属性付き・高Tierを含む貯蔵先頭10体を消費します' : '貯蔵先頭1体を追加します'} disabled={disabled || fullBoard || unavailable} onClick={onAdd}>
       <span className="generator-mascot"><SlimeTrio /></span>

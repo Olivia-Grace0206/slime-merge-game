@@ -12,7 +12,7 @@ import { MAX_TIER, type DropPlan, type InvalidReason } from '../domain/game'
 import type { GridPosition } from '../domain/grid'
 import { samePosition } from '../core/grid/coordinates'
 import { SessionStore } from '../app/sessionStore'
-import { upgradeCost, EXPERIMENTAL_ECONOMY } from '../core/progression/economy'
+import { upgradeCost, UPGRADE_MAX_LEVEL } from '../core/progression/economy'
 import { sessionRules, type Command } from '../core/progression/session'
 import { applyPlan } from '../core/merge/apply'
 import { planDrop } from '../core/merge/plan'
@@ -428,8 +428,8 @@ export function GameBoard() {
     <GameMenu extra={panel === 'attributes' ? <><p>属性効果は盤面配置・売却・マージで発動します。数値は調整中です。属性重視は属性付き・高Tierを含む貯蔵先頭10体を1体へ変換。属性は必ず付くとは限りません。</p><p data-testid="support-summary">通常属性率 {(boardEffects(game).normalChance*100).toFixed(1)}% / 属性重視 {(boardEffects(game).focusChance*100).toFixed(1)}% · 氷 −{(boardEffects(game).iceReduction*100).toFixed(1)}% / 雷 +{(boardEffects(game).tapBonus*100).toFixed(1)}% · 自然 {boardEffects(game).natureIntervalMs ? `${(boardEffects(game).natureIntervalMs! / 1000).toFixed(0)}秒/体` : 'なし'} · 追加生成累計 {session.nature.totalGenerated}体 · 通常生成 {(sessionRules(session).intervalMs/1000).toFixed(1)}秒</p><p className="muted">属性重視は例外なくFIFO先頭10体を消費。既存属性も失われます。残りの順序は保持し、出力は消費最小Tier。属性付き生成の保証はありません。</p><div className="attribute-roster">{game.slimes.map(s => <button type="button" key={s.id} onClick={() => { setDetailId(s.id); setPanel('slime') }}><b>Tier {s.tier} · {s.position.x + 1}列{s.position.y + 1}行</b><span>{attributeText(s.attributes)}</span></button>)}{!game.slimes.length && <p>盤面にスライムを追加してください。</p>}</div></> : panel === 'settings' ? <label className="setting-row"><input type="checkbox" data-testid="compact-gold" checked={session.goldFormat === 'compact'} disabled={!normal || !!storageError} onChange={e => send({ type: 'gold-format', value: e.target.checked ? 'compact' : 'full' })} />GOLDをK/Mなどで短縮表示</label> : panel === 'shop' ? <>
       <p className="shop-wallet">所持 GOLD：{session.wallet.gold.toLocaleString()}</p>
       {(['speed', 'tap', 'storage'] as const).map(key => {
-        const lv = session.wallet.upgrades[key], cost = upgradeCost(key, lv), max = lv >= EXPERIMENTAL_ECONOMY.shopMaxLevel
-        const nextRules = sessionRules({...session,wallet:{ ...session.wallet, upgrades: { ...session.wallet.upgrades, [key]: Math.min(16, lv + 1) } }})
+        const lv = session.wallet.upgrades[key], cost = upgradeCost(key, lv), max = lv >= UPGRADE_MAX_LEVEL[key]
+        const nextRules = sessionRules({...session,wallet:{ ...session.wallet, upgrades: { ...session.wallet.upgrades, [key]: Math.min(UPGRADE_MAX_LEVEL[key], lv + 1) } }})
         const label = { speed: '生成間隔短縮', tap: 'クリック加速強化', storage: '貯蔵容量増加' }[key]
         const effect = (r: { intervalMs: number; capacity: number; tapAdvanceMs: number }) => key === 'speed' ? `${(r.intervalMs / 1000).toFixed(2)}秒` : key === 'tap' ? `${(r.tapAdvanceMs / 1000).toFixed(2)}秒短縮` : `${r.capacity}体`
         return <section key={key} className="shop-item"><h3>{label} · Lv {lv}</h3><p>{effect(rules)} → {max ? '最大Lv' : effect({ ...rules, ...nextRules })}</p><button type="button" data-testid={`buy-${key}`} disabled={!normal || !!storageError || max || session.wallet.gold < cost} onClick={() => send({ type: 'buy', key, expectedLevel: lv })}>{max ? '強化完了' : `${cost.toLocaleString()} GOLDで購入`}</button></section>

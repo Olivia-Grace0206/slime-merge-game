@@ -387,3 +387,8 @@ progress::-webkit-progress-value { background: linear-gradient(90deg,#79b65b,#ab
  .progress-controls .add-button { width:94px; height:94px; min-height:94px; }
  .generator-mascot { width:62px; height:36px; }
 }
+@media(max-width:360px) and (min-height:501px) {
+ .large-storage .storage-box { display:none; }
+ .large-storage .storage-count b { font-size:18px; }
+}
+.progress-controls .drop-actions .sale-zone { grid-area:auto; }
