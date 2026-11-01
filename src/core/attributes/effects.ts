@@ -1,3 +1,5 @@
+import {AWAKENING_MULTIPLIERS,BLUE_MULTIPLIERS,AWAKENED_DARK_LOSS} from '../special/config'
+import type {EffectContext} from '../../domain/special'
 import { isAttributes, type AttributeId, type Attributes } from '../../domain/attributes'
 import { isTier, type GameState, type Slime } from '../../domain/game'
 import type { GridPosition } from '../../domain/grid'
@@ -21,28 +23,32 @@ export function levelPower(level: number): number {
 }
 export function attributePower(attributes: Attributes | undefined, id: AttributeId): number {
   const found = attributes?.find(a => a.id === id)
-  return found ? levelPower(found.level) : 0
+  return found ? levelPower(found.level) * (found.awakened?AWAKENING_MULTIPLIERS[id]:1) : 0
 }
 export function comboPower(a: Attributes | undefined, first: AttributeId, second: AttributeId): number {
   return Math.min(attributePower(a, first), attributePower(a, second))
 }
 const distance = (a: GridPosition, b: GridPosition) => Math.max(Math.abs(a.x-b.x), Math.abs(a.y-b.y))
+export function isResonating(slime:Slime,context:EffectContext={}){return context.blueCells?.some(c=>distance(c,slime.position)===0)??false}
+export function localPower(slime:Slime,id:AttributeId,context:EffectContext={}){return attributePower(slime.attributes,id)*(isResonating(slime,context)?BLUE_MULTIPLIERS[id]:1)}
+export function localCombo(slime:Slime,a:AttributeId,b:AttributeId,context:EffectContext={}){return Math.min(localPower(slime,a,context),localPower(slime,b,context))}
 /** Raw light is evaluated once. Light never boosts light or sale attributes. */
-export function supportMultiplier(game: GameState, slime: Slime): number {
+export function supportMultiplier(game: GameState, slime: Slime,context:EffectContext={}): number {
   const rawLight = game.slimes.filter(s => s.id !== slime.id && distance(s.position, slime.position) <= 1)
-    .reduce((sum, s) => sum + attributePower(s.attributes, 'light'), 0)
+    .reduce((sum, s) => sum + localPower(s,'light',context), 0)
   return 1 + Math.min(EFFECTS.lightCap, rawLight * EFFECTS.lightRate)
 }
-export function boardEffects(game: GameState) {
+export function boardEffects(game: GameState,context:EffectContext={}) {
   let ice = 0, lightning = 0, nature = 0, luck = 0, combo = 0, geneticCombo = 0
   for (const s of game.slimes) {
-    const boost = supportMultiplier(game, s)
-    ice += attributePower(s.attributes, 'ice') * boost
-    lightning += attributePower(s.attributes, 'lightning') * boost
-    nature += attributePower(s.attributes, 'nature') * boost
-    luck += attributePower(s.attributes, 'luck') * boost
-    combo += comboPower(s.attributes, 'ice', 'lightning') * boost
-    geneticCombo += comboPower(s.attributes, 'luck', 'mutation') * boost
+    if(!s.attributes?.some(a=>['ice','lightning','nature','luck'].includes(a.id)))continue
+    const boost = supportMultiplier(game, s,context)
+    ice += localPower(s,'ice',context) * boost
+    lightning += localPower(s,'lightning',context) * boost
+    nature += localPower(s,'nature',context) * boost
+    luck += localPower(s,'luck',context) * boost
+    combo += localCombo(s,'ice','lightning',context) * boost
+    geneticCombo += localCombo(s,'luck','mutation',context) * boost
   }
   const luckBonus = Math.min(EFFECTS.luckCap, luck * EFFECTS.luckRate + geneticCombo * EFFECTS.luckComboRate)
   return {
@@ -54,12 +60,12 @@ export function boardEffects(game: GameState) {
   }
 }
 /** Only participating mutation holders contribute; maximum avoids a five-input-only bonus. */
-export function geneticsForGroup(game: GameState, ids: readonly string[]) {
+export function geneticsForGroup(game: GameState, ids: readonly string[],context:EffectContext={}) {
   const members = game.slimes.filter(s => ids.includes(s.id))
-  const mutation = Math.max(0, ...members.map(s => attributePower(s.attributes, 'mutation') * supportMultiplier(game,s)))
-  const combo = Math.max(0, ...members.map(s => comboPower(s.attributes, 'luck', 'mutation') * supportMultiplier(game,s)))
+  const mutation = Math.max(0, ...members.map(s => localPower(s,'mutation',context) * supportMultiplier(game,s,context)))
+  const combo = Math.max(0, ...members.map(s => localCombo(s,'luck','mutation',context) * supportMultiplier(game,s,context)))
   return { mutationChance: Math.min(EFFECTS.mutationCap, EFFECTS.mutationBase + mutation * EFFECTS.mutationRate + combo * EFFECTS.mutationComboRate),
-    darkLossChance: members.some(s => s.attributes?.some(a => a.id === 'dark')) ? EFFECTS.darkLossChance : 0 }
+    darkLossChance: members.some(s => s.attributes?.some(a => a.id === 'dark')) ? (members.some(s=>s.attributes?.some(a=>a.id==='dark'&&a.awakened))?AWAKENED_DARK_LOSS:EFFECTS.darkLossChance) : 0 }
 }
 /** One sale quote shared by UI and committed sale; GOLD event rewards stay separate. */
 export function saleValue(slime: Pick<Slime, 'tier' | 'attributes'>, availableGOLD = Number.MAX_SAFE_INTEGER): number {
@@ -71,15 +77,15 @@ export function saleValue(slime: Pick<Slime, 'tier' | 'attributes'>, availableGO
     (1 + EFFECTS.darkRate * attributePower(a, 'dark')) * (1 + EFFECTS.saleComboRate * comboPower(a, 'fire', 'gold')))
   return Math.min(value, availableGOLD, Number.MAX_SAFE_INTEGER)
 }
-export function specialCellWeights(game: GameState, cells: readonly GridPosition[]): readonly number[] {
+export function specialCellWeights(game: GameState, cells: readonly GridPosition[],context:EffectContext={}): readonly number[] {
   return cells.map(cell => 1 + Math.min(EFFECTS.magnetWeightCap - 1, game.slimes.reduce((sum, s) => {
     const d = distance(cell, s.position)
-    return sum + (d > 0 && d <= EFFECTS.magnetRadius ? EFFECTS.magnetRate * attributePower(s.attributes, 'magnet') * supportMultiplier(game,s) / d : 0)
+    return sum + (d > 0 && d <= EFFECTS.magnetRadius ? EFFECTS.magnetRate * localPower(s,'magnet',context) * supportMultiplier(game,s,context) / d : 0)
   }, 0)))
 }
-export function drawSpecialCell(game: GameState, cells: readonly GridPosition[], random: () => number): GridPosition {
+export function drawSpecialCell(game: GameState, cells: readonly GridPosition[], random: () => number,context:EffectContext={}): GridPosition {
   if (!cells.length) throw new RangeError('No empty cell')
-  const weights = specialCellWeights(game,cells)
+  const weights = specialCellWeights(game,cells,context)
   let threshold = randomUnit(random) * weights.reduce((a,b) => a+b,0)
   for (let i=0;i<cells.length;i++) { threshold -= weights[i]!; if (threshold < 0) return cells[i]! }
   return cells[cells.length-1]!

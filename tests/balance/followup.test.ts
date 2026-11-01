@@ -112,8 +112,8 @@ it('follow-up actual 4x4 table/economy/policy comparisons with censored endgame 
   const fixedH = Object.entries(profiles).flatMap(([name, p]) => Array.from({ length: 40 }, (_, i) => ({ name, H: i + 1, weights: tierWeights(i + 1, p) })))
   const researchPrices = RESEARCH_CAPS.slice(0, -1).map((cap, i) => ({ from: cap, to: RESEARCH_CAPS[i + 1], variants: [1, 3, 8].map(multiplier => ({ multiplier, cost: researchCost(i, multiplier), capTierSales: multiplier, previousTierSales: multiplier * 2 })) }))
   const out = { model: 'PROVISIONAL. Actual Core 4x4 random FIFO, explicit 2s decisions + acceleration, 5 preferred/3 at >=12 or discovery. Reposition when stock exhausted. Full-board lowest sale; capped-stage highest sale; duplicate sale every30s. One active gold source retained, 350ms independent receipts. Shop policies and candidate costs described in source. 3 seeded runs per primary condition, 12h right censor. Bot times are not human forecasts.', distribution, prices, policies, unlock, fixedH, researchPrices }
-  mkdirSync('docs/validation/phase3b1/regression-phase3b/regression/regression-balance', { recursive: true })
-  writeFileSync('docs/validation/phase3b1/regression-phase3b/regression/regression-balance/simulation.json', JSON.stringify(out, null, 2))
+  mkdirSync('docs/validation/phase3c/regression-phase3b/regression/regression-balance', { recursive: true })
+  writeFileSync('docs/validation/phase3c/regression-phase3b/regression/regression-balance/simulation.json', JSON.stringify(out, null, 2))
   expect(distribution).toHaveLength(12); expect(policies).toHaveLength(12)
   expect(prices.every(r => r.saleGOLD > 0 && r.research.length > 0)).toBe(true)
 }, 480000)

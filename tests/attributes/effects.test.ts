@@ -133,7 +133,7 @@ describe('safe focused generation and persistence',()=>{
   const s=stock(board([a('dark',99)],40),[1,40],[a('ice'),a('gold',5)]),oldInterval=legacyGenerationRules({...s.wallet,upgrades:{speed:lv,tap:2,storage:0}}).intervalMs
   const old={...s,version:5,wallet:{gold:123,upgrades:{speed:lv,tap:2,storage:0}},protectedIds:['p-1'],generator:{...s.generator,progressMs:Math.floor(oldInterval*.75)}}
   const d=decodeSession(JSON.stringify(old),0);expect(d.ok).toBe(true);if(!d.ok)throw Error(d.reason)
-  expect(d.session.version).toBe(6);expect(d.session.game).toEqual(old.game);expect(d.session.wallet).toEqual(old.wallet)
+  expect(d.session.version).toBe(7);expect(d.session.game).toEqual(old.game);expect(d.session.wallet).toEqual(old.wallet)
   expect(d.session.generator.storedAttributes).toEqual(old.generator.storedAttributes);expect(d.session.protectedIds).toEqual(old.protectedIds)
   expect(d.session.generator.progressMs/sessionRules(d.session).intervalMs).toBeCloseTo(.75,3)
   expect(d.session.generationMode).toBe('normal')

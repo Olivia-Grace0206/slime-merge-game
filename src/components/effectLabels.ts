@@ -1,3 +1,4 @@
+import {AWAKENED_DARK_LOSS} from '../core/special/config'
 import type { Slime } from '../domain/game'
 import { attributePower, EFFECTS, comboPower } from '../core/attributes/effects'
 const pct = (n: number) => `${(n*100).toFixed(1)}%`

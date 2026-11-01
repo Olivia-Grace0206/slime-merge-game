@@ -64,7 +64,7 @@ describe('table discovery contract', () => {
 })
 describe('research transactions and materials', () => {
   it('real new game has research5 and GOLD locked', () => {
-    expect(freshSession(0)).toMatchObject({ version: 6, researchLevel: 0, researchMaxTier: 5, goldCellUnlocked: false, goldFrequencyLevel: 0, goldFormat: 'full' })
+    expect(freshSession(0)).toMatchObject({ version: 7, researchLevel: 0, researchMaxTier: 5, goldCellUnlocked: false, goldFrequencyLevel: 0, goldFormat: 'full' })
     expect(isSession(freshSession(0))).toBe(true)
   })
   it.each(RESEARCH_CAPS.slice(1).map((cap, i) => [i, cap]))('stage %i unlocks cap %i once, without discovery', (lv, cap) => {

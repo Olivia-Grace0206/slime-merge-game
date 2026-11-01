@@ -1,0 +1,7 @@
+(node:187) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+> slime-merge-game@0.0.0 build
+> tsc -b && vite build
+
+src/components/effectLabels.ts(1,1): error TS6133: 'AWAKENED_DARK_LOSS' is declared but its value is never read.

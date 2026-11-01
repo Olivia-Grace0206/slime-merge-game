@@ -28,7 +28,7 @@ describe('independent storage limits and compatible schema6',()=>{
  it.each([0,1,5,10,16])('existing schema6 storage Lv%i keeps paid levels/FIFO/traits/GOLD and old progress',lv=>{
   const s=freshSession(0),tiers=Array(10+3*lv).fill(1),attrs=tiers.map((_,i)=>i%2?[{id:'fire',level:3}]:[]),data={...s,wallet:wallet(lv,3,4),generator:{...s.generator,storedTiers:tiers,storedAttributes:attrs,totalGenerated:tiers.length}}
   const d=decodeSession(JSON.stringify(data),0);expect(d.ok).toBe(true);if(!d.ok)throw Error(d.reason)
-  expect(d.session.version).toBe(6);expect(d.migrated).toBe(false);expect(d.session.generator).toEqual(data.generator);expect(d.session.wallet).toEqual(data.wallet)
+  expect(d.session.version).toBe(7);expect(d.migrated).toBe(false);expect(d.session.generator).toEqual(data.generator);expect(d.session.wallet).toEqual(data.wallet)
   expect(sessionRules(d.session).capacity).toBe(10+5*lv);expect(encodeSession(d.session)).toBe(JSON.stringify(data))
  })
  it.each([1,2,3,4,5])('legacy schema%i rejects storage Lv17 even if modern capacity could contain it',version=>{

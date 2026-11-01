@@ -10,7 +10,7 @@ import { researchCost } from '../../src/core/progression/research'
 import { planDrop, compareNear } from '../../src/core/merge/plan'
 import { isSession, decodeSession, encodeSession } from '../../src/core/progression/persistence'
 import type { Attributes } from '../../src/domain/attributes'
-const dir='docs/balance/phase3b1/regression-phase3b'
+const dir='docs/balance/phase3c/regression-phase3b'
 const rng=(seed:number)=>()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296}
 const write=(name:string,data:unknown)=>{mkdirSync(dir,{recursive:true});writeFileSync(`${dir}/${name}.json`,JSON.stringify(data,null,2))}
 it('compares provisional pace, Lv curves and bounded maximum support',()=>{

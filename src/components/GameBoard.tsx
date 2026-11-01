@@ -1,8 +1,11 @@
+import {MergeAttributePreview} from './MergeAttributePreview'
+import {effectContext} from '../core/special/state'
+import {SPECIAL_TIMING} from '../core/special/config'
 import { AttributePanel } from './AttributePanel'
 import { AttributeTokens } from './AttributeBadges'
 import { operationZoneAt } from '../core/input/dropZones'
 import { effectLabels } from './effectLabels'
-import { geneticsForGroup, saleValue as quoteSale } from '../core/attributes/effects'
+import { saleValue as quoteSale } from '../core/attributes/effects'
 import { attributeText } from './attributeLabels'
 import { GoldBag } from './ProgressIcons'
 import { RESEARCH_CAPS, researchCost, frequencyCost, EXPERIMENTAL_RESEARCH } from '../core/progression/research'
@@ -350,9 +353,11 @@ export function GameBoard() {
             const slime = game.slimes.find(s => samePosition(s.position, position))
             const group = plan?.groups.find(g => slime && g.consumedIds.includes(slime.id))
             const outputGroup = plan?.groups.find(g => g.outputs.some(p => samePosition(p, position)))
+            const special=normal?session.specials.events.find(e=>samePosition(e.cell,position)):undefined
             const remainder = slime && plan?.remainderIds.includes(slime.id)
             return <button key={index} type="button"
-              className={`cell ${event && samePosition(event.cell, position) ? 'gold-cell' : ''} ${(position.x + position.y) % 2 ? 'alternate' : ''} ${swap && (slime?.id === swap.sourceId || slime?.id === swap.targetId) ? 'swap-cell' : ''} ${group ? 'grouped' : ''} ${remainder ? 'remainder' : ''} ${selected && slime?.id === selected ? 'selected' : ''}`}
+              className={`cell ${special?.kind==='purple'?'purple-cell':special?.kind==='blue'?'blue-cell':''} ${event && samePosition(event.cell, position) ? 'gold-cell' : ''} ${(position.x + position.y) % 2 ? 'alternate' : ''} ${swap && (slime?.id === swap.sourceId || slime?.id === swap.targetId) ? 'swap-cell' : ''} ${group ? 'grouped' : ''} ${remainder ? 'remainder' : ''} ${selected && slime?.id === selected ? 'selected' : ''}`}
+              data-special={special?.kind} data-resonating={special?.kind==='blue'&&slime?'true':undefined}
               data-protected={slime && protectedIds.includes(slime.id) ? 'true' : undefined} data-gold-cell={event && samePosition(event.cell, position) ? event.id : undefined}
               data-cell={`${position.x},${position.y}`} data-slime-id={slime?.id} data-tier={slime?.tier} data-group={group?.number} data-output={outputGroup?.number} data-remainder={remainder ? 'true' : undefined}
               title={slime && normal ? `Tier ${slime.tier} · ${attributeText(slime.attributes)} · +${saleValue(slime.tier,slime.id).toLocaleString()} GOLD${protectedIds.includes(slime.id) ? ' · 売却保護中' : ''}` : undefined}
@@ -380,6 +385,7 @@ export function GameBoard() {
                 if (selected) { commit(planDrop(gameRef.current, selected, position, normalRef.current ? store.state.session.researchMaxTier : MAX_TIER)); setSelected(null) }
                 else if (slime) setSelected(slime.id)
               }}>
+              {special&&<span className={`special-cell-label ${special.kind}`}>{special.kind==='blue'?`≋ 共鳴 ${Math.max(0,Math.ceil((special.expiresAtMs-session.savedAtMs)/1000))}s`:special.sourceId?`✦ 覚醒 ${Math.floor(special.progressMs/SPECIAL_TIMING.purpleChargeMs*100)}%`:'✦ 未覚醒属性を配置'}{special.kind==='purple'&&<progress max={SPECIAL_TIMING.purpleChargeMs} value={special.progressMs}/>}</span>}
               {event && samePosition(event.cell, position) && <span className="gold-cell-label">● {event.tier === null ? 'GOLD' : `${event.paid}/10`}</span>}
               {event && event.paid > 0 && samePosition(event.cell, position) && <span key={`${event.id}-${event.paid}`} className="gold-burst">+{session.wallet.gold === Number.MAX_SAFE_INTEGER ? '上限' : event.unitGOLD.toLocaleString()}</span>}
               {slime && protectedIds.includes(slime.id) && <span className="protected-badge" aria-label="売却保護"><svg viewBox="0 0 20 23" width="18" height="20" aria-hidden="true"><path d="M5 10V6a5 5 0 0 1 10 0v4" fill="none" stroke="currentColor" strokeWidth="3"/><rect x="2" y="9" width="16" height="13" rx="3" fill="#fff4c5" stroke="currentColor" strokeWidth="2"/><path d="M10 14v4" stroke="currentColor" strokeWidth="2"/></svg></span>}
@@ -391,7 +397,7 @@ export function GameBoard() {
             </button>
           })}
         </div>
-        {plan && <div className="operation-preview merge-attribute-preview" data-testid="attribute-preview"><strong>マージ → Tier {plan.outputTier}</strong>{plan.groups.some(g => geneticsForGroup(game,g.consumedIds).darkLossChance > 0) && <b className="dark-risk" data-testid="dark-risk">闇のみ消失 仮20%/組{plan.groups.some(g => g.outputs.length === 2 && g.attributes?.some(a => a.id === 'dark')) ? '（2出力共通）' : ''}</b>}{plan.groups.map(g => { const risk = geneticsForGroup(game,g.consumedIds); return <small key={g.number}>組{g.number} ×{g.outputs.length}：<AttributeTokens attributes={g.attributes}/> · 変異 仮{(risk.mutationChance*100).toFixed(1)}%{risk.darkLossChance > 0 ? ' · 闇リスクあり' : ''}</small> })}<small>抽選は確定時に1回/組・空き属性枠のみ変異</small></div>}
+        {plan && <MergeAttributePreview plan={plan} game={game} context={effectContext(session)}/>}
         {normal && stripHover && dragged && <div className="operation-preview strip-preview" data-testid="strip-preview"><strong>{dragged.attributes?.length ? `Tier ${dragged.tier} の全属性を解除・無料` : '属性がありません・変更なし'}</strong><small><AttributeTokens attributes={dragged.attributes}/></small><small>個体・Tier・元の位置・売却保護を保持</small></div>}
         {swap && <div className="operation-preview" data-testid="swap-preview"><strong>⇄ 位置交換</strong><small>{swap.reason === 'research-locked' ? '研究未解放 · 素材消費なし' : swap.reason === 'attribute-limit' ? '属性上限3種類（仮）· 全属性保持' : '2体の位置だけ交換'}</small></div>}
         {showPrices && <div className="price-layer" aria-label="全スライムの売却受取額">{game.slimes.map(slime => {
@@ -442,7 +448,7 @@ export function GameBoard() {
       {session.researchLevel < RESEARCH_CAPS.length - 1 ? <><p>次の進化上限：Tier {RESEARCH_CAPS[session.researchLevel + 1]} ／ 必要 {researchCost(session.researchLevel).toLocaleString()} GOLD</p><button type="button" data-testid="buy-research" disabled={!!storageError || session.wallet.gold < researchCost(session.researchLevel)} onClick={() => send({ type: 'research', expectedLevel: session.researchLevel })}>{session.wallet.gold < researchCost(session.researchLevel) ? 'GOLD不足 · ' : ''}{researchCost(session.researchLevel).toLocaleString()} GOLDで研究</button></> : <p>最終研究完了！ Tier40まで進化できます。</p>}
       <p className="research-history">解放済み：{RESEARCH_CAPS.slice(0, session.researchLevel + 1).map(cap => `Tier${cap}`).join(' / ')}</p></section>
       <p className="muted">価格・生成分布・強化量は試遊用の仮設定です。</p>
-    </> : panel === 'slime' && detail ? <><div className="detail-slime"><Slime tier={detail.tier} attributes={detail.attributes} /></div><p>Tier {detail.tier} · {attributeText(detail.attributes)} · 売却 {saleValue(detail.tier,detail.id).toLocaleString()} GOLD</p><button className="reset-button" type="button" onClick={() => send({ type: 'protect', id: detail.id })}>{protectedIds.includes(detail.id) ? '売却保護を解除' : '売却から保護する'}</button><AttributeTokens attributes={detail.attributes}/><ul className="effect-details">{effectLabels(detail).map(label => <li key={label}>{label}</li>)}</ul><p className="muted">効果量は仮設定。光の隣接支援・複合効果・全体上限は盤面配置に応じて適用。覚醒・紫・青マスは次段階です。</p><p className="muted">保護は売却のみを防ぎます。マージ素材には使用できます。</p></> : undefined} normal={normal} onNormal={returnNormal} panel={panel} onClose={() => setPanel(null)} preset={preset} onPreset={reset} reducedEffects={normal ? session.reducedEffects : reducedEffects} onEffects={value => { if (normal) send({ type: 'effects', value }); else setReducedEffects(value) }}
+    </> : panel === 'slime' && detail ? <><div className="detail-slime"><Slime tier={detail.tier} attributes={detail.attributes} /></div><p>Tier {detail.tier} · {attributeText(detail.attributes)} · 売却 {saleValue(detail.tier,detail.id).toLocaleString()} GOLD</p><button className="reset-button" type="button" onClick={() => send({ type: 'protect', id: detail.id })}>{protectedIds.includes(detail.id) ? '売却保護を解除' : '売却から保護する'}</button><p data-testid="awakening-detail">覚醒 {detail.attributes?.filter(a=>a.awakened).length??0}/3 · {session.specials.events.some(e=>e.kind==='blue'&&samePosition(e.cell,detail.position))?'青共鳴中':'共鳴なし'}</p><AttributeTokens attributes={detail.attributes}/><ul className="effect-details">{effectLabels(detail).map(label => <li key={label}>{label}</li>)}</ul><p className="muted">効果量は仮設定。光の隣接支援・複合効果・全体上限は盤面配置に応じて適用。覚醒★は永続、青共鳴は配置中のみ。</p><p className="muted">保護は売却のみを防ぎます。マージ素材には使用できます。</p></> : undefined} normal={normal} onNormal={returnNormal} panel={panel} onClose={() => setPanel(null)} preset={preset} onPreset={reset} reducedEffects={normal ? session.reducedEffects : reducedEffects} onEffects={value => { if (normal) send({ type: 'effects', value }); else setReducedEffects(value) }}
       onResetCamera={resetCamera} onZoom={dir => {
         abort(); changeCamera(zoomAt(cameraRef.current, viewRef.current, { x: view.width / 2, y: view.height / 2 }, cameraRef.current.zoom * (dir === 1 ? 1.2 : 1 / 1.2)))
       }} />
