@@ -1,3 +1,4 @@
+import { operationZoneAt } from '../core/input/dropZones'
 import { effectLabels } from './effectLabels'
 import { boardEffects, geneticsForGroup, saleValue as quoteSale } from '../core/attributes/effects'
 import { attributeText } from './attributeLabels'
@@ -47,6 +48,9 @@ export function GameBoard() {
   const hold = useRef<{ timer: number; id: number; sourceId: string; start: Point } | null>(null)
   const [detailId, setDetailId] = useState<string | null>(null)
   const saleZone = useRef<HTMLButtonElement>(null)
+  const stripZone = useRef<HTMLButtonElement>(null)
+  const [stripHover,setStripHover] = useState(false)
+  const [stripNotice,setStripNotice] = useState('')
   const [saleHover, setSaleHover] = useState(false)
   const [viewportOrigin, setViewportOrigin] = useState({ x: 0, y: 0 })
   const [game, setGame] = useState(() => store.state.session.game)
@@ -72,6 +76,11 @@ export function GameBoard() {
     void store.dispatch(command, Date.now()).then(state => {
       setStorageError(state.error)
       setSession(state.session)
+      if(command.type==='strip-attributes'&&!state.error){
+        const target=state.session.game.slimes.find(s=>s.id===command.id),before=gameRef.current.slimes.find(s=>s.id===command.id)
+        const notice=!target?'操作を取り消しました':before?.attributes?.length?'解除しました・無料':'属性がありません'
+        setStripNotice(notice);setMessage(notice)
+      }
       if (command.type === 'withdraw' || (command.type === 'drop' && command.plan.kind === 'merge')) setCreatedIds(state.session.game.slimes.filter(x => !gameRef.current.slimes.some(y => y.id === x.id)).map(x => x.id))
       if (normalRef.current) { gameRef.current = state.session.game; setGame(state.session.game) }
     }).catch(() => setStorageError('保存処理に失敗しました。再読み込みして続行してください'))
@@ -115,7 +124,7 @@ export function GameBoard() {
     active.current = clearContacts ? idleGesture() : transition(active.current, { type: 'cancel' }).state
     setGesture(active.current)
     clearPreview()
-    setSaleHover(false)
+    setSaleHover(false);setStripHover(false)
     if (clearContacts) for (const c of contacts) {
       if (viewport.current?.hasPointerCapture(c.id)) viewport.current.releasePointerCapture(c.id)
     }
@@ -199,7 +208,7 @@ export function GameBoard() {
   function down(e: ReactPointerEvent<HTMLDivElement>) {
     touchContext.current = e.pointerType !== 'mouse'
     if (e.button !== 0 || panel || (normalRef.current && store.state.error)) return
-    cancelHold()
+    cancelHold();setStripNotice('')
     if (!active.current.contacts.length) gestureViewport.current = { width: window.innerWidth, height: window.innerHeight }
     const point = localPoint(e)
     const rect = e.currentTarget.getBoundingClientRect()
@@ -208,7 +217,7 @@ export function GameBoard() {
     const source = target && gameRef.current.slimes.find(s => samePosition(s.position, target))
     active.current = transition(active.current, { type: 'down', id: e.pointerId, point, sourceId: source?.id ?? null, camera: cameraRef.current }).state
     setGesture(active.current)
-    setSaleHover(false)
+    setSaleHover(false);setStripHover(false)
     clearPreview()
     e.currentTarget.setPointerCapture(e.pointerId)
     if (e.pointerType !== 'mouse' && normalRef.current && source && active.current.contacts.length === 1 && !active.current.blocked) {
@@ -234,13 +243,12 @@ export function GameBoard() {
       const ratio = distance(currentA.point, currentB.point) / Math.max(1, distance(a.point, b.point))
       changeCamera(zoomAt(g.pinch.camera, viewRef.current, midpoint(a.point, b.point), g.pinch.camera.zoom * ratio, midpoint(currentA.point, currentB.point)))
     }
-    const overSale = !!(normalRef.current && g.mode === 'drag' && g.single?.sourceId && insideSale(e))
-    setSaleHover(overSale)
-    if (g.mode === 'drag' && g.single?.sourceId) setPreview(overSale ? null : planAt(g.single.sourceId, g.single.current))
+    const zone = normalRef.current && g.mode === 'drag' && g.single?.sourceId ? zoneAt(e) : null
+    setSaleHover(zone==='sale');setStripHover(zone==='strip')
+    if (g.mode === 'drag' && g.single?.sourceId) setPreview(zone ? null : planAt(g.single.sourceId, g.single.current))
   }
-  function insideSale(e: { clientX: number; clientY: number }) {
-    const r = saleZone.current?.getBoundingClientRect()
-    return !!r && e.clientX >= r.left && e.clientX < r.right && e.clientY >= r.top && e.clientY < r.bottom
+  function zoneAt(e: {clientX:number;clientY:number}) {
+    return operationZoneAt(e,{sale:saleZone.current?.getBoundingClientRect(),strip:stripZone.current?.getBoundingClientRect()})
   }
   function up(e: ReactPointerEvent<HTMLDivElement>) {
     // ResizeObserver/resize notifications can arrive after pointerup; never use the old gesture geometry.
@@ -254,13 +262,15 @@ export function GameBoard() {
     active.current = result.state
     setGesture(result.state)
     const drop = result.drop
-    const plan = drop?.sourceId ? planAt(drop.sourceId, drop.current) : null
+    const zone = normalRef.current ? zoneAt(e) : null
+    const plan = !zone && drop?.sourceId ? planAt(drop.sourceId, drop.current) : null
     clearPreview()
-    setSaleHover(false)
+    setSaleHover(false);setStripHover(false)
     if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId)
     if (drop && distance(drop.start, drop.current) >= 4) {
-      if (normalRef.current && insideSale(e)) {
-        if (drop.sourceId) send({ type: 'sell', id: drop.sourceId })
+      if (normalRef.current && zone) {
+        if(drop.sourceId && zone!=='ambiguous')send({type:zone==='strip'?'strip-attributes':'sell',id:drop.sourceId})
+        else setMessage('操作エリアが重なったため取り消しました')
         return
       }
       if (plan) commit(plan)
@@ -273,7 +283,7 @@ export function GameBoard() {
     active.current = transition(active.current, { type: 'cancel', id: e.pointerId }).state
     setGesture(active.current)
     clearPreview()
-    setSaleHover(false)
+    setSaleHover(false);setStripHover(false)
     setMessage('操作を取り消しました')
   }
   function resetCamera() { abort(); changeCamera(initialCamera()); setMessage('表示をリセットしました') }
@@ -345,7 +355,7 @@ export function GameBoard() {
               data-cell={`${position.x},${position.y}`} data-slime-id={slime?.id} data-tier={slime?.tier} data-group={group?.number} data-output={outputGroup?.number} data-remainder={remainder ? 'true' : undefined}
               title={slime && normal ? `Tier ${slime.tier} · ${attributeText(slime.attributes)} · +${saleValue(slime.tier,slime.id).toLocaleString()} GOLD${protectedIds.includes(slime.id) ? ' · 売却保護中' : ''}` : undefined}
               aria-label={`${position.x + 1}列${position.y + 1}行${slime ? ` Tier ${slime.tier} ${attributeText(slime.attributes)}` : ' 空きマス'}${group ? ` 組${group.number}` : ''}${remainder ? ' 余り・残ります' : ''}${slime && protectedIds.includes(slime.id) ? ' 売却保護中' : ''}`}
-              aria-description={normal && slime ? 'Pキーで売却保護、Iキーで詳細。Enterで選択後、売却エリアへTabしてEnterで売却。' : undefined}
+              aria-description={normal && slime ? 'Pキーで売却保護、Iキーで詳細。Enterで選択後、属性解除/売却エリアへTabしてEnterで操作。' : undefined}
               style={{ width: 700 / game.bounds.width, height: 700 / game.bounds.height, ...(group ? { '--group-color': GROUP_COLORS[(group.number - 1) % GROUP_COLORS.length] } : {}) } as CSSProperties}
               onFocus={() => {
                 // Keyboard navigation keeps the focused cell visible even after camera pan/zoom.
@@ -380,6 +390,7 @@ export function GameBoard() {
           })}
         </div>
         {plan && <div className="operation-preview merge-attribute-preview" data-testid="attribute-preview"><strong>マージ → Tier {plan.outputTier}</strong>{plan.groups.some(g => geneticsForGroup(game,g.consumedIds).darkLossChance > 0) && <b className="dark-risk" data-testid="dark-risk">闇のみ消失 仮20%/組{plan.groups.some(g => g.outputs.length === 2 && g.attributes?.some(a => a.id === 'dark')) ? '（2出力共通）' : ''}</b>}{plan.groups.map(g => { const risk = geneticsForGroup(game,g.consumedIds); return <small key={g.number}>組{g.number} ×{g.outputs.length}：{attributeText(g.attributes)} · 変異 仮{(risk.mutationChance*100).toFixed(1)}%{risk.darkLossChance > 0 ? ' · 闇リスクあり' : ''}</small> })}<small>抽選は確定時に1回/組・空き属性枠のみ変異</small></div>}
+        {normal && stripHover && dragged && <div className="operation-preview strip-preview" data-testid="strip-preview"><strong>{dragged.attributes?.length ? `Tier ${dragged.tier} の全属性を解除・無料` : '属性がありません・変更なし'}</strong><small>{attributeText(dragged.attributes)}</small><small>個体・Tier・元の位置・売却保護を保持</small></div>}
         {swap && <div className="operation-preview" data-testid="swap-preview"><strong>⇄ 位置交換</strong><small>{swap.reason === 'research-locked' ? '研究未解放 · 素材消費なし' : swap.reason === 'attribute-limit' ? '属性上限3種類（仮）· 全属性保持' : '2体の位置だけ交換'}</small></div>}
         {showPrices && <div className="price-layer" aria-label="全スライムの売却受取額">{game.slimes.map(slime => {
           const point = worldToScreen({ x: (slime.position.x + .5) * 700 / game.bounds.width, y: (slime.position.y + .04) * 700 / game.bounds.height }, camera, view)
@@ -391,11 +402,19 @@ export function GameBoard() {
         <GeneratorPanel session={session} disabled={!!storageError} fullBoard={game.slimes.length >= 16} onTap={() => send({ type: 'tap' })} onMode={() => send({type:'generation-mode',value:session.generationMode === 'normal' ? 'focused' : 'normal'})} onAdd={() => {
           abort(true); send({ type: 'withdraw', expectedId: store.state.session.nextId, expectedMode: session.generationMode })
         }} />
+        <div className="drop-actions" aria-label="属性解除と売却">
+        <button type="button" ref={stripZone} className={`strip-zone ${stripHover ? 'strip-hover' : ''}`} data-testid="strip-zone" disabled={!!storageError} onClick={()=>{
+          if(selected){const id=selected;clearPreview();send({type:'strip-attributes',id});return}
+          setStripNotice('個体を選択・ドロップで解除')
+        }}>
+          <svg className="strip-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 17 7-10a3 3 0 0 1 4 4l-7 9H7l-3-3a2 2 0 0 1 0-3l3-3M9 14l5 4M18 2v4m-2-2h4M2 5v4M0 7h4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          <span>属性解除</span><small>{stripNotice || (dragged && !dragged.attributes?.length ? '属性がありません' : '全属性を解除・無料')}</small>
+        </button>
         <button type="button" className={`sale-zone ${saleHover ? 'sale-hover' : ''}`} ref={saleZone} data-testid="sale-zone" onClick={() => {
           if (selected) { const id = selected; clearPreview(); send({ type: 'sell', id }); return }
           setMessage('売却エリアへスライムをドラッグしてください')
         }}>
-          <span className="shipping-art" aria-hidden="true">▱<i>●</i></span><span>売却エリア</span><small>{dragged ? protectedIds.includes(dragged.id) ? '保護中・売却不可' : `Tier ${dragged.tier} · +${saleValue(dragged.tier,dragged.id).toLocaleString()} GOLD` : selected ? '選択した個体を売却' : 'ここへドロップで売却'}</small></button>
+          <span className="shipping-art" aria-hidden="true">▱<i>●</i></span><span>売却エリア</span><small>{dragged ? protectedIds.includes(dragged.id) ? '保護中・売却不可' : `Tier ${dragged.tier} · +${saleValue(dragged.tier,dragged.id).toLocaleString()} GOLD` : selected ? '選択した個体を売却' : 'ここへドロップで売却'}</small></button></div>
         {event && <div className="event-readout" data-testid="gold-event" aria-live="polite"><span key={`${event.id}-${event.paid}`} className={event.paid ? 'coin-pop' : ''}>● {event.tier === null ? '金マスに配置で10回報酬' : coinText}</span></div>}
         {!event && session.lastEvent && <div className="event-readout" data-testid="gold-completed">● {coinText}</div>}
       </aside> : <aside className="verification-banner"><strong>検証モード</strong><span>通常プレイのセーブは保全</span><button type="button" onClick={returnNormal}>通常プレイへ戻る</button></aside>}

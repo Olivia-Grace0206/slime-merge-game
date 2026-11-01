@@ -1,3 +1,4 @@
+import { stripAttributes } from '../attributes/strip'
 import { boardEffects, drawSpecialCell } from '../attributes/effects'
 import { FOCUS_COST, withdrawFocused, type GenerationMode } from './focus'
 import { RESEARCH_CAPS, EXPERIMENTAL_RESEARCH, researchCost, frequencyCost } from './research'
@@ -35,6 +36,7 @@ export type Command =
   | { type: 'withdraw'; expectedId: number; expectedMode?: GenerationMode }
   | { type: 'drop'; plan: DropPlan }
   | { type: 'sell'; id: string }
+  | { type: 'strip-attributes'; id: string }
   | { type: 'buy'; key: UpgradeKey; expectedLevel: number }
   | { type: 'protect'; id: string }
   | { type: 'effects'; value: boolean }
@@ -127,6 +129,8 @@ export function reduceSession(s: Session, command: Command, now: number, random:
       !s.generator.storedTiers.length || !emptyCells(s.game).length ||
       (s.generationMode === 'focused' && s.generator.storedTiers.length < FOCUS_COST))) return s
     if (command.type === 'generation-mode' && command.value !== 'normal' && command.value !== 'focused') return s
+    const stripped = command.type === 'strip-attributes' ? stripAttributes(s.game,command.id) : null
+    if(stripped && (!stripped.ok || !stripped.changed))return s
     const oldRules = rulesOverride ?? sessionRules(s), oldNatureInterval = boardEffects(s.game).natureIntervalMs
 
     let next = s
@@ -171,6 +175,7 @@ export function reduceSession(s: Session, command: Command, now: number, random:
       if (!result.ok) return s
       next = { ...next, game: result.game, wallet: result.wallet }
     }
+    if(stripped)next={...next,game:stripped.game}
     if (command.type === 'buy') {
       if (!Object.hasOwn(next.wallet.upgrades, command.key) || next.wallet.upgrades[command.key] !== command.expectedLevel) return s
       const result = purchaseUpgrade(next.wallet, command.key)
