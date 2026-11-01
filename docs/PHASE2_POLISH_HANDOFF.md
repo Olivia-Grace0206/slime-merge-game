@@ -1,3 +1,33 @@
+# Phase 2 Polish追加修正 — 最新引き継ぎ（2026-11-01 JST）
+
+既存[Draft PR #9](https://github.com/Olivia-Grace0206/slime-merge-game/pull/9)／`feature/phase02-polish-gameplay-ui`を継続。起点2e8e878、Checkpoint B〜Dを5e543aadへ保存。main55075e4は変更しない。**Draft未マージ・Private維持・Pages操作なし**。最終HEADと同SHAのCIはPR本文を参照。
+
+現行の次期完全仕様書は[**v0.2.9**](specifications/Slime_Merge_Game_Specification_v0.2.9_2026-11-01.md)。v0.2.8は原文保持。mainの正式正本はマージまでv0.2.7。旧文書のGaussian/schema3/金無料は当時の記録。
+
+## 今回の実装
+
+- `tierTable.ts`40行basis-point重み。H1=100%、H2=99/1は確定、H3以降は仮。通常sessionRulesにGaussianなし。比較用profileだけを旧テストへ残す。未発見Tierは0、withdrawToCellもTier>Hを拒否しHを更新しない。初発見はapplyPlanのマージだけ。
+- `research.ts`に初期5→10→15→20→25→29→30…40と仮価格。25→29は30から個別購入する接続案。研究はHを増やさず、plan/apply/sessionで出力上限を検査。大量マージでも全拒否/無消費。研究費は現上限売値×3、初回96。旧進行を遡及ロックしない。
+- GOLDマスは新規ロック、仮128で解放。旧版は頻度強化未実装だった。今回Lv0〜5、費用128×2^Lv、次回予約から5%ずつ短縮、最大45〜90秒で常時保証なし。旧350ms×10/空セル抽選/ID位置照合/離脱失効を維持。
+- 全個体価格札は単指/マウスの売却ゾーン内ドラッグ中のみ。画面座標レイヤーでセル追従、ドラッグ中も指より上。丸い金色札・SVG金貨・保護中・実受取上限を表示。up/cancel/pinch/outside/rotation/blurで消す。
+- 生成先頭Tierの見た目/文言を削除。独自3匹SVG＋収納箱＋大きい貯蔵数。GOLD袋SVG＋大きいfull桁、設定compact保存。内部FIFOは維持。
+
+## schema4移行と原子的保存
+
+キー`slime-merge-normal-v2`維持。v1/v2/v3を旧契約で厳密検証して研究境界ceil(H)と金解放trueを無料継承。H6→10、H26→29、H29→29、H30→30、H33→33、H40→40。個体/FIFO/財布/ID/保護/生成途中/イベント単価/既払い/capped/lastEvent/次回予約は変更しない。v2だけrewardVersion1を補完、v3は1/2の元契約を保つ。v1検証7×7は原本保全で停止。新規のみ研究5/金locked/full表示。
+
+SessionStoreは元blobのまま。Web Locks・queue・期待raw照合・単一setItem成功後publish。研究/金解放/頻度/形式も同じcommand経路。期待Lv/解放済みflagで連打拒否。保存失敗では財布と上限の両方が元のまま。
+
+## 検証と試遊
+
+[追加検証](validation/phase2-polish-followup/RESULTS.md) / [独立監査](validation/phase2-polish-followup/AUDIT.md) / [比較](balance/phase2-polish-followup/RESULTS.md) / [Checkpoint](validation/phase2-polish-followup/CHECKPOINTS.md)。既存317件を削除せず回帰し、旧契約試験だけresearch40/gold unlockedの明示fixtureへ変更。旧270 browserを維持し、新規UI/研究/価格/保存試験を追加。詳細件数・hash・画面はRESULTSへ。
+
+比較の全数値は未承認。Windows/実Safari/iOS/Androidで、H3〜5の進行/研究を買うための売却/初回GOLD解放/小画面価格札を試遊し、数値採否→PR #9マージをユーザーが判断。実機試遊・OS強制kill耐久性をLinux Chromium/CDP touchで代替済みとは扱わない。属性/覚醒/紫青/土地/音/全Tier再制作/正式図鑑ロックは未着手。
+
+---
+
+# 以下は前回Polishの引き継ぎ原文（履歴）
+
 # Phase 2 Polish 引き継ぎ
 
 2026-11-01 JST。起点：main/PR #8 merge `55075e4b752c0084525770047f1e674eb2da23d6`。

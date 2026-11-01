@@ -21,3 +21,11 @@ Plan/apply/session limits, expected-level atomic purchases, GOLD lock and five m
 ## D — UI implemented; E/F in progress
 
 SVG trio/bag/coin, large stock/full GOLD, saved compact option, all-price overlays restricted to sale drag, protected/capped values, no future Tier forecast. Existing270 browser assertions pass. Final10-size follow-up and image inspection in progress. Final reports/spec/PR/HEAD CI pending; do not call this checkpoint complete.
+
+## E — final integrated verification complete
+
+Node22.23.0/npm10.9.9, npm ci/Lint/394 Vitest/TypeScript Build pass. Built React Chromium134/Playwright1.51.1: existing270 + follow-up101 + matching-fixture3 =374 pass, no pageerror/console errors. All10 viewport dimensions unchanged; 16+drag prices, 75%/300%/pan/cancel/pinch/rotation, max GOLD, research/gold purchases, saved format and Quota verified. Final image inspection fixed missing emoji, capsule face overlap and max-GOLD header overlap. 36 seeded economy runs all reachT40. Old reports/specs remain remote base blobs. See final RESULTS/AUDIT/hash manifests.
+
+## F — specification and PR packaging
+
+v0.2.9 is full v0.2.8-derived specification, all historic revision blocks/M36/A14/E20 preserved; old Gaussian6.4 moved to historical appendix. CURRENT/README/handoff and new balance/validation updated. Remote final HEAD/CI exact-match and Draft/private/main checks will be fixed in PR9 body after the final evidence commit (avoid self-referential tracked SHA). No merge/publication.

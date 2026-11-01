@@ -302,7 +302,7 @@ export function GameBoard() {
   const topLeft = worldToScreen({ x: 0, y: 0 }, camera, view)
   const scale = view.fit * camera.zoom
   return <>
-    <header className="app-header">
+    <header className={`app-header ${normal && session.goldFormat === 'full' && String(session.wallet.gold).length > 12 ? 'wide-gold' : ''}`}>
       <h1><span className="brand-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 16C2 15 3 2 11 4c4 0 5 5 5 8 0-10 13-12 13-4 1 7-7 8-10 8 10 0 12 13 4 13-7 1-8-7-8-10 0 9-13 12-13 4-1-6 6-8 11-8Z"/><path d="M17 17q-1 8 5 13" fill="none" stroke="currentColor" strokeWidth="2"/></svg></span> SLIME MERGE</h1>
       <div className="session-stats">{normal && <span key={`${event?.id ?? session.lastEvent?.id}-${event?.paid ?? 10}`} className={`wallet ${session.reducedEffects ? 'reduced-effects' : ''} ${event?.paid || session.lastEvent ? 'receipt-pop' : ''}`} title={`${session.wallet.gold} GOLD`}><GoldBag /><b data-testid="gold">{new Intl.NumberFormat('en-US', { notation: session.goldFormat === 'compact' ? 'compact' : 'standard', maximumFractionDigits: session.goldFormat === 'compact' ? 1 : 0 }).format(session.wallet.gold)}</b><small>GOLD</small></span>}<span><b data-testid="slime-count">{game.slimes.length}</b>体</span><span>最高 <b data-testid="highest-tier">Tier {game.highestTierReached}</b></span></div>
     </header>
@@ -369,7 +369,7 @@ export function GameBoard() {
           })}
         </div>
         {showPrices && <div className="price-layer" aria-label="全スライムの売却受取額">{game.slimes.map(slime => {
-          const point = worldToScreen({ x: (slime.position.x + .5) * 700 / game.bounds.width, y: (slime.position.y + .12) * 700 / game.bounds.height }, camera, view)
+          const point = worldToScreen({ x: (slime.position.x + .5) * 700 / game.bounds.width, y: (slime.position.y + .04) * 700 / game.bounds.height }, camera, view)
           return <div className="price-anchor" key={slime.id} style={{ left: point.x, top: point.y, width: Math.min(140, 700 / game.bounds.width * scale - 5) }}>{priceTag(slime.tier, slime.id)}</div>
         })}</div>}
         {dragged && gesture.single && <div className="drag-sprite" style={{ position: 'fixed', left: gesture.single.current.x + viewportOrigin.x, top: gesture.single.current.y + viewportOrigin.y, width: 602 / game.bounds.width * scale, height: 630 / game.bounds.height * scale, '--group-color': plan ? GROUP_COLORS[0] : 'transparent' } as CSSProperties}><Slime tier={dragged.tier} />{showPrices && <div className="drag-price">{priceTag(dragged.tier, dragged.id)}</div>}{plan && <span className="group-badge">1</span>}</div>}
@@ -404,7 +404,7 @@ export function GameBoard() {
       })}
       <section className="shop-item" aria-label="GOLDマス解放"><h3>{session.goldCellUnlocked ? '🟡 GOLDマス解放済み' : '🔒 GOLDマス解放'}</h3><p>空きマスにランダム出現。スライムを置くと350ms × 10回の報酬。</p><button type="button" data-testid="buy-gold-unlock" disabled={!!storageError || session.goldCellUnlocked || session.wallet.gold < EXPERIMENTAL_RESEARCH.goldUnlockCost} onClick={() => send({ type: 'gold-unlock' })}>{session.goldCellUnlocked ? '解放済み' : `${EXPERIMENTAL_RESEARCH.goldUnlockCost.toLocaleString()} GOLDで解放`}</button></section>
       <section className="shop-item"><h3>GOLDマス出現頻度 · Lv {session.goldFrequencyLevel}</h3><p>{session.goldCellUnlocked ? `次回予約から待ち時間を最大25%短縮（現在${session.goldFrequencyLevel * 5}%）` : 'GOLDマス解放後に購入できます'}</p><button type="button" data-testid="buy-gold-frequency" disabled={!!storageError || !session.goldCellUnlocked || session.goldFrequencyLevel >= 5 || session.wallet.gold < frequencyCost(session.goldFrequencyLevel)} onClick={() => send({ type: 'gold-frequency', expectedLevel: session.goldFrequencyLevel })}>{session.goldFrequencyLevel >= 5 ? '強化完了' : `${frequencyCost(session.goldFrequencyLevel).toLocaleString()} GOLDで購入`}</button></section>
-      <section className="shop-item research-shop" aria-label="スライム研究"><h3>スライム研究</h3><p>進化上限 <strong data-testid="research-cap">Tier {session.researchMaxTier}</strong> ／ 最終目標 Tier 40</p><p>発見済み：Tier {session.game.highestTierReached}。研究だけでは新Tierは発見されません。</p>
+      <section className="shop-item research-shop" aria-label="スライム研究"><h3>スライム研究</h3><p className="research-balance">所持 GOLD：{session.wallet.gold.toLocaleString('en-US')}</p><p>進化上限 <strong data-testid="research-cap">Tier {session.researchMaxTier}</strong> ／ 最終目標 Tier 40</p><p>発見済み：Tier {session.game.highestTierReached}。研究だけでは新Tierは発見されません。</p>
       {session.researchLevel < RESEARCH_CAPS.length - 1 ? <><p>次の進化上限：Tier {RESEARCH_CAPS[session.researchLevel + 1]} ／ 必要 {researchCost(session.researchLevel).toLocaleString()} GOLD</p><button type="button" data-testid="buy-research" disabled={!!storageError || session.wallet.gold < researchCost(session.researchLevel)} onClick={() => send({ type: 'research', expectedLevel: session.researchLevel })}>{session.wallet.gold < researchCost(session.researchLevel) ? 'GOLD不足 · ' : ''}{researchCost(session.researchLevel).toLocaleString()} GOLDで研究</button></> : <p>最終研究完了！ Tier40まで進化できます。</p>}
       <p className="research-history">解放済み：{RESEARCH_CAPS.slice(0, session.researchLevel + 1).map(cap => `Tier${cap}`).join(' / ')}</p></section>
       <p className="muted">価格・生成分布・強化量は試遊用の仮設定です。</p>

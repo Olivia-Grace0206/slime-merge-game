@@ -306,3 +306,16 @@ progress::-webkit-progress-value { background: linear-gradient(90deg,#79b65b,#ab
 .generator-mascot { width: 104px; }
 @media (max-width: 900px) and (min-height: 501px) { .generator-mascot { width: 62px; height: 44px; } .price-coin { width: 11px; height: 11px; } }
 @media (max-height: 500px) { .generator-mascot { width: 70px; height: 50px; } }
+
+/* Float the coin in the rim, leaving full line width for exact large prices. */
+.price-tag { position: relative; display: inline-block; padding: 3px 5px; }
+.price-tag b { display: block; }
+.price-tag small { display: block; }
+.price-coin { position: absolute; left: -3px; top: -3px; border-radius: 50%; background: #fff3cf; }
+
+@media (max-width: 480px) {
+  .app-header.wide-gold h1 { display: none; }
+  .wide-gold .session-stats { flex: 1; width: 100%; min-width: 0; }
+  .wide-gold .wallet { margin-left: auto; }
+  .wide-gold .wallet b, .wide-gold .wallet small { flex-shrink: 0; }
+}

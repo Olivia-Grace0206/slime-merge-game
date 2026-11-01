@@ -1,0 +1,10 @@
+(node:30) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS 1920x1080 4x4 fit, no page scroll, buttons ≥44px and reachable
+PASS 1920x1080 actual generation, one-click random addition, no placement mode or tap modal
+PASS 1920x1080 shop dialog and settings stay within viewport
+PASS 1440x900 4x4 fit, no page scroll, buttons ≥44px and reachable
+PASS 1440x900 actual generation, one-click random addition, no placement mode or tap modal
+PASS 1440x900 shop dialog and settings stay within viewport
+PASS 1440x900 5 merge in normal play, persisted highest Tier and reload
+PASS 1440x900 immediate sale, right-click or long-hold protection, save/reload and preview

@@ -46,6 +46,14 @@ describe('table discovery contract', () => {
     const s = freshSession(0), g = { ...s.generator, storedTiers: [2], totalGenerated: 1 }
     expect(withdrawToCell(s.game, g, { x: 0, y: 0 }, 'x').ok).toBe(false)
   })
+  it('seeded IID frequencies agree with the configured rare probabilities', () => {
+    let seed = 5913
+    for (const H of [2, 3, 10, 20, 30, 40]) {
+      const counts = Array<number>(H).fill(0), n = 100000
+      for (let i = 0; i < n; i++) { seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0; counts[drawTier(H, seed / 4294967296) - 1]!++ }
+      for (const w of tierWeights(H)) expect(Math.abs(counts[w.tier - 1]! - n * w.probability)).toBeLessThanOrEqual(7 * Math.sqrt(n * w.probability * (1 - w.probability)) + 2)
+    }
+  })
   it('first new Tier comes from actual merge, and sale retains history', () => {
     let s = board(1, 3)
     s = cmd(s, { type: 'drop', plan: planDrop(s.game, 'p-1', { x: 1, y: 0 }, s.researchMaxTier) })
@@ -109,6 +117,13 @@ describe('GOLD unlock, format and migration', () => {
     const raw = JSON.stringify(legacy), load = decodeSession(raw, 0)
     expect(load.ok).toBe(true)
     if (load.ok) { expect(load.migrated).toBe(true); expect(load.session).toMatchObject({ researchMaxTier: 33, goldCellUnlocked: true, goldFormat: 'full' }); expect(load.session.game).toEqual(saved.game); expect(load.session.generator).toEqual(saved.generator); expect(load.session.wallet).toEqual(saved.wallet) }
+  })
+  it('all old H1..40 migrate to a covering research boundary, including29/30 and40', () => {
+    for (let H = 1; H <= 40; H++) {
+      const s = board(H, 1, 40), raw = JSON.stringify({ ...s, version: 3 }), load = decodeSession(raw, 0)
+      expect(load.ok).toBe(true)
+      if (load.ok) { expect(load.session.researchMaxTier).toBe(RESEARCH_CAPS[legacyResearchLevel(H)]); expect(load.session.game.slimes).toEqual(s.game.slimes); expect(load.session.wallet.gold).toBe(0) }
+    }
   })
   it('v3 partially paid event keeps its exact unit, receipt and reward version; migration does not replay', () => {
     let s = { ...board(5, 1), goldCellUnlocked: true }

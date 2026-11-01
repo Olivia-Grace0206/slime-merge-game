@@ -1,0 +1,11 @@
+(node:5) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:13) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{
+  "passed": 54,
+  "failed": 0,
+  "browserVersion": "134.0.6998.35",
+  "errors": [],
+  "artifactDir": "docs/validation/phase2-polish-followup/merge"
+}

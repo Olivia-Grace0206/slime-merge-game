@@ -4,7 +4,7 @@ export const EXPERIMENTAL_RESEARCH = Object.freeze({ saleMultiplier: 3, goldUnlo
 export function legacyResearchLevel(highest: number): number {
   return RESEARCH_CAPS.findIndex(cap => cap >= highest)
 }
-export function researchCost(level: number, multiplier = EXPERIMENTAL_RESEARCH.saleMultiplier): number {
+export function researchCost(level: number, multiplier: number = EXPERIMENTAL_RESEARCH.saleMultiplier): number {
   if (!Number.isInteger(level) || level < 0 || level >= RESEARCH_CAPS.length - 1 || !Number.isFinite(multiplier) || multiplier <= 0) throw new RangeError('Invalid research')
   return Math.ceil(2 ** RESEARCH_CAPS[level]! * multiplier)
 }

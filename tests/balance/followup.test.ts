@@ -48,8 +48,8 @@ function simulate(name: string, seed: number, policy: Policy = 'balanced', multi
     const buyUnlock = () => { if (!s.goldCellUnlocked && s.wallet.gold >= unlockPrice) {
       s = { ...s, wallet: { ...s.wallet, gold: s.wallet.gold + 128 - unlockPrice } }; cmd({ type: 'gold-unlock' }, now); firstUnlock ??= now
     } }
-    if (policy === 'gold') buyUnlock()
-    if (policy === 'research' || blocked) buyResearch()
+    if (policy === 'gold') { buyUnlock(); if (!s.goldCellUnlocked) return }
+    if ((policy === 'research' || blocked) && (policy !== 'gold' || s.goldCellUnlocked)) buyResearch()
     const reserve = policy === 'balanced' && blocked ? nextResearchCost : 0
     for (const key of ['speed', 'tap', 'storage'] as const) {
       const lv = s.wallet.upgrades[key]
@@ -58,7 +58,7 @@ function simulate(name: string, seed: number, policy: Policy = 'balanced', multi
     }
     if (policy !== 'research') buyUnlock()
     if (policy === 'gold' && s.goldCellUnlocked && s.goldFrequencyLevel < 5 && s.wallet.gold >= frequencyCost(s.goldFrequencyLevel)) cmd({ type: 'gold-frequency', expectedLevel: s.goldFrequencyLevel }, now)
-    if (policy !== 'research' && !blocked) buyResearch()
+    if (policy !== 'research' && !blocked && (policy !== 'gold' || s.goldCellUnlocked)) buyResearch()
   }
   const dt = 2000, limit = 12 * 3600000
   let now: number
