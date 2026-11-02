@@ -20,6 +20,6 @@ export function AttributePanel({game,session,onDetail}:{game:GameState;session:S
   <section aria-labelledby="combination-title" data-testid="combination-guide"><h3 id="combination-title">複合効果</h3><p>同じ個体の元の属性を保持し、各組み合わせを1回ずつ追加適用します。</p>{COMBINATIONS.map(c=><article className="combination-card" key={c.name}><h4>{c.ids.map(id=><AttributeIcon key={id} id={id}/>)} {c.name}</h4><p>{c.description()}</p></article>)}</section>
   <p className="muted">属性重視：属性付き・高Tierを含め、例外なく貯蔵FIFO先頭10体を消費します。出力は素材の最低Tier、既存属性も失われ、新しい属性は抽選（確定保証なし）。</p>
   <p className="muted">属性解除は無料で全属性を外し、個体・Tier・位置・売却保護を保持します。自然の最後の供給源を解除すると追加生成は停止します。</p>
-  <section data-testid="special-guide"><h3>紫の覚醒・青の共鳴</h3><p>紫は未覚醒属性から1種類だけを仮{SPECIAL_TIMING.purpleChargeMs/1000}秒で永続覚醒。離脱・別個体・全属性解除で進捗0。成功まで残ります。青は仮{SPECIAL_TIMING.blueLifetimeMs/1000}秒だけ支援7属性を強化。個体は残ります。</p><p>Lv→覚醒→青→光→複合→既存上限。光は連鎖しません。覚醒は第1出力へ集中し、複製せず、余剰だけ警告して消失します。警告中もマージは実行可能。</p>{session.specials.lastAwakening&&<p>最近の覚醒：<AttributeTokens attributes={[{id:session.specials.lastAwakening.attributeId,level:1,awakened:true}]}/></p>}</section>
+  <section data-testid="special-guide"><h3>紫の覚醒・青の共鳴</h3><p>紫は未覚醒属性から1種類だけを仮{SPECIAL_TIMING.purpleChargeMs/1000}秒で永続覚醒。離脱・別個体・全属性解除で進捗0。成功まで残ります。青は仮{SPECIAL_TIMING.blueLifetimeMs/1000}秒だけ支援7属性を強化。個体は残ります。</p><p>Lv→覚醒→青→光→複合→既存上限。光は連鎖しません。覚醒は第1出力へ集中し、複製せず、余剰だけ警告して消失します。警告中もマージは実行可能。</p>{session.specials.lastAwakening&&<p>最近の覚醒：{guide.find(e=>e.id===session.specials.lastAwakening?.attributeId)?.name}★</p>}</section>
  </>
 }
