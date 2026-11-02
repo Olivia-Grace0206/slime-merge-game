@@ -1,15 +1,8 @@
-(node:11) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(node:4) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
 (Use `node --trace-warnings ...` to show where the warning was created)
 
 > slime-merge-game@0.0.0 lint
 > eslint . --max-warnings 0
 
-(node:24) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(node:17) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
 (Use `node --trace-warnings ...` to show where the warning was created)
-
-/workspace/scratch/1214ce4e74e0/slime-merge-game-phase3c/tests/browser/phase3c.cjs
-   4:127  error  'measurements' is assigned a value but never used  no-unused-vars
-  14:16   error  'set' is defined but never used                    no-unused-vars
-
-✖ 2 problems (2 errors, 0 warnings)
-

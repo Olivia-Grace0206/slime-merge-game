@@ -1,0 +1,25 @@
+(node:4) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS 390x844 three aura stages, distinct purple/blue, no document scroll
+PASS 390x844 five merge concentrates distinct awakenings and copies normal attributes without duplication
+PASS 390x844 surplus is text before drop, cancel preserves raw, warning never blocks merge/no dialog
+4 [
+  {
+    name: '390x844 fifteen inputs show all three groups of surplus before drop',
+    result: 'FAIL',
+    error: 'AssertionError [ERR_ASSERTION]: {"scroll":481,"client":401,"width":191,"token":"10px"}'
+  }
+]
+AssertionError [ERR_ASSERTION]: {"scroll":481,"client":401,"width":191,"token":"10px"}
+    at /workspace/scratch/1214ce4e74e0/slime-merge-game-phase3c/tests/browser/phase3c.cjs:33:605
+    at async drag (/workspace/scratch/1214ce4e74e0/slime-merge-game-phase3c/tests/browser/phase3c.cjs:13:170)
+    at async /workspace/scratch/1214ce4e74e0/slime-merge-game-phase3c/tests/browser/phase3c.cjs:33:187
+    at async check (/workspace/scratch/1214ce4e74e0/slime-merge-game-phase3c/tests/browser/phase3c.cjs:7:35)
+    at async run (/workspace/scratch/1214ce4e74e0/slime-merge-game-phase3c/tests/browser/phase3c.cjs:33:3) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}

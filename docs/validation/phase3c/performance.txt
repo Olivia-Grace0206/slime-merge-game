@@ -1,0 +1,6 @@
+(node:1810) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS 10 stock,16 Tier40 individuals with3 Lv99 traits,real localStorage and clock
+PASS 58 stock,16 Tier40 individuals with3 Lv99 traits,real localStorage and clock
+PASS 100 stock,16 Tier40 individuals with3 Lv99 traits,real localStorage and clock
+PASS 160 stock,16 Tier40 individuals with3 Lv99 traits,real localStorage and clock

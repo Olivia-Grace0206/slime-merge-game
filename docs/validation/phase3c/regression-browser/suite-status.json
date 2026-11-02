@@ -1,0 +1,34 @@
+[
+  {
+    "suite": "phase1-1",
+    "code": 0
+  },
+  {
+    "suite": "phase3a",
+    "code": 0
+  },
+  {
+    "suite": "followup",
+    "code": 0
+  },
+  {
+    "suite": "polish-input",
+    "code": 0
+  },
+  {
+    "suite": "phase2-polish",
+    "code": 0
+  },
+  {
+    "suite": "phase1",
+    "code": 0
+  },
+  {
+    "suite": "followup-compare",
+    "code": 0
+  },
+  {
+    "suite": "phase3b",
+    "code": 0
+  }
+]

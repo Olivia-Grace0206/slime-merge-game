@@ -1,0 +1,1049 @@
+{
+  "checks": [
+    {
+      "name": "1920x1080 one-screen unchanged board, separate strip above sale,127/160 remains large and unclipped",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 protected specimen strips all traits free and stays at exact original cell after reload",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 un-attributed drop makes no save and exiting zone/cancel never deletes individual",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 sale remains a separate destructive operation and price labels only show there",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 keyboard-selected protected individual can strip without being sold",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 SVG badges leave face/Tier visible, guide has all10 unowned traits and3 combos",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 FIFO head10 includes high Tier/attributed stock; remaining slot/trait survives reload",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 storageLv30/160 is independent of capped speed/tap16 and displays within shop",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 one-screen unchanged board, separate strip above sale,127/160 remains large and unclipped",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 protected specimen strips all traits free and stays at exact original cell after reload",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 un-attributed drop makes no save and exiting zone/cancel never deletes individual",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 sale remains a separate destructive operation and price labels only show there",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 keyboard-selected protected individual can strip without being sold",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 SVG badges leave face/Tier visible, guide has all10 unowned traits and3 combos",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 FIFO head10 includes high Tier/attributed stock; remaining slot/trait survives reload",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 storageLv30/160 is independent of capped speed/tap16 and displays within shop",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 one-screen unchanged board, separate strip above sale,127/160 remains large and unclipped",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 protected specimen strips all traits free and stays at exact original cell after reload",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 un-attributed drop makes no save and exiting zone/cancel never deletes individual",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 sale remains a separate destructive operation and price labels only show there",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 keyboard-selected protected individual can strip without being sold",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 SVG badges leave face/Tier visible, guide has all10 unowned traits and3 combos",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 FIFO head10 includes high Tier/attributed stock; remaining slot/trait survives reload",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 storageLv30/160 is independent of capped speed/tap16 and displays within shop",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 Escape cancels strip preview and keeps original attributes/raw",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 pointercancel cancels strip preview and keeps original attributes/raw",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 pinch cancels strip preview and keeps original attributes/raw",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 blur cancels strip preview and keeps original attributes/raw",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 rotation cancels strip preview and keeps original attributes/raw",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 one-screen unchanged board, separate strip above sale,127/160 remains large and unclipped",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 protected specimen strips all traits free and stays at exact original cell after reload",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 un-attributed drop makes no save and exiting zone/cancel never deletes individual",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 sale remains a separate destructive operation and price labels only show there",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 keyboard-selected protected individual can strip without being sold",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 SVG badges leave face/Tier visible, guide has all10 unowned traits and3 combos",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 FIFO head10 includes high Tier/attributed stock; remaining slot/trait survives reload",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 storageLv30/160 is independent of capped speed/tap16 and displays within shop",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 one-screen unchanged board, separate strip above sale,127/160 remains large and unclipped",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 protected specimen strips all traits free and stays at exact original cell after reload",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 un-attributed drop makes no save and exiting zone/cancel never deletes individual",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 sale remains a separate destructive operation and price labels only show there",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 keyboard-selected protected individual can strip without being sold",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 SVG badges leave face/Tier visible, guide has all10 unowned traits and3 combos",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 FIFO head10 includes high Tier/attributed stock; remaining slot/trait survives reload",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 storageLv30/160 is independent of capped speed/tap16 and displays within shop",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 one-screen unchanged board, separate strip above sale,127/160 remains large and unclipped",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 protected specimen strips all traits free and stays at exact original cell after reload",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 un-attributed drop makes no save and exiting zone/cancel never deletes individual",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 sale remains a separate destructive operation and price labels only show there",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 keyboard-selected protected individual can strip without being sold",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 SVG badges leave face/Tier visible, guide has all10 unowned traits and3 combos",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 FIFO head10 includes high Tier/attributed stock; remaining slot/trait survives reload",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 storageLv30/160 is independent of capped speed/tap16 and displays within shop",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 one-screen unchanged board, separate strip above sale,127/160 remains large and unclipped",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 protected specimen strips all traits free and stays at exact original cell after reload",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 un-attributed drop makes no save and exiting zone/cancel never deletes individual",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 sale remains a separate destructive operation and price labels only show there",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 keyboard-selected protected individual can strip without being sold",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 SVG badges leave face/Tier visible, guide has all10 unowned traits and3 combos",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 FIFO head10 includes high Tier/attributed stock; remaining slot/trait survives reload",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 storageLv30/160 is independent of capped speed/tap16 and displays within shop",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 Escape cancels strip preview and keeps original attributes/raw",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 pointercancel cancels strip preview and keeps original attributes/raw",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 pinch cancels strip preview and keeps original attributes/raw",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 blur cancels strip preview and keeps original attributes/raw",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 rotation cancels strip preview and keeps original attributes/raw",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 one-screen unchanged board, separate strip above sale,127/160 remains large and unclipped",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 protected specimen strips all traits free and stays at exact original cell after reload",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 un-attributed drop makes no save and exiting zone/cancel never deletes individual",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 sale remains a separate destructive operation and price labels only show there",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 keyboard-selected protected individual can strip without being sold",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 SVG badges leave face/Tier visible, guide has all10 unowned traits and3 combos",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 FIFO head10 includes high Tier/attributed stock; remaining slot/trait survives reload",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 storageLv30/160 is independent of capped speed/tap16 and displays within shop",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 one-screen unchanged board, separate strip above sale,127/160 remains large and unclipped",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 protected specimen strips all traits free and stays at exact original cell after reload",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 un-attributed drop makes no save and exiting zone/cancel never deletes individual",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 sale remains a separate destructive operation and price labels only show there",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 keyboard-selected protected individual can strip without being sold",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 SVG badges leave face/Tier visible, guide has all10 unowned traits and3 combos",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 FIFO head10 includes high Tier/attributed stock; remaining slot/trait survives reload",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 storageLv30/160 is independent of capped speed/tap16 and displays within shop",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 one-screen unchanged board, separate strip above sale,127/160 remains large and unclipped",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 protected specimen strips all traits free and stays at exact original cell after reload",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 un-attributed drop makes no save and exiting zone/cancel never deletes individual",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 sale remains a separate destructive operation and price labels only show there",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 keyboard-selected protected individual can strip without being sold",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 SVG badges leave face/Tier visible, guide has all10 unowned traits and3 combos",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 FIFO head10 includes high Tier/attributed stock; remaining slot/trait survives reload",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 storageLv30/160 is independent of capped speed/tap16 and displays within shop",
+      "result": "PASS"
+    },
+    {
+      "name": "390 GOLD4/10 contract remains frozen through free stripping, then old payment resumes once",
+      "result": "PASS"
+    },
+    {
+      "name": "390 strip Quota and another-tab raw conflict keep original traits/position/wallet/clock",
+      "result": "PASS"
+    }
+  ],
+  "errors": [],
+  "measurements": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "scroll": [
+        1920,
+        1080
+      ],
+      "board": {
+        "x": 455,
+        "y": 60,
+        "w": 1010,
+        "h": 1010,
+        "right": 1465,
+        "bottom": 1070
+      },
+      "strip": {
+        "x": 1732,
+        "y": 824.5,
+        "w": 180,
+        "h": 81.5,
+        "right": 1912,
+        "bottom": 906
+      },
+      "sale": {
+        "x": 1732,
+        "y": 914,
+        "w": 180,
+        "h": 148,
+        "right": 1912,
+        "bottom": 1062
+      },
+      "stock": {
+        "x": 1770.296875,
+        "y": 274.828125,
+        "w": 141.421875,
+        "h": 28.34375,
+        "right": 1911.71875,
+        "bottom": 303.171875,
+        "font": 27,
+        "textRight": 1911.71875,
+        "panelRight": 1912
+      },
+      "hitStrip": true,
+      "hitSale": true
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "scroll": [
+        1440,
+        900
+      ],
+      "board": {
+        "x": 305,
+        "y": 60,
+        "w": 830,
+        "h": 830,
+        "right": 1135,
+        "bottom": 890
+      },
+      "strip": {
+        "x": 1252,
+        "y": 644.5,
+        "w": 180,
+        "h": 81.5,
+        "right": 1432,
+        "bottom": 726
+      },
+      "sale": {
+        "x": 1252,
+        "y": 734,
+        "w": 180,
+        "h": 148,
+        "right": 1432,
+        "bottom": 882
+      },
+      "stock": {
+        "x": 1290.296875,
+        "y": 274.828125,
+        "w": 141.421875,
+        "h": 28.34375,
+        "right": 1431.71875,
+        "bottom": 303.171875,
+        "font": 27,
+        "textRight": 1431.71875,
+        "panelRight": 1432
+      },
+      "hitStrip": true,
+      "hitSale": true
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "scroll": [
+        1366,
+        768
+      ],
+      "board": {
+        "x": 334,
+        "y": 60,
+        "w": 698,
+        "h": 698,
+        "right": 1032,
+        "bottom": 758
+      },
+      "strip": {
+        "x": 1178,
+        "y": 512.5,
+        "w": 180,
+        "h": 81.5,
+        "right": 1358,
+        "bottom": 594
+      },
+      "sale": {
+        "x": 1178,
+        "y": 602,
+        "w": 180,
+        "h": 148,
+        "right": 1358,
+        "bottom": 750
+      },
+      "stock": {
+        "x": 1216.296875,
+        "y": 274.828125,
+        "w": 141.421875,
+        "h": 28.34375,
+        "right": 1357.71875,
+        "bottom": 303.171875,
+        "font": 27,
+        "textRight": 1357.71875,
+        "panelRight": 1358
+      },
+      "hitStrip": true,
+      "hitSale": true
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "scroll": [
+        1280,
+        720
+      ],
+      "board": {
+        "x": 315,
+        "y": 60,
+        "w": 650,
+        "h": 650,
+        "right": 965,
+        "bottom": 710
+      },
+      "strip": {
+        "x": 1092,
+        "y": 468.5,
+        "w": 180,
+        "h": 81.5,
+        "right": 1272,
+        "bottom": 550
+      },
+      "sale": {
+        "x": 1092,
+        "y": 558,
+        "w": 180,
+        "h": 148,
+        "right": 1272,
+        "bottom": 706
+      },
+      "stock": {
+        "x": 1130.296875,
+        "y": 270.828125,
+        "w": 141.421875,
+        "h": 28.34375,
+        "right": 1271.71875,
+        "bottom": 299.171875,
+        "font": 27,
+        "textRight": 1271.71875,
+        "panelRight": 1272
+      },
+      "hitStrip": true,
+      "hitSale": true
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "scroll": [
+        1024,
+        768
+      ],
+      "board": {
+        "x": 200,
+        "y": 97,
+        "w": 624,
+        "h": 624,
+        "right": 824,
+        "bottom": 721
+      },
+      "strip": {
+        "x": 836,
+        "y": 512.5,
+        "w": 180,
+        "h": 81.5,
+        "right": 1016,
+        "bottom": 594
+      },
+      "sale": {
+        "x": 836,
+        "y": 602,
+        "w": 180,
+        "h": 148,
+        "right": 1016,
+        "bottom": 750
+      },
+      "stock": {
+        "x": 874.296875,
+        "y": 274.828125,
+        "w": 141.421875,
+        "h": 28.34375,
+        "right": 1015.71875,
+        "bottom": 303.171875,
+        "font": 27,
+        "textRight": 1015.71875,
+        "panelRight": 1016
+      },
+      "hitStrip": true,
+      "hitSale": true
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "scroll": [
+        768,
+        1024
+      ],
+      "board": {
+        "x": 8,
+        "y": 70,
+        "w": 752,
+        "h": 752,
+        "right": 760,
+        "bottom": 822
+      },
+      "strip": {
+        "x": 499.4375,
+        "y": 844,
+        "w": 264.5625,
+        "h": 50,
+        "right": 764,
+        "bottom": 894
+      },
+      "sale": {
+        "x": 499.4375,
+        "y": 900,
+        "w": 264.5625,
+        "h": 50,
+        "right": 764,
+        "bottom": 950
+      },
+      "stock": {
+        "x": 258.84375,
+        "y": 853,
+        "w": 104.734375,
+        "h": 21,
+        "right": 363.578125,
+        "bottom": 874,
+        "font": 20,
+        "textRight": 363.578125,
+        "panelRight": 493.4375
+      },
+      "hitStrip": true,
+      "hitSale": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "scroll": [
+        390,
+        844
+      ],
+      "board": {
+        "x": 8,
+        "y": 169,
+        "w": 374,
+        "h": 374,
+        "right": 382,
+        "bottom": 543
+      },
+      "strip": {
+        "x": 254.0625,
+        "y": 664,
+        "w": 131.9375,
+        "h": 50,
+        "right": 386,
+        "bottom": 714
+      },
+      "sale": {
+        "x": 254.0625,
+        "y": 720,
+        "w": 131.9375,
+        "h": 50,
+        "right": 386,
+        "bottom": 770
+      },
+      "stock": {
+        "x": 136.15625,
+        "y": 673,
+        "w": 104.734375,
+        "h": 21,
+        "right": 240.890625,
+        "bottom": 694,
+        "font": 20,
+        "textRight": 240.890625,
+        "panelRight": 248.0625
+      },
+      "hitStrip": true,
+      "hitSale": true
+    },
+    {
+      "width": 375,
+      "height": 667,
+      "scroll": [
+        375,
+        667
+      ],
+      "board": {
+        "x": 8,
+        "y": 88,
+        "w": 359,
+        "h": 359,
+        "right": 367,
+        "bottom": 447
+      },
+      "strip": {
+        "x": 244.328125,
+        "y": 487,
+        "w": 126.671875,
+        "h": 50,
+        "right": 371,
+        "bottom": 537
+      },
+      "sale": {
+        "x": 244.328125,
+        "y": 543,
+        "w": 126.671875,
+        "h": 50,
+        "right": 371,
+        "bottom": 593
+      },
+      "stock": {
+        "x": 131.296875,
+        "y": 496,
+        "w": 104.734375,
+        "h": 21,
+        "right": 236.03125,
+        "bottom": 517,
+        "font": 20,
+        "textRight": 236.03125,
+        "panelRight": 238.328125
+      },
+      "hitStrip": true,
+      "hitSale": true
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "scroll": [
+        320,
+        568
+      ],
+      "board": {
+        "x": 8,
+        "y": 66,
+        "w": 304,
+        "h": 304,
+        "right": 312,
+        "bottom": 370
+      },
+      "strip": {
+        "x": 208.625,
+        "y": 388,
+        "w": 107.375,
+        "h": 50,
+        "right": 316,
+        "bottom": 438
+      },
+      "sale": {
+        "x": 208.625,
+        "y": 444,
+        "w": 107.375,
+        "h": 50,
+        "right": 316,
+        "bottom": 494
+      },
+      "stock": {
+        "x": 105.6875,
+        "y": 398.046875,
+        "w": 94.265625,
+        "h": 18.890625,
+        "right": 199.953125,
+        "bottom": 416.9375,
+        "font": 18,
+        "textRight": 199.953125,
+        "panelRight": 202.625
+      },
+      "hitStrip": true,
+      "hitSale": true
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "scroll": [
+        844,
+        390
+      ],
+      "board": {
+        "x": 255,
+        "y": 48,
+        "w": 334,
+        "h": 334,
+        "right": 589,
+        "bottom": 382
+      },
+      "strip": {
+        "x": 676,
+        "y": 294,
+        "w": 160,
+        "h": 44,
+        "right": 836,
+        "bottom": 338
+      },
+      "sale": {
+        "x": 676,
+        "y": 342,
+        "w": 160,
+        "h": 44,
+        "right": 836,
+        "bottom": 386
+      },
+      "stock": {
+        "x": 716.5,
+        "y": 149,
+        "w": 109.984375,
+        "h": 22.046875,
+        "right": 826.484375,
+        "bottom": 171.046875,
+        "font": 21,
+        "textRight": 826.484375,
+        "panelRight": 836
+      },
+      "hitStrip": true,
+      "hitSale": true
+    }
+  ],
+  "performanceSamples": [
+    {
+      "name": "1920x1080",
+      "stripRoundTripMs": 396.3308229999999
+    },
+    {
+      "name": "1920x1080",
+      "jsonUTF8Bytes": 1461,
+      "hotSameJSON50ClockControlledNotUsedForPerformance": {
+        "read": {
+          "meanMs": 0,
+          "maxMs": 0
+        },
+        "parse": {
+          "meanMs": 0,
+          "maxMs": 0
+        },
+        "write": {
+          "meanMs": 0,
+          "maxMs": 0
+        }
+      }
+    },
+    {
+      "name": "1440x900",
+      "stripRoundTripMs": 266.6682600000004
+    },
+    {
+      "name": "1440x900",
+      "jsonUTF8Bytes": 1461,
+      "hotSameJSON50ClockControlledNotUsedForPerformance": {
+        "read": {
+          "meanMs": 0,
+          "maxMs": 0
+        },
+        "parse": {
+          "meanMs": 0,
+          "maxMs": 0
+        },
+        "write": {
+          "meanMs": 0,
+          "maxMs": 0
+        }
+      }
+    },
+    {
+      "name": "1366x768",
+      "stripRoundTripMs": 230.03035
+    },
+    {
+      "name": "1366x768",
+      "jsonUTF8Bytes": 1461,
+      "hotSameJSON50ClockControlledNotUsedForPerformance": {
+        "read": {
+          "meanMs": 0,
+          "maxMs": 0
+        },
+        "parse": {
+          "meanMs": 0,
+          "maxMs": 0
+        },
+        "write": {
+          "meanMs": 0,
+          "maxMs": 0
+        }
+      }
+    },
+    {
+      "name": "1280x720",
+      "stripRoundTripMs": 249.24845199999982
+    },
+    {
+      "name": "1280x720",
+      "jsonUTF8Bytes": 1461,
+      "hotSameJSON50ClockControlledNotUsedForPerformance": {
+        "read": {
+          "meanMs": 0,
+          "maxMs": 0
+        },
+        "parse": {
+          "meanMs": 0,
+          "maxMs": 0
+        },
+        "write": {
+          "meanMs": 0,
+          "maxMs": 0
+        }
+      }
+    },
+    {
+      "name": "1024x768",
+      "stripRoundTripMs": 196.4665270000005
+    },
+    {
+      "name": "1024x768",
+      "jsonUTF8Bytes": 1461,
+      "hotSameJSON50ClockControlledNotUsedForPerformance": {
+        "read": {
+          "meanMs": 0,
+          "maxMs": 0
+        },
+        "parse": {
+          "meanMs": 0,
+          "maxMs": 0
+        },
+        "write": {
+          "meanMs": 0,
+          "maxMs": 0
+        }
+      }
+    },
+    {
+      "name": "768x1024",
+      "stripRoundTripMs": 185.53319099999862
+    },
+    {
+      "name": "768x1024",
+      "jsonUTF8Bytes": 1461,
+      "hotSameJSON50ClockControlledNotUsedForPerformance": {
+        "read": {
+          "meanMs": 0,
+          "maxMs": 0
+        },
+        "parse": {
+          "meanMs": 0,
+          "maxMs": 0
+        },
+        "write": {
+          "meanMs": 0,
+          "maxMs": 0
+        }
+      }
+    },
+    {
+      "name": "390x844",
+      "stripRoundTripMs": 192.60081799999898
+    },
+    {
+      "name": "390x844",
+      "jsonUTF8Bytes": 1461,
+      "hotSameJSON50ClockControlledNotUsedForPerformance": {
+        "read": {
+          "meanMs": 0,
+          "maxMs": 0
+        },
+        "parse": {
+          "meanMs": 0,
+          "maxMs": 0
+        },
+        "write": {
+          "meanMs": 0,
+          "maxMs": 0
+        }
+      }
+    },
+    {
+      "name": "375x667",
+      "stripRoundTripMs": 169.6288220000024
+    },
+    {
+      "name": "375x667",
+      "jsonUTF8Bytes": 1461,
+      "hotSameJSON50ClockControlledNotUsedForPerformance": {
+        "read": {
+          "meanMs": 0,
+          "maxMs": 0
+        },
+        "parse": {
+          "meanMs": 0,
+          "maxMs": 0
+        },
+        "write": {
+          "meanMs": 0,
+          "maxMs": 0
+        }
+      }
+    },
+    {
+      "name": "320x568",
+      "stripRoundTripMs": 175.4845860000023
+    },
+    {
+      "name": "320x568",
+      "jsonUTF8Bytes": 1461,
+      "hotSameJSON50ClockControlledNotUsedForPerformance": {
+        "read": {
+          "meanMs": 0,
+          "maxMs": 0
+        },
+        "parse": {
+          "meanMs": 0,
+          "maxMs": 0
+        },
+        "write": {
+          "meanMs": 0,
+          "maxMs": 0
+        }
+      }
+    },
+    {
+      "name": "844x390",
+      "stripRoundTripMs": 187.4695380000012
+    },
+    {
+      "name": "844x390",
+      "jsonUTF8Bytes": 1461,
+      "hotSameJSON50ClockControlledNotUsedForPerformance": {
+        "read": {
+          "meanMs": 0,
+          "maxMs": 0
+        },
+        "parse": {
+          "meanMs": 0,
+          "maxMs": 0
+        },
+        "write": {
+          "meanMs": 0,
+          "maxMs": 0
+        }
+      }
+    }
+  ],
+  "browser": "134.0.6998.35",
+  "realDevices": false
+}

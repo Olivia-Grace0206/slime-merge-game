@@ -1,0 +1,13 @@
+{
+  "virtualHours": 240,
+  "checkpoints": 240,
+  "totalGenerated": 2400,
+  "nextId": 2401,
+  "gold": 4800,
+  "eventSequence": 240,
+  "uniqueIds": true,
+  "validEveryCheckpoint": true,
+  "roundTripEveryCheckpoint": true,
+  "storageBounded": true,
+  "errors": 0
+}

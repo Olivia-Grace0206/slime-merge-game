@@ -1,0 +1,549 @@
+{
+  "model": "4x4 actual Core; random FIFO; one board action / 2s plus tap, 5 preferred then 3 at >=13, periodic duplicate sale / 30s, shops bought when affordable. Seek gold then hold source. Five fixed seeds, six-hour censor; receipt times 350ms. Bot comparison, not a human time forecast.",
+  "results": [
+    {
+      "slope": 0.92,
+      "seed": 12,
+      "reached": {
+        "5": 272000,
+        "10": 540000,
+        "20": 876000,
+        "30": 2966000,
+        "40": 6526000
+      },
+      "endingH": 40,
+      "durationMs": 6526000,
+      "meanGeneratedTier": 26.81137309292649,
+      "nearHighestRatio": 0.3074433656957929,
+      "boardFullRatio": 0.04076003677597303,
+      "storageStoppedRatio": 0.2546736132393503,
+      "mergeReadyRatio": 0.5911737664725712,
+      "merges": 863,
+      "sales": 275,
+      "goldIncome": 1997427852450,
+      "saleIncome": 11229764705352,
+      "goldShare": 0.1510092065055654
+    },
+    {
+      "slope": 0.92,
+      "seed": 61,
+      "reached": {
+        "5": 386000,
+        "10": 620000,
+        "20": 936000,
+        "30": 3410000,
+        "40": 6746000
+      },
+      "endingH": 40,
+      "durationMs": 6746000,
+      "meanGeneratedTier": 26.38673285198556,
+      "nearHighestRatio": 0.3240072202166065,
+      "boardFullRatio": 0.04595315742662318,
+      "storageStoppedRatio": 0.2564482656388971,
+      "mergeReadyRatio": 0.5600355766380077,
+      "merges": 892,
+      "sales": 289,
+      "goldIncome": 1909679735140,
+      "saleIncome": 7456605074282,
+      "goldShare": 0.20388871083857715
+    },
+    {
+      "slope": 0.92,
+      "seed": 210,
+      "reached": {
+        "5": 264000,
+        "10": 482000,
+        "20": 780000,
+        "30": 3138000,
+        "40": 6540000
+      },
+      "endingH": 40,
+      "durationMs": 6540000,
+      "meanGeneratedTier": 26.56221198156682,
+      "nearHighestRatio": 0.3105990783410138,
+      "boardFullRatio": 0.04525993883792049,
+      "storageStoppedRatio": 0.26269113149847095,
+      "mergeReadyRatio": 0.5535168195718655,
+      "merges": 875,
+      "sales": 287,
+      "goldIncome": 2209841484140,
+      "saleIncome": 7049085078448,
+      "goldShare": 0.23867145604860682
+    },
+    {
+      "slope": 0.92,
+      "seed": 513,
+      "reached": {
+        "5": 376000,
+        "10": 612000,
+        "20": 850000,
+        "30": 2606000,
+        "40": 6022000
+      },
+      "endingH": 40,
+      "durationMs": 6022000,
+      "meanGeneratedTier": 27.04880528723945,
+      "nearHighestRatio": 0.3045246568378241,
+      "boardFullRatio": 0.05247426104284291,
+      "storageStoppedRatio": 0.25008302889405515,
+      "mergeReadyRatio": 0.5433410826967785,
+      "merges": 780,
+      "sales": 272,
+      "goldIncome": 2336749028310,
+      "saleIncome": 9027098064700,
+      "goldShare": 0.20563010124866554
+    },
+    {
+      "slope": 0.92,
+      "seed": 901,
+      "reached": {
+        "5": 344000,
+        "10": 554000,
+        "20": 802000,
+        "30": 2500000,
+        "40": 6060000
+      },
+      "endingH": 40,
+      "durationMs": 6060000,
+      "meanGeneratedTier": 27.34653961885657,
+      "nearHighestRatio": 0.3069207622868606,
+      "boardFullRatio": 0.0462046204620462,
+      "storageStoppedRatio": 0.2514851485148515,
+      "mergeReadyRatio": 0.5435643564356436,
+      "merges": 800,
+      "sales": 259,
+      "goldIncome": 1912224223260,
+      "saleIncome": 7610236009652,
+      "goldShare": 0.2008119935907819
+    },
+    {
+      "slope": 0.9,
+      "seed": 12,
+      "reached": {
+        "5": 272000,
+        "10": 534000,
+        "20": 974000,
+        "30": 3520000,
+        "40": 8370000
+      },
+      "endingH": 40,
+      "durationMs": 8370000,
+      "meanGeneratedTier": 26.74259927797834,
+      "nearHighestRatio": 0.21660649819494585,
+      "boardFullRatio": 0.044444444444444446,
+      "storageStoppedRatio": 0.2719235364396655,
+      "mergeReadyRatio": 0.5615292712066906,
+      "merges": 1128,
+      "sales": 371,
+      "goldIncome": 2635151517050,
+      "saleIncome": 8818398843416,
+      "goldShare": 0.2300728974087984
+    },
+    {
+      "slope": 0.9,
+      "seed": 61,
+      "reached": {
+        "5": 386000,
+        "10": 620000,
+        "20": 1018000,
+        "30": 3506000,
+        "40": 8608000
+      },
+      "endingH": 40,
+      "durationMs": 8608000,
+      "meanGeneratedTier": 27.302317415730336,
+      "nearHighestRatio": 0.2205056179775281,
+      "boardFullRatio": 0.040427509293680296,
+      "storageStoppedRatio": 0.2690520446096654,
+      "mergeReadyRatio": 0.5857342007434945,
+      "merges": 1167,
+      "sales": 354,
+      "goldIncome": 5408698990900,
+      "saleIncome": 19435017672746,
+      "goldShare": 0.21770893075811762
+    },
+    {
+      "slope": 0.9,
+      "seed": 210,
+      "reached": {
+        "5": 264000,
+        "10": 496000,
+        "20": 894000,
+        "30": 3414000,
+        "40": 8140000
+      },
+      "endingH": 40,
+      "durationMs": 8140000,
+      "meanGeneratedTier": 27.280118255728013,
+      "nearHighestRatio": 0.2099039172209904,
+      "boardFullRatio": 0.04815724815724816,
+      "storageStoppedRatio": 0.2727272727272727,
+      "mergeReadyRatio": 0.553071253071253,
+      "merges": 1089,
+      "sales": 372,
+      "goldIncome": 5224922490930,
+      "saleIncome": 21023038410400,
+      "goldShare": 0.1990601293019013
+    },
+    {
+      "slope": 0.9,
+      "seed": 513,
+      "reached": {
+        "5": 376000,
+        "10": 644000,
+        "20": 1120000,
+        "30": 4068000,
+        "40": 8488000
+      },
+      "endingH": 40,
+      "durationMs": 8488000,
+      "meanGeneratedTier": 26.42974910394265,
+      "nearHighestRatio": 0.22544802867383512,
+      "boardFullRatio": 0.044062205466541,
+      "storageStoppedRatio": 0.26979264844486334,
+      "mergeReadyRatio": 0.5725730442978322,
+      "merges": 1131,
+      "sales": 377,
+      "goldIncome": 3802936117330,
+      "saleIncome": 13385668707724,
+      "goldShare": 0.22124751578364665
+    },
+    {
+      "slope": 0.9,
+      "seed": 901,
+      "reached": {
+        "5": 354000,
+        "10": 652000,
+        "20": 912000,
+        "30": 3048000,
+        "40": 8226000
+      },
+      "endingH": 40,
+      "durationMs": 8226000,
+      "meanGeneratedTier": 27.722345132743364,
+      "nearHighestRatio": 0.22271386430678466,
+      "boardFullRatio": 0.04546559688791636,
+      "storageStoppedRatio": 0.26817408217845856,
+      "mergeReadyRatio": 0.5762217359591539,
+      "merges": 1107,
+      "sales": 349,
+      "goldIncome": 4079496085900,
+      "saleIncome": 21182851058380,
+      "goldShare": 0.16148523581759486
+    },
+    {
+      "slope": 0.88,
+      "seed": 12,
+      "reached": {
+        "5": 260000,
+        "10": 620000,
+        "20": 1230000,
+        "30": 4642000,
+        "40": null
+      },
+      "endingH": 38,
+      "durationMs": 21600000,
+      "meanGeneratedTier": 29.225990271021544,
+      "nearHighestRatio": 0.09840166782487839,
+      "boardFullRatio": 0.047314814814814816,
+      "storageStoppedRatio": 0.30703703703703705,
+      "mergeReadyRatio": 0.5435185185185185,
+      "merges": 3008,
+      "sales": 977,
+      "goldIncome": 12219136567220,
+      "saleIncome": 44257415755396,
+      "goldShare": 0.21635769296644644
+    },
+    {
+      "slope": 0.88,
+      "seed": 61,
+      "reached": {
+        "5": 386000,
+        "10": 620000,
+        "20": 1130000,
+        "30": 4378000,
+        "40": 18742000
+      },
+      "endingH": 40,
+      "durationMs": 18742000,
+      "meanGeneratedTier": 29.20430798906928,
+      "nearHighestRatio": 0.1070567432888603,
+      "boardFullRatio": 0.052075552235620534,
+      "storageStoppedRatio": 0.3034894888485754,
+      "mergeReadyRatio": 0.5313200298794152,
+      "merges": 2588,
+      "sales": 859,
+      "goldIncome": 13275926777730,
+      "saleIncome": 41711799485098,
+      "goldShare": 0.2414343650849335
+    },
+    {
+      "slope": 0.88,
+      "seed": 210,
+      "reached": {
+        "5": 264000,
+        "10": 494000,
+        "20": 1098000,
+        "30": 4406000,
+        "40": 19546000
+      },
+      "endingH": 40,
+      "durationMs": 19546000,
+      "meanGeneratedTier": 29.190665646518745,
+      "nearHighestRatio": 0.09931140015302219,
+      "boardFullRatio": 0.04747774480712166,
+      "storageStoppedRatio": 0.3051263685664586,
+      "mergeReadyRatio": 0.5591936969200859,
+      "merges": 2732,
+      "sales": 861,
+      "goldIncome": 17029424760360,
+      "saleIncome": 55151744617728,
+      "goldShare": 0.2359261412233315
+    },
+    {
+      "slope": 0.88,
+      "seed": 513,
+      "reached": {
+        "5": 376000,
+        "10": 618000,
+        "20": 1014000,
+        "30": 4080000,
+        "40": 17370000
+      },
+      "endingH": 40,
+      "durationMs": 17370000,
+      "meanGeneratedTier": 29.063150589868147,
+      "nearHighestRatio": 0.11207494795281055,
+      "boardFullRatio": 0.048474381116868165,
+      "storageStoppedRatio": 0.30109383995394357,
+      "mergeReadyRatio": 0.5403569372481289,
+      "merges": 2407,
+      "sales": 776,
+      "goldIncome": 10797669822940,
+      "saleIncome": 38087572955148,
+      "goldShare": 0.22087790116856854
+    },
+    {
+      "slope": 0.88,
+      "seed": 901,
+      "reached": {
+        "5": 360000,
+        "10": 646000,
+        "20": 1188000,
+        "30": 4452000,
+        "40": 20808000
+      },
+      "endingH": 40,
+      "durationMs": 20808000,
+      "meanGeneratedTier": 29.573945696129407,
+      "nearHighestRatio": 0.10831889081455806,
+      "boardFullRatio": 0.04834678969627067,
+      "storageStoppedRatio": 0.30459438677431755,
+      "mergeReadyRatio": 0.5668973471741637,
+      "merges": 2892,
+      "sales": 939,
+      "goldIncome": 13176919228070,
+      "saleIncome": 46060139326624,
+      "goldShare": 0.22244384764485994
+    }
+  ],
+  "distributions": [
+    {
+      "slope": 0.92,
+      "H": 5,
+      "mean": 4.321227377904906,
+      "pHighest": 0.4712200352179824,
+      "pNearHighest": 0.8648160936557336
+    },
+    {
+      "slope": 0.92,
+      "H": 10,
+      "mean": 9.074546794598799,
+      "pHighest": 0.34249777542419585,
+      "pNearHighest": 0.7692762836582283
+    },
+    {
+      "slope": 0.92,
+      "H": 20,
+      "mean": 18.043012209747147,
+      "pHighest": 0.1778937289417212,
+      "pNearHighest": 0.42160913072397177
+    },
+    {
+      "slope": 0.92,
+      "H": 30,
+      "mean": 27.461304628938098,
+      "pHighest": 0.10233841113371028,
+      "pNearHighest": 0.28180938205247374
+    },
+    {
+      "slope": 0.92,
+      "H": 40,
+      "mean": 36.78679270464504,
+      "pHighest": 0.05039199731342601,
+      "pNearHighest": 0.16351484256228277
+    },
+    {
+      "slope": 0.9,
+      "H": 5,
+      "mean": 4.27624579586648,
+      "pHighest": 0.4455183705114586,
+      "pNearHighest": 0.8486400625726349
+    },
+    {
+      "slope": 0.9,
+      "H": 10,
+      "mean": 8.946245974172262,
+      "pHighest": 0.28665857789381893,
+      "pNearHighest": 0.7143029241865421
+    },
+    {
+      "slope": 0.9,
+      "H": 20,
+      "mean": 17.779580652572328,
+      "pHighest": 0.13927497092229194,
+      "pNearHighest": 0.3538262885041335
+    },
+    {
+      "slope": 0.9,
+      "H": 30,
+      "mean": 26.98010421701499,
+      "pHighest": 0.06226628982428151,
+      "pNearHighest": 0.19286912504185766
+    },
+    {
+      "slope": 0.9,
+      "H": 40,
+      "mean": 36.065878990538366,
+      "pHighest": 0.021337561507547752,
+      "pNearHighest": 0.08227524054285684
+    },
+    {
+      "slope": 0.88,
+      "H": 5,
+      "mean": 4.229099673373596,
+      "pHighest": 0.41966918510602025,
+      "pNearHighest": 0.8310283635746686
+    },
+    {
+      "slope": 0.88,
+      "H": 10,
+      "mean": 8.807967208680367,
+      "pHighest": 0.23423255468147156,
+      "pNearHighest": 0.6525808990753478
+    },
+    {
+      "slope": 0.88,
+      "H": 20,
+      "mean": 17.49278085749349,
+      "pHighest": 0.10557614594596666,
+      "pNearHighest": 0.28845339748042054
+    },
+    {
+      "slope": 0.88,
+      "H": 30,
+      "mean": 26.460071036714297,
+      "pHighest": 0.034631643371861205,
+      "pNearHighest": 0.12151103892139248
+    },
+    {
+      "slope": 0.88,
+      "H": 40,
+      "mean": 35.30959633717762,
+      "pHighest": 0.007559539985957008,
+      "pNearHighest": 0.035025125818382304
+    }
+  ],
+  "rewards": [
+    {
+      "tier": 1,
+      "sale": 2,
+      "old": 1,
+      "linearFloor": 1,
+      "additive": 1,
+      "doubleRate": 1,
+      "attributes3": 1,
+      "totalToSale": 5
+    },
+    {
+      "tier": 2,
+      "sale": 4,
+      "old": 1,
+      "linearFloor": 2,
+      "additive": 2,
+      "doubleRate": 1,
+      "attributes3": 1,
+      "totalToSale": 5
+    },
+    {
+      "tier": 3,
+      "sale": 8,
+      "old": 1,
+      "linearFloor": 3,
+      "additive": 3,
+      "doubleRate": 1,
+      "attributes3": 1,
+      "totalToSale": 3.75
+    },
+    {
+      "tier": 4,
+      "sale": 16,
+      "old": 1,
+      "linearFloor": 4,
+      "additive": 4,
+      "doubleRate": 1,
+      "attributes3": 2,
+      "totalToSale": 2.5
+    },
+    {
+      "tier": 5,
+      "sale": 32,
+      "old": 1,
+      "linearFloor": 5,
+      "additive": 5,
+      "doubleRate": 3,
+      "attributes3": 2,
+      "totalToSale": 1.5625
+    },
+    {
+      "tier": 10,
+      "sale": 1024,
+      "old": 51,
+      "linearFloor": 51,
+      "additive": 60,
+      "doubleRate": 102,
+      "attributes3": 29,
+      "totalToSale": 0.498046875
+    },
+    {
+      "tier": 20,
+      "sale": 1048576,
+      "old": 52428,
+      "linearFloor": 52428,
+      "additive": 52447,
+      "doubleRate": 104857,
+      "attributes3": 29959,
+      "totalToSale": 0.49999237060546875
+    },
+    {
+      "tier": 30,
+      "sale": 1073741824,
+      "old": 53687091,
+      "linearFloor": 53687091,
+      "additive": 53687120,
+      "doubleRate": 107374182,
+      "attributes3": 30678337,
+      "totalToSale": 0.49999999813735485
+    },
+    {
+      "tier": 40,
+      "sale": 1099511627776,
+      "old": 54975581388,
+      "linearFloor": 54975581388,
+      "additive": 54975581427,
+      "doubleRate": 109951162777,
+      "attributes3": 31414617936,
+      "totalToSale": 0.49999999999272404
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "vitest": 713,
+  "files": 28,
+  "browserChecks": 706,
+  "browserOld": 626,
+  "browserNew": 80,
+  "browserDatasets": {
+    "docs/validation/phase3c/regression-browser/followup/results.json": 101,
+    "docs/validation/phase3c/regression-browser/followup-compare/results.json": 3,
+    "docs/validation/phase3c/regression-browser/phase1/results.json": 54,
+    "docs/validation/phase3c/regression-browser/phase3a/results.json": 74,
+    "docs/validation/phase3c/regression-browser/phase3b/results.json": 82,
+    "docs/validation/phase3c/regression-browser/polish-input/results.json": 36,
+    "docs/validation/phase3c/regression-browser/phase1-1/browser-results.json": 120,
+    "docs/validation/phase3c/regression-browser/phase2-polish/browser-results.json": 60,
+    "docs/validation/phase3c/browser-b1/results.json": 92,
+    "docs/validation/phase3c/performance/results.json": 4,
+    "docs/validation/phase3c/browser/results.json": 80
+  },
+  "realDevices": false,
+  "mainMerged": false,
+  "provisional": true
+}

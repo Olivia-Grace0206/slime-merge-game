@@ -1,0 +1,191 @@
+[
+  {
+    "path": "docs/validation/phase3c/screenshots/overview-1024x768.webp",
+    "source": "docs/validation/phase3c/browser/overview-1024x768.png",
+    "width": 1024,
+    "height": 768,
+    "sourceSHA256": "abc32191d1506c6d56e2ade90d02379f94289b22b04e58bb6fe80edb0e839f59",
+    "SHA256": "b00991ee6a02fd89833efd0fdddbac5c88e5bb41c7c688767f61bc65f1bd723d",
+    "lossless": true
+  },
+  {
+    "path": "docs/validation/phase3c/screenshots/overview-1280x720.webp",
+    "source": "docs/validation/phase3c/browser/overview-1280x720.png",
+    "width": 1280,
+    "height": 720,
+    "sourceSHA256": "2037e5d648fd4131697aa7588548bd3197459d2e2009bd30683083caf8ae075d",
+    "SHA256": "6faac94ccbd9415c1d4ff77114b7061206d8f79c440f6a15dcaf70b999f04ca0",
+    "lossless": true
+  },
+  {
+    "path": "docs/validation/phase3c/screenshots/overview-1366x768.webp",
+    "source": "docs/validation/phase3c/browser/overview-1366x768.png",
+    "width": 1366,
+    "height": 768,
+    "sourceSHA256": "8f09c0e50cf1a0dd7a278dd005a725f38c76372c53d6d044d156e53594d827c0",
+    "SHA256": "ec031409d880c64591b218b8054506134da6850102eef33bff3fad13069065f7",
+    "lossless": true
+  },
+  {
+    "path": "docs/validation/phase3c/screenshots/overview-1440x900.webp",
+    "source": "docs/validation/phase3c/browser/overview-1440x900.png",
+    "width": 1440,
+    "height": 900,
+    "sourceSHA256": "96d6b90591971ec26a95ace7be798eaa89dbad72b8b2fcd2f28642190b8dfbd7",
+    "SHA256": "6ed10129689a3bbc504b007fefac462c3d315b8da1ab3bac4356a90f50a62bcb",
+    "lossless": true
+  },
+  {
+    "path": "docs/validation/phase3c/screenshots/overview-1920x1080.webp",
+    "source": "docs/validation/phase3c/browser/overview-1920x1080.png",
+    "width": 1920,
+    "height": 1080,
+    "sourceSHA256": "1951d363c1b3fb5189b4ebea17c483aa76c29a25c72a2af53510e55606628d5e",
+    "SHA256": "4f5818a52061b98ca1cbed7b5b54747c2c8b8052cb76ee913500fe63b0453c1f",
+    "lossless": true
+  },
+  {
+    "path": "docs/validation/phase3c/screenshots/overview-320x568.webp",
+    "source": "docs/validation/phase3c/browser/overview-320x568.png",
+    "width": 320,
+    "height": 568,
+    "sourceSHA256": "77d064d1134cf7c381f0fa4ae3ef81ff68623bb94b8594cbcce109bba7613054",
+    "SHA256": "2d39d488b2a1eb6bdec81659161945313c07c91940b28273e6bd9d96874e85e7",
+    "lossless": true
+  },
+  {
+    "path": "docs/validation/phase3c/screenshots/overview-375x667.webp",
+    "source": "docs/validation/phase3c/browser/overview-375x667.png",
+    "width": 375,
+    "height": 667,
+    "sourceSHA256": "46195ef7a40d12d3850de58bcfc48bcc4a1f3b8ba7ebba6c7debf023e36b35d8",
+    "SHA256": "84bfd8569ac141c319189278cff420a9f3c2f192b4c3d54d36d2594e0a7a889c",
+    "lossless": true
+  },
+  {
+    "path": "docs/validation/phase3c/screenshots/overview-390x844.webp",
+    "source": "docs/validation/phase3c/browser/overview-390x844.png",
+    "width": 390,
+    "height": 844,
+    "sourceSHA256": "62aaac13c3bdf39eea6c0991b22c90239934b955b6b31bbdd4f77ab7154268ef",
+    "SHA256": "a426c94166150e37fa865f8a0c816fbc81496baa6f74c72c584b23a861e26a55",
+    "lossless": true
+  },
+  {
+    "path": "docs/validation/phase3c/screenshots/overview-768x1024.webp",
+    "source": "docs/validation/phase3c/browser/overview-768x1024.png",
+    "width": 768,
+    "height": 1024,
+    "sourceSHA256": "79651ada12211abc296f8f9c6fc5e3ef8936119d54a0ea3bc5b4ecc4d6f92218",
+    "SHA256": "f073512142b17d01101b4b6b1315ca5bd15588c7a20cbcc4982c275cc243af4c",
+    "lossless": true
+  },
+  {
+    "path": "docs/validation/phase3c/screenshots/overview-844x390.webp",
+    "source": "docs/validation/phase3c/browser/overview-844x390.png",
+    "width": 844,
+    "height": 390,
+    "sourceSHA256": "555cc0ffdb013e272eea84949032b2095052b44a3669d58b4a7a4aae1c02600f",
+    "SHA256": "dd8c0c9f693fdb8d6308cb346c93779a68d4b4741f88093fe4eae65c52877e07",
+    "lossless": true
+  },
+  {
+    "path": "docs/validation/phase3c/screenshots/warning-1366x768.webp",
+    "source": "docs/validation/phase3c/browser/warning-1366x768.png",
+    "width": 1366,
+    "height": 768,
+    "sourceSHA256": "1c6e66da3f5502df4060380de736bfb121eb7b3cc5fb369c3ee477c335108e29",
+    "SHA256": "bdf4d96e4cb8b429ac817ec82a370217b3c54a021ed85b4d345c0e30e1e7b588",
+    "lossless": true
+  },
+  {
+    "path": "docs/validation/phase3c/screenshots/warning-390x844.webp",
+    "source": "docs/validation/phase3c/browser/warning-390x844.png",
+    "width": 390,
+    "height": 844,
+    "sourceSHA256": "d8b7a1fc6c4dd3f36485c3fd203944733f76c4e83ef453debb81e2f71e0a1469",
+    "SHA256": "79cbe81ceed200b5d1376246697c3be1c1782ac6b5b497997a443db5ac270153",
+    "lossless": true
+  },
+  {
+    "path": "docs/validation/phase3c/screenshots/warning-320x568.webp",
+    "source": "docs/validation/phase3c/browser/warning-320x568.png",
+    "width": 320,
+    "height": 568,
+    "sourceSHA256": "ff2e0492970873e6494fd45525b1bb75db19b05dec487a9f5f4bb15ea03135df",
+    "SHA256": "24b8ed8fb923c2a4283f3fcb3b84605b335a200780f1d30eda568c8365520fcd",
+    "lossless": true
+  },
+  {
+    "path": "docs/validation/phase3c/screenshots/warning-844x390.webp",
+    "source": "docs/validation/phase3c/browser/warning-844x390.png",
+    "width": 844,
+    "height": 390,
+    "sourceSHA256": "06d549717e786967718722d0dd9e98ffbcce91c98fbb0e32a15695dfac833ae4",
+    "SHA256": "3e078749d17bb793b376d29fda74e0a3ef15cfc16431b7e9a7ce9b8632d445d4",
+    "lossless": true
+  },
+  {
+    "path": "docs/validation/phase3c/screenshots/mass-warning-1366x768.webp",
+    "source": "docs/validation/phase3c/browser/mass-warning-1366x768.png",
+    "width": 1366,
+    "height": 768,
+    "sourceSHA256": "d8bccacd108a45347786054ab2b043d74749029eef721b9fd2d0ae7f2e0a5859",
+    "SHA256": "a61371f80e4c435e0d78c5a08b7c250334a4a62c180a93d5340479e248cda101",
+    "lossless": true
+  },
+  {
+    "path": "docs/validation/phase3c/screenshots/mass-warning-390x844.webp",
+    "source": "docs/validation/phase3c/browser/mass-warning-390x844.png",
+    "width": 390,
+    "height": 844,
+    "sourceSHA256": "29514afd591ebd27cdd30b97a3f3754e5fd9e729077c88cb9fc7f567645119a7",
+    "SHA256": "61a4c3198af8512f0cc43edc7bc1e4d7a193a99ad0256e8e6000f258263834b2",
+    "lossless": true
+  },
+  {
+    "path": "docs/validation/phase3c/screenshots/mass-warning-320x568.webp",
+    "source": "docs/validation/phase3c/browser/mass-warning-320x568.png",
+    "width": 320,
+    "height": 568,
+    "sourceSHA256": "d343f6c1d7de981823e81a7c0563dd5edf7e7f9ec582daf9f6de4546a056e9d1",
+    "SHA256": "a0b4a1fa72335b2d2c42a198c2e00cd4c7c8368bb8e2054c8d4e7b69f01f7181",
+    "lossless": true
+  },
+  {
+    "path": "docs/validation/phase3c/screenshots/mass-warning-844x390.webp",
+    "source": "docs/validation/phase3c/browser/mass-warning-844x390.png",
+    "width": 844,
+    "height": 390,
+    "sourceSHA256": "1f35a693b4ee3a33c3257b9b8fd3106d89901c770b009acc126e3f919d5eb508",
+    "SHA256": "3650d4e68e3abcdcf996e673dcca6b13945362aff9a2e76f1544507ec0ee982f",
+    "lossless": true
+  },
+  {
+    "path": "docs/validation/phase3c/screenshots/guide-390x844.webp",
+    "source": "docs/validation/phase3c/browser/guide-390x844.png",
+    "width": 390,
+    "height": 844,
+    "sourceSHA256": "68819c6b2c004f1c6b6e30ae0035493615f9163388f61fe45212374604a0da47",
+    "SHA256": "4d8961970505124fd847177f1b51d30c28bd8435b6e2509b19f187f25471d207",
+    "lossless": true
+  },
+  {
+    "path": "docs/validation/phase3c/screenshots/guide-320x568.webp",
+    "source": "docs/validation/phase3c/browser/guide-320x568.png",
+    "width": 320,
+    "height": 568,
+    "sourceSHA256": "95a31a7961e8f4911dfdd016a7faddc06d213b6a5fa95f9c4d6b0b8f2cec9a10",
+    "SHA256": "b924d00832efacfbb11d9d0d1dd230d47a1e2878ab708dd00532ca6d7f705712",
+    "lossless": true
+  },
+  {
+    "path": "docs/validation/phase3c/screenshots/guide-844x390.webp",
+    "source": "docs/validation/phase3c/browser/guide-844x390.png",
+    "width": 844,
+    "height": 390,
+    "sourceSHA256": "9f619d320b8628f98d97d8c82557ae7750cb2b7a86c0f7126e62b239584cbc99",
+    "SHA256": "f2f3b12fc383360b9db2ab1c756b634bd76ab2fab6562cefc42887924c6a1564",
+    "lossless": true
+  }
+]

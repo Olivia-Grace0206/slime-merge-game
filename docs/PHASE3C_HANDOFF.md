@@ -1,3 +1,23 @@
+# Phase3C 試遊版・現行引き継ぎ — 2026-11-02 JST
+
+PR #13のaa03564dから再開し、schema7/紫覚醒/10属性覚醒効果/青共鳴/集中型継承・余剰警告/0〜3オーラを統合。最新HEAD/同SHA CIは[PR #13](https://github.com/Olivia-Grace0206/slime-merge-game/pull/13)本文。main未マージ、Private/Pages設定維持。
+
+Node22/npm10、npm ci→npm run dev。通常http://localhost:5173/slime-merge-game/。紫初回300秒/60秒チャージ、青初回180秒/90秒持続は仮値。未覚醒個体を紫へ移動し、途中離脱0・成功属性★・5体第1出力への集中・余剰の文章警告・青の配置中だけの支援を試遊する。無料解除は覚醒も全削除、元位置/個体/GOLDを保持。
+
+保存はschema7、6は全未覚醒として旧個体/Lv/FIFO160/研究/財布/保護/金台帳を保全。旧1〜5も維持。7を旧アプリへ戻すdowngradeは未対応。Web Locks対応HTTPS/localhostで操作する。
+
+仮数値はspecial/config.ts、既存効果はattributes/effects.ts。Lv→覚醒→青→非再帰光→複合→最終cap。通常継承/覚醒配分を確定後に変異・組単位闇消失（覚醒30%/通常20%）。プレビュー乱数0、確定余剰と闇リスクは別表示。通常属性3種超過のswapは維持。
+
+紫/青はspecial/state.tsの判別Union、GOLD契約はsession.tsで保存形維持。advanceTimelineで紫成功/青期限の生産境界を分割し進捗率を保全。過去の新規イベントをオフライン大量再生しない。成功と消滅は保存取引1つ。
+
+713 Vitest/28ファイル、ブラウザ706=旧626+追加80、10サイズ、Lint/Build成功。[検証・画像](validation/phase3c/RESULTS.md) / [監査](validation/phase3c/AUDIT.md) / [数値比較](balance/phase3c/RESULTS.md) / [正本案内](specifications/CURRENT.md)。21枚lossless WebPとraw JSON/ログを保存。初期復旧時の未完成/前回未取得結果とは区別する。
+
+実機/Safari/Firefox/スクリーンリーダーは未確認。具体時間/倍率/闇確率は未承認の仮値。最小320px幅の大量警告の読みやすさも実機評価する。Phase3Dは外見合成/プレビュー最終品質、音/土地/正式図鑑は後続。試遊後に限定調整とマージ判断を行い、勝手にmainへマージしない。
+
+---
+
+以下は復旧時の引き継ぎ原文（歴史）。上記の現行状態が同領域に優先する。
+
 # Phase3C — 復旧用引き継ぎ（未完成）
 
 2026-11-02 JST。正式起点はmain `836430980f179c7acc15818d9e350c45a33cc390`、PR #12マージ済み。新規feature/phase03c-awakening-resonance。main未マージ・Private/Pages設定を維持。
