@@ -55,7 +55,7 @@ try{
    await set(p,{tiers:Array(5).fill(1),attrs:[[{id:'fire',level:1},{id:'gold',level:1},{id:'dark',level:1}],[],[],[],[]]})
    await p.evaluate(()=>{window.draws=0;Math.random=()=>{window.draws++;return 0}})
    await drag(p,cdp,touch,'[data-slime-id="p-1"]','[data-slime-id="p-2"]',async()=>{
-    assert((await p.getByTestId('attribute-preview').innerText()).includes('闇のみ消失 仮20%'));assert.equal(await p.evaluate(()=>window.draws),0);assert(await p.getByTestId('dark-risk').evaluate(n=>{const a=n.getBoundingClientRect(),b=n.parentElement.getBoundingClientRect();return a.y>=b.y&&a.bottom<=b.bottom&&Number(getComputedStyle(n.parentElement).zIndex)>Number(getComputedStyle(document.querySelector('.drag-sprite')).zIndex)}),'risk must be unclipped above held sprite')
+    assert((await p.getByTestId('attribute-preview').innerText()).includes('闇のみ消失 仮20%'));assert.equal(await p.evaluate(()=>window.draws),0);assert(await p.getByTestId('dark-risk').evaluate(n=>{const a=n.getBoundingClientRect(),b=n.closest('[data-testid="attribute-preview"]').getBoundingClientRect();return a.y>=b.y&&a.bottom<=b.bottom&&Number(getComputedStyle(n.closest('[data-testid="attribute-preview"]')).zIndex)>Number(getComputedStyle(document.querySelector('.drag-sprite')).zIndex)}),'risk must be unclipped above held sprite')
     await p.screenshot({path:path.join(dir,`dark-risk-${name}.png`)})
    });await until(async()=>(await snap(p)).game.highestTierReached===2)
    const s=await snap(p);assert.equal(s.game.slimes.length,2);for(const out of s.game.slimes)assert.deepEqual(out.attributes.map(a=>a.id),['fire','gold'])
