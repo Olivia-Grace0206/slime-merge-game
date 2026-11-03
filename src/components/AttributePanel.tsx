@@ -8,20 +8,7 @@ import { sessionRules, type Session } from '../core/progression/session'
 import { attributeGuide, COMBINATIONS, percent } from './attributeGuide'
 import { AttributeIcon } from './AttributeIcon'
 import { AttributeTokens } from './AttributeBadges'
-
-/** Short descriptions deliberately avoid the formulas shown on the detail screen. */
-export const ATTRIBUTE_INTRO: Readonly<Record<AttributeId, string>> = {
-  fire: '売るときのGOLDを加算',
-  gold: '売却額を倍率で増やす',
-  dark: '高額売却・消失リスク',
-  ice: '通常の生成時間を短縮',
-  lightning: 'タップの加速量を増やす',
-  nature: '貯蔵へ追加で自動生成',
-  luck: '属性付きの生成率UP',
-  mutation: 'マージ時の変異率UP',
-  light: '周囲のスライムを支援',
-  magnet: '特殊マスを近くへ誘引',
-}
+import { ATTRIBUTE_INTRO } from './attributeIntro'
 
 type View = 'overview' | 'detail' | 'roster'
 
