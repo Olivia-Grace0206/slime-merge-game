@@ -1,0 +1,63 @@
+(node:857) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS 1920x1080 4x4 fit, no page scroll, buttons ≥44px and reachable
+PASS 1920x1080 actual generation, one-click random addition, no placement mode or tap modal
+PASS 1920x1080 shop dialog and settings stay within viewport
+PASS 1440x900 4x4 fit, no page scroll, buttons ≥44px and reachable
+PASS 1440x900 actual generation, one-click random addition, no placement mode or tap modal
+PASS 1440x900 shop dialog and settings stay within viewport
+PASS 1440x900 5 merge in normal play, persisted highest Tier and reload
+PASS 1440x900 immediate sale, right-click or long-hold protection, save/reload and preview
+PASS 1440x900 funded shop updates all three effects atomically, repeat click uses expected Lv
+PASS 1440x900 gold ten fast receipts, reload 4/10, exit expires unpaid balance
+PASS 1440x900 full-board rescue sale, capacity freeze, debug mode preserves normal save
+PASS 1440x900 corrupted save blocks autosave and original bytes survive retry/reload
+PASS 1366x768 4x4 fit, no page scroll, buttons ≥44px and reachable
+PASS 1366x768 actual generation, one-click random addition, no placement mode or tap modal
+PASS 1366x768 shop dialog and settings stay within viewport
+PASS 1280x720 4x4 fit, no page scroll, buttons ≥44px and reachable
+PASS 1280x720 actual generation, one-click random addition, no placement mode or tap modal
+PASS 1280x720 shop dialog and settings stay within viewport
+PASS 1024x768 4x4 fit, no page scroll, buttons ≥44px and reachable
+PASS 1024x768 actual generation, one-click random addition, no placement mode or tap modal
+PASS 1024x768 shop dialog and settings stay within viewport
+PASS 768x1024 4x4 fit, no page scroll, buttons ≥44px and reachable
+PASS 768x1024 actual generation, one-click random addition, no placement mode or tap modal
+PASS 768x1024 shop dialog and settings stay within viewport
+PASS 390x844 4x4 fit, no page scroll, buttons ≥44px and reachable
+PASS 390x844 actual generation, one-click random addition, no placement mode or tap modal
+PASS 390x844 shop dialog and settings stay within viewport
+PASS 390x844 5 merge in normal play, persisted highest Tier and reload
+PASS 390x844 immediate sale, right-click or long-hold protection, save/reload and preview
+PASS 390x844 funded shop updates all three effects atomically, repeat click uses expected Lv
+PASS 390x844 gold ten fast receipts, reload 4/10, exit expires unpaid balance
+PASS 390x844 full-board rescue sale, capacity freeze, debug mode preserves normal save
+PASS 390x844 corrupted save blocks autosave and original bytes survive retry/reload
+PASS 375x667 4x4 fit, no page scroll, buttons ≥44px and reachable
+PASS 375x667 actual generation, one-click random addition, no placement mode or tap modal
+PASS 375x667 shop dialog and settings stay within viewport
+PASS 320x568 4x4 fit, no page scroll, buttons ≥44px and reachable
+PASS 320x568 actual generation, one-click random addition, no placement mode or tap modal
+PASS 320x568 shop dialog and settings stay within viewport
+PASS 320x568 5 merge in normal play, persisted highest Tier and reload
+PASS 320x568 immediate sale, right-click or long-hold protection, save/reload and preview
+PASS 320x568 funded shop updates all three effects atomically, repeat click uses expected Lv
+PASS 320x568 gold ten fast receipts, reload 4/10, exit expires unpaid balance
+PASS 320x568 full-board rescue sale, capacity freeze, debug mode preserves normal save
+PASS 320x568 corrupted save blocks autosave and original bytes survive retry/reload
+PASS 844x390 4x4 fit, no page scroll, buttons ≥44px and reachable
+PASS 844x390 actual generation, one-click random addition, no placement mode or tap modal
+PASS 844x390 shop dialog and settings stay within viewport
+PASS 844x390 5 merge in normal play, persisted highest Tier and reload
+PASS 844x390 immediate sale, right-click or long-hold protection, save/reload and preview
+PASS 844x390 funded shop updates all three effects atomically, repeat click uses expected Lv
+PASS 844x390 gold ten fast receipts, reload 4/10, exit expires unpaid balance
+PASS 844x390 full-board rescue sale, capacity freeze, debug mode preserves normal save
+PASS 844x390 corrupted save blocks autosave and original bytes survive retry/reload
+PASS gold-cell merge keeps group frame, consumes target and expires event without receipts
+PASS close/reopen tab resumes pending gold receipts without paying again
+PASS GOLD cap still permits immediate rescue sale and capped receipts
+PASS blocked localStorage access shows recovery state without a white screen
+PASS two tabs: Web Lock and expected saved bytes prevent stale overwrite
+PASS quota error rolls back immediate sale and preserves source across reload
+60 PASS / 0 FAIL []

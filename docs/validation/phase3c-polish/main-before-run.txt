@@ -1,0 +1,13 @@
+(node:4) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS 1920x1080 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible
+PASS 1440x900 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible
+PASS 1366x768 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible
+PASS 1280x720 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible
+PASS 1024x768 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible
+PASS 768x1024 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible
+PASS 390x844 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible
+PASS 375x667 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible
+PASS 320x568 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible
+PASS 844x390 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible
+10 []

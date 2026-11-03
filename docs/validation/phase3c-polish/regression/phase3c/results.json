@@ -1,0 +1,327 @@
+{
+  "checks": [
+    {
+      "name": "1920x1080 three aura stages, distinct purple/blue, no document scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 five merge concentrates distinct awakenings and copies normal attributes without duplication",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 surplus is text before drop, cancel preserves raw, warning never blocks merge/no dialog",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 fifteen inputs show all three groups of surplus before drop",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 purple charges, departure resets, returning completes exactly1 attribute atomically",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 purple does not expire with no eligible attribute and strip resets while body stays",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 blue swap and expiry keep bodies/Lv/awakening",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 all10 guide shows normal, awakening and blue; inner scroll and reduced-motion",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 three aura stages, distinct purple/blue, no document scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 five merge concentrates distinct awakenings and copies normal attributes without duplication",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 surplus is text before drop, cancel preserves raw, warning never blocks merge/no dialog",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 fifteen inputs show all three groups of surplus before drop",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 purple charges, departure resets, returning completes exactly1 attribute atomically",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 purple does not expire with no eligible attribute and strip resets while body stays",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 blue swap and expiry keep bodies/Lv/awakening",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 all10 guide shows normal, awakening and blue; inner scroll and reduced-motion",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 three aura stages, distinct purple/blue, no document scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 five merge concentrates distinct awakenings and copies normal attributes without duplication",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 surplus is text before drop, cancel preserves raw, warning never blocks merge/no dialog",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 fifteen inputs show all three groups of surplus before drop",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 purple charges, departure resets, returning completes exactly1 attribute atomically",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 purple does not expire with no eligible attribute and strip resets while body stays",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 blue swap and expiry keep bodies/Lv/awakening",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 all10 guide shows normal, awakening and blue; inner scroll and reduced-motion",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 three aura stages, distinct purple/blue, no document scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 five merge concentrates distinct awakenings and copies normal attributes without duplication",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 surplus is text before drop, cancel preserves raw, warning never blocks merge/no dialog",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 fifteen inputs show all three groups of surplus before drop",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 purple charges, departure resets, returning completes exactly1 attribute atomically",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 purple does not expire with no eligible attribute and strip resets while body stays",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 blue swap and expiry keep bodies/Lv/awakening",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 all10 guide shows normal, awakening and blue; inner scroll and reduced-motion",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 three aura stages, distinct purple/blue, no document scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 five merge concentrates distinct awakenings and copies normal attributes without duplication",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 surplus is text before drop, cancel preserves raw, warning never blocks merge/no dialog",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 fifteen inputs show all three groups of surplus before drop",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 purple charges, departure resets, returning completes exactly1 attribute atomically",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 purple does not expire with no eligible attribute and strip resets while body stays",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 blue swap and expiry keep bodies/Lv/awakening",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 all10 guide shows normal, awakening and blue; inner scroll and reduced-motion",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 three aura stages, distinct purple/blue, no document scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 five merge concentrates distinct awakenings and copies normal attributes without duplication",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 surplus is text before drop, cancel preserves raw, warning never blocks merge/no dialog",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 fifteen inputs show all three groups of surplus before drop",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 purple charges, departure resets, returning completes exactly1 attribute atomically",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 purple does not expire with no eligible attribute and strip resets while body stays",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 blue swap and expiry keep bodies/Lv/awakening",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 all10 guide shows normal, awakening and blue; inner scroll and reduced-motion",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 three aura stages, distinct purple/blue, no document scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 five merge concentrates distinct awakenings and copies normal attributes without duplication",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 surplus is text before drop, cancel preserves raw, warning never blocks merge/no dialog",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 fifteen inputs show all three groups of surplus before drop",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 purple charges, departure resets, returning completes exactly1 attribute atomically",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 purple does not expire with no eligible attribute and strip resets while body stays",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 blue swap and expiry keep bodies/Lv/awakening",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 all10 guide shows normal, awakening and blue; inner scroll and reduced-motion",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 three aura stages, distinct purple/blue, no document scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 five merge concentrates distinct awakenings and copies normal attributes without duplication",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 surplus is text before drop, cancel preserves raw, warning never blocks merge/no dialog",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 fifteen inputs show all three groups of surplus before drop",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 purple charges, departure resets, returning completes exactly1 attribute atomically",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 purple does not expire with no eligible attribute and strip resets while body stays",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 blue swap and expiry keep bodies/Lv/awakening",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 all10 guide shows normal, awakening and blue; inner scroll and reduced-motion",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 three aura stages, distinct purple/blue, no document scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 five merge concentrates distinct awakenings and copies normal attributes without duplication",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 surplus is text before drop, cancel preserves raw, warning never blocks merge/no dialog",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 fifteen inputs show all three groups of surplus before drop",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 purple charges, departure resets, returning completes exactly1 attribute atomically",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 purple does not expire with no eligible attribute and strip resets while body stays",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 blue swap and expiry keep bodies/Lv/awakening",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 all10 guide shows normal, awakening and blue; inner scroll and reduced-motion",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 three aura stages, distinct purple/blue, no document scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 five merge concentrates distinct awakenings and copies normal attributes without duplication",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 surplus is text before drop, cancel preserves raw, warning never blocks merge/no dialog",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 fifteen inputs show all three groups of surplus before drop",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 purple charges, departure resets, returning completes exactly1 attribute atomically",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 purple does not expire with no eligible attribute and strip resets while body stays",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 blue swap and expiry keep bodies/Lv/awakening",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 all10 guide shows normal, awakening and blue; inner scroll and reduced-motion",
+      "result": "PASS"
+    }
+  ],
+  "errors": [],
+  "browser": "134.0.6998.35",
+  "realDevices": false
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "name": "phase1-1",
+    "code": 0
+  },
+  {
+    "name": "phase3a",
+    "code": 0
+  },
+  {
+    "name": "followup",
+    "code": 0
+  },
+  {
+    "name": "polish-input",
+    "code": 0
+  },
+  {
+    "name": "phase2-polish",
+    "code": 0
+  },
+  {
+    "name": "phase1",
+    "code": 0
+  },
+  {
+    "name": "followup-compare",
+    "code": 0
+  },
+  {
+    "name": "phase3b",
+    "code": 1
+  },
+  {
+    "name": "phase3b1",
+    "code": 0
+  },
+  {
+    "name": "phase3b1-performance",
+    "code": 0
+  },
+  {
+    "name": "phase3c",
+    "code": 0
+  },
+  {
+    "name": "visual-polish",
+    "code": 0
+  }
+]

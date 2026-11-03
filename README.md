@@ -1,10 +1,10 @@
 # スライムマージゲーム — Public β版（GitHub Pages）
 
-公開URL（Pages有効化・デプロイ成功後）：https://olivia-grace0206.github.io/slime-merge-game/
+公開β版URL：https://olivia-grace0206.github.io/slime-merge-game/
 
 このゲームはPC・スマートフォンのブラウザで遊べる試作版です。操作方法と保存上の注意、GitHub Pagesの初回有効化・自動配布手順は [公開・試遊ガイド](docs/DEPLOYMENT.md) を参照してください。
 
-**Phase 3Cはmainにマージ済み。** 覚醒オーラの視認性、青マスの補正表示、属性紹介UIは後続の改善対象です。セーブは各ブラウザのLocalStorageに保存され、端末間同期はありません。
+**Phase 3Cはmainにマージ済み。** 覚醒オーラ・青バフ表示・10属性紹介のUI改善は [Draft PR #15](https://github.com/Olivia-Grace0206/slime-merge-game/pull/15) で検証済み、未マージです。[比較画像と検証](docs/validation/phase3c-polish/RESULTS.md) / [試遊手順](docs/PHASE3C_VISUAL_POLISH_HANDOFF.md)。公開β版の変更はユーザー承認後に行います。セーブは各ブラウザのLocalStorageに保存され、端末間同期はありません。
 
 ---
 

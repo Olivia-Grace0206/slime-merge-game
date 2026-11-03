@@ -20,7 +20,7 @@
 - `tests/ui/visual-polish.test.ts` — DOM描画テキスト/覚醒数/共鳴の有無を検証。
 - `tests/browser/phase3b.cjs`, `phase3b1.cjs`, `phase3c.cjs` — 属性紹介UIの新しい操作経路へ調整、青バフの表示/交換後解除を確認する。
 
-## 必須検証
+## 初回実装時の検証計画（履歴）
 
 ```sh
 npm ci
@@ -41,3 +41,22 @@ npm run build
 自動Pages公開済みのmainは本PR作成中は変更しない。β版公開URLは維持。
 
 修正はFeature Branch `feature/phase03c-visual-feedback-polish` で試験し、Draft PRに保存する。**ユーザー承認まではmainへマージしない**。実機・他ブラウザの試遊による最終判断は別途行う。
+
+
+## 正式Work完了時の引き継ぎ — 2026-11-03
+
+PR #15の13変更ファイル全文とCoreを再監査。元717単体成功でも実描画で青表示の5重なりを検出した。オーラ/10紹介の既存実装を再利用し、BlueBuffStatusのLv/意味と縦ヘッダー・横メニュー配置、AttributePanelの既存説明補完だけを限定修正。
+
+最終 **Lint / 724 Vitest / Build・型チェック / 772ブラウザ** 成功。10画面サイズ、Tier5/21/30/40の覚醒0〜3、通常/軽減/動作軽減、実タッチ/キーボード、16高Tier覚醒同時表示を確認。[結果/制約/再試験](validation/phase3c-polish/RESULTS.md) と [追補](specifications/Phase3C_Polish_Addendum_2026-11-03.md) を参照。Windows/iPhone実機とSafari/Edgeは未確認。
+
+ブラウザは本番ビルドを凍結し実行。`tests/browser/visual-regression.cjs` は既存12スイート、`visual-stress.cjs` は追加6実時間検査。PLAYWRIGHT_MODULE/BROWSERS_PATHで導入済みPlaywright/Chromiumを指定できる。`BROWSER_DIST` を設定すれば凍結ビルドを使う。実行例はRESULTS/各CJS先頭を参照。
+
+main `ef7927a35ff5903b5d99b79360d34c52aba302a6`、Public/Pagesを維持。最終HEAD/CI URLはPR本文に記載し、コミット内の自己参照を避ける。Draftを解除/マージ/公開しない。
+
+### ユーザー試遊
+
+1. PR15のブランチを取得し `npm ci` → `npm run dev -- --host`。公開β版URLは現在のmainのままなので、変更確認にはブランチを使う。
+2. 同じTierで覚醒0〜3を比較。高Tier/軽減設定/ドラッグも確認。
+3. 支援属性の個体を青へ配置し、Lv/power倍率と離脱/交換後の表示を確認。
+4. 属性紹介で10枚を確認し、詳細/戻る/別属性/現在の効果・所持スライムへ移動。
+5. WindowsとiPhoneで文字/星/指との重なりを評価し、必要な限定修正後にPR15のマージ可否を判断。
