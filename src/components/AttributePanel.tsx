@@ -140,7 +140,7 @@ export function AttributePanel({ game, session, onDetail }: {
       <section data-testid="combination-guide">
         <h3>複合効果</h3>
         {COMBINATIONS.map(combo => <article className="combination-card" key={combo.name}>
-          <h4>{combo.name}</h4><p>{combo.description()}</p>
+          <h4>{combo.ids.map(id => <AttributeIcon key={id} id={id} />)} {combo.name}</h4><p>{combo.description()}</p>
         </article>)}
       </section>
       <p className="muted">属性重視は貯蔵FIFO先頭10体を消費。無料属性解除では覚醒も含む全属性を外し、個体とTierを残します。</p>
