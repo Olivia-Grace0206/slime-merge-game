@@ -18,7 +18,7 @@ export function attributeGuide():readonly GuideEntry[]{
   luck:{condition:'盤面配置中',effect:`通常属性率へ${percent(EFFECTS.luckRate)}ポイント×有効pを加算。属性重視は補正${EFFECTS.focusLuckScale}倍。`,limit:`複合込み補正上限${percent(EFFECTS.luckCap)}ポイント、通常率最大${percent(EFFECTS.normalChanceCap)}、重視率最大${percent(EFFECTS.focusChanceCap)}。`,note:`基本は通常${percent(EFFECTS.normalChance)}／重視${percent(EFFECTS.focusChance)}、確定保証なし。現係数での重視最大は${percent(Math.min(EFFECTS.focusChanceCap,EFFECTS.focusChance+EFFECTS.luckCap*EFFECTS.focusLuckScale))}。`},
   mutation:{condition:'マージ参加時',effect:`新属性変異率=基本${percent(EFFECTS.mutationBase)}+参加個体の有効pの最大値×${percent(EFFECTS.mutationRate)}+複合補正。`,limit:`組全体上限${percent(EFFECTS.mutationCap)}、${EXPERIMENTAL_ATTRIBUTES.maxCount}属性が埋まっていれば見送り。`,note:'入力数の合計で加算しないため5体専用優遇なし。確定的な同Lv継承とは別に、新属性1種を追加。'},
   light:{condition:'周囲8マスの配置中個体へ',effect:`近隣の生のp×${percent(EFFECTS.lightRate)}で支援属性を増幅。`,limit:`受け手の全体増幅上限${percent(EFFECTS.lightCap)}。一段だけで再帰なし。`,note:'氷・雷・自然・幸運・変異・磁力を支援。光自身と売却属性には適用しません。'},
-  magnet:{condition:'盤面配置中・特殊マス位置抽選時',effect:`周囲${EFFECTS.magnetRadius}マスに重み${EFFECTS.magnetRate}×有効p÷距離を加算（基礎1）。`,limit:`合計重み最大${EFFECTS.magnetWeightCap}倍。空きセルのみ。`,note:'出現総数・頻度は増やしません。GOLD未解放では発生なし。紫・青は未実装。'},
+  magnet:{condition:'盤面配置中・特殊マス位置抽選時',effect:`周囲${EFFECTS.magnetRadius}マスに重み${EFFECTS.magnetRate}×有効p÷距離を加算（基礎1）。`,limit:`合計重み最大${EFFECTS.magnetWeightCap}倍。空きセルのみ。`,note:'出現総数・頻度は増やしません。金マスは解放後のみ発生し、紫・青にも位置誘引が適用されます。'},
  }
  return ATTRIBUTE_IDS.map(id=>({id,name:ATTRIBUTE_LABELS[id],growth,...data[id]}))
 }
