@@ -4,7 +4,7 @@ const dir=process.env.BROWSER_ARTIFACT_DIR||'docs/validation/phase3b1/performanc
 fs.mkdirSync(dir,{recursive:true})
 async function run(){let server,browser
 try{
- server=spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','5173','--strictPort'])
+ server=spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','5173','--strictPort',...(process.env.BROWSER_DIST?['--outDir',process.env.BROWSER_DIST]:[])])
  await new Promise((res,rej)=>{server.stdout.on('data',d=>{if(String(d).includes('Local:'))res()});server.on('exit',rej)})
  browser=await chromium.launch({headless:true,args:['--no-sandbox']});const ctx=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true}),p=await ctx.newPage();await p.goto('http://127.0.0.1:5173/slime-merge-game/')
  for(const count of [10,58,100,160]){

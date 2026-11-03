@@ -1,0 +1,49 @@
+{
+  "checks": [
+    {
+      "name": "1920x1080 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible",
+      "result": "PASS"
+    }
+  ],
+  "errors": [],
+  "metrics": [],
+  "baseline": false,
+  "browser": "134.0.6998.35",
+  "realDevices": false
+}

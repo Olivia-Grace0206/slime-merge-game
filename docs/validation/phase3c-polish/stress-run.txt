@@ -1,0 +1,28 @@
+(node:3) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+6 [
+  {
+    name: '1366x768 16 awakeTier40/Lv99, maxGOLD, reduced=false:60 real frames and input cancel',
+    result: 'PASS'
+  },
+  {
+    name: '1366x768 16 awakeTier40/Lv99, maxGOLD, reduced=true:60 real frames and input cancel',
+    result: 'PASS'
+  },
+  {
+    name: '390x844 16 awakeTier40/Lv99, maxGOLD, reduced=false:60 real frames and input cancel',
+    result: 'PASS'
+  },
+  {
+    name: '390x844 16 awakeTier40/Lv99, maxGOLD, reduced=true:60 real frames and input cancel',
+    result: 'PASS'
+  },
+  {
+    name: '320x568 16 awakeTier40/Lv99, maxGOLD, reduced=false:60 real frames and input cancel',
+    result: 'PASS'
+  },
+  {
+    name: '320x568 16 awakeTier40/Lv99, maxGOLD, reduced=true:60 real frames and input cancel',
+    result: 'PASS'
+  }
+]

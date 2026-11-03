@@ -1,0 +1,63 @@
+(node:29) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS 1920x1080 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible
+PASS 1920x1080 blue status shows all3 shared multipliers and avoids board, menus, add, sell, strip and GOLD
+PASS 1920x1080 reduced effects and reduced motion keep static rings/rank; save/game untouched
+PASS 1920x1080 ten introductions fit without any scrolling; names/descriptions and44px hit areas visible
+PASS 1920x1080 all10 details/back/navigation/roster/3 combos and keyboard escape preserve board
+PASS 1920x1080 live blue swap, strip, sell, merge, expiry and reload remove stale buffs
+PASS 1440x900 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible
+PASS 1440x900 blue status shows all3 shared multipliers and avoids board, menus, add, sell, strip and GOLD
+PASS 1440x900 reduced effects and reduced motion keep static rings/rank; save/game untouched
+PASS 1440x900 ten introductions fit without any scrolling; names/descriptions and44px hit areas visible
+PASS 1440x900 all10 details/back/navigation/roster/3 combos and keyboard escape preserve board
+PASS 1440x900 live blue swap, strip, sell, merge, expiry and reload remove stale buffs
+PASS 1366x768 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible
+PASS 1366x768 blue status shows all3 shared multipliers and avoids board, menus, add, sell, strip and GOLD
+PASS 1366x768 reduced effects and reduced motion keep static rings/rank; save/game untouched
+PASS 1366x768 ten introductions fit without any scrolling; names/descriptions and44px hit areas visible
+PASS 1366x768 all10 details/back/navigation/roster/3 combos and keyboard escape preserve board
+PASS 1366x768 live blue swap, strip, sell, merge, expiry and reload remove stale buffs
+PASS 1280x720 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible
+PASS 1280x720 blue status shows all3 shared multipliers and avoids board, menus, add, sell, strip and GOLD
+PASS 1280x720 reduced effects and reduced motion keep static rings/rank; save/game untouched
+PASS 1280x720 ten introductions fit without any scrolling; names/descriptions and44px hit areas visible
+PASS 1280x720 all10 details/back/navigation/roster/3 combos and keyboard escape preserve board
+PASS 1280x720 live blue swap, strip, sell, merge, expiry and reload remove stale buffs
+PASS 1024x768 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible
+PASS 1024x768 blue status shows all3 shared multipliers and avoids board, menus, add, sell, strip and GOLD
+PASS 1024x768 reduced effects and reduced motion keep static rings/rank; save/game untouched
+PASS 1024x768 ten introductions fit without any scrolling; names/descriptions and44px hit areas visible
+PASS 1024x768 all10 details/back/navigation/roster/3 combos and keyboard escape preserve board
+PASS 1024x768 live blue swap, strip, sell, merge, expiry and reload remove stale buffs
+PASS 768x1024 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible
+PASS 768x1024 blue status shows all3 shared multipliers and avoids board, menus, add, sell, strip and GOLD
+PASS 768x1024 reduced effects and reduced motion keep static rings/rank; save/game untouched
+PASS 768x1024 ten introductions fit without any scrolling; names/descriptions and44px hit areas visible
+PASS 768x1024 all10 details/back/navigation/roster/3 combos and keyboard escape preserve board
+PASS 768x1024 live blue swap, strip, sell, merge, expiry and reload remove stale buffs
+PASS 390x844 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible
+PASS 390x844 blue status shows all3 shared multipliers and avoids board, menus, add, sell, strip and GOLD
+PASS 390x844 reduced effects and reduced motion keep static rings/rank; save/game untouched
+PASS 390x844 ten introductions fit without any scrolling; names/descriptions and44px hit areas visible
+PASS 390x844 all10 details/back/navigation/roster/3 combos and keyboard escape preserve board
+PASS 390x844 live blue swap, strip, sell, merge, expiry and reload remove stale buffs
+PASS 375x667 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible
+PASS 375x667 blue status shows all3 shared multipliers and avoids board, menus, add, sell, strip and GOLD
+PASS 375x667 reduced effects and reduced motion keep static rings/rank; save/game untouched
+PASS 375x667 ten introductions fit without any scrolling; names/descriptions and44px hit areas visible
+PASS 375x667 all10 details/back/navigation/roster/3 combos and keyboard escape preserve board
+PASS 375x667 live blue swap, strip, sell, merge, expiry and reload remove stale buffs
+PASS 320x568 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible
+PASS 320x568 blue status shows all3 shared multipliers and avoids board, menus, add, sell, strip and GOLD
+PASS 320x568 reduced effects and reduced motion keep static rings/rank; save/game untouched
+PASS 320x568 ten introductions fit without any scrolling; names/descriptions and44px hit areas visible
+PASS 320x568 all10 details/back/navigation/roster/3 combos and keyboard escape preserve board
+PASS 320x568 live blue swap, strip, sell, merge, expiry and reload remove stale buffs
+PASS 844x390 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible
+PASS 844x390 blue status shows all3 shared multipliers and avoids board, menus, add, sell, strip and GOLD
+PASS 844x390 reduced effects and reduced motion keep static rings/rank; save/game untouched
+PASS 844x390 ten introductions fit without any scrolling; names/descriptions and44px hit areas visible
+PASS 844x390 all10 details/back/navigation/roster/3 combos and keyboard escape preserve board
+PASS 844x390 live blue swap, strip, sell, merge, expiry and reload remove stale buffs
+60 []

@@ -1,0 +1,186 @@
+[
+  {
+    "path": "src/app/App.tsx",
+    "sha256": "491f4bccd0da50b199ceaffdb3f2d71cf133ce16be05a3f227eb4da653f673a8"
+  },
+  {
+    "path": "src/app/input/camera.ts",
+    "sha256": "e5110a85696d8b52be542952c14903557484b8912ba1cd765bd9c1b1c63fda8b"
+  },
+  {
+    "path": "src/app/input/gestures.ts",
+    "sha256": "962a6845288e4d8f480c10f7ee331b2c5f1e800324317a28a1433df90dd26347"
+  },
+  {
+    "path": "src/app/presets.ts",
+    "sha256": "b05268d894145fef64a22e77214bde40aa075858e8974f29222cb74de84682fb"
+  },
+  {
+    "path": "src/app/sessionStore.ts",
+    "sha256": "316c6b9876d29f0004b149ce05c7b5ae3fadba7970a32780ba0b470d36c6da22"
+  },
+  {
+    "path": "src/components/AttributeBadges.tsx",
+    "sha256": "d56f4ca14a5f2a06c2c55274d33c62e8a84095c932e3012d2dfbf1528b159b97"
+  },
+  {
+    "path": "src/components/AttributeIcon.tsx",
+    "sha256": "6d68fc749b72fbfa044a955fdc06883c7e66923e338788b2f6c007c47ba2fd02"
+  },
+  {
+    "path": "src/components/AttributePanel.tsx",
+    "sha256": "4abcd6649ef4241ef28d4d2f22ad5f7884b4aeb4a617520a8642fcdec29a116b"
+  },
+  {
+    "path": "src/components/BlueBuffStatus.tsx",
+    "sha256": "1cc77a3f5d905148cfa5559dd36009ef18acfe0a1e58df08f4093ac3fb8c940c"
+  },
+  {
+    "path": "src/components/GameBoard.tsx",
+    "sha256": "08bee5f9284282ca52f81a380c3160d1eff407aae5931f71f768d9ad4ecefdaa"
+  },
+  {
+    "path": "src/components/GameMenu.tsx",
+    "sha256": "d0b8c529ff680be40b5cbff71ee80933cc91c3cd868cebd37415a96a8142524b"
+  },
+  {
+    "path": "src/components/GeneratorPanel.tsx",
+    "sha256": "bd7ae8768149b736a43798be7d7c55c18f737a7f7936d1d0ab960572e6e60eb9"
+  },
+  {
+    "path": "src/components/MergeAttributePreview.tsx",
+    "sha256": "8cd282fa2e152ba77ff730a2df2529ad6735dfd5a9f475563a9008c7e46aa9cb"
+  },
+  {
+    "path": "src/components/ProgressIcons.tsx",
+    "sha256": "c5763ef4a22dd544864b141a24e0bc44f3377caaa7514bdb2fd5fb53d97b7e61"
+  },
+  {
+    "path": "src/components/Slime.tsx",
+    "sha256": "05f7d01cba06dfbdc364df8ed25f0b67a8614beaed86a4c00f5d8ce7d6da23bb"
+  },
+  {
+    "path": "src/components/SlimeIllustration.tsx",
+    "sha256": "35c0e702adda40da96d0918fe05fcce5831930ad9f4647bff37516bf14a20cd6"
+  },
+  {
+    "path": "src/components/attributeGuide.ts",
+    "sha256": "33725801e6e1e4b95e469e444de1605c65339e54bfb745768845fcea9cce57e8"
+  },
+  {
+    "path": "src/components/attributeIntro.ts",
+    "sha256": "5df76ba396f38ea83b6639b652cb428d179902b26e3481fa2d16eda9e83287b1"
+  },
+  {
+    "path": "src/components/attributeLabels.ts",
+    "sha256": "036d2bb515e5af2543a76787bf08dab9f5448db8f7c6e0d52bb51b2252d7af66"
+  },
+  {
+    "path": "src/components/effectLabels.ts",
+    "sha256": "cabfd98cc5922e8db2620744b923519c7c125b1b3fbf3586af7e36e1dfb7c853"
+  },
+  {
+    "path": "src/core/attributes/awakening.ts",
+    "sha256": "b897264ffe11e62d4d4a584e3c8b2ce53bf42b0d5df5ee8eb815b332d2b8b643"
+  },
+  {
+    "path": "src/core/attributes/effects.ts",
+    "sha256": "88ffc57e3278446674210be2f0c33689d539bf3757b7967ee9637ac602e3be67"
+  },
+  {
+    "path": "src/core/attributes/inheritance.ts",
+    "sha256": "75fb83aa8168462f97c8c8b01872c1caad5cdaac5dd6df7b3a9e18c159cac8b8"
+  },
+  {
+    "path": "src/core/attributes/strip.ts",
+    "sha256": "3fb7d54442bd6b3c3e12b594786b0a880c16eccfc270ae51916e2eaefe094fc8"
+  },
+  {
+    "path": "src/core/board/state.ts",
+    "sha256": "85a7e2c09300d7a5966a36f9cc72147ce60e47df213945c3b3b02651f50c8bc9"
+  },
+  {
+    "path": "src/core/grid/coordinates.ts",
+    "sha256": "f9246072f35a2f4ef911e06faa26e4483b15ea4dcc78b6bc3232a2d045d756b8"
+  },
+  {
+    "path": "src/core/input/coordinates.ts",
+    "sha256": "d7a5ded778d00f80782a8363eb8b5a15cd3ffd7e58ff968154b8e23769326d41"
+  },
+  {
+    "path": "src/core/input/dropZones.ts",
+    "sha256": "0e2c2a0d6f982f7d027eadc087f958c3a2e58712859a486a545332e84fdf6da1"
+  },
+  {
+    "path": "src/core/merge/apply.ts",
+    "sha256": "9f66607afd0bd6b6f45813d621b815cbc6300d80e7ca74952612890ad8c031f8"
+  },
+  {
+    "path": "src/core/merge/plan.ts",
+    "sha256": "7220e0411cc61bb4a437a6ca2764705a4ebcb0969e6d12792fc67d39a8818d95"
+  },
+  {
+    "path": "src/core/progression/economy.ts",
+    "sha256": "53f132e9953391cc8ee1a352668e0e6f821eff4548c3a1b36358252e24e6885a"
+  },
+  {
+    "path": "src/core/progression/focus.ts",
+    "sha256": "a50891ef99060c355f71d154fe00f1e2927cfdc28ccf429bde78605a9bed36e9"
+  },
+  {
+    "path": "src/core/progression/generation.ts",
+    "sha256": "7404d8f93222266dd1157c25e26063655de5666dd3d27d665b65d0a37451ecc9"
+  },
+  {
+    "path": "src/core/progression/persistence.ts",
+    "sha256": "0d34a9cf544ea10e879b480538cade51212a05b30fb8236405e77b861548b06b"
+  },
+  {
+    "path": "src/core/progression/research.ts",
+    "sha256": "ae12b9b1b3efb6e5a18c8f9a27afc4fc5f808ba4dda1edc9dd1a775cef0d927e"
+  },
+  {
+    "path": "src/core/progression/save.ts",
+    "sha256": "683636011e2f595086a2a0d8fb6af74a9c2b5d6baa9212e7d6a4b4c793c2873a"
+  },
+  {
+    "path": "src/core/progression/session.ts",
+    "sha256": "2f72cc30b0b37304686092b29d82fc7b38636020e0a2be27c18222a74d6b9f5e"
+  },
+  {
+    "path": "src/core/progression/tierTable.ts",
+    "sha256": "2d5a6661a77972a648bac5b74fb0972e6498e7ae77915a1f7df004ae5a562b7e"
+  },
+  {
+    "path": "src/core/special/config.ts",
+    "sha256": "9cc1860c7c2586678091c07867fdb090554764c0d264d3f83e5b51d73d0dedb9"
+  },
+  {
+    "path": "src/core/special/state.ts",
+    "sha256": "c1921048ff4d0b9e7943fb4a85d3767f7a1eec74d48d621100053867cbdf7f73"
+  },
+  {
+    "path": "src/domain/attributes.ts",
+    "sha256": "6821c9a4f6aaf1456dcc6de30fd9733ee6cbbccbafa5fc7d774eec2b2ccbac53"
+  },
+  {
+    "path": "src/domain/game.ts",
+    "sha256": "a48f9578e00c9df0dca67792e9a0101b8e0935e720358424be432f26b34c3ad0"
+  },
+  {
+    "path": "src/domain/grid.ts",
+    "sha256": "1ef11af667a4100fccc8d9190ec45b9adc8ff9b86b821eff271f7054619bc96e"
+  },
+  {
+    "path": "src/domain/special.ts",
+    "sha256": "522b7a0fff9e8f951b64f835ef8d82a5235a1bfb491603a148596bf31f3d7ab1"
+  },
+  {
+    "path": "src/main.tsx",
+    "sha256": "da587b0283059574161ca94c3d31270a08716ca0b1e00a4888a9bff3dd2874d0"
+  },
+  {
+    "path": "src/styles/global.css",
+    "sha256": "a6edef440806db9aeb3d4df60e1b9c7d3ecf78b5a43b85c0af0ee8939185e9c4"
+  }
+]

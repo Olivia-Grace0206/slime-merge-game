@@ -428,3 +428,290 @@ progress::-webkit-progress-value { background: linear-gradient(90deg,#79b65b,#ab
 @media(min-width:901px) and (max-height:740px) and (min-height:501px){.normal-play{grid-template-rows:minmax(0,1fr)}.progress-controls{min-height:0;padding-block:8px;gap:8px}.progress-controls .event-readout{min-height:20px}}
 .merge-attribute-preview{width:min(470px,calc(100vw - 16px));box-sizing:border-box}
 .merge-attribute-preview.many-groups{padding:4px 6px}.many-groups small{font-size:9px;line-height:1.05}.many-groups .attribute-token{font-size:9px}.many-groups .attribute-icon{width:10px;height:10px}.many-groups .attribute-tokens{gap:2px}.many-groups .awakening-warning{font-size:9px;line-height:1.1;padding:2px;margin:1px 0}.many-groups section{margin:1px 0}
+
+
+/* Phase 3C visual polish: stronger awakening auras, always readable even without animation. */
+.awakening-1 { --aura-main: #b96b08; --aura-soft: #ffd45c; --aura-bright: #fff8b0; }
+.awakening-2 { --aura-main: #3667ba; --aura-soft: #8edbff; --aura-bright: #d1f6ff; }
+.awakening-3 { --aura-main: #8738b7; --aura-soft: #f3a0ff; --aura-bright: #fff0a0; }
+.slime-art:not(.awakening-0) { isolation: isolate; }
+.awakening-aura {
+  position: absolute;
+  inset: -14% -17% -8%;
+  z-index: 0;
+  border-radius: 48% 48% 42% 42%;
+  background: radial-gradient(ellipse at 50% 55%, transparent 39%, var(--aura-soft) 67%, transparent 84%);
+  box-shadow: 0 0 18px 5px var(--aura-soft);
+  opacity: 1;
+  pointer-events: none;
+  animation: awakening-polish-glow 3.2s ease-in-out infinite alternate;
+}
+.awakening-aura::before {
+  content: '';
+  position: absolute;
+  inset: 9% 13% 11%;
+  border: 4px solid var(--aura-main);
+  border-radius: 48% 48% 38% 38% / 55% 55% 35% 35%;
+  box-shadow: 0 0 0 2px #ffffffc8, 0 0 12px 4px var(--aura-soft);
+  filter: drop-shadow(0 0 5px var(--aura-bright));
+}
+.awakening-aura .aura-ring {
+  position: absolute;
+  inset: 4% 8% 6%;
+  border: 2px dashed var(--aura-main);
+  border-radius: 50%;
+  opacity: .95;
+}
+.awakening-2 .awakening-aura {
+  inset: -16% -19% -11%;
+  box-shadow: 0 0 20px 8px var(--aura-soft), 0 0 0 3px #f5d3ff8a;
+}
+.awakening-2 .awakening-aura .aura-ring { border: 3px double #a858d5; }
+.awakening-3 .awakening-aura {
+  inset: -20% -22% -14%;
+  background: conic-gradient(from 25deg, #fff4b888, #8ef2e9b5, #b6a3ffb5, #ff9ddb9c, #fff4b888);
+  box-shadow: 0 0 23px 12px #ffe99fcc, 0 0 10px 5px #b6acffb5;
+}
+.awakening-3 .awakening-aura::before {
+  border-width: 5px;
+  box-shadow: 0 0 0 4px #fff3cfec, 0 0 19px 8px #cca8ff, inset 0 0 10px #fffad9;
+}
+.awakening-3 .awakening-aura .aura-ring { border: 3px solid #e6adff; box-shadow: 0 0 13px #fff8b3; }
+.awakening-1 .slime-body {
+  outline: 3px solid #b96b08;
+  outline-offset: 0;
+  box-shadow: 0 0 0 4px #fff5c1, 0 0 17px 6px #f6c455, inset 3px 4px 0 #ffffff40;
+}
+.awakening-2 .slime-body {
+  outline: 3px solid #3564b1;
+  outline-offset: 1px;
+  box-shadow: 0 0 0 5px #a4e7ff, 0 0 20px 8px #9673dd, inset 3px 4px 0 #ffffff48;
+}
+.awakening-3 .slime-body {
+  outline: 4px solid #6b369e;
+  outline-offset: 1px;
+  box-shadow: 0 0 0 5px #fff2a6, 0 0 0 8px #b5a2ed, 0 0 25px 12px #a871e9, inset 3px 4px 0 #ffffff50;
+}
+.awakening-aura .aura-spark {
+  position: absolute;
+  z-index: 1;
+  width: 9px;
+  height: 9px;
+  background: #fffdf0;
+  box-shadow: 0 0 0 2px var(--aura-main), 0 0 10px 4px var(--aura-bright);
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
+.awakening-aura .aura-spark.first { left: 12%; top: 19%; }
+.awakening-aura .aura-spark.second { left: 80%; top: 66%; }
+.awakening-aura .aura-spark.third { left: 48%; top: 3%; }
+.awakening-rank {
+  position: absolute;
+  right: -10%;
+  top: 18%;
+  z-index: 7;
+  padding: 1px 4px;
+  border-radius: 8px;
+  border: 2px solid var(--aura-main);
+  background: #fffdf3;
+  color: var(--aura-main);
+  font-weight: 900;
+  font-size: clamp(11px, 1.15vw, 16px);
+  line-height: 1.2;
+  letter-spacing: -1px;
+  text-shadow: 0 0 3px #ffffff;
+  box-shadow: 0 0 8px 2px var(--aura-bright);
+  pointer-events: none;
+}
+@keyframes awakening-polish-glow {
+  from { filter: brightness(.96); transform: scale(.97); }
+  to { filter: brightness(1.15); transform: scale(1.02); }
+}
+.reduced-effects .awakening-aura,
+.reduced-effects .awakening-rank { animation: none; filter: none; opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .awakening-aura, .awakening-rank { animation: none !important; filter: none; opacity: 1; }
+}
+
+/* The active blue buff appears immediately above the shop and never affects game values. */
+.normal-play .edge-menu { position: relative; }
+.blue-buff-status {
+  flex: 0 0 auto;
+  width: 100%;
+  min-width: 0;
+  padding: 8px 5px;
+  border: 2px solid #56acd2;
+  border-radius: 14px;
+  background: linear-gradient(160deg, #effaff, #d3edff);
+  color: #215878;
+  box-shadow: 0 3px 7px #245e8733;
+  font-size: 10px;
+  line-height: 1.25;
+  text-align: center;
+  pointer-events: none;
+}
+.blue-buff-status strong { display:block; font-size:11px; }
+.blue-buff-status small { display:block; font-size:9px; }
+.blue-buff-status ul { padding:0; margin:5px 0; list-style:none; }
+.blue-buff-status li { display:flex; align-items:center; justify-content:space-between; gap:2px; margin:2px 0; font-size:10px; }
+.blue-buff-status li .attribute-icon { width:14px; height:14px; }
+.blue-buff-status li span { flex:1; min-width:0; text-align:left; }
+.blue-buff-status li b { white-space:nowrap; font-variant-numeric:tabular-nums; }
+.blue-buff-status .blue-buff-note { font-size:8px; line-height:1.3; }
+@media (max-width: 900px) and (min-height: 501px) {
+  .blue-buff-status {
+    position:absolute; z-index:20; right:0; bottom:calc(100% + 6px);
+    width:min(235px, 86vw); padding:7px 9px;
+    background:#e4f6ffef; box-shadow:0 3px 12px #214f7240;
+  }
+  .blue-buff-status li { font-size:11px; }
+}
+@media (max-height: 500px) {
+  .blue-buff-status {
+    position:absolute; z-index:20; left:calc(100% + 5px); right:auto; top:4px;
+    bottom:auto; width:170px; padding:5px 7px; background:#e4f6fff2;
+  }
+  .blue-buff-status .blue-buff-note { display:none; }
+}
+
+/* One-screen attribute introduction (ten cards); details scroll only after selection. */
+.menu-dialog.attribute-dialog {
+  width: min(940px, calc(100vw - 12px));
+  height: min(660px, calc(100dvh - 12px));
+  max-height: calc(100dvh - 12px);
+}
+.attribute-dialog .panel-header { flex: 0 0 auto; }
+.attribute-panel-host {
+  flex:1;
+  display:flex;
+  overflow:hidden;
+  min-height:0;
+  padding:9px;
+}
+.attribute-introduction { display:flex; flex-direction:column; flex:1; width:100%; min-height:0; overflow:hidden; }
+.attribute-intro-lead { flex:0 0 auto; margin:0 0 8px; font-size:12px; text-align:center; }
+.attribute-intro-grid {
+  flex:1; min-height:0; display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  grid-template-rows:repeat(2,minmax(0,1fr));
+  gap:8px;
+}
+.attribute-intro-card {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  min-width:0;
+  min-height:0;
+  border:2px solid color-mix(in srgb, var(--intro-color) 58%, white);
+  background:color-mix(in srgb, var(--intro-color) 11%, white);
+  color:#344b44;
+  border-radius:15px;
+  padding:7px;
+  text-align:center;
+  overflow:hidden;
+}
+.attribute-intro-card:hover,
+.attribute-intro-card:focus-visible {
+  background:color-mix(in srgb, var(--intro-color) 22%, white);
+  border-color:var(--intro-color);
+}
+.attribute-intro-card .attribute-icon { width:clamp(23px,3vw,43px); height:clamp(23px,3vw,43px); color:var(--intro-color); }
+.attribute-intro-card strong { font-size:clamp(12px,1.2vw,17px); line-height:1.1; color:#27443c; }
+.attribute-intro-card small { display:block; font-size:clamp(10px,.83vw,12px); line-height:1.3; overflow-wrap:anywhere; }
+.attribute-intro-more { font-size:10px; color:var(--intro-color); font-weight:800; }
+.attribute-intro-card[data-attribute='fire'] { --intro-color:#c65a30; }
+.attribute-intro-card[data-attribute='gold'] { --intro-color:#a87a13; }
+.attribute-intro-card[data-attribute='dark'] { --intro-color:#7547a3; }
+.attribute-intro-card[data-attribute='ice'] { --intro-color:#268ba9; }
+.attribute-intro-card[data-attribute='lightning'] { --intro-color:#aa8736; }
+.attribute-intro-card[data-attribute='nature'] { --intro-color:#3b8a46; }
+.attribute-intro-card[data-attribute='luck'] { --intro-color:#268d74; }
+.attribute-intro-card[data-attribute='mutation'] { --intro-color:#b554a3; }
+.attribute-intro-card[data-attribute='light'] { --intro-color:#bc9b39; }
+.attribute-intro-card[data-attribute='magnet'] { --intro-color:#526cb6; }
+.attribute-intro-footer { display:flex; align-items:center; justify-content:space-between; gap:7px; flex:0 0 auto; padding-top:8px; font-size:11px; }
+.attribute-intro-footer button, .attribute-back {
+  min-height:38px; padding:5px 12px; border:1px solid #85ac85;
+  border-radius:10px; background:#e7f1df; color:#305443; font-size:12px; font-weight:800;
+}
+.attribute-info-detail, .attribute-roster-screen {
+  flex:1; min-height:0; overflow-y:auto; overscroll-behavior:contain;
+  padding:4px 9px 12px; font-size:13px; line-height:1.65;
+}
+.attribute-info-detail .attribute-back,
+.attribute-roster-screen .attribute-back { margin:0 0 8px; }
+.attribute-detail-hero {
+  display:flex; align-items:center; gap:12px; border:1px solid #c9d8cc;
+  border-radius:13px; padding:12px; margin-bottom:12px;
+  background:linear-gradient(100deg,#edf5e9,#fffdf5);
+}
+.attribute-detail-hero > .attribute-icon { width:51px; height:51px; }
+.attribute-detail-hero h3 { font-size:20px; margin:0; }
+.attribute-detail-hero p { margin:0; }
+.attribute-detail-hero > span { margin-left:auto; font-size:11px; }
+.attribute-info-detail section, .attribute-roster-screen section {
+  border-radius:12px; padding:11px 13px; background:#f2f7ec; margin-bottom:10px;
+}
+.attribute-info-detail h4 { font-size:14px; margin:0 0 4px; }
+.attribute-info-detail section p { margin:4px 0; }
+.attribute-detail-nav { display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;margin:12px 0; }
+.attribute-detail-nav button { border:1px solid #d5e3d1; background:#f7fbf4; border-radius:9px; display:flex; align-items:center; justify-content:center; gap:3px; min-height:42px; font-size:11px; }
+.attribute-detail-nav .attribute-icon { width:17px; height:17px; }
+@media (max-width:700px) and (min-height:501px) {
+  .attribute-panel-host { padding:5px; }
+  .attribute-intro-lead { font-size:10px; line-height:1.25; margin-bottom:4px; }
+  .attribute-intro-grid { grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(5,minmax(0,1fr));gap:4px; }
+  .attribute-intro-card { gap:1px; border-radius:10px; padding:2px 5px; }
+  .attribute-intro-card .attribute-icon { width:22px;height:22px; }
+  .attribute-intro-card strong { font-size:12px; }
+  .attribute-intro-card small { font-size:10px; line-height:1.1; }
+  .attribute-intro-more { display:none; }
+  .attribute-intro-footer { padding-top:4px; }
+  .attribute-intro-footer span { display:none; }
+  .attribute-intro-footer button { width:100%; min-height:31px; padding:2px; font-size:11px; }
+  .attribute-detail-nav { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .attribute-detail-hero { gap:8px;padding:8px; }
+  .attribute-detail-hero > .attribute-icon { width:36px;height:36px; }
+}
+@media (max-height:500px) {
+  .attribute-panel-host { padding:5px; }
+  .attribute-intro-lead { font-size:10px; margin-bottom:3px; }
+  .attribute-intro-grid { gap:4px; }
+  .attribute-intro-card { gap:2px; border-radius:10px; padding:3px; }
+  .attribute-intro-card .attribute-icon { width:24px;height:24px; }
+  .attribute-intro-card strong { font-size:12px; }
+  .attribute-intro-card small { font-size:10px;line-height:1.12; }
+  .attribute-intro-more { display:none; }
+  .attribute-intro-footer { padding-top:4px;font-size:9px; }
+  .attribute-intro-footer button { min-height:30px; padding:2px 6px;font-size:10px; }
+}
+
+/* Audited placement: retain the board fit and keep transient buffs off hit areas. */
+@media(max-width:900px) and (min-height:501px){
+ .app-shell:has(.blue-buff-status) .app-header{align-items:flex-start;padding-top:0}
+ .app-shell:has(.blue-buff-status) .app-header h1{height:23px;font-size:12px}
+ .app-shell:has(.blue-buff-status) .app-header .brand-icon{width:22px;height:22px;font-size:19px;border-radius:7px}
+ .app-shell:has(.blue-buff-status) .app-header .brand-icon svg{width:19px;height:19px}
+ .app-shell:has(.blue-buff-status) .wallet{height:24px;min-height:24px;padding:1px 5px;gap:3px}
+ .app-shell:has(.blue-buff-status) .wallet .gold-bag{width:18px;height:20px}
+ .blue-buff-status{position:fixed;top:32px;bottom:auto;left:8px;right:8px;width:auto;height:18px;display:flex;align-items:center;justify-content:center;gap:5px;padding:1px 3px;border-width:1px;border-radius:6px;font-size:9px;box-shadow:none;white-space:nowrap}
+ .blue-buff-status strong,.blue-buff-status small{display:inline;font-size:9px;line-height:1}
+ .blue-buff-status ul{display:flex;gap:5px;margin:0;padding:0}
+ .blue-buff-status li{display:flex;gap:2px;margin:0;font-size:9px;line-height:1}
+ .blue-buff-status li .attribute-icon{display:none}
+ .blue-buff-status .blue-buff-note{font-size:8px}
+}
+@media(max-height:500px){
+ .normal-play .edge-menu{gap:2px}
+ .blue-buff-status{position:static;width:100%;height:50px;padding:2px 4px;font-size:9px;border-radius:9px;box-shadow:none}
+ .blue-buff-status strong,.blue-buff-status small{display:inline;font-size:9px;line-height:1}
+ .blue-buff-status ul{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;margin:2px 0}
+ .blue-buff-status li{display:flex;flex-direction:column;align-items:center;gap:0;font-size:9px;line-height:1.1;margin:0;white-space:nowrap}
+ .blue-buff-status li .attribute-icon{display:none}
+ .blue-buff-status li span{flex:0;text-align:center}
+ .blue-buff-status .blue-buff-note{display:block;font-size:8px;line-height:1}
+}
+.blue-buff-status .buff-compact{display:none}
+@media(max-width:900px) and (min-height:501px){.blue-buff-status .buff-full{display:none}.blue-buff-status .buff-compact{display:inline}.blue-buff-status li span{white-space:nowrap;flex:none}}

@@ -1,0 +1,14 @@
+(node:9) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:22) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 56 modules transformed.
+rendering chunks...
+computing gzip size...
+baseline-dist/index.html                   0.66 kB │ gzip:   0.41 kB
+baseline-dist/assets/index-BUmGngIf.css   43.27 kB │ gzip:  10.17 kB
+baseline-dist/assets/index-blcqohud.js   324.73 kB │ gzip: 102.37 kB
+
+✓ built in 620ms

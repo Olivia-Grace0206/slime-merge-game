@@ -1,0 +1,179 @@
+[
+  {
+    "file": "docs/validation/phase3c-polish/screenshots/aura-before-after-1366x768.webp",
+    "sources": [
+      "main-before/aura-normal-1366x768.png",
+      "regression/visual-polish/aura-normal-1366x768.png"
+    ],
+    "processing": "actual screenshot crop + labels; low/high Tier rows, no artwork",
+    "bytes": 360394,
+    "dimensions": [
+      698,
+      770
+    ],
+    "sha256": "cb7dab6f26d60d0db93e77b4e6bc8cfa8880fa0b08d27f71aef60b8b01508c56",
+    "gitBlob": "46e1f6332a014857f351c4369891cfccbb380622"
+  },
+  {
+    "file": "docs/validation/phase3c-polish/screenshots/aura-before-after-390x844.webp",
+    "sources": [
+      "main-before/aura-normal-390x844.png",
+      "regression/visual-polish/aura-normal-390x844.png"
+    ],
+    "processing": "actual screenshot crop + labels; low/high Tier rows, no artwork",
+    "bytes": 146176,
+    "dimensions": [
+      600,
+      446
+    ],
+    "sha256": "a3e8738a5248955afbe7484a91b40f249272739644b4ffcc408648a0be2a4487",
+    "gitBlob": "ed036c03a578cdf9e38cb023be9ebf2984e2b49f"
+  },
+  {
+    "file": "docs/validation/phase3c-polish/screenshots/aura-before-after-320x568.webp",
+    "sources": [
+      "main-before/aura-normal-320x568.png",
+      "regression/visual-polish/aura-normal-320x568.png"
+    ],
+    "processing": "actual screenshot crop + labels; low/high Tier rows, no artwork",
+    "bytes": 108378,
+    "dimensions": [
+      600,
+      376
+    ],
+    "sha256": "21e2e67f3ec0e5234e5fee99087eb042e68308a22a5a0b5e385b76236c422bc5",
+    "gitBlob": "570abaeee3d3f5e82561a147024dd30dc19a7a24"
+  },
+  {
+    "file": "docs/validation/phase3c-polish/screenshots/awake1-390x844.webp",
+    "source": "docs/validation/phase3c-polish/regression/visual-polish/awake1-390x844.png",
+    "processing": "lossless WebP encoding of actual rendered screenshot",
+    "bytes": 11122,
+    "dimensions": [
+      94,
+      94
+    ],
+    "sha256": "8a94548d24e1a549d15d1e98ce0dc1bc31d134bebf66f5f609ef17472044f6f0",
+    "gitBlob": "298e5ac19a0fffa3d7a1c1a94de5a4ded1fe1099"
+  },
+  {
+    "file": "docs/validation/phase3c-polish/screenshots/awake3-390x844.webp",
+    "source": "docs/validation/phase3c-polish/regression/visual-polish/awake3-390x844.png",
+    "processing": "lossless WebP encoding of actual rendered screenshot",
+    "bytes": 10910,
+    "dimensions": [
+      94,
+      94
+    ],
+    "sha256": "937e448b744df8468d90f114ec8225be193c17d121ca1f77d2b47a6074bb5c29",
+    "gitBlob": "bbffff3c77e3a9aa1a6161dcb1dacb812f558f26"
+  },
+  {
+    "file": "docs/validation/phase3c-polish/screenshots/aura-reduced-390x844.webp",
+    "source": "docs/validation/phase3c-polish/regression/visual-polish/aura-reduced-390x844.png",
+    "processing": "lossless WebP encoding of actual rendered screenshot",
+    "bytes": 253064,
+    "dimensions": [
+      390,
+      844
+    ],
+    "sha256": "40ef61efb804ddc82d325e99874dd04a8dc8ebf78c01c4a9ada7400ade50a639",
+    "gitBlob": "30584e1755341638c16fa1a0f5e5acdfd2e401ab"
+  },
+  {
+    "file": "docs/validation/phase3c-polish/screenshots/blue-buffs-1366x768.webp",
+    "source": "docs/validation/phase3c-polish/regression/visual-polish/blue-buffs-1366x768.png",
+    "processing": "lossless WebP encoding of actual rendered screenshot",
+    "bytes": 645558,
+    "dimensions": [
+      1366,
+      768
+    ],
+    "sha256": "9d47c8ec1e6a51e2dc1106630b10a5163ea99164d28bb9c4ba58e56a78691c4c",
+    "gitBlob": "824757490895f68bd7edda950f54f58589b95da0"
+  },
+  {
+    "file": "docs/validation/phase3c-polish/screenshots/blue-buffs-320x568.webp",
+    "source": "docs/validation/phase3c-polish/regression/visual-polish/blue-buffs-320x568.png",
+    "processing": "lossless WebP encoding of actual rendered screenshot",
+    "bytes": 178094,
+    "dimensions": [
+      320,
+      568
+    ],
+    "sha256": "3cd9aea211dfe9375ecfebe0457d92d0f96fb9faa2f6a5742eccb250d1410de1",
+    "gitBlob": "6c3646b916e4148c75a2619120bc4d31e503dfab"
+  },
+  {
+    "file": "docs/validation/phase3c-polish/screenshots/blue-buffs-844x390.webp",
+    "source": "docs/validation/phase3c-polish/regression/visual-polish/blue-buffs-844x390.png",
+    "processing": "lossless WebP encoding of actual rendered screenshot",
+    "bytes": 232282,
+    "dimensions": [
+      844,
+      390
+    ],
+    "sha256": "356e2298321c5d9286093f2323e8697c20b44d5e8f8b9799bb51aab60d39b224",
+    "gitBlob": "008beaad8de5dce9610966c50fcb5c86cd37c01f"
+  },
+  {
+    "file": "docs/validation/phase3c-polish/screenshots/intro-1366x768.webp",
+    "source": "docs/validation/phase3c-polish/regression/visual-polish/intro-1366x768.png",
+    "processing": "lossless WebP encoding of actual rendered screenshot",
+    "bytes": 186372,
+    "dimensions": [
+      1366,
+      768
+    ],
+    "sha256": "c27b9c53f52bfcc067d598594fcc47c2eb2a666c908dc88f0930db0f68bcef29",
+    "gitBlob": "5d5c939d19d96518c6515a89b49b4c222ff57aff"
+  },
+  {
+    "file": "docs/validation/phase3c-polish/screenshots/intro-390x844.webp",
+    "source": "docs/validation/phase3c-polish/regression/visual-polish/intro-390x844.png",
+    "processing": "lossless WebP encoding of actual rendered screenshot",
+    "bytes": 56820,
+    "dimensions": [
+      390,
+      844
+    ],
+    "sha256": "213ed464c33273ab26829e68b80fe9c90ac4e0aee6626e1cbd6532bd5abd200f",
+    "gitBlob": "3832eb638d528e58636bc450d086bdd3dc102f54"
+  },
+  {
+    "file": "docs/validation/phase3c-polish/screenshots/intro-320x568.webp",
+    "source": "docs/validation/phase3c-polish/regression/visual-polish/intro-320x568.png",
+    "processing": "lossless WebP encoding of actual rendered screenshot",
+    "bytes": 32430,
+    "dimensions": [
+      320,
+      568
+    ],
+    "sha256": "bc6070fd5cb25bb1ec492c6552fee0e3d01722354ccb0dcc8d25f39f1414bf2e",
+    "gitBlob": "3bb62e72358014a803898cda91b2407fa22c7331"
+  },
+  {
+    "file": "docs/validation/phase3c-polish/screenshots/intro-844x390.webp",
+    "source": "docs/validation/phase3c-polish/regression/visual-polish/intro-844x390.png",
+    "processing": "lossless WebP encoding of actual rendered screenshot",
+    "bytes": 34444,
+    "dimensions": [
+      844,
+      390
+    ],
+    "sha256": "990bc9a01f96793ed0b9b7ba5f32e97b36af6a6a621f051423122b24dd213d0d",
+    "gitBlob": "a89e8d4ca63f8ac27425f12996d20e9c88930a6b"
+  },
+  {
+    "file": "docs/validation/phase3c-polish/screenshots/detail-390x844.webp",
+    "source": "docs/validation/phase3c-polish/regression/visual-polish/detail-390x844.png",
+    "processing": "lossless WebP encoding of actual rendered screenshot",
+    "bytes": 58546,
+    "dimensions": [
+      390,
+      844
+    ],
+    "sha256": "f939fabb8978240e537f6a11160016179a89e19f18c6a5bc99a74295b6e5d06e",
+    "gitBlob": "1174d6f9c737260f8ba8d30c0422bac1a6de1751"
+  }
+]

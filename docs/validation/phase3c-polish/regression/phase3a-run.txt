@@ -1,0 +1,77 @@
+(node:258) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS 1920x1080 one-screen board unchanged and menu reachable, face/Tier/badges separate
+PASS 1920x1080 different Tier exchanges only positions + IDs/attributes/protection preserved/reload
+PASS 1920x1080 touch-accessible attribute list/details with actual effects and provisional values
+PASS 1920x1080 5merge preview guarantees copied Lv + both outputs, remainder untouched
+PASS 1920x1080 overflow switches to clear swap preview; research/MAX40/two-input exchange
+PASS 1920x1080 pinch/pointercancel/Escape/rotation never commit previewed swap
+PASS 1920x1080 FIFO attribute withdrawal + immediate protected sale / actual receipt
+PASS 1440x900 one-screen board unchanged and menu reachable, face/Tier/badges separate
+PASS 1440x900 different Tier exchanges only positions + IDs/attributes/protection preserved/reload
+PASS 1440x900 touch-accessible attribute list/details with actual effects and provisional values
+PASS 1440x900 5merge preview guarantees copied Lv + both outputs, remainder untouched
+PASS 1440x900 overflow switches to clear swap preview; research/MAX40/two-input exchange
+PASS 1440x900 pinch/pointercancel/Escape/rotation never commit previewed swap
+PASS 1440x900 FIFO attribute withdrawal + immediate protected sale / actual receipt
+PASS 1366x768 one-screen board unchanged and menu reachable, face/Tier/badges separate
+PASS 1366x768 different Tier exchanges only positions + IDs/attributes/protection preserved/reload
+PASS 1366x768 touch-accessible attribute list/details with actual effects and provisional values
+PASS 1366x768 5merge preview guarantees copied Lv + both outputs, remainder untouched
+PASS 1366x768 overflow switches to clear swap preview; research/MAX40/two-input exchange
+PASS 1366x768 pinch/pointercancel/Escape/rotation never commit previewed swap
+PASS 1366x768 FIFO attribute withdrawal + immediate protected sale / actual receipt
+PASS 1280x720 one-screen board unchanged and menu reachable, face/Tier/badges separate
+PASS 1280x720 different Tier exchanges only positions + IDs/attributes/protection preserved/reload
+PASS 1280x720 touch-accessible attribute list/details with actual effects and provisional values
+PASS 1280x720 5merge preview guarantees copied Lv + both outputs, remainder untouched
+PASS 1280x720 overflow switches to clear swap preview; research/MAX40/two-input exchange
+PASS 1280x720 pinch/pointercancel/Escape/rotation never commit previewed swap
+PASS 1280x720 FIFO attribute withdrawal + immediate protected sale / actual receipt
+PASS 1024x768 one-screen board unchanged and menu reachable, face/Tier/badges separate
+PASS 1024x768 different Tier exchanges only positions + IDs/attributes/protection preserved/reload
+PASS 1024x768 touch-accessible attribute list/details with actual effects and provisional values
+PASS 1024x768 5merge preview guarantees copied Lv + both outputs, remainder untouched
+PASS 1024x768 overflow switches to clear swap preview; research/MAX40/two-input exchange
+PASS 1024x768 pinch/pointercancel/Escape/rotation never commit previewed swap
+PASS 1024x768 FIFO attribute withdrawal + immediate protected sale / actual receipt
+PASS 768x1024 one-screen board unchanged and menu reachable, face/Tier/badges separate
+PASS 768x1024 different Tier exchanges only positions + IDs/attributes/protection preserved/reload
+PASS 768x1024 touch-accessible attribute list/details with actual effects and provisional values
+PASS 768x1024 5merge preview guarantees copied Lv + both outputs, remainder untouched
+PASS 768x1024 overflow switches to clear swap preview; research/MAX40/two-input exchange
+PASS 768x1024 pinch/pointercancel/Escape/rotation never commit previewed swap
+PASS 768x1024 FIFO attribute withdrawal + immediate protected sale / actual receipt
+PASS 390x844 one-screen board unchanged and menu reachable, face/Tier/badges separate
+PASS 390x844 different Tier exchanges only positions + IDs/attributes/protection preserved/reload
+PASS 390x844 touch-accessible attribute list/details with actual effects and provisional values
+PASS 390x844 5merge preview guarantees copied Lv + both outputs, remainder untouched
+PASS 390x844 overflow switches to clear swap preview; research/MAX40/two-input exchange
+PASS 390x844 pinch/pointercancel/Escape/rotation never commit previewed swap
+PASS 390x844 FIFO attribute withdrawal + immediate protected sale / actual receipt
+PASS 375x667 one-screen board unchanged and menu reachable, face/Tier/badges separate
+PASS 375x667 different Tier exchanges only positions + IDs/attributes/protection preserved/reload
+PASS 375x667 touch-accessible attribute list/details with actual effects and provisional values
+PASS 375x667 5merge preview guarantees copied Lv + both outputs, remainder untouched
+PASS 375x667 overflow switches to clear swap preview; research/MAX40/two-input exchange
+PASS 375x667 pinch/pointercancel/Escape/rotation never commit previewed swap
+PASS 375x667 FIFO attribute withdrawal + immediate protected sale / actual receipt
+PASS 320x568 one-screen board unchanged and menu reachable, face/Tier/badges separate
+PASS 320x568 different Tier exchanges only positions + IDs/attributes/protection preserved/reload
+PASS 320x568 touch-accessible attribute list/details with actual effects and provisional values
+PASS 320x568 5merge preview guarantees copied Lv + both outputs, remainder untouched
+PASS 320x568 overflow switches to clear swap preview; research/MAX40/two-input exchange
+PASS 320x568 pinch/pointercancel/Escape/rotation never commit previewed swap
+PASS 320x568 FIFO attribute withdrawal + immediate protected sale / actual receipt
+PASS 844x390 one-screen board unchanged and menu reachable, face/Tier/badges separate
+PASS 844x390 different Tier exchanges only positions + IDs/attributes/protection preserved/reload
+PASS 844x390 touch-accessible attribute list/details with actual effects and provisional values
+PASS 844x390 5merge preview guarantees copied Lv + both outputs, remainder untouched
+PASS 844x390 overflow switches to clear swap preview; research/MAX40/two-input exchange
+PASS 844x390 pinch/pointercancel/Escape/rotation never commit previewed swap
+PASS 844x390 FIFO attribute withdrawal + immediate protected sale / actual receipt
+PASS 390 GOLD active swap by p-1 closes frozen attribute contract without transferring receipts
+PASS 390 GOLD active swap by p-2 closes frozen attribute contract without transferring receipts
+PASS Quota during attributed swap keeps original bytes, individuals and attributes in UI
+PASS Quota during attributed merge keeps original bytes, individuals and attributes in UI
+74 []
