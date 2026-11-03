@@ -23,7 +23,7 @@ describe('attribute model and deterministic genetics',()=>{
   expect(isAttributes([{id,level:1}])).toBe(true);expect(isAttributes([{id,level:99}])).toBe(true)
   expect(drawAttributes(stream(0,(ATTRIBUTE_IDS.indexOf(id)+.5)/10))).toEqual([{id,level:1}])
  })
- it.each([Array(1),null,{},[{id:'water',level:1}],[{id:'fire',level:0}],[{id:'fire',level:100}],[{id:'fire',level:1.2}],[{id:'fire',level:NaN}],[{id:'fire',level:1},{id:'fire',level:2}],[{id:'fire',level:1,awakened:true}]])('reject invalid attributes %j',a=>expect(isAttributes(a)).toBe(false))
+ it.each([Array(1),null,{},[{id:'water',level:1}],[{id:'fire',level:0}],[{id:'fire',level:100}],[{id:'fire',level:1.2}],[{id:'fire',level:NaN}],[{id:'fire',level:1},{id:'fire',level:2}],[{id:'fire',level:1,awakened:'invalid'}]])('reject invalid attributes %j',a=>expect(isAttributes(a)).toBe(false))
  it('none, boundary probability, seeded reproducibility and invalid randomness',()=>{
   expect(isAttributes([])).toBe(true);expect(drawAttributes(()=>.08)).toEqual([])
   const a=seed(),b=seed();expect(Array.from({length:1000},()=>drawAttributes(a))).toEqual(Array.from({length:1000},()=>drawAttributes(b)))
@@ -90,13 +90,13 @@ describe('storage, migration and atomic replay',()=>{
   const rawSession={...s,version,wallet:{...s.wallet,gold:4567},goldCellUnlocked:true,protectedIds:['p-1'],generator:{...s.generator,storedTiers:[1,39,40],totalGenerated:3},eventSequence:3,event:{id:'gold-3',sequence:3,cell:{x:0,y:0},tier:40,sourceId:'p-1',attributeCount:0,paid:4,receivedGOLD:4*unit,unitGOLD:unit,nextPaymentAtMs:1400,expiresAtMs:45000,...(version!==2?{rewardVersion:2}:{})}}
   if(version===1){ rawSession.event=null as never } // v1 had no event contract
   const raw=JSON.stringify(rawSession),d=decodeSession(raw,0);expect(d.ok).toBe(true);if(!d.ok)throw Error(d.reason)
-  expect(d.session.version).toBe(6);expect(d.migrated).toBe(true);expect(d.session.game.highestTierReached).toBe(40);expect(d.session.game.slimes[0]!.attributes).toEqual([])
+  expect(d.session.version).toBe(7);expect(d.migrated).toBe(true);expect(d.session.game.highestTierReached).toBe(40);expect(d.session.game.slimes[0]!.attributes).toEqual([])
   expect(d.session.generator.storedTiers).toEqual([1,39,40]);expect(d.session.generator.storedAttributes).toEqual([[],[],[]]);expect(d.session.wallet.gold).toBe(4567)
   if(version!==1){expect(d.session.protectedIds).toEqual(['p-1']);expect(d.session.event?.unitGOLD).toBe(unit);expect(d.session.event?.paid).toBe(4)}
  })
  it('schema4 research/format/frequency lock fields preserved exactly',()=>{
   const s={...freshSession(0),version:4,goldFrequencyLevel:3,goldCellUnlocked:true,goldFormat:'compact',wallet:{gold:123,upgrades:{speed:1,tap:2,storage:3}}}
-  const d=decodeSession(JSON.stringify(s),0);expect(d.ok&&d.session).toMatchObject({...s,version:6})
+  const d=decodeSession(JSON.stringify(s),0);expect(d.ok&&d.session).toMatchObject({...s,version:7})
  })
  it('FIFO stores generation-time attributes; occupied withdrawal and reload never reroll',()=>{
   const s=reduceSession(freshSession(0),{type:'tick'},15000,stream(.9,0,.35))

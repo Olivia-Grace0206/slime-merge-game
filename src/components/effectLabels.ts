@@ -1,3 +1,4 @@
+import {AWAKENED_DARK_LOSS} from '../core/special/config'
 import type { Slime } from '../domain/game'
 import { attributePower, EFFECTS, comboPower } from '../core/attributes/effects'
 const pct = (n: number) => `${(n*100).toFixed(1)}%`
@@ -8,7 +9,7 @@ export function effectLabels(slime: Slime): readonly string[] {
     switch(attr.id) {
       case 'fire': return `炎Lv${attr.level}：売却に+${Math.ceil(2**slime.tier*EFFECTS.fireRate*p)} GOLD加算`
       case 'gold': return `黄金Lv${attr.level}：売却×${(1+EFFECTS.goldRate*p).toFixed(2)}`
-      case 'dark': return `闇Lv${attr.level}：売却×${(1+EFFECTS.darkRate*p).toFixed(2)}・マージ時に闇だけ20%消失（組単位）`
+      case 'dark': return `闇Lv${attr.level}：売却×${(1+EFFECTS.darkRate*p).toFixed(2)}・マージ時に闇だけ${attr.awakened?AWAKENED_DARK_LOSS*100:20}%消失（組単位）`
       case 'ice': return `氷Lv${attr.level}：配置中、通常生成時間−${pct(EFFECTS.iceRate*p)}（合計上限25%）`
       case 'lightning': return `雷Lv${attr.level}：配置中、クリック短縮+${pct(EFFECTS.lightningRate*p)}（合計上限50%）`
       case 'nature': return `自然Lv${attr.level}：配置中、単体約${(EFFECTS.natureBaseMs/p/1000).toFixed(0)}秒で貯蔵へ1体（全体最短40秒・満杯停止）`

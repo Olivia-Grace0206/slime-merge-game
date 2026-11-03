@@ -80,7 +80,7 @@ try{
   })
   await check(width+' v2 4/10 migrates frozen unit then sale ends ledger; save failure retains both sides',async()=>{
    let now=await p.evaluate(()=>Date.now()),s=fixture(now,{tiers:[5],gold:4});s.version=2;s.eventSequence=1;s.event={id:'gold-1',sequence:1,cell:{x:0,y:0},expiresAtMs:now+45000,tier:5,sourceId:'p-1',attributeCount:0,paid:4,receivedGOLD:4,unitGOLD:1,nextPaymentAtMs:now+5000};await p.evaluate(([k,s])=>localStorage.setItem(k,JSON.stringify(s)),[key,s]);await p.reload()
-   await drag(p,'[data-cell="0,0"]','[data-testid="sale-zone"]');await until(async()=>(await snapshot(p)).event===null);assert.equal((await snapshot(p)).wallet.gold,36);assert.equal((await snapshot(p)).version,6)
+   await drag(p,'[data-cell="0,0"]','[data-testid="sale-zone"]');await until(async()=>(await snapshot(p)).event===null);assert.equal((await snapshot(p)).wallet.gold,36);assert.equal((await snapshot(p)).version,7)
    await seed(p,{tiers:[1],queue:[1]});const raw=await p.evaluate(k=>localStorage.getItem(k),key);await p.evaluate(()=>{Storage.prototype.setItem=()=>{throw new DOMException('quota','QuotaExceededError')}})
    await p.getByTestId('add-slime').click();await until(async()=>await p.getByRole('alert').isVisible());assert.equal(await p.evaluate(k=>localStorage.getItem(k),key),raw);assert.equal(await p.locator('[data-slime-id]').count(),1);await p.reload()
   })

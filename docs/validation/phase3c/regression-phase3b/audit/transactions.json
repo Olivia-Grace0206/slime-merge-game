@@ -1,0 +1,93 @@
+{
+  "oracle": "Ownership/ID/cell/count/immutability/save invariants, separate from effect formulas. Same implementation agent; no third-party review claimed.",
+  "reports": [
+    {
+      "seed": 12,
+      "attempts": 5000,
+      "counts": {
+        "tick": 470,
+        "generation-mode": 482,
+        "withdraw": 1376,
+        "buy": 453,
+        "tap": 437,
+        "drop": 452,
+        "strip-attributes": 438,
+        "sell": 425,
+        "protect": 467
+      },
+      "uniqueIndividualIds": 814,
+      "highestTier": 4,
+      "generated": 2545,
+      "natureGenerated": 28,
+      "focusedGenerated": 205,
+      "saveChecks": 50,
+      "violations": 0
+    },
+    {
+      "seed": 61,
+      "attempts": 5000,
+      "counts": {
+        "withdraw": 1344,
+        "tap": 476,
+        "tick": 499,
+        "generation-mode": 475,
+        "buy": 413,
+        "drop": 451,
+        "sell": 446,
+        "strip-attributes": 452,
+        "protect": 444
+      },
+      "uniqueIndividualIds": 807,
+      "highestTier": 4,
+      "generated": 2602,
+      "natureGenerated": 23,
+      "focusedGenerated": 218,
+      "saveChecks": 50,
+      "violations": 0
+    },
+    {
+      "seed": 210,
+      "attempts": 5000,
+      "counts": {
+        "tick": 456,
+        "buy": 461,
+        "withdraw": 1426,
+        "tap": 446,
+        "generation-mode": 441,
+        "protect": 456,
+        "drop": 461,
+        "sell": 441,
+        "strip-attributes": 412
+      },
+      "uniqueIndividualIds": 838,
+      "highestTier": 4,
+      "generated": 2591,
+      "natureGenerated": 20,
+      "focusedGenerated": 215,
+      "saveChecks": 50,
+      "violations": 0
+    },
+    {
+      "seed": 901,
+      "attempts": 5000,
+      "counts": {
+        "tap": 428,
+        "tick": 495,
+        "withdraw": 1389,
+        "buy": 374,
+        "drop": 444,
+        "sell": 441,
+        "generation-mode": 491,
+        "protect": 487,
+        "strip-attributes": 451
+      },
+      "uniqueIndividualIds": 823,
+      "highestTier": 4,
+      "generated": 2569,
+      "natureGenerated": 11,
+      "focusedGenerated": 214,
+      "saveChecks": 50,
+      "violations": 0
+    }
+  ]
+}

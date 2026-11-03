@@ -1,3 +1,22 @@
+# Phase3C — 紫覚醒・集中型継承・余剰警告・青共鳴
+
+Phase3B.1 PR #12はmain8364309へマージ済み。[Draft PR #13](https://github.com/Olivia-Grace0206/slime-merge-game/pull/13)を試遊可能なPhase3Cへ更新。`feature/phase03c-awakening-resonance`、main未マージ・Private/Pages設定維持。
+
+- 紫は未覚醒属性1種類を永続覚醒。仮60秒、途中離脱0、成功まで紫は残る。成功/紫消滅は同じ保存。
+- 覚醒は複製せず、保持最大化→第1出力へ集中。同属性2個目は第2出力へ。余剰だけ文章警告して消失し、ドロップでそのままマージ可能。確認ダイアログなし。
+- 青は支援7属性を配置中だけ強化。覚醒/青/光/複合は既存cap内。闇は通常20%/覚醒30%で闇とその覚醒だけ消失（仮値）。0〜3オーラと属性一覧で状態を確認できる。
+- schema7。旧1〜6の個体/属性Lv/研究/GOLD/160 FIFO/保護/金支給台帳を保全。FIFO先頭10体属性生成・無料解除・基本15秒生成・既存操作を維持。
+
+試遊：GitHub Desktopで上記ブランチFetch/Pull、Node22/npm10で `npm ci` → `npm run dev`、通常 `http://localhost:5173/slime-merge-game/`。紫初回300秒、青初回180秒は仮値。Web Locks/LocalStorage対応のHTTPS/localhostが必要。旧版へのdowngradeは未対応。
+
+`npm run lint` / `npm test -- --run` / `npm run build`。Vitest713、ブラウザ706/10サイズ（エミュレーション）、Lint/Build成功。実機は未確認。時間/倍率/確率は調整用の仮値。
+
+[仕様v0.3.3](docs/specifications/Slime_Merge_Game_Specification_v0.3.3_2026-11-02.md) / [正本案内](docs/specifications/CURRENT.md) / [引き継ぎ](docs/PHASE3C_HANDOFF.md) / [検証・画像](docs/validation/phase3c/RESULTS.md) / [監査](docs/validation/phase3c/AUDIT.md) / [比較](docs/balance/phase3c/RESULTS.md)。最終HEAD/同SHA CIはPR本文。ユーザーの試遊後にマージ判断。全体アート/音/土地/図鑑は後続。
+
+---
+
+以下はPhase3B.1以前のREADME全文（歴史）。当時のDraft/未実装/schema6記述と現在を混同しない。
+
 # Phase 3B.1 — FIFO属性生成・無料属性解除・貯蔵拡張・属性UI
 
 Phase3B [PR #11](https://github.com/Olivia-Grace0206/slime-merge-game/pull/11)は2026-11-01にmain `e3096b8c23caad7e17067700f6e9e9c74dc255c0`へマージ済み。main CI成功を確認し、新規 `feature/phase03b1-attribute-management-polish` から別Draft PR。main未マージ・Private/Pages設定維持。

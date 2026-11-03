@@ -1,3 +1,5 @@
+import type {EffectContext} from '../../domain/special'
+import { withAwakenings } from '../attributes/awakening'
 import { geneticsForGroup } from '../attributes/effects'
 import { randomUnit, mutateAttributes } from '../attributes/inheritance'
 import { MAX_TIER, isTier, type DropPlan, type GameState, type Slime } from '../../domain/game'
@@ -7,7 +9,7 @@ import { compareNear, splitCount, planDrop } from './plan'
 
 export type ApplyResult = Readonly<{ ok: boolean; state: GameState; createdIds: readonly string[] }>
 /** Applies the displayed plan itself. No candidate re-selection during commit. */
-export function applyPlan(state: GameState, plan: DropPlan, nextId: () => string, researchMaxTier = MAX_TIER, random?: () => number, mutationChance?: number): ApplyResult {
+export function applyPlan(state: GameState, plan: DropPlan, nextId: () => string, researchMaxTier = MAX_TIER, random?: () => number, mutationChance?: number,context:EffectContext={}): ApplyResult {
   const reject = (): ApplyResult => ({ ok: false, state, createdIds: [] })
   if (plan.kind === 'invalid' || !isGameState(state) || plan.snapshot !== stateSnapshot(state))
     return reject()
@@ -62,18 +64,18 @@ export function applyPlan(state: GameState, plan: DropPlan, nextId: () => string
           .sort((a, b) => compareNear(plan.target, a, b))
           .slice(0, sizes[i] === 5 ? 2 : 1)
         if (JSON.stringify(group.outputs) !== JSON.stringify(expected)) return reject()
-        const genetics = geneticsForGroup(state, group.consumedIds)
+        const genetics = geneticsForGroup(state, group.consumedIds,context)
         let attributes = random ? mutateAttributes(group.attributes ?? [], random, mutationChance ?? genetics.mutationChance) : group.attributes
         // Shared per group, after mutation; only inherited dark is exposed to loss.
         if (random && genetics.darkLossChance > 0 && randomUnit(random) < genetics.darkLossChance)
           attributes = attributes?.filter(a => a.id !== 'dark')
-        for (const position of group.outputs) {
+        for (const [outputIndex,position] of group.outputs.entries()) {
           const id = nextId()
           // Reject even reuse of consumed IDs, so a stale drag can never target an output.
           if (typeof id !== 'string' || !id.trim() || ids.has(id)) return reject()
           ids.add(id)
           createdIds.push(id)
-          outputs.push({ id, tier: plan.outputTier, position: { ...position }, ...(attributes !== undefined ? { attributes: attributes.map(a => ({ ...a })) } : {}) })
+          outputs.push({ id, tier: plan.outputTier, position: { ...position }, ...(attributes !== undefined ? { attributes: withAwakenings(attributes,group.awakening?.outputs[outputIndex]??[]) } : {}) })
         }
       }
       slimes = [...state.slimes.filter((s) => !consumedSet.has(s.id)), ...outputs]

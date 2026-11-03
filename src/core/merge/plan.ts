@@ -1,3 +1,4 @@
+import { allocateAwakenings } from '../attributes/awakening'
 import { inheritAttributes } from '../attributes/inheritance'
 import {
   MAX_TIER,
@@ -97,6 +98,7 @@ export function planDrop(state: GameState, sourceId: string, target: GridPositio
     const cells = members.map((s) => s.position).sort((a, b) => compareNear(target, a, b))
     // Target is uniquely distance zero in the first group, hence always first.
     groups.push({
+      ...(members.some(s=>s.attributes?.some(a=>a.awakened))?{awakening:allocateAwakenings(members.map(s=>s.attributes??[]),Array.from({length:size===5?2:1},()=>attributes!))}:{}),
       number: groups.length + 1,
       ...(members.some(s => s.attributes !== undefined) ? { attributes: attributes! } : {}),
       consumedIds: members.map((s) => s.id),

@@ -1,0 +1,109 @@
+{
+  "checks": [
+    {
+      "name": "10 stock,16 Tier40 individuals with3 Lv99 traits,real localStorage and clock",
+      "result": "PASS"
+    },
+    {
+      "name": "58 stock,16 Tier40 individuals with3 Lv99 traits,real localStorage and clock",
+      "result": "PASS"
+    },
+    {
+      "name": "100 stock,16 Tier40 individuals with3 Lv99 traits,real localStorage and clock",
+      "result": "PASS"
+    },
+    {
+      "name": "160 stock,16 Tier40 individuals with3 Lv99 traits,real localStorage and clock",
+      "result": "PASS"
+    }
+  ],
+  "samples": [
+    {
+      "count": 10,
+      "capacity": 10,
+      "reloadDriverMs": 75.28667099999996,
+      "jsonUTF8Bytes": 3850,
+      "read": {
+        "iterations": 1000,
+        "elapsedMs": 0.20000000018626451,
+        "meanMs": 0.0002000000001862645
+      },
+      "parse": {
+        "iterations": 1000,
+        "elapsedMs": 16.199999999720603,
+        "meanMs": 0.016199999999720605
+      },
+      "writeSameValue": {
+        "iterations": 1000,
+        "elapsedMs": 7.399999999906868,
+        "meanMs": 0.007399999999906867
+      }
+    },
+    {
+      "count": 58,
+      "capacity": 60,
+      "reloadDriverMs": 56.22905100000003,
+      "jsonUTF8Bytes": 7931,
+      "read": {
+        "iterations": 1000,
+        "elapsedMs": 0.39999999990686774,
+        "meanMs": 0.00039999999990686776
+      },
+      "parse": {
+        "iterations": 1000,
+        "elapsedMs": 37.799999999813735,
+        "meanMs": 0.03779999999981373
+      },
+      "writeSameValue": {
+        "iterations": 1000,
+        "elapsedMs": 16.399999999906868,
+        "meanMs": 0.016399999999906868
+      }
+    },
+    {
+      "count": 100,
+      "capacity": 100,
+      "reloadDriverMs": 48.748666999999955,
+      "jsonUTF8Bytes": 11502,
+      "read": {
+        "iterations": 1000,
+        "elapsedMs": 0.20000000018626451,
+        "meanMs": 0.0002000000001862645
+      },
+      "parse": {
+        "iterations": 1000,
+        "elapsedMs": 55.5,
+        "meanMs": 0.0555
+      },
+      "writeSameValue": {
+        "iterations": 1000,
+        "elapsedMs": 18.600000000093132,
+        "meanMs": 0.018600000000093132
+      }
+    },
+    {
+      "count": 160,
+      "capacity": 160,
+      "reloadDriverMs": 48.25498700000003,
+      "jsonUTF8Bytes": 16602,
+      "read": {
+        "iterations": 1000,
+        "elapsedMs": 0.3000000002793968,
+        "meanMs": 0.00030000000027939676
+      },
+      "parse": {
+        "iterations": 1000,
+        "elapsedMs": 65.29999999981374,
+        "meanMs": 0.06529999999981373
+      },
+      "writeSameValue": {
+        "iterations": 1000,
+        "elapsedMs": 32.8000000002794,
+        "meanMs": 0.0328000000002794
+      }
+    }
+  ],
+  "browser": "134.0.6998.35",
+  "realDevices": false,
+  "limitations": "Hot same-value direct I/O, not disk flush or Web Locks latency. Reload includes driver/network. No fake clock. No hardware performance claim."
+}

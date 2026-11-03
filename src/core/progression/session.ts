@@ -1,3 +1,5 @@
+import type {SpecialState} from '../../domain/special'
+import {freshSpecials,effectContext,availableSpecialCells,syncPurple,nextSpecialBoundary,finishSpecialBoundary,spawnSpecials,rebaseSpecialClock} from '../special/state'
 import { stripAttributes } from '../attributes/strip'
 import { boardEffects, drawSpecialCell } from '../attributes/effects'
 import { FOCUS_COST, withdrawFocused, type GenerationMode } from './focus'
@@ -22,7 +24,7 @@ export type CellEvent = Readonly<{
   paid: number; receivedGOLD: number; cappedGOLD?: number; unitGOLD: number; nextPaymentAtMs: number
 }>
 export type Session = Omit<ProgressionSnapshot, 'version'> & Readonly<{
-  version: 6; generationMode: GenerationMode; focusedGenerated: number; nature: Readonly<{progressMs: number; updatedAtMs: number; totalGenerated: number}>; researchLevel: number; researchMaxTier: number; goldCellUnlocked: boolean; goldFrequencyLevel: number; goldFormat: 'full' | 'compact'; sequence: number; eventSequence: number; nextEventAtMs: number
+  version: 7; specials:SpecialState; generationMode: GenerationMode; focusedGenerated: number; nature: Readonly<{progressMs: number; updatedAtMs: number; totalGenerated: number}>; researchLevel: number; researchMaxTier: number; goldCellUnlocked: boolean; goldFrequencyLevel: number; goldFormat: 'full' | 'compact'; sequence: number; eventSequence: number; nextEventAtMs: number
   event: CellEvent | null; lastEvent: Readonly<{ id: string; receivedGOLD: number; paid?: number }> | null; protectedIds: readonly string[]; reducedEffects: boolean
 }>
 export type Command =
@@ -43,14 +45,14 @@ export type Command =
   | { type: 'pay'; eventId: string; expectedPaid: number }
 
 export function freshSession(nowMs: number): Session {
-  return { version: 6, generationMode: 'normal', focusedGenerated: 0, nature: {progressMs: 0, updatedAtMs: nowMs, totalGenerated: 0}, researchLevel: 0, researchMaxTier: 5, goldCellUnlocked: false, goldFrequencyLevel: 0, goldFormat: 'full', sequence: 0, savedAtMs: nowMs, nextId: 1,
+  return { version: 7, specials:freshSpecials(nowMs), generationMode: 'normal', focusedGenerated: 0, nature: {progressMs: 0, updatedAtMs: nowMs, totalGenerated: 0}, researchLevel: 0, researchMaxTier: 5, goldCellUnlocked: false, goldFrequencyLevel: 0, goldFormat: 'full', sequence: 0, savedAtMs: nowMs, nextId: 1,
     game: { bounds: { origin: { x: 0, y: 0 }, width: 4, height: 4 }, slimes: [], highestTierReached: 1, revision: 0 },
     wallet: freshWallet(), generator: { ...newGenerator(nowMs), storedAttributes: [] },
     eventSequence: 0, nextEventAtMs: nowMs + EXPERIMENTAL_PHASE2.eventMinDelayMs,
     event: null, lastEvent: null, protectedIds: [], reducedEffects: false }
 }
 export function sessionRules(s: Session) {
-  const base = generationRules(s.wallet), effects = boardEffects(s.game)
+  const base = generationRules(s.wallet), effects = boardEffects(s.game,effectContext(s))
   const intervalMs = Math.round(base.intervalMs * (1 - effects.iceReduction))
   return { ...base, intervalMs, tapAdvanceMs: Math.min(Math.floor(intervalMs * GENERATION_PACE.maxTapIntervalFraction), Math.round(base.tapAdvanceMs * (1 + effects.tapBonus))), attributeChance: effects.normalChance }
 
@@ -101,9 +103,9 @@ function events(s: Session, now: number, random: () => number, allowPayment: boo
   if (next.goldCellUnlocked && !next.event && now >= next.nextEventAtMs) {
     const sequence = next.eventSequence + 1
     if (!Number.isSafeInteger(sequence)) throw new RangeError('Event IDs exhausted')
-    const cells = emptyCells(next.game)
+    const cells = availableSpecialCells(next)
     if (!cells.length) return schedule(next, now, random)
-    const cell = drawSpecialCell(next.game, cells, random)
+    const cell = drawSpecialCell(next.game, cells, random,effectContext(next))
     next = { ...next, eventSequence: sequence, event: {
       id: `gold-${sequence}`, sequence, cell, rewardVersion: 2,
       expiresAtMs: later(now, EXPERIMENTAL_PHASE2.eventLifetimeMs), tier: null, sourceId: null,
@@ -121,6 +123,41 @@ function events(s: Session, now: number, random: () => number, allowPayment: boo
   } else if (allowPayment) next = pay(next, e.id, e.paid, now, random)
   return next
 }
+/** Advance bounded production with constant effects. */
+function advanceProduction(s:Session,now:number,random:()=>number,rulesFor:(s:Session)=>GeneratorRules):Session{
+ const oldRules=rulesFor(s),oldNatureInterval=boardEffects(s.game,effectContext(s)).natureIntervalMs
+ let next=s
+    next = { ...next, generator: advanceGenerator(next.generator, now, next.game.highestTierReached, rulesFor(next), random) }
+    // Ordinary production has capacity priority. Nature shares the bounded storage, never banks a full queue.
+    if (oldNatureInterval !== null) {
+      const produced = advanceGenerator({...next.generator, progressMs: next.nature.progressMs, updatedAtMs: next.nature.updatedAtMs}, now,
+        next.game.highestTierReached, {...oldRules, intervalMs: oldNatureInterval}, random)
+      const delta = produced.totalGenerated - next.generator.totalGenerated
+      next = {...next, generator: {...produced, progressMs: next.generator.progressMs}, nature: {
+        progressMs: produced.progressMs, updatedAtMs: now, totalGenerated: next.nature.totalGenerated + delta}}
+      if (next.generator.storedTiers.length === oldRules.capacity) next = {...next,generator:{...next.generator,progressMs:0}}
+    } else next = {...next,nature:{...next.nature,progressMs:0,updatedAtMs:now}}
+ return next
+}
+function rebaseProduction(next:Session,oldRules:GeneratorRules,oldNature:number|null,rulesFor:(s:Session)=>GeneratorRules):Session{
+ const rules=rulesFor(next),nature=boardEffects(next.game,effectContext(next)).natureIntervalMs
+ if(rules.intervalMs!==oldRules.intervalMs)next={...next,generator:{...next.generator,progressMs:Math.min(rules.intervalMs-1,Math.floor(next.generator.progressMs/oldRules.intervalMs*rules.intervalMs))}}
+ if(nature!==oldNature)next={...next,nature:{...next.nature,progressMs:nature&&oldNature?Math.min(nature-1,Math.floor(next.nature.progressMs/oldNature*nature)):0}}
+ if(next.generator.storedTiers.length===rules.capacity)next={...next,generator:{...next.generator,progressMs:0},nature:{...next.nature,progressMs:0}}
+ return next
+}
+/** Existing events only progress offline; no missed-spawn replay. */
+function advanceTimeline(s:Session,now:number,random:()=>number,rulesFor:(s:Session)=>GeneratorRules):Session{
+ let next=syncPurple(s,Math.min(now,s.savedAtMs)),cursor=next.generator.updatedAtMs
+ for(let step=0;step<4;step++){
+  const at=nextSpecialBoundary(next,now);if(at<cursor)throw Error('Invalid chronology')
+  const rules=rulesFor(next),nature=boardEffects(next.game,effectContext(next)).natureIntervalMs
+  next=advanceProduction(next,at,random,rulesFor)
+  next=rebaseProduction(finishSpecialBoundary(next,at,random),rules,nature,rulesFor)
+  cursor=at;if(at===now)return next
+ }throw Error('Too many boundaries')
+}
+
 /** A complete transaction. Clock and random are injected. Failure never partially updates resources. */
 export function reduceSession(s: Session, command: Command, now: number, random: () => number, rulesOverride?: GeneratorRules): Session {
   try {
@@ -131,40 +168,33 @@ export function reduceSession(s: Session, command: Command, now: number, random:
     if (command.type === 'generation-mode' && command.value !== 'normal' && command.value !== 'focused') return s
     const stripped = command.type === 'strip-attributes' ? stripAttributes(s.game,command.id) : null
     if(stripped && (!stripped.ok || !stripped.changed))return s
-    const oldRules = rulesOverride ?? sessionRules(s), oldNatureInterval = boardEffects(s.game).natureIntervalMs
+    const reference=sessionRules(s)
+    const rulesFor=(state:Session):GeneratorRules=>{const actual=sessionRules(state);return rulesOverride?{...rulesOverride,intervalMs:Math.max(1,Math.round(rulesOverride.intervalMs*actual.intervalMs/reference.intervalMs)),tapAdvanceMs:Math.round(rulesOverride.tapAdvanceMs*actual.tapAdvanceMs/reference.tapAdvanceMs),capacity:Math.round(rulesOverride.capacity*actual.capacity/reference.capacity)}:actual}
 
     let next = s
     // Rebase rollback once, granting zero elapsed time. It cannot bank future credit.
     if (now < s.generator.updatedAtMs) {
-      next = { ...next, nature: {...next.nature, updatedAtMs: now}, generator: { ...next.generator, updatedAtMs: now },
+      next = { ...next, specials:rebaseSpecialClock(s,now), nature: {...next.nature, updatedAtMs: now}, generator: { ...next.generator, updatedAtMs: now },
         nextEventAtMs: later(now, Math.max(0, s.nextEventAtMs - s.savedAtMs)),
         event: s.event ? { ...s.event,
           expiresAtMs: later(now, Math.max(0, s.event.expiresAtMs - s.savedAtMs)),
           nextPaymentAtMs: s.event.tier === null ? 0 : later(now, EXPERIMENTAL_PHASE2.paymentIntervalMs) } : null }
     }
-    next = { ...next, generator: advanceGenerator(next.generator, now, next.game.highestTierReached, (rulesOverride ?? sessionRules(next)), random) }
-    // Ordinary production has capacity priority. Nature shares the bounded storage, never banks a full queue.
-    if (oldNatureInterval !== null) {
-      const produced = advanceGenerator({...next.generator, progressMs: next.nature.progressMs, updatedAtMs: next.nature.updatedAtMs}, now,
-        next.game.highestTierReached, {...oldRules, intervalMs: oldNatureInterval}, random)
-      const delta = produced.totalGenerated - next.generator.totalGenerated
-      next = {...next, generator: {...produced, progressMs: next.generator.progressMs}, nature: {
-        progressMs: produced.progressMs, updatedAtMs: now, totalGenerated: next.nature.totalGenerated + delta}}
-      if (next.generator.storedTiers.length === oldRules.capacity) next = {...next,generator:{...next.generator,progressMs:0}}
-    } else next = {...next,nature:{...next.nature,progressMs:0,updatedAtMs:now}}
+    next=advanceTimeline(next,now,random,rulesFor)
+    const oldRules=rulesFor(next),oldNatureInterval=boardEffects(next.game,effectContext(next)).natureIntervalMs
     const progressRatio = next.generator.progressMs / oldRules.intervalMs
     const natureRatio = oldNatureInterval ? next.nature.progressMs / oldNatureInterval : 0
     if (command.type === 'generation-mode') next = {...next, generationMode:command.value}
-    if (command.type === 'tap') next = { ...next, generator: tapGenerator(next.generator, next.game.highestTierReached, (rulesOverride ?? sessionRules(next)), random) }
+    if (command.type === 'tap') next = { ...next, generator: tapGenerator(next.generator, next.game.highestTierReached, rulesFor(next), random) }
     if (command.type === 'withdraw') {
       if (command.expectedId !== s.nextId || s.nextId >= Number.MAX_SAFE_INTEGER - 2 || !s.generator.storedTiers.length || !emptyCells(s.game).length) return s
-      const result = s.generationMode === 'focused' ? withdrawFocused(next.game,next.generator,`p-${s.nextId}`,boardEffects(next.game).focusChance,random) : withdrawRandom(next.game, next.generator, `p-${s.nextId}`, random)
+      const result = s.generationMode === 'focused' ? withdrawFocused(next.game,next.generator,`p-${s.nextId}`,boardEffects(next.game,effectContext(next)).focusChance,random) : withdrawRandom(next.game, next.generator, `p-${s.nextId}`, random)
       if (!result.ok) return s
       next = { ...next, game: result.game, generator: result.generator, nextId: s.nextId + 1, focusedGenerated: next.focusedGenerated + (s.generationMode === 'focused' ? 1 : 0) }
     }
     if (command.type === 'drop') {
       let id = next.nextId
-      const result = applyPlan(next.game, command.plan, () => `p-${id++}`, next.researchMaxTier, random, rulesOverride?.attributeMutationChance)
+      const result = applyPlan(next.game, command.plan, () => `p-${id++}`, next.researchMaxTier, random, rulesOverride?.attributeMutationChance,effectContext(next))
       if (!result.ok) return s
       next = { ...next, game: result.state, nextId: id,
         protectedIds: next.protectedIds.filter(x => result.state.slimes.some(y => y.id === x)) }
@@ -175,7 +205,7 @@ export function reduceSession(s: Session, command: Command, now: number, random:
       if (!result.ok) return s
       next = { ...next, game: result.game, wallet: result.wallet }
     }
-    if(stripped)next={...next,game:stripped.game}
+    if(stripped&&command.type==='strip-attributes')next={...next,game:stripAttributes(next.game,command.id).game}
     if (command.type === 'buy') {
       if (!Object.hasOwn(next.wallet.upgrades, command.key) || next.wallet.upgrades[command.key] !== command.expectedLevel) return s
       const result = purchaseUpgrade(next.wallet, command.key)
@@ -209,7 +239,7 @@ export function reduceSession(s: Session, command: Command, now: number, random:
         ? next.protectedIds.filter(x => x !== command.id) : [...next.protectedIds, command.id] }
     }
     if (command.type === 'effects') next = { ...next, reducedEffects: command.value }
-    const newRules = rulesOverride ?? sessionRules(next), newNatureInterval = boardEffects(next.game).natureIntervalMs
+    const newRules = rulesFor(next), newNatureInterval = boardEffects(next.game,effectContext(next)).natureIntervalMs
     if (newRules.intervalMs !== oldRules.intervalMs)
       next = {...next, generator:{...next.generator, progressMs:Math.min(newRules.intervalMs-1,Math.floor(progressRatio*newRules.intervalMs))}}
     if (newNatureInterval !== oldNatureInterval)
@@ -217,12 +247,14 @@ export function reduceSession(s: Session, command: Command, now: number, random:
     // A click can fill the last slot AFTER ordinary/nature accrual. Pause both clocks atomically.
     if (next.generator.storedTiers.length === newRules.capacity)
       next = {...next,generator:{...next.generator,progressMs:0},nature:{...next.nature,progressMs:0}}
+    next=syncPurple(next,now)
     if (command.type === 'pay') {
       // Explicit replay requests must not fall through to normal tick payment.
       const paid = pay(next, command.eventId, command.expectedPaid, now, random)
       if (paid === next) return s
       next = paid
     } else next = events(next, now, random, command.type === 'tick')
+    next=spawnSpecials(next,now,random)
     return { ...next, savedAtMs: now, sequence: s.sequence + 1 }
   } catch {
     return s

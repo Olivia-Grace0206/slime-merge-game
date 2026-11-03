@@ -1,0 +1,95 @@
+(node:1565) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS 1920x1080 one-screen unchanged board, separate strip above sale,127/160 remains large and unclipped
+PASS 1920x1080 protected specimen strips all traits free and stays at exact original cell after reload
+PASS 1920x1080 un-attributed drop makes no save and exiting zone/cancel never deletes individual
+PASS 1920x1080 sale remains a separate destructive operation and price labels only show there
+PASS 1920x1080 keyboard-selected protected individual can strip without being sold
+PASS 1920x1080 SVG badges leave face/Tier visible, guide has all10 unowned traits and3 combos
+PASS 1920x1080 FIFO head10 includes high Tier/attributed stock; remaining slot/trait survives reload
+PASS 1920x1080 storageLv30/160 is independent of capped speed/tap16 and displays within shop
+PASS 1440x900 one-screen unchanged board, separate strip above sale,127/160 remains large and unclipped
+PASS 1440x900 protected specimen strips all traits free and stays at exact original cell after reload
+PASS 1440x900 un-attributed drop makes no save and exiting zone/cancel never deletes individual
+PASS 1440x900 sale remains a separate destructive operation and price labels only show there
+PASS 1440x900 keyboard-selected protected individual can strip without being sold
+PASS 1440x900 SVG badges leave face/Tier visible, guide has all10 unowned traits and3 combos
+PASS 1440x900 FIFO head10 includes high Tier/attributed stock; remaining slot/trait survives reload
+PASS 1440x900 storageLv30/160 is independent of capped speed/tap16 and displays within shop
+PASS 1366x768 one-screen unchanged board, separate strip above sale,127/160 remains large and unclipped
+PASS 1366x768 protected specimen strips all traits free and stays at exact original cell after reload
+PASS 1366x768 un-attributed drop makes no save and exiting zone/cancel never deletes individual
+PASS 1366x768 sale remains a separate destructive operation and price labels only show there
+PASS 1366x768 keyboard-selected protected individual can strip without being sold
+PASS 1366x768 SVG badges leave face/Tier visible, guide has all10 unowned traits and3 combos
+PASS 1366x768 FIFO head10 includes high Tier/attributed stock; remaining slot/trait survives reload
+PASS 1366x768 storageLv30/160 is independent of capped speed/tap16 and displays within shop
+PASS 1366x768 Escape cancels strip preview and keeps original attributes/raw
+PASS 1366x768 pointercancel cancels strip preview and keeps original attributes/raw
+PASS 1366x768 pinch cancels strip preview and keeps original attributes/raw
+PASS 1366x768 blur cancels strip preview and keeps original attributes/raw
+PASS 1366x768 rotation cancels strip preview and keeps original attributes/raw
+PASS 1280x720 one-screen unchanged board, separate strip above sale,127/160 remains large and unclipped
+PASS 1280x720 protected specimen strips all traits free and stays at exact original cell after reload
+PASS 1280x720 un-attributed drop makes no save and exiting zone/cancel never deletes individual
+PASS 1280x720 sale remains a separate destructive operation and price labels only show there
+PASS 1280x720 keyboard-selected protected individual can strip without being sold
+PASS 1280x720 SVG badges leave face/Tier visible, guide has all10 unowned traits and3 combos
+PASS 1280x720 FIFO head10 includes high Tier/attributed stock; remaining slot/trait survives reload
+PASS 1280x720 storageLv30/160 is independent of capped speed/tap16 and displays within shop
+PASS 1024x768 one-screen unchanged board, separate strip above sale,127/160 remains large and unclipped
+PASS 1024x768 protected specimen strips all traits free and stays at exact original cell after reload
+PASS 1024x768 un-attributed drop makes no save and exiting zone/cancel never deletes individual
+PASS 1024x768 sale remains a separate destructive operation and price labels only show there
+PASS 1024x768 keyboard-selected protected individual can strip without being sold
+PASS 1024x768 SVG badges leave face/Tier visible, guide has all10 unowned traits and3 combos
+PASS 1024x768 FIFO head10 includes high Tier/attributed stock; remaining slot/trait survives reload
+PASS 1024x768 storageLv30/160 is independent of capped speed/tap16 and displays within shop
+PASS 768x1024 one-screen unchanged board, separate strip above sale,127/160 remains large and unclipped
+PASS 768x1024 protected specimen strips all traits free and stays at exact original cell after reload
+PASS 768x1024 un-attributed drop makes no save and exiting zone/cancel never deletes individual
+PASS 768x1024 sale remains a separate destructive operation and price labels only show there
+PASS 768x1024 keyboard-selected protected individual can strip without being sold
+PASS 768x1024 SVG badges leave face/Tier visible, guide has all10 unowned traits and3 combos
+PASS 768x1024 FIFO head10 includes high Tier/attributed stock; remaining slot/trait survives reload
+PASS 768x1024 storageLv30/160 is independent of capped speed/tap16 and displays within shop
+PASS 390x844 one-screen unchanged board, separate strip above sale,127/160 remains large and unclipped
+PASS 390x844 protected specimen strips all traits free and stays at exact original cell after reload
+PASS 390x844 un-attributed drop makes no save and exiting zone/cancel never deletes individual
+PASS 390x844 sale remains a separate destructive operation and price labels only show there
+PASS 390x844 keyboard-selected protected individual can strip without being sold
+PASS 390x844 SVG badges leave face/Tier visible, guide has all10 unowned traits and3 combos
+PASS 390x844 FIFO head10 includes high Tier/attributed stock; remaining slot/trait survives reload
+PASS 390x844 storageLv30/160 is independent of capped speed/tap16 and displays within shop
+PASS 390x844 Escape cancels strip preview and keeps original attributes/raw
+PASS 390x844 pointercancel cancels strip preview and keeps original attributes/raw
+PASS 390x844 pinch cancels strip preview and keeps original attributes/raw
+PASS 390x844 blur cancels strip preview and keeps original attributes/raw
+PASS 390x844 rotation cancels strip preview and keeps original attributes/raw
+PASS 375x667 one-screen unchanged board, separate strip above sale,127/160 remains large and unclipped
+PASS 375x667 protected specimen strips all traits free and stays at exact original cell after reload
+PASS 375x667 un-attributed drop makes no save and exiting zone/cancel never deletes individual
+PASS 375x667 sale remains a separate destructive operation and price labels only show there
+PASS 375x667 keyboard-selected protected individual can strip without being sold
+PASS 375x667 SVG badges leave face/Tier visible, guide has all10 unowned traits and3 combos
+PASS 375x667 FIFO head10 includes high Tier/attributed stock; remaining slot/trait survives reload
+PASS 375x667 storageLv30/160 is independent of capped speed/tap16 and displays within shop
+PASS 320x568 one-screen unchanged board, separate strip above sale,127/160 remains large and unclipped
+PASS 320x568 protected specimen strips all traits free and stays at exact original cell after reload
+PASS 320x568 un-attributed drop makes no save and exiting zone/cancel never deletes individual
+PASS 320x568 sale remains a separate destructive operation and price labels only show there
+PASS 320x568 keyboard-selected protected individual can strip without being sold
+PASS 320x568 SVG badges leave face/Tier visible, guide has all10 unowned traits and3 combos
+PASS 320x568 FIFO head10 includes high Tier/attributed stock; remaining slot/trait survives reload
+PASS 320x568 storageLv30/160 is independent of capped speed/tap16 and displays within shop
+PASS 844x390 one-screen unchanged board, separate strip above sale,127/160 remains large and unclipped
+PASS 844x390 protected specimen strips all traits free and stays at exact original cell after reload
+PASS 844x390 un-attributed drop makes no save and exiting zone/cancel never deletes individual
+PASS 844x390 sale remains a separate destructive operation and price labels only show there
+PASS 844x390 keyboard-selected protected individual can strip without being sold
+PASS 844x390 SVG badges leave face/Tier visible, guide has all10 unowned traits and3 combos
+PASS 844x390 FIFO head10 includes high Tier/attributed stock; remaining slot/trait survives reload
+PASS 844x390 storageLv30/160 is independent of capped speed/tap16 and displays within shop
+PASS 390 GOLD4/10 contract remains frozen through free stripping, then old payment resumes once
+PASS 390 strip Quota and another-tab raw conflict keep original traits/position/wallet/clock
+92 []
