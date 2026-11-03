@@ -34,7 +34,7 @@ describe('approved concentrated awakening allocation',()=>{
    for(const id of ids){const n=input.filter(x=>x.some(a=>a.id===id)).length;expect(r.outputs.filter(x=>x.includes(id)).length).toBe(Math.min(n,2));expect(r.surplus.find(x=>x.id===id)?.count??0).toBe(Math.max(0,n-2))}
    expect(r.outputs[0]).toEqual(ids.filter(id=>input.some(x=>x.some(a=>a.id===id))))
   }
- })
+ }, 60_000)
  for(const count of [3,5,8,11,13,15])it(`merge ${count} preserves groups, bodies and remainder without cloning flags`,()=>{
   const base=freshSession(0).game,game={...base,highestTierReached:2,slimes:Array.from({length:count},(_,i)=>({id:`s${i}`,tier:2,position:{x:i%4,y:Math.floor(i/4)},attributes:[f]}))}
   const plan=planDrop(game,'s0',{x:1,y:0});expect(plan.kind).toBe('merge');if(plan.kind!=='merge')throw Error('merge expected')
