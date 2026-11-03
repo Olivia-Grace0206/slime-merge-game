@@ -3,7 +3,7 @@ import { MAX_TIER } from '../domain/game'
 import { PRESETS, type PresetId } from '../app/presets'
 import { Slime } from './Slime'
 export type Panel = 'help' | 'presets' | 'appearance' | 'settings' | 'shop' | 'slime' | 'attributes'
-const TITLES: Record<Panel, string> = { attributes: 'スライムの属性', help: '遊び方', presets: '検証用プリセット', appearance: 'スライム一覧・外見確認', settings: '表示設定', shop: 'GOLDショップ', slime: 'スライム詳細' }
+const TITLES: Record<Panel, string> = { attributes: '属性紹介', help: '遊び方', presets: '検証用プリセット', appearance: 'スライム一覧・外見確認', settings: '表示設定', shop: 'GOLDショップ', slime: 'スライム詳細' }
 export function GameMenu({ panel, onClose, preset, onPreset, reducedEffects, onEffects, onZoom, onResetCamera, extra, normal, onNormal }: {
   extra?: ReactNode; normal: boolean; onNormal: () => void
   panel: Panel | null; onClose: () => void; preset: PresetId; onPreset: (id: PresetId) => void
@@ -15,13 +15,13 @@ export function GameMenu({ panel, onClose, preset, onPreset, reducedEffects, onE
     if (panel && !dialog.current?.open) dialog.current?.showModal()
     else if (!panel && dialog.current?.open) dialog.current.close()
   }, [panel])
-  return <dialog ref={dialog} className={`menu-dialog ${panel === 'appearance' ? 'appearance-dialog' : ''}`} aria-labelledby="menu-title"
+  return <dialog ref={dialog} className={`menu-dialog ${panel === 'appearance' ? 'appearance-dialog' : ''} ${panel === 'attributes' ? 'attribute-dialog' : ''}`} aria-labelledby="menu-title"
     onCancel={onClose} onClose={onClose} onClick={e => { if (e.target === dialog.current) {
       const rect = dialog.current.getBoundingClientRect()
       if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) onClose()
     } }}>
     <div className="panel-header"><h2 id="menu-title">{panel ? TITLES[panel] : ''}</h2><button type="button" aria-label="閉じる" onClick={onClose}>×</button></div>
-    <div className={`panel-body ${reducedEffects ? 'reduced-effects' : ''}`}>
+    <div className={`panel-body ${panel === 'attributes' ? 'attribute-panel-host' : ''} ${reducedEffects ? 'reduced-effects' : ''}`}>
       {extra}
       {panel === 'help' && <>
         <p>マージできない占有マスへのドロップは位置交換（⇄点線枠）。マージが成立する場合は進化を優先します。</p><p>属性メニューで全10属性の効果・発動条件・Lv・上限・複合効果と個体詳細を確認できます。売却の上の属性解除へドロップすると無料で全属性を解除し、個体は元の位置に残ります。</p>
