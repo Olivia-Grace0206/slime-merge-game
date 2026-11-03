@@ -19,7 +19,7 @@ async function set(p,options={}){
 }
 async function run(){let server,browser
 try{
- if(!process.env.GAME_URL){server=spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','5173','--strictPort']);await new Promise((res,rej)=>{server.stdout.on('data',d=>{if(String(d).includes('Local:'))res()});server.on('exit',rej)})}
+ if(!process.env.GAME_URL){server=spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','5173','--strictPort',...(process.env.BROWSER_DIST?['--outDir',process.env.BROWSER_DIST]:[])]);await new Promise((res,rej)=>{server.stdout.on('data',d=>{if(String(d).includes('Local:'))res()});server.on('exit',rej)})}
  browser=await chromium.launch({headless:true,args:['--no-sandbox']})
  for(const [width,height]of sizes){
   const touch=width<900,name=`${width}x${height}`,ctx=await browser.newContext({viewport:{width,height},hasTouch:true,isMobile:width<=700&&height>500}),p=await ctx.newPage(),cdp=await ctx.newCDPSession(p)
@@ -85,12 +85,12 @@ try{
  }
  await check('3merge risk label does not promise two outputs',async()=>{
   const ctx=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true}),p=await ctx.newPage(),cdp=await ctx.newCDPSession(p)
-  await p.goto('http://127.0.0.1:5173/slime-merge-game/');await set(p,{tiers:[1,1,1],attrs:[[{id:'dark',level:1}],[],[]]})
+  await p.goto(process.env.GAME_URL||'http://127.0.0.1:5173/slime-merge-game/');await set(p,{tiers:[1,1,1],attrs:[[{id:'dark',level:1}],[],[]]})
   await drag(p,cdp,true,'[data-slime-id="p-1"]','[data-slime-id="p-2"]',async()=>{assert((await p.getByTestId('dark-risk').innerText()).includes('20%/組'));assert(!(await p.getByTestId('dark-risk').innerText()).includes('2出力'))})
   await until(async()=>(await snap(p)).game.highestTierReached===2);assert.equal((await snap(p)).game.slimes.length,1);await ctx.close()
  })
  await check('focus Quota preserves original materials/mode/UI; reload and native click execute once',async()=>{
-  const ctx=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true}),p=await ctx.newPage();await p.clock.install({time:new Date('2026-11-01T04:00:00Z')});await p.goto('http://127.0.0.1:5173/slime-merge-game/')
+  const ctx=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true}),p=await ctx.newPage();await p.clock.install({time:new Date('2026-11-01T04:00:00Z')});await p.goto(process.env.GAME_URL||'http://127.0.0.1:5173/slime-merge-game/')
   const now=await p.evaluate(()=>Date.now());await set(p,{generationMode:'focused',generator:{storedTiers:Array(10).fill(1),storedAttributes:Array.from({length:10},()=>[]),totalGenerated:10,progressMs:0,updatedAtMs:now}})
   const raw=await p.evaluate(k=>localStorage.getItem(k),key);await p.evaluate(()=>{Storage.prototype.setItem=()=>{throw Error('Quota')}})
   await p.getByTestId('add-slime').tap();await until(async()=>await p.locator('.storage-error').isVisible());assert.equal(await p.evaluate(k=>localStorage.getItem(k),key),raw);assert.equal(await p.locator('[data-slime-id]').count(),0);assert((await p.getByTestId('storage-count').innerText()).includes('10 / 10'));await p.reload();await p.getByTestId('add-slime').tap();await until(async()=>(await snap(p)).focusedGenerated===1);await ctx.close()

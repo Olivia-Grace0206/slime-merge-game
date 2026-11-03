@@ -13,7 +13,7 @@ async function pointer(p,cdp,touch,kind,a){if(touch)await cdp.send('Input.dispat
 async function drag(p,cdp,touch,from,to,preview){await pointer(p,cdp,touch,'down',await center(p,from));await pointer(p,cdp,touch,'move',await center(p,to));if(preview&&await preview()===false)return;await pointer(p,cdp,touch,'up')}
 async function run(){let server,browser
 try{
- server=spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','5174','--strictPort']);await new Promise((res,rej)=>{server.stdout.on('data',d=>{if(String(d).includes('Local:'))res()});server.on('exit',rej)})
+ server=spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','5174','--strictPort',...(process.env.BROWSER_DIST?['--outDir',process.env.BROWSER_DIST]:[])]);await new Promise((res,rej)=>{server.stdout.on('data',d=>{if(String(d).includes('Local:'))res()});server.on('exit',rej)})
  browser=await chromium.launch({headless:true,args:['--no-sandbox']})
  for(const [width,height]of sizes.filter(s=>!process.env.C_SIZE||s.join('x')===process.env.C_SIZE)){
   const name=`${width}x${height}`,touch=width<900,ctx=await browser.newContext({viewport:{width,height},hasTouch:true,isMobile:width<=700&&height>500}),p=await ctx.newPage(),cdp=await ctx.newCDPSession(p)

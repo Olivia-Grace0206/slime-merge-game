@@ -1,0 +1,203 @@
+{
+  "base": "ef7927a35ff5903b5d99b79360d34c52aba302a6",
+  "files": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "main": "ad08660c5e5e92c3f885906ada8a9da5309c5180",
+      "tested": "ad08660c5e5e92c3f885906ada8a9da5309c5180",
+      "unchanged": true
+    },
+    {
+      "path": ".github/workflows/pages.yml",
+      "main": "d23675f5970793444ed065ba5e1fa7df5c12d42e",
+      "tested": "d23675f5970793444ed065ba5e1fa7df5c12d42e",
+      "unchanged": true
+    },
+    {
+      "path": "package-lock.json",
+      "main": "9da4251d6eee59bde59328cc4300dfd6db270c29",
+      "tested": "9da4251d6eee59bde59328cc4300dfd6db270c29",
+      "unchanged": true
+    },
+    {
+      "path": "package.json",
+      "main": "d0d631b79bb55c173d266b07d8eb470520844ee5",
+      "tested": "d0d631b79bb55c173d266b07d8eb470520844ee5",
+      "unchanged": true
+    },
+    {
+      "path": "src/app/App.tsx",
+      "main": "f66add48ed713c6c648b00e240a7d49d5244084b",
+      "tested": "f66add48ed713c6c648b00e240a7d49d5244084b",
+      "unchanged": true
+    },
+    {
+      "path": "src/app/input/camera.ts",
+      "main": "afd7d92268f56d2ef1a38d48bad564dabc73d46b",
+      "tested": "afd7d92268f56d2ef1a38d48bad564dabc73d46b",
+      "unchanged": true
+    },
+    {
+      "path": "src/app/input/gestures.ts",
+      "main": "40a755be8e7644f5f87d5e7d2480c2ea9a9cf243",
+      "tested": "40a755be8e7644f5f87d5e7d2480c2ea9a9cf243",
+      "unchanged": true
+    },
+    {
+      "path": "src/app/presets.ts",
+      "main": "56952c49fff7345d04ac9baab6d5544382755dd8",
+      "tested": "56952c49fff7345d04ac9baab6d5544382755dd8",
+      "unchanged": true
+    },
+    {
+      "path": "src/app/sessionStore.ts",
+      "main": "d261823066577e8e67863399507ce131932141ac",
+      "tested": "d261823066577e8e67863399507ce131932141ac",
+      "unchanged": true
+    },
+    {
+      "path": "src/core/attributes/awakening.ts",
+      "main": "5cf05bc534950ce3d4bb2fa459fd274a4798384e",
+      "tested": "5cf05bc534950ce3d4bb2fa459fd274a4798384e",
+      "unchanged": true
+    },
+    {
+      "path": "src/core/attributes/effects.ts",
+      "main": "961c4b659bd79a4b9cde508ce769f1c894e3db3b",
+      "tested": "961c4b659bd79a4b9cde508ce769f1c894e3db3b",
+      "unchanged": true
+    },
+    {
+      "path": "src/core/attributes/inheritance.ts",
+      "main": "3570e5771463f8196096ceb53f88ffccbf4bf682",
+      "tested": "3570e5771463f8196096ceb53f88ffccbf4bf682",
+      "unchanged": true
+    },
+    {
+      "path": "src/core/attributes/strip.ts",
+      "main": "341c31cba306cf726a360c3e4ca0baf32f1dfaed",
+      "tested": "341c31cba306cf726a360c3e4ca0baf32f1dfaed",
+      "unchanged": true
+    },
+    {
+      "path": "src/core/board/state.ts",
+      "main": "fa7695a174a1b2a597a2d3ca5c35eef83afc2f58",
+      "tested": "fa7695a174a1b2a597a2d3ca5c35eef83afc2f58",
+      "unchanged": true
+    },
+    {
+      "path": "src/core/grid/coordinates.ts",
+      "main": "a9308ec63e8724142f6462a2513fd329aea263ce",
+      "tested": "a9308ec63e8724142f6462a2513fd329aea263ce",
+      "unchanged": true
+    },
+    {
+      "path": "src/core/input/coordinates.ts",
+      "main": "ae0a2e4db39a63350bf9d29fa9e0f8b95b8cd39e",
+      "tested": "ae0a2e4db39a63350bf9d29fa9e0f8b95b8cd39e",
+      "unchanged": true
+    },
+    {
+      "path": "src/core/input/dropZones.ts",
+      "main": "46cfbefd1af7fd946d24d2b614e41b475f7737f3",
+      "tested": "46cfbefd1af7fd946d24d2b614e41b475f7737f3",
+      "unchanged": true
+    },
+    {
+      "path": "src/core/merge/apply.ts",
+      "main": "cd07fbe077ac6b0eacb0954daa49da3c663df99a",
+      "tested": "cd07fbe077ac6b0eacb0954daa49da3c663df99a",
+      "unchanged": true
+    },
+    {
+      "path": "src/core/merge/plan.ts",
+      "main": "75f66d33502ba567d687395d4a5d2fccce1af3bc",
+      "tested": "75f66d33502ba567d687395d4a5d2fccce1af3bc",
+      "unchanged": true
+    },
+    {
+      "path": "src/core/progression/economy.ts",
+      "main": "4c209f79cb99b7a594c79332e121ded754dbeba3",
+      "tested": "4c209f79cb99b7a594c79332e121ded754dbeba3",
+      "unchanged": true
+    },
+    {
+      "path": "src/core/progression/focus.ts",
+      "main": "0715f896f61c2fac282270db6c6ee3fe8ee57ee1",
+      "tested": "0715f896f61c2fac282270db6c6ee3fe8ee57ee1",
+      "unchanged": true
+    },
+    {
+      "path": "src/core/progression/generation.ts",
+      "main": "ecb426c023ec30937162540d214233f5c97fab26",
+      "tested": "ecb426c023ec30937162540d214233f5c97fab26",
+      "unchanged": true
+    },
+    {
+      "path": "src/core/progression/persistence.ts",
+      "main": "854e9650c7f42853b75ee93f8869feb43f68ac41",
+      "tested": "854e9650c7f42853b75ee93f8869feb43f68ac41",
+      "unchanged": true
+    },
+    {
+      "path": "src/core/progression/research.ts",
+      "main": "8c05b00bbec574d084b59c492aab86dbd3729e76",
+      "tested": "8c05b00bbec574d084b59c492aab86dbd3729e76",
+      "unchanged": true
+    },
+    {
+      "path": "src/core/progression/save.ts",
+      "main": "e8e44ad71e49798858cf4c4eabf142e40bd74bb6",
+      "tested": "e8e44ad71e49798858cf4c4eabf142e40bd74bb6",
+      "unchanged": true
+    },
+    {
+      "path": "src/core/progression/session.ts",
+      "main": "53a017fa5130cf4da79b771a420b05804776abf9",
+      "tested": "53a017fa5130cf4da79b771a420b05804776abf9",
+      "unchanged": true
+    },
+    {
+      "path": "src/core/progression/tierTable.ts",
+      "main": "70996ddc1cafc448d6b94fd78c2fdc14cdc8149e",
+      "tested": "70996ddc1cafc448d6b94fd78c2fdc14cdc8149e",
+      "unchanged": true
+    },
+    {
+      "path": "src/core/special/config.ts",
+      "main": "28c490dbf7898e9bb078c71ed69a9f662b432b57",
+      "tested": "28c490dbf7898e9bb078c71ed69a9f662b432b57",
+      "unchanged": true
+    },
+    {
+      "path": "src/core/special/state.ts",
+      "main": "cfae7a2b9e02ffa69c972e77a9dc9bb19fea7def",
+      "tested": "cfae7a2b9e02ffa69c972e77a9dc9bb19fea7def",
+      "unchanged": true
+    },
+    {
+      "path": "src/domain/attributes.ts",
+      "main": "9b0dc35a9b2d6e61aecc4a8d7db529eba4137565",
+      "tested": "9b0dc35a9b2d6e61aecc4a8d7db529eba4137565",
+      "unchanged": true
+    },
+    {
+      "path": "src/domain/game.ts",
+      "main": "347103676c464dd9ff42b0f84547b0b87386399b",
+      "tested": "347103676c464dd9ff42b0f84547b0b87386399b",
+      "unchanged": true
+    },
+    {
+      "path": "src/domain/grid.ts",
+      "main": "500e6c8de9ab5c13606f2f94e727feac52ce42c7",
+      "tested": "500e6c8de9ab5c13606f2f94e727feac52ce42c7",
+      "unchanged": true
+    },
+    {
+      "path": "src/domain/special.ts",
+      "main": "b4499ff942391bd6ac7a5acd09f9ff9d34c8e899",
+      "tested": "b4499ff942391bd6ac7a5acd09f9ff9d34c8e899",
+      "unchanged": true
+    }
+  ]
+}
