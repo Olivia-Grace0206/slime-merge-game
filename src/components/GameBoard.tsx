@@ -2,6 +2,7 @@ import {MergeAttributePreview} from './MergeAttributePreview'
 import {effectContext} from '../core/special/state'
 import {SPECIAL_TIMING} from '../core/special/config'
 import { AttributePanel } from './AttributePanel'
+import { BlueBuffStatus } from './BlueBuffStatus'
 import { AttributeTokens } from './AttributeBadges'
 import { operationZoneAt } from '../core/input/dropZones'
 import { effectLabels } from './effectLabels'
@@ -333,8 +334,9 @@ export function GameBoard() {
     </header>
     <section className={`game-layout ${normal ? 'normal-play' : 'debug-play'}`} aria-label="ゲーム">
       <nav className="edge-menu" aria-label="メニュー">
+        {normal && <BlueBuffStatus game={game} session={session} />}
         {normal && <button type="button" aria-label="GOLDショップ" onClick={() => { abort(true); setPanel('shop') }}><span aria-hidden="true">♜</span>ショップ</button>}
-        {([['attributes', '◇', '属性'], ['help', '?', '遊び方'], ['presets', '▦', '検証'], ['appearance', '✦', '外見'], ['settings', '⚙', '設定']] as const).map(([id, icon, label]) =>
+        {([['attributes', '◇', '属性紹介'], ['help', '?', '遊び方'], ['presets', '▦', '検証'], ['appearance', '✦', '外見'], ['settings', '⚙', '設定']] as const).map(([id, icon, label]) =>
           <button key={id} type="button" aria-label={id === 'appearance' ? 'スライム一覧・外見確認' : label} aria-haspopup="dialog" onClick={() => { abort(true); setPanel(id) }}><span aria-hidden="true">{icon}</span>{label}</button>)}
       </nav>
       <div className={`board-viewport ${(normal ? session.reducedEffects : reducedEffects) ? 'reduced-effects' : ''}`} ref={viewport}
