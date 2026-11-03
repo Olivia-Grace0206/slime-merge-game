@@ -71,7 +71,7 @@ try{
   })
   await check(name+' ice/lightning/luck/combo summaries and actual Lv effects are readable',async()=>{
    await set(p,{tiers:[1,1],attrs:[[{id:'ice',level:5},{id:'lightning',level:5}],[{id:'luck',level:5},{id:'mutation',level:5},{id:'light',level:5}]]})
-   await p.getByRole('button',{name:'属性',exact:true}).click();assert((await p.getByTestId('support-summary').innerText()).includes('属性重視'))
+   await p.getByRole('button',{name:'属性紹介',exact:true}).click();await p.getByTestId('attribute-roster-open').click();assert((await p.getByTestId('support-summary').innerText()).includes('属性重視'))
    await p.locator('.attribute-roster button').first().click();const text=await p.locator('.effect-details').innerText();assert(text.includes('氷Lv5'));assert(text.includes('雷Lv5'));assert(text.includes('複合'))
    assert(await p.locator('.panel-body').evaluate(n=>{const r=n.getBoundingClientRect();return r.right<=innerWidth&&r.bottom<=innerHeight&&n.scrollWidth<=n.clientWidth+1}))
    await p.screenshot({path:path.join(dir,`effects-${name}.png`)});await p.getByRole('button',{name:'閉じる',exact:true}).click()
