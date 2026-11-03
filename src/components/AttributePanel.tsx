@@ -121,7 +121,7 @@ export function AttributePanel({ game, session, onDetail }: {
       <section data-testid="special-guide">
         <h3>紫の覚醒・青の共鳴</h3>
         <p>紫は未覚醒属性1種類を仮{SPECIAL_TIMING.purpleChargeMs / 1000}秒で永続覚醒。離脱すると進捗0です。青は仮{SPECIAL_TIMING.blueLifetimeMs / 1000}秒、支援7属性を配置中だけ強化します。</p>
-        <p>覚醒は第1出力へ集中し、増殖しません。余剰だけ事前に文章で警告して消失します。警告中もマージできます。</p>
+        <p>覚醒は第1出力へ集中し、増殖しません。余剰だけ事前に文章で警告して消失します。警告中もマージできます。余剰覚醒の消失は確定、闇属性の消失は組単位の確率判定であり、別の処理です。</p>
         {session.specials.lastAwakening && <p>最近の覚醒：{guide.find(item => item.id === session.specials.lastAwakening?.attributeId)?.name}★</p>}
       </section>
       <section data-testid="combination-guide">
@@ -130,7 +130,7 @@ export function AttributePanel({ game, session, onDetail }: {
           <h4>{combo.ids.map(id => <AttributeIcon key={id} id={id} />)} {combo.name}</h4><p>{combo.description()}</p>
         </article>)}
       </section>
-      <p className="muted">属性重視は貯蔵FIFO先頭10体を消費。無料属性解除では覚醒も含む全属性を外し、個体とTierを残します。</p>
+      <p className="muted">属性重視は貯蔵FIFO先頭10体を消費。属性付き・高Tierも先頭10体の消費対象で、出力は最低Tier・属性は再抽選（保証なし）。無料属性解除では覚醒も含む全属性を外し、個体・Tier・元の位置・売却保護・GOLDを保持します。</p>
     </div>}
   </div>
 }

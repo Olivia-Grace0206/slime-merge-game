@@ -8,7 +8,7 @@ import { AttributePanel } from '../../src/components/AttributePanel'
 import { ATTRIBUTE_INTRO } from '../../src/components/attributeIntro'
 import { BlueBuffStatus } from '../../src/components/BlueBuffStatus'
 import { Slime } from '../../src/components/Slime'
-import { SPECIAL_TIMING } from '../../src/core/special/config'
+import { BLUE_MULTIPLIERS, SPECIAL_TIMING } from '../../src/core/special/config'
 
 function sessionWithBlue() {
   const base = freshSession(0)
@@ -50,6 +50,8 @@ describe('Phase 3C visual polish', () => {
     expect(html).toContain('青共鳴中')
     expect(html).toContain('氷')
     expect(html).toContain('×1.10')
+    expect(html).toContain('氷 Lv2')
+    expect(html).toContain('属性power倍率・最終上限は別')
     expect(html).not.toContain('炎')
   })
 
@@ -87,4 +89,12 @@ describe('Phase 3C visual polish', () => {
       }
     }
   })
+})
+
+describe('blue read-only support labels',()=>{
+ it.each(['ice','lightning','nature','luck','mutation','light','magnet'] as const)('%s multiplier and level come from the shared Core',id=>{
+ const {game,session}=sessionWithBlue();const live={...game,slimes:[{...game.slimes[0]!,attributes:[{id,level:99,awakened:true}]}]}
+ const before=JSON.stringify({live,session});const html=renderToStaticMarkup(createElement(BlueBuffStatus,{game:live,session}))
+ expect(html).toContain('×'+BLUE_MULTIPLIERS[id].toFixed(2));expect(html).toContain('Lv99');expect(JSON.stringify({live,session})).toBe(before)
+ })
 })

@@ -1,0 +1,3565 @@
+{
+  "checks": [
+    {
+      "name": "1920x1080 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 blue status shows all3 shared multipliers and avoids board, menus, add, sell, strip and GOLD",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 reduced effects and reduced motion keep static rings/rank; save/game untouched",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 ten introductions fit without any scrolling; names/descriptions and44px hit areas visible",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 all10 details/back/navigation/roster/3 combos and keyboard escape preserve board",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 blue status shows all3 shared multipliers and avoids board, menus, add, sell, strip and GOLD",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 reduced effects and reduced motion keep static rings/rank; save/game untouched",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 ten introductions fit without any scrolling; names/descriptions and44px hit areas visible",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 all10 details/back/navigation/roster/3 combos and keyboard escape preserve board",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 blue status shows all3 shared multipliers and avoids board, menus, add, sell, strip and GOLD",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 reduced effects and reduced motion keep static rings/rank; save/game untouched",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 ten introductions fit without any scrolling; names/descriptions and44px hit areas visible",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 all10 details/back/navigation/roster/3 combos and keyboard escape preserve board",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 blue status shows all3 shared multipliers and avoids board, menus, add, sell, strip and GOLD",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 reduced effects and reduced motion keep static rings/rank; save/game untouched",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 ten introductions fit without any scrolling; names/descriptions and44px hit areas visible",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 all10 details/back/navigation/roster/3 combos and keyboard escape preserve board",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 blue status shows all3 shared multipliers and avoids board, menus, add, sell, strip and GOLD",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 reduced effects and reduced motion keep static rings/rank; save/game untouched",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 ten introductions fit without any scrolling; names/descriptions and44px hit areas visible",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 all10 details/back/navigation/roster/3 combos and keyboard escape preserve board",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 blue status shows all3 shared multipliers and avoids board, menus, add, sell, strip and GOLD",
+      "result": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: blue status overlaps control"
+    },
+    {
+      "name": "768x1024 reduced effects and reduced motion keep static rings/rank; save/game untouched",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 ten introductions fit without any scrolling; names/descriptions and44px hit areas visible",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 all10 details/back/navigation/roster/3 combos and keyboard escape preserve board",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 blue status shows all3 shared multipliers and avoids board, menus, add, sell, strip and GOLD",
+      "result": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: blue status overlaps control"
+    },
+    {
+      "name": "390x844 reduced effects and reduced motion keep static rings/rank; save/game untouched",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 ten introductions fit without any scrolling; names/descriptions and44px hit areas visible",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 all10 details/back/navigation/roster/3 combos and keyboard escape preserve board",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 blue status shows all3 shared multipliers and avoids board, menus, add, sell, strip and GOLD",
+      "result": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: blue status overlaps control"
+    },
+    {
+      "name": "375x667 reduced effects and reduced motion keep static rings/rank; save/game untouched",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 ten introductions fit without any scrolling; names/descriptions and44px hit areas visible",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 all10 details/back/navigation/roster/3 combos and keyboard escape preserve board",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 blue status shows all3 shared multipliers and avoids board, menus, add, sell, strip and GOLD",
+      "result": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: blue status overlaps control"
+    },
+    {
+      "name": "320x568 reduced effects and reduced motion keep static rings/rank; save/game untouched",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 ten introductions fit without any scrolling; names/descriptions and44px hit areas visible",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 all10 details/back/navigation/roster/3 combos and keyboard escape preserve board",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 rendered 0-3 ranks across Tier5/21/30/40, full board; rings and faces visible",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 blue status shows all3 shared multipliers and avoids board, menus, add, sell, strip and GOLD",
+      "result": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: blue status overlaps actual board"
+    },
+    {
+      "name": "844x390 reduced effects and reduced motion keep static rings/rank; save/game untouched",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 ten introductions fit without any scrolling; names/descriptions and44px hit areas visible",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 all10 details/back/navigation/roster/3 combos and keyboard escape preserve board",
+      "result": "PASS"
+    }
+  ],
+  "errors": [],
+  "metrics": [
+    {
+      "name": "1920x1080",
+      "buff": {
+        "x": 8,
+        "y": 251.296875,
+        "right": 188,
+        "bottom": 362.6875,
+        "width": 180,
+        "height": 111.390625
+      },
+      "board": {
+        "x": 455,
+        "y": 60,
+        "right": 1465,
+        "bottom": 1070,
+        "width": 1010,
+        "height": 1010
+      },
+      "buttons": [
+        {
+          "x": 1586.8125,
+          "y": 5.5,
+          "right": 1767.609375,
+          "bottom": 49.5,
+          "width": 180.796875,
+          "height": 44
+        },
+        {
+          "x": 50,
+          "y": 372.6875,
+          "right": 146,
+          "bottom": 448.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 50,
+          "y": 458.6875,
+          "right": 146,
+          "bottom": 534.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 50,
+          "y": 544.6875,
+          "right": 146,
+          "bottom": 620.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 50,
+          "y": 630.6875,
+          "right": 146,
+          "bottom": 706.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 50,
+          "y": 716.6875,
+          "right": 146,
+          "bottom": 792.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 50,
+          "y": 802.6875,
+          "right": 146,
+          "bottom": 878.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 1747,
+          "y": 108,
+          "right": 1897,
+          "bottom": 258,
+          "width": 150,
+          "height": 150
+        },
+        {
+          "x": 1732,
+          "y": 828,
+          "right": 1912,
+          "bottom": 906,
+          "width": 180,
+          "height": 78
+        },
+        {
+          "x": 1732,
+          "y": 914,
+          "right": 1912,
+          "bottom": 1062,
+          "width": 180,
+          "height": 148
+        }
+      ],
+      "text": "≋ 青共鳴中\nTier 5 に発動中\n氷\n×1.10\n雷\n×1.25\n自然\n×1.10\n属性効果の強さ（最終上限あり）",
+      "page": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "name": "1920x1080",
+      "intro": {
+        "scroll": [
+          581,
+          581,
+          599,
+          599
+        ],
+        "dialog": {
+          "x": 490,
+          "y": 210,
+          "right": 1430,
+          "bottom": 870
+        },
+        "cards": [
+          {
+            "x": 500,
+            "y": 306.796875,
+            "right": 677.59375,
+            "bottom": 556.390625,
+            "width": 177.59375,
+            "height": 249.59375,
+            "name": "炎",
+            "summary": "売るときのGOLDを加算",
+            "font": 12,
+            "textRect": {
+              "x": 541.15625,
+              "y": 448.890625,
+              "width": 95.28125,
+              "height": 14,
+              "top": 448.890625,
+              "right": 636.4375,
+              "bottom": 462.890625,
+              "left": 541.15625
+            }
+          },
+          {
+            "x": 685.59375,
+            "y": 306.796875,
+            "right": 863.1875,
+            "bottom": 556.390625,
+            "width": 177.59375,
+            "height": 249.59375,
+            "name": "黄金",
+            "summary": "売却額を倍率で増やす",
+            "font": 12,
+            "textRect": {
+              "x": 738.375,
+              "y": 448.890625,
+              "width": 72.015625,
+              "height": 14,
+              "top": 448.890625,
+              "right": 810.390625,
+              "bottom": 462.890625,
+              "left": 738.375
+            }
+          },
+          {
+            "x": 871.1875,
+            "y": 306.796875,
+            "right": 1048.796875,
+            "bottom": 556.390625,
+            "width": 177.609375,
+            "height": 249.59375,
+            "name": "闇",
+            "summary": "高額売却・消失リスク",
+            "font": 12,
+            "textRect": {
+              "x": 923.984375,
+              "y": 448.890625,
+              "width": 72.015625,
+              "height": 14,
+              "top": 448.890625,
+              "right": 996,
+              "bottom": 462.890625,
+              "left": 923.984375
+            }
+          },
+          {
+            "x": 1056.796875,
+            "y": 306.796875,
+            "right": 1234.390625,
+            "bottom": 556.390625,
+            "width": 177.59375,
+            "height": 249.59375,
+            "name": "氷",
+            "summary": "通常の生成時間を短縮",
+            "font": 12,
+            "textRect": {
+              "x": 1109.578125,
+              "y": 448.890625,
+              "width": 72.015625,
+              "height": 14,
+              "top": 448.890625,
+              "right": 1181.59375,
+              "bottom": 462.890625,
+              "left": 1109.578125
+            }
+          },
+          {
+            "x": 1242.390625,
+            "y": 306.796875,
+            "right": 1420,
+            "bottom": 556.390625,
+            "width": 177.609375,
+            "height": 249.59375,
+            "name": "雷",
+            "summary": "タップの加速量を増やす",
+            "font": 12,
+            "textRect": {
+              "x": 1291.578125,
+              "y": 448.890625,
+              "width": 79.21875,
+              "height": 14,
+              "top": 448.890625,
+              "right": 1370.796875,
+              "bottom": 462.890625,
+              "left": 1291.578125
+            }
+          },
+          {
+            "x": 500,
+            "y": 564.390625,
+            "right": 677.59375,
+            "bottom": 814,
+            "width": 177.59375,
+            "height": 249.609375,
+            "name": "自然",
+            "summary": "貯蔵へ追加で自動生成",
+            "font": 12,
+            "textRect": {
+              "x": 552.78125,
+              "y": 706.484375,
+              "width": 72.015625,
+              "height": 14,
+              "top": 706.484375,
+              "right": 624.796875,
+              "bottom": 720.484375,
+              "left": 552.78125
+            }
+          },
+          {
+            "x": 685.59375,
+            "y": 564.390625,
+            "right": 863.1875,
+            "bottom": 814,
+            "width": 177.59375,
+            "height": 249.609375,
+            "name": "幸運",
+            "summary": "属性付きの生成率UP",
+            "font": 12,
+            "textRect": {
+              "x": 736.3125,
+              "y": 706.484375,
+              "width": 76.15625,
+              "height": 14,
+              "top": 706.484375,
+              "right": 812.46875,
+              "bottom": 720.484375,
+              "left": 736.3125
+            }
+          },
+          {
+            "x": 871.1875,
+            "y": 564.390625,
+            "right": 1048.796875,
+            "bottom": 814,
+            "width": 177.609375,
+            "height": 249.609375,
+            "name": "変異",
+            "summary": "マージ時の変異率UP",
+            "font": 12,
+            "textRect": {
+              "x": 921.90625,
+              "y": 706.484375,
+              "width": 76.15625,
+              "height": 14,
+              "top": 706.484375,
+              "right": 998.0625,
+              "bottom": 720.484375,
+              "left": 921.90625
+            }
+          },
+          {
+            "x": 1056.796875,
+            "y": 564.390625,
+            "right": 1234.390625,
+            "bottom": 814,
+            "width": 177.59375,
+            "height": 249.609375,
+            "name": "光",
+            "summary": "周囲のスライムを支援",
+            "font": 12,
+            "textRect": {
+              "x": 1109.578125,
+              "y": 706.484375,
+              "width": 72.015625,
+              "height": 14,
+              "top": 706.484375,
+              "right": 1181.59375,
+              "bottom": 720.484375,
+              "left": 1109.578125
+            }
+          },
+          {
+            "x": 1242.390625,
+            "y": 564.390625,
+            "right": 1420,
+            "bottom": 814,
+            "width": 177.609375,
+            "height": 249.609375,
+            "name": "磁力",
+            "summary": "特殊マスを近くへ誘引",
+            "font": 12,
+            "textRect": {
+              "x": 1295.1875,
+              "y": 706.484375,
+              "width": 72.015625,
+              "height": 14,
+              "top": 706.484375,
+              "right": 1367.203125,
+              "bottom": 720.484375,
+              "left": 1295.1875
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "1440x900",
+      "buff": {
+        "x": 8,
+        "y": 161.296875,
+        "right": 188,
+        "bottom": 272.6875,
+        "width": 180,
+        "height": 111.390625
+      },
+      "board": {
+        "x": 305,
+        "y": 60,
+        "right": 1135,
+        "bottom": 890,
+        "width": 830,
+        "height": 830
+      },
+      "buttons": [
+        {
+          "x": 1114.8125,
+          "y": 5.5,
+          "right": 1287.609375,
+          "bottom": 49.5,
+          "width": 172.796875,
+          "height": 44
+        },
+        {
+          "x": 50,
+          "y": 282.6875,
+          "right": 146,
+          "bottom": 358.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 50,
+          "y": 368.6875,
+          "right": 146,
+          "bottom": 444.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 50,
+          "y": 454.6875,
+          "right": 146,
+          "bottom": 530.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 50,
+          "y": 540.6875,
+          "right": 146,
+          "bottom": 616.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 50,
+          "y": 626.6875,
+          "right": 146,
+          "bottom": 702.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 50,
+          "y": 712.6875,
+          "right": 146,
+          "bottom": 788.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 1267,
+          "y": 108,
+          "right": 1417,
+          "bottom": 258,
+          "width": 150,
+          "height": 150
+        },
+        {
+          "x": 1252,
+          "y": 648,
+          "right": 1432,
+          "bottom": 726,
+          "width": 180,
+          "height": 78
+        },
+        {
+          "x": 1252,
+          "y": 734,
+          "right": 1432,
+          "bottom": 882,
+          "width": 180,
+          "height": 148
+        }
+      ],
+      "text": "≋ 青共鳴中\nTier 5 に発動中\n氷\n×1.10\n雷\n×1.25\n自然\n×1.10\n属性効果の強さ（最終上限あり）",
+      "page": [
+        1440,
+        900
+      ]
+    },
+    {
+      "name": "1440x900",
+      "intro": {
+        "scroll": [
+          581,
+          581,
+          599,
+          599
+        ],
+        "dialog": {
+          "x": 250,
+          "y": 120,
+          "right": 1190,
+          "bottom": 780
+        },
+        "cards": [
+          {
+            "x": 260,
+            "y": 216.796875,
+            "right": 437.59375,
+            "bottom": 466.390625,
+            "width": 177.59375,
+            "height": 249.59375,
+            "name": "炎",
+            "summary": "売るときのGOLDを加算",
+            "font": 11.952,
+            "textRect": {
+              "x": 301.40625,
+              "y": 358.921875,
+              "width": 94.78125,
+              "height": 14,
+              "top": 358.921875,
+              "right": 396.1875,
+              "bottom": 372.921875,
+              "left": 301.40625
+            }
+          },
+          {
+            "x": 445.59375,
+            "y": 216.796875,
+            "right": 623.1875,
+            "bottom": 466.390625,
+            "width": 177.59375,
+            "height": 249.59375,
+            "name": "黄金",
+            "summary": "売却額を倍率で増やす",
+            "font": 11.952,
+            "textRect": {
+              "x": 498.5625,
+              "y": 358.921875,
+              "width": 71.640625,
+              "height": 14,
+              "top": 358.921875,
+              "right": 570.203125,
+              "bottom": 372.921875,
+              "left": 498.5625
+            }
+          },
+          {
+            "x": 631.1875,
+            "y": 216.796875,
+            "right": 808.796875,
+            "bottom": 466.390625,
+            "width": 177.609375,
+            "height": 249.59375,
+            "name": "闇",
+            "summary": "高額売却・消失リスク",
+            "font": 11.952,
+            "textRect": {
+              "x": 684.171875,
+              "y": 358.921875,
+              "width": 71.640625,
+              "height": 14,
+              "top": 358.921875,
+              "right": 755.8125,
+              "bottom": 372.921875,
+              "left": 684.171875
+            }
+          },
+          {
+            "x": 816.796875,
+            "y": 216.796875,
+            "right": 994.390625,
+            "bottom": 466.390625,
+            "width": 177.59375,
+            "height": 249.59375,
+            "name": "氷",
+            "summary": "通常の生成時間を短縮",
+            "font": 11.952,
+            "textRect": {
+              "x": 869.765625,
+              "y": 358.921875,
+              "width": 71.640625,
+              "height": 14,
+              "top": 358.921875,
+              "right": 941.40625,
+              "bottom": 372.921875,
+              "left": 869.765625
+            }
+          },
+          {
+            "x": 1002.390625,
+            "y": 216.796875,
+            "right": 1180,
+            "bottom": 466.390625,
+            "width": 177.609375,
+            "height": 249.59375,
+            "name": "雷",
+            "summary": "タップの加速量を増やす",
+            "font": 11.952,
+            "textRect": {
+              "x": 1051.78125,
+              "y": 358.921875,
+              "width": 78.8125,
+              "height": 14,
+              "top": 358.921875,
+              "right": 1130.59375,
+              "bottom": 372.921875,
+              "left": 1051.78125
+            }
+          },
+          {
+            "x": 260,
+            "y": 474.390625,
+            "right": 437.59375,
+            "bottom": 724,
+            "width": 177.59375,
+            "height": 249.609375,
+            "name": "自然",
+            "summary": "貯蔵へ追加で自動生成",
+            "font": 11.952,
+            "textRect": {
+              "x": 312.96875,
+              "y": 616.515625,
+              "width": 71.640625,
+              "height": 14,
+              "top": 616.515625,
+              "right": 384.609375,
+              "bottom": 630.515625,
+              "left": 312.96875
+            }
+          },
+          {
+            "x": 445.59375,
+            "y": 474.390625,
+            "right": 623.1875,
+            "bottom": 724,
+            "width": 177.59375,
+            "height": 249.609375,
+            "name": "幸運",
+            "summary": "属性付きの生成率UP",
+            "font": 11.952,
+            "textRect": {
+              "x": 496.5,
+              "y": 616.515625,
+              "width": 75.765625,
+              "height": 14,
+              "top": 616.515625,
+              "right": 572.265625,
+              "bottom": 630.515625,
+              "left": 496.5
+            }
+          },
+          {
+            "x": 631.1875,
+            "y": 474.390625,
+            "right": 808.796875,
+            "bottom": 724,
+            "width": 177.609375,
+            "height": 249.609375,
+            "name": "変異",
+            "summary": "マージ時の変異率UP",
+            "font": 11.952,
+            "textRect": {
+              "x": 682.109375,
+              "y": 616.515625,
+              "width": 75.765625,
+              "height": 14,
+              "top": 616.515625,
+              "right": 757.875,
+              "bottom": 630.515625,
+              "left": 682.109375
+            }
+          },
+          {
+            "x": 816.796875,
+            "y": 474.390625,
+            "right": 994.390625,
+            "bottom": 724,
+            "width": 177.59375,
+            "height": 249.609375,
+            "name": "光",
+            "summary": "周囲のスライムを支援",
+            "font": 11.952,
+            "textRect": {
+              "x": 869.765625,
+              "y": 616.515625,
+              "width": 71.640625,
+              "height": 14,
+              "top": 616.515625,
+              "right": 941.40625,
+              "bottom": 630.515625,
+              "left": 869.765625
+            }
+          },
+          {
+            "x": 1002.390625,
+            "y": 474.390625,
+            "right": 1180,
+            "bottom": 724,
+            "width": 177.609375,
+            "height": 249.609375,
+            "name": "磁力",
+            "summary": "特殊マスを近くへ誘引",
+            "font": 11.952,
+            "textRect": {
+              "x": 1055.375,
+              "y": 616.515625,
+              "width": 71.640625,
+              "height": 14,
+              "top": 616.515625,
+              "right": 1127.015625,
+              "bottom": 630.515625,
+              "left": 1055.375
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "1366x768",
+      "buff": {
+        "x": 8,
+        "y": 95.296875,
+        "right": 188,
+        "bottom": 206.6875,
+        "width": 180,
+        "height": 111.390625
+      },
+      "board": {
+        "x": 334,
+        "y": 60,
+        "right": 1032,
+        "bottom": 758,
+        "width": 698,
+        "height": 698
+      },
+      "buttons": [
+        {
+          "x": 1044.765625,
+          "y": 5.5,
+          "right": 1213.609375,
+          "bottom": 49.5,
+          "width": 168.84375,
+          "height": 44
+        },
+        {
+          "x": 50,
+          "y": 216.6875,
+          "right": 146,
+          "bottom": 292.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 50,
+          "y": 302.6875,
+          "right": 146,
+          "bottom": 378.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 50,
+          "y": 388.6875,
+          "right": 146,
+          "bottom": 464.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 50,
+          "y": 474.6875,
+          "right": 146,
+          "bottom": 550.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 50,
+          "y": 560.6875,
+          "right": 146,
+          "bottom": 636.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 50,
+          "y": 646.6875,
+          "right": 146,
+          "bottom": 722.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 1193,
+          "y": 108,
+          "right": 1343,
+          "bottom": 258,
+          "width": 150,
+          "height": 150
+        },
+        {
+          "x": 1178,
+          "y": 516,
+          "right": 1358,
+          "bottom": 594,
+          "width": 180,
+          "height": 78
+        },
+        {
+          "x": 1178,
+          "y": 602,
+          "right": 1358,
+          "bottom": 750,
+          "width": 180,
+          "height": 148
+        }
+      ],
+      "text": "≋ 青共鳴中\nTier 5 に発動中\n氷\n×1.10\n雷\n×1.25\n自然\n×1.10\n属性効果の強さ（最終上限あり）",
+      "page": [
+        1366,
+        768
+      ]
+    },
+    {
+      "name": "1366x768",
+      "intro": {
+        "scroll": [
+          581,
+          581,
+          599,
+          599
+        ],
+        "dialog": {
+          "x": 213,
+          "y": 54,
+          "right": 1153,
+          "bottom": 714
+        },
+        "cards": [
+          {
+            "x": 223,
+            "y": 150.796875,
+            "right": 400.59375,
+            "bottom": 400.390625,
+            "width": 177.59375,
+            "height": 249.59375,
+            "name": "炎",
+            "summary": "売るときのGOLDを加算",
+            "font": 11.3378,
+            "textRect": {
+              "x": 266.828125,
+              "y": 291.96875,
+              "width": 89.9375,
+              "height": 14,
+              "top": 291.96875,
+              "right": 356.765625,
+              "bottom": 305.96875,
+              "left": 266.828125
+            }
+          },
+          {
+            "x": 408.59375,
+            "y": 150.796875,
+            "right": 586.1875,
+            "bottom": 400.390625,
+            "width": 177.59375,
+            "height": 249.59375,
+            "name": "黄金",
+            "summary": "売却額を倍率で増やす",
+            "font": 11.3378,
+            "textRect": {
+              "x": 463.390625,
+              "y": 291.96875,
+              "width": 67.984375,
+              "height": 14,
+              "top": 291.96875,
+              "right": 531.375,
+              "bottom": 305.96875,
+              "left": 463.390625
+            }
+          },
+          {
+            "x": 594.1875,
+            "y": 150.796875,
+            "right": 771.796875,
+            "bottom": 400.390625,
+            "width": 177.609375,
+            "height": 249.59375,
+            "name": "闇",
+            "summary": "高額売却・消失リスク",
+            "font": 11.3378,
+            "textRect": {
+              "x": 649,
+              "y": 291.96875,
+              "width": 67.984375,
+              "height": 14,
+              "top": 291.96875,
+              "right": 716.984375,
+              "bottom": 305.96875,
+              "left": 649
+            }
+          },
+          {
+            "x": 779.796875,
+            "y": 150.796875,
+            "right": 957.390625,
+            "bottom": 400.390625,
+            "width": 177.59375,
+            "height": 249.59375,
+            "name": "氷",
+            "summary": "通常の生成時間を短縮",
+            "font": 11.3378,
+            "textRect": {
+              "x": 834.59375,
+              "y": 291.96875,
+              "width": 67.984375,
+              "height": 14,
+              "top": 291.96875,
+              "right": 902.578125,
+              "bottom": 305.96875,
+              "left": 834.59375
+            }
+          },
+          {
+            "x": 965.390625,
+            "y": 150.796875,
+            "right": 1143,
+            "bottom": 400.390625,
+            "width": 177.609375,
+            "height": 249.59375,
+            "name": "雷",
+            "summary": "タップの加速量を増やす",
+            "font": 11.3378,
+            "textRect": {
+              "x": 1016.796875,
+              "y": 291.96875,
+              "width": 74.78125,
+              "height": 14,
+              "top": 291.96875,
+              "right": 1091.578125,
+              "bottom": 305.96875,
+              "left": 1016.796875
+            }
+          },
+          {
+            "x": 223,
+            "y": 408.390625,
+            "right": 400.59375,
+            "bottom": 658,
+            "width": 177.59375,
+            "height": 249.609375,
+            "name": "自然",
+            "summary": "貯蔵へ追加で自動生成",
+            "font": 11.3378,
+            "textRect": {
+              "x": 277.796875,
+              "y": 549.5625,
+              "width": 67.984375,
+              "height": 14,
+              "top": 549.5625,
+              "right": 345.78125,
+              "bottom": 563.5625,
+              "left": 277.796875
+            }
+          },
+          {
+            "x": 408.59375,
+            "y": 408.390625,
+            "right": 586.1875,
+            "bottom": 658,
+            "width": 177.59375,
+            "height": 249.609375,
+            "name": "幸運",
+            "summary": "属性付きの生成率UP",
+            "font": 11.3378,
+            "textRect": {
+              "x": 461.4375,
+              "y": 549.5625,
+              "width": 71.890625,
+              "height": 14,
+              "top": 549.5625,
+              "right": 533.328125,
+              "bottom": 563.5625,
+              "left": 461.4375
+            }
+          },
+          {
+            "x": 594.1875,
+            "y": 408.390625,
+            "right": 771.796875,
+            "bottom": 658,
+            "width": 177.609375,
+            "height": 249.609375,
+            "name": "変異",
+            "summary": "マージ時の変異率UP",
+            "font": 11.3378,
+            "textRect": {
+              "x": 647.046875,
+              "y": 549.5625,
+              "width": 71.890625,
+              "height": 14,
+              "top": 549.5625,
+              "right": 718.9375,
+              "bottom": 563.5625,
+              "left": 647.046875
+            }
+          },
+          {
+            "x": 779.796875,
+            "y": 408.390625,
+            "right": 957.390625,
+            "bottom": 658,
+            "width": 177.59375,
+            "height": 249.609375,
+            "name": "光",
+            "summary": "周囲のスライムを支援",
+            "font": 11.3378,
+            "textRect": {
+              "x": 834.59375,
+              "y": 549.5625,
+              "width": 67.984375,
+              "height": 14,
+              "top": 549.5625,
+              "right": 902.578125,
+              "bottom": 563.5625,
+              "left": 834.59375
+            }
+          },
+          {
+            "x": 965.390625,
+            "y": 408.390625,
+            "right": 1143,
+            "bottom": 658,
+            "width": 177.609375,
+            "height": 249.609375,
+            "name": "磁力",
+            "summary": "特殊マスを近くへ誘引",
+            "font": 11.3378,
+            "textRect": {
+              "x": 1020.203125,
+              "y": 549.5625,
+              "width": 67.984375,
+              "height": 14,
+              "top": 549.5625,
+              "right": 1088.1875,
+              "bottom": 563.5625,
+              "left": 1020.203125
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "1280x720",
+      "buff": {
+        "x": 8,
+        "y": 71.296875,
+        "right": 188,
+        "bottom": 182.6875,
+        "width": 180,
+        "height": 111.390625
+      },
+      "board": {
+        "x": 315,
+        "y": 60,
+        "right": 965,
+        "bottom": 710,
+        "width": 650,
+        "height": 650
+      },
+      "buttons": [
+        {
+          "x": 963.40625,
+          "y": 5.5,
+          "right": 1127.609375,
+          "bottom": 49.5,
+          "width": 164.203125,
+          "height": 44
+        },
+        {
+          "x": 50,
+          "y": 192.6875,
+          "right": 146,
+          "bottom": 268.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 50,
+          "y": 278.6875,
+          "right": 146,
+          "bottom": 354.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 50,
+          "y": 364.6875,
+          "right": 146,
+          "bottom": 440.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 50,
+          "y": 450.6875,
+          "right": 146,
+          "bottom": 526.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 50,
+          "y": 536.6875,
+          "right": 146,
+          "bottom": 612.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 50,
+          "y": 622.6875,
+          "right": 146,
+          "bottom": 698.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 1107,
+          "y": 104,
+          "right": 1257,
+          "bottom": 254,
+          "width": 150,
+          "height": 150
+        },
+        {
+          "x": 1092,
+          "y": 472,
+          "right": 1272,
+          "bottom": 550,
+          "width": 180,
+          "height": 78
+        },
+        {
+          "x": 1092,
+          "y": 558,
+          "right": 1272,
+          "bottom": 706,
+          "width": 180,
+          "height": 148
+        }
+      ],
+      "text": "≋ 青共鳴中\nTier 5 に発動中\n氷\n×1.10\n雷\n×1.25\n自然\n×1.10\n属性効果の強さ（最終上限あり）",
+      "page": [
+        1280,
+        720
+      ]
+    },
+    {
+      "name": "1280x720",
+      "intro": {
+        "scroll": [
+          581,
+          581,
+          599,
+          599
+        ],
+        "dialog": {
+          "x": 170,
+          "y": 30,
+          "right": 1110,
+          "bottom": 690
+        },
+        "cards": [
+          {
+            "x": 180,
+            "y": 126.796875,
+            "right": 357.59375,
+            "bottom": 376.390625,
+            "width": 177.59375,
+            "height": 249.59375,
+            "name": "炎",
+            "summary": "売るときのGOLDを加算",
+            "font": 10.624,
+            "textRect": {
+              "x": 226.671875,
+              "y": 266.578125,
+              "width": 84.234375,
+              "height": 13,
+              "top": 266.578125,
+              "right": 310.90625,
+              "bottom": 279.578125,
+              "left": 226.671875
+            }
+          },
+          {
+            "x": 365.59375,
+            "y": 126.796875,
+            "right": 543.1875,
+            "bottom": 376.390625,
+            "width": 177.59375,
+            "height": 249.59375,
+            "name": "黄金",
+            "summary": "売却額を倍率で増やす",
+            "font": 10.624,
+            "textRect": {
+              "x": 422.546875,
+              "y": 266.578125,
+              "width": 63.671875,
+              "height": 13,
+              "top": 266.578125,
+              "right": 486.21875,
+              "bottom": 279.578125,
+              "left": 422.546875
+            }
+          },
+          {
+            "x": 551.1875,
+            "y": 126.796875,
+            "right": 728.796875,
+            "bottom": 376.390625,
+            "width": 177.609375,
+            "height": 249.59375,
+            "name": "闇",
+            "summary": "高額売却・消失リスク",
+            "font": 10.624,
+            "textRect": {
+              "x": 608.15625,
+              "y": 266.578125,
+              "width": 63.671875,
+              "height": 13,
+              "top": 266.578125,
+              "right": 671.828125,
+              "bottom": 279.578125,
+              "left": 608.15625
+            }
+          },
+          {
+            "x": 736.796875,
+            "y": 126.796875,
+            "right": 914.390625,
+            "bottom": 376.390625,
+            "width": 177.59375,
+            "height": 249.59375,
+            "name": "氷",
+            "summary": "通常の生成時間を短縮",
+            "font": 10.624,
+            "textRect": {
+              "x": 793.75,
+              "y": 266.578125,
+              "width": 63.671875,
+              "height": 13,
+              "top": 266.578125,
+              "right": 857.421875,
+              "bottom": 279.578125,
+              "left": 793.75
+            }
+          },
+          {
+            "x": 922.390625,
+            "y": 126.796875,
+            "right": 1100,
+            "bottom": 376.390625,
+            "width": 177.609375,
+            "height": 249.59375,
+            "name": "雷",
+            "summary": "タップの加速量を増やす",
+            "font": 10.624,
+            "textRect": {
+              "x": 976.171875,
+              "y": 266.578125,
+              "width": 70.046875,
+              "height": 13,
+              "top": 266.578125,
+              "right": 1046.21875,
+              "bottom": 279.578125,
+              "left": 976.171875
+            }
+          },
+          {
+            "x": 180,
+            "y": 384.390625,
+            "right": 357.59375,
+            "bottom": 634,
+            "width": 177.59375,
+            "height": 249.609375,
+            "name": "自然",
+            "summary": "貯蔵へ追加で自動生成",
+            "font": 10.624,
+            "textRect": {
+              "x": 236.953125,
+              "y": 524.171875,
+              "width": 63.671875,
+              "height": 13,
+              "top": 524.171875,
+              "right": 300.625,
+              "bottom": 537.171875,
+              "left": 236.953125
+            }
+          },
+          {
+            "x": 365.59375,
+            "y": 384.390625,
+            "right": 543.1875,
+            "bottom": 634,
+            "width": 177.59375,
+            "height": 249.609375,
+            "name": "幸運",
+            "summary": "属性付きの生成率UP",
+            "font": 10.624,
+            "textRect": {
+              "x": 420.71875,
+              "y": 524.171875,
+              "width": 67.328125,
+              "height": 13,
+              "top": 524.171875,
+              "right": 488.046875,
+              "bottom": 537.171875,
+              "left": 420.71875
+            }
+          },
+          {
+            "x": 551.1875,
+            "y": 384.390625,
+            "right": 728.796875,
+            "bottom": 634,
+            "width": 177.609375,
+            "height": 249.609375,
+            "name": "変異",
+            "summary": "マージ時の変異率UP",
+            "font": 10.624,
+            "textRect": {
+              "x": 606.328125,
+              "y": 524.171875,
+              "width": 67.328125,
+              "height": 13,
+              "top": 524.171875,
+              "right": 673.65625,
+              "bottom": 537.171875,
+              "left": 606.328125
+            }
+          },
+          {
+            "x": 736.796875,
+            "y": 384.390625,
+            "right": 914.390625,
+            "bottom": 634,
+            "width": 177.59375,
+            "height": 249.609375,
+            "name": "光",
+            "summary": "周囲のスライムを支援",
+            "font": 10.624,
+            "textRect": {
+              "x": 793.75,
+              "y": 524.171875,
+              "width": 63.671875,
+              "height": 13,
+              "top": 524.171875,
+              "right": 857.421875,
+              "bottom": 537.171875,
+              "left": 793.75
+            }
+          },
+          {
+            "x": 922.390625,
+            "y": 384.390625,
+            "right": 1100,
+            "bottom": 634,
+            "width": 177.609375,
+            "height": 249.609375,
+            "name": "磁力",
+            "summary": "特殊マスを近くへ誘引",
+            "font": 10.624,
+            "textRect": {
+              "x": 979.359375,
+              "y": 524.171875,
+              "width": 63.671875,
+              "height": 13,
+              "top": 524.171875,
+              "right": 1043.03125,
+              "bottom": 537.171875,
+              "left": 979.359375
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "1024x768",
+      "buff": {
+        "x": 8,
+        "y": 95.296875,
+        "right": 188,
+        "bottom": 206.6875,
+        "width": 180,
+        "height": 111.390625
+      },
+      "board": {
+        "x": 200,
+        "y": 97,
+        "right": 824,
+        "bottom": 721,
+        "width": 624,
+        "height": 624
+      },
+      "buttons": [
+        {
+          "x": 721.203125,
+          "y": 5.5,
+          "right": 871.609375,
+          "bottom": 49.5,
+          "width": 150.40625,
+          "height": 44
+        },
+        {
+          "x": 50,
+          "y": 216.6875,
+          "right": 146,
+          "bottom": 292.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 50,
+          "y": 302.6875,
+          "right": 146,
+          "bottom": 378.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 50,
+          "y": 388.6875,
+          "right": 146,
+          "bottom": 464.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 50,
+          "y": 474.6875,
+          "right": 146,
+          "bottom": 550.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 50,
+          "y": 560.6875,
+          "right": 146,
+          "bottom": 636.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 50,
+          "y": 646.6875,
+          "right": 146,
+          "bottom": 722.6875,
+          "width": 96,
+          "height": 76
+        },
+        {
+          "x": 851,
+          "y": 108,
+          "right": 1001,
+          "bottom": 258,
+          "width": 150,
+          "height": 150
+        },
+        {
+          "x": 836,
+          "y": 516,
+          "right": 1016,
+          "bottom": 594,
+          "width": 180,
+          "height": 78
+        },
+        {
+          "x": 836,
+          "y": 602,
+          "right": 1016,
+          "bottom": 750,
+          "width": 180,
+          "height": 148
+        }
+      ],
+      "text": "≋ 青共鳴中\nTier 5 に発動中\n氷\n×1.10\n雷\n×1.25\n自然\n×1.10\n属性効果の強さ（最終上限あり）",
+      "page": [
+        1024,
+        768
+      ]
+    },
+    {
+      "name": "1024x768",
+      "intro": {
+        "scroll": [
+          581,
+          581,
+          599,
+          599
+        ],
+        "dialog": {
+          "x": 42,
+          "y": 54,
+          "right": 982,
+          "bottom": 714
+        },
+        "cards": [
+          {
+            "x": 52,
+            "y": 150.796875,
+            "right": 229.59375,
+            "bottom": 400.390625,
+            "width": 177.59375,
+            "height": 249.59375,
+            "name": "炎",
+            "summary": "売るときのGOLDを加算",
+            "font": 10,
+            "textRect": {
+              "x": 101.09375,
+              "y": 286.453125,
+              "width": 79.390625,
+              "height": 11,
+              "top": 286.453125,
+              "right": 180.484375,
+              "bottom": 297.453125,
+              "left": 101.09375
+            }
+          },
+          {
+            "x": 237.59375,
+            "y": 150.796875,
+            "right": 415.1875,
+            "bottom": 400.390625,
+            "width": 177.59375,
+            "height": 249.59375,
+            "name": "黄金",
+            "summary": "売却額を倍率で増やす",
+            "font": 10,
+            "textRect": {
+              "x": 296.375,
+              "y": 286.453125,
+              "width": 60.015625,
+              "height": 11,
+              "top": 286.453125,
+              "right": 356.390625,
+              "bottom": 297.453125,
+              "left": 296.375
+            }
+          },
+          {
+            "x": 423.1875,
+            "y": 150.796875,
+            "right": 600.796875,
+            "bottom": 400.390625,
+            "width": 177.609375,
+            "height": 249.59375,
+            "name": "闇",
+            "summary": "高額売却・消失リスク",
+            "font": 10,
+            "textRect": {
+              "x": 481.984375,
+              "y": 286.453125,
+              "width": 60.015625,
+              "height": 11,
+              "top": 286.453125,
+              "right": 542,
+              "bottom": 297.453125,
+              "left": 481.984375
+            }
+          },
+          {
+            "x": 608.796875,
+            "y": 150.796875,
+            "right": 786.390625,
+            "bottom": 400.390625,
+            "width": 177.59375,
+            "height": 249.59375,
+            "name": "氷",
+            "summary": "通常の生成時間を短縮",
+            "font": 10,
+            "textRect": {
+              "x": 667.578125,
+              "y": 286.453125,
+              "width": 60.015625,
+              "height": 11,
+              "top": 286.453125,
+              "right": 727.59375,
+              "bottom": 297.453125,
+              "left": 667.578125
+            }
+          },
+          {
+            "x": 794.390625,
+            "y": 150.796875,
+            "right": 972,
+            "bottom": 400.390625,
+            "width": 177.609375,
+            "height": 249.59375,
+            "name": "雷",
+            "summary": "タップの加速量を増やす",
+            "font": 10,
+            "textRect": {
+              "x": 850.1875,
+              "y": 286.453125,
+              "width": 66.015625,
+              "height": 11,
+              "top": 286.453125,
+              "right": 916.203125,
+              "bottom": 297.453125,
+              "left": 850.1875
+            }
+          },
+          {
+            "x": 52,
+            "y": 408.390625,
+            "right": 229.59375,
+            "bottom": 658,
+            "width": 177.59375,
+            "height": 249.609375,
+            "name": "自然",
+            "summary": "貯蔵へ追加で自動生成",
+            "font": 10,
+            "textRect": {
+              "x": 110.78125,
+              "y": 544.046875,
+              "width": 60.015625,
+              "height": 11,
+              "top": 544.046875,
+              "right": 170.796875,
+              "bottom": 555.046875,
+              "left": 110.78125
+            }
+          },
+          {
+            "x": 237.59375,
+            "y": 408.390625,
+            "right": 415.1875,
+            "bottom": 658,
+            "width": 177.59375,
+            "height": 249.609375,
+            "name": "幸運",
+            "summary": "属性付きの生成率UP",
+            "font": 10,
+            "textRect": {
+              "x": 294.65625,
+              "y": 544.046875,
+              "width": 63.46875,
+              "height": 11,
+              "top": 544.046875,
+              "right": 358.125,
+              "bottom": 555.046875,
+              "left": 294.65625
+            }
+          },
+          {
+            "x": 423.1875,
+            "y": 408.390625,
+            "right": 600.796875,
+            "bottom": 658,
+            "width": 177.609375,
+            "height": 249.609375,
+            "name": "変異",
+            "summary": "マージ時の変異率UP",
+            "font": 10,
+            "textRect": {
+              "x": 480.25,
+              "y": 544.046875,
+              "width": 63.46875,
+              "height": 11,
+              "top": 544.046875,
+              "right": 543.71875,
+              "bottom": 555.046875,
+              "left": 480.25
+            }
+          },
+          {
+            "x": 608.796875,
+            "y": 408.390625,
+            "right": 786.390625,
+            "bottom": 658,
+            "width": 177.59375,
+            "height": 249.609375,
+            "name": "光",
+            "summary": "周囲のスライムを支援",
+            "font": 10,
+            "textRect": {
+              "x": 667.578125,
+              "y": 544.046875,
+              "width": 60.015625,
+              "height": 11,
+              "top": 544.046875,
+              "right": 727.59375,
+              "bottom": 555.046875,
+              "left": 667.578125
+            }
+          },
+          {
+            "x": 794.390625,
+            "y": 408.390625,
+            "right": 972,
+            "bottom": 658,
+            "width": 177.609375,
+            "height": 249.609375,
+            "name": "磁力",
+            "summary": "特殊マスを近くへ誘引",
+            "font": 10,
+            "textRect": {
+              "x": 853.1875,
+              "y": 544.046875,
+              "width": 60.015625,
+              "height": 11,
+              "top": 544.046875,
+              "right": 913.203125,
+              "bottom": 555.046875,
+              "left": 853.1875
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "768x1024",
+      "buff": {
+        "x": 529,
+        "y": 858.609375,
+        "right": 764,
+        "bottom": 968,
+        "width": 235,
+        "height": 109.390625
+      },
+      "board": {
+        "x": 8,
+        "y": 70,
+        "right": 760,
+        "bottom": 822,
+        "width": 752,
+        "height": 752
+      },
+      "buttons": [
+        {
+          "x": 627.453125,
+          "y": 10,
+          "right": 760,
+          "bottom": 43,
+          "width": 132.546875,
+          "height": 33
+        },
+        {
+          "x": 4.015625,
+          "y": 974,
+          "right": 127.34375,
+          "bottom": 1018,
+          "width": 123.328125,
+          "height": 44
+        },
+        {
+          "x": 131.34375,
+          "y": 974,
+          "right": 254.671875,
+          "bottom": 1018,
+          "width": 123.328125,
+          "height": 44
+        },
+        {
+          "x": 258.671875,
+          "y": 974,
+          "right": 382,
+          "bottom": 1018,
+          "width": 123.328125,
+          "height": 44
+        },
+        {
+          "x": 386,
+          "y": 974,
+          "right": 509.328125,
+          "bottom": 1018,
+          "width": 123.328125,
+          "height": 44
+        },
+        {
+          "x": 513.328125,
+          "y": 974,
+          "right": 636.65625,
+          "bottom": 1018,
+          "width": 123.328125,
+          "height": 44
+        },
+        {
+          "x": 640.65625,
+          "y": 974,
+          "right": 763.984375,
+          "bottom": 1018,
+          "width": 123.328125,
+          "height": 44
+        },
+        {
+          "x": 8,
+          "y": 851,
+          "right": 102,
+          "bottom": 945,
+          "width": 94,
+          "height": 94
+        },
+        {
+          "x": 499.4375,
+          "y": 844,
+          "right": 764,
+          "bottom": 894,
+          "width": 264.5625,
+          "height": 50
+        },
+        {
+          "x": 499.4375,
+          "y": 900,
+          "right": 764,
+          "bottom": 950,
+          "width": 264.5625,
+          "height": 50
+        }
+      ],
+      "text": "≋ 青共鳴中\nTier 5 に発動中\n氷\n×1.10\n雷\n×1.25\n自然\n×1.10\n属性効果の強さ（最終上限あり）",
+      "page": [
+        768,
+        1024
+      ]
+    },
+    {
+      "name": "768x1024",
+      "intro": {
+        "scroll": [
+          581,
+          581,
+          599,
+          599
+        ],
+        "dialog": {
+          "x": 6,
+          "y": 182,
+          "right": 762,
+          "bottom": 842
+        },
+        "cards": [
+          {
+            "x": 16,
+            "y": 278.796875,
+            "right": 156.796875,
+            "bottom": 528.390625,
+            "width": 140.796875,
+            "height": 249.59375,
+            "name": "炎",
+            "summary": "売るときのGOLDを加算",
+            "font": 10,
+            "textRect": {
+              "x": 46.703125,
+              "y": 410.453125,
+              "width": 79.390625,
+              "height": 11,
+              "top": 410.453125,
+              "right": 126.09375,
+              "bottom": 421.453125,
+              "left": 46.703125
+            }
+          },
+          {
+            "x": 164.796875,
+            "y": 278.796875,
+            "right": 305.59375,
+            "bottom": 528.390625,
+            "width": 140.796875,
+            "height": 249.59375,
+            "name": "黄金",
+            "summary": "売却額を倍率で増やす",
+            "font": 10,
+            "textRect": {
+              "x": 205.1875,
+              "y": 410.453125,
+              "width": 60.015625,
+              "height": 11,
+              "top": 410.453125,
+              "right": 265.203125,
+              "bottom": 421.453125,
+              "left": 205.1875
+            }
+          },
+          {
+            "x": 313.59375,
+            "y": 278.796875,
+            "right": 454.390625,
+            "bottom": 528.390625,
+            "width": 140.796875,
+            "height": 249.59375,
+            "name": "闇",
+            "summary": "高額売却・消失リスク",
+            "font": 10,
+            "textRect": {
+              "x": 353.984375,
+              "y": 410.453125,
+              "width": 60.015625,
+              "height": 11,
+              "top": 410.453125,
+              "right": 414,
+              "bottom": 421.453125,
+              "left": 353.984375
+            }
+          },
+          {
+            "x": 462.390625,
+            "y": 278.796875,
+            "right": 603.1875,
+            "bottom": 528.390625,
+            "width": 140.796875,
+            "height": 249.59375,
+            "name": "氷",
+            "summary": "通常の生成時間を短縮",
+            "font": 10,
+            "textRect": {
+              "x": 502.78125,
+              "y": 410.453125,
+              "width": 60.015625,
+              "height": 11,
+              "top": 410.453125,
+              "right": 562.796875,
+              "bottom": 421.453125,
+              "left": 502.78125
+            }
+          },
+          {
+            "x": 611.1875,
+            "y": 278.796875,
+            "right": 752,
+            "bottom": 528.390625,
+            "width": 140.8125,
+            "height": 249.59375,
+            "name": "雷",
+            "summary": "タップの加速量を増やす",
+            "font": 10,
+            "textRect": {
+              "x": 648.578125,
+              "y": 410.453125,
+              "width": 66.015625,
+              "height": 11,
+              "top": 410.453125,
+              "right": 714.59375,
+              "bottom": 421.453125,
+              "left": 648.578125
+            }
+          },
+          {
+            "x": 16,
+            "y": 536.390625,
+            "right": 156.796875,
+            "bottom": 786,
+            "width": 140.796875,
+            "height": 249.609375,
+            "name": "自然",
+            "summary": "貯蔵へ追加で自動生成",
+            "font": 10,
+            "textRect": {
+              "x": 56.390625,
+              "y": 668.046875,
+              "width": 60.015625,
+              "height": 11,
+              "top": 668.046875,
+              "right": 116.40625,
+              "bottom": 679.046875,
+              "left": 56.390625
+            }
+          },
+          {
+            "x": 164.796875,
+            "y": 536.390625,
+            "right": 305.59375,
+            "bottom": 786,
+            "width": 140.796875,
+            "height": 249.609375,
+            "name": "幸運",
+            "summary": "属性付きの生成率UP",
+            "font": 10,
+            "textRect": {
+              "x": 203.453125,
+              "y": 668.046875,
+              "width": 63.46875,
+              "height": 11,
+              "top": 668.046875,
+              "right": 266.921875,
+              "bottom": 679.046875,
+              "left": 203.453125
+            }
+          },
+          {
+            "x": 313.59375,
+            "y": 536.390625,
+            "right": 454.390625,
+            "bottom": 786,
+            "width": 140.796875,
+            "height": 249.609375,
+            "name": "変異",
+            "summary": "マージ時の変異率UP",
+            "font": 10,
+            "textRect": {
+              "x": 352.25,
+              "y": 668.046875,
+              "width": 63.46875,
+              "height": 11,
+              "top": 668.046875,
+              "right": 415.71875,
+              "bottom": 679.046875,
+              "left": 352.25
+            }
+          },
+          {
+            "x": 462.390625,
+            "y": 536.390625,
+            "right": 603.1875,
+            "bottom": 786,
+            "width": 140.796875,
+            "height": 249.609375,
+            "name": "光",
+            "summary": "周囲のスライムを支援",
+            "font": 10,
+            "textRect": {
+              "x": 502.78125,
+              "y": 668.046875,
+              "width": 60.015625,
+              "height": 11,
+              "top": 668.046875,
+              "right": 562.796875,
+              "bottom": 679.046875,
+              "left": 502.78125
+            }
+          },
+          {
+            "x": 611.1875,
+            "y": 536.390625,
+            "right": 752,
+            "bottom": 786,
+            "width": 140.8125,
+            "height": 249.609375,
+            "name": "磁力",
+            "summary": "特殊マスを近くへ誘引",
+            "font": 10,
+            "textRect": {
+              "x": 651.578125,
+              "y": 668.046875,
+              "width": 60.015625,
+              "height": 11,
+              "top": 668.046875,
+              "right": 711.59375,
+              "bottom": 679.046875,
+              "left": 651.578125
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "390x844",
+      "buff": {
+        "x": 151,
+        "y": 678.609375,
+        "right": 386,
+        "bottom": 788,
+        "width": 235,
+        "height": 109.390625
+      },
+      "board": {
+        "x": 8,
+        "y": 169,
+        "right": 382,
+        "bottom": 543,
+        "width": 374,
+        "height": 374
+      },
+      "buttons": [
+        {
+          "x": 271.5,
+          "y": 10,
+          "right": 382,
+          "bottom": 43,
+          "width": 110.5,
+          "height": 33
+        },
+        {
+          "x": 4.015625,
+          "y": 794,
+          "right": 64.34375,
+          "bottom": 838,
+          "width": 60.328125,
+          "height": 44
+        },
+        {
+          "x": 68.34375,
+          "y": 794,
+          "right": 128.671875,
+          "bottom": 838,
+          "width": 60.328125,
+          "height": 44
+        },
+        {
+          "x": 132.671875,
+          "y": 794,
+          "right": 193,
+          "bottom": 838,
+          "width": 60.328125,
+          "height": 44
+        },
+        {
+          "x": 197,
+          "y": 794,
+          "right": 257.328125,
+          "bottom": 838,
+          "width": 60.328125,
+          "height": 44
+        },
+        {
+          "x": 261.328125,
+          "y": 794,
+          "right": 321.65625,
+          "bottom": 838,
+          "width": 60.328125,
+          "height": 44
+        },
+        {
+          "x": 325.65625,
+          "y": 794,
+          "right": 385.984375,
+          "bottom": 838,
+          "width": 60.328125,
+          "height": 44
+        },
+        {
+          "x": 8,
+          "y": 671,
+          "right": 102,
+          "bottom": 765,
+          "width": 94,
+          "height": 94
+        },
+        {
+          "x": 254.0625,
+          "y": 664,
+          "right": 386,
+          "bottom": 714,
+          "width": 131.9375,
+          "height": 50
+        },
+        {
+          "x": 254.0625,
+          "y": 720,
+          "right": 386,
+          "bottom": 770,
+          "width": 131.9375,
+          "height": 50
+        }
+      ],
+      "text": "≋ 青共鳴中\nTier 5 に発動中\n氷\n×1.10\n雷\n×1.25\n自然\n×1.10\n属性効果の強さ（最終上限あり）",
+      "page": [
+        390,
+        844
+      ]
+    },
+    {
+      "name": "390x844",
+      "intro": {
+        "scroll": [
+          589,
+          589,
+          599,
+          599
+        ],
+        "dialog": {
+          "x": 6,
+          "y": 92,
+          "right": 384,
+          "bottom": 752
+        },
+        "cards": [
+          {
+            "x": 12,
+            "y": 173.5,
+            "right": 193,
+            "bottom": 277.796875,
+            "width": 181,
+            "height": 104.296875,
+            "name": "炎",
+            "summary": "売るときのGOLDを加算",
+            "font": 10,
+            "textRect": {
+              "x": 62.796875,
+              "y": 238.734375,
+              "width": 79.390625,
+              "height": 11,
+              "top": 238.734375,
+              "right": 142.1875,
+              "bottom": 249.734375,
+              "left": 62.796875
+            }
+          },
+          {
+            "x": 197,
+            "y": 173.5,
+            "right": 378,
+            "bottom": 277.796875,
+            "width": 181,
+            "height": 104.296875,
+            "name": "黄金",
+            "summary": "売却額を倍率で増やす",
+            "font": 10,
+            "textRect": {
+              "x": 257.484375,
+              "y": 238.734375,
+              "width": 60.015625,
+              "height": 11,
+              "top": 238.734375,
+              "right": 317.5,
+              "bottom": 249.734375,
+              "left": 257.484375
+            }
+          },
+          {
+            "x": 12,
+            "y": 281.796875,
+            "right": 193,
+            "bottom": 386.09375,
+            "width": 181,
+            "height": 104.296875,
+            "name": "闇",
+            "summary": "高額売却・消失リスク",
+            "font": 10,
+            "textRect": {
+              "x": 72.484375,
+              "y": 347.03125,
+              "width": 60.015625,
+              "height": 11,
+              "top": 347.03125,
+              "right": 132.5,
+              "bottom": 358.03125,
+              "left": 72.484375
+            }
+          },
+          {
+            "x": 197,
+            "y": 281.796875,
+            "right": 378,
+            "bottom": 386.09375,
+            "width": 181,
+            "height": 104.296875,
+            "name": "氷",
+            "summary": "通常の生成時間を短縮",
+            "font": 10,
+            "textRect": {
+              "x": 257.484375,
+              "y": 347.03125,
+              "width": 60.015625,
+              "height": 11,
+              "top": 347.03125,
+              "right": 317.5,
+              "bottom": 358.03125,
+              "left": 257.484375
+            }
+          },
+          {
+            "x": 12,
+            "y": 390.09375,
+            "right": 193,
+            "bottom": 494.390625,
+            "width": 181,
+            "height": 104.296875,
+            "name": "雷",
+            "summary": "タップの加速量を増やす",
+            "font": 10,
+            "textRect": {
+              "x": 69.484375,
+              "y": 455.328125,
+              "width": 66.015625,
+              "height": 11,
+              "top": 455.328125,
+              "right": 135.5,
+              "bottom": 466.328125,
+              "left": 69.484375
+            }
+          },
+          {
+            "x": 197,
+            "y": 390.09375,
+            "right": 378,
+            "bottom": 494.390625,
+            "width": 181,
+            "height": 104.296875,
+            "name": "自然",
+            "summary": "貯蔵へ追加で自動生成",
+            "font": 10,
+            "textRect": {
+              "x": 257.484375,
+              "y": 455.328125,
+              "width": 60.015625,
+              "height": 11,
+              "top": 455.328125,
+              "right": 317.5,
+              "bottom": 466.328125,
+              "left": 257.484375
+            }
+          },
+          {
+            "x": 12,
+            "y": 498.390625,
+            "right": 193,
+            "bottom": 602.6875,
+            "width": 181,
+            "height": 104.296875,
+            "name": "幸運",
+            "summary": "属性付きの生成率UP",
+            "font": 10,
+            "textRect": {
+              "x": 70.765625,
+              "y": 563.625,
+              "width": 63.46875,
+              "height": 11,
+              "top": 563.625,
+              "right": 134.234375,
+              "bottom": 574.625,
+              "left": 70.765625
+            }
+          },
+          {
+            "x": 197,
+            "y": 498.390625,
+            "right": 378,
+            "bottom": 602.6875,
+            "width": 181,
+            "height": 104.296875,
+            "name": "変異",
+            "summary": "マージ時の変異率UP",
+            "font": 10,
+            "textRect": {
+              "x": 255.765625,
+              "y": 563.625,
+              "width": 63.46875,
+              "height": 11,
+              "top": 563.625,
+              "right": 319.234375,
+              "bottom": 574.625,
+              "left": 255.765625
+            }
+          },
+          {
+            "x": 12,
+            "y": 606.6875,
+            "right": 193,
+            "bottom": 711,
+            "width": 181,
+            "height": 104.3125,
+            "name": "光",
+            "summary": "周囲のスライムを支援",
+            "font": 10,
+            "textRect": {
+              "x": 72.484375,
+              "y": 671.9375,
+              "width": 60.015625,
+              "height": 11,
+              "top": 671.9375,
+              "right": 132.5,
+              "bottom": 682.9375,
+              "left": 72.484375
+            }
+          },
+          {
+            "x": 197,
+            "y": 606.6875,
+            "right": 378,
+            "bottom": 711,
+            "width": 181,
+            "height": 104.3125,
+            "name": "磁力",
+            "summary": "特殊マスを近くへ誘引",
+            "font": 10,
+            "textRect": {
+              "x": 257.484375,
+              "y": 671.9375,
+              "width": 60.015625,
+              "height": 11,
+              "top": 671.9375,
+              "right": 317.5,
+              "bottom": 682.9375,
+              "left": 257.484375
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "375x667",
+      "buff": {
+        "x": 136,
+        "y": 501.609375,
+        "right": 371,
+        "bottom": 611,
+        "width": 235,
+        "height": 109.390625
+      },
+      "board": {
+        "x": 8,
+        "y": 88,
+        "right": 367,
+        "bottom": 447,
+        "width": 359,
+        "height": 359
+      },
+      "buttons": [
+        {
+          "x": 258.1875,
+          "y": 10,
+          "right": 367,
+          "bottom": 43,
+          "width": 108.8125,
+          "height": 33
+        },
+        {
+          "x": 4.015625,
+          "y": 617,
+          "right": 61.84375,
+          "bottom": 661,
+          "width": 57.828125,
+          "height": 44
+        },
+        {
+          "x": 65.84375,
+          "y": 617,
+          "right": 123.671875,
+          "bottom": 661,
+          "width": 57.828125,
+          "height": 44
+        },
+        {
+          "x": 127.671875,
+          "y": 617,
+          "right": 185.5,
+          "bottom": 661,
+          "width": 57.828125,
+          "height": 44
+        },
+        {
+          "x": 189.5,
+          "y": 617,
+          "right": 247.328125,
+          "bottom": 661,
+          "width": 57.828125,
+          "height": 44
+        },
+        {
+          "x": 251.328125,
+          "y": 617,
+          "right": 309.15625,
+          "bottom": 661,
+          "width": 57.828125,
+          "height": 44
+        },
+        {
+          "x": 313.15625,
+          "y": 617,
+          "right": 370.984375,
+          "bottom": 661,
+          "width": 57.828125,
+          "height": 44
+        },
+        {
+          "x": 8,
+          "y": 494,
+          "right": 102,
+          "bottom": 588,
+          "width": 94,
+          "height": 94
+        },
+        {
+          "x": 244.328125,
+          "y": 487,
+          "right": 371,
+          "bottom": 537,
+          "width": 126.671875,
+          "height": 50
+        },
+        {
+          "x": 244.328125,
+          "y": 543,
+          "right": 371,
+          "bottom": 593,
+          "width": 126.671875,
+          "height": 50
+        }
+      ],
+      "text": "≋ 青共鳴中\nTier 5 に発動中\n氷\n×1.10\n雷\n×1.25\n自然\n×1.10\n属性効果の強さ（最終上限あり）",
+      "page": [
+        375,
+        667
+      ]
+    },
+    {
+      "name": "375x667",
+      "intro": {
+        "scroll": [
+          584,
+          584,
+          594,
+          594
+        ],
+        "dialog": {
+          "x": 6,
+          "y": 6,
+          "right": 369,
+          "bottom": 661
+        },
+        "cards": [
+          {
+            "x": 12,
+            "y": 87.5,
+            "right": 185.5,
+            "bottom": 190.796875,
+            "width": 173.5,
+            "height": 103.296875,
+            "name": "炎",
+            "summary": "売るときのGOLDを加算",
+            "font": 10,
+            "textRect": {
+              "x": 59.046875,
+              "y": 152.234375,
+              "width": 79.390625,
+              "height": 11,
+              "top": 152.234375,
+              "right": 138.4375,
+              "bottom": 163.234375,
+              "left": 59.046875
+            }
+          },
+          {
+            "x": 189.5,
+            "y": 87.5,
+            "right": 363,
+            "bottom": 190.796875,
+            "width": 173.5,
+            "height": 103.296875,
+            "name": "黄金",
+            "summary": "売却額を倍率で増やす",
+            "font": 10,
+            "textRect": {
+              "x": 246.234375,
+              "y": 152.234375,
+              "width": 60.015625,
+              "height": 11,
+              "top": 152.234375,
+              "right": 306.25,
+              "bottom": 163.234375,
+              "left": 246.234375
+            }
+          },
+          {
+            "x": 12,
+            "y": 194.796875,
+            "right": 185.5,
+            "bottom": 298.09375,
+            "width": 173.5,
+            "height": 103.296875,
+            "name": "闇",
+            "summary": "高額売却・消失リスク",
+            "font": 10,
+            "textRect": {
+              "x": 68.734375,
+              "y": 259.53125,
+              "width": 60.015625,
+              "height": 11,
+              "top": 259.53125,
+              "right": 128.75,
+              "bottom": 270.53125,
+              "left": 68.734375
+            }
+          },
+          {
+            "x": 189.5,
+            "y": 194.796875,
+            "right": 363,
+            "bottom": 298.09375,
+            "width": 173.5,
+            "height": 103.296875,
+            "name": "氷",
+            "summary": "通常の生成時間を短縮",
+            "font": 10,
+            "textRect": {
+              "x": 246.234375,
+              "y": 259.53125,
+              "width": 60.015625,
+              "height": 11,
+              "top": 259.53125,
+              "right": 306.25,
+              "bottom": 270.53125,
+              "left": 246.234375
+            }
+          },
+          {
+            "x": 12,
+            "y": 302.09375,
+            "right": 185.5,
+            "bottom": 405.390625,
+            "width": 173.5,
+            "height": 103.296875,
+            "name": "雷",
+            "summary": "タップの加速量を増やす",
+            "font": 10,
+            "textRect": {
+              "x": 65.734375,
+              "y": 366.828125,
+              "width": 66.015625,
+              "height": 11,
+              "top": 366.828125,
+              "right": 131.75,
+              "bottom": 377.828125,
+              "left": 65.734375
+            }
+          },
+          {
+            "x": 189.5,
+            "y": 302.09375,
+            "right": 363,
+            "bottom": 405.390625,
+            "width": 173.5,
+            "height": 103.296875,
+            "name": "自然",
+            "summary": "貯蔵へ追加で自動生成",
+            "font": 10,
+            "textRect": {
+              "x": 246.234375,
+              "y": 366.828125,
+              "width": 60.015625,
+              "height": 11,
+              "top": 366.828125,
+              "right": 306.25,
+              "bottom": 377.828125,
+              "left": 246.234375
+            }
+          },
+          {
+            "x": 12,
+            "y": 409.390625,
+            "right": 185.5,
+            "bottom": 512.6875,
+            "width": 173.5,
+            "height": 103.296875,
+            "name": "幸運",
+            "summary": "属性付きの生成率UP",
+            "font": 10,
+            "textRect": {
+              "x": 67.015625,
+              "y": 474.125,
+              "width": 63.46875,
+              "height": 11,
+              "top": 474.125,
+              "right": 130.484375,
+              "bottom": 485.125,
+              "left": 67.015625
+            }
+          },
+          {
+            "x": 189.5,
+            "y": 409.390625,
+            "right": 363,
+            "bottom": 512.6875,
+            "width": 173.5,
+            "height": 103.296875,
+            "name": "変異",
+            "summary": "マージ時の変異率UP",
+            "font": 10,
+            "textRect": {
+              "x": 244.515625,
+              "y": 474.125,
+              "width": 63.46875,
+              "height": 11,
+              "top": 474.125,
+              "right": 307.984375,
+              "bottom": 485.125,
+              "left": 244.515625
+            }
+          },
+          {
+            "x": 12,
+            "y": 516.6875,
+            "right": 185.5,
+            "bottom": 620,
+            "width": 173.5,
+            "height": 103.3125,
+            "name": "光",
+            "summary": "周囲のスライムを支援",
+            "font": 10,
+            "textRect": {
+              "x": 68.734375,
+              "y": 581.4375,
+              "width": 60.015625,
+              "height": 11,
+              "top": 581.4375,
+              "right": 128.75,
+              "bottom": 592.4375,
+              "left": 68.734375
+            }
+          },
+          {
+            "x": 189.5,
+            "y": 516.6875,
+            "right": 363,
+            "bottom": 620,
+            "width": 173.5,
+            "height": 103.3125,
+            "name": "磁力",
+            "summary": "特殊マスを近くへ誘引",
+            "font": 10,
+            "textRect": {
+              "x": 246.234375,
+              "y": 581.4375,
+              "width": 60.015625,
+              "height": 11,
+              "top": 581.4375,
+              "right": 306.25,
+              "bottom": 592.4375,
+              "left": 246.234375
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "320x568",
+      "buff": {
+        "x": 81,
+        "y": 402.609375,
+        "right": 316,
+        "bottom": 512,
+        "width": 235,
+        "height": 109.390625
+      },
+      "board": {
+        "x": 8,
+        "y": 66,
+        "right": 312,
+        "bottom": 370,
+        "width": 304,
+        "height": 304
+      },
+      "buttons": [
+        {
+          "x": 207.921875,
+          "y": 10,
+          "right": 312,
+          "bottom": 43,
+          "width": 104.078125,
+          "height": 33
+        },
+        {
+          "x": 3.984375,
+          "y": 518,
+          "right": 52.65625,
+          "bottom": 562,
+          "width": 48.671875,
+          "height": 44
+        },
+        {
+          "x": 56.65625,
+          "y": 518,
+          "right": 105.328125,
+          "bottom": 562,
+          "width": 48.671875,
+          "height": 44
+        },
+        {
+          "x": 109.328125,
+          "y": 518,
+          "right": 158,
+          "bottom": 562,
+          "width": 48.671875,
+          "height": 44
+        },
+        {
+          "x": 162,
+          "y": 518,
+          "right": 210.671875,
+          "bottom": 562,
+          "width": 48.671875,
+          "height": 44
+        },
+        {
+          "x": 214.671875,
+          "y": 518,
+          "right": 263.34375,
+          "bottom": 562,
+          "width": 48.671875,
+          "height": 44
+        },
+        {
+          "x": 267.34375,
+          "y": 518,
+          "right": 316.015625,
+          "bottom": 562,
+          "width": 48.671875,
+          "height": 44
+        },
+        {
+          "x": 8,
+          "y": 395,
+          "right": 102,
+          "bottom": 489,
+          "width": 94,
+          "height": 94
+        },
+        {
+          "x": 208.625,
+          "y": 388,
+          "right": 316,
+          "bottom": 438,
+          "width": 107.375,
+          "height": 50
+        },
+        {
+          "x": 208.625,
+          "y": 444,
+          "right": 316,
+          "bottom": 494,
+          "width": 107.375,
+          "height": 50
+        }
+      ],
+      "text": "≋ 青共鳴中\nTier 5 に発動中\n氷\n×1.10\n雷\n×1.25\n自然\n×1.10\n属性効果の強さ（最終上限あり）",
+      "page": [
+        320,
+        568
+      ]
+    },
+    {
+      "name": "320x568",
+      "intro": {
+        "scroll": [
+          485,
+          485,
+          495,
+          495
+        ],
+        "dialog": {
+          "x": 6,
+          "y": 6,
+          "right": 314,
+          "bottom": 562
+        },
+        "cards": [
+          {
+            "x": 12,
+            "y": 87.5,
+            "right": 158,
+            "bottom": 171,
+            "width": 146,
+            "height": 83.5,
+            "name": "炎",
+            "summary": "売るときのGOLDを加算",
+            "font": 10,
+            "textRect": {
+              "x": 45.296875,
+              "y": 142.34375,
+              "width": 79.390625,
+              "height": 11,
+              "top": 142.34375,
+              "right": 124.6875,
+              "bottom": 153.34375,
+              "left": 45.296875
+            }
+          },
+          {
+            "x": 162,
+            "y": 87.5,
+            "right": 308,
+            "bottom": 171,
+            "width": 146,
+            "height": 83.5,
+            "name": "黄金",
+            "summary": "売却額を倍率で増やす",
+            "font": 10,
+            "textRect": {
+              "x": 204.984375,
+              "y": 142.34375,
+              "width": 60.015625,
+              "height": 11,
+              "top": 142.34375,
+              "right": 265,
+              "bottom": 153.34375,
+              "left": 204.984375
+            }
+          },
+          {
+            "x": 12,
+            "y": 175,
+            "right": 158,
+            "bottom": 258.5,
+            "width": 146,
+            "height": 83.5,
+            "name": "闇",
+            "summary": "高額売却・消失リスク",
+            "font": 10,
+            "textRect": {
+              "x": 54.984375,
+              "y": 229.84375,
+              "width": 60.015625,
+              "height": 11,
+              "top": 229.84375,
+              "right": 115,
+              "bottom": 240.84375,
+              "left": 54.984375
+            }
+          },
+          {
+            "x": 162,
+            "y": 175,
+            "right": 308,
+            "bottom": 258.5,
+            "width": 146,
+            "height": 83.5,
+            "name": "氷",
+            "summary": "通常の生成時間を短縮",
+            "font": 10,
+            "textRect": {
+              "x": 204.984375,
+              "y": 229.84375,
+              "width": 60.015625,
+              "height": 11,
+              "top": 229.84375,
+              "right": 265,
+              "bottom": 240.84375,
+              "left": 204.984375
+            }
+          },
+          {
+            "x": 12,
+            "y": 262.5,
+            "right": 158,
+            "bottom": 346,
+            "width": 146,
+            "height": 83.5,
+            "name": "雷",
+            "summary": "タップの加速量を増やす",
+            "font": 10,
+            "textRect": {
+              "x": 51.984375,
+              "y": 317.34375,
+              "width": 66.015625,
+              "height": 11,
+              "top": 317.34375,
+              "right": 118,
+              "bottom": 328.34375,
+              "left": 51.984375
+            }
+          },
+          {
+            "x": 162,
+            "y": 262.5,
+            "right": 308,
+            "bottom": 346,
+            "width": 146,
+            "height": 83.5,
+            "name": "自然",
+            "summary": "貯蔵へ追加で自動生成",
+            "font": 10,
+            "textRect": {
+              "x": 204.984375,
+              "y": 317.34375,
+              "width": 60.015625,
+              "height": 11,
+              "top": 317.34375,
+              "right": 265,
+              "bottom": 328.34375,
+              "left": 204.984375
+            }
+          },
+          {
+            "x": 12,
+            "y": 350,
+            "right": 158,
+            "bottom": 433.5,
+            "width": 146,
+            "height": 83.5,
+            "name": "幸運",
+            "summary": "属性付きの生成率UP",
+            "font": 10,
+            "textRect": {
+              "x": 53.265625,
+              "y": 404.84375,
+              "width": 63.46875,
+              "height": 11,
+              "top": 404.84375,
+              "right": 116.734375,
+              "bottom": 415.84375,
+              "left": 53.265625
+            }
+          },
+          {
+            "x": 162,
+            "y": 350,
+            "right": 308,
+            "bottom": 433.5,
+            "width": 146,
+            "height": 83.5,
+            "name": "変異",
+            "summary": "マージ時の変異率UP",
+            "font": 10,
+            "textRect": {
+              "x": 203.265625,
+              "y": 404.84375,
+              "width": 63.46875,
+              "height": 11,
+              "top": 404.84375,
+              "right": 266.734375,
+              "bottom": 415.84375,
+              "left": 203.265625
+            }
+          },
+          {
+            "x": 12,
+            "y": 437.5,
+            "right": 158,
+            "bottom": 521,
+            "width": 146,
+            "height": 83.5,
+            "name": "光",
+            "summary": "周囲のスライムを支援",
+            "font": 10,
+            "textRect": {
+              "x": 54.984375,
+              "y": 492.34375,
+              "width": 60.015625,
+              "height": 11,
+              "top": 492.34375,
+              "right": 115,
+              "bottom": 503.34375,
+              "left": 54.984375
+            }
+          },
+          {
+            "x": 162,
+            "y": 437.5,
+            "right": 308,
+            "bottom": 521,
+            "width": 146,
+            "height": 83.5,
+            "name": "磁力",
+            "summary": "特殊マスを近くへ誘引",
+            "font": 10,
+            "textRect": {
+              "x": 204.984375,
+              "y": 492.34375,
+              "width": 60.015625,
+              "height": 11,
+              "top": 492.34375,
+              "right": 265,
+              "bottom": 503.34375,
+              "left": 204.984375
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "844x390",
+      "buff": {
+        "x": 173,
+        "y": 48,
+        "right": 343,
+        "bottom": 143,
+        "width": 170,
+        "height": 95
+      },
+      "board": {
+        "x": 255,
+        "y": 48,
+        "right": 589,
+        "bottom": 382,
+        "width": 334,
+        "height": 334
+      },
+      "buttons": [
+        {
+          "x": 542.4375,
+          "y": -0.5,
+          "right": 691.609375,
+          "bottom": 43.5,
+          "width": 149.171875,
+          "height": 44
+        },
+        {
+          "x": 46,
+          "y": 73,
+          "right": 130,
+          "bottom": 117,
+          "width": 84,
+          "height": 44
+        },
+        {
+          "x": 46,
+          "y": 121,
+          "right": 130,
+          "bottom": 165,
+          "width": 84,
+          "height": 44
+        },
+        {
+          "x": 46,
+          "y": 169,
+          "right": 130,
+          "bottom": 213,
+          "width": 84,
+          "height": 44
+        },
+        {
+          "x": 46,
+          "y": 217,
+          "right": 130,
+          "bottom": 261,
+          "width": 84,
+          "height": 44
+        },
+        {
+          "x": 46,
+          "y": 265,
+          "right": 130,
+          "bottom": 309,
+          "width": 84,
+          "height": 44
+        },
+        {
+          "x": 46,
+          "y": 313,
+          "right": 130,
+          "bottom": 357,
+          "width": 84,
+          "height": 44
+        },
+        {
+          "x": 709,
+          "y": 50,
+          "right": 803,
+          "bottom": 144,
+          "width": 94,
+          "height": 94
+        },
+        {
+          "x": 676,
+          "y": 294,
+          "right": 836,
+          "bottom": 338,
+          "width": 160,
+          "height": 44
+        },
+        {
+          "x": 676,
+          "y": 342,
+          "right": 836,
+          "bottom": 386,
+          "width": 160,
+          "height": 44
+        }
+      ],
+      "text": "≋ 青共鳴中\nTier 5 に発動中\n氷\n×1.10\n雷\n×1.25\n自然\n×1.10",
+      "page": [
+        844,
+        390
+      ]
+    },
+    {
+      "name": "844x390",
+      "intro": {
+        "scroll": [
+          307,
+          307,
+          317,
+          317
+        ],
+        "dialog": {
+          "x": 6,
+          "y": 6,
+          "right": 838,
+          "bottom": 384
+        },
+        "cards": [
+          {
+            "x": 12,
+            "y": 90.5,
+            "right": 172.796875,
+            "bottom": 215.25,
+            "width": 160.796875,
+            "height": 124.75,
+            "name": "炎",
+            "summary": "売るときのGOLDを加算",
+            "font": 10,
+            "textRect": {
+              "x": 52.703125,
+              "y": 167.875,
+              "width": 79.390625,
+              "height": 11,
+              "top": 167.875,
+              "right": 132.09375,
+              "bottom": 178.875,
+              "left": 52.703125
+            }
+          },
+          {
+            "x": 176.796875,
+            "y": 90.5,
+            "right": 337.59375,
+            "bottom": 215.25,
+            "width": 160.796875,
+            "height": 124.75,
+            "name": "黄金",
+            "summary": "売却額を倍率で増やす",
+            "font": 10,
+            "textRect": {
+              "x": 227.1875,
+              "y": 167.875,
+              "width": 60.015625,
+              "height": 11,
+              "top": 167.875,
+              "right": 287.203125,
+              "bottom": 178.875,
+              "left": 227.1875
+            }
+          },
+          {
+            "x": 341.59375,
+            "y": 90.5,
+            "right": 502.390625,
+            "bottom": 215.25,
+            "width": 160.796875,
+            "height": 124.75,
+            "name": "闇",
+            "summary": "高額売却・消失リスク",
+            "font": 10,
+            "textRect": {
+              "x": 391.984375,
+              "y": 167.875,
+              "width": 60.015625,
+              "height": 11,
+              "top": 167.875,
+              "right": 452,
+              "bottom": 178.875,
+              "left": 391.984375
+            }
+          },
+          {
+            "x": 506.390625,
+            "y": 90.5,
+            "right": 667.1875,
+            "bottom": 215.25,
+            "width": 160.796875,
+            "height": 124.75,
+            "name": "氷",
+            "summary": "通常の生成時間を短縮",
+            "font": 10,
+            "textRect": {
+              "x": 556.78125,
+              "y": 167.875,
+              "width": 60.015625,
+              "height": 11,
+              "top": 167.875,
+              "right": 616.796875,
+              "bottom": 178.875,
+              "left": 556.78125
+            }
+          },
+          {
+            "x": 671.1875,
+            "y": 90.5,
+            "right": 832,
+            "bottom": 215.25,
+            "width": 160.8125,
+            "height": 124.75,
+            "name": "雷",
+            "summary": "タップの加速量を増やす",
+            "font": 10,
+            "textRect": {
+              "x": 718.578125,
+              "y": 167.875,
+              "width": 66.015625,
+              "height": 11,
+              "top": 167.875,
+              "right": 784.59375,
+              "bottom": 178.875,
+              "left": 718.578125
+            }
+          },
+          {
+            "x": 12,
+            "y": 219.25,
+            "right": 172.796875,
+            "bottom": 344,
+            "width": 160.796875,
+            "height": 124.75,
+            "name": "自然",
+            "summary": "貯蔵へ追加で自動生成",
+            "font": 10,
+            "textRect": {
+              "x": 62.390625,
+              "y": 296.625,
+              "width": 60.015625,
+              "height": 11,
+              "top": 296.625,
+              "right": 122.40625,
+              "bottom": 307.625,
+              "left": 62.390625
+            }
+          },
+          {
+            "x": 176.796875,
+            "y": 219.25,
+            "right": 337.59375,
+            "bottom": 344,
+            "width": 160.796875,
+            "height": 124.75,
+            "name": "幸運",
+            "summary": "属性付きの生成率UP",
+            "font": 10,
+            "textRect": {
+              "x": 225.453125,
+              "y": 296.625,
+              "width": 63.46875,
+              "height": 11,
+              "top": 296.625,
+              "right": 288.921875,
+              "bottom": 307.625,
+              "left": 225.453125
+            }
+          },
+          {
+            "x": 341.59375,
+            "y": 219.25,
+            "right": 502.390625,
+            "bottom": 344,
+            "width": 160.796875,
+            "height": 124.75,
+            "name": "変異",
+            "summary": "マージ時の変異率UP",
+            "font": 10,
+            "textRect": {
+              "x": 390.25,
+              "y": 296.625,
+              "width": 63.46875,
+              "height": 11,
+              "top": 296.625,
+              "right": 453.71875,
+              "bottom": 307.625,
+              "left": 390.25
+            }
+          },
+          {
+            "x": 506.390625,
+            "y": 219.25,
+            "right": 667.1875,
+            "bottom": 344,
+            "width": 160.796875,
+            "height": 124.75,
+            "name": "光",
+            "summary": "周囲のスライムを支援",
+            "font": 10,
+            "textRect": {
+              "x": 556.78125,
+              "y": 296.625,
+              "width": 60.015625,
+              "height": 11,
+              "top": 296.625,
+              "right": 616.796875,
+              "bottom": 307.625,
+              "left": 556.78125
+            }
+          },
+          {
+            "x": 671.1875,
+            "y": 219.25,
+            "right": 832,
+            "bottom": 344,
+            "width": 160.8125,
+            "height": 124.75,
+            "name": "磁力",
+            "summary": "特殊マスを近くへ誘引",
+            "font": 10,
+            "textRect": {
+              "x": 721.578125,
+              "y": 296.625,
+              "width": 60.015625,
+              "height": 11,
+              "top": 296.625,
+              "right": 781.59375,
+              "bottom": 307.625,
+              "left": 721.578125
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "baseline": true,
+  "browser": "134.0.6998.35",
+  "realDevices": false
+}

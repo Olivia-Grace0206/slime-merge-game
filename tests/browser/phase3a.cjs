@@ -35,7 +35,7 @@ try{
  await until(async()=>(await snap(p)).game.revision===1);const after=await snap(p);assert.equal(after.game.slimes.length,2);assert.deepEqual(after.game.slimes.map(s=>[s.id,s.tier,s.attributes]),before.game.slimes.map(s=>[s.id,s.tier,s.attributes]));assert.deepEqual(after.protectedIds,['p-1']);assert.deepEqual(after.game.slimes[0].position,{x:1,y:0});assert.equal(after.wallet.gold,before.wallet.gold);await p.reload();assert.deepEqual((await snap(p)).game,after.game)
  })
  await check(name+' touch-accessible attribute list/details with actual effects and provisional values',async()=>{
- await p.getByRole('button',{name:'属性',exact:true}).click();await p.locator('.attribute-roster button').first().click();assert((await p.locator('.panel-body').innerText()).includes('炎Lv2・黄金Lv3・氷Lv99'));assert((await p.locator('.panel-body').innerText()).includes('効果量は仮設定'));await p.screenshot({path:path.join(dir,`detail-${name}.png`)});await p.getByRole('button',{name:'閉じる',exact:true}).click()
+ await p.getByRole('button',{name:'属性紹介',exact:true}).click();await p.getByTestId('attribute-roster-open').click();await p.locator('.attribute-roster button').first().click();assert((await p.locator('.panel-body').innerText()).includes('炎Lv2・黄金Lv3・氷Lv99'));assert((await p.locator('.panel-body').innerText()).includes('効果量は仮設定'));await p.screenshot({path:path.join(dir,`detail-${name}.png`)});await p.getByRole('button',{name:'閉じる',exact:true}).click()
  })
  await check(name+' 5merge preview guarantees copied Lv + both outputs, remainder untouched',async()=>{
  await seed(p,[1,1,1,1,1,1],[[{id:'fire',level:2}],[],[],[{id:'ice',level:3}],[],[]])

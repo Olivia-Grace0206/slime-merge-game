@@ -687,3 +687,31 @@ progress::-webkit-progress-value { background: linear-gradient(90deg,#79b65b,#ab
   .attribute-intro-footer { padding-top:4px;font-size:9px; }
   .attribute-intro-footer button { min-height:30px; padding:2px 6px;font-size:10px; }
 }
+
+/* Audited placement: retain the board fit and keep transient buffs off hit areas. */
+@media(max-width:900px) and (min-height:501px){
+ .app-shell:has(.blue-buff-status) .app-header{align-items:flex-start;padding-top:0}
+ .app-shell:has(.blue-buff-status) .app-header h1{height:23px;font-size:12px}
+ .app-shell:has(.blue-buff-status) .app-header .brand-icon{width:22px;height:22px;font-size:19px;border-radius:7px}
+ .app-shell:has(.blue-buff-status) .app-header .brand-icon svg{width:19px;height:19px}
+ .app-shell:has(.blue-buff-status) .wallet{height:24px;min-height:24px;padding:1px 5px;gap:3px}
+ .app-shell:has(.blue-buff-status) .wallet .gold-bag{width:18px;height:20px}
+ .blue-buff-status{position:fixed;top:32px;bottom:auto;left:8px;right:8px;width:auto;height:18px;display:flex;align-items:center;justify-content:center;gap:5px;padding:1px 3px;border-width:1px;border-radius:6px;font-size:9px;box-shadow:none;white-space:nowrap}
+ .blue-buff-status strong,.blue-buff-status small{display:inline;font-size:9px;line-height:1}
+ .blue-buff-status ul{display:flex;gap:5px;margin:0;padding:0}
+ .blue-buff-status li{display:flex;gap:2px;margin:0;font-size:9px;line-height:1}
+ .blue-buff-status li .attribute-icon{display:none}
+ .blue-buff-status .blue-buff-note{font-size:8px}
+}
+@media(max-height:500px){
+ .normal-play .edge-menu{gap:2px}
+ .blue-buff-status{position:static;width:100%;height:50px;padding:2px 4px;font-size:9px;border-radius:9px;box-shadow:none}
+ .blue-buff-status strong,.blue-buff-status small{display:inline;font-size:9px;line-height:1}
+ .blue-buff-status ul{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;margin:2px 0}
+ .blue-buff-status li{display:flex;flex-direction:column;align-items:center;gap:0;font-size:9px;line-height:1.1;margin:0;white-space:nowrap}
+ .blue-buff-status li .attribute-icon{display:none}
+ .blue-buff-status li span{flex:0;text-align:center}
+ .blue-buff-status .blue-buff-note{display:block;font-size:8px;line-height:1}
+}
+.blue-buff-status .buff-compact{display:none}
+@media(max-width:900px) and (min-height:501px){.blue-buff-status .buff-full{display:none}.blue-buff-status .buff-compact{display:inline}.blue-buff-status li span{white-space:nowrap;flex:none}}
