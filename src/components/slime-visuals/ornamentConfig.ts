@@ -9,8 +9,8 @@ export const ORNAMENT_SLOTS: Readonly<Record<AttributeId, OrnamentSlot>> = {
   ice: { x: 25, y: 16, size: 27, angle: -12, layer: 'front' },
   lightning: { x: 89, y: 43, size: 22, angle: 9, layer: 'front' },
   nature: { x: 13, y: 32, size: 26, angle: -18, layer: 'front' },
-  luck: { x: 39, y: 35, size: 18, angle: -8, layer: 'front' },
-  mutation: { x: 61, y: 35, size: 18, angle: 8, layer: 'front' },
+  luck: { x: 39, y: 32, size: 18, angle: -8, layer: 'front' },
+  mutation: { x: 61, y: 32, size: 18, angle: 8, layer: 'front' },
   light: { x: 91, y: 80, size: 30, angle: 12, layer: 'back' },
   magnet: { x: 10, y: 58, size: 22, angle: -14, layer: 'front' },
 }

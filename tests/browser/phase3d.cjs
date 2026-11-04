@@ -26,7 +26,7 @@ async function validateArt(p,rows){
   for(const a of rows[i])assert.equal(await art.locator(`[data-decoration="${a.id}"]`).getAttribute('data-ornament-state'),a.awakened?'awakened':'normal')
   const geometry=await art.evaluate(n=>{const box=s=>[...n.querySelectorAll(s)].map(e=>e.getBoundingClientRect().toJSON());return{face:box('.eyes,.smile'),parts:box('.attribute-decoration [data-decoration]'),tier:box('.tier-pill'),badges:box('.attribute-badges'),layer:[...n.querySelectorAll('.attribute-decoration,.attribute-decoration *')].every(e=>getComputedStyle(e).pointerEvents==='none')}})
   const overlaps=(a,b)=>Math.min(a.right,b.right)>Math.max(a.x,b.x)+.2&&Math.min(a.bottom,b.bottom)>Math.max(a.y,b.y)+.2
-  assert(geometry.layer,'ornaments intercept input');assert(geometry.parts.every(part=>geometry.face.every(face=>!overlaps(part,face))),'ornament crosses protected face')
+  assert(geometry.layer,'ornaments intercept input');assert(geometry.parts.every(part=>geometry.face.every(face=>!overlaps(part,face))),'ornament crosses protected face '+JSON.stringify({row:rows[i],geometry}))
   assert(await art.locator('.tier-pill').isVisible());assert(await art.locator('.eyes').isVisible())
  }
 }
@@ -35,17 +35,62 @@ try{
  server=spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','5180','--strictPort',...(process.env.D_DIST?['--outDir',process.env.D_DIST]:[])])
  await new Promise((resolve,reject)=>{server.stdout.on('data',d=>{if(String(d).includes('Local:'))resolve()});server.on('exit',reject)})
  browser=await chromium.launch({headless:true,args:['--no-sandbox']})
- const stage=process.env.D_STAGE||'full',sizes=stage==='ten'?[[1366,768],[320,568]]:SIZES
+ const stage=process.env.D_STAGE||'full',sizes=['ten','smoke'].includes(stage)?[[1366,768],[320,568]]:SIZES
  for(const [width,height] of sizes){
  const name=`${width}x${height}`,ctx=await browser.newContext({viewport:{width,height},hasTouch:true,isMobile:width<500&&height>500}),p=await ctx.newPage();p.on('pageerror',e=>errors.push(String(e)))
  await p.clock.install({time:new Date('2026-11-04T03:00:00Z')});await p.clock.pauseAt(new Date('2026-11-04T03:00:01Z'));await p.goto('http://127.0.0.1:5180/slime-merge-game/');await p.getByTestId('board').waitFor()
- for(const tier of stage==='ten'?[1,40]:[1,4,10,20,21,30,40])for(const awake of [false,true]){
+ for(const tier of ['ten','smoke'].includes(stage)?[1,40]:[1,4,10,20,21,30,40])for(const awake of [false,true]){
  await check(`${name} Tier${tier} normal10/awake10=${awake}, triple3, protected face, no input or state mutation`,async()=>{
  const rows=IDS.map(id=>attrs([id],awake));rows.push(attrs(['fire','gold','nature'],awake),attrs(['ice','lightning','magnet'],awake),attrs(['luck','mutation','light'],awake),attrs(['dark','light','magnet'],awake),attrs(['fire','ice','nature'],awake),attrs(['luck','gold','lightning'],awake))
  const s=await seed(p,Array(16).fill(tier),rows);await validateArt(p,rows)
  assert.deepEqual(await p.evaluate(()=>[document.documentElement.scrollWidth,document.documentElement.scrollHeight]),[width,height]);assert.deepEqual((await snap(p)).game,s.game)
  const board=await p.getByTestId('board').boundingBox();metrics.push({name,tier,awake,board})
  if(stage==='ten'||[1366,390,320,844].includes(width)&&[1,21,40].includes(tier))await p.screenshot({path:path.join(dir,`${awake?'awake10':'normal10'}-tier${tier}-${name}.png`)})
+ })
+ }
+ if(stage!=='ten'){
+ await check(name+' 3 combinations, normal/each awake/both awake/third attribute and independent ranks',async()=>{
+  const pairs=[['fire','gold'],['ice','lightning'],['luck','mutation']],rows=[]
+  for(const pair of pairs)for(let mask=0;mask<4;mask++)rows.push(pair.map((id,i)=>({id,level:1,awakened:!!(mask&(1<<i))})))
+  for(const [pair,third] of pairs.map((pair,i)=>[pair,['nature','magnet','light'][i]]))rows.push([...pair.map(id=>({id,level:1,awakened:true})),{id:third,level:1}])
+  rows.push(attrs(['fire','gold','nature'],true));await seed(p,Array(16).fill(4),rows);await validateArt(p,rows);assert.equal(await p.locator('[data-synergy]').count(),16)
+  await p.screenshot({path:path.join(dir,`combinations-${name}.png`)})
+ })
+ await check(name+' ornament SVG ignores Lv1/99, reversed arrays keep complete appearance and visible badge Lv99',async()=>{
+  const row=attrs(['fire','gold','nature'],true),rows=Array.from({length:16},()=>row)
+  await seed(p,Array(16).fill(40),rows);const before=await p.locator('[data-slime-id="p-1"] .attribute-decoration').evaluateAll(n=>n.map(x=>x.outerHTML).join(''))
+  const high=rows.map(row=>row.map(a=>({...a,level:99})));await seed(p,Array(16).fill(40),high)
+  assert.equal(await p.locator('[data-slime-id="p-1"] .attribute-decoration').evaluateAll(n=>n.map(x=>x.outerHTML).join('')),before);assert((await p.locator('[data-slime-id="p-1"] .attribute-badges').innerText()).includes('99'))
+  const art=await p.locator('[data-slime-id="p-1"] .slime-art').innerHTML();await seed(p,Array(16).fill(40),high.map(a=>[...a].reverse()));assert.equal(await p.locator('[data-slime-id="p-1"] .slime-art').innerHTML(),art)
+ })
+ await check(name+' mouse/native touch drag, 5merge distribution, detail, swap, strip and reload share the same decorated Slime',async()=>{
+  const cdp=await ctx.newCDPSession(p),touch=width<900,rows=[attrs(['fire','gold','nature'],true),[],[],[],[],[]]
+  await seed(p,[1,1,1,1,1,40],rows);await p.evaluate(()=>Math.random=()=>.99)
+  await drag(p,cdp,touch,'[data-slime-id="p-1"]','[data-slime-id="p-2"]',async()=>{assert.equal(await p.locator('.drag-sprite [data-decoration]').count(),3);assert.equal(await p.getByTestId('attribute-preview').count(),1)})
+  await until(async()=>(await snap(p)).game.slimes.filter(s=>s.tier===2).length===2);const merged=(await snap(p)).game.slimes.filter(s=>s.tier===2)
+  assert.deepEqual(merged.map(s=>s.attributes.filter(a=>a.awakened).length).sort(),[0,3]);for(const slime of merged)assert.equal(await p.locator(`[data-slime-id="${slime.id}"] [data-decoration]`).count(),3)
+  await p.reload();for(const slime of merged)assert.equal(await p.locator(`[data-slime-id="${slime.id}"] [data-decoration]`).count(),3)
+  await p.getByRole('button',{name:'属性紹介',exact:true}).click();await p.getByTestId('attribute-roster-open').click();await p.locator('.attribute-roster button').filter({hasText:'Tier 2'}).first().click();assert.equal(await p.locator('.detail-slime [data-decoration]').count(),3);await p.keyboard.press('Escape')
+  const held=merged.find(s=>s.attributes.some(a=>a.awakened));await drag(p,cdp,touch,`[data-slime-id="${held.id}"]`,'[data-slime-id="p-6"]');await until(async()=>(await snap(p)).game.slimes.find(s=>s.id===held.id).position.y===1)
+  const before=(await snap(p));await drag(p,cdp,touch,`[data-slime-id="${held.id}"]`,'[data-testid="strip-zone"]');await until(async()=>(await snap(p)).game.slimes.find(s=>s.id===held.id).attributes.length===0)
+  const after=await snap(p),slime=after.game.slimes.find(s=>s.id===held.id);assert.deepEqual(slime.position,before.game.slimes.find(s=>s.id===held.id).position);assert.equal(after.wallet.gold,before.wallet.gold);assert.equal(after.game.slimes.length,before.game.slimes.length);assert.equal(await p.locator(`[data-slime-id="${held.id}"] [data-decoration], [data-slime-id="${held.id}"] .awakening-aura`).count(),0);await p.reload();assert.equal(await p.locator(`[data-slime-id="${held.id}"] [data-decoration]`).count(),0)
+ })
+ await check(name+' pointercancel/Escape and two-finger pinch cancel decorated drag without touching game',async()=>{
+  const cdp=await ctx.newCDPSession(p),touch=width<900,s=await seed(p,[1,4],[attrs(['fire','ice','nature'],true),[]]);const from=await center(p,'[data-slime-id="p-1"]'),to=await center(p,'[data-slime-id="p-2"]')
+  await pointer(p,cdp,touch,'down',from);await pointer(p,cdp,touch,'move',to);assert.equal(await p.locator('.drag-sprite [data-decoration]').count(),3);await pointer(p,cdp,touch,'cancel');await until(async()=>await p.locator('.drag-sprite').count()===0);assert.deepEqual((await snap(p)).game,s.game)
+  if(touch){await pointer(p,cdp,true,'down',from);await pointer(p,cdp,true,'move',to);await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{...to,id:0},{x:to.x+40,y:to.y+40,id:1}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await until(async()=>await p.locator('.drag-sprite').count()===0);assert.deepEqual((await snap(p)).game,s.game)}
+ })
+ await check(name+' appearance preview selects3 attributes/individual flags for all40 Tiers, no save writes, keyboard escape',async()=>{
+  await seed(p,[40],[attrs(['fire','gold','nature'],true)]);const raw=await p.evaluate(k=>localStorage.getItem(k),key);await p.getByRole('button',{name:'スライム一覧・外見確認',exact:true}).click()
+  assert.equal(await p.locator('[data-preview-tier]').count(),40);assert.equal(await p.locator('[data-preview-tier] [data-decoration]').count(),0)
+  for(const id of ['fire','gold','nature'])await p.getByTestId('visual-select-'+id).check();for(const id of ['fire','gold'])await p.getByTestId('visual-awaken-'+id).check()
+  assert(await p.getByTestId('visual-select-ice').isDisabled());assert.equal(await p.locator('[data-preview-tier] [data-decoration]').count(),120);assert.equal(await p.locator('[data-preview-tier] [data-ornament-state="awakened"]').count(),80);assert.equal(await p.locator('[data-preview-tier] [data-synergy]').count(),40)
+  assert.equal(await p.evaluate(k=>localStorage.getItem(k),key),raw);if([1366,390,320].includes(width))await p.screenshot({path:path.join(dir,`appearance-${name}.png`)});await p.keyboard.press('Escape');assert.equal(await p.locator('dialog[open]').count(),0)
+ })
+ await check(name+' reduced effects/reduced motion preserve3 shapes and3 stars, wheel zoom keeps geometry without page scroll',async()=>{
+  await seed(p,Array(16).fill(40),Array.from({length:16},()=>attrs(['fire','gold','nature'],true)));await p.emulateMedia({reducedMotion:'reduce'})
+  assert.equal(await p.locator('[data-decoration]').count(),48);assert.equal(await p.getByTestId('awakening-rank').count(),16);assert(await p.locator('.awakening-aura').evaluateAll(n=>n.every(x=>getComputedStyle(x).animationName==='none')))
+  if([1366,390,320].includes(width))await p.screenshot({path:path.join(dir,`reduced-${name}.png`)});const at=await center(p,'[data-testid="board"]');await p.mouse.move(at.x,at.y);await p.mouse.wheel(0,-240);assert.equal(await p.locator('[data-decoration]').count(),48);assert.deepEqual(await p.evaluate(()=>[document.documentElement.scrollWidth,document.documentElement.scrollHeight]),[width,height])
  })
  }
  await ctx.close()

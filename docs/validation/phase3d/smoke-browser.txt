@@ -1,0 +1,22 @@
+(node:61) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS 1366x768 Tier1 normal10/awake10=false, triple3, protected face, no input or state mutation
+PASS 1366x768 Tier1 normal10/awake10=true, triple3, protected face, no input or state mutation
+PASS 1366x768 Tier40 normal10/awake10=false, triple3, protected face, no input or state mutation
+PASS 1366x768 Tier40 normal10/awake10=true, triple3, protected face, no input or state mutation
+PASS 1366x768 3 combinations, normal/each awake/both awake/third attribute and independent ranks
+PASS 1366x768 ornament SVG ignores Lv1/99, reversed arrays keep complete appearance and visible badge Lv99
+PASS 1366x768 mouse/native touch drag, 5merge distribution, detail, swap, strip and reload share the same decorated Slime
+PASS 1366x768 pointercancel/Escape and two-finger pinch cancel decorated drag without touching game
+PASS 1366x768 appearance preview selects3 attributes/individual flags for all40 Tiers, no save writes, keyboard escape
+PASS 1366x768 reduced effects/reduced motion preserve3 shapes and3 stars, wheel zoom keeps geometry without page scroll
+PASS 320x568 Tier1 normal10/awake10=false, triple3, protected face, no input or state mutation
+PASS 320x568 Tier1 normal10/awake10=true, triple3, protected face, no input or state mutation
+PASS 320x568 Tier40 normal10/awake10=false, triple3, protected face, no input or state mutation
+PASS 320x568 Tier40 normal10/awake10=true, triple3, protected face, no input or state mutation
+PASS 320x568 3 combinations, normal/each awake/both awake/third attribute and independent ranks
+PASS 320x568 ornament SVG ignores Lv1/99, reversed arrays keep complete appearance and visible badge Lv99
+PASS 320x568 mouse/native touch drag, 5merge distribution, detail, swap, strip and reload share the same decorated Slime
+PASS 320x568 pointercancel/Escape and two-finger pinch cancel decorated drag without touching game
+PASS 320x568 appearance preview selects3 attributes/individual flags for all40 Tiers, no save writes, keyboard escape
+PASS 320x568 reduced effects/reduced motion preserve3 shapes and3 stars, wheel zoom keeps geometry without page scroll

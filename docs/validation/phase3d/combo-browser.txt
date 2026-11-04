@@ -1,0 +1,9 @@
+(node:4) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS 1366x768 Tier1 normal10/awake10=false, triple3, protected face, no input or state mutation
+PASS 1366x768 Tier1 normal10/awake10=true, triple3, protected face, no input or state mutation
+PASS 1366x768 Tier40 normal10/awake10=false, triple3, protected face, no input or state mutation
+PASS 1366x768 Tier40 normal10/awake10=true, triple3, protected face, no input or state mutation
+PASS 320x568 Tier1 normal10/awake10=false, triple3, protected face, no input or state mutation
+PASS 320x568 Tier1 normal10/awake10=true, triple3, protected face, no input or state mutation
+PASS 320x568 Tier40 normal10/awake10=false, triple3, protected face, no input or state mutation
