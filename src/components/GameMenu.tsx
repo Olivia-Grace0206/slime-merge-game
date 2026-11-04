@@ -1,7 +1,6 @@
 import { useEffect, useRef, type ReactNode } from 'react'
-import { MAX_TIER } from '../domain/game'
 import { PRESETS, type PresetId } from '../app/presets'
-import { Slime } from './Slime'
+import { SlimeVisualGallery } from './SlimeVisualGallery'
 export type Panel = 'help' | 'presets' | 'appearance' | 'settings' | 'shop' | 'slime' | 'attributes'
 const TITLES: Record<Panel, string> = { attributes: '属性紹介', help: '遊び方', presets: '検証用プリセット', appearance: 'スライム一覧・外見確認', settings: '表示設定', shop: 'GOLDショップ', slime: 'スライム詳細' }
 export function GameMenu({ panel, onClose, preset, onPreset, reducedEffects, onEffects, onZoom, onResetCamera, extra, normal, onNormal }: {
@@ -37,10 +36,7 @@ export function GameMenu({ panel, onClose, preset, onPreset, reducedEffects, onE
         <button type="button" className="reset-button" onClick={() => onPreset('five')}>盤面リセット</button>
         <p className="muted">高Tier試験：Tier 39→40とTier 40上限。通常配置の最高到達Tierは1、高Tier配置は40。</p>
       </>}
-      {panel === 'appearance' && <>
-        <p className="muted">全40段階のデザイン試作です。正式な配色・名称・完成イラストの承認とは別です。</p>
-        {[['通常・単色', 1], ['模様', 11], ['宝石・発光', 21], ['星・カオス・超越', 31]].map(([label, start]) => <section key={start} className="tier-section"><h3>{label} · Tier {start}〜{Number(start) + 9}</h3><div className="tier-gallery">{Array.from({ length: 10 }, (_, i) => Number(start) + i).map(tier => <figure key={tier} data-preview-tier={tier}><div className="gallery-slime"><Slime tier={tier} /></div><figcaption>Tier {tier}{tier === 30 ? ' · 虹' : tier === MAX_TIER ? ' · 最終' : ''}</figcaption></figure>)}</div></section>)}
-      </>}
+      {panel === 'appearance' && <SlimeVisualGallery />}
       {panel === 'settings' && <>
         <div className="camera-actions" role="group" aria-label="表示操作">
           <button type="button" aria-label="縮小" onClick={() => onZoom(-1)}>−</button>

@@ -1,0 +1,129 @@
+{
+  "checks": [
+    {
+      "name": "1366x768 Tier1 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 Tier1 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 Tier40 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 Tier40 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 Tier1 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 Tier1 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 Tier40 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 Tier40 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    }
+  ],
+  "errors": [],
+  "metrics": [
+    {
+      "name": "1366x768",
+      "tier": 1,
+      "awake": false,
+      "board": {
+        "x": 334,
+        "y": 60,
+        "width": 698,
+        "height": 698
+      }
+    },
+    {
+      "name": "1366x768",
+      "tier": 1,
+      "awake": true,
+      "board": {
+        "x": 334,
+        "y": 60,
+        "width": 698,
+        "height": 698
+      }
+    },
+    {
+      "name": "1366x768",
+      "tier": 40,
+      "awake": false,
+      "board": {
+        "x": 334,
+        "y": 60,
+        "width": 698,
+        "height": 698
+      }
+    },
+    {
+      "name": "1366x768",
+      "tier": 40,
+      "awake": true,
+      "board": {
+        "x": 334,
+        "y": 60,
+        "width": 698,
+        "height": 698
+      }
+    },
+    {
+      "name": "320x568",
+      "tier": 1,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 66,
+        "width": 304,
+        "height": 304
+      }
+    },
+    {
+      "name": "320x568",
+      "tier": 1,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 66,
+        "width": 304,
+        "height": 304
+      }
+    },
+    {
+      "name": "320x568",
+      "tier": 40,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 66,
+        "width": 304,
+        "height": 304
+      }
+    },
+    {
+      "name": "320x568",
+      "tier": 40,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 66,
+        "width": 304,
+        "height": 304
+      }
+    }
+  ],
+  "browser": "134.0.6998.35",
+  "realDevices": false
+}
