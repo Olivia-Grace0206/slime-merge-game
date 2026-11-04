@@ -87,6 +87,10 @@ BROWSER_DIST=dist BROWSER_ARTIFACT_DIR=docs/validation/phase3d/performance node 
 
 ブラウザ実行中に同じdistを書き換えない。今回は最終Buildとバイト一致する外部コピーを固定して使用。port5173〜5183を使用する。試験は隔離ブラウザのローカルfixtureだけに保存し、公開URLやユーザー実セーブへ書き込まない。
 
+## 実機試遊の環境
+
+既存SessionStoreはWeb Locksのない環境で保存操作を拒否する。Windowsはlocalhost、iPhone実機はHTTPSでブランチを配信した環境を使う。LAN内HTTP IPだけでは保存操作を試せない。これは既存の安全性要件であり今回変更しない。公開Pagesはmainのまま、新しい配信先の作成は今回行っていない。
+
 ## 未確認
 
 Windows/iPhone実機、Edge/Safari/Firefox、スクリーンリーダーの実利用は未確認。最小画面では融合細部・DNAの色分けは拡大時ほど見えず、主要形状と既存アイコン/Lv/詳細で補完する。16体試験の範囲で重大な描画/入力不具合は未検出。具体配色・座標・形状は暫定デザインで、試遊後に限定調整する。64体通常演出の負荷は将来Phase4前の課題。
