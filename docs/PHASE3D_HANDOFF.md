@@ -1,3 +1,26 @@
+# Phase3D 完成版引き継ぎ — 2026-11-04 JST
+
+起点main1291226a67a25df254301d1f3e41e0cc46efdc1b。新規feature/phase03d-attribute-visual-composition、[Draft PR16](https://github.com/Olivia-Grace0206/slime-merge-game/pull/16)。最終HEAD/同SHA CIはPR本文で照合する。ユーザー承認前にmain/公開Pagesを更新しない。
+
+10通常＋10覚醒、既存3複合を実装。属性Lvは装飾を変えず、バッジLvを保持。固定ID順、各属性awakened、既存オーラ0〜3、顔/Tier/冠を維持。外見メニューには保存しない最大3属性/個別覚醒の確認スイッチがある。
+
+最終Lint・941 Vitest/30ファイル・Build/型チェック成功。ブラウザ982件/15スイート、10サイズ、全40無属性ピクセル一致、全45ペア/120トリプル/1140覚醒マスクを確認。Core等33ファイル不変、schema7/頻度/数値の変更なし。画像22枚と全生レポートは[検証](validation/phase3d/RESULTS.md)、形状/位置/レイヤーは[追補](specifications/Phase3D_Visual_Addendum_2026-11-04.md)。
+
+## 試遊・再開
+
+1. PR16のブランチを取得、Node22/npm10でnpm ci → npm run dev -- --host。公開URLはmainのままなのでブランチの開発サーバーで試遊する。
+2. 外見メニューで炎/氷/自然→残り7属性を選択。各覚醒スイッチで通常との差、個別反映を確認。
+3. 炎＋黄金、氷＋雷、幸運＋変異をそれぞれ通常/片方/両方覚醒で確認。第3属性も選び、Tier1/4/21/30/40を比較。
+4. 通常盤面でドラッグ/合成/交換/無料解除/詳細/軽減/ズームを試す。Lvはバッジだけに反映される。
+5. Windows/iPhoneの実機試遊は未実施。文字/指/融合細部の見え方を評価し、限定修正後にマージ可否を判断する。
+
+64体は開発用DOM描画だけで、ゲームの土地拡張ではない。通常演出約47ms/軽減約17msの短時間標本。Phase4で可視範囲/既存オーラを含む最適化を検討。実機60FPSや64体のReact/Core性能は保証していない。
+
+旧テストphase3cの保存前判定を修正し全80件再試験。最初の失敗も残し、最終集計では二重加算しない。実行は凍結本番Buildを使い、途中で同じdistを書き換えない。
+
+---
+以下は段階的Checkpointの制作記録（当時の未完成表記を保全）。
+
 # Phase3D 再開記録 — 2026-11-04 JST
 
 最新main1291226aから新規feature/phase03d-attribute-visual-compositionを作成。main/Pages更新禁止。Checkpoint A:描画監査と固定スロット/純粋合成基盤を追加。未完成。炎/氷/自然の試作→実描画→残り7→3複合→全組み合わせ/全Tier/10サイズ/回帰→完成Draft PRの順。

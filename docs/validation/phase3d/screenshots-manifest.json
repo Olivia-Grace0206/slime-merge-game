@@ -1,0 +1,335 @@
+[
+  {
+    "file": "docs/validation/phase3d/screenshots/normal-10-atlas.webp",
+    "sources": [
+      "docs/validation/phase3d/browser/normal10-tier1-1366x768.png"
+    ],
+    "processing": "actual game cell crops, arranged 5×2 with labels; no artwork changes",
+    "lossless": true,
+    "dimensions": [
+      900,
+      460
+    ],
+    "bytes": 81628,
+    "sha256": "8a828b5babbc30e943ee375f056b69cf61c0d9b6867feae14e5e9ba73e17d438",
+    "gitBlob": "046f801bd86add4b7dfb52b0ad14b6813cff19f2"
+  },
+  {
+    "file": "docs/validation/phase3d/screenshots/awakened-10-atlas.webp",
+    "sources": [
+      "docs/validation/phase3d/browser/awake10-tier1-1366x768.png"
+    ],
+    "processing": "actual game cell crops, arranged 5×2 with labels; no artwork changes",
+    "lossless": true,
+    "dimensions": [
+      900,
+      460
+    ],
+    "bytes": 267902,
+    "sha256": "b696bcfad8015f1bcdbf07407d20ba574a314c6a79394a7c10b25a1b170c9740",
+    "gitBlob": "1a3bcfe6546c731ea6539ecf74990bc76c17bff3"
+  },
+  {
+    "file": "docs/validation/phase3d/screenshots/combo-golden-flame.webp",
+    "sources": [
+      "docs/validation/phase3d/browser/combinations-1366x768.png"
+    ],
+    "processing": "actual game cells: normal, first awake, second awake, both awake, third attribute",
+    "lossless": true,
+    "dimensions": [
+      900,
+      240
+    ],
+    "bytes": 125648,
+    "sha256": "723f691d25600e720a31667c7fa90eb9f7f4114994b04998cd73c7cee7594917",
+    "gitBlob": "548102f05a821f1b4b0e580c004a57801cc6c839"
+  },
+  {
+    "file": "docs/validation/phase3d/screenshots/combo-charged-ice.webp",
+    "sources": [
+      "docs/validation/phase3d/browser/combinations-1366x768.png"
+    ],
+    "processing": "actual game cells: normal, first awake, second awake, both awake, third attribute",
+    "lossless": true,
+    "dimensions": [
+      900,
+      240
+    ],
+    "bytes": 130250,
+    "sha256": "9ce7c2066719a5c879dd06156150a98eb3a3307fbd5e211a5b9def1476f91599",
+    "gitBlob": "3128785969a2ad7483c3b127f333ba0149a916ea"
+  },
+  {
+    "file": "docs/validation/phase3d/screenshots/combo-helix-clover.webp",
+    "sources": [
+      "docs/validation/phase3d/browser/combinations-1366x768.png"
+    ],
+    "processing": "actual game cells: normal, first awake, second awake, both awake, third attribute",
+    "lossless": true,
+    "dimensions": [
+      900,
+      240
+    ],
+    "bytes": 137698,
+    "sha256": "355b5385c0153337312664e25427f6e4b16c7e5c9192f86c75412618923ba557",
+    "gitBlob": "1daf63ec0f503e4e2381a3e80b0b0f60acc395e7"
+  },
+  {
+    "file": "docs/validation/phase3d/screenshots/game-1920x1080.webp",
+    "sources": [
+      "docs/validation/phase3d/browser/combinations-1920x1080.png"
+    ],
+    "processing": "actual complete game screenshot; original dimensions, quality92 WebP",
+    "lossless": false,
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "bytes": 255638,
+    "sha256": "3551edcc5e04252ccae75459fa1d8fd1b8d8b4a8e2b0daa150302254e168ff19",
+    "gitBlob": "7195f6571e604a0ca636f0c29ddf4bdf0cbf7f94"
+  },
+  {
+    "file": "docs/validation/phase3d/screenshots/game-1440x900.webp",
+    "sources": [
+      "docs/validation/phase3d/browser/combinations-1440x900.png"
+    ],
+    "processing": "actual complete game screenshot; original dimensions, quality92 WebP",
+    "lossless": false,
+    "dimensions": [
+      1440,
+      900
+    ],
+    "bytes": 203192,
+    "sha256": "7683a0f9aef2066279bc6aafeebd6990379169bd16b2bcc5f646ec563c7de3f6",
+    "gitBlob": "0a979a6860952a154c132894fc06fa97d52f9d39"
+  },
+  {
+    "file": "docs/validation/phase3d/screenshots/game-1366x768.webp",
+    "sources": [
+      "docs/validation/phase3d/browser/combinations-1366x768.png"
+    ],
+    "processing": "actual complete game screenshot; original dimensions, quality92 WebP",
+    "lossless": false,
+    "dimensions": [
+      1366,
+      768
+    ],
+    "bytes": 151240,
+    "sha256": "d4871c493ae147ce68a4f41cce02a5dad17a0217ceb7ee61e3e9489201e0c01f",
+    "gitBlob": "e162c26d9b97f8573f7f2908cabcd662dfec36a1"
+  },
+  {
+    "file": "docs/validation/phase3d/screenshots/game-1280x720.webp",
+    "sources": [
+      "docs/validation/phase3d/browser/combinations-1280x720.png"
+    ],
+    "processing": "actual complete game screenshot; original dimensions, quality92 WebP",
+    "lossless": false,
+    "dimensions": [
+      1280,
+      720
+    ],
+    "bytes": 140350,
+    "sha256": "d9c0c831a7ebeeb9fb74d12af064da2242220f0d1ec59850221a10bb58e97ef7",
+    "gitBlob": "2cc740e6ad6ae5fa9bb04d54f88a401f4ceff5b2"
+  },
+  {
+    "file": "docs/validation/phase3d/screenshots/game-1024x768.webp",
+    "sources": [
+      "docs/validation/phase3d/browser/combinations-1024x768.png"
+    ],
+    "processing": "actual complete game screenshot; original dimensions, quality92 WebP",
+    "lossless": false,
+    "dimensions": [
+      1024,
+      768
+    ],
+    "bytes": 131746,
+    "sha256": "13447f0bcb5224bdadba2c2eb2fddd40255156ef7fd6f8e47c7edddcb41c3cdb",
+    "gitBlob": "375410a5bc63208710312e755d0640c6df0ec867"
+  },
+  {
+    "file": "docs/validation/phase3d/screenshots/game-768x1024.webp",
+    "sources": [
+      "docs/validation/phase3d/browser/combinations-768x1024.png"
+    ],
+    "processing": "actual complete game screenshot; original dimensions, quality92 WebP",
+    "lossless": false,
+    "dimensions": [
+      768,
+      1024
+    ],
+    "bytes": 162020,
+    "sha256": "56e851388db0276c8d6896f28805e1bd611f6b637feb251ee3a61c84930c1402",
+    "gitBlob": "8c2f3fc364d559446f88c13660cfc56d5ef2009d"
+  },
+  {
+    "file": "docs/validation/phase3d/screenshots/game-390x844.webp",
+    "sources": [
+      "docs/validation/phase3d/browser/combinations-390x844.png"
+    ],
+    "processing": "actual complete game screenshot; original dimensions, quality92 WebP",
+    "lossless": false,
+    "dimensions": [
+      390,
+      844
+    ],
+    "bytes": 72836,
+    "sha256": "a0948f952dbb8a96cd27d97857ac37fd64540323d4ddc29c44b41dfc3f31c61b",
+    "gitBlob": "8c249847b69e465f4255081d2b8488c00e28e944"
+  },
+  {
+    "file": "docs/validation/phase3d/screenshots/game-375x667.webp",
+    "sources": [
+      "docs/validation/phase3d/browser/combinations-375x667.png"
+    ],
+    "processing": "actual complete game screenshot; original dimensions, quality92 WebP",
+    "lossless": false,
+    "dimensions": [
+      375,
+      667
+    ],
+    "bytes": 68634,
+    "sha256": "df96afb724243ffa0474f0911faf16d6a83e086c1bce0572073676ea2b70d396",
+    "gitBlob": "93893d13d0fd4841788a7819825cfb5990d51a9d"
+  },
+  {
+    "file": "docs/validation/phase3d/screenshots/game-320x568.webp",
+    "sources": [
+      "docs/validation/phase3d/browser/combinations-320x568.png"
+    ],
+    "processing": "actual complete game screenshot; original dimensions, quality92 WebP",
+    "lossless": false,
+    "dimensions": [
+      320,
+      568
+    ],
+    "bytes": 55196,
+    "sha256": "84e1a27718126bf84f4e57d40a1c87e5d5c5db478d3b4510336cd2a797316aec",
+    "gitBlob": "08113bc0411c6a7cadb0336b6c8abbf85a5a0c95"
+  },
+  {
+    "file": "docs/validation/phase3d/screenshots/game-844x390.webp",
+    "sources": [
+      "docs/validation/phase3d/browser/combinations-844x390.png"
+    ],
+    "processing": "actual complete game screenshot; original dimensions, quality92 WebP",
+    "lossless": false,
+    "dimensions": [
+      844,
+      390
+    ],
+    "bytes": 64890,
+    "sha256": "4445eedc0a38e602527673388338d574f7bbfc2a0cf963b6be05b4df626d729a",
+    "gitBlob": "187b9dceef28f274afce756ecfba0969c7918ea0"
+  },
+  {
+    "file": "docs/validation/phase3d/screenshots/prototype-1366x768.webp",
+    "sources": [
+      "docs/validation/phase3d/prototype/prototype-1366x768.png"
+    ],
+    "processing": "Checkpoint B actual fire/ice/nature prototype screenshot, quality92 WebP",
+    "lossless": false,
+    "dimensions": [
+      1366,
+      768
+    ],
+    "bytes": 132196,
+    "sha256": "144006d7679b9d7f99e6de7e36f895abf1c57be309b4d2edcbcaef96de7ee260",
+    "gitBlob": "d384c458a5eba8115173f91193bae957cd9129d8"
+  },
+  {
+    "file": "docs/validation/phase3d/screenshots/prototype-320x568.webp",
+    "sources": [
+      "docs/validation/phase3d/prototype/prototype-320x568.png"
+    ],
+    "processing": "Checkpoint B actual fire/ice/nature prototype screenshot, quality92 WebP",
+    "lossless": false,
+    "dimensions": [
+      320,
+      568
+    ],
+    "bytes": 50080,
+    "sha256": "4ff5f7d03ba84fe0b8cd258aec872d4392b3471a3bce3ff02771ec05607afd93",
+    "gitBlob": "73aeec28b765e2ad112bc57599d0f3f682ef2386"
+  },
+  {
+    "file": "docs/validation/phase3d/screenshots/before-after-1366x768.webp",
+    "sources": [
+      "docs/validation/phase3d/compare/decorated-before-1366x768.png",
+      "docs/validation/phase3d/compare/decorated-after-1366x768.png"
+    ],
+    "processing": "actual screenshots cropped to same board, top/bottom comparison; labelled, PC scaled650px wide, quality92 WebP",
+    "lossless": false,
+    "dimensions": [
+      650,
+      1368
+    ],
+    "bytes": 218852,
+    "sha256": "e2269c07a4c5a2f4c2e00f329eb194461324105f58771ca8e7c17d821a9ea505",
+    "gitBlob": "6cb87ba86fd311ca828d6825745d49efc9c40c79"
+  },
+  {
+    "file": "docs/validation/phase3d/screenshots/before-after-320x568.webp",
+    "sources": [
+      "docs/validation/phase3d/compare/decorated-before-320x568.png",
+      "docs/validation/phase3d/compare/decorated-after-320x568.png"
+    ],
+    "processing": "actual screenshots cropped to same board, top/bottom comparison; labelled, PC scaled650px wide, quality92 WebP",
+    "lossless": false,
+    "dimensions": [
+      400,
+      676
+    ],
+    "bytes": 81928,
+    "sha256": "bd116ce89c49d2df42bfdde01fd46dca94b4cf1e56c002c60cb50192dc9e1f4f",
+    "gitBlob": "f28a78cf43a1c593aef294889d160f9f6ee1c58d"
+  },
+  {
+    "file": "docs/validation/phase3d/screenshots/tier40-three-awake.webp",
+    "sources": [
+      "docs/validation/phase3d/browser/awake10-tier40-1366x768.png"
+    ],
+    "processing": "actual cell with fire/gold/nature, all3 awake",
+    "lossless": true,
+    "dimensions": [
+      175,
+      175
+    ],
+    "bytes": 33498,
+    "sha256": "378ede57314a0e9dbe0579c4a77c9bd5e8c67e5e9fb1dd4967e1ee2b929b77b1",
+    "gitBlob": "153e306cd06440f0db2e6d291bb4e5bcb31f37de"
+  },
+  {
+    "file": "docs/validation/phase3d/screenshots/reduced-390x844.webp",
+    "sources": [
+      "docs/validation/phase3d/browser/reduced-390x844.png"
+    ],
+    "processing": "actual reduced effects + reduced motion game screenshot",
+    "lossless": false,
+    "dimensions": [
+      390,
+      844
+    ],
+    "bytes": 82602,
+    "sha256": "b4217d7bda1c218eacc14943a9a557fc1b2ed41813ec647c94579ea7e4ccfd91",
+    "gitBlob": "a49e2f3eb35e0769dcfafd77121806200e47e177"
+  },
+  {
+    "file": "docs/validation/phase3d/screenshots/unattributed-before-after.webp",
+    "sources": [
+      "docs/validation/phase3d/compare/unattributed-before-1366x768-0.png",
+      "docs/validation/phase3d/compare/unattributed-after-1366x768-0.png"
+    ],
+    "processing": "actual pixel-identical unattributed boards, first row crops and labels",
+    "lossless": true,
+    "dimensions": [
+      698,
+      412
+    ],
+    "bytes": 39432,
+    "sha256": "3e1afd44f0fd345ae315f0294ebb1c27d2ab8911742711525c2ffb5e8e6c4a8f",
+    "gitBlob": "f8bf9197da82a10b21b502263a1135cbf2fcaf0a"
+  }
+]

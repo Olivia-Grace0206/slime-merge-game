@@ -1,0 +1,33 @@
+(node:4) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[
+  {
+    name: '1366x768 batch0: unchanged Tier1-16 pixels',
+    result: 'PASS'
+  },
+  {
+    name: '1366x768 batch1: unchanged Tier17-32 pixels',
+    result: 'PASS'
+  },
+  {
+    name: '1366x768 batch2: unchanged Tier33-40 pixels',
+    result: 'PASS'
+  },
+  {
+    name: '1366x768 sameTier/sameattributes/sameawakening before/after appearance differs',
+    result: 'PASS'
+  },
+  { name: '320x568 batch0: unchanged Tier1-16 pixels', result: 'PASS' },
+  {
+    name: '320x568 batch1: unchanged Tier17-32 pixels',
+    result: 'PASS'
+  },
+  {
+    name: '320x568 batch2: unchanged Tier33-40 pixels',
+    result: 'PASS'
+  },
+  {
+    name: '320x568 sameTier/sameattributes/sameawakening before/after appearance differs',
+    result: 'PASS'
+  }
+]

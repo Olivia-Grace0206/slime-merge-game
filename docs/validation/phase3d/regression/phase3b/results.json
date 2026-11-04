@@ -1,0 +1,736 @@
+{
+  "checks": [
+    {
+      "name": "1920x1080 normal/focus buttons reachable without shrinking board or page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 mode toggle and reload keep10 materials; focus consumes exactly10 once",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 attributed/high Tier stock included and FIFO count enables the mode",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 full board rejects focus without spending FIFO stock",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 dark risk preview consumes no draw; group loss keeps both bodies/other attributes",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 actual sale quote and price tags include fire/gold/dark and equal receipt",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 ice/lightning/luck/combo summaries and actual Lv effects are readable",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 nature additional production is stored once and survives reload",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 normal/focus buttons reachable without shrinking board or page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 mode toggle and reload keep10 materials; focus consumes exactly10 once",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 attributed/high Tier stock included and FIFO count enables the mode",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 full board rejects focus without spending FIFO stock",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 dark risk preview consumes no draw; group loss keeps both bodies/other attributes",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 actual sale quote and price tags include fire/gold/dark and equal receipt",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 ice/lightning/luck/combo summaries and actual Lv effects are readable",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 nature additional production is stored once and survives reload",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 normal/focus buttons reachable without shrinking board or page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 mode toggle and reload keep10 materials; focus consumes exactly10 once",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 attributed/high Tier stock included and FIFO count enables the mode",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 full board rejects focus without spending FIFO stock",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 dark risk preview consumes no draw; group loss keeps both bodies/other attributes",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 actual sale quote and price tags include fire/gold/dark and equal receipt",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 ice/lightning/luck/combo summaries and actual Lv effects are readable",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 nature additional production is stored once and survives reload",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 normal/focus buttons reachable without shrinking board or page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 mode toggle and reload keep10 materials; focus consumes exactly10 once",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 attributed/high Tier stock included and FIFO count enables the mode",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 full board rejects focus without spending FIFO stock",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 dark risk preview consumes no draw; group loss keeps both bodies/other attributes",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 actual sale quote and price tags include fire/gold/dark and equal receipt",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 ice/lightning/luck/combo summaries and actual Lv effects are readable",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 nature additional production is stored once and survives reload",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 normal/focus buttons reachable without shrinking board or page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 mode toggle and reload keep10 materials; focus consumes exactly10 once",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 attributed/high Tier stock included and FIFO count enables the mode",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 full board rejects focus without spending FIFO stock",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 dark risk preview consumes no draw; group loss keeps both bodies/other attributes",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 actual sale quote and price tags include fire/gold/dark and equal receipt",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 ice/lightning/luck/combo summaries and actual Lv effects are readable",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 nature additional production is stored once and survives reload",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 normal/focus buttons reachable without shrinking board or page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 mode toggle and reload keep10 materials; focus consumes exactly10 once",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 attributed/high Tier stock included and FIFO count enables the mode",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 full board rejects focus without spending FIFO stock",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 dark risk preview consumes no draw; group loss keeps both bodies/other attributes",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 actual sale quote and price tags include fire/gold/dark and equal receipt",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 ice/lightning/luck/combo summaries and actual Lv effects are readable",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 nature additional production is stored once and survives reload",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 normal/focus buttons reachable without shrinking board or page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 mode toggle and reload keep10 materials; focus consumes exactly10 once",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 attributed/high Tier stock included and FIFO count enables the mode",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 full board rejects focus without spending FIFO stock",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 dark risk preview consumes no draw; group loss keeps both bodies/other attributes",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 actual sale quote and price tags include fire/gold/dark and equal receipt",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 ice/lightning/luck/combo summaries and actual Lv effects are readable",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 nature additional production is stored once and survives reload",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 normal/focus buttons reachable without shrinking board or page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 mode toggle and reload keep10 materials; focus consumes exactly10 once",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 attributed/high Tier stock included and FIFO count enables the mode",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 full board rejects focus without spending FIFO stock",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 dark risk preview consumes no draw; group loss keeps both bodies/other attributes",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 actual sale quote and price tags include fire/gold/dark and equal receipt",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 ice/lightning/luck/combo summaries and actual Lv effects are readable",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 nature additional production is stored once and survives reload",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 normal/focus buttons reachable without shrinking board or page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 mode toggle and reload keep10 materials; focus consumes exactly10 once",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 attributed/high Tier stock included and FIFO count enables the mode",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 full board rejects focus without spending FIFO stock",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 dark risk preview consumes no draw; group loss keeps both bodies/other attributes",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 actual sale quote and price tags include fire/gold/dark and equal receipt",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 ice/lightning/luck/combo summaries and actual Lv effects are readable",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 nature additional production is stored once and survives reload",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 normal/focus buttons reachable without shrinking board or page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 mode toggle and reload keep10 materials; focus consumes exactly10 once",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 attributed/high Tier stock included and FIFO count enables the mode",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 full board rejects focus without spending FIFO stock",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 dark risk preview consumes no draw; group loss keeps both bodies/other attributes",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 actual sale quote and price tags include fire/gold/dark and equal receipt",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 ice/lightning/luck/combo summaries and actual Lv effects are readable",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 nature additional production is stored once and survives reload",
+      "result": "PASS"
+    },
+    {
+      "name": "3merge risk label does not promise two outputs",
+      "result": "PASS"
+    },
+    {
+      "name": "focus Quota preserves original materials/mode/UI; reload and native click execute once",
+      "result": "PASS"
+    }
+  ],
+  "errors": [],
+  "measurements": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "scroll": [
+        1920,
+        1080
+      ],
+      "board": {
+        "x": 455,
+        "y": 60,
+        "w": 1010,
+        "h": 1010,
+        "right": 1465,
+        "bottom": 1070
+      },
+      "mode": {
+        "x": 1855,
+        "y": 351,
+        "w": 44,
+        "h": 54,
+        "right": 1899,
+        "bottom": 405
+      },
+      "tap": {
+        "x": 1745,
+        "y": 351,
+        "w": 107,
+        "h": 54,
+        "right": 1852,
+        "bottom": 405
+      },
+      "add": {
+        "x": 1747,
+        "y": 112,
+        "w": 150,
+        "h": 150,
+        "right": 1897,
+        "bottom": 262
+      }
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "scroll": [
+        1440,
+        900
+      ],
+      "board": {
+        "x": 305,
+        "y": 60,
+        "w": 830,
+        "h": 830,
+        "right": 1135,
+        "bottom": 890
+      },
+      "mode": {
+        "x": 1375,
+        "y": 351,
+        "w": 44,
+        "h": 54,
+        "right": 1419,
+        "bottom": 405
+      },
+      "tap": {
+        "x": 1265,
+        "y": 351,
+        "w": 107,
+        "h": 54,
+        "right": 1372,
+        "bottom": 405
+      },
+      "add": {
+        "x": 1267,
+        "y": 112,
+        "w": 150,
+        "h": 150,
+        "right": 1417,
+        "bottom": 262
+      }
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "scroll": [
+        1366,
+        768
+      ],
+      "board": {
+        "x": 334,
+        "y": 60,
+        "w": 698,
+        "h": 698,
+        "right": 1032,
+        "bottom": 758
+      },
+      "mode": {
+        "x": 1301,
+        "y": 351,
+        "w": 44,
+        "h": 54,
+        "right": 1345,
+        "bottom": 405
+      },
+      "tap": {
+        "x": 1191,
+        "y": 351,
+        "w": 107,
+        "h": 54,
+        "right": 1298,
+        "bottom": 405
+      },
+      "add": {
+        "x": 1193,
+        "y": 112,
+        "w": 150,
+        "h": 150,
+        "right": 1343,
+        "bottom": 262
+      }
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "scroll": [
+        1280,
+        720
+      ],
+      "board": {
+        "x": 315,
+        "y": 60,
+        "w": 650,
+        "h": 650,
+        "right": 965,
+        "bottom": 710
+      },
+      "mode": {
+        "x": 1215,
+        "y": 347,
+        "w": 44,
+        "h": 54,
+        "right": 1259,
+        "bottom": 401
+      },
+      "tap": {
+        "x": 1105,
+        "y": 347,
+        "w": 107,
+        "h": 54,
+        "right": 1212,
+        "bottom": 401
+      },
+      "add": {
+        "x": 1107,
+        "y": 108,
+        "w": 150,
+        "h": 150,
+        "right": 1257,
+        "bottom": 258
+      }
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "scroll": [
+        1024,
+        768
+      ],
+      "board": {
+        "x": 200,
+        "y": 97,
+        "w": 624,
+        "h": 624,
+        "right": 824,
+        "bottom": 721
+      },
+      "mode": {
+        "x": 959,
+        "y": 351,
+        "w": 44,
+        "h": 54,
+        "right": 1003,
+        "bottom": 405
+      },
+      "tap": {
+        "x": 849,
+        "y": 351,
+        "w": 107,
+        "h": 54,
+        "right": 956,
+        "bottom": 405
+      },
+      "add": {
+        "x": 851,
+        "y": 112,
+        "w": 150,
+        "h": 150,
+        "right": 1001,
+        "bottom": 262
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "scroll": [
+        768,
+        1024
+      ],
+      "board": {
+        "x": 8,
+        "y": 70,
+        "w": 752,
+        "h": 752,
+        "right": 760,
+        "bottom": 822
+      },
+      "mode": {
+        "x": 445.4375,
+        "y": 904,
+        "w": 44,
+        "h": 44,
+        "right": 489.4375,
+        "bottom": 948
+      },
+      "tap": {
+        "x": 107,
+        "y": 904,
+        "w": 335.4375,
+        "h": 44,
+        "right": 442.4375,
+        "bottom": 948
+      },
+      "add": {
+        "x": 8,
+        "y": 851,
+        "w": 94,
+        "h": 94,
+        "right": 102,
+        "bottom": 945
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "scroll": [
+        390,
+        844
+      ],
+      "board": {
+        "x": 8,
+        "y": 169,
+        "w": 374,
+        "h": 374,
+        "right": 382,
+        "bottom": 543
+      },
+      "mode": {
+        "x": 200.0625,
+        "y": 724,
+        "w": 44,
+        "h": 44,
+        "right": 244.0625,
+        "bottom": 768
+      },
+      "tap": {
+        "x": 107,
+        "y": 724,
+        "w": 90.0625,
+        "h": 44,
+        "right": 197.0625,
+        "bottom": 768
+      },
+      "add": {
+        "x": 8,
+        "y": 671,
+        "w": 94,
+        "h": 94,
+        "right": 102,
+        "bottom": 765
+      }
+    },
+    {
+      "width": 375,
+      "height": 667,
+      "scroll": [
+        375,
+        667
+      ],
+      "board": {
+        "x": 8,
+        "y": 88,
+        "w": 359,
+        "h": 359,
+        "right": 367,
+        "bottom": 447
+      },
+      "mode": {
+        "x": 190.328125,
+        "y": 547,
+        "w": 44,
+        "h": 44,
+        "right": 234.328125,
+        "bottom": 591
+      },
+      "tap": {
+        "x": 107,
+        "y": 547,
+        "w": 80.328125,
+        "h": 44,
+        "right": 187.328125,
+        "bottom": 591
+      },
+      "add": {
+        "x": 8,
+        "y": 494,
+        "w": 94,
+        "h": 94,
+        "right": 102,
+        "bottom": 588
+      }
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "scroll": [
+        320,
+        568
+      ],
+      "board": {
+        "x": 8,
+        "y": 66,
+        "w": 304,
+        "h": 304,
+        "right": 312,
+        "bottom": 370
+      },
+      "mode": {
+        "x": 154.625,
+        "y": 448,
+        "w": 44,
+        "h": 44,
+        "right": 198.625,
+        "bottom": 492
+      },
+      "tap": {
+        "x": 107,
+        "y": 448,
+        "w": 44.625,
+        "h": 44,
+        "right": 151.625,
+        "bottom": 492
+      },
+      "add": {
+        "x": 8,
+        "y": 395,
+        "w": 94,
+        "h": 94,
+        "right": 102,
+        "bottom": 489
+      }
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "scroll": [
+        844,
+        390
+      ],
+      "board": {
+        "x": 255,
+        "y": 48,
+        "w": 334,
+        "h": 334,
+        "right": 589,
+        "bottom": 382
+      },
+      "mode": {
+        "x": 786,
+        "y": 201.046875,
+        "w": 44,
+        "h": 45,
+        "right": 830,
+        "bottom": 246.046875
+      },
+      "tap": {
+        "x": 682,
+        "y": 201.046875,
+        "w": 101,
+        "h": 45,
+        "right": 783,
+        "bottom": 246.046875
+      },
+      "add": {
+        "x": 709,
+        "y": 50,
+        "w": 94,
+        "h": 94,
+        "right": 803,
+        "bottom": 144
+      }
+    }
+  ],
+  "browser": "134.0.6998.35"
+}

@@ -1,0 +1,249 @@
+{
+  "checks": [
+    {
+      "name": "1366x768 16 awakeTier40/Lv99, maxGOLD, reduced=false:60 real frames and input cancel",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 16 awakeTier40/Lv99, maxGOLD, reduced=true:60 real frames and input cancel",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 16 awakeTier40/Lv99, maxGOLD, reduced=false:60 real frames and input cancel",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 16 awakeTier40/Lv99, maxGOLD, reduced=true:60 real frames and input cancel",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 16 awakeTier40/Lv99, maxGOLD, reduced=false:60 real frames and input cancel",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 16 awakeTier40/Lv99, maxGOLD, reduced=true:60 real frames and input cancel",
+      "result": "PASS"
+    }
+  ],
+  "samples": [
+    {
+      "width": 1366,
+      "height": 768,
+      "reduced": false,
+      "frames": 60,
+      "meanMs": 23.33499999999767,
+      "p95Ms": 26.899999999906868,
+      "maximumMs": 33.5999999998603,
+      "dragCancelDriverMs": 97.20413899999994,
+      "geometry": {
+        "buff": {
+          "x": 8,
+          "y": 95.296875,
+          "width": 180,
+          "height": 111.390625,
+          "top": 95.296875,
+          "right": 188,
+          "bottom": 206.6875,
+          "left": 8
+        },
+        "gold": {
+          "x": 801.234375,
+          "y": 5.5,
+          "width": 397.984375,
+          "height": 44,
+          "top": 5.5,
+          "right": 1199.21875,
+          "bottom": 49.5,
+          "left": 801.234375
+        },
+        "scroll": [
+          1366,
+          768
+        ]
+      }
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "reduced": true,
+      "frames": 60,
+      "meanMs": 16.478333333332557,
+      "p95Ms": 16.9000000001397,
+      "maximumMs": 17,
+      "dragCancelDriverMs": 133.3959249999998,
+      "geometry": {
+        "buff": {
+          "x": 8,
+          "y": 95.296875,
+          "width": 180,
+          "height": 111.390625,
+          "top": 95.296875,
+          "right": 188,
+          "bottom": 206.6875,
+          "left": 8
+        },
+        "gold": {
+          "x": 801.234375,
+          "y": 5.5,
+          "width": 397.984375,
+          "height": 44,
+          "top": 5.5,
+          "right": 1199.21875,
+          "bottom": 49.5,
+          "left": 801.234375
+        },
+        "scroll": [
+          1366,
+          768
+        ]
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "reduced": false,
+      "frames": 60,
+      "meanMs": 16.63500000000155,
+      "p95Ms": 16.9000000001397,
+      "maximumMs": 32.800000000046566,
+      "dragCancelDriverMs": 91.23622999999861,
+      "geometry": {
+        "buff": {
+          "x": 8,
+          "y": 32,
+          "width": 374,
+          "height": 18,
+          "top": 32,
+          "right": 382,
+          "bottom": 50,
+          "left": 8
+        },
+        "gold": {
+          "x": 138.03125,
+          "y": 6,
+          "width": 243.96875,
+          "height": 24,
+          "top": 6,
+          "right": 382,
+          "bottom": 30,
+          "left": 138.03125
+        },
+        "scroll": [
+          390,
+          844
+        ]
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "reduced": true,
+      "frames": 60,
+      "meanMs": 16.545000000003103,
+      "p95Ms": 16.899999999906868,
+      "maximumMs": 17.199999999953434,
+      "dragCancelDriverMs": 130.89941800000088,
+      "geometry": {
+        "buff": {
+          "x": 8,
+          "y": 32,
+          "width": 374,
+          "height": 18,
+          "top": 32,
+          "right": 382,
+          "bottom": 50,
+          "left": 8
+        },
+        "gold": {
+          "x": 138.03125,
+          "y": 6,
+          "width": 243.96875,
+          "height": 24,
+          "top": 6,
+          "right": 382,
+          "bottom": 30,
+          "left": 138.03125
+        },
+        "scroll": [
+          390,
+          844
+        ]
+      }
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "reduced": false,
+      "frames": 60,
+      "meanMs": 16.33499999999767,
+      "p95Ms": 17.600000000093132,
+      "maximumMs": 25.5,
+      "dragCancelDriverMs": 91.17370800000026,
+      "geometry": {
+        "buff": {
+          "x": 8,
+          "y": 32,
+          "width": 304,
+          "height": 18,
+          "top": 32,
+          "right": 312,
+          "bottom": 50,
+          "left": 8
+        },
+        "gold": {
+          "x": 94.5,
+          "y": 6,
+          "width": 217.5,
+          "height": 24,
+          "top": 6,
+          "right": 312,
+          "bottom": 30,
+          "left": 94.5
+        },
+        "scroll": [
+          320,
+          568
+        ]
+      }
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "reduced": true,
+      "frames": 60,
+      "meanMs": 16.36499999999845,
+      "p95Ms": 17.100000000093132,
+      "maximumMs": 19.5,
+      "dragCancelDriverMs": 200.88827800000035,
+      "geometry": {
+        "buff": {
+          "x": 8,
+          "y": 32,
+          "width": 304,
+          "height": 18,
+          "top": 32,
+          "right": 312,
+          "bottom": 50,
+          "left": 8
+        },
+        "gold": {
+          "x": 94.5,
+          "y": 6,
+          "width": 217.5,
+          "height": 24,
+          "top": 6,
+          "right": 312,
+          "bottom": 30,
+          "left": 94.5
+        },
+        "scroll": [
+          320,
+          568
+        ]
+      }
+    }
+  ],
+  "browser": "134.0.6998.35",
+  "realDevices": false,
+  "clock": "real performance clock; headless software rendering, not a real-device FPS guarantee"
+}

@@ -1,0 +1,39 @@
+(node:1876) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS 1920x1080 three aura stages, distinct purple/blue, no document scroll
+PASS 1920x1080 five merge concentrates distinct awakenings and copies normal attributes without duplication
+PASS 1920x1080 surplus is text before drop, cancel preserves raw, warning never blocks merge/no dialog
+PASS 1920x1080 fifteen inputs show all three groups of surplus before drop
+PASS 1920x1080 purple charges, departure resets, returning completes exactly1 attribute atomically
+PASS 1920x1080 purple does not expire with no eligible attribute and strip resets while body stays
+PASS 1920x1080 blue swap and expiry keep bodies/Lv/awakening
+PASS 1920x1080 all10 guide shows normal, awakening and blue; inner scroll and reduced-motion
+PASS 1440x900 three aura stages, distinct purple/blue, no document scroll
+PASS 1440x900 five merge concentrates distinct awakenings and copies normal attributes without duplication
+PASS 1440x900 surplus is text before drop, cancel preserves raw, warning never blocks merge/no dialog
+PASS 1440x900 fifteen inputs show all three groups of surplus before drop
+PASS 1440x900 purple charges, departure resets, returning completes exactly1 attribute atomically
+PASS 1440x900 purple does not expire with no eligible attribute and strip resets while body stays
+PASS 1440x900 blue swap and expiry keep bodies/Lv/awakening
+PASS 1440x900 all10 guide shows normal, awakening and blue; inner scroll and reduced-motion
+PASS 1366x768 three aura stages, distinct purple/blue, no document scroll
+PASS 1366x768 five merge concentrates distinct awakenings and copies normal attributes without duplication
+PASS 1366x768 surplus is text before drop, cancel preserves raw, warning never blocks merge/no dialog
+PASS 1366x768 fifteen inputs show all three groups of surplus before drop
+PASS 1366x768 purple charges, departure resets, returning completes exactly1 attribute atomically
+PASS 1366x768 purple does not expire with no eligible attribute and strip resets while body stays
+PASS 1366x768 blue swap and expiry keep bodies/Lv/awakening
+PASS 1366x768 all10 guide shows normal, awakening and blue; inner scroll and reduced-motion
+PASS 1280x720 three aura stages, distinct purple/blue, no document scroll
+PASS 1280x720 five merge concentrates distinct awakenings and copies normal attributes without duplication
+PASS 1280x720 surplus is text before drop, cancel preserves raw, warning never blocks merge/no dialog
+PASS 1280x720 fifteen inputs show all three groups of surplus before drop
+PASS 1280x720 purple charges, departure resets, returning completes exactly1 attribute atomically
+PASS 1280x720 purple does not expire with no eligible attribute and strip resets while body stays
+PASS 1280x720 blue swap and expiry keep bodies/Lv/awakening
+PASS 1280x720 all10 guide shows normal, awakening and blue; inner scroll and reduced-motion
+PASS 1024x768 three aura stages, distinct purple/blue, no document scroll
+PASS 1024x768 five merge concentrates distinct awakenings and copies normal attributes without duplication
+PASS 1024x768 surplus is text before drop, cancel preserves raw, warning never blocks merge/no dialog
+PASS 1024x768 fifteen inputs show all three groups of surplus before drop
+PASS 1024x768 purple charges, departure resets, returning completes exactly1 attribute atomically

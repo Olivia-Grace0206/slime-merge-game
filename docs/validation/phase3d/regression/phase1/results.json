@@ -1,0 +1,223 @@
+{
+  "browserVersion": "134.0.6998.35",
+  "playwright": "1.51.1",
+  "checks": [
+    {
+      "name": "1440px 3体マージ: mouse preview/commit equality",
+      "result": "PASS"
+    },
+    {
+      "name": "1440px 5体マージ: mouse preview/commit equality",
+      "result": "PASS"
+    },
+    {
+      "name": "1440px 8体マージ: mouse preview/commit equality",
+      "result": "PASS"
+    },
+    {
+      "name": "1440px 11体マージ: mouse preview/commit equality",
+      "result": "PASS"
+    },
+    {
+      "name": "1440px 斜め連結: mouse preview/commit equality",
+      "result": "PASS"
+    },
+    {
+      "name": "1440px 高Tier試験: mouse preview/commit equality",
+      "result": "PASS"
+    },
+    {
+      "name": "1440px Tier40 swap without consumption",
+      "result": "PASS"
+    },
+    {
+      "name": "1440px different-tier drop exchanges positions",
+      "result": "PASS"
+    },
+    {
+      "name": "1440px empty cell moves without merging",
+      "result": "PASS"
+    },
+    {
+      "name": "1440px cancelled drag preserves state",
+      "result": "PASS"
+    },
+    {
+      "name": "1440px outside drop preserves state",
+      "result": "PASS"
+    },
+    {
+      "name": "1440px panning does not move any slime and conversion remains correct",
+      "result": "PASS"
+    },
+    {
+      "name": "1440px keyboard and Escape",
+      "result": "PASS"
+    },
+    {
+      "name": "1440px unknown pointer cancel/up is ignored and focus loss cancels",
+      "result": "PASS"
+    },
+    {
+      "name": "1440px reset during drag invalidates pending operation",
+      "result": "PASS"
+    },
+    {
+      "name": "1440px Tier1 green Tier2 blue Tier3 red and highest-tier progression",
+      "result": "PASS"
+    },
+    {
+      "name": "1440px merge animation respects reduced-motion preference",
+      "result": "PASS"
+    },
+    {
+      "name": "1440px viewport has no horizontal overflow and reset is safe",
+      "result": "PASS"
+    },
+    {
+      "name": "390px 3体マージ: trusted touch preview/commit equality",
+      "result": "PASS"
+    },
+    {
+      "name": "390px 5体マージ: trusted touch preview/commit equality",
+      "result": "PASS"
+    },
+    {
+      "name": "390px 8体マージ: trusted touch preview/commit equality",
+      "result": "PASS"
+    },
+    {
+      "name": "390px 11体マージ: trusted touch preview/commit equality",
+      "result": "PASS"
+    },
+    {
+      "name": "390px 斜め連結: trusted touch preview/commit equality",
+      "result": "PASS"
+    },
+    {
+      "name": "390px 高Tier試験: trusted touch preview/commit equality",
+      "result": "PASS"
+    },
+    {
+      "name": "390px Tier40 swap without consumption",
+      "result": "PASS"
+    },
+    {
+      "name": "390px different-tier drop exchanges positions",
+      "result": "PASS"
+    },
+    {
+      "name": "390px empty cell moves without merging",
+      "result": "PASS"
+    },
+    {
+      "name": "390px cancelled drag preserves state",
+      "result": "PASS"
+    },
+    {
+      "name": "390px outside drop preserves state",
+      "result": "PASS"
+    },
+    {
+      "name": "390px panning does not move any slime and conversion remains correct",
+      "result": "PASS"
+    },
+    {
+      "name": "390px keyboard and Escape",
+      "result": "PASS"
+    },
+    {
+      "name": "390px unknown pointer cancel/up is ignored and focus loss cancels",
+      "result": "PASS"
+    },
+    {
+      "name": "390px reset during drag invalidates pending operation",
+      "result": "PASS"
+    },
+    {
+      "name": "390px Tier1 green Tier2 blue Tier3 red and highest-tier progression",
+      "result": "PASS"
+    },
+    {
+      "name": "390px merge animation respects reduced-motion preference",
+      "result": "PASS"
+    },
+    {
+      "name": "390px viewport has no horizontal overflow and reset is safe",
+      "result": "PASS"
+    },
+    {
+      "name": "320px 3体マージ: trusted touch preview/commit equality",
+      "result": "PASS"
+    },
+    {
+      "name": "320px 5体マージ: trusted touch preview/commit equality",
+      "result": "PASS"
+    },
+    {
+      "name": "320px 8体マージ: trusted touch preview/commit equality",
+      "result": "PASS"
+    },
+    {
+      "name": "320px 11体マージ: trusted touch preview/commit equality",
+      "result": "PASS"
+    },
+    {
+      "name": "320px 斜め連結: trusted touch preview/commit equality",
+      "result": "PASS"
+    },
+    {
+      "name": "320px 高Tier試験: trusted touch preview/commit equality",
+      "result": "PASS"
+    },
+    {
+      "name": "320px Tier40 swap without consumption",
+      "result": "PASS"
+    },
+    {
+      "name": "320px different-tier drop exchanges positions",
+      "result": "PASS"
+    },
+    {
+      "name": "320px empty cell moves without merging",
+      "result": "PASS"
+    },
+    {
+      "name": "320px cancelled drag preserves state",
+      "result": "PASS"
+    },
+    {
+      "name": "320px outside drop preserves state",
+      "result": "PASS"
+    },
+    {
+      "name": "320px panning does not move any slime and conversion remains correct",
+      "result": "PASS"
+    },
+    {
+      "name": "320px keyboard and Escape",
+      "result": "PASS"
+    },
+    {
+      "name": "320px unknown pointer cancel/up is ignored and focus loss cancels",
+      "result": "PASS"
+    },
+    {
+      "name": "320px reset during drag invalidates pending operation",
+      "result": "PASS"
+    },
+    {
+      "name": "320px Tier1 green Tier2 blue Tier3 red and highest-tier progression",
+      "result": "PASS"
+    },
+    {
+      "name": "320px merge animation respects reduced-motion preference",
+      "result": "PASS"
+    },
+    {
+      "name": "320px viewport has no horizontal overflow and reset is safe",
+      "result": "PASS"
+    }
+  ],
+  "errors": []
+}

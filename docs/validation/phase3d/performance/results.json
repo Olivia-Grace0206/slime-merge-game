@@ -1,0 +1,275 @@
+{
+  "checks": [
+    {
+      "name": "1366x768 16 awakeTier40/Lv99, maxGOLD, reduced=false:60 real frames and input cancel",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 16 awakeTier40/Lv99, maxGOLD, reduced=true:60 real frames and input cancel",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 16 awakeTier40/Lv99, maxGOLD, reduced=false:60 real frames and input cancel",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 16 awakeTier40/Lv99, maxGOLD, reduced=true:60 real frames and input cancel",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 16 awakeTier40/Lv99, maxGOLD, reduced=false:60 real frames and input cancel",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 16 awakeTier40/Lv99, maxGOLD, reduced=true:60 real frames and input cancel",
+      "result": "PASS"
+    },
+    {
+      "name": "64 Tier40/3awake staticSVG paint fixture reduced=false",
+      "result": "PASS"
+    },
+    {
+      "name": "64 Tier40/3awake staticSVG paint fixture reduced=true",
+      "result": "PASS"
+    }
+  ],
+  "samples": [
+    {
+      "width": 1366,
+      "height": 768,
+      "reduced": false,
+      "frames": 60,
+      "meanMs": 21.863333333334108,
+      "p95Ms": 25.899999999906868,
+      "maximumMs": 28.899999999906868,
+      "dragCancelDriverMs": 90.29775500000005,
+      "geometry": {
+        "buff": {
+          "x": 8,
+          "y": 95.296875,
+          "width": 180,
+          "height": 111.390625,
+          "top": 95.296875,
+          "right": 188,
+          "bottom": 206.6875,
+          "left": 8
+        },
+        "gold": {
+          "x": 801.234375,
+          "y": 5.5,
+          "width": 397.984375,
+          "height": 44,
+          "top": 5.5,
+          "right": 1199.21875,
+          "bottom": 49.5,
+          "left": 801.234375
+        },
+        "scroll": [
+          1366,
+          768
+        ]
+      }
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "reduced": true,
+      "frames": 60,
+      "meanMs": 16.478333333332557,
+      "p95Ms": 17.5,
+      "maximumMs": 21.300000000046566,
+      "dragCancelDriverMs": 183.32863499999985,
+      "geometry": {
+        "buff": {
+          "x": 8,
+          "y": 95.296875,
+          "width": 180,
+          "height": 111.390625,
+          "top": 95.296875,
+          "right": 188,
+          "bottom": 206.6875,
+          "left": 8
+        },
+        "gold": {
+          "x": 801.234375,
+          "y": 5.5,
+          "width": 397.984375,
+          "height": 44,
+          "top": 5.5,
+          "right": 1199.21875,
+          "bottom": 49.5,
+          "left": 801.234375
+        },
+        "scroll": [
+          1366,
+          768
+        ]
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "reduced": false,
+      "frames": 60,
+      "meanMs": 16.485000000001552,
+      "p95Ms": 19,
+      "maximumMs": 24.800000000046566,
+      "dragCancelDriverMs": 100.09519999999975,
+      "geometry": {
+        "buff": {
+          "x": 8,
+          "y": 32,
+          "width": 374,
+          "height": 18,
+          "top": 32,
+          "right": 382,
+          "bottom": 50,
+          "left": 8
+        },
+        "gold": {
+          "x": 138.03125,
+          "y": 6,
+          "width": 243.96875,
+          "height": 24,
+          "top": 6,
+          "right": 382,
+          "bottom": 30,
+          "left": 138.03125
+        },
+        "scroll": [
+          390,
+          844
+        ]
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "reduced": true,
+      "frames": 60,
+      "meanMs": 16.52333333333178,
+      "p95Ms": 17,
+      "maximumMs": 20.699999999953434,
+      "dragCancelDriverMs": 134.819402000001,
+      "geometry": {
+        "buff": {
+          "x": 8,
+          "y": 32,
+          "width": 374,
+          "height": 18,
+          "top": 32,
+          "right": 382,
+          "bottom": 50,
+          "left": 8
+        },
+        "gold": {
+          "x": 138.03125,
+          "y": 6,
+          "width": 243.96875,
+          "height": 24,
+          "top": 6,
+          "right": 382,
+          "bottom": 30,
+          "left": 138.03125
+        },
+        "scroll": [
+          390,
+          844
+        ]
+      }
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "reduced": false,
+      "frames": 60,
+      "meanMs": 16.41166666666589,
+      "p95Ms": 17.699999999953434,
+      "maximumMs": 21.699999999953434,
+      "dragCancelDriverMs": 115.51648000000023,
+      "geometry": {
+        "buff": {
+          "x": 8,
+          "y": 32,
+          "width": 304,
+          "height": 18,
+          "top": 32,
+          "right": 312,
+          "bottom": 50,
+          "left": 8
+        },
+        "gold": {
+          "x": 94.5,
+          "y": 6,
+          "width": 217.5,
+          "height": 24,
+          "top": 6,
+          "right": 312,
+          "bottom": 30,
+          "left": 94.5
+        },
+        "scroll": [
+          320,
+          568
+        ]
+      }
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "reduced": true,
+      "frames": 60,
+      "meanMs": 16.55166666666822,
+      "p95Ms": 17.300000000046566,
+      "maximumMs": 18.199999999953434,
+      "dragCancelDriverMs": 110.08216399999947,
+      "geometry": {
+        "buff": {
+          "x": 8,
+          "y": 32,
+          "width": 304,
+          "height": 18,
+          "top": 32,
+          "right": 312,
+          "bottom": 50,
+          "left": 8
+        },
+        "gold": {
+          "x": 94.5,
+          "y": 6,
+          "width": 217.5,
+          "height": 24,
+          "top": 6,
+          "right": 312,
+          "bottom": 30,
+          "left": 94.5
+        },
+        "scroll": [
+          320,
+          568
+        ]
+      }
+    },
+    {
+      "count": 64,
+      "reduced": false,
+      "frames": 60,
+      "meanMs": 46.94666666666744,
+      "p95Ms": 54.5,
+      "maximumMs": 75.5,
+      "scope": "paint64 cloned real Slime markup, no enlarged game map or React reconciliation benchmark"
+    },
+    {
+      "count": 64,
+      "reduced": true,
+      "frames": 60,
+      "meanMs": 17.106666666665113,
+      "p95Ms": 23.5,
+      "maximumMs": 56.39999999990687,
+      "scope": "paint64 cloned real Slime markup, no enlarged game map or React reconciliation benchmark"
+    }
+  ],
+  "browser": "134.0.6998.35",
+  "realDevices": false,
+  "clock": "real performance clock; headless software rendering, not a real-device FPS guarantee"
+}

@@ -4,7 +4,7 @@
 
 このゲームはPC・スマートフォンのブラウザで遊べる試作版です。操作方法と保存上の注意、GitHub Pagesの初回有効化・自動配布手順は [公開・試遊ガイド](docs/DEPLOYMENT.md) を参照してください。
 
-**Phase 3Cはmainにマージ済み。** 覚醒オーラ・青バフ表示・10属性紹介のUI改善は [Draft PR #15](https://github.com/Olivia-Grace0206/slime-merge-game/pull/15) で検証済み、未マージです。[比較画像と検証](docs/validation/phase3c-polish/RESULTS.md) / [試遊手順](docs/PHASE3C_VISUAL_POLISH_HANDOFF.md)。公開β版の変更はユーザー承認後に行います。セーブは各ブラウザのLocalStorageに保存され、端末間同期はありません。
+**Phase 3Cはmainにマージ済み。** PR #15の覚醒オーラ・青バフ表示・10属性紹介はmainへマージ済みです。10属性の通常/覚醒装飾・3複合外見は [Draft PR #16](https://github.com/Olivia-Grace0206/slime-merge-game/pull/16) で検証済み、未マージです。[通常/覚醒一覧・比較画像と検証](docs/validation/phase3d/RESULTS.md) / [試遊手順](docs/PHASE3D_HANDOFF.md)。外見メニューで3属性と各覚醒を一時選択して全40Tierを確認できます。属性Lvは装飾を変えず、ゲーム数値/schema7も維持します。公開β版への反映はユーザー承認後です。セーブは各ブラウザのLocalStorageに保存され、端末間同期はありません。
 
 ---
 
