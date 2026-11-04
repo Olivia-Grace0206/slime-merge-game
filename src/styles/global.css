@@ -715,3 +715,14 @@ progress::-webkit-progress-value { background: linear-gradient(90deg,#79b65b,#ab
 }
 .blue-buff-status .buff-compact{display:none}
 @media(max-width:900px) and (min-height:501px){.blue-buff-status .buff-full{display:none}.blue-buff-status .buff-compact{display:inline}.blue-buff-status li span{white-space:nowrap;flex:none}}
+
+/* Phase3D: local SVG silhouettes. Fixed slots leave face/crown/badges protected. */
+.attribute-decoration { position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
+.attribute-decoration, .attribute-decoration * { pointer-events:none; }
+.attribute-decoration-back { z-index:1; }
+.slime-art.has-ornaments .slime-body { z-index:2; }
+.slime-art.has-ornaments .tier-orbit { z-index:3; }
+.attribute-decoration-front { z-index:4; }
+.slime-art.has-ornaments .crown { z-index:6; }
+.slime-art.has-ornaments .tier-pill, .slime-art.has-ornaments .attribute-badges { z-index:8; }
+.slime-art.has-ornaments .awakening-rank { z-index:9; }

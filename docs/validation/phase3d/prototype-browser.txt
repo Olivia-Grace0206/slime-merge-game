@@ -1,0 +1,4 @@
+(node:4) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS 1366x768 prototype: fire/ice/nature normal/awake and triple at Tier1/40
+PASS 320x568 prototype: fire/ice/nature normal/awake and triple at Tier1/40

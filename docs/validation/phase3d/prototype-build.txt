@@ -1,0 +1,22 @@
+(node:4) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+> slime-merge-game@0.0.0 build
+> tsc -b && vite build --outDir /tmp/slime3d-prototype-dist
+
+(node:25) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 59 modules transformed.
+
+(!) outDir /tmp/slime3d-prototype-dist is not inside project root and will not be emptied.
+Use --emptyOutDir to override.
+
+rendering chunks...
+computing gzip size...
+../../../../tmp/slime3d-prototype-dist/index.html                   0.66 kB │ gzip:   0.41 kB
+../../../../tmp/slime3d-prototype-dist/assets/index-Cjez5SNV.css   45.84 kB │ gzip:  10.55 kB
+../../../../tmp/slime3d-prototype-dist/assets/index-WdrfqdGf.js   329.07 kB │ gzip: 103.89 kB
+
+✓ built in 460ms
