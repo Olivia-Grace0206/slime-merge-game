@@ -1,0 +1,601 @@
+{
+  "checks": [
+    {
+      "name": "1366x768 prototype: fire/ice/nature normal/awake and triple at Tier1/40",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 prototype: fire/ice/nature normal/awake and triple at Tier1/40",
+      "result": "PASS"
+    }
+  ],
+  "errors": [],
+  "metrics": [
+    {
+      "width": 1366,
+      "height": 768,
+      "board": {
+        "x": 334,
+        "y": 60,
+        "width": 698,
+        "height": 698
+      },
+      "fixture": {
+        "bounds": {
+          "origin": {
+            "x": 0,
+            "y": 0
+          },
+          "width": 4,
+          "height": 4
+        },
+        "highestTierReached": 40,
+        "revision": 0,
+        "slimes": [
+          {
+            "id": "p-1",
+            "tier": 1,
+            "position": {
+              "x": 0,
+              "y": 0
+            },
+            "attributes": [
+              {
+                "id": "fire",
+                "level": 1
+              }
+            ]
+          },
+          {
+            "id": "p-2",
+            "tier": 1,
+            "position": {
+              "x": 1,
+              "y": 0
+            },
+            "attributes": [
+              {
+                "id": "fire",
+                "level": 1,
+                "awakened": true
+              }
+            ]
+          },
+          {
+            "id": "p-3",
+            "tier": 1,
+            "position": {
+              "x": 2,
+              "y": 0
+            },
+            "attributes": [
+              {
+                "id": "ice",
+                "level": 1
+              }
+            ]
+          },
+          {
+            "id": "p-4",
+            "tier": 1,
+            "position": {
+              "x": 3,
+              "y": 0
+            },
+            "attributes": [
+              {
+                "id": "ice",
+                "level": 1,
+                "awakened": true
+              }
+            ]
+          },
+          {
+            "id": "p-5",
+            "tier": 1,
+            "position": {
+              "x": 0,
+              "y": 1
+            },
+            "attributes": [
+              {
+                "id": "nature",
+                "level": 1
+              }
+            ]
+          },
+          {
+            "id": "p-6",
+            "tier": 1,
+            "position": {
+              "x": 1,
+              "y": 1
+            },
+            "attributes": [
+              {
+                "id": "nature",
+                "level": 1,
+                "awakened": true
+              }
+            ]
+          },
+          {
+            "id": "p-7",
+            "tier": 1,
+            "position": {
+              "x": 2,
+              "y": 1
+            },
+            "attributes": [
+              {
+                "id": "fire",
+                "level": 1
+              },
+              {
+                "id": "ice",
+                "level": 1
+              },
+              {
+                "id": "nature",
+                "level": 1
+              }
+            ]
+          },
+          {
+            "id": "p-8",
+            "tier": 1,
+            "position": {
+              "x": 3,
+              "y": 1
+            },
+            "attributes": [
+              {
+                "id": "fire",
+                "level": 1,
+                "awakened": true
+              },
+              {
+                "id": "ice",
+                "level": 1,
+                "awakened": true
+              },
+              {
+                "id": "nature",
+                "level": 1,
+                "awakened": true
+              }
+            ]
+          },
+          {
+            "id": "p-9",
+            "tier": 40,
+            "position": {
+              "x": 0,
+              "y": 2
+            },
+            "attributes": [
+              {
+                "id": "fire",
+                "level": 1
+              }
+            ]
+          },
+          {
+            "id": "p-10",
+            "tier": 40,
+            "position": {
+              "x": 1,
+              "y": 2
+            },
+            "attributes": [
+              {
+                "id": "fire",
+                "level": 1,
+                "awakened": true
+              }
+            ]
+          },
+          {
+            "id": "p-11",
+            "tier": 40,
+            "position": {
+              "x": 2,
+              "y": 2
+            },
+            "attributes": [
+              {
+                "id": "ice",
+                "level": 1
+              }
+            ]
+          },
+          {
+            "id": "p-12",
+            "tier": 40,
+            "position": {
+              "x": 3,
+              "y": 2
+            },
+            "attributes": [
+              {
+                "id": "ice",
+                "level": 1,
+                "awakened": true
+              }
+            ]
+          },
+          {
+            "id": "p-13",
+            "tier": 40,
+            "position": {
+              "x": 0,
+              "y": 3
+            },
+            "attributes": [
+              {
+                "id": "nature",
+                "level": 1
+              }
+            ]
+          },
+          {
+            "id": "p-14",
+            "tier": 40,
+            "position": {
+              "x": 1,
+              "y": 3
+            },
+            "attributes": [
+              {
+                "id": "nature",
+                "level": 1,
+                "awakened": true
+              }
+            ]
+          },
+          {
+            "id": "p-15",
+            "tier": 40,
+            "position": {
+              "x": 2,
+              "y": 3
+            },
+            "attributes": [
+              {
+                "id": "fire",
+                "level": 1
+              },
+              {
+                "id": "ice",
+                "level": 1
+              },
+              {
+                "id": "nature",
+                "level": 1
+              }
+            ]
+          },
+          {
+            "id": "p-16",
+            "tier": 40,
+            "position": {
+              "x": 3,
+              "y": 3
+            },
+            "attributes": [
+              {
+                "id": "fire",
+                "level": 1,
+                "awakened": true
+              },
+              {
+                "id": "ice",
+                "level": 1,
+                "awakened": true
+              },
+              {
+                "id": "nature",
+                "level": 1,
+                "awakened": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "board": {
+        "x": 8,
+        "y": 66,
+        "width": 304,
+        "height": 304
+      },
+      "fixture": {
+        "bounds": {
+          "origin": {
+            "x": 0,
+            "y": 0
+          },
+          "width": 4,
+          "height": 4
+        },
+        "highestTierReached": 40,
+        "revision": 0,
+        "slimes": [
+          {
+            "id": "p-1",
+            "tier": 1,
+            "position": {
+              "x": 0,
+              "y": 0
+            },
+            "attributes": [
+              {
+                "id": "fire",
+                "level": 1
+              }
+            ]
+          },
+          {
+            "id": "p-2",
+            "tier": 1,
+            "position": {
+              "x": 1,
+              "y": 0
+            },
+            "attributes": [
+              {
+                "id": "fire",
+                "level": 1,
+                "awakened": true
+              }
+            ]
+          },
+          {
+            "id": "p-3",
+            "tier": 1,
+            "position": {
+              "x": 2,
+              "y": 0
+            },
+            "attributes": [
+              {
+                "id": "ice",
+                "level": 1
+              }
+            ]
+          },
+          {
+            "id": "p-4",
+            "tier": 1,
+            "position": {
+              "x": 3,
+              "y": 0
+            },
+            "attributes": [
+              {
+                "id": "ice",
+                "level": 1,
+                "awakened": true
+              }
+            ]
+          },
+          {
+            "id": "p-5",
+            "tier": 1,
+            "position": {
+              "x": 0,
+              "y": 1
+            },
+            "attributes": [
+              {
+                "id": "nature",
+                "level": 1
+              }
+            ]
+          },
+          {
+            "id": "p-6",
+            "tier": 1,
+            "position": {
+              "x": 1,
+              "y": 1
+            },
+            "attributes": [
+              {
+                "id": "nature",
+                "level": 1,
+                "awakened": true
+              }
+            ]
+          },
+          {
+            "id": "p-7",
+            "tier": 1,
+            "position": {
+              "x": 2,
+              "y": 1
+            },
+            "attributes": [
+              {
+                "id": "fire",
+                "level": 1
+              },
+              {
+                "id": "ice",
+                "level": 1
+              },
+              {
+                "id": "nature",
+                "level": 1
+              }
+            ]
+          },
+          {
+            "id": "p-8",
+            "tier": 1,
+            "position": {
+              "x": 3,
+              "y": 1
+            },
+            "attributes": [
+              {
+                "id": "fire",
+                "level": 1,
+                "awakened": true
+              },
+              {
+                "id": "ice",
+                "level": 1,
+                "awakened": true
+              },
+              {
+                "id": "nature",
+                "level": 1,
+                "awakened": true
+              }
+            ]
+          },
+          {
+            "id": "p-9",
+            "tier": 40,
+            "position": {
+              "x": 0,
+              "y": 2
+            },
+            "attributes": [
+              {
+                "id": "fire",
+                "level": 1
+              }
+            ]
+          },
+          {
+            "id": "p-10",
+            "tier": 40,
+            "position": {
+              "x": 1,
+              "y": 2
+            },
+            "attributes": [
+              {
+                "id": "fire",
+                "level": 1,
+                "awakened": true
+              }
+            ]
+          },
+          {
+            "id": "p-11",
+            "tier": 40,
+            "position": {
+              "x": 2,
+              "y": 2
+            },
+            "attributes": [
+              {
+                "id": "ice",
+                "level": 1
+              }
+            ]
+          },
+          {
+            "id": "p-12",
+            "tier": 40,
+            "position": {
+              "x": 3,
+              "y": 2
+            },
+            "attributes": [
+              {
+                "id": "ice",
+                "level": 1,
+                "awakened": true
+              }
+            ]
+          },
+          {
+            "id": "p-13",
+            "tier": 40,
+            "position": {
+              "x": 0,
+              "y": 3
+            },
+            "attributes": [
+              {
+                "id": "nature",
+                "level": 1
+              }
+            ]
+          },
+          {
+            "id": "p-14",
+            "tier": 40,
+            "position": {
+              "x": 1,
+              "y": 3
+            },
+            "attributes": [
+              {
+                "id": "nature",
+                "level": 1,
+                "awakened": true
+              }
+            ]
+          },
+          {
+            "id": "p-15",
+            "tier": 40,
+            "position": {
+              "x": 2,
+              "y": 3
+            },
+            "attributes": [
+              {
+                "id": "fire",
+                "level": 1
+              },
+              {
+                "id": "ice",
+                "level": 1
+              },
+              {
+                "id": "nature",
+                "level": 1
+              }
+            ]
+          },
+          {
+            "id": "p-16",
+            "tier": 40,
+            "position": {
+              "x": 3,
+              "y": 3
+            },
+            "attributes": [
+              {
+                "id": "fire",
+                "level": 1,
+                "awakened": true
+              },
+              {
+                "id": "ice",
+                "level": 1,
+                "awakened": true
+              },
+              {
+                "id": "nature",
+                "level": 1,
+                "awakened": true
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "browser": "134.0.6998.35",
+  "realDevices": false
+}

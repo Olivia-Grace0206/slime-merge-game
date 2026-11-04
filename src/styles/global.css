@@ -715,3 +715,23 @@ progress::-webkit-progress-value { background: linear-gradient(90deg,#79b65b,#ab
 }
 .blue-buff-status .buff-compact{display:none}
 @media(max-width:900px) and (min-height:501px){.blue-buff-status .buff-full{display:none}.blue-buff-status .buff-compact{display:inline}.blue-buff-status li span{white-space:nowrap;flex:none}}
+
+/* Phase3D: local SVG silhouettes. Fixed slots leave face/crown/badges protected. */
+.attribute-decoration { position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
+.attribute-decoration, .attribute-decoration * { pointer-events:none; }
+.attribute-decoration-back { z-index:3; }
+.slime-art.has-ornaments .slime-body { z-index:2; }
+.slime-art.has-ornaments .tier-orbit { z-index:3; }
+.attribute-decoration-front { z-index:4; }
+.slime-art.has-ornaments .crown { z-index:6; }
+.slime-art.has-ornaments .tier-pill, .slime-art.has-ornaments .attribute-badges { z-index:8; }
+.slime-art.has-ornaments .awakening-rank { z-index:9; }
+
+.ornament-picker { padding:8px; margin:0 0 12px; border:1px solid #c7d8bb; border-radius:12px; }
+.ornament-picker p { margin:0 0 6px; font-size:11px; }
+.ornament-options { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:5px; }
+.ornament-option { min-width:0; border-radius:8px; background:#eff5e8; }
+.ornament-option label { display:flex; min-height:44px; align-items:center; gap:3px; font-size:12px; }
+.ornament-option input { width:16px; height:16px; flex-shrink:0; }
+.ornament-option .ornament-awaken { font-size:11px; }
+@media(max-width:600px) { .ornament-options { grid-template-columns:repeat(2,minmax(0,1fr)); } }

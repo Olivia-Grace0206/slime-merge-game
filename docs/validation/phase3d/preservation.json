@@ -1,0 +1,170 @@
+{
+  "main": "1291226a67a25df254301d1f3e41e0cc46efdc1b",
+  "unchangedFiles": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "base": "ad08660c5e5e92c3f885906ada8a9da5309c5180",
+      "tested": "ad08660c5e5e92c3f885906ada8a9da5309c5180"
+    },
+    {
+      "path": ".github/workflows/pages.yml",
+      "base": "d23675f5970793444ed065ba5e1fa7df5c12d42e",
+      "tested": "d23675f5970793444ed065ba5e1fa7df5c12d42e"
+    },
+    {
+      "path": "package-lock.json",
+      "base": "9da4251d6eee59bde59328cc4300dfd6db270c29",
+      "tested": "9da4251d6eee59bde59328cc4300dfd6db270c29"
+    },
+    {
+      "path": "package.json",
+      "base": "d0d631b79bb55c173d266b07d8eb470520844ee5",
+      "tested": "d0d631b79bb55c173d266b07d8eb470520844ee5"
+    },
+    {
+      "path": "src/app/App.tsx",
+      "base": "f66add48ed713c6c648b00e240a7d49d5244084b",
+      "tested": "f66add48ed713c6c648b00e240a7d49d5244084b"
+    },
+    {
+      "path": "src/app/input/camera.ts",
+      "base": "afd7d92268f56d2ef1a38d48bad564dabc73d46b",
+      "tested": "afd7d92268f56d2ef1a38d48bad564dabc73d46b"
+    },
+    {
+      "path": "src/app/input/gestures.ts",
+      "base": "40a755be8e7644f5f87d5e7d2480c2ea9a9cf243",
+      "tested": "40a755be8e7644f5f87d5e7d2480c2ea9a9cf243"
+    },
+    {
+      "path": "src/app/presets.ts",
+      "base": "56952c49fff7345d04ac9baab6d5544382755dd8",
+      "tested": "56952c49fff7345d04ac9baab6d5544382755dd8"
+    },
+    {
+      "path": "src/app/sessionStore.ts",
+      "base": "d261823066577e8e67863399507ce131932141ac",
+      "tested": "d261823066577e8e67863399507ce131932141ac"
+    },
+    {
+      "path": "src/core/attributes/awakening.ts",
+      "base": "5cf05bc534950ce3d4bb2fa459fd274a4798384e",
+      "tested": "5cf05bc534950ce3d4bb2fa459fd274a4798384e"
+    },
+    {
+      "path": "src/core/attributes/effects.ts",
+      "base": "961c4b659bd79a4b9cde508ce769f1c894e3db3b",
+      "tested": "961c4b659bd79a4b9cde508ce769f1c894e3db3b"
+    },
+    {
+      "path": "src/core/attributes/inheritance.ts",
+      "base": "3570e5771463f8196096ceb53f88ffccbf4bf682",
+      "tested": "3570e5771463f8196096ceb53f88ffccbf4bf682"
+    },
+    {
+      "path": "src/core/attributes/strip.ts",
+      "base": "341c31cba306cf726a360c3e4ca0baf32f1dfaed",
+      "tested": "341c31cba306cf726a360c3e4ca0baf32f1dfaed"
+    },
+    {
+      "path": "src/core/board/state.ts",
+      "base": "fa7695a174a1b2a597a2d3ca5c35eef83afc2f58",
+      "tested": "fa7695a174a1b2a597a2d3ca5c35eef83afc2f58"
+    },
+    {
+      "path": "src/core/grid/coordinates.ts",
+      "base": "a9308ec63e8724142f6462a2513fd329aea263ce",
+      "tested": "a9308ec63e8724142f6462a2513fd329aea263ce"
+    },
+    {
+      "path": "src/core/input/coordinates.ts",
+      "base": "ae0a2e4db39a63350bf9d29fa9e0f8b95b8cd39e",
+      "tested": "ae0a2e4db39a63350bf9d29fa9e0f8b95b8cd39e"
+    },
+    {
+      "path": "src/core/input/dropZones.ts",
+      "base": "46cfbefd1af7fd946d24d2b614e41b475f7737f3",
+      "tested": "46cfbefd1af7fd946d24d2b614e41b475f7737f3"
+    },
+    {
+      "path": "src/core/merge/apply.ts",
+      "base": "cd07fbe077ac6b0eacb0954daa49da3c663df99a",
+      "tested": "cd07fbe077ac6b0eacb0954daa49da3c663df99a"
+    },
+    {
+      "path": "src/core/merge/plan.ts",
+      "base": "75f66d33502ba567d687395d4a5d2fccce1af3bc",
+      "tested": "75f66d33502ba567d687395d4a5d2fccce1af3bc"
+    },
+    {
+      "path": "src/core/progression/economy.ts",
+      "base": "4c209f79cb99b7a594c79332e121ded754dbeba3",
+      "tested": "4c209f79cb99b7a594c79332e121ded754dbeba3"
+    },
+    {
+      "path": "src/core/progression/focus.ts",
+      "base": "0715f896f61c2fac282270db6c6ee3fe8ee57ee1",
+      "tested": "0715f896f61c2fac282270db6c6ee3fe8ee57ee1"
+    },
+    {
+      "path": "src/core/progression/generation.ts",
+      "base": "ecb426c023ec30937162540d214233f5c97fab26",
+      "tested": "ecb426c023ec30937162540d214233f5c97fab26"
+    },
+    {
+      "path": "src/core/progression/persistence.ts",
+      "base": "854e9650c7f42853b75ee93f8869feb43f68ac41",
+      "tested": "854e9650c7f42853b75ee93f8869feb43f68ac41"
+    },
+    {
+      "path": "src/core/progression/research.ts",
+      "base": "8c05b00bbec574d084b59c492aab86dbd3729e76",
+      "tested": "8c05b00bbec574d084b59c492aab86dbd3729e76"
+    },
+    {
+      "path": "src/core/progression/save.ts",
+      "base": "e8e44ad71e49798858cf4c4eabf142e40bd74bb6",
+      "tested": "e8e44ad71e49798858cf4c4eabf142e40bd74bb6"
+    },
+    {
+      "path": "src/core/progression/session.ts",
+      "base": "53a017fa5130cf4da79b771a420b05804776abf9",
+      "tested": "53a017fa5130cf4da79b771a420b05804776abf9"
+    },
+    {
+      "path": "src/core/progression/tierTable.ts",
+      "base": "70996ddc1cafc448d6b94fd78c2fdc14cdc8149e",
+      "tested": "70996ddc1cafc448d6b94fd78c2fdc14cdc8149e"
+    },
+    {
+      "path": "src/core/special/config.ts",
+      "base": "28c490dbf7898e9bb078c71ed69a9f662b432b57",
+      "tested": "28c490dbf7898e9bb078c71ed69a9f662b432b57"
+    },
+    {
+      "path": "src/core/special/state.ts",
+      "base": "cfae7a2b9e02ffa69c972e77a9dc9bb19fea7def",
+      "tested": "cfae7a2b9e02ffa69c972e77a9dc9bb19fea7def"
+    },
+    {
+      "path": "src/domain/attributes.ts",
+      "base": "9b0dc35a9b2d6e61aecc4a8d7db529eba4137565",
+      "tested": "9b0dc35a9b2d6e61aecc4a8d7db529eba4137565"
+    },
+    {
+      "path": "src/domain/game.ts",
+      "base": "347103676c464dd9ff42b0f84547b0b87386399b",
+      "tested": "347103676c464dd9ff42b0f84547b0b87386399b"
+    },
+    {
+      "path": "src/domain/grid.ts",
+      "base": "500e6c8de9ab5c13606f2f94e727feac52ce42c7",
+      "tested": "500e6c8de9ab5c13606f2f94e727feac52ce42c7"
+    },
+    {
+      "path": "src/domain/special.ts",
+      "base": "b4499ff942391bd6ac7a5acd09f9ff9d34c8e899",
+      "tested": "b4499ff942391bd6ac7a5acd09f9ff9d34c8e899"
+    }
+  ]
+}

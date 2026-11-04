@@ -1,0 +1,177 @@
+{
+  "checks": [
+    {
+      "name": "1366x768 Tier1 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 Tier1 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 Tier40 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 Tier40 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 3 combinations, normal/each awake/both awake/third attribute and independent ranks",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 ornament SVG ignores Lv1/99, reversed arrays keep complete appearance and visible badge Lv99",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 mouse/native touch drag, 5merge distribution, detail, swap, strip and reload share the same decorated Slime",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 pointercancel/Escape and two-finger pinch cancel decorated drag without touching game",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 appearance preview selects3 attributes/individual flags for all40 Tiers, no save writes, keyboard escape",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 reduced effects/reduced motion preserve3 shapes and3 stars, wheel zoom keeps geometry without page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 Tier1 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 Tier1 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 Tier40 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 Tier40 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 3 combinations, normal/each awake/both awake/third attribute and independent ranks",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 ornament SVG ignores Lv1/99, reversed arrays keep complete appearance and visible badge Lv99",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 mouse/native touch drag, 5merge distribution, detail, swap, strip and reload share the same decorated Slime",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 pointercancel/Escape and two-finger pinch cancel decorated drag without touching game",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 appearance preview selects3 attributes/individual flags for all40 Tiers, no save writes, keyboard escape",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 reduced effects/reduced motion preserve3 shapes and3 stars, wheel zoom keeps geometry without page scroll",
+      "result": "PASS"
+    }
+  ],
+  "errors": [],
+  "metrics": [
+    {
+      "name": "1366x768",
+      "tier": 1,
+      "awake": false,
+      "board": {
+        "x": 334,
+        "y": 60,
+        "width": 698,
+        "height": 698
+      }
+    },
+    {
+      "name": "1366x768",
+      "tier": 1,
+      "awake": true,
+      "board": {
+        "x": 334,
+        "y": 60,
+        "width": 698,
+        "height": 698
+      }
+    },
+    {
+      "name": "1366x768",
+      "tier": 40,
+      "awake": false,
+      "board": {
+        "x": 334,
+        "y": 60,
+        "width": 698,
+        "height": 698
+      }
+    },
+    {
+      "name": "1366x768",
+      "tier": 40,
+      "awake": true,
+      "board": {
+        "x": 334,
+        "y": 60,
+        "width": 698,
+        "height": 698
+      }
+    },
+    {
+      "name": "320x568",
+      "tier": 1,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 66,
+        "width": 304,
+        "height": 304
+      }
+    },
+    {
+      "name": "320x568",
+      "tier": 1,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 66,
+        "width": 304,
+        "height": 304
+      }
+    },
+    {
+      "name": "320x568",
+      "tier": 40,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 66,
+        "width": 304,
+        "height": 304
+      }
+    },
+    {
+      "name": "320x568",
+      "tier": 40,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 66,
+        "width": 304,
+        "height": 304
+      }
+    }
+  ],
+  "browser": "134.0.6998.35",
+  "realDevices": false
+}
