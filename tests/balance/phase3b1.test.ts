@@ -8,7 +8,7 @@ import { freshSession, sessionRules, type Session } from '../../src/core/progres
 import { encodeSession, decodeSession, commitStorage } from '../../src/core/progression/persistence'
 import { upgradeCost } from '../../src/core/progression/economy'
 import type { Attributes } from '../../src/domain/attributes'
-const dir='docs/balance/phase3b1'
+const dir='docs/validation/phase4a/regression/balance-phase3b1'
 const rng=(seed:number)=>()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296}
 it('compares stock10/58/100/160, capacity/price proposals, and bounded save/generation performance',()=>{
  const proposals=[{name:'previous',perLevel:3,maxLevel:16,growth:1.7},{name:'A',perLevel:4,maxLevel:30,growth:1.35},{name:'B',perLevel:5,maxLevel:30,growth:1.35},{name:'C',perLevel:5,maxLevel:40,growth:1.35}].map(p=>({...p,maxCapacity:10+p.perLevel*p.maxLevel,levels:[0,1,5,10,16,20,30,40].filter(lv=>lv<=p.maxLevel).map(lv=>{

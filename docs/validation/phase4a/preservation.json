@@ -1,0 +1,47 @@
+[
+  {
+    "path": "src/app/sessionStore.ts",
+    "gitBlob": "d261823066577e8e67863399507ce131932141ac",
+    "unchanged": true
+  },
+  {
+    "path": "src/core/attributes/inheritance.ts",
+    "gitBlob": "3570e5771463f8196096ceb53f88ffccbf4bf682",
+    "unchanged": true
+  },
+  {
+    "path": "src/core/attributes/awakening.ts",
+    "gitBlob": "5cf05bc534950ce3d4bb2fa459fd274a4798384e",
+    "unchanged": true
+  },
+  {
+    "path": "src/core/special/config.ts",
+    "gitBlob": "28c490dbf7898e9bb078c71ed69a9f662b432b57",
+    "unchanged": true
+  },
+  {
+    "path": "src/core/progression/tierTable.ts",
+    "gitBlob": "70996ddc1cafc448d6b94fd78c2fdc14cdc8149e",
+    "unchanged": true
+  },
+  {
+    "path": "package.json",
+    "gitBlob": "d0d631b79bb55c173d266b07d8eb470520844ee5",
+    "unchanged": true
+  },
+  {
+    "path": "package-lock.json",
+    "gitBlob": "9da4251d6eee59bde59328cc4300dfd6db270c29",
+    "unchanged": true
+  },
+  {
+    "path": ".github/workflows/ci.yml",
+    "gitBlob": "ad08660c5e5e92c3f885906ada8a9da5309c5180",
+    "unchanged": true
+  },
+  {
+    "path": ".github/workflows/pages.yml",
+    "gitBlob": "d23675f5970793444ed065ba5e1fa7df5c12d42e",
+    "unchanged": true
+  }
+]

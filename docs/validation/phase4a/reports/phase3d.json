@@ -1,0 +1,2349 @@
+{
+  "checks": [
+    {
+      "name": "1920x1080 Tier1 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 Tier1 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 Tier4 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 Tier4 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 Tier10 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 Tier10 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 Tier20 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 Tier20 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 Tier21 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 Tier21 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 Tier30 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 Tier30 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 Tier40 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 Tier40 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 3 combinations, normal/each awake/both awake/third attribute and independent ranks",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 ornament SVG ignores Lv1/99, reversed arrays keep complete appearance and visible badge Lv99",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 mouse/native touch drag, 5merge distribution, detail, swap, strip and reload share the same decorated Slime",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 pointercancel/Escape and two-finger pinch cancel decorated drag without touching game",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 appearance preview selects3 attributes/individual flags for all40 Tiers, no save writes, keyboard escape",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 reduced effects/reduced motion preserve3 shapes and3 stars, wheel zoom keeps geometry without page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 Tier1 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 Tier1 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 Tier4 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 Tier4 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 Tier10 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 Tier10 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 Tier20 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 Tier20 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 Tier21 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 Tier21 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 Tier30 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 Tier30 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 Tier40 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 Tier40 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 3 combinations, normal/each awake/both awake/third attribute and independent ranks",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 ornament SVG ignores Lv1/99, reversed arrays keep complete appearance and visible badge Lv99",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 mouse/native touch drag, 5merge distribution, detail, swap, strip and reload share the same decorated Slime",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 pointercancel/Escape and two-finger pinch cancel decorated drag without touching game",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 appearance preview selects3 attributes/individual flags for all40 Tiers, no save writes, keyboard escape",
+      "result": "PASS"
+    },
+    {
+      "name": "1440x900 reduced effects/reduced motion preserve3 shapes and3 stars, wheel zoom keeps geometry without page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 Tier1 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 Tier1 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 Tier4 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 Tier4 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 Tier10 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 Tier10 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 Tier20 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 Tier20 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 Tier21 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 Tier21 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 Tier30 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 Tier30 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 Tier40 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 Tier40 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 3 combinations, normal/each awake/both awake/third attribute and independent ranks",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 ornament SVG ignores Lv1/99, reversed arrays keep complete appearance and visible badge Lv99",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 mouse/native touch drag, 5merge distribution, detail, swap, strip and reload share the same decorated Slime",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 pointercancel/Escape and two-finger pinch cancel decorated drag without touching game",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 appearance preview selects3 attributes/individual flags for all40 Tiers, no save writes, keyboard escape",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 reduced effects/reduced motion preserve3 shapes and3 stars, wheel zoom keeps geometry without page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 Tier1 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 Tier1 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 Tier4 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 Tier4 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 Tier10 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 Tier10 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 Tier20 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 Tier20 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 Tier21 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 Tier21 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 Tier30 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 Tier30 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 Tier40 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 Tier40 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 3 combinations, normal/each awake/both awake/third attribute and independent ranks",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 ornament SVG ignores Lv1/99, reversed arrays keep complete appearance and visible badge Lv99",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 mouse/native touch drag, 5merge distribution, detail, swap, strip and reload share the same decorated Slime",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 pointercancel/Escape and two-finger pinch cancel decorated drag without touching game",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 appearance preview selects3 attributes/individual flags for all40 Tiers, no save writes, keyboard escape",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 reduced effects/reduced motion preserve3 shapes and3 stars, wheel zoom keeps geometry without page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 Tier1 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 Tier1 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 Tier4 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 Tier4 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 Tier10 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 Tier10 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 Tier20 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 Tier20 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 Tier21 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 Tier21 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 Tier30 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 Tier30 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 Tier40 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 Tier40 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 3 combinations, normal/each awake/both awake/third attribute and independent ranks",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 ornament SVG ignores Lv1/99, reversed arrays keep complete appearance and visible badge Lv99",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 mouse/native touch drag, 5merge distribution, detail, swap, strip and reload share the same decorated Slime",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 pointercancel/Escape and two-finger pinch cancel decorated drag without touching game",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 appearance preview selects3 attributes/individual flags for all40 Tiers, no save writes, keyboard escape",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 reduced effects/reduced motion preserve3 shapes and3 stars, wheel zoom keeps geometry without page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 Tier1 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 Tier1 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 Tier4 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 Tier4 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 Tier10 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 Tier10 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 Tier20 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 Tier20 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 Tier21 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 Tier21 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 Tier30 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 Tier30 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 Tier40 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 Tier40 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 3 combinations, normal/each awake/both awake/third attribute and independent ranks",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 ornament SVG ignores Lv1/99, reversed arrays keep complete appearance and visible badge Lv99",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 mouse/native touch drag, 5merge distribution, detail, swap, strip and reload share the same decorated Slime",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 pointercancel/Escape and two-finger pinch cancel decorated drag without touching game",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 appearance preview selects3 attributes/individual flags for all40 Tiers, no save writes, keyboard escape",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 reduced effects/reduced motion preserve3 shapes and3 stars, wheel zoom keeps geometry without page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 Tier1 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 Tier1 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 Tier4 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 Tier4 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 Tier10 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 Tier10 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 Tier20 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 Tier20 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 Tier21 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 Tier21 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 Tier30 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 Tier30 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 Tier40 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 Tier40 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 3 combinations, normal/each awake/both awake/third attribute and independent ranks",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 ornament SVG ignores Lv1/99, reversed arrays keep complete appearance and visible badge Lv99",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 mouse/native touch drag, 5merge distribution, detail, swap, strip and reload share the same decorated Slime",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 pointercancel/Escape and two-finger pinch cancel decorated drag without touching game",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 appearance preview selects3 attributes/individual flags for all40 Tiers, no save writes, keyboard escape",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 reduced effects/reduced motion preserve3 shapes and3 stars, wheel zoom keeps geometry without page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 Tier1 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 Tier1 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 Tier4 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 Tier4 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 Tier10 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 Tier10 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 Tier20 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 Tier20 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 Tier21 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 Tier21 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 Tier30 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 Tier30 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 Tier40 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 Tier40 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 3 combinations, normal/each awake/both awake/third attribute and independent ranks",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 ornament SVG ignores Lv1/99, reversed arrays keep complete appearance and visible badge Lv99",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 mouse/native touch drag, 5merge distribution, detail, swap, strip and reload share the same decorated Slime",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 pointercancel/Escape and two-finger pinch cancel decorated drag without touching game",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 appearance preview selects3 attributes/individual flags for all40 Tiers, no save writes, keyboard escape",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 reduced effects/reduced motion preserve3 shapes and3 stars, wheel zoom keeps geometry without page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 Tier1 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 Tier1 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 Tier4 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 Tier4 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 Tier10 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 Tier10 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 Tier20 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 Tier20 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 Tier21 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 Tier21 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 Tier30 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 Tier30 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 Tier40 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 Tier40 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 3 combinations, normal/each awake/both awake/third attribute and independent ranks",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 ornament SVG ignores Lv1/99, reversed arrays keep complete appearance and visible badge Lv99",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 mouse/native touch drag, 5merge distribution, detail, swap, strip and reload share the same decorated Slime",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 pointercancel/Escape and two-finger pinch cancel decorated drag without touching game",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 appearance preview selects3 attributes/individual flags for all40 Tiers, no save writes, keyboard escape",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 reduced effects/reduced motion preserve3 shapes and3 stars, wheel zoom keeps geometry without page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 Tier1 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 Tier1 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 Tier4 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 Tier4 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 Tier10 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 Tier10 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 Tier20 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 Tier20 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 Tier21 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 Tier21 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 Tier30 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 Tier30 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 Tier40 normal10/awake10=false, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 Tier40 normal10/awake10=true, triple3, protected face, no input or state mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 3 combinations, normal/each awake/both awake/third attribute and independent ranks",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 ornament SVG ignores Lv1/99, reversed arrays keep complete appearance and visible badge Lv99",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 mouse/native touch drag, 5merge distribution, detail, swap, strip and reload share the same decorated Slime",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 pointercancel/Escape and two-finger pinch cancel decorated drag without touching game",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 appearance preview selects3 attributes/individual flags for all40 Tiers, no save writes, keyboard escape",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 reduced effects/reduced motion preserve3 shapes and3 stars, wheel zoom keeps geometry without page scroll",
+      "result": "PASS"
+    }
+  ],
+  "errors": [],
+  "metrics": [
+    {
+      "name": "1920x1080",
+      "tier": 1,
+      "awake": false,
+      "board": {
+        "x": 455,
+        "y": 60,
+        "width": 2020,
+        "height": 2020
+      }
+    },
+    {
+      "name": "1920x1080",
+      "tier": 1,
+      "awake": true,
+      "board": {
+        "x": 455,
+        "y": 60,
+        "width": 2020,
+        "height": 2020
+      }
+    },
+    {
+      "name": "1920x1080",
+      "tier": 4,
+      "awake": false,
+      "board": {
+        "x": 455,
+        "y": 60,
+        "width": 2020,
+        "height": 2020
+      }
+    },
+    {
+      "name": "1920x1080",
+      "tier": 4,
+      "awake": true,
+      "board": {
+        "x": 455,
+        "y": 60,
+        "width": 2020,
+        "height": 2020
+      }
+    },
+    {
+      "name": "1920x1080",
+      "tier": 10,
+      "awake": false,
+      "board": {
+        "x": 455,
+        "y": 60,
+        "width": 2020,
+        "height": 2020
+      }
+    },
+    {
+      "name": "1920x1080",
+      "tier": 10,
+      "awake": true,
+      "board": {
+        "x": 455,
+        "y": 60,
+        "width": 2020,
+        "height": 2020
+      }
+    },
+    {
+      "name": "1920x1080",
+      "tier": 20,
+      "awake": false,
+      "board": {
+        "x": 455,
+        "y": 60,
+        "width": 2020,
+        "height": 2020
+      }
+    },
+    {
+      "name": "1920x1080",
+      "tier": 20,
+      "awake": true,
+      "board": {
+        "x": 455,
+        "y": 60,
+        "width": 2020,
+        "height": 2020
+      }
+    },
+    {
+      "name": "1920x1080",
+      "tier": 21,
+      "awake": false,
+      "board": {
+        "x": 455,
+        "y": 60,
+        "width": 2020,
+        "height": 2020
+      }
+    },
+    {
+      "name": "1920x1080",
+      "tier": 21,
+      "awake": true,
+      "board": {
+        "x": 455,
+        "y": 60,
+        "width": 2020,
+        "height": 2020
+      }
+    },
+    {
+      "name": "1920x1080",
+      "tier": 30,
+      "awake": false,
+      "board": {
+        "x": 455,
+        "y": 60,
+        "width": 2020,
+        "height": 2020
+      }
+    },
+    {
+      "name": "1920x1080",
+      "tier": 30,
+      "awake": true,
+      "board": {
+        "x": 455,
+        "y": 60,
+        "width": 2020,
+        "height": 2020
+      }
+    },
+    {
+      "name": "1920x1080",
+      "tier": 40,
+      "awake": false,
+      "board": {
+        "x": 455,
+        "y": 60,
+        "width": 2020,
+        "height": 2020
+      }
+    },
+    {
+      "name": "1920x1080",
+      "tier": 40,
+      "awake": true,
+      "board": {
+        "x": 455,
+        "y": 60,
+        "width": 2020,
+        "height": 2020
+      }
+    },
+    {
+      "name": "1440x900",
+      "tier": 1,
+      "awake": false,
+      "board": {
+        "x": 305,
+        "y": 60,
+        "width": 1660,
+        "height": 1660
+      }
+    },
+    {
+      "name": "1440x900",
+      "tier": 1,
+      "awake": true,
+      "board": {
+        "x": 305,
+        "y": 60,
+        "width": 1660,
+        "height": 1660
+      }
+    },
+    {
+      "name": "1440x900",
+      "tier": 4,
+      "awake": false,
+      "board": {
+        "x": 305,
+        "y": 60,
+        "width": 1660,
+        "height": 1660
+      }
+    },
+    {
+      "name": "1440x900",
+      "tier": 4,
+      "awake": true,
+      "board": {
+        "x": 305,
+        "y": 60,
+        "width": 1660,
+        "height": 1660
+      }
+    },
+    {
+      "name": "1440x900",
+      "tier": 10,
+      "awake": false,
+      "board": {
+        "x": 305,
+        "y": 60,
+        "width": 1660,
+        "height": 1660
+      }
+    },
+    {
+      "name": "1440x900",
+      "tier": 10,
+      "awake": true,
+      "board": {
+        "x": 305,
+        "y": 60,
+        "width": 1660,
+        "height": 1660
+      }
+    },
+    {
+      "name": "1440x900",
+      "tier": 20,
+      "awake": false,
+      "board": {
+        "x": 305,
+        "y": 60,
+        "width": 1660,
+        "height": 1660
+      }
+    },
+    {
+      "name": "1440x900",
+      "tier": 20,
+      "awake": true,
+      "board": {
+        "x": 305,
+        "y": 60,
+        "width": 1660,
+        "height": 1660
+      }
+    },
+    {
+      "name": "1440x900",
+      "tier": 21,
+      "awake": false,
+      "board": {
+        "x": 305,
+        "y": 60,
+        "width": 1660,
+        "height": 1660
+      }
+    },
+    {
+      "name": "1440x900",
+      "tier": 21,
+      "awake": true,
+      "board": {
+        "x": 305,
+        "y": 60,
+        "width": 1660,
+        "height": 1660
+      }
+    },
+    {
+      "name": "1440x900",
+      "tier": 30,
+      "awake": false,
+      "board": {
+        "x": 305,
+        "y": 60,
+        "width": 1660,
+        "height": 1660
+      }
+    },
+    {
+      "name": "1440x900",
+      "tier": 30,
+      "awake": true,
+      "board": {
+        "x": 305,
+        "y": 60,
+        "width": 1660,
+        "height": 1660
+      }
+    },
+    {
+      "name": "1440x900",
+      "tier": 40,
+      "awake": false,
+      "board": {
+        "x": 305,
+        "y": 60,
+        "width": 1660,
+        "height": 1660
+      }
+    },
+    {
+      "name": "1440x900",
+      "tier": 40,
+      "awake": true,
+      "board": {
+        "x": 305,
+        "y": 60,
+        "width": 1660,
+        "height": 1660
+      }
+    },
+    {
+      "name": "1366x768",
+      "tier": 1,
+      "awake": false,
+      "board": {
+        "x": 334,
+        "y": 60,
+        "width": 1396,
+        "height": 1396
+      }
+    },
+    {
+      "name": "1366x768",
+      "tier": 1,
+      "awake": true,
+      "board": {
+        "x": 334,
+        "y": 60,
+        "width": 1396,
+        "height": 1396
+      }
+    },
+    {
+      "name": "1366x768",
+      "tier": 4,
+      "awake": false,
+      "board": {
+        "x": 334,
+        "y": 60,
+        "width": 1396,
+        "height": 1396
+      }
+    },
+    {
+      "name": "1366x768",
+      "tier": 4,
+      "awake": true,
+      "board": {
+        "x": 334,
+        "y": 60,
+        "width": 1396,
+        "height": 1396
+      }
+    },
+    {
+      "name": "1366x768",
+      "tier": 10,
+      "awake": false,
+      "board": {
+        "x": 334,
+        "y": 60,
+        "width": 1396,
+        "height": 1396
+      }
+    },
+    {
+      "name": "1366x768",
+      "tier": 10,
+      "awake": true,
+      "board": {
+        "x": 334,
+        "y": 60,
+        "width": 1396,
+        "height": 1396
+      }
+    },
+    {
+      "name": "1366x768",
+      "tier": 20,
+      "awake": false,
+      "board": {
+        "x": 334,
+        "y": 60,
+        "width": 1396,
+        "height": 1396
+      }
+    },
+    {
+      "name": "1366x768",
+      "tier": 20,
+      "awake": true,
+      "board": {
+        "x": 334,
+        "y": 60,
+        "width": 1396,
+        "height": 1396
+      }
+    },
+    {
+      "name": "1366x768",
+      "tier": 21,
+      "awake": false,
+      "board": {
+        "x": 334,
+        "y": 60,
+        "width": 1396,
+        "height": 1396
+      }
+    },
+    {
+      "name": "1366x768",
+      "tier": 21,
+      "awake": true,
+      "board": {
+        "x": 334,
+        "y": 60,
+        "width": 1396,
+        "height": 1396
+      }
+    },
+    {
+      "name": "1366x768",
+      "tier": 30,
+      "awake": false,
+      "board": {
+        "x": 334,
+        "y": 60,
+        "width": 1396,
+        "height": 1396
+      }
+    },
+    {
+      "name": "1366x768",
+      "tier": 30,
+      "awake": true,
+      "board": {
+        "x": 334,
+        "y": 60,
+        "width": 1396,
+        "height": 1396
+      }
+    },
+    {
+      "name": "1366x768",
+      "tier": 40,
+      "awake": false,
+      "board": {
+        "x": 334,
+        "y": 60,
+        "width": 1396,
+        "height": 1396
+      }
+    },
+    {
+      "name": "1366x768",
+      "tier": 40,
+      "awake": true,
+      "board": {
+        "x": 334,
+        "y": 60,
+        "width": 1396,
+        "height": 1396
+      }
+    },
+    {
+      "name": "1280x720",
+      "tier": 1,
+      "awake": false,
+      "board": {
+        "x": 315,
+        "y": 60,
+        "width": 1300,
+        "height": 1300
+      }
+    },
+    {
+      "name": "1280x720",
+      "tier": 1,
+      "awake": true,
+      "board": {
+        "x": 315,
+        "y": 60,
+        "width": 1300,
+        "height": 1300
+      }
+    },
+    {
+      "name": "1280x720",
+      "tier": 4,
+      "awake": false,
+      "board": {
+        "x": 315,
+        "y": 60,
+        "width": 1300,
+        "height": 1300
+      }
+    },
+    {
+      "name": "1280x720",
+      "tier": 4,
+      "awake": true,
+      "board": {
+        "x": 315,
+        "y": 60,
+        "width": 1300,
+        "height": 1300
+      }
+    },
+    {
+      "name": "1280x720",
+      "tier": 10,
+      "awake": false,
+      "board": {
+        "x": 315,
+        "y": 60,
+        "width": 1300,
+        "height": 1300
+      }
+    },
+    {
+      "name": "1280x720",
+      "tier": 10,
+      "awake": true,
+      "board": {
+        "x": 315,
+        "y": 60,
+        "width": 1300,
+        "height": 1300
+      }
+    },
+    {
+      "name": "1280x720",
+      "tier": 20,
+      "awake": false,
+      "board": {
+        "x": 315,
+        "y": 60,
+        "width": 1300,
+        "height": 1300
+      }
+    },
+    {
+      "name": "1280x720",
+      "tier": 20,
+      "awake": true,
+      "board": {
+        "x": 315,
+        "y": 60,
+        "width": 1300,
+        "height": 1300
+      }
+    },
+    {
+      "name": "1280x720",
+      "tier": 21,
+      "awake": false,
+      "board": {
+        "x": 315,
+        "y": 60,
+        "width": 1300,
+        "height": 1300
+      }
+    },
+    {
+      "name": "1280x720",
+      "tier": 21,
+      "awake": true,
+      "board": {
+        "x": 315,
+        "y": 60,
+        "width": 1300,
+        "height": 1300
+      }
+    },
+    {
+      "name": "1280x720",
+      "tier": 30,
+      "awake": false,
+      "board": {
+        "x": 315,
+        "y": 60,
+        "width": 1300,
+        "height": 1300
+      }
+    },
+    {
+      "name": "1280x720",
+      "tier": 30,
+      "awake": true,
+      "board": {
+        "x": 315,
+        "y": 60,
+        "width": 1300,
+        "height": 1300
+      }
+    },
+    {
+      "name": "1280x720",
+      "tier": 40,
+      "awake": false,
+      "board": {
+        "x": 315,
+        "y": 60,
+        "width": 1300,
+        "height": 1300
+      }
+    },
+    {
+      "name": "1280x720",
+      "tier": 40,
+      "awake": true,
+      "board": {
+        "x": 315,
+        "y": 60,
+        "width": 1300,
+        "height": 1300
+      }
+    },
+    {
+      "name": "1024x768",
+      "tier": 1,
+      "awake": false,
+      "board": {
+        "x": 200,
+        "y": 97,
+        "width": 1248,
+        "height": 1248
+      }
+    },
+    {
+      "name": "1024x768",
+      "tier": 1,
+      "awake": true,
+      "board": {
+        "x": 200,
+        "y": 97,
+        "width": 1248,
+        "height": 1248
+      }
+    },
+    {
+      "name": "1024x768",
+      "tier": 4,
+      "awake": false,
+      "board": {
+        "x": 200,
+        "y": 97,
+        "width": 1248,
+        "height": 1248
+      }
+    },
+    {
+      "name": "1024x768",
+      "tier": 4,
+      "awake": true,
+      "board": {
+        "x": 200,
+        "y": 97,
+        "width": 1248,
+        "height": 1248
+      }
+    },
+    {
+      "name": "1024x768",
+      "tier": 10,
+      "awake": false,
+      "board": {
+        "x": 200,
+        "y": 97,
+        "width": 1248,
+        "height": 1248
+      }
+    },
+    {
+      "name": "1024x768",
+      "tier": 10,
+      "awake": true,
+      "board": {
+        "x": 200,
+        "y": 97,
+        "width": 1248,
+        "height": 1248
+      }
+    },
+    {
+      "name": "1024x768",
+      "tier": 20,
+      "awake": false,
+      "board": {
+        "x": 200,
+        "y": 97,
+        "width": 1248,
+        "height": 1248
+      }
+    },
+    {
+      "name": "1024x768",
+      "tier": 20,
+      "awake": true,
+      "board": {
+        "x": 200,
+        "y": 97,
+        "width": 1248,
+        "height": 1248
+      }
+    },
+    {
+      "name": "1024x768",
+      "tier": 21,
+      "awake": false,
+      "board": {
+        "x": 200,
+        "y": 97,
+        "width": 1248,
+        "height": 1248
+      }
+    },
+    {
+      "name": "1024x768",
+      "tier": 21,
+      "awake": true,
+      "board": {
+        "x": 200,
+        "y": 97,
+        "width": 1248,
+        "height": 1248
+      }
+    },
+    {
+      "name": "1024x768",
+      "tier": 30,
+      "awake": false,
+      "board": {
+        "x": 200,
+        "y": 97,
+        "width": 1248,
+        "height": 1248
+      }
+    },
+    {
+      "name": "1024x768",
+      "tier": 30,
+      "awake": true,
+      "board": {
+        "x": 200,
+        "y": 97,
+        "width": 1248,
+        "height": 1248
+      }
+    },
+    {
+      "name": "1024x768",
+      "tier": 40,
+      "awake": false,
+      "board": {
+        "x": 200,
+        "y": 97,
+        "width": 1248,
+        "height": 1248
+      }
+    },
+    {
+      "name": "1024x768",
+      "tier": 40,
+      "awake": true,
+      "board": {
+        "x": 200,
+        "y": 97,
+        "width": 1248,
+        "height": 1248
+      }
+    },
+    {
+      "name": "768x1024",
+      "tier": 1,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 70,
+        "width": 1504,
+        "height": 1504
+      }
+    },
+    {
+      "name": "768x1024",
+      "tier": 1,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 70,
+        "width": 1504,
+        "height": 1504
+      }
+    },
+    {
+      "name": "768x1024",
+      "tier": 4,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 70,
+        "width": 1504,
+        "height": 1504
+      }
+    },
+    {
+      "name": "768x1024",
+      "tier": 4,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 70,
+        "width": 1504,
+        "height": 1504
+      }
+    },
+    {
+      "name": "768x1024",
+      "tier": 10,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 70,
+        "width": 1504,
+        "height": 1504
+      }
+    },
+    {
+      "name": "768x1024",
+      "tier": 10,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 70,
+        "width": 1504,
+        "height": 1504
+      }
+    },
+    {
+      "name": "768x1024",
+      "tier": 20,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 70,
+        "width": 1504,
+        "height": 1504
+      }
+    },
+    {
+      "name": "768x1024",
+      "tier": 20,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 70,
+        "width": 1504,
+        "height": 1504
+      }
+    },
+    {
+      "name": "768x1024",
+      "tier": 21,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 70,
+        "width": 1504,
+        "height": 1504
+      }
+    },
+    {
+      "name": "768x1024",
+      "tier": 21,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 70,
+        "width": 1504,
+        "height": 1504
+      }
+    },
+    {
+      "name": "768x1024",
+      "tier": 30,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 70,
+        "width": 1504,
+        "height": 1504
+      }
+    },
+    {
+      "name": "768x1024",
+      "tier": 30,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 70,
+        "width": 1504,
+        "height": 1504
+      }
+    },
+    {
+      "name": "768x1024",
+      "tier": 40,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 70,
+        "width": 1504,
+        "height": 1504
+      }
+    },
+    {
+      "name": "768x1024",
+      "tier": 40,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 70,
+        "width": 1504,
+        "height": 1504
+      }
+    },
+    {
+      "name": "390x844",
+      "tier": 1,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 169,
+        "width": 748,
+        "height": 748
+      }
+    },
+    {
+      "name": "390x844",
+      "tier": 1,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 169,
+        "width": 748,
+        "height": 748
+      }
+    },
+    {
+      "name": "390x844",
+      "tier": 4,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 169,
+        "width": 748,
+        "height": 748
+      }
+    },
+    {
+      "name": "390x844",
+      "tier": 4,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 169,
+        "width": 748,
+        "height": 748
+      }
+    },
+    {
+      "name": "390x844",
+      "tier": 10,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 169,
+        "width": 748,
+        "height": 748
+      }
+    },
+    {
+      "name": "390x844",
+      "tier": 10,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 169,
+        "width": 748,
+        "height": 748
+      }
+    },
+    {
+      "name": "390x844",
+      "tier": 20,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 169,
+        "width": 748,
+        "height": 748
+      }
+    },
+    {
+      "name": "390x844",
+      "tier": 20,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 169,
+        "width": 748,
+        "height": 748
+      }
+    },
+    {
+      "name": "390x844",
+      "tier": 21,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 169,
+        "width": 748,
+        "height": 748
+      }
+    },
+    {
+      "name": "390x844",
+      "tier": 21,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 169,
+        "width": 748,
+        "height": 748
+      }
+    },
+    {
+      "name": "390x844",
+      "tier": 30,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 169,
+        "width": 748,
+        "height": 748
+      }
+    },
+    {
+      "name": "390x844",
+      "tier": 30,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 169,
+        "width": 748,
+        "height": 748
+      }
+    },
+    {
+      "name": "390x844",
+      "tier": 40,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 169,
+        "width": 748,
+        "height": 748
+      }
+    },
+    {
+      "name": "390x844",
+      "tier": 40,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 169,
+        "width": 748,
+        "height": 748
+      }
+    },
+    {
+      "name": "375x667",
+      "tier": 1,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 88,
+        "width": 718,
+        "height": 718
+      }
+    },
+    {
+      "name": "375x667",
+      "tier": 1,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 88,
+        "width": 718,
+        "height": 718
+      }
+    },
+    {
+      "name": "375x667",
+      "tier": 4,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 88,
+        "width": 718,
+        "height": 718
+      }
+    },
+    {
+      "name": "375x667",
+      "tier": 4,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 88,
+        "width": 718,
+        "height": 718
+      }
+    },
+    {
+      "name": "375x667",
+      "tier": 10,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 88,
+        "width": 718,
+        "height": 718
+      }
+    },
+    {
+      "name": "375x667",
+      "tier": 10,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 88,
+        "width": 718,
+        "height": 718
+      }
+    },
+    {
+      "name": "375x667",
+      "tier": 20,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 88,
+        "width": 718,
+        "height": 718
+      }
+    },
+    {
+      "name": "375x667",
+      "tier": 20,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 88,
+        "width": 718,
+        "height": 718
+      }
+    },
+    {
+      "name": "375x667",
+      "tier": 21,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 88,
+        "width": 718,
+        "height": 718
+      }
+    },
+    {
+      "name": "375x667",
+      "tier": 21,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 88,
+        "width": 718,
+        "height": 718
+      }
+    },
+    {
+      "name": "375x667",
+      "tier": 30,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 88,
+        "width": 718,
+        "height": 718
+      }
+    },
+    {
+      "name": "375x667",
+      "tier": 30,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 88,
+        "width": 718,
+        "height": 718
+      }
+    },
+    {
+      "name": "375x667",
+      "tier": 40,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 88,
+        "width": 718,
+        "height": 718
+      }
+    },
+    {
+      "name": "375x667",
+      "tier": 40,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 88,
+        "width": 718,
+        "height": 718
+      }
+    },
+    {
+      "name": "320x568",
+      "tier": 1,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 66,
+        "width": 608,
+        "height": 608
+      }
+    },
+    {
+      "name": "320x568",
+      "tier": 1,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 66,
+        "width": 608,
+        "height": 608
+      }
+    },
+    {
+      "name": "320x568",
+      "tier": 4,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 66,
+        "width": 608,
+        "height": 608
+      }
+    },
+    {
+      "name": "320x568",
+      "tier": 4,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 66,
+        "width": 608,
+        "height": 608
+      }
+    },
+    {
+      "name": "320x568",
+      "tier": 10,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 66,
+        "width": 608,
+        "height": 608
+      }
+    },
+    {
+      "name": "320x568",
+      "tier": 10,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 66,
+        "width": 608,
+        "height": 608
+      }
+    },
+    {
+      "name": "320x568",
+      "tier": 20,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 66,
+        "width": 608,
+        "height": 608
+      }
+    },
+    {
+      "name": "320x568",
+      "tier": 20,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 66,
+        "width": 608,
+        "height": 608
+      }
+    },
+    {
+      "name": "320x568",
+      "tier": 21,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 66,
+        "width": 608,
+        "height": 608
+      }
+    },
+    {
+      "name": "320x568",
+      "tier": 21,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 66,
+        "width": 608,
+        "height": 608
+      }
+    },
+    {
+      "name": "320x568",
+      "tier": 30,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 66,
+        "width": 608,
+        "height": 608
+      }
+    },
+    {
+      "name": "320x568",
+      "tier": 30,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 66,
+        "width": 608,
+        "height": 608
+      }
+    },
+    {
+      "name": "320x568",
+      "tier": 40,
+      "awake": false,
+      "board": {
+        "x": 8,
+        "y": 66,
+        "width": 608,
+        "height": 608
+      }
+    },
+    {
+      "name": "320x568",
+      "tier": 40,
+      "awake": true,
+      "board": {
+        "x": 8,
+        "y": 66,
+        "width": 608,
+        "height": 608
+      }
+    },
+    {
+      "name": "844x390",
+      "tier": 1,
+      "awake": false,
+      "board": {
+        "x": 255,
+        "y": 48,
+        "width": 668,
+        "height": 668
+      }
+    },
+    {
+      "name": "844x390",
+      "tier": 1,
+      "awake": true,
+      "board": {
+        "x": 255,
+        "y": 48,
+        "width": 668,
+        "height": 668
+      }
+    },
+    {
+      "name": "844x390",
+      "tier": 4,
+      "awake": false,
+      "board": {
+        "x": 255,
+        "y": 48,
+        "width": 668,
+        "height": 668
+      }
+    },
+    {
+      "name": "844x390",
+      "tier": 4,
+      "awake": true,
+      "board": {
+        "x": 255,
+        "y": 48,
+        "width": 668,
+        "height": 668
+      }
+    },
+    {
+      "name": "844x390",
+      "tier": 10,
+      "awake": false,
+      "board": {
+        "x": 255,
+        "y": 48,
+        "width": 668,
+        "height": 668
+      }
+    },
+    {
+      "name": "844x390",
+      "tier": 10,
+      "awake": true,
+      "board": {
+        "x": 255,
+        "y": 48,
+        "width": 668,
+        "height": 668
+      }
+    },
+    {
+      "name": "844x390",
+      "tier": 20,
+      "awake": false,
+      "board": {
+        "x": 255,
+        "y": 48,
+        "width": 668,
+        "height": 668
+      }
+    },
+    {
+      "name": "844x390",
+      "tier": 20,
+      "awake": true,
+      "board": {
+        "x": 255,
+        "y": 48,
+        "width": 668,
+        "height": 668
+      }
+    },
+    {
+      "name": "844x390",
+      "tier": 21,
+      "awake": false,
+      "board": {
+        "x": 255,
+        "y": 48,
+        "width": 668,
+        "height": 668
+      }
+    },
+    {
+      "name": "844x390",
+      "tier": 21,
+      "awake": true,
+      "board": {
+        "x": 255,
+        "y": 48,
+        "width": 668,
+        "height": 668
+      }
+    },
+    {
+      "name": "844x390",
+      "tier": 30,
+      "awake": false,
+      "board": {
+        "x": 255,
+        "y": 48,
+        "width": 668,
+        "height": 668
+      }
+    },
+    {
+      "name": "844x390",
+      "tier": 30,
+      "awake": true,
+      "board": {
+        "x": 255,
+        "y": 48,
+        "width": 668,
+        "height": 668
+      }
+    },
+    {
+      "name": "844x390",
+      "tier": 40,
+      "awake": false,
+      "board": {
+        "x": 255,
+        "y": 48,
+        "width": 668,
+        "height": 668
+      }
+    },
+    {
+      "name": "844x390",
+      "tier": 40,
+      "awake": true,
+      "board": {
+        "x": 255,
+        "y": 48,
+        "width": 668,
+        "height": 668
+      }
+    }
+  ],
+  "browser": "134.0.6998.35",
+  "realDevices": false
+}

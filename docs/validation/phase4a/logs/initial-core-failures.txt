@@ -1,0 +1,706 @@
+(node:15) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ RUN  v5.0.5 /workspace/scratch/1610414678ca/slime-merge-game
+
+(node:48) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:49) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ tests/progression/followup.test.ts (76 tests | 3 failed) 2320ms
+   ❯ research transactions and materials (24)
+     × real new game has research5 and GOLD locked 12ms
+     × locked at cap still sells and can fund research from ordinary sales without gold cells 2ms
+   ❯ GOLD unlock, format and migration (7)
+     × v3 partially paid event keeps its exact unit, receipt and reward version; migration does not replay 2ms
+(node:64) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ tests/attributes/core.test.ts (92 tests | 6 failed) 140ms
+   ❯ storage, migration and atomic replay (56)
+     × schema1 migration keeps Tier40/protected/stock/wallet/research and frozen event ledger 11ms
+     × schema2 migration keeps Tier40/protected/stock/wallet/research and frozen event ledger 1ms
+     × schema3 migration keeps Tier40/protected/stock/wallet/research and frozen event ledger 1ms
+     × schema4 migration keeps Tier40/protected/stock/wallet/research and frozen event ledger 1ms
+     × schema4 research/format/frequency lock fields preserved exactly 5ms
+     × gold freezes actual attribute count/unit, reload preserves partial payment, same Tier exchange closes it 1ms
+(node:72) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ tests/attributes/effects.test.ts (60 tests | 8 failed) 69ms
+   ❯ Phase3B diminishing effects and caps (29)
+     × fire changes actual sale, keeps GOLD reward separate and caps wallet 10ms
+     × gold changes actual sale, keeps GOLD reward separate and caps wallet 1ms
+     × dark changes actual sale, keeps GOLD reward separate and caps wallet 1ms
+   ❯ safe focused generation and persistence (22)
+     × schema5 speedLv0 migrates progress and all ownership with frozen event 1ms
+     × schema5 speedLv1 migrates progress and all ownership with frozen event 1ms
+     × schema5 speedLv5 migrates progress and all ownership with frozen event 1ms
+     × schema5 speedLv10 migrates progress and all ownership with frozen event 1ms
+     × schema5 speedLv16 migrates progress and all ownership with frozen event 1ms
+(node:80) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ tests/progression/session.test.ts (35 tests | 3 failed) 330ms
+   ❯ integrated progression safety (10)
+     × 4x4 empty normal start, full storage never banks offline time 14ms
+   ❯ gold event ledger and recovery (6)
+     × wallet cap settles receipt without overflow and never traps a full board 2ms
+   ❯ strict v2 persistence and failed writes (19)
+     × v1 4x4 migrates explicitly, v1 experimental 7x7 refuses without cropping 1ms
+(node:88) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:96) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ tests/attributes/strip.test.ts (38 tests | 14 failed) 54ms
+   ❯ free whole-attribute removal (27)
+     × fire effect ends while unrelated individuals and base pace persist 9ms
+     × gold effect ends while unrelated individuals and base pace persist 2ms
+     × dark effect ends while unrelated individuals and base pace persist 1ms
+     × ice effect ends while unrelated individuals and base pace persist 1ms
+     × lightning effect ends while unrelated individuals and base pace persist 1ms
+     × nature effect ends while unrelated individuals and base pace persist 1ms
+     × luck effect ends while unrelated individuals and base pace persist 1ms
+     × mutation effect ends while unrelated individuals and base pace persist 1ms
+     × light effect ends while unrelated individuals and base pace persist 1ms
+     × magnet effect ends while unrelated individuals and base pace persist 1ms
+     × fire+gold combo ends on stripping 1ms
+     × ice+lightning combo ends on stripping 2ms
+     × luck+mutation combo ends on stripping 1ms
+     × active GOLD contract retains frozen count/unit/paid and same ID+cell, then pays old amount 2ms
+(node:104) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ tests/progression/polish.test.ts (49 tests | 8 failed) 47ms
+   ❯ gold source identity and atomic exit (9)
+     × 350ms × 10 individually recorded payments and no early credit 6ms
+     × 4/10 reload then sell expires 6 payments; never resumes on replacement 1ms
+     × payment wins before departure only once; departure-first wins with zero extra receipt 1ms
+     × cap counts receipts without overflow; replay cannot reclaim capped reward 1ms
+   ❯ explicit migration and protection (15)
+     × legacy v2 null preserves GOLD, queue, IDs and frozen unit 1ms
+     × legacy v2 waiting preserves GOLD, queue, IDs and frozen unit 1ms
+     × legacy v2 active preserves GOLD, queue, IDs and frozen unit 1ms
+     × legacy v2 detached preserves GOLD, queue, IDs and frozen unit 0ms
+(node:112) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ tests/attributes/specials.test.ts (32 tests | 8 failed) 45ms
+   ❯ schema7 and purple (11)
+     × old6 keeps traits, wallet, FIFO and upgrades but no awakening 9ms
+   ❯ awake and blue powers (21)
+     × ice strengthens its own power without common sale bonuses 1ms
+     × lightning strengthens its own power without common sale bonuses 1ms
+     × nature strengthens its own power without common sale bonuses 1ms
+     × luck strengthens its own power without common sale bonuses 1ms
+     × mutation strengthens its own power without common sale bonuses 0ms
+     × light strengthens its own power without common sale bonuses 0ms
+     × magnet strengthens its own power without common sale bonuses 0ms
+(node:120) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ tests/progression/phase2.test.ts (17 tests | 1 failed) 43ms
+   ❯ Phase 2 GOLD economy and event primitive (4)
+     × prices grow by Tier, remain finite through Tier40 8ms
+(node:128) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ tests/progression/storage.test.ts (27 tests | 8 failed) 37ms
+   ❯ independent storage limits and compatible schema6 (27)
+     × speed purchase refuses at its own maximum and never charges on failure 9ms
+     × tap purchase refuses at its own maximum and never charges on failure 1ms
+     × storage purchase refuses at its own maximum and never charges on failure 1ms
+     × existing schema6 storage Lv0 keeps paid levels/FIFO/traits/GOLD and old progress 2ms
+     × existing schema6 storage Lv1 keeps paid levels/FIFO/traits/GOLD and old progress 1ms
+     × existing schema6 storage Lv5 keeps paid levels/FIFO/traits/GOLD and old progress 0ms
+     × existing schema6 storage Lv10 keeps paid levels/FIFO/traits/GOLD and old progress 1ms
+     × existing schema6 storage Lv16 keeps paid levels/FIFO/traits/GOLD and old progress 0ms
+(node:136) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:144) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:152) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:160) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:168) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:176) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:184) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:192) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:200) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:208) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:216) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:224) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 59 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/attributes/core.test.ts > storage, migration and atomic replay > schema1 migration keeps Tier40/protected/stock/wallet/research and frozen event ledger
+ FAIL  tests/attributes/core.test.ts > storage, migration and atomic replay > schema2 migration keeps Tier40/protected/stock/wallet/research and frozen event ledger
+ FAIL  tests/attributes/core.test.ts > storage, migration and atomic replay > schema3 migration keeps Tier40/protected/stock/wallet/research and frozen event ledger
+ FAIL  tests/attributes/core.test.ts > storage, migration and atomic replay > schema4 migration keeps Tier40/protected/stock/wallet/research and frozen event ledger
+AssertionError: expected 8 to be 7 // Object.is equality
+
+- Expected
++ Received
+
+- 7
++ 8
+
+ ❯ tests/attributes/core.test.ts:94:29
+     92|   if(version===1){ rawSession.event=null as never } // v1 had no event…
+     93|   const raw=fixtureJSON(rawSession),d=decodeSession(raw,0);expect(d.ok…
+     94|   expect(d.session.version).toBe(7);expect(d.migrated).toBe(true);expe…
+       |                             ^
+     95|   expect(d.session.generator.storedTiers).toEqual([1,39,40]);expect(d.…
+     96|   if(version!==1){expect(d.session.protectedIds).toEqual(['p-1']);expe…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/59]⎯
+
+ FAIL  tests/attributes/core.test.ts > storage, migration and atomic replay > schema4 research/format/frequency lock fields preserved exactly
+AssertionError: expected { version: 8, …(21) } to match object { version: 7, …(21) }
+
+- Expected
++ Received
+
+@@ -48,11 +48,11 @@
+      "lastAwakening": null,
+      "nextBlueAtMs": 180000,
+      "nextPurpleAtMs": 300000,
+      "sequence": 0,
+    },
+-   "version": 7,
++   "version": 8,
+    "wallet": {
+      "gold": 123n,
+      "upgrades": {
+        "speed": 1,
+        "storage": 3,
+
+ ❯ tests/attributes/core.test.ts:100:67
+     98|  it('schema4 research/format/frequency lock fields preserved exactly',…
+     99|   const s={...freshSession(0),version:4,goldFrequencyLevel:3,goldCellU…
+    100|   const d=decodeSession(fixtureJSON(s),0);expect(d.ok&&d.session).toMa…
+       |                                                                   ^
+    101|  })
+    102|  it('FIFO stores generation-time attributes; occupied withdrawal and r…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/59]⎯
+
+ FAIL  tests/attributes/core.test.ts > storage, migration and atomic replay > gold freezes actual attribute count/unit, reload preserves partial payment, same Tier exchange closes it
+AssertionError: expected 4n to be 4 // Object.is equality
+
+- Expected:
+4
+
++ Received:
+4n
+
+ ❯ tests/attributes/core.test.ts:122:110
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/59]⎯
+
+ FAIL  tests/attributes/effects.test.ts > Phase3B diminishing effects and caps > fire changes actual sale, keeps GOLD reward separate and caps wallet
+AssertionError: expected 9007199255307220n to be 9007199254740991n // Object.is equality
+
+- Expected
++ Received
+
+- 9007199254740991n
++ 9007199255307220n
+
+ ❯ tests/attributes/effects.test.ts:44:79
+     42|   expect(quote).toBeGreaterThan(1024);expect(sold.earned).toBe(quote);…
+     43|   const capped={...s,wallet:{...s.wallet,gold:BigInt(Number.MAX_SAFE_I…
+     44|   expect(reduceSession(capped,{type:'sell',id:slime.id},0,quiet).walle…
+       |                                                                               ^
+     45|   expect(goldPayment(10,1)).toBe(goldPayment(10,1))
+     46|  })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/59]⎯
+
+ FAIL  tests/attributes/effects.test.ts > Phase3B diminishing effects and caps > gold changes actual sale, keeps GOLD reward separate and caps wallet
+AssertionError: expected 9007199255343919n to be 9007199254740991n // Object.is equality
+
+- Expected
++ Received
+
+- 9007199254740991n
++ 9007199255343919n
+
+ ❯ tests/attributes/effects.test.ts:44:79
+     42|   expect(quote).toBeGreaterThan(1024);expect(sold.earned).toBe(quote);…
+     43|   const capped={...s,wallet:{...s.wallet,gold:BigInt(Number.MAX_SAFE_I…
+     44|   expect(reduceSession(capped,{type:'sell',id:slime.id},0,quiet).walle…
+       |                                                                               ^
+     45|   expect(goldPayment(10,1)).toBe(goldPayment(10,1))
+     46|  })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/59]⎯
+
+ FAIL  tests/attributes/effects.test.ts > Phase3B diminishing effects and caps > dark changes actual sale, keeps GOLD reward separate and caps wallet
+AssertionError: expected 9007199255789564n to be 9007199254740991n // Object.is equality
+
+- Expected
++ Received
+
+- 9007199254740991n
++ 9007199255789564n
+
+ ❯ tests/attributes/effects.test.ts:44:79
+     42|   expect(quote).toBeGreaterThan(1024);expect(sold.earned).toBe(quote);…
+     43|   const capped={...s,wallet:{...s.wallet,gold:BigInt(Number.MAX_SAFE_I…
+     44|   expect(reduceSession(capped,{type:'sell',id:slime.id},0,quiet).walle…
+       |                                                                               ^
+     45|   expect(goldPayment(10,1)).toBe(goldPayment(10,1))
+     46|  })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/59]⎯
+
+ FAIL  tests/attributes/effects.test.ts > safe focused generation and persistence > schema5 speedLv0 migrates progress and all ownership with frozen event
+ FAIL  tests/attributes/effects.test.ts > safe focused generation and persistence > schema5 speedLv1 migrates progress and all ownership with frozen event
+ FAIL  tests/attributes/effects.test.ts > safe focused generation and persistence > schema5 speedLv5 migrates progress and all ownership with frozen event
+ FAIL  tests/attributes/effects.test.ts > safe focused generation and persistence > schema5 speedLv10 migrates progress and all ownership with frozen event
+ FAIL  tests/attributes/effects.test.ts > safe focused generation and persistence > schema5 speedLv16 migrates progress and all ownership with frozen event
+AssertionError: expected 8 to be 7 // Object.is equality
+
+- Expected
++ Received
+
+- 7
++ 8
+
+ ❯ tests/attributes/effects.test.ts:137:29
+    135|   const old={...s,version:5,wallet:{gold:BigInt(123),upgrades:{speed:l…
+    136|   const d=decodeSession(fixtureJSON(old),0);expect(d.ok).toBe(true);if…
+    137|   expect(d.session.version).toBe(7);expect(d.session.game).toEqual(old…
+       |                             ^
+    138|   expect(d.session.generator.storedAttributes).toEqual(old.generator.s…
+    139|   expect(d.session.generator.progressMs/sessionRules(d.session).interv…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/59]⎯
+
+ FAIL  tests/attributes/specials.test.ts > schema7 and purple > old6 keeps traits, wallet, FIFO and upgrades but no awakening
+AssertionError: expected { ok: true, …(2) } to match object { ok: true, migrated: true, …(1) }
+(26 matching properties omitted from actual)
+
+- Expected
++ Received
+
+@@ -23,11 +23,11 @@
+        "storedAttributes": [],
+        "storedTiers": [],
+        "totalGenerated": 0,
+        "updatedAtMs": 0,
+      },
+-     "version": 7,
++     "version": 8,
+      "wallet": {
+        "gold": 0n,
+        "upgrades": {
+          "speed": 0,
+          "storage": 0,
+
+ ❯ tests/attributes/specials.test.ts:20:213
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/59]⎯
+
+ FAIL  tests/attributes/specials.test.ts > awake and blue powers > ice strengthens its own power without common sale bonuses
+ FAIL  tests/attributes/specials.test.ts > awake and blue powers > lightning strengthens its own power without common sale bonuses
+ FAIL  tests/attributes/specials.test.ts > awake and blue powers > nature strengthens its own power without common sale bonuses
+ FAIL  tests/attributes/specials.test.ts > awake and blue powers > luck strengthens its own power without common sale bonuses
+ FAIL  tests/attributes/specials.test.ts > awake and blue powers > mutation strengthens its own power without common sale bonuses
+ FAIL  tests/attributes/specials.test.ts > awake and blue powers > light strengthens its own power without common sale bonuses
+ FAIL  tests/attributes/specials.test.ts > awake and blue powers > magnet strengthens its own power without common sale bonuses
+AssertionError: expected 512n to be 32n // Object.is equality
+
+- Expected
++ Received
+
+- 32n
++ 512n
+
+ ❯ tests/attributes/specials.test.ts:30:346
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/59]⎯
+
+ FAIL  tests/attributes/strip.test.ts > free whole-attribute removal > fire effect ends while unrelated individuals and base pace persist
+ FAIL  tests/attributes/strip.test.ts > free whole-attribute removal > gold effect ends while unrelated individuals and base pace persist
+ FAIL  tests/attributes/strip.test.ts > free whole-attribute removal > dark effect ends while unrelated individuals and base pace persist
+ FAIL  tests/attributes/strip.test.ts > free whole-attribute removal > ice effect ends while unrelated individuals and base pace persist
+ FAIL  tests/attributes/strip.test.ts > free whole-attribute removal > lightning effect ends while unrelated individuals and base pace persist
+ FAIL  tests/attributes/strip.test.ts > free whole-attribute removal > nature effect ends while unrelated individuals and base pace persist
+ FAIL  tests/attributes/strip.test.ts > free whole-attribute removal > luck effect ends while unrelated individuals and base pace persist
+ FAIL  tests/attributes/strip.test.ts > free whole-attribute removal > mutation effect ends while unrelated individuals and base pace persist
+ FAIL  tests/attributes/strip.test.ts > free whole-attribute removal > light effect ends while unrelated individuals and base pace persist
+ FAIL  tests/attributes/strip.test.ts > free whole-attribute removal > magnet effect ends while unrelated individuals and base pace persist
+AssertionError: expected 32768n to be 256n // Object.is equality
+
+- Expected
++ Received
+
+- 256n
++ 32768n
+
+ ❯ tests/attributes/strip.test.ts:44:40
+     42|   expect(n.game.slimes[0]!.attributes).toEqual([])
+     43|   expect(boardEffects(n.game)).toEqual(boardEffects(fixture([[]]).game…
+     44|   expect(saleValue(n.game.slimes[0]!)).toBe(BigInt(256));expect(sessio…
+       |                                        ^
+     45|   expect(specialCellWeights(n.game,[{x:1,y:0},{x:3,y:3}])).toEqual([1,…
+     46|  })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/59]⎯
+
+ FAIL  tests/attributes/strip.test.ts > free whole-attribute removal > fire+gold combo ends on stripping
+ FAIL  tests/attributes/strip.test.ts > free whole-attribute removal > ice+lightning combo ends on stripping
+ FAIL  tests/attributes/strip.test.ts > free whole-attribute removal > luck+mutation combo ends on stripping
+AssertionError: expected 32768n to be 256n // Object.is equality
+
+- Expected
++ Received
+
+- 256n
++ 32768n
+
+ ❯ tests/attributes/strip.test.ts:49:111
+     47|  it.each([['fire','gold'],['ice','lightning'],['luck','mutation']] as …
+     48|   const s=fixture([[...a(first),...a(second)]]),n=reduceSession(s,{typ…
+     49|   expect(boardEffects(n.game)).toEqual(boardEffects(fixture([[]]).game…
+       |                                                                                                               ^
+     50|  })
+     51|  it('ice removal preserves normal progress fraction without producing …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/59]⎯
+
+ FAIL  tests/attributes/strip.test.ts > free whole-attribute removal > active GOLD contract retains frozen count/unit/paid and same ID+cell, then pays old amount
+RangeError: Invalid save
+ ❯ encodeSession src/core/progression/persistence.ts:76:28
+     74| export function isSession(value: unknown): value is Session { return v…
+     75| export function encodeSession(s: Session): string {
+     76|   if (!isSession(s)) throw new RangeError('Invalid save')
+       |                            ^
+     77|   return moneyJSON(s)
+     78| }
+ ❯ tests/attributes/strip.test.ts:75:30
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/59]⎯
+
+ FAIL  tests/progression/followup.test.ts > research transactions and materials > real new game has research5 and GOLD locked
+AssertionError: expected { version: 8, …(21) } to match object { version: 7, researchLevel: +0, …(4) }
+(35 matching properties omitted from actual)
+
+- Expected
++ Received
+
+@@ -2,7 +2,7 @@
+    "goldCellUnlocked": false,
+    "goldFormat": "full",
+    "goldFrequencyLevel": 0,
+    "researchLevel": 0,
+    "researchMaxTier": 5,
+-   "version": 7,
++   "version": 8,
+  }
+
+ ❯ tests/progression/followup.test.ts:68:29
+     66| describe('research transactions and materials', () => {
+     67|   it('real new game has research5 and GOLD locked', () => {
+     68|     expect(freshSession(0)).toMatchObject({ version: 7, researchLevel:…
+       |                             ^
+     69|     expect(isSession(freshSession(0))).toBe(true)
+     70|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/59]⎯
+
+ FAIL  tests/progression/followup.test.ts > research transactions and materials > locked at cap still sells and can fund research from ordinary sales without gold cells
+AssertionError: expected 1536n to be 96n // Object.is equality
+
+- Expected
++ Received
+
+- 96n
++ 1536n
+
+ ❯ tests/progression/followup.test.ts:98:27
+     96|     let s = board(5, 5)
+     97|     for (const x of s.game.slimes.slice(0, 3)) s = cmd(s, { type: 'sel…
+     98|     expect(s.wallet.gold).toBe(researchCost(0)); expect(cmd(s, { type:…
+       |                           ^
+     99|   })
+    100| })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/59]⎯
+
+ FAIL  tests/progression/followup.test.ts > GOLD unlock, format and migration > v3 partially paid event keeps its exact unit, receipt and reward version; migration does not replay
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/progression/followup.test.ts:135:21
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/59]⎯
+
+ FAIL  tests/progression/phase2.test.ts > Phase 2 GOLD economy and event primitive > prices grow by Tier, remain finite through Tier40
+AssertionError: expected 604462909807314587353088n to be 1099511627776n // Object.is equality
+
+- Expected
++ Received
+
+- 1099511627776n
++ 604462909807314587353088n
+
+ ❯ tests/progression/phase2.test.ts:111:31
+    109|   it('prices grow by Tier, remain finite through Tier40', () => {
+    110|     expect(baseSaleValue(1)).toBe(BigInt(2))
+    111|     expect(baseSaleValue(40)).toBe(BigInt(2 ** 40))
+       |                               ^
+    112|     expect((typeof baseSaleValue(40) === 'bigint' && baseSaleValue(40)…
+    113|     expect(() => baseSaleValue(41)).toThrow(RangeError)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/59]⎯
+
+ FAIL  tests/progression/polish.test.ts > gold source identity and atomic exit > 350ms × 10 individually recorded payments and no early credit
+AssertionError: expected 25n to be 5n // Object.is equality
+
+- Expected
++ Received
+
+- 5n
++ 25n
+
+ ❯ tests/progression/polish.test.ts:62:52
+     60|    const at=s.event!.nextPaymentAtMs,prev=s
+     61|    expect(reduceSession(s,{type:'pay',eventId:id,expectedPaid:i},at-1,…
+     62|    s=pay(s);expect(s.wallet.gold-prev.wallet.gold).toBe(BigInt(5))
+       |                                                    ^
+     63|    expect(reduceSession(s,{type:'pay',eventId:id,expectedPaid:i},at,ze…
+     64|   }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/59]⎯
+
+ FAIL  tests/progression/polish.test.ts > gold source identity and atomic exit > 4/10 reload then sell expires 6 payments; never resumes on replacement
+AssertionError: expected 612n to be 132n // Object.is equality
+
+- Expected
++ Received
+
+- 132n
++ 612n
+
+ ❯ tests/progression/polish.test.ts:86:25
+     84|   }
+     85|   expect(s.event).toBeNull();expect(s.lastEvent).toEqual({id,receivedG…
+     86|   expect(s.wallet.gold).toBe(BigInt(received+BigInt((kind==='sell'?32:…
+       |                         ^
+     87|   expect(reduceSession(s,{type:'pay',eventId:id,expectedPaid:4},s.save…
+     88|   expect(isSession(s)).toBe(true)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/59]⎯
+
+ FAIL  tests/progression/polish.test.ts > gold source identity and atomic exit > payment wins before departure only once; departure-first wins with zero extra receipt
+AssertionError: expected 125n to be 105n // Object.is equality
+
+- Expected
++ Received
+
+- 105n
++ 125n
+
+ ❯ tests/progression/polish.test.ts:100:29
+     98|   const paid=reduceSession(s,{type:'tick'},now,zero)
+     99|   const moved=reduceSession(paid,{type:'drop',plan:planDrop(paid.game,…
+    100|   expect(moved.wallet.gold).toBe(BigInt(s.wallet.gold+BigInt(5)));expe…
+       |                             ^
+    101|   const first=reduceSession(s,{type:'drop',plan:planDrop(s.game,id,{x:…
+    102|   expect(first.wallet.gold).toBe(s.wallet.gold);expect(first.event).to…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/59]⎯
+
+ FAIL  tests/progression/polish.test.ts > gold source identity and atomic exit > cap counts receipts without overflow; replay cannot reclaim capped reward
+AssertionError: expected 30223145490365729367654n to be 1n // Object.is equality
+
+- Expected
++ Received
+
+- 1n
++ 30223145490365729367654n
+
+ ❯ tests/progression/polish.test.ts:111:42
+    109|  it('cap counts receipts without overflow; replay cannot reclaim cappe…
+    110|   let s=active(40);s={...s,wallet:{...s.wallet,gold:BigInt(Number.MAX_…
+    111|   s=pay(s);expect(s.event!.receivedGOLD).toBe(BigInt(1));expect(s.even…
+       |                                          ^
+    112|   for(let i=1;i<10;i++)s=pay(s)
+    113|   expect(isSession(s)).toBe(true);expect(s.wallet.gold).toBe(BigInt(Nu…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/59]⎯
+
+ FAIL  tests/progression/polish.test.ts > explicit migration and protection > legacy v2 null preserves GOLD, queue, IDs and frozen unit
+ FAIL  tests/progression/polish.test.ts > explicit migration and protection > legacy v2 waiting preserves GOLD, queue, IDs and frozen unit
+AssertionError: expected 8 to be 7 // Object.is equality
+
+- Expected
++ Received
+
+- 7
++ 8
+
+ ❯ tests/progression/polish.test.ts:126:65
+    124|   const raw=fixtureJSON(legacy),load=decodeSession(raw,1000)
+    125|   expect(load.ok).toBe(true);if(!load.ok)return
+    126|   expect(load.migrated).toBe(true);expect(load.session.version).toBe(7…
+       |                                                                 ^
+    127|   expect(load.session.generator).toEqual({...legacy.generator,progress…
+    128|   if(state==='active') {const n=pay(load.session);expect(n.wallet.gold…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/59]⎯
+
+ FAIL  tests/progression/polish.test.ts > explicit migration and protection > legacy v2 active preserves GOLD, queue, IDs and frozen unit
+ FAIL  tests/progression/polish.test.ts > explicit migration and protection > legacy v2 detached preserves GOLD, queue, IDs and frozen unit
+TypeError: Cannot mix BigInt and other types, use explicit conversions
+ ❯ tests/progression/polish.test.ts:122:202
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/59]⎯
+
+ FAIL  tests/progression/session.test.ts > integrated progression safety > 4x4 empty normal start, full storage never banks offline time
+AssertionError: expected 8 to be 4 // Object.is equality
+
+- Expected
++ Received
+
+- 4
++ 8
+
+ ❯ tests/progression/session.test.ts:22:44
+     20| describe('integrated progression safety',()=>{
+     21|  it('4x4 empty normal start, full storage never banks offline time',()…
+     22|   let s=full();expect(s.game.bounds.width).toBe(4);expect(s.game.slime…
+       |                                            ^
+     23|   s=reduceSession(s,{type:'tick'},86400_000,zero);s=out(s,0,0)
+     24|   s=reduceSession(s,{type:'tick'},s.savedAtMs+9999,zero);expect(s.gene…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/59]⎯
+
+ FAIL  tests/progression/session.test.ts > gold event ledger and recovery > wallet cap settles receipt without overflow and never traps a full board
+AssertionError: expected 9007199254740992n to be 9007199254740991n // Object.is equality
+
+- Expected
++ Received
+
+- 9007199254740991n
++ 9007199254740992n
+
+ ❯ tests/progression/session.test.ts:140:25
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/59]⎯
+
+ FAIL  tests/progression/session.test.ts > strict v2 persistence and failed writes > v1 4x4 migrates explicitly, v1 experimental 7x7 refuses without cropping
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/progression/session.test.ts:170:111
+    168|   const s=freshSession(0), v={version:1,savedAtMs:0,nextId:1,game:s.ga…
+    169|   const ok=decodeSession(fixtureJSON(v),0);expect(ok.ok).toBe(true);if…
+    170|   expect(decodeSession(fixtureJSON({...v,game:{...s.game,bounds:{...s.…
+       |                                                                                                               ^
+    171|  })
+    172|  it('storage failure and external modification never publish/overwrite…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[25/59]⎯
+
+ FAIL  tests/progression/storage.test.ts > independent storage limits and compatible schema6 > speed purchase refuses at its own maximum and never charges on failure
+AssertionError: expected { ok: false, wallet: { …(2) }, …(1) } to deeply equal { ok: false, wallet: { …(2) }, …(1) }
+
+- Expected
++ Received
+
+@@ -1,7 +1,7 @@
+  {
+-   "cost": 0,
++   "cost": 0n,
+    "ok": false,
+    "wallet": {
+      "gold": 1000000n,
+      "upgrades": {
+        "speed": 16,
+
+ ❯ tests/progression/storage.test.ts:18:34
+     16|  it.each(['speed','tap','storage'] as const)('%s purchase refuses at i…
+     17|   const w={...wallet(),upgrades:{...wallet().upgrades,[key]:UPGRADE_MA…
+     18|   expect(purchaseUpgrade(w,key)).toEqual({ok:false,wallet:w,cost:0})
+       |                                  ^
+     19|   const beyond={...w,upgrades:{...w.upgrades,[key]:UPGRADE_MAX_LEVEL[k…
+     20|   expect(isWallet(beyond)).toBe(false);expect(()=>upgradeCost(key,UPGR…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[26/59]⎯
+
+ FAIL  tests/progression/storage.test.ts > independent storage limits and compatible schema6 > tap purchase refuses at its own maximum and never charges on failure
+ FAIL  tests/progression/storage.test.ts > independent storage limits and compatible schema6 > storage purchase refuses at its own maximum and never charges on failure
+AssertionError: expected { ok: false, wallet: { …(2) }, …(1) } to deeply equal { ok: false, wallet: { …(2) }, …(1) }
+
+- Expected
++ Received
+
+@@ -1,7 +1,7 @@
+  {
+-   "cost": 0,
++   "cost": 0n,
+    "ok": false,
+    "wallet": {
+      "gold": 1000000n,
+      "upgrades": {
+        "speed": 0,
+
+ ❯ tests/progression/storage.test.ts:18:34
+     16|  it.each(['speed','tap','storage'] as const)('%s purchase refuses at i…
+     17|   const w={...wallet(),upgrades:{...wallet().upgrades,[key]:UPGRADE_MA…
+     18|   expect(purchaseUpgrade(w,key)).toEqual({ok:false,wallet:w,cost:0})
+       |                                  ^
+     19|   const beyond={...w,upgrades:{...w.upgrades,[key]:UPGRADE_MAX_LEVEL[k…
+     20|   expect(isWallet(beyond)).toBe(false);expect(()=>upgradeCost(key,UPGR…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[27/59]⎯
+
+ FAIL  tests/progression/storage.test.ts > independent storage limits and compatible schema6 > existing schema6 storage Lv0 keeps paid levels/FIFO/traits/GOLD and old progress
+ FAIL  tests/progression/storage.test.ts > independent storage limits and compatible schema6 > existing schema6 storage Lv1 keeps paid levels/FIFO/traits/GOLD and old progress
+ FAIL  tests/progression/storage.test.ts > independent storage limits and compatible schema6 > existing schema6 storage Lv5 keeps paid levels/FIFO/traits/GOLD and old progress
+ FAIL  tests/progression/storage.test.ts > independent storage limits and compatible schema6 > existing schema6 storage Lv10 keeps paid levels/FIFO/traits/GOLD and old progress
+ FAIL  tests/progression/storage.test.ts > independent storage limits and compatible schema6 > existing schema6 storage Lv16 keeps paid levels/FIFO/traits/GOLD and old progress
+AssertionError: expected 8 to be 7 // Object.is equality
+
+- Expected
++ Received
+
+- 7
++ 8
+
+ ❯ tests/progression/storage.test.ts:32:29
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[28/59]⎯
+
+
+ Test Files  9 failed | 14 passed (23)
+      Tests  59 failed | 873 passed (932)
+   Start at  16:56:58
+   Duration  8.47s (tests 87%, transform 7%, import 5%, worker 1%)
+
+    Isolate  23 workers spawned · ~126ms startup each (spawn + environment, per file)
+             at least ~1.32s faster with isolate: false — reuses workers across files instead of one per file
+

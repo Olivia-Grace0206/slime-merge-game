@@ -1,4 +1,4 @@
-import { moneyJSON, isGold } from './money'
+import { isGold } from './money'
 import type { GameState } from '../../domain/game'
 import { isGameState } from '../board/state'
 import { legacyGenerationRules, isLegacyWallet, type Wallet } from './economy'
@@ -42,7 +42,13 @@ export function isProgressionSnapshot(value: unknown): value is ProgressionSnaps
 
 export function encodeProgression(snapshot: ProgressionSnapshot): string {
   if (!isProgressionSnapshot(snapshot)) throw new RangeError('Invalid progression snapshot')
-  return moneyJSON(snapshot)
+  // Historical portable schema1 writes only safe number currency. Current game saves use schema8.
+  // Conversion is wire encoding after an exact bound check, never currency arithmetic.
+  return JSON.stringify(snapshot, (_key, value: unknown) => {
+    if (typeof value !== 'bigint') return value
+    if (value < 0n || value > BigInt(Number.MAX_SAFE_INTEGER)) throw new RangeError('schema1 currency limit; use schema8')
+    return Number(value)
+  })
 }
 
 /** Invalid/legacy/malformed saves never overwrite the live session. */

@@ -26,10 +26,14 @@ function rounded(r: Ratio): Ratio {
   return shift >= 0 ? {numerator:q,denominator:1n << BigInt(shift)} : {numerator:q << BigInt(-shift),denominator:1n}
 }
 const multiply = (a: Ratio, b: number) => {const r=binaryRatio(b);return rounded({numerator:a.numerator*r.numerator,denominator:a.denominator*r.denominator})}
-export function safeRoundedSale(base: bigint, fire: number, rates: readonly number[]): bigint | null {
+export function safeRoundedFire(base: bigint, fire: number): bigint | null {
   if (base > BigInt(Number.MAX_SAFE_INTEGER)) return null
   const add = multiply(multiply({numerator:base,denominator:1n}, .08), fire)
-  const added = fire ? (add.numerator + add.denominator - 1n) / add.denominator : 0n
+  return fire ? (add.numerator + add.denominator - 1n) / add.denominator : 0n
+}
+export function safeRoundedSale(base: bigint, fire: number, rates: readonly number[]): bigint | null {
+  if (base > BigInt(Number.MAX_SAFE_INTEGER)) return null
+  const added = safeRoundedFire(base,fire)!
   let value = rounded({numerator:base + added,denominator:1n})
   for (const rate of rates) value = multiply(value,rate)
   const result = value.numerator / value.denominator

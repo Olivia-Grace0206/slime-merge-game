@@ -172,6 +172,8 @@ describe('Phase 2 future LocalStorage codec', () => {
   it('round trips a versioned, validated session', () => {
     expect(isProgressionSnapshot(initial)).toBe(true)
     expect(decodeProgression(encodeProgression(initial))).toEqual(initial)
+    expect(JSON.parse(encodeProgression(initial)).wallet.gold).toBe(0)
+    expect(()=>encodeProgression({...initial,wallet:{...initial.wallet,gold:10n**30n}})).toThrow(/schema1 currency limit/)
   })
   it('rejects malformed saves, invalid versions and stored Tier above history', () => {
     expect(decodeProgression('{')).toBeNull()

@@ -6,7 +6,9 @@ export function legacyResearchLevel(highest: number): number {
 }
 export function researchCost(level: number, multiplier: number = EXPERIMENTAL_RESEARCH.saleMultiplier): bigint {
   if (!Number.isInteger(level) || level < 0 || level >= RESEARCH_CAPS.length - 1 || !Number.isFinite(multiplier) || multiplier <= 0) throw new RangeError('Invalid research')
-  return BigInt(Math.ceil(2 ** RESEARCH_CAPS[level]! * multiplier))
+  const price = Math.ceil(2 ** RESEARCH_CAPS[level]! * multiplier)
+  if (!Number.isSafeInteger(price)) throw new RangeError('Unsafe legacy research coefficient')
+  return BigInt(price)
 }
 export function frequencyCost(level: number): bigint {
   if (!Number.isInteger(level) || level < 0 || level > EXPERIMENTAL_RESEARCH.frequencyMaxLevel) throw new RangeError('Invalid frequency level')

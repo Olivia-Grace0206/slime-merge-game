@@ -31,7 +31,7 @@ try{
    const now=await p.evaluate(()=>Date.now()),generator={...fifoStock(),updatedAtMs:now};await set(p,{generator})
    const measure=await p.evaluate(()=>{const rect=s=>{const r=document.querySelector(s).getBoundingClientRect();return{x:r.x,y:r.y,w:r.width,h:r.height,right:r.right,bottom:r.bottom}}
     return{width:innerWidth,height:innerHeight,scroll:[document.documentElement.scrollWidth,document.documentElement.scrollHeight],board:rect('[data-testid=board]'),mode:rect('.mode-button'),tap:rect('.accelerate-button'),add:rect('.add-button')}})
-   assert.deepEqual(measure.scroll,[width,height]);assert(Math.abs(measure.board.w-[1010,830,698,650,624,752,374,359,304,334][sizes.findIndex(x=>x[0]===width)])<=1,JSON.stringify(measure))
+   assert.deepEqual(measure.scroll,[width,height]);assert(Math.abs(measure.board.w/2-[1010,830,698,650,624,752,374,359,304,334][sizes.findIndex(x=>x[0]===width)])<=1,JSON.stringify(measure))
    for(const b of [measure.mode,measure.tap,measure.add])assert(b.w>=44&&b.h>=44&&b.x>=0&&b.y>=0&&b.right<=width&&b.bottom<=height,'control clipped/small '+JSON.stringify(b))
    measurements.push(measure);await p.getByTestId('generation-mode').click();await until(async()=>(await snap(p)).generationMode==='focused')
    assert((await p.getByTestId('add-slime').innerText()).includes('10体→1体'));assert.equal(await p.getByTestId('generation-mode').getAttribute('aria-pressed'),'true')
@@ -64,9 +64,9 @@ try{
   })
   await check(name+' actual sale quote and price tags include fire/gold/dark and equal receipt',async()=>{
    await set(p,{tiers:[5],attrs:[[{id:'fire',level:1},{id:'gold',level:1},{id:'dark',level:1}]]})
-   // floor((32+ceil(32*.08))*1.15*2*1.05)=1335
+   // floor((512+ceil(512*.08))*1.15*2*1.05)=1335
    await drag(p,cdp,touch,'[data-slime-id="p-1"]','[data-testid="sale-zone"]',async()=>{
-    assert((await p.getByTestId('sale-zone').innerText()).includes('+1335 GOLD'));assert((await p.getByTestId('sale-price').first().innerText()).includes('1335'))
+    assert((await p.getByTestId('sale-zone').innerText()).includes('+1,335 GOLD'));assert((await p.getByTestId('sale-price').first().innerText()).includes('1,335'))
     await p.screenshot({path:path.join(dir,`sale-${name}.png`)})
    });await until(async()=>(await snap(p)).game.slimes.length===0);assert.equal((await snap(p)).wallet.gold,2569)
   })

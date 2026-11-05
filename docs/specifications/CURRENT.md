@@ -1,3 +1,14 @@
+# 2026-11-05 現行仕様案内 — Phase4A
+
+[Draft PR #17](https://github.com/Olivia-Grace0206/slime-merge-game/pull/17) — ユーザー試遊・承認待ち、main未マージ。
+
+Phase4Aブランチの正本は[完全仕様書v0.4.0](Slime_Merge_Game_Specification_v0.4.0_2026-11-05.md)。最大4区画64セル、4倍売値、BigInt/schema8を反映。具体的土地価格512/8,192/131,072Gは推奨・暫定。最新節を旧履歴に優先する。
+
+起点main `582b99c1920b4a27a7313dfa22a3926c734e1296`、PR16はマージ済み。main/公開β版の仕様はv0.3.3＋Phase3C Polish＋Phase3D追補。Phase4AはDraft PRでユーザー試遊待ち、承認前にmain/公開Pagesを更新しない。[引き継ぎ](../PHASE4A_HANDOFF.md) / [検証](../validation/phase4a/RESULTS.md) / [価格比較](../validation/phase4a/economy/RESULTS.md)。
+
+---
+以下は以前の案内（当時の記録）。現在のPR状態ではない。
+
 # 2026-11-04 現行正本・Phase3D案内
 
 main現行正本は[v0.3.3](Slime_Merge_Game_Specification_v0.3.3_2026-11-02.md)＋[Phase3C Polish追補](Phase3C_Polish_Addendum_2026-11-03.md)。PR13/15はmainへマージ済み。確認HEAD1291226a67a25df254301d1f3e41e0cc46efdc1b、CI/Pages成功。RepositoryはPublic、公開β版はmainを維持。

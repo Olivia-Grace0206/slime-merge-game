@@ -1,0 +1,99 @@
+{
+  "browserPassed": 1059,
+  "suites": [
+    {
+      "suite": "followup",
+      "report": "reports/followup.json",
+      "passed": 101
+    },
+    {
+      "suite": "followup-compare",
+      "report": "reports/followup-compare.json",
+      "passed": 3
+    },
+    {
+      "suite": "phase1",
+      "report": "reports/phase1.json",
+      "passed": 54
+    },
+    {
+      "suite": "phase1-1",
+      "report": "reports/phase1-1.json",
+      "passed": 120
+    },
+    {
+      "suite": "phase2-polish",
+      "report": "reports/phase2-polish.json",
+      "passed": 60
+    },
+    {
+      "suite": "phase3a",
+      "report": "reports/phase3a.json",
+      "passed": 74
+    },
+    {
+      "suite": "phase3b",
+      "report": "reports/phase3b.json",
+      "passed": 82
+    },
+    {
+      "suite": "phase3b1",
+      "report": "reports/phase3b1.json",
+      "passed": 92
+    },
+    {
+      "suite": "phase3b1-performance",
+      "report": "reports/phase3b1-performance.json",
+      "passed": 4
+    },
+    {
+      "suite": "polish-input",
+      "report": "reports/polish-input.json",
+      "passed": 36
+    },
+    {
+      "suite": "visual-polish",
+      "report": "reports/visual-polish.json",
+      "passed": 60
+    },
+    {
+      "suite": "phase3c",
+      "report": "reports/phase3c.json",
+      "passed": 80
+    },
+    {
+      "suite": "phase3d",
+      "report": "reports/phase3d.json",
+      "passed": 200
+    },
+    {
+      "suite": "appearance-comparison",
+      "report": "reports/appearance-comparison.json",
+      "passed": 8
+    },
+    {
+      "suite": "legacy-performance",
+      "report": "reports/legacy-performance.json",
+      "passed": 8
+    },
+    {
+      "suite": "phase4a",
+      "report": "reports/phase4a.json",
+      "passed": 45
+    },
+    {
+      "suite": "actual-board-performance",
+      "report": "reports/actual-board-performance.json",
+      "passed": 32
+    }
+  ],
+  "unitPassed": 1016,
+  "unitFiles": 32,
+  "additionalUnitTests": 75,
+  "realDevices": false,
+  "browser": "Chromium134.0.6998.35 / Playwright1.51.1",
+  "scope": "Complete final report per suite, no failed/partial attempt or repeated run counted twice.",
+  "notCountedOptimizationSample": "reports/optimization-sample.json",
+  "artifact": "tested-artifact.json",
+  "source": "tested-source.json"
+}

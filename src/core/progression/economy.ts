@@ -6,8 +6,8 @@ import { isGameState } from '../board/state'
 import { EXPERIMENTAL_GENERATION, type GeneratorRules } from './generation'
 
 /**
- * Deliberately temporary Phase 2 economy parameters. User approval of these
- * numbers has NOT been requested or given. Future simulation may replace them.
+ * Base2/fourfold Tier prices are the Phase4A agreement. The historical object
+ * name is retained; shop growth and reward tuning remain provisional.
  */
 export const EXPERIMENTAL_ECONOMY = Object.freeze({
   priceBase: 2,

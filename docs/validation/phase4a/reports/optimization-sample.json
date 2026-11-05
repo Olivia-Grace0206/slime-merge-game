@@ -1,0 +1,138 @@
+{
+  "notInTestCount": true,
+  "scope": "Earlier same real64-cell implementation before final menu/header polish; within-page CSS culling enabled/disabled sample, not an isolated causal benchmark",
+  "samples": [
+    {
+      "width": 1366,
+      "height": 768,
+      "count": 64,
+      "decorated": true,
+      "reduced": false,
+      "view": "initial camera16 visible; actual total game cells and individuals=64",
+      "frames": 40,
+      "meanMs": 16.3375,
+      "p95Ms": 16.799999999999955,
+      "maximumMs": 16.799999999999955,
+      "withoutCulling": {
+        "frames": 40,
+        "meanMs": 30.33499999999534,
+        "p95Ms": 50,
+        "maximumMs": 50.100000000000136
+      },
+      "dragCancelDriverMs": 218.23527900000045,
+      "memory": {
+        "Documents": 4,
+        "Nodes": 4916,
+        "LayoutCount": 7,
+        "RecalcStyleCount": 62,
+        "JSHeapUsedSize": 8990488,
+        "JSHeapTotalSize": 15761408
+      },
+      "dom": {
+        "documents": 4,
+        "nodes": 4916,
+        "jsEventListeners": 583
+      },
+      "ornamentDOMMutationsDuringDrag": 0
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "count": 64,
+      "decorated": true,
+      "reduced": true,
+      "view": "initial camera16 visible; actual total game cells and individuals=64",
+      "frames": 40,
+      "meanMs": 16.18750000000349,
+      "p95Ms": 16.700000000000045,
+      "maximumMs": 16.80000000000001,
+      "withoutCulling": {
+        "frames": 40,
+        "meanMs": 16.152500000002327,
+        "p95Ms": 16.799999999999955,
+        "maximumMs": 16.799999999999955
+      },
+      "dragCancelDriverMs": 338.4781509999957,
+      "memory": {
+        "Documents": 4,
+        "Nodes": 4915,
+        "LayoutCount": 8,
+        "RecalcStyleCount": 13,
+        "JSHeapUsedSize": 6294316,
+        "JSHeapTotalSize": 15761408
+      },
+      "dom": {
+        "documents": 4,
+        "nodes": 4915,
+        "jsEventListeners": 597
+      },
+      "ornamentDOMMutationsDuringDrag": 0
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "count": 64,
+      "decorated": true,
+      "reduced": false,
+      "view": "initial camera16 visible; actual total game cells and individuals=64",
+      "frames": 40,
+      "meanMs": 16.327500000001162,
+      "p95Ms": 16.800000000000068,
+      "maximumMs": 16.800000000000068,
+      "withoutCulling": {
+        "frames": 40,
+        "meanMs": 17.165000000001164,
+        "p95Ms": 16.799999999999955,
+        "maximumMs": 50.09999999999991
+      },
+      "dragCancelDriverMs": 216.4893149999989,
+      "memory": {
+        "Documents": 4,
+        "Nodes": 4915,
+        "LayoutCount": 8,
+        "RecalcStyleCount": 69,
+        "JSHeapUsedSize": 6376096,
+        "JSHeapTotalSize": 15499264
+      },
+      "dom": {
+        "documents": 4,
+        "nodes": 4915,
+        "jsEventListeners": 597
+      },
+      "ornamentDOMMutationsDuringDrag": 0
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "count": 64,
+      "decorated": true,
+      "reduced": true,
+      "view": "initial camera16 visible; actual total game cells and individuals=64",
+      "frames": 40,
+      "meanMs": 16.167500000002327,
+      "p95Ms": 16.799999999999955,
+      "maximumMs": 16.800000000000068,
+      "withoutCulling": {
+        "frames": 40,
+        "meanMs": 16.222500000002327,
+        "p95Ms": 16.799999999999955,
+        "maximumMs": 16.799999999999955
+      },
+      "dragCancelDriverMs": 253.4352920000092,
+      "memory": {
+        "Documents": 4,
+        "Nodes": 4916,
+        "LayoutCount": 8,
+        "RecalcStyleCount": 14,
+        "JSHeapUsedSize": 6685532,
+        "JSHeapTotalSize": 16285696
+      },
+      "dom": {
+        "documents": 4,
+        "nodes": 4916,
+        "jsEventListeners": 597
+      },
+      "ornamentDOMMutationsDuringDrag": 0
+    }
+  ]
+}

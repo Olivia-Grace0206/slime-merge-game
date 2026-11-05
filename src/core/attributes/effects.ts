@@ -1,4 +1,4 @@
-import { safeRoundedSale } from '../progression/legacyRounding'
+import { safeRoundedSale, safeRoundedFire } from '../progression/legacyRounding'
 import { baseSaleValue, decimalRatio, ceilRatio, floorRatio, multiplyRatios, isGold } from '../progression/money'
 import {AWAKENING_MULTIPLIERS,BLUE_MULTIPLIERS,AWAKENED_DARK_LOSS} from '../special/config'
 import type {EffectContext} from '../../domain/special'
@@ -71,7 +71,8 @@ export function geneticsForGroup(game: GameState, ids: readonly string[],context
 }
 /** One sale quote shared by UI and committed sale; GOLD event rewards stay separate. */
 export function fireSaleBonus(slime: Pick<Slime, 'tier' | 'attributes'>): bigint {
-  return ceilRatio(baseSaleValue(slime.tier), decimalRatio(EFFECTS.fireRate * attributePower(slime.attributes, 'fire')))
+  const base=baseSaleValue(slime.tier),power=attributePower(slime.attributes,'fire')
+  return safeRoundedFire(base,power) ?? ceilRatio(base, decimalRatio(EFFECTS.fireRate * power))
 }
 export function saleValue(slime: Pick<Slime, 'tier' | 'attributes'>, availableGOLD?: bigint): bigint {
   if (!isTier(slime.tier) || !isAttributes(slime.attributes ?? []) || (availableGOLD !== undefined && !isGold(availableGOLD))) throw new RangeError('Invalid sale')

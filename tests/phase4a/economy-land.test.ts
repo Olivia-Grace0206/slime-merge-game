@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, afterEach } from 'vitest'
 import { baseSaleValue, isGold, moneyJSON } from '../../src/core/progression/money'
-import { saleValue, attributePower, comboPower } from '../../src/core/attributes/effects'
+import { saleValue, fireSaleBonus, attributePower, comboPower } from '../../src/core/attributes/effects'
 import { safeRoundedSale } from '../../src/core/progression/legacyRounding'
 import { freshSession, reduceSession, goldPayment, type Session } from '../../src/core/progression/session'
 import { canUnlock, landCost, LAND_PRICES, purchaseLand, unlockedCellCount } from '../../src/core/progression/land'
@@ -45,7 +45,7 @@ describe('exact currency and historical rounding',()=>{
   for(const key of ['speed','tap','storage'] as const)for(let lv=0;lv<=(key==='storage'?30:16);lv++){
    expect(upgradeCost(key,lv)).toBe(BigInt(Math.ceil(({speed:12,tap:16,storage:20}[key])*(key==='storage'?1.35:1.7)**lv)))
   }
-  expect(researchCost(0)).toBe(96n);expect(frequencyCost(5)).toBe(4096n)
+  expect(researchCost(0)).toBe(96n);expect(()=>researchCost(15,1e300)).toThrow(/Unsafe legacy research coefficient/);expect(frequencyCost(5)).toBe(4096n)
   const wallet={...freshWallet(),gold:10n**30n},p=purchaseUpgrade(wallet,'speed');expect(p.wallet.gold).toBe(wallet.gold-12n)
  })
  it('new rewards scale with new base; old contracts retain exact units for all Tiers/attribute counts',()=>{
@@ -156,4 +156,13 @@ describe('expanded-board regression boundaries',()=>{
   expect(n.wallet.gold).toBe(s.wallet.gold+unit);expect(n.event?.cappedGOLD).toBe(s.event!.cappedGOLD)
   expect(reduceSession(n,{type:'pay',eventId:'gold-1',expectedPaid:4},700,quiet)).toBe(n)
  })
+})
+
+// An independently discovered display/quote discrepancy at safe integer boundaries must not return.
+it('fire detail bonus equals the rounded sale intermediate through every safe-price Tier/Lv/awakening',()=>{
+ for(let tier=1;tier<=26;tier++)for(let level=1;level<=99;level++)for(const awakened of [false,true]){
+  const slime={tier,attributes:[{id:'fire' as const,level,awakened}]},base=baseSaleValue(tier)
+  const expected=BigInt(Math.ceil((2*4**(tier-1))*.08*attributePower(slime.attributes,'fire')))
+  expect(fireSaleBonus(slime)).toBe(expected);expect(saleValue(slime)).toBe(base+expected)
+ }
 })

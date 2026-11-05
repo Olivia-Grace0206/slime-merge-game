@@ -1,3 +1,16 @@
+# Phase4A — 土地拡張とBigInt通貨（Draft・試遊待ち）
+
+[Draft PR #17](https://github.com/Olivia-Grace0206/slime-merge-game/pull/17) — ユーザー試遊・承認待ち、main未マージ。
+
+初期16→32→48→64セルの4区画。右/下の順序自由、両方の購入後に右下を解放。土地価格は512/8,192/131,072 GOLD【推奨・暫定】。Tier1〜40の売値は2×4^(Tier−1)、通貨はBigInt/schema8。旧1〜7のセーブを検証して移行し、既存Shop価格は維持します。
+
+[完全仕様書v0.4.0](docs/specifications/Slime_Merge_Game_Specification_v0.4.0_2026-11-05.md) / [試遊・再開](docs/PHASE4A_HANDOFF.md) / [検証・画像](docs/validation/phase4a/RESULTS.md) / [価格3案](docs/validation/phase4a/economy/RESULTS.md)。土地メニューから購入/全体表示、設定でA中心へ表示リセット。購入では自動縮小しません。
+
+起点main582b99c、Phase3D PR16はマージ済みです。Phase4Aのmainマージ・公開β版更新はユーザー承認待ち。下記の旧Draft/未マージ表記は履歴です。セーブはブラウザ内のみで、別端末へ同期しません。ブランチ試遊前に既存セーブをバックアップしてください。
+
+---
+以下は既存README・履歴を保全した案内です。
+
 # スライムマージゲーム — Public β版（GitHub Pages）
 
 公開β版URL：https://olivia-grace0206.github.io/slime-merge-game/

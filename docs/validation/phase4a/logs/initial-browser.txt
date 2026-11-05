@@ -1,0 +1,47 @@
+PASS 1920x1080 initial16, full exact GOLD, right/down selectable, D locked, no page scroll
+PASS 1920x1080 buy B-C-D or C-B-D costs512/8192/131072 once, no automatic shrink, retained individual data and reload
+PASS 1920x1080 native drag across plot boundary, swap traits, FIFO in unlocked land, source cancel/pinch, overview wheel/pan
+PASS 1920x1080 Tier40 native sale exact addition and repeat input cannot resell; compact/reload preserves exact decimal
+PASS 1920x1080 insufficient funds prevents all purchases and page scroll remains absent
+PASS 1366x768 initial16, full exact GOLD, right/down selectable, D locked, no page scroll
+PASS 1366x768 buy B-C-D or C-B-D costs512/8192/131072 once, no automatic shrink, retained individual data and reload
+PASS 1366x768 native drag across plot boundary, swap traits, FIFO in unlocked land, source cancel/pinch, overview wheel/pan
+PASS 1366x768 Tier40 native sale exact addition and repeat input cannot resell; compact/reload preserves exact decimal
+PASS 1366x768 insufficient funds prevents all purchases and page scroll remains absent
+PASS 1280x720 initial16, full exact GOLD, right/down selectable, D locked, no page scroll
+PASS 1280x720 buy B-C-D or C-B-D costs512/8192/131072 once, no automatic shrink, retained individual data and reload
+PASS 1280x720 native drag across plot boundary, swap traits, FIFO in unlocked land, source cancel/pinch, overview wheel/pan
+PASS 1280x720 Tier40 native sale exact addition and repeat input cannot resell; compact/reload preserves exact decimal
+PASS 1280x720 insufficient funds prevents all purchases and page scroll remains absent
+PASS 1024x768 initial16, full exact GOLD, right/down selectable, D locked, no page scroll
+PASS 1024x768 buy B-C-D or C-B-D costs512/8192/131072 once, no automatic shrink, retained individual data and reload
+PASS 1024x768 native drag across plot boundary, swap traits, FIFO in unlocked land, source cancel/pinch, overview wheel/pan
+PASS 1024x768 Tier40 native sale exact addition and repeat input cannot resell; compact/reload preserves exact decimal
+PASS 1024x768 insufficient funds prevents all purchases and page scroll remains absent
+PASS 768x1024 initial16, full exact GOLD, right/down selectable, D locked, no page scroll
+PASS 768x1024 buy B-C-D or C-B-D costs512/8192/131072 once, no automatic shrink, retained individual data and reload
+PASS 768x1024 native drag across plot boundary, swap traits, FIFO in unlocked land, source cancel/pinch, overview wheel/pan
+PASS 768x1024 Tier40 native sale exact addition and repeat input cannot resell; compact/reload preserves exact decimal
+PASS 768x1024 insufficient funds prevents all purchases and page scroll remains absent
+PASS 390x844 initial16, full exact GOLD, right/down selectable, D locked, no page scroll
+PASS 390x844 buy B-C-D or C-B-D costs512/8192/131072 once, no automatic shrink, retained individual data and reload
+PASS 390x844 native drag across plot boundary, swap traits, FIFO in unlocked land, source cancel/pinch, overview wheel/pan
+locator.check: Clicking the checkbox did not change its state
+Call log:
+[2m  - waiting for getByTestId('compact-gold')[22m
+[2m    - locator resolved to <input type="checkbox" data-testid="compact-gold"/>[22m
+[2m  - attempting click action[22m
+[2m    - waiting for element to be visible, enabled and stable[22m
+[2m    - element is visible, enabled and stable[22m
+[2m    - scrolling into view if needed[22m
+[2m    - done scrolling[22m
+[2m    - performing click action[22m
+[2m    - click action done[22m
+[2m    - waiting for scheduled navigations to finish[22m
+[2m    - navigations have finished[22m
+
+    at /workspace/scratch/1610414678ca/slime-merge-game/tests/browser/phase4a.cjs:27:633
+    at async check (/workspace/scratch/1610414678ca/slime-merge-game/tests/browser/phase4a.cjs:8:35)
+    at async run (/workspace/scratch/1610414678ca/slime-merge-game/tests/browser/phase4a.cjs:27:2) {
+  name: 'Error'
+}
