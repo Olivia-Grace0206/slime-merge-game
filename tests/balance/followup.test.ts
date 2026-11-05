@@ -1,4 +1,5 @@
 /// <reference types="node" />
+import { fixtureJSON } from '../helpers/serialization'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { it, expect } from 'vitest'
 import { freshSession, reduceSession, sessionRules, EXPERIMENTAL_PHASE2, type Command } from '../../src/core/progression/session'
@@ -30,23 +31,23 @@ function simulate(name: string, seed: number, policy: Policy = 'balanced', multi
     const n = s.generator.totalGenerated - before, H = String(old.game.highestTierReached)
     const stage = stages[H] ??= { generated: 0, tiers: {}, boardLow: 0, steps: 0 }
     for (const t of s.generator.storedTiers.slice(n ? -n : s.generator.storedTiers.length)) { stage.tiers[t] = (stage.tiers[t] ?? 0) + 1; stage.generated++; generated++; if (t <= 2) low++ }
-    if (c.type === 'sell') { if (s !== old) { sales++; saleGOLD += s.wallet.gold - old.wallet.gold } }
-    else eventGOLD += Math.max(0, s.wallet.gold - old.wallet.gold)
+    if (c.type === 'sell') { if (s !== old) { sales++; saleGOLD += Number(s.wallet.gold - old.wallet.gold) } }
+    else eventGOLD += Math.max(0, Number(s.wallet.gold - old.wallet.gold))
   }
   function shop(now: number) {
-    const lv = s.researchLevel, nextResearchCost = lv < 16 ? researchCost(lv, multiplier) : Infinity
+    const lv = s.researchLevel, nextResearchCost = lv < 16 ? Number(researchCost(lv, multiplier)) : Infinity
     const blocked = s.game.highestTierReached >= s.researchMaxTier
     const buyResearch = () => {
       if (lv >= 16 || s.wallet.gold < nextResearchCost) return
       const oldCap = s.researchMaxTier
       // Candidate price experiment only: reprice the same atomic production purchase.
       // No extra income is counted and the resulting wallet loses exactly candidate cost.
-      s = { ...s, wallet: { ...s.wallet, gold: s.wallet.gold + researchCost(lv) - nextResearchCost } }
+      s = { ...s, wallet: { ...s.wallet, gold: BigInt(Number(s.wallet.gold + researchCost(lv)) - nextResearchCost) } }
       cmd({ type: 'research', expectedLevel: lv }, now)
       research.push({ atMs: now, from: oldCap, to: s.researchMaxTier, cost: nextResearchCost })
     }
     const buyUnlock = () => { if (!s.goldCellUnlocked && s.wallet.gold >= unlockPrice) {
-      s = { ...s, wallet: { ...s.wallet, gold: s.wallet.gold + 128 - unlockPrice } }; cmd({ type: 'gold-unlock' }, now); firstUnlock ??= now
+      s = { ...s, wallet: { ...s.wallet, gold: BigInt(Number(s.wallet.gold) + 128 - unlockPrice) } }; cmd({ type: 'gold-unlock' }, now); firstUnlock ??= now
     } }
     if (policy === 'gold') { buyUnlock(); if (!s.goldCellUnlocked) return }
     if ((policy === 'research' || blocked) && (policy !== 'gold' || s.goldCellUnlocked)) buyResearch()
@@ -54,7 +55,7 @@ function simulate(name: string, seed: number, policy: Policy = 'balanced', multi
     for (const key of ['speed', 'tap', 'storage'] as const) {
       const lv = s.wallet.upgrades[key]
       // Large stock is not useful to this active bot; limit capacity spending, retain full stock accounting.
-      if (lv < (key === 'storage' ? 3 : policy === 'research' ? 4 : 16) && s.wallet.gold >= upgradeCost(key, lv) + reserve) cmd({ type: 'buy', key, expectedLevel: lv }, now)
+      if (lv < (key === 'storage' ? 3 : policy === 'research' ? 4 : 16) && s.wallet.gold >= Number(upgradeCost(key, lv)) + reserve) cmd({ type: 'buy', key, expectedLevel: lv }, now)
     }
     if (policy !== 'research') buyUnlock()
     if (policy === 'gold' && s.goldCellUnlocked && s.goldFrequencyLevel < 5 && s.wallet.gold >= frequencyCost(s.goldFrequencyLevel)) cmd({ type: 'gold-frequency', expectedLevel: s.goldFrequencyLevel }, now)
@@ -112,8 +113,8 @@ it('follow-up actual 4x4 table/economy/policy comparisons with censored endgame 
   const fixedH = Object.entries(profiles).flatMap(([name, p]) => Array.from({ length: 40 }, (_, i) => ({ name, H: i + 1, weights: tierWeights(i + 1, p) })))
   const researchPrices = RESEARCH_CAPS.slice(0, -1).map((cap, i) => ({ from: cap, to: RESEARCH_CAPS[i + 1], variants: [1, 3, 8].map(multiplier => ({ multiplier, cost: researchCost(i, multiplier), capTierSales: multiplier, previousTierSales: multiplier * 2 })) }))
   const out = { model: 'PROVISIONAL. Actual Core 4x4 random FIFO, explicit 2s decisions + acceleration, 5 preferred/3 at >=12 or discovery. Reposition when stock exhausted. Full-board lowest sale; capped-stage highest sale; duplicate sale every30s. One active gold source retained, 350ms independent receipts. Shop policies and candidate costs described in source. 3 seeded runs per primary condition, 12h right censor. Bot times are not human forecasts.', distribution, prices, policies, unlock, fixedH, researchPrices }
-  mkdirSync('docs/validation/phase3c/regression-phase3b/regression/regression-balance', { recursive: true })
-  writeFileSync('docs/validation/phase3c/regression-phase3b/regression/regression-balance/simulation.json', JSON.stringify(out, null, 2))
+  mkdirSync('docs/validation/phase4a/regression/validation-phase3c/regression-phase3b/regression/regression-balance', { recursive: true })
+  writeFileSync('docs/validation/phase4a/regression/validation-phase3c/regression-phase3b/regression/regression-balance/simulation.json', fixtureJSON(out, null, 2))
   expect(distribution).toHaveLength(12); expect(policies).toHaveLength(12)
   expect(prices.every(r => r.saleGOLD > 0 && r.research.length > 0)).toBe(true)
 }, 480000)

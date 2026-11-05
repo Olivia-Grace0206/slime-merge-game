@@ -1,4 +1,5 @@
 /// <reference types="node" />
+import { fixtureJSON } from '../helpers/serialization'
 import { it, expect } from 'vitest'
 import { writeFileSync, mkdirSync } from 'node:fs'
 import { freshSession as newSession, reduceSession, sessionRules } from '../../src/core/progression/session'
@@ -34,7 +35,7 @@ function simulate(c: Scenario, seed: number, mergeAt = 5) {
   }
   let now: number
   for (now = dt; now <= limit; now += dt) {
-    if(!Number.isSafeInteger(s.wallet.gold)||s.wallet.gold<0)throw Error(c.name+' invalid wallet at '+now+': '+s.wallet.gold)
+    if(!(typeof s.wallet.gold === 'bigint' && s.wallet.gold >= 0n)||s.wallet.gold<0)throw Error(c.name+' invalid wallet at '+now+': '+Number(s.wallet.gold))
     const actual = {...sessionRules(s),attributeChance:0,attributeMutationChance:0}, rules = { ...actual, intervalMs: Math.round(actual.intervalMs * (c.speed ?? 1)),
       capacity: Math.max(s.generator.storedTiers.length, Math.round(actual.capacity * (c.capacity ?? 1))),
       tapAdvanceMs: Math.round(actual.tapAdvanceMs * (c.tap ?? 1)), distribution: c.distribution ?? actual.distribution }
@@ -48,7 +49,7 @@ function simulate(c: Scenario, seed: number, mergeAt = 5) {
     if (c.frequency === 0) s = { ...s, event: null, nextEventAtMs: now + 1_000_000 }
     else if ((c.frequency ?? 1) !== 1 && !s.event && now >= s.nextEventAtMs) s = { ...s, nextEventAtMs: now }
     cmd({ type: 'tick' }, now)
-    eventGold += s.wallet.gold - beforeGold; earned += s.wallet.gold - beforeGold
+    eventGold += Number(s.wallet.gold - beforeGold); earned += Number(s.wallet.gold - beforeGold)
     if (beforeEvent && !s.event && c.frequency && c.frequency !== 1) s = { ...s, nextEventAtMs: now + Math.round((s.nextEventAtMs - now) / c.frequency) }
     if (s.generator.storedTiers.length >= rules.capacity) storageFull += dt
     const acting = !c.passive || now % 60_000 === 0
@@ -70,8 +71,8 @@ function simulate(c: Scenario, seed: number, mergeAt = 5) {
             const lowest = [...s.game.slimes].sort((a,b) => a.tier - b.tier)[0]!
             const value = Math.round(2 * (c.saleGrowth ?? 2) ** (lowest.tier - 1))
             cmd({ type: 'sell', id: lowest.id }, now)
-            const correction = value - baseSaleValue(lowest.tier)
-            s = { ...s, wallet: { ...s.wallet, gold: s.wallet.gold + correction } }
+            const correction = value - Number(baseSaleValue(lowest.tier))
+            s = { ...s, wallet: { ...s.wallet, gold: BigInt(Number(s.wallet.gold) + correction) } }
             earned += value; soldForSpace++
           }
           if (s.generator.storedTiers.length) {
@@ -88,24 +89,24 @@ function simulate(c: Scenario, seed: number, mergeAt = 5) {
       // Periodically sell an expendable high-Tier duplicate, retaining one specimen at that Tier.
       if(now % 30_000 === 0) {
         const duplicate=[...s.game.slimes].sort((a,b)=>b.tier-a.tier).find(x=>s.game.slimes.filter(y=>y.tier===x.tier).length>=2)
-        if(duplicate && s.wallet.gold + Math.round(2*(c.saleGrowth??2)**(duplicate.tier-1)) < Number.MAX_SAFE_INTEGER){
+        if(duplicate && Number(s.wallet.gold) + Math.round(2*(c.saleGrowth??2)**(duplicate.tier-1)) < Number.MAX_SAFE_INTEGER){
           const value=Math.round(2*(c.saleGrowth??2)**(duplicate.tier-1))
           cmd({type:'sell',id:duplicate.id},now)
-          s={...s,wallet:{...s.wallet,gold:s.wallet.gold+value-baseSaleValue(duplicate.tier)}}
+          s={...s,wallet:{...s.wallet,gold:BigInt(Number(s.wallet.gold)+value-Number(baseSaleValue(duplicate.tier)))}}
           earned+=value
         }
       }
       for (const key of ['speed','tap','storage'] as UpgradeKey[]) {
         const lv = s.wallet.upgrades[key]
-        const originalCost=upgradeCost(key,lv), cost=Math.ceil(originalCost*((c.shopGrowth??1.7)/1.7)**lv)
+        const originalCost=upgradeCost(key,lv), cost=Math.ceil(Number(originalCost)*((c.shopGrowth??1.7)/1.7)**lv)
         if(lv<16 && s.wallet.gold>=cost) {
           // Adjust experimental comparison cost around the same pure production purchase path.
           const prior=s.wallet.gold
-          if (!Number.isSafeInteger(prior+originalCost-cost) || prior+originalCost-cost<0) continue
-          s={...s,wallet:{...s.wallet,gold:s.wallet.gold+originalCost-cost}}
+          if (!Number.isSafeInteger(Number(prior+originalCost)-cost) || Number(prior+originalCost)-cost<0) continue
+          s={...s,wallet:{...s.wallet,gold:BigInt(Number(s.wallet.gold+originalCost)-cost)}}
           cmd({type:'buy',key,expectedLevel:lv},now)
           spent+=cost;firstPurchase??=now
-          expect(s.wallet.gold).toBe(prior-cost)
+          expect(s.wallet.gold).toBe(BigInt(Number(prior)-cost))
         }
       }
     }
@@ -123,11 +124,12 @@ function simulate(c: Scenario, seed: number, mergeAt = 5) {
     storageStoppedRatio:storageFull/now,boardBlockedRatio:Math.min(1,full/now),soldForSpace,timeline,durationMs:Math.min(now,limit)}
 }
 it('4x4 balance: seeded real-Core agent, seven axes and passive play; writes reproducible evidence',()=>{
-  mkdirSync('docs/validation/phase3c/regression-phase3b/regression/regression-balance/legacy-sensitivity',{recursive:true})
+  mkdirSync('docs/validation/phase4a/regression/validation-phase3c/regression-phase3b/regression/regression-balance/legacy-sensitivity',{recursive:true})
   const results=scenarios.flatMap(c=>[12,61,210].map(seed=>simulate(c,seed)))
   const opening=[3,5].flatMap(n=>[12,61,210].map(seed=>simulate({name:'opening-'+n},seed,n)))
-  writeFileSync('docs/validation/phase3c/regression-phase3b/regression/regression-balance/legacy-sensitivity/simulation.json',JSON.stringify({model:'4x4 real Core plans, 2s decision step; one tap per 2s active / 60s collection passive; 12h censor; 3 seeds per scenario. Not human play-time predictions.',results,opening},null,2))
+  writeFileSync('docs/validation/phase4a/regression/validation-phase3c/regression-phase3b/regression/regression-balance/legacy-sensitivity/simulation.json',fixtureJSON({model:'4x4 real Core plans, 2s decision step; one tap per 2s active / 60s collection passive; 12h censor; 3 seeds per scenario. Not human play-time predictions.',results,opening},null,2))
   expect(results).toHaveLength(51)
-},240_000)
+// Bounded deterministic simulation, not a wall-clock performance assertion.
+},360_000)
 
 

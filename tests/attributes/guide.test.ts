@@ -1,3 +1,4 @@
+import { fixtureJSON } from '../helpers/serialization'
 import { expect, it } from 'vitest'
 import { ATTRIBUTE_IDS } from '../../src/domain/attributes'
 import { EFFECTS, levelPower } from '../../src/core/attributes/effects'
@@ -14,7 +15,7 @@ it.each(ATTRIBUTE_IDS)('%s has one stable named SVG shape and complete guide wit
  expect(attributeText([{id,level:99}])).toBe(`${ATTRIBUTE_LABELS[id]}Lv99`)
 })
 it('all10 icon silhouettes differ rather than relying on colors/characters',()=>{
- const shapes=ATTRIBUTE_IDS.map(id=>JSON.stringify((AttributeIcon({id}).props as {children:unknown}).children))
+ const shapes=ATTRIBUTE_IDS.map(id=>fixtureJSON((AttributeIcon({id}).props as {children:unknown}).children))
  expect(new Set(shapes).size).toBe(10);expect(attributeGuide().map(a=>a.id)).toEqual([...ATTRIBUTE_IDS])
 })
 it('guide limits and probabilities derive from live Core constants',()=>{

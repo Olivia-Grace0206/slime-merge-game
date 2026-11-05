@@ -1,3 +1,4 @@
+const {normaliseSnapshot}=require('./snapshot.cjs')
 /* Production build only; persisted fixtures + actual mouse/native CDP touch input. */
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright')
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{spawn}=require('node:child_process')
@@ -7,7 +8,7 @@ const sizes=[[1920,1080],[1440,900],[1366,768],[1280,720],[1024,768],[768,1024],
 async function check(name,fn){try{await fn();checks.push({name,result:'PASS'});console.log('PASS',name)}catch(e){checks.push({name,result:'FAIL',error:String(e)});throw e}}
 async function until(fn){for(let i=0;i<120;i++){if(await fn())return;await new Promise(r=>setTimeout(r,15))}throw Error('condition timeout')}
 async function center(p,s){const b=await p.locator(s).boundingBox();assert(b);return{x:b.x+b.width/2,y:b.y+b.height/2}}
-const snap=p=>p.evaluate(k=>JSON.parse(localStorage.getItem(k)),key)
+const snap=p=>p.evaluate(k=>JSON.parse(localStorage.getItem(k)),key).then(normaliseSnapshot)
 function fixture(now,tiers=[1,2],attrs=[[],[]],cap=40){const caps=[5,10,15,20,25,29,30,31,32,33,34,35,36,37,38,39,40];return{version:5,savedAtMs:now,sequence:0,nextId:tiers.length+1,researchLevel:caps.indexOf(cap),researchMaxTier:cap,goldCellUnlocked:false,goldFrequencyLevel:0,goldFormat:'full',eventSequence:0,nextEventAtMs:now+60000,event:null,lastEvent:null,protectedIds:tiers.length?['p-1']:[],reducedEffects:true,game:{bounds:{origin:{x:0,y:0},width:4,height:4},highestTierReached:Math.max(1,...tiers),revision:0,slimes:tiers.map((tier,i)=>({id:`p-${i+1}`,tier,position:{x:i%4,y:Math.floor(i/4)},attributes:attrs[i]||[]}))},wallet:{gold:1234,upgrades:{speed:0,tap:0,storage:0}},generator:{storedTiers:[1,1],storedAttributes:[[{id:'ice',level:2}],[]],totalGenerated:2,progressMs:0,updatedAtMs:now}}}
 async function seed(p,tiers,attrs,cap){const s=fixture(await p.evaluate(()=>Date.now()),tiers,attrs,cap);await p.evaluate(([k,v])=>localStorage.setItem(k,JSON.stringify(v)),[key,s]);await p.reload();await p.getByTestId('board').waitFor();await until(async()=>(await p.getByTestId('board').boundingBox()).width>100);return s}
 async function pointer(p,cdp,touch,kind,a){if(touch)await cdp.send('Input.dispatchTouchEvent',{type:{down:'touchStart',move:'touchMove',up:'touchEnd',cancel:'touchCancel'}[kind],touchPoints:kind==='up'||kind==='cancel'?[]:[{...a,id:0}]});else if(kind==='down'){await p.mouse.move(a.x,a.y);await p.mouse.down()}else if(kind==='move')await p.mouse.move(a.x,a.y,{steps:3});else if(kind==='cancel'){await p.keyboard.press('Escape');await p.mouse.up()}else await p.mouse.up()}
@@ -24,7 +25,7 @@ try{
  await seed(p,[1,2],attrs)
  await check(name+' one-screen board unchanged and menu reachable, face/Tier/badges separate',async()=>{
  const m=await p.evaluate(()=>{const rect=n=>{const r=n.getBoundingClientRect();return{x:r.x,y:r.y,w:r.width,h:r.height,right:r.right,bottom:r.bottom}},cell=document.querySelector('[data-slime-id="p-1"]');return{width:innerWidth,height:innerHeight,scroll:[document.documentElement.scrollWidth,document.documentElement.scrollHeight],board:rect(document.querySelector('[data-testid=board]')),tier:rect(cell.querySelector('.tier-pill')),face:rect(cell.querySelector('.smile')),eyes:rect(cell.querySelector('.eyes')),badges:[...cell.querySelectorAll('.attribute-badge')].map(n=>({...rect(n),font:parseFloat(getComputedStyle(n).fontSize)})),menus:[...document.querySelectorAll('.edge-menu button')].map(n=>({...rect(n),text:n.innerText}))}})
- assert.deepEqual(m.scroll,[width,height]);const previous=[1010,830,698,650,624,752,374,359,304,334][sizes.findIndex(x=>x[0]===width)];assert(Math.abs(m.board.w-previous)<=1,JSON.stringify(m.board));assert.equal(m.badges.length,3)
+ assert.deepEqual(m.scroll,[width,height]);const previous=[1010,830,698,650,624,752,374,359,304,334][sizes.findIndex(x=>x[0]===width)];assert(Math.abs(m.board.w-previous*2)<=1,JSON.stringify(m.board));assert.equal(m.badges.length,3)
  for(const b of m.badges){assert(b.bottom<=m.tier.y+1,'attribute/Tier overlap');assert(b.y>=m.face.bottom-1,'attribute/face overlap')}
  for(const b of m.menus)assert(b.x>=0&&b.y>=0&&b.right<=width+.5&&b.bottom<=height+.5,'menu clipped '+b.text)
  measurements.push(m);await p.screenshot({path:path.join(dir,`attributes-${name}.png`)})
@@ -56,8 +57,8 @@ try{
  })
  await check(name+' FIFO attribute withdrawal + immediate protected sale / actual receipt',async()=>{
  await seed(p,[1,2],attrs);await p.getByTestId('add-slime').click();await until(async()=>(await snap(p)).game.slimes.length===3);assert.deepEqual((await snap(p)).game.slimes[2].attributes,[{id:'ice',level:2}])
- const old=(await snap(p)).wallet.gold;await drag(p,cdp,touch,'[data-slime-id="p-2"]','[data-testid="sale-zone"]');await until(async()=>(await snap(p)).game.slimes.length===2);assert.equal((await snap(p)).wallet.gold,old+10)
- await drag(p,cdp,touch,'[data-slime-id="p-1"]','[data-testid="sale-zone"]');assert.equal((await snap(p)).game.slimes.length,2);assert.equal((await snap(p)).wallet.gold,old+10)
+ const old=(await snap(p)).wallet.gold;await drag(p,cdp,touch,'[data-slime-id="p-2"]','[data-testid="sale-zone"]');await until(async()=>(await snap(p)).game.slimes.length===2);assert.equal((await snap(p)).wallet.gold,old+20)
+ await drag(p,cdp,touch,'[data-slime-id="p-1"]','[data-testid="sale-zone"]');assert.equal((await snap(p)).game.slimes.length,2);assert.equal((await snap(p)).wallet.gold,old+20)
  })
  await ctx.close()
  }

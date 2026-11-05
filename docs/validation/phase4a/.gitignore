@@ -1,0 +1,10 @@
+# Reproducible intermediate bulk screenshots/data. Adopted reports and selected images are tracked.
+/browser/
+/browser-final/
+/performance/
+/performance-final/
+/pixel-comparison/
+/pixel-comparison-final/
+/regression-browser/
+/regression/
+/logs/*.log

@@ -6,7 +6,7 @@ export function isTier(value: unknown): value is number {
   return typeof value === 'number' && Number.isInteger(value) && value >= 1 && value <= MAX_TIER
 }
 export type Slime = Readonly<{ id: string; tier: number; position: GridPosition; attributes?: Attributes }>
-export type BoardBounds = Readonly<{ origin: GridPosition; width: number; height: number }>
+export type BoardBounds = Readonly<{ origin: GridPosition; width: number; height: number; plots?: readonly ('A' | 'B' | 'C' | 'D')[] }>
 export type GameState = Readonly<{
   bounds: BoardBounds
   slimes: readonly Slime[]

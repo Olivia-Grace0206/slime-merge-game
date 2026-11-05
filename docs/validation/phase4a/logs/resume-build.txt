@@ -1,0 +1,18 @@
+(node:339) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+> slime-merge-game@0.0.0 build
+> tsc -b && vite build
+
+(node:360) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 64 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.66 kB │ gzip:   0.41 kB
+dist/assets/index-DuEIdcLK.css   48.65 kB │ gzip:  11.15 kB
+dist/assets/index-Db1aRDi7.js   342.03 kB │ gzip: 107.63 kB
+
+✓ built in 422ms

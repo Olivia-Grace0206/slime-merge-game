@@ -1,3 +1,5 @@
+import { safeRoundedSale, safeRoundedFire } from '../progression/legacyRounding'
+import { baseSaleValue, decimalRatio, ceilRatio, floorRatio, multiplyRatios, isGold } from '../progression/money'
 import {AWAKENING_MULTIPLIERS,BLUE_MULTIPLIERS,AWAKENED_DARK_LOSS} from '../special/config'
 import type {EffectContext} from '../../domain/special'
 import { isAttributes, type AttributeId, type Attributes } from '../../domain/attributes'
@@ -68,14 +70,17 @@ export function geneticsForGroup(game: GameState, ids: readonly string[],context
     darkLossChance: members.some(s => s.attributes?.some(a => a.id === 'dark')) ? (members.some(s=>s.attributes?.some(a=>a.id==='dark'&&a.awakened))?AWAKENED_DARK_LOSS:EFFECTS.darkLossChance) : 0 }
 }
 /** One sale quote shared by UI and committed sale; GOLD event rewards stay separate. */
-export function saleValue(slime: Pick<Slime, 'tier' | 'attributes'>, availableGOLD = Number.MAX_SAFE_INTEGER): number {
-  if (!isTier(slime.tier) || !isAttributes(slime.attributes ?? []) || !Number.isSafeInteger(availableGOLD) || availableGOLD < 0) throw new RangeError('Invalid sale')
-  const a = slime.attributes, base = 2 ** slime.tier
-  const fire = attributePower(a, 'fire')
-  const added = fire ? Math.ceil(base * EFFECTS.fireRate * fire) : 0
-  const value = Math.floor((base + added) * (1 + EFFECTS.goldRate * attributePower(a, 'gold')) *
-    (1 + EFFECTS.darkRate * attributePower(a, 'dark')) * (1 + EFFECTS.saleComboRate * comboPower(a, 'fire', 'gold')))
-  return Math.min(value, availableGOLD, Number.MAX_SAFE_INTEGER)
+export function fireSaleBonus(slime: Pick<Slime, 'tier' | 'attributes'>): bigint {
+  const base=baseSaleValue(slime.tier),power=attributePower(slime.attributes,'fire')
+  return safeRoundedFire(base,power) ?? ceilRatio(base, decimalRatio(EFFECTS.fireRate * power))
+}
+export function saleValue(slime: Pick<Slime, 'tier' | 'attributes'>, availableGOLD?: bigint): bigint {
+  if (!isTier(slime.tier) || !isAttributes(slime.attributes ?? []) || (availableGOLD !== undefined && !isGold(availableGOLD))) throw new RangeError('Invalid sale')
+  const a = slime.attributes, base = baseSaleValue(slime.tier)
+  const rates = [1 + EFFECTS.goldRate * attributePower(a, 'gold'),
+    1 + EFFECTS.darkRate * attributePower(a, 'dark'), 1 + EFFECTS.saleComboRate * comboPower(a, 'fire', 'gold')]
+  const value = safeRoundedSale(base, attributePower(a, 'fire'), rates) ?? floorRatio(base + fireSaleBonus(slime), multiplyRatios(rates.map(decimalRatio)))
+  return availableGOLD !== undefined && value > availableGOLD ? availableGOLD : value
 }
 export function specialCellWeights(game: GameState, cells: readonly GridPosition[],context:EffectContext={}): readonly number[] {
   return cells.map(cell => 1 + Math.min(EFFECTS.magnetWeightCap - 1, game.slimes.reduce((sum, s) => {

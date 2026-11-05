@@ -37,10 +37,10 @@ describe('Phase3A swap invariants', () => {
   })
   it('protection and wallet preserved; GOLD target departure closes event with receipts retained',()=>{
     const base=freshSession(0),game=board([5,5]),unit=5
-    const s={...base,game,protectedIds:['s0'],goldCellUnlocked:true,eventSequence:1,event:{id:'gold-1',sequence:1,cell:{x:0,y:0},expiresAtMs:45000,tier:5,sourceId:'s0',attributeCount:0,paid:4,receivedGOLD:20,unitGOLD:unit,nextPaymentAtMs:1400,rewardVersion:2 as const}}
+    const s={...base,game,protectedIds:['s0'],goldCellUnlocked:true,eventSequence:1,event:{id:'gold-1',sequence:1,cell:{x:0,y:0},expiresAtMs:45000,tier:5,sourceId:'s0',attributeCount:0,paid:4,receivedGOLD:BigInt(20),unitGOLD:BigInt(unit),nextPaymentAtMs:1400,rewardVersion:2 as const}}
     const next=reduceSession(s,{type:'drop',plan:planDrop(s.game,'s0',at,5)},1000,()=>.9)
     expect(next.game.slimes).toHaveLength(2);expect(next.protectedIds).toEqual(['s0']);expect(next.wallet).toEqual(s.wallet)
-    expect(next.event).toBeNull();expect(next.lastEvent).toEqual({id:'gold-1',receivedGOLD:20,paid:4});expect(next.eventSequence).toBe(1)
+    expect(next.event).toBeNull();expect(next.lastEvent).toEqual({id:'gold-1',receivedGOLD:BigInt(20),paid:4});expect(next.eventSequence).toBe(1)
     expect(reduceSession(next,{type:'pay',eventId:'gold-1',expectedPaid:4},1400,()=>.9)).toBe(next)
   })
 })

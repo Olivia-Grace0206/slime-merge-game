@@ -1,3 +1,4 @@
+import { isGold } from './money'
 import type { GameState } from '../../domain/game'
 import { isGameState } from '../board/state'
 import { legacyGenerationRules, isLegacyWallet, type Wallet } from './economy'
@@ -41,14 +42,23 @@ export function isProgressionSnapshot(value: unknown): value is ProgressionSnaps
 
 export function encodeProgression(snapshot: ProgressionSnapshot): string {
   if (!isProgressionSnapshot(snapshot)) throw new RangeError('Invalid progression snapshot')
-  return JSON.stringify(snapshot)
+  // Historical portable schema1 writes only safe number currency. Current game saves use schema8.
+  // Conversion is wire encoding after an exact bound check, never currency arithmetic.
+  return JSON.stringify(snapshot, (_key, value: unknown) => {
+    if (typeof value !== 'bigint') return value
+    if (value < 0n || value > BigInt(Number.MAX_SAFE_INTEGER)) throw new RangeError('schema1 currency limit; use schema8')
+    return Number(value)
+  })
 }
 
 /** Invalid/legacy/malformed saves never overwrite the live session. */
 export function decodeProgression(raw: string): ProgressionSnapshot | null {
   if (typeof raw !== 'string' || raw.length > 1_000_000) return null
   try {
-    const parsed: unknown = JSON.parse(raw)
+    const parsed = JSON.parse(raw)
+    if (parsed?.wallet && typeof parsed.wallet.gold === 'string' && /^(0|[1-9][0-9]{0,999})$/.test(parsed.wallet.gold)) parsed.wallet.gold = BigInt(parsed.wallet.gold)
+    else if (parsed?.wallet && Number.isSafeInteger(parsed.wallet.gold) && parsed.wallet.gold >= 0) parsed.wallet.gold = BigInt(parsed.wallet.gold)
+    if (!isGold(parsed?.wallet?.gold)) return null
     return isProgressionSnapshot(parsed) ? parsed : null
   } catch {
     return null

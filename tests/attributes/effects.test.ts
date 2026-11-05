@@ -1,3 +1,4 @@
+import { fixtureJSON } from '../helpers/serialization'
 import { describe, it, expect, vi, afterEach } from 'vitest'
 import { ATTRIBUTE_IDS, type AttributeId, type Attributes } from '../../src/domain/attributes'
 import { boardEffects, levelPower, supportMultiplier, saleValue, geneticsForGroup, specialCellWeights, drawSpecialCell, comboPower } from '../../src/core/attributes/effects'
@@ -23,7 +24,7 @@ describe('Phase3B diminishing effects and caps',()=>{
   expect(levelPower(lv)).toBeGreaterThanOrEqual(1);expect(levelPower(lv)).toBeLessThanOrEqual(1+.3*(lv-1))
   for(const id of ATTRIBUTE_IDS) {
    const s=board([a(id,lv)]),effects=boardEffects(s.game)
-   expect(Number.isFinite(saleValue(s.game.slimes[0]!))).toBe(true)
+   expect((typeof saleValue(s.game.slimes[0]!) === 'bigint' && saleValue(s.game.slimes[0]!) >= 0n)).toBe(true)
    expect(effects.iceReduction).toBeLessThanOrEqual(.25);expect(effects.tapBonus).toBeLessThanOrEqual(.5)
    expect(effects.normalChance).toBeLessThanOrEqual(.15);expect(effects.focusChance).toBeLessThanOrEqual(.85)
   }
@@ -36,11 +37,11 @@ describe('Phase3B diminishing effects and caps',()=>{
   if(id==='nature')expect(effects.natureIntervalMs).toBe(40000)
   if(id==='luck'){expect(effects.normalChance).toBe(.15);expect(effects.focusChance).toBe(.83)}
  })
- it.each(['fire','gold','dark'] as const)('%s changes actual sale, keeps GOLD reward separate and caps wallet',id=>{
+ it.each(['fire','gold','dark'] as const)('%s changes actual sale, keeps GOLD reward separate and grows beyond the old wallet cap',id=>{
   const s=board([a(id)],10),slime=s.game.slimes[0]!,quote=saleValue(slime),sold=sellSlime(s.game,s.wallet,slime.id)
   expect(quote).toBeGreaterThan(1024);expect(sold.earned).toBe(quote);expect(sold.wallet.gold).toBe(quote)
-  const capped={...s,wallet:{...s.wallet,gold:Number.MAX_SAFE_INTEGER-3}}
-  expect(reduceSession(capped,{type:'sell',id:slime.id},0,quiet).wallet.gold).toBe(Number.MAX_SAFE_INTEGER)
+  const capped={...s,wallet:{...s.wallet,gold:BigInt(Number.MAX_SAFE_INTEGER-3)}}
+  expect(reduceSession(capped,{type:'sell',id:slime.id},0,quiet).wallet.gold).toBe(capped.wallet.gold+quote)
   expect(goldPayment(10,1)).toBe(goldPayment(10,1))
  })
  it('light is nonrecursive, adjacent only, capped, never buffs sale',()=>{
@@ -123,7 +124,7 @@ describe('safe focused generation and persistence',()=>{
   const result=withdrawFocused(s.game,s.generator,'x',.35,()=>NaN);expect(result.ok).toBe(false)
  })
  it('generation preserves progress fraction after shop and ice placement/removal',()=>{
-  const s={...board([a('ice')]),generator:{...freshSession(0).generator,progressMs:7387},wallet:{gold:100,upgrades:{speed:0,tap:0,storage:0}}}
+  const s={...board([a('ice')]),generator:{...freshSession(0).generator,progressMs:7387},wallet:{gold:BigInt(100),upgrades:{speed:0,tap:0,storage:0}}}
   const sold=reduceSession(s,{type:'sell',id:'p-1'},0,quiet)
   expect(sold.generator.progressMs/15000).toBeCloseTo(7387/14775,3)
   const bought=reduceSession(s,{type:'buy',key:'speed',expectedLevel:0},0,quiet)
@@ -131,9 +132,9 @@ describe('safe focused generation and persistence',()=>{
  })
  it.each([0,1,5,10,16])('schema5 speedLv%d migrates progress and all ownership with frozen event',lv=>{
   const s=stock(board([a('dark',99)],40),[1,40],[a('ice'),a('gold',5)]),oldInterval=legacyGenerationRules({...s.wallet,upgrades:{speed:lv,tap:2,storage:0}}).intervalMs
-  const old={...s,version:5,wallet:{gold:123,upgrades:{speed:lv,tap:2,storage:0}},protectedIds:['p-1'],generator:{...s.generator,progressMs:Math.floor(oldInterval*.75)}}
-  const d=decodeSession(JSON.stringify(old),0);expect(d.ok).toBe(true);if(!d.ok)throw Error(d.reason)
-  expect(d.session.version).toBe(7);expect(d.session.game).toEqual(old.game);expect(d.session.wallet).toEqual(old.wallet)
+  const old={...s,version:5,wallet:{gold:BigInt(123),upgrades:{speed:lv,tap:2,storage:0}},protectedIds:['p-1'],generator:{...s.generator,progressMs:Math.floor(oldInterval*.75)}}
+  const d=decodeSession(fixtureJSON(old),0);expect(d.ok).toBe(true);if(!d.ok)throw Error(d.reason)
+  expect(d.session.version).toBe(8);expect(d.session.game).toEqual(old.game);expect(d.session.wallet).toEqual(old.wallet)
   expect(d.session.generator.storedAttributes).toEqual(old.generator.storedAttributes);expect(d.session.protectedIds).toEqual(old.protectedIds)
   expect(d.session.generator.progressMs/sessionRules(d.session).intervalMs).toBeCloseTo(.75,3)
   expect(d.session.generationMode).toBe('normal')
@@ -146,7 +147,7 @@ describe('safe focused generation and persistence',()=>{
   if(kind==='nature-count')s.nature.totalGenerated=1
   if(kind==='focus-count')s.focusedGenerated=1
   if(kind==='unknown')s.version=999
-  expect(decodeSession(JSON.stringify(s),0).ok).toBe(false)
+  expect(decodeSession(fixtureJSON(s),0).ok).toBe(false)
  })
  it('focused conversion rolls back on quota, retries once and rejects a stale cross-tab save',async()=>{
   vi.stubGlobal('navigator',{locks:{request:async (_:string,run:()=>unknown)=>run()}})

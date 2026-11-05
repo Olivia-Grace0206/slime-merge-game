@@ -1,3 +1,4 @@
+import { fixtureJSON } from '../helpers/serialization'
 import { describe, expect, it } from 'vitest'
 import { freshSession, reduceSession as currentReduceSession, sessionRules, type Session } from '../../src/core/progression/session'
 import { tierWeights, drawTier, withdrawToCell } from '../../src/core/progression/generation'
@@ -34,7 +35,7 @@ describe('table discovery contract', () => {
     expect(drawTier(2, .99 - Number.EPSILON)).toBe(1); expect(drawTier(2, .99)).toBe(2)
   })
   it('production uses the table, research and reload never advance discovery', () => {
-    const s = freshSession(0), funded = { ...s, wallet: { ...s.wallet, gold: 10000 } }, r = cmd(funded, { type: 'research', expectedLevel: 0 })
+    const s = freshSession(0), funded = { ...s, wallet: { ...s.wallet, gold: BigInt(10000) } }, r = cmd(funded, { type: 'research', expectedLevel: 0 })
     expect(r.researchMaxTier).toBe(10); expect(r.game.highestTierReached).toBe(1)
     expect(sessionRules(r).distribution).toBeUndefined()
     const generated = reduceSession(r, { type: 'tick' }, 150000, () => 1 - Number.EPSILON)
@@ -64,13 +65,13 @@ describe('table discovery contract', () => {
 })
 describe('research transactions and materials', () => {
   it('real new game has research5 and GOLD locked', () => {
-    expect(freshSession(0)).toMatchObject({ version: 7, researchLevel: 0, researchMaxTier: 5, goldCellUnlocked: false, goldFrequencyLevel: 0, goldFormat: 'full' })
+    expect(freshSession(0)).toMatchObject({ version: 8, researchLevel: 0, researchMaxTier: 5, goldCellUnlocked: false, goldFrequencyLevel: 0, goldFormat: 'full' })
     expect(isSession(freshSession(0))).toBe(true)
   })
   it.each(RESEARCH_CAPS.slice(1).map((cap, i) => [i, cap]))('stage %i unlocks cap %i once, without discovery', (lv, cap) => {
-    const base = freshSession(0), s = { ...base, researchLevel: lv!, researchMaxTier: RESEARCH_CAPS[lv!]!, wallet: { ...base.wallet, gold: researchCost(lv!) * 2 } }
+    const base = freshSession(0), s = { ...base, researchLevel: lv!, researchMaxTier: RESEARCH_CAPS[lv!]!, wallet: { ...base.wallet, gold: BigInt(researchCost(lv!) * BigInt(2)) } }
     const n = cmd(s, { type: 'research', expectedLevel: lv! })
-    expect(n.researchMaxTier).toBe(cap); expect(n.wallet.gold).toBe(s.wallet.gold - researchCost(lv!)); expect(n.game).toEqual(s.game)
+    expect(n.researchMaxTier).toBe(cap); expect(n.wallet.gold).toBe(BigInt(s.wallet.gold) - researchCost(lv!)); expect(n.game).toEqual(s.game)
     expect(cmd(n, { type: 'research', expectedLevel: lv! })).toBe(n); expect(isSession(n)).toBe(true)
   })
   it.each([3, 5, 8, 11, 16])('blocked %i specimens: preview/apply/session preserve every material, queue and GOLD', count => {
@@ -94,48 +95,49 @@ describe('research transactions and materials', () => {
   it('locked at cap still sells and can fund research from ordinary sales without gold cells', () => {
     let s = board(5, 5)
     for (const x of s.game.slimes.slice(0, 3)) s = cmd(s, { type: 'sell', id: x.id })
-    expect(s.wallet.gold).toBe(researchCost(0)); expect(cmd(s, { type: 'research', expectedLevel: 0 }).researchMaxTier).toBe(10)
+    expect(s.wallet.gold).toBe(1536n); expect(cmd(s, { type: 'research', expectedLevel: 0 }).researchMaxTier).toBe(10)
   })
 })
 describe('GOLD unlock, format and migration', () => {
   it('locked events do not spawn, purchase costs128, duplicates refused, frequency requires unlock', () => {
     let s = freshSession(0)
     s = reduceSession(s, { type: 'tick' }, 100000, zero); expect(s.event).toBeNull()
-    s = { ...s, wallet: { ...s.wallet, gold: 1000 } }
+    s = { ...s, wallet: { ...s.wallet, gold: BigInt(1000) } }
     expect(cmd(s, { type: 'gold-frequency', expectedLevel: 0 })).toBe(s)
-    const n = cmd(s, { type: 'gold-unlock' }); expect(n.wallet.gold).toBe(872); expect(n.goldCellUnlocked).toBe(true)
+    const n = cmd(s, { type: 'gold-unlock' }); expect(n.wallet.gold).toBe(BigInt(872)); expect(n.goldCellUnlocked).toBe(true)
     expect(cmd(n, { type: 'gold-unlock' })).toBe(n)
-    const f = cmd(n, { type: 'gold-frequency', expectedLevel: 0 }); expect(f.wallet.gold).toBe(872 - frequencyCost(0)); expect(f.goldFrequencyLevel).toBe(1)
+    const f = cmd(n, { type: 'gold-frequency', expectedLevel: 0 }); expect(f.wallet.gold).toBe(BigInt(BigInt(872) - frequencyCost(0))); expect(f.goldFrequencyLevel).toBe(1)
     expect(cmd(f, { type: 'gold-frequency', expectedLevel: 0 })).toBe(f)
     const event = reduceSession(f, { type: 'tick' }, f.nextEventAtMs, zero)
     expect(event.event?.tier).toBeNull(); expect(event.event).not.toBeNull(); expect(isSession(event)).toBe(true)
   })
   it.each([1, 2, 3])('legacy v%i preserves high Tiers, FIFO, GOLD and free research/event access', version => {
-    const s = board(33, 3, 35), saved = { ...s, generator: { ...s.generator, storedTiers: [2, 31, 33], storedAttributes: [2, 31, 33].map(() => []), totalGenerated: 3 }, wallet: { ...s.wallet, gold: 12345 } }
+    const s = board(33, 3, 35), saved = { ...s, generator: { ...s.generator, storedTiers: [2, 31, 33], storedAttributes: [2, 31, 33].map(() => []), totalGenerated: 3 }, wallet: { ...s.wallet, gold: BigInt(12345) } }
     const legacy = { ...saved, version } as Record<string, unknown>
     for (const key of ['researchLevel', 'researchMaxTier', 'goldCellUnlocked', 'goldFrequencyLevel', 'goldFormat']) delete legacy[key]
-    const raw = JSON.stringify(legacy), load = decodeSession(raw, 0)
+    const raw = fixtureJSON(legacy), load = decodeSession(raw, 0)
     expect(load.ok).toBe(true)
     if (load.ok) { expect(load.migrated).toBe(true); expect(load.session).toMatchObject({ researchMaxTier: 33, goldCellUnlocked: true, goldFormat: 'full' }); expect(load.session.game).toEqual(saved.game); expect(load.session.generator).toEqual(saved.generator); expect(load.session.wallet).toEqual(saved.wallet) }
   })
   it('all old H1..40 migrate to a covering research boundary, including29/30 and40', () => {
     for (let H = 1; H <= 40; H++) {
-      const s = board(H, 1, 40), raw = JSON.stringify({ ...s, version: 3 }), load = decodeSession(raw, 0)
+      const s = board(H, 1, 40), raw = fixtureJSON({ ...s, version: 3 }), load = decodeSession(raw, 0)
       expect(load.ok).toBe(true)
-      if (load.ok) { expect(load.session.researchMaxTier).toBe(RESEARCH_CAPS[legacyResearchLevel(H)]); expect(load.session.game.slimes).toEqual(s.game.slimes); expect(load.session.wallet.gold).toBe(0) }
+      if (load.ok) { expect(load.session.researchMaxTier).toBe(RESEARCH_CAPS[legacyResearchLevel(H)]); expect(load.session.game.slimes).toEqual(s.game.slimes); expect(load.session.wallet.gold).toBe(BigInt(0)) }
     }
   })
   it('v3 partially paid event keeps its exact unit, receipt and reward version; migration does not replay', () => {
     let s = { ...board(5, 1), goldCellUnlocked: true }
     s = reduceSession(s, { type: 'tick' }, 60000, () => .1)
+    s = {...s,event:{...s.event!,rewardVersion:2}}
     s = cmd(s, { type: 'drop', plan: planDrop(s.game, 'p-1', s.event!.cell, s.researchMaxTier) })
     for (let i = 0; i < 4; i++) s = reduceSession(s, { type: 'tick' }, s.event!.nextPaymentAtMs, zero)
-    const old = { ...s, version: 3 }, load = decodeSession(JSON.stringify(old), s.savedAtMs)
+    const old = { ...s, version: 3 }, load = decodeSession(fixtureJSON(old), s.savedAtMs)
     expect(load.ok).toBe(true)
     if (load.ok) { expect(load.session.event).toEqual(s.event); expect(load.session.wallet).toEqual(s.wallet); const moved = cmd(load.session, { type: 'sell', id: 'p-1' }); expect(moved.event).toBeNull(); expect(cmd(moved, { type: 'pay', eventId: s.event!.id, expectedPaid: 4 })).toBe(moved) }
   })
   it('settings persist; failed purchases never write either half, and stale raw prevents all changes', () => {
-    const s = freshSession(0), funded = { ...s, wallet: { ...s.wallet, gold: 1000 } }
+    const s = freshSession(0), funded = { ...s, wallet: { ...s.wallet, gold: BigInt(1000) } }
     for (const c of [{ type: 'research', expectedLevel: 0 }, { type: 'gold-unlock' }, { type: 'gold-format', value: 'compact' }] as const) {
       const n = cmd(funded, c); expect(isSession(n)).toBe(true)
       let raw = encodeSession(funded)

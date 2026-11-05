@@ -1,0 +1,178 @@
+{
+  "checks": [
+    {
+      "name": "1366x768 batch0: Tier1-16 appearance invariants",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 batch1: Tier17-32 appearance invariants",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 batch2: Tier33-40 appearance invariants",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 sameTier/sameattributes/sameawakening before/after appearance comparison",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 batch0: Tier1-16 appearance invariants",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 batch1: Tier17-32 appearance invariants",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 batch2: Tier33-40 appearance invariants",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 sameTier/sameattributes/sameawakening before/after appearance comparison",
+      "result": "PASS"
+    }
+  ],
+  "samples": [
+    {
+      "width": 1366,
+      "height": 768,
+      "tiers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "sha256": "2a8228946669b9556d76f6cd227cad9778ea91a97e9101b7c275fa7a27426d31"
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "tiers": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "sha256": "2c0af3777458f8681d80aad76f1e4f92cdc6ae368617cd035df3ae994b7dfbef"
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "tiers": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "sha256": "1b46131242f5847d1fac98b0d4c1066175a7d21f250f786b2c5ed5341ff0c91a"
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "tiers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "sha256": "257c2877f10b166372dc83b1229d5637f472e9e5d1c425dff5d15a5186e78bde"
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "tiers": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "sha256": "d143a1163e82fb074bcaf9b613480d57a1aff10bab1c2590ed764099bc30bf44"
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "tiers": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "sha256": "591c28a5af80cf22847f8c2cf68f1cfd6084c7bcc2eb31ce09633a7cb030ad45"
+    }
+  ],
+  "browser": "134.0.6998.35",
+  "realDevices": false
+}

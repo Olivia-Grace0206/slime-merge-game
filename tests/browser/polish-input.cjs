@@ -1,3 +1,4 @@
+const {normaliseSnapshot}=require('./snapshot.cjs')
 /* Built production React UI, real mouse/CDP touch; fixtures only enter through the public save format. */
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright')
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{spawn}=require('node:child_process')
@@ -8,7 +9,7 @@ fs.mkdirSync(dir,{recursive:true})
 async function check(name,fn){try{await fn();checks.push({name,result:'PASS'});console.log('PASS',name)}catch(e){checks.push({name,result:'FAIL',error:String(e)});throw e}}
 async function center(p,selector){const r=await p.locator(selector).boundingBox();assert(r);return {x:r.x+r.width/2,y:r.y+r.height/2}}
 // Compare legacy absence with schema5's explicit empty attributes semantically.
-async function snapshot(p){return p.evaluate(k=>{const s=JSON.parse(localStorage.getItem(k));if(s){s.game.slimes=s.game.slimes.map(x=>({...x,attributes:x.attributes??[]}));s.generator.storedAttributes??=s.generator.storedTiers.map(()=>[])}return s},key)}
+async function snapshot(p){return p.evaluate(k=>{const s=JSON.parse(localStorage.getItem(k));if(s){s.game.slimes=s.game.slimes.map(x=>({...x,attributes:x.attributes??[]}));s.generator.storedAttributes??=s.generator.storedTiers.map(()=>[])}return s},key).then(normaliseSnapshot)}
 async function until(fn){for(let i=0;i<80;i++){if(await fn())return;await new Promise(r=>setTimeout(r,10))}throw Error('condition timeout')}
 function fixture(now,{tiers=[],queue=[],gold=0,H=1,event=null,capacityLv=0}={}){return {version:3,savedAtMs:now,nextId:tiers.length+1,sequence:0,game:{bounds:{origin:{x:0,y:0},width:4,height:4},slimes:tiers.map((t,i)=>({id:`p-${i+1}`,tier:t,position:{x:i%4,y:Math.floor(i/4)}})),highestTierReached:Math.max(H,...tiers,...queue),revision:0},wallet:{gold,upgrades:{speed:0,tap:0,storage:capacityLv}},generator:{storedTiers:queue,progressMs:0,updatedAtMs:now,totalGenerated:queue.length},eventSequence:event?1:0,nextEventAtMs:now+60000,event,lastEvent:null,protectedIds:[],reducedEffects:false}}
 async function seed(p,options){const now=await p.evaluate(()=>Date.now()),s=fixture(now,options);await p.evaluate(([k,s])=>localStorage.setItem(k,JSON.stringify(s)),[key,s]);await p.reload();await p.getByTestId('board').waitFor();return s}
@@ -55,15 +56,15 @@ try{
   })
   await check(width+' drag sale preview exposes Tier/price and protected refusal without a modal',async()=>{
    await seed(p,{tiers:[5]});const a=await center(p,'[data-cell="0,0"]'),b=await center(p,'[data-testid="sale-zone"]')
-   assert((await p.locator('[data-cell="0,0"]').getAttribute('title')).includes('32 GOLD'))
-   await p.mouse.move(a.x,a.y);await p.mouse.down();await p.mouse.move(b.x,b.y,{steps:5});assert((await p.getByTestId('sale-zone').innerText()).includes('Tier 5 · +32 GOLD'));assert((await p.getByTestId('sale-zone').getAttribute('class')).includes('sale-hover'));await p.mouse.up()
-   await until(async()=>(await snapshot(p)).game.slimes.length===0);assert.equal((await snapshot(p)).wallet.gold,32);assert.equal(await p.getByRole('dialog').isVisible(),false)
+   assert((await p.locator('[data-cell="0,0"]').getAttribute('title')).includes('512 GOLD'))
+   await p.mouse.move(a.x,a.y);await p.mouse.down();await p.mouse.move(b.x,b.y,{steps:5});assert((await p.getByTestId('sale-zone').innerText()).includes('Tier 5 · +512 GOLD'));assert((await p.getByTestId('sale-zone').getAttribute('class')).includes('sale-hover'));await p.mouse.up()
+   await until(async()=>(await snapshot(p)).game.slimes.length===0);assert.equal((await snapshot(p)).wallet.gold,512);assert.equal(await p.getByRole('dialog').isVisible(),false)
   })
   await check(width+' keyboard protection/detail and direct sale; protected merge material remains allowed',async()=>{
    await seed(p,{tiers:[1,1,1]});const cell=p.locator('[data-cell="0,0"]');await cell.focus();await cell.press('p');await until(async()=>(await snapshot(p)).protectedIds.length===1)
    await cell.press('i');assert(await p.getByRole('dialog').isVisible());await p.getByRole('button',{name:'閉じる',exact:true}).click()
    await cell.focus();await cell.press('Enter');await p.locator('[data-cell="1,0"]').press('Enter');await until(async()=>(await snapshot(p)).game.slimes.length===1);assert.deepEqual((await snapshot(p)).protectedIds,[])
-   const output=p.locator('[data-slime-id]');await output.focus();await output.press('Enter');await p.getByTestId('sale-zone').focus();await p.getByTestId('sale-zone').press('Enter');await until(async()=>(await snapshot(p)).game.slimes.length===0);assert.equal((await snapshot(p)).wallet.gold,4)
+   const output=p.locator('[data-slime-id]');await output.focus();await output.press('Enter');await p.getByTestId('sale-zone').focus();await p.getByTestId('sale-zone').press('Enter');await until(async()=>(await snapshot(p)).game.slimes.length===0);assert.equal((await snapshot(p)).wallet.gold,8)
   })
   await check(width+' real touchscreen shop tap works without virtual clock',async()=>{
    await seed(p,{gold:1000});await p.getByRole('button',{name:'GOLDショップ',exact:true}).tap();await p.waitForTimeout(80)
@@ -80,7 +81,7 @@ try{
   })
   await check(width+' v2 4/10 migrates frozen unit then sale ends ledger; save failure retains both sides',async()=>{
    let now=await p.evaluate(()=>Date.now()),s=fixture(now,{tiers:[5],gold:4});s.version=2;s.eventSequence=1;s.event={id:'gold-1',sequence:1,cell:{x:0,y:0},expiresAtMs:now+45000,tier:5,sourceId:'p-1',attributeCount:0,paid:4,receivedGOLD:4,unitGOLD:1,nextPaymentAtMs:now+5000};await p.evaluate(([k,s])=>localStorage.setItem(k,JSON.stringify(s)),[key,s]);await p.reload()
-   await drag(p,'[data-cell="0,0"]','[data-testid="sale-zone"]');await until(async()=>(await snapshot(p)).event===null);assert.equal((await snapshot(p)).wallet.gold,36);assert.equal((await snapshot(p)).version,7)
+   await drag(p,'[data-cell="0,0"]','[data-testid="sale-zone"]');await until(async()=>(await snapshot(p)).event===null);assert.equal((await snapshot(p)).wallet.gold,516);assert.equal((await snapshot(p)).version,8)
    await seed(p,{tiers:[1],queue:[1]});const raw=await p.evaluate(k=>localStorage.getItem(k),key);await p.evaluate(()=>{Storage.prototype.setItem=()=>{throw new DOMException('quota','QuotaExceededError')}})
    await p.getByTestId('add-slime').click();await until(async()=>await p.getByRole('alert').isVisible());assert.equal(await p.evaluate(k=>localStorage.getItem(k),key),raw);assert.equal(await p.locator('[data-slime-id]').count(),1);await p.reload()
   })

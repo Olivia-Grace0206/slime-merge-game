@@ -1,3 +1,4 @@
+import { fixtureJSON } from '../helpers/serialization'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { performance } from 'node:perf_hooks'
 import { expect, it } from 'vitest'
@@ -7,7 +8,7 @@ import { freshSession, sessionRules, type Session } from '../../src/core/progres
 import { encodeSession, decodeSession, commitStorage } from '../../src/core/progression/persistence'
 import { upgradeCost } from '../../src/core/progression/economy'
 import type { Attributes } from '../../src/domain/attributes'
-const dir='docs/balance/phase3b1'
+const dir='docs/validation/phase4a/regression/balance-phase3b1'
 const rng=(seed:number)=>()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296}
 it('compares stock10/58/100/160, capacity/price proposals, and bounded save/generation performance',()=>{
  const proposals=[{name:'previous',perLevel:3,maxLevel:16,growth:1.7},{name:'A',perLevel:4,maxLevel:30,growth:1.35},{name:'B',perLevel:5,maxLevel:30,growth:1.35},{name:'C',perLevel:5,maxLevel:40,growth:1.35}].map(p=>({...p,maxCapacity:10+p.perLevel*p.maxLevel,levels:[0,1,5,10,16,20,30,40].filter(lv=>lv<=p.maxLevel).map(lv=>{
@@ -29,7 +30,7 @@ it('compares stock10/58/100/160, capacity/price proposals, and bounded save/gene
  })))
  const timings=[10,58,100,160].map(count=>{
   const storage=Math.ceil((count-10)/5),base=freshSession(0),traits:Attributes=[{id:'ice',level:99},{id:'nature',level:99},{id:'mutation',level:99}]
-  const s:Session={...base,nextId:17,researchLevel:16,researchMaxTier:40,wallet:{gold:1000000,upgrades:{speed:0,tap:0,storage}},game:{...base.game,highestTierReached:40,slimes:Array.from({length:16},(_,i)=>({id:`p-${i+1}`,tier:40,position:{x:i%4,y:Math.floor(i/4)},attributes:traits}))},generator:{...base.generator,storedTiers:Array(count).fill(40),storedAttributes:Array.from({length:count},()=>traits),totalGenerated:count}}
+  const s:Session={...base,nextId:17,researchLevel:16,researchMaxTier:40,wallet:{gold:BigInt(1000000),upgrades:{speed:0,tap:0,storage}},game:{...base.game,highestTierReached:40,slimes:Array.from({length:16},(_,i)=>({id:`p-${i+1}`,tier:40,position:{x:i%4,y:Math.floor(i/4)},attributes:traits}))},generator:{...base.generator,storedTiers:Array(count).fill(40),storedAttributes:Array.from({length:count},()=>traits),totalGenerated:count}}
   const raw=encodeSession(s);let current=raw;const memory={getItem:()=>current,setItem:(_:string,v:string)=>{current=v}},times:Record<string,number[]>={encode:[],decode:[],write:[],generate:[]}
   for(let i=0;i<100;i++){
    let at=performance.now();encodeSession(s);times.encode!.push(performance.now()-at)
@@ -41,6 +42,6 @@ it('compares stock10/58/100/160, capacity/price proposals, and bounded save/gene
   expect(raw.length).toBeLessThan(100000)
   return{count,actualCapacity:sessionRules(s).capacity,storageLevel:storage,jsonCharacters:raw.length,jsonUTF8Bytes:Buffer.byteLength(raw),nextUpgradeGOLD:upgradeCost('storage',storage),timing:Object.fromEntries(Object.entries(times).map(([k,v])=>[k,summarize(v)]))}
  })
- mkdirSync(dir,{recursive:true});writeFileSync(`${dir}/comparison.json`,JSON.stringify({provisional:true,stockModel:'One-hour pure stock model, fixed15s ordinary production/3% attributes, service FIFO10→1 at60/180/600s, output immediately handled externally; no claim of a constrained4x4 playthrough.3seeds. Tier weights/effects unchanged.',performanceModel:'100 trials/size,16×T40/3attrsLv99 and up to160 stored3attrs; encode/decode/atomic in-memory StoragePort write/one-day bounded generation. Wall timings observational, not device guarantees. Exact58 is legacy stock comparison; modernLv10 capacity60 used for save validity.',proposals,priceCurves,stock,timings},null,2))
+ mkdirSync(dir,{recursive:true});writeFileSync(`${dir}/comparison.json`,fixtureJSON({provisional:true,stockModel:'One-hour pure stock model, fixed15s ordinary production/3% attributes, service FIFO10→1 at60/180/600s, output immediately handled externally; no claim of a constrained4x4 playthrough.3seeds. Tier weights/effects unchanged.',performanceModel:'100 trials/size,16×T40/3attrsLv99 and up to160 stored3attrs; encode/decode/atomic in-memory StoragePort write/one-day bounded generation. Wall timings observational, not device guarantees. Exact58 is legacy stock comparison; modernLv10 capacity60 used for save validity.',proposals,priceCurves,stock,timings},null,2))
  expect(stock).toHaveLength(36);expect(proposals.find(p=>p.name==='B')?.maxCapacity).toBe(160)
 },120000)

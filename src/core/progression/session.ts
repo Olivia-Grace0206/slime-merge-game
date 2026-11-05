@@ -1,3 +1,5 @@
+import { baseSaleValue } from './money'
+import { freshLandBounds, purchaseLand, type PurchasablePlot } from './land'
 import type {SpecialState} from '../../domain/special'
 import {freshSpecials,effectContext,availableSpecialCells,syncPurple,nextSpecialBoundary,finishSpecialBoundary,spawnSpecials,rebaseSpecialClock} from '../special/state'
 import { stripAttributes } from '../attributes/strip'
@@ -19,15 +21,16 @@ export const EXPERIMENTAL_PHASE2 = Object.freeze({
   eventLifetimeMs: 45_000, paymentIntervalMs: 350, goldRewardRate: 0.05,
 })
 export type CellEvent = Readonly<{
-  rewardVersion?: 1 | 2; id: string; sequence: number; cell: GridPosition; expiresAtMs: number
+  rewardVersion?: 1 | 2 | 3; id: string; sequence: number; cell: GridPosition; expiresAtMs: number
   tier: number | null; sourceId: string | null; attributeCount: number
-  paid: number; receivedGOLD: number; cappedGOLD?: number; unitGOLD: number; nextPaymentAtMs: number
+  paid: number; receivedGOLD: bigint; cappedGOLD?: bigint; unitGOLD: bigint; nextPaymentAtMs: number
 }>
 export type Session = Omit<ProgressionSnapshot, 'version'> & Readonly<{
-  version: 7; specials:SpecialState; generationMode: GenerationMode; focusedGenerated: number; nature: Readonly<{progressMs: number; updatedAtMs: number; totalGenerated: number}>; researchLevel: number; researchMaxTier: number; goldCellUnlocked: boolean; goldFrequencyLevel: number; goldFormat: 'full' | 'compact'; sequence: number; eventSequence: number; nextEventAtMs: number
-  event: CellEvent | null; lastEvent: Readonly<{ id: string; receivedGOLD: number; paid?: number }> | null; protectedIds: readonly string[]; reducedEffects: boolean
+  version: 8; specials:SpecialState; generationMode: GenerationMode; focusedGenerated: number; nature: Readonly<{progressMs: number; updatedAtMs: number; totalGenerated: number}>; researchLevel: number; researchMaxTier: number; goldCellUnlocked: boolean; goldFrequencyLevel: number; goldFormat: 'full' | 'compact'; sequence: number; eventSequence: number; nextEventAtMs: number
+  event: CellEvent | null; lastEvent: Readonly<{ id: string; receivedGOLD: bigint; paid?: number }> | null; protectedIds: readonly string[]; reducedEffects: boolean
 }>
 export type Command =
+  | { type: 'land'; plot: PurchasablePlot; expectedCount: number }
   | { type: 'research'; expectedLevel: number }
   | { type: 'gold-unlock' }
   | { type: 'gold-frequency'; expectedLevel: number }
@@ -45,8 +48,8 @@ export type Command =
   | { type: 'pay'; eventId: string; expectedPaid: number }
 
 export function freshSession(nowMs: number): Session {
-  return { version: 7, specials:freshSpecials(nowMs), generationMode: 'normal', focusedGenerated: 0, nature: {progressMs: 0, updatedAtMs: nowMs, totalGenerated: 0}, researchLevel: 0, researchMaxTier: 5, goldCellUnlocked: false, goldFrequencyLevel: 0, goldFormat: 'full', sequence: 0, savedAtMs: nowMs, nextId: 1,
-    game: { bounds: { origin: { x: 0, y: 0 }, width: 4, height: 4 }, slimes: [], highestTierReached: 1, revision: 0 },
+  return { version: 8, specials:freshSpecials(nowMs), generationMode: 'normal', focusedGenerated: 0, nature: {progressMs: 0, updatedAtMs: nowMs, totalGenerated: 0}, researchLevel: 0, researchMaxTier: 5, goldCellUnlocked: false, goldFrequencyLevel: 0, goldFormat: 'full', sequence: 0, savedAtMs: nowMs, nextId: 1,
+    game: { bounds: freshLandBounds(), slimes: [], highestTierReached: 1, revision: 0 },
     wallet: freshWallet(), generator: { ...newGenerator(nowMs), storedAttributes: [] },
     eventSequence: 0, nextEventAtMs: nowMs + EXPERIMENTAL_PHASE2.eventMinDelayMs,
     event: null, lastEvent: null, protectedIds: [], reducedEffects: false }
@@ -58,11 +61,17 @@ export function sessionRules(s: Session) {
 
 }
 /** Provisional linear low-Tier floor; high-Tier rate is unchanged. Old contracts keep version 1. */
-export function goldPayment(tier: number, attributeCount: number, rewardVersion: 1 | 2 = 2): number {
-  if (!Number.isInteger(tier) || tier < 1 || tier > 40 || !Number.isInteger(attributeCount) || attributeCount < 0 || attributeCount > 10)
+export function goldPayment(tier: number, attributeCount: number, rewardVersion: 1 | 2 | 3 = 3): bigint {
+  if (!Number.isInteger(tier) || tier < 1 || tier > 40 || !Number.isInteger(attributeCount) || attributeCount < 0 || attributeCount > 10 || ![1,2,3].includes(rewardVersion))
     throw new RangeError('Invalid reward input')
-  const base = 2 ** tier * EXPERIMENTAL_PHASE2.goldRewardRate
-  return Math.max(1, Math.floor((rewardVersion === 1 ? base : Math.max(tier, base)) / (1 + attributeCount * 0.25)))
+  // Old contracts keep their exact historical IEEE-754 rounding, independent of new prices.
+  if (rewardVersion < 3) {
+    const base = 2 ** tier * EXPERIMENTAL_PHASE2.goldRewardRate
+    return BigInt(Math.max(1, Math.floor((rewardVersion === 1 ? base : Math.max(tier, base)) / (1 + attributeCount * .25))))
+  }
+  const base = baseSaleValue(tier), numerator = base > BigInt(tier) * 20n ? base : BigInt(tier) * 20n
+  const value = numerator / (5n * BigInt(4 + attributeCount))
+  return value > 0n ? value : 1n
 }
 function unit(random: () => number): number {
   const n = random()
@@ -91,9 +100,9 @@ function pay(s: Session, id: string, paid: number, now: number, random: () => nu
   if (!e || e.id !== id || e.paid !== paid || e.tier === null || e.paid >= 10) return s
   if (!hasSource(s, e)) return finishEvent(s, now, random)
   if (now < e.nextPaymentAtMs) return s
-  const credit = Math.min(e.unitGOLD, Number.MAX_SAFE_INTEGER - s.wallet.gold)
+  const credit = e.unitGOLD
   const gold = s.wallet.gold + credit
-  const event = { ...e, paid: e.paid + 1, receivedGOLD: e.receivedGOLD + credit, cappedGOLD: (e.cappedGOLD ?? 0) + e.unitGOLD - credit,
+  const event = { ...e, paid: e.paid + 1, receivedGOLD: e.receivedGOLD + credit, cappedGOLD: (e.cappedGOLD ?? 0n) + e.unitGOLD - credit,
     nextPaymentAtMs: later(now, EXPERIMENTAL_PHASE2.paymentIntervalMs) }
   const next = { ...s, wallet: { ...s.wallet, gold }, event }
   return event.paid === 10 ? schedule({ ...next, event: null, lastEvent: { id: e.id, receivedGOLD: event.receivedGOLD } }, now, random) : next
@@ -107,9 +116,9 @@ function events(s: Session, now: number, random: () => number, allowPayment: boo
     if (!cells.length) return schedule(next, now, random)
     const cell = drawSpecialCell(next.game, cells, random,effectContext(next))
     next = { ...next, eventSequence: sequence, event: {
-      id: `gold-${sequence}`, sequence, cell, rewardVersion: 2,
+      id: `gold-${sequence}`, sequence, cell, rewardVersion: 3,
       expiresAtMs: later(now, EXPERIMENTAL_PHASE2.eventLifetimeMs), tier: null, sourceId: null,
-      attributeCount: 0, paid: 0, receivedGOLD: 0, unitGOLD: 0, nextPaymentAtMs: 0,
+      attributeCount: 0, paid: 0, receivedGOLD: 0n, unitGOLD: 0n, nextPaymentAtMs: 0,
     } }
   }
   const e = next.event
@@ -206,6 +215,11 @@ export function reduceSession(s: Session, command: Command, now: number, random:
       next = { ...next, game: result.game, wallet: result.wallet }
     }
     if(stripped&&command.type==='strip-attributes')next={...next,game:stripAttributes(next.game,command.id).game}
+    if (command.type === 'land') {
+      const result = purchaseLand(next.game, next.wallet, command.plot, command.expectedCount)
+      if (!result.ok) return s
+      next = { ...next, game: result.game, wallet: result.wallet }
+    }
     if (command.type === 'buy') {
       if (!Object.hasOwn(next.wallet.upgrades, command.key) || next.wallet.upgrades[command.key] !== command.expectedLevel) return s
       const result = purchaseUpgrade(next.wallet, command.key)

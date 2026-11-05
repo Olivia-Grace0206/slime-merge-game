@@ -1,3 +1,7 @@
+import { compactGold } from '../core/progression/money'
+import { inBounds } from '../core/board/state'
+import { emptyCells } from '../core/progression/generation'
+import { PLOTS, canUnlock, landCost, unlockedCellCount, type PurchasablePlot } from '../core/progression/land'
 import {MergeAttributePreview} from './MergeAttributePreview'
 import {effectContext} from '../core/special/state'
 import {SPECIAL_TIMING} from '../core/special/config'
@@ -11,7 +15,7 @@ import { attributeText } from './attributeLabels'
 import { GoldBag } from './ProgressIcons'
 import { RESEARCH_CAPS, researchCost, frequencyCost, EXPERIMENTAL_RESEARCH } from '../core/progression/research'
 import {
-  useCallback, useEffect, useRef, useState,
+  useCallback, useEffect, useMemo, useRef, useState,
   type CSSProperties, type PointerEvent as ReactPointerEvent,
 } from 'react'
 import { MAX_TIER, type DropPlan, type InvalidReason } from '../domain/game'
@@ -48,6 +52,8 @@ export function GameBoard() {
   const [store] = useState(() => new SessionStore({ getItem: key => window.localStorage.getItem(key), setItem: (key, value) => window.localStorage.setItem(key, value) }, Date.now()))
   const [session, setSession] = useState(store.state.session)
   const [storageError, setStorageError] = useState(store.state.error)
+  const [openedPlot, setOpenedPlot] = useState<PurchasablePlot | null>(null)
+  useEffect(()=>{if(!openedPlot)return;const timer=window.setTimeout(()=>setOpenedPlot(null),900);return()=>clearTimeout(timer)},[openedPlot])
   const [normal, setNormal] = useState(true)
   const normalRef = useRef(true)
   const touchContext = useRef(false)
@@ -82,6 +88,7 @@ export function GameBoard() {
     void store.dispatch(command, Date.now()).then(state => {
       setStorageError(state.error)
       setSession(state.session)
+      if(command.type==='land'&&!state.error&&state.session.game.bounds.plots?.length===command.expectedCount+1){setOpenedPlot(command.plot);setMessage('土地を解放しました · ＋16マス')}
       if(command.type==='strip-attributes'&&!state.error){
         const target=state.session.game.slimes.find(s=>s.id===command.id),before=gameRef.current.slimes.find(s=>s.id===command.id)
         const notice=!target?'操作を取り消しました':before?.attributes?.length?'解除しました・無料':'属性がありません'
@@ -143,7 +150,7 @@ export function GameBoard() {
       const rect = entries[0]!.contentRect
       // A changed fit invalidates gesture baselines. Refit on rotation/browser chrome changes.
       abort(true)
-      const next = fitView(rect.width, rect.height)
+      const next = {...fitView(rect.width, rect.height),worldSize:normalRef.current ? 1400 : 700}
       viewRef.current = next
       setView(next)
       changeCamera(initialCamera())
@@ -188,8 +195,8 @@ export function GameBoard() {
     const v = viewRef.current
     if (point.x < 0 || point.x >= v.width || point.y < 0 || point.y >= v.height) return null
     const p = screenToWorld(point, cameraRef.current, v)
-    if (p.x < 0 || p.x >= 700 || p.y < 0 || p.y >= 700) return null
-    return screenToCell(p, { x: 0, y: 0 }, 700 / gameRef.current.bounds.width, gameRef.current.bounds.origin)
+    if (p.x < 0 || p.x >= (normalRef.current ? 1400 : 700) || p.y < 0 || p.y >= (normalRef.current ? 1400 : 700)) return null
+    return screenToCell(p, { x: 0, y: 0 }, (normalRef.current ? 175 : 100), gameRef.current.bounds.origin)
   }
   function planAt(sourceId: string, point: Point): DropPlan | null {
     const target = targetAt(point)
@@ -295,7 +302,7 @@ export function GameBoard() {
   function resetCamera() { abort(); changeCamera(initialCamera()); setMessage('表示をリセットしました') }
   function reset(id: PresetId) {
     abort(true)
-    normalRef.current = false; setNormal(false)
+    normalRef.current = false; viewRef.current = {...viewRef.current, worldSize:700}; setView(viewRef.current); setNormal(false)
     
     const next = createPreset(id, gameRef.current.revision + 1)
     gameRef.current = next
@@ -308,11 +315,12 @@ export function GameBoard() {
   }
   function returnNormal() {
     abort(true); 
-    normalRef.current = true; setNormal(true)
+    normalRef.current = true; viewRef.current = {...viewRef.current, worldSize:1400}; setView(viewRef.current); setNormal(true)
     gameRef.current = store.state.session.game; setGame(store.state.session.game)
     changeCamera(initialCamera()); setPanel(null); send({ type: 'tick' })
   }
-  const saleValue = (tier: number, id: string) => quoteSale(game.slimes.find(s => s.id === id) ?? {tier}, Number.MAX_SAFE_INTEGER - session.wallet.gold)
+  const saleQuotes = useMemo(()=>new Map(game.slimes.map(slime=>[slime.id,quoteSale(slime)])),[game.slimes])
+  const saleValue = (tier: number, id: string) => saleQuotes.get(id) ?? quoteSale({tier})
   const rules = sessionRules(session)
   const protectedIds = normal ? session.protectedIds : []
   const detail = game.slimes.find(s => s.id === detailId)
@@ -322,9 +330,11 @@ export function GameBoard() {
   const swap = preview?.kind === 'swap' ? preview : null
   const dragged = gesture.mode === 'drag' ? game.slimes.find(s => s.id === gesture.single?.sourceId) : undefined
   const showPrices = normal && saleHover && !!dragged && gesture.mode === 'drag'
-  const priceTag = (tier: number, id: string) => <span className="price-tag" data-testid="sale-price" data-for={id} title={`${saleValue(tier,id).toLocaleString('en-US')} GOLD`}><svg className="price-coin" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8" fill="#ffd66f" stroke="#b68a32" strokeWidth="2"/><path d="M12 6H8v8h4M10 5v10" fill="none" stroke="#a57425" strokeWidth="1.5"/></svg><b>{saleValue(tier,id).toLocaleString('en-US').split(',').map((part, i, a) => <span key={i}>{part}{i < a.length - 1 ? ',' : ''}<wbr /></span>)}</b>{protectedIds.includes(id) && <small>保護中</small>}</span>
+  const priceTag = (tier: number, id: string) => <span className="price-tag" data-testid="sale-price" data-for={id} title={`${saleValue(tier,id).toLocaleString('en-US')} GOLD`}><svg className="price-coin" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8" fill="#ffd66f" stroke="#b68a32" strokeWidth="2"/><path d="M12 6H8v8h4M10 5v10" fill="none" stroke="#a57425" strokeWidth="1.5"/></svg><b>{(saleValue(tier,id).toString().length>15?compactGold(saleValue(tier,id)):saleValue(tier,id).toLocaleString('en-US')).split(',').map((part, i, a) => <span key={i}>{part}{i < a.length - 1 ? ',' : ''}<wbr /></span>)}</b>{protectedIds.includes(id) && <small>保護中</small>}</span>
   const text = swap ? `⇄ 位置交換${swap.reason === 'research-locked' ? ' · 研究未解放（消費なし）' : ''}` : plan ? `Tier ${plan.outputTier} × ${plan.groups.reduce((n, g) => n + g.outputs.length, 0)}体`
     : preview?.kind === 'invalid' && preview.reason !== 'same-cell' ? REASONS[preview.reason] : message
+  const cellSize = normal ? 175 : 100
+  const worldSize = normal ? 1400 : 700
   const topLeft = worldToScreen({ x: 0, y: 0 }, camera, view)
   const scale = view.fit * camera.zoom
   return <>
@@ -335,6 +345,7 @@ export function GameBoard() {
     <section className={`game-layout ${normal ? 'normal-play' : 'debug-play'}`} aria-label="ゲーム">
       <nav className="edge-menu" aria-label="メニュー">
         {normal && <BlueBuffStatus game={game} session={session} />}
+        {normal && <button type="button" aria-label="土地解放" onClick={()=>{abort(true);setPanel('land')}}><span aria-hidden="true">▧</span>土地</button>}
         {normal && <button type="button" aria-label="GOLDショップ" onClick={() => { abort(true); setPanel('shop') }}><span aria-hidden="true">♜</span>ショップ</button>}
         {([['attributes', '◇', '属性紹介'], ['help', '?', '遊び方'], ['presets', '▦', '検証'], ['appearance', '✦', '外見'], ['settings', '⚙', '設定']] as const).map(([id, icon, label]) =>
           <button key={id} type="button" aria-label={id === 'appearance' ? 'スライム一覧・外見確認' : label} aria-haspopup="dialog" onClick={() => { abort(true); setPanel(id) }}><span aria-hidden="true">{icon}</span>{label}</button>)}
@@ -349,15 +360,17 @@ export function GameBoard() {
           const target = targetAt(localPoint(e)), slime = target && gameRef.current.slimes.find(s => samePosition(s.position, target))
           if (normalRef.current && slime) { send({ type: 'protect', id: slime.id }); setMessage('売却保護を切り替えました') }
         }}>
-        <div className="board-world" data-testid="board" style={{ gridTemplateColumns: `repeat(${game.bounds.width}, ${700 / game.bounds.width}px)`, gridTemplateRows: `repeat(${game.bounds.height}, ${700 / game.bounds.height}px)`, width: 700, height: 700, transform: `translate(${topLeft.x}px, ${topLeft.y}px) scale(${scale})` }}>
+        <div className="board-world" data-testid="board" style={{ gridTemplateColumns: `repeat(${game.bounds.width}, ${cellSize}px)`, gridTemplateRows: `repeat(${game.bounds.height}, ${cellSize}px)`, width: worldSize, height: worldSize, transform: `translate(${topLeft.x}px, ${topLeft.y}px) scale(${scale})` }}>
           {Array.from({ length: game.bounds.width * game.bounds.height }, (_, index) => {
             const position = { x: index % game.bounds.width, y: Math.floor(index / game.bounds.width) }
+            const unlocked = inBounds(game.bounds, position)
             const slime = game.slimes.find(s => samePosition(s.position, position))
             const group = plan?.groups.find(g => slime && g.consumedIds.includes(slime.id))
             const outputGroup = plan?.groups.find(g => g.outputs.some(p => samePosition(p, position)))
             const special=normal?session.specials.events.find(e=>samePosition(e.cell,position)):undefined
             const remainder = slime && plan?.remainderIds.includes(slime.id)
             return <button key={index} type="button"
+              disabled={!unlocked} data-locked={unlocked ? undefined : 'true'}
               className={`cell ${special?.kind==='purple'?'purple-cell':special?.kind==='blue'?'blue-cell':''} ${event && samePosition(event.cell, position) ? 'gold-cell' : ''} ${(position.x + position.y) % 2 ? 'alternate' : ''} ${swap && (slime?.id === swap.sourceId || slime?.id === swap.targetId) ? 'swap-cell' : ''} ${group ? 'grouped' : ''} ${remainder ? 'remainder' : ''} ${selected && slime?.id === selected ? 'selected' : ''}`}
               data-special={special?.kind} data-resonating={special?.kind==='blue'&&slime?'true':undefined}
               data-protected={slime && protectedIds.includes(slime.id) ? 'true' : undefined} data-gold-cell={event && samePosition(event.cell, position) ? event.id : undefined}
@@ -365,14 +378,14 @@ export function GameBoard() {
               title={slime && normal ? `Tier ${slime.tier} · ${attributeText(slime.attributes)} · +${saleValue(slime.tier,slime.id).toLocaleString()} GOLD${protectedIds.includes(slime.id) ? ' · 売却保護中' : ''}` : undefined}
               aria-label={`${position.x + 1}列${position.y + 1}行${slime ? ` Tier ${slime.tier} ${attributeText(slime.attributes)}` : ' 空きマス'}${group ? ` 組${group.number}` : ''}${remainder ? ' 余り・残ります' : ''}${slime && protectedIds.includes(slime.id) ? ' 売却保護中' : ''}`}
               aria-description={normal && slime ? 'Pキーで売却保護、Iキーで詳細。Enterで選択後、属性解除/売却エリアへTabしてEnterで操作。' : undefined}
-              style={{ width: 700 / game.bounds.width, height: 700 / game.bounds.height, ...(group ? { '--group-color': GROUP_COLORS[(group.number - 1) % GROUP_COLORS.length] } : {}) } as CSSProperties}
+              style={{ width: cellSize, height: cellSize, ...(group ? { '--group-color': GROUP_COLORS[(group.number - 1) % GROUP_COLORS.length] } : {}) } as CSSProperties}
               onFocus={() => {
                 // Keyboard navigation keeps the focused cell visible even after camera pan/zoom.
                 if (active.current.contacts.length) return
-                const center = worldToScreen({ x: (position.x + .5) * 700 / game.bounds.width, y: (position.y + .5) * 700 / game.bounds.height }, cameraRef.current, viewRef.current)
-                const margin = 350 / game.bounds.width * cameraRef.current.zoom * viewRef.current.fit
+                const center = worldToScreen({ x: (position.x + .5) * cellSize, y: (position.y + .5) * cellSize }, cameraRef.current, viewRef.current)
+                const margin = cellSize / 2 * cameraRef.current.zoom * viewRef.current.fit
                 if (center.x < margin || center.x > viewRef.current.width - margin || center.y < margin || center.y > viewRef.current.height - margin)
-                  changeCamera({ ...cameraRef.current, center: { x: (position.x + .5) * 700 / game.bounds.width, y: (position.y + .5) * 700 / game.bounds.height } })
+                  changeCamera({ ...cameraRef.current, center: { x: (position.x + .5) * cellSize, y: (position.y + .5) * cellSize } })
               }}
               onKeyDown={e => {
                 if (normalRef.current && slime && ['p', 'P', 'i', 'I'].includes(e.key)) {
@@ -389,27 +402,32 @@ export function GameBoard() {
               }}>
               {special&&<span className={`special-cell-label ${special.kind}`}>{special.kind==='blue'?`≋ 共鳴 ${Math.max(0,Math.ceil((special.expiresAtMs-session.savedAtMs)/1000))}s`:special.sourceId?`✦ 覚醒 ${Math.floor(special.progressMs/SPECIAL_TIMING.purpleChargeMs*100)}%`:'✦ 未覚醒属性を配置'}{special.kind==='purple'&&<progress max={SPECIAL_TIMING.purpleChargeMs} value={special.progressMs}/>}</span>}
               {event && samePosition(event.cell, position) && <span className="gold-cell-label">● {event.tier === null ? 'GOLD' : `${event.paid}/10`}</span>}
-              {event && event.paid > 0 && samePosition(event.cell, position) && <span key={`${event.id}-${event.paid}`} className="gold-burst">+{session.wallet.gold === Number.MAX_SAFE_INTEGER ? '上限' : event.unitGOLD.toLocaleString()}</span>}
+              {event && event.paid > 0 && samePosition(event.cell, position) && <span key={`${event.id}-${event.paid}`} className="gold-burst">+{event.unitGOLD.toLocaleString()}</span>}
               {slime && protectedIds.includes(slime.id) && <span className="protected-badge" aria-label="売却保護"><svg viewBox="0 0 20 23" width="18" height="20" aria-hidden="true"><path d="M5 10V6a5 5 0 0 1 10 0v4" fill="none" stroke="currentColor" strokeWidth="3"/><rect x="2" y="9" width="16" height="13" rx="3" fill="#fff4c5" stroke="currentColor" strokeWidth="2"/><path d="M10 14v4" stroke="currentColor" strokeWidth="2"/></svg></span>}
-              {slime && <span key={slime.id} style={{ width: 602 / game.bounds.width, height: 630 / game.bounds.height }} className={`slime-piece ${slime.id === dragged?.id ? 'source-ghost' : ''} ${createdIds.includes(slime.id) ? 'born' : ''}`}><Slime tier={slime.tier} attributes={slime.attributes} /></span>}
+              {slime && <span key={slime.id} style={{ width: cellSize * .86, height: cellSize * .90 }} className={`slime-piece ${slime.id === dragged?.id ? 'source-ghost' : ''} ${createdIds.includes(slime.id) ? 'born' : ''}`}><Slime tier={slime.tier} attributes={slime.attributes} /></span>}
               {swap && (slime?.id === swap.sourceId || slime?.id === swap.targetId) && <span className="swap-badge" aria-label="位置交換">⇄</span>}
               {group && <span className="group-badge">{group.number}</span>}
               {remainder && <span className="keep-badge">残る</span>}
               {outputGroup && <span className="output-mark">↑{outputGroup.number}</span>}
             </button>
           })}
+          {normal && openedPlot && <div className="land-flash" aria-hidden="true" style={{left:openedPlot==='B'||openedPlot==='D'?700:0,top:openedPlot==='C'||openedPlot==='D'?700:0}}>✦ ＋16マス</div>}
+          {normal && PLOTS.filter(p => !game.bounds.plots?.includes(p)).map(plot => <div key={plot} className="locked-plot" style={{left:plot === 'B' || plot === 'D' ? 700 : 0,top:plot === 'C' || plot === 'D' ? 700 : 0}}>
+            <strong>🔒 土地 {plot} · 16マス</strong><span>{plot === 'D' && !canUnlock(game.bounds,plot) ? '右・下の両方を解放すると購入可能' : `${landCost(game.bounds)?.toLocaleString()} GOLD`}</span>
+            <button type="button" data-testid={`unlock-plot-${plot}`} disabled={!!storageError || !canUnlock(game.bounds,plot as PurchasablePlot) || session.wallet.gold < (landCost(game.bounds) ?? 0n)} onPointerDown={e=>e.stopPropagation()} onClick={()=>send({type:'land',plot:plot as PurchasablePlot,expectedCount:game.bounds.plots!.length})}>16マスを解放</button>
+          </div>)}
         </div>
         {plan && <MergeAttributePreview plan={plan} game={game} context={effectContext(session)}/>}
         {normal && stripHover && dragged && <div className="operation-preview strip-preview" data-testid="strip-preview"><strong>{dragged.attributes?.length ? `Tier ${dragged.tier} の全属性を解除・無料` : '属性がありません・変更なし'}</strong><small><AttributeTokens attributes={dragged.attributes}/></small><small>個体・Tier・元の位置・売却保護を保持</small></div>}
         {swap && <div className="operation-preview" data-testid="swap-preview"><strong>⇄ 位置交換</strong><small>{swap.reason === 'research-locked' ? '研究未解放 · 素材消費なし' : swap.reason === 'attribute-limit' ? '属性上限3種類（仮）· 全属性保持' : '2体の位置だけ交換'}</small></div>}
         {showPrices && <div className="price-layer" aria-label="全スライムの売却受取額">{game.slimes.map(slime => {
-          const point = worldToScreen({ x: (slime.position.x + .5) * 700 / game.bounds.width, y: (slime.position.y + .04) * 700 / game.bounds.height }, camera, view)
-          return <div className="price-anchor" key={slime.id} style={{ left: point.x, top: point.y, width: Math.min(140, 700 / game.bounds.width * scale - 5) }}>{priceTag(slime.tier, slime.id)}</div>
+          const point = worldToScreen({ x: (slime.position.x + .5) * cellSize, y: (slime.position.y + .04) * cellSize }, camera, view)
+          return <div className="price-anchor" key={slime.id} style={{ left: point.x, top: point.y, width: Math.min(140, cellSize * scale - 5) }}>{priceTag(slime.tier, slime.id)}</div>
         })}</div>}
-        {dragged && gesture.single && <div className="drag-sprite" style={{ position: 'fixed', left: gesture.single.current.x + viewportOrigin.x, top: gesture.single.current.y + viewportOrigin.y, width: 602 / game.bounds.width * scale, height: 630 / game.bounds.height * scale, '--group-color': plan ? GROUP_COLORS[0] : 'transparent' } as CSSProperties}><Slime tier={dragged.tier} attributes={dragged.attributes} />{showPrices && <div className="drag-price">{priceTag(dragged.tier, dragged.id)}</div>}{plan && <span className="group-badge">1</span>}</div>}
+        {dragged && gesture.single && <div className="drag-sprite" style={{ position: 'fixed', left: gesture.single.current.x + viewportOrigin.x, top: gesture.single.current.y + viewportOrigin.y, width: cellSize * .86 * scale, height: cellSize * .90 * scale, '--group-color': plan ? GROUP_COLORS[0] : 'transparent' } as CSSProperties}><Slime tier={dragged.tier} attributes={dragged.attributes} />{showPrices && <div className="drag-price">{priceTag(dragged.tier, dragged.id)}</div>}{plan && <span className="group-badge">1</span>}</div>}
       </div>
       {normal ? <aside className={`progress-controls ${session.reducedEffects ? 'reduced-effects' : ''}`} aria-label="生成と売却">
-        <GeneratorPanel session={session} disabled={!!storageError} fullBoard={game.slimes.length >= 16} onTap={() => send({ type: 'tap' })} onMode={() => send({type:'generation-mode',value:session.generationMode === 'normal' ? 'focused' : 'normal'})} onAdd={() => {
+        <GeneratorPanel session={session} disabled={!!storageError} fullBoard={!emptyCells(game).length} onTap={() => send({ type: 'tap' })} onMode={() => send({type:'generation-mode',value:session.generationMode === 'normal' ? 'focused' : 'normal'})} onAdd={() => {
           abort(true); send({ type: 'withdraw', expectedId: store.state.session.nextId, expectedMode: session.generationMode })
         }} />
         <div className="drop-actions" aria-label="属性解除と売却">
@@ -435,7 +453,7 @@ export function GameBoard() {
       <strong>{text}</strong>
       {plan && <small>{plan.groups.map(g => `組${g.number} ${g.consumedIds.length}→${g.outputs.length}`).join(' / ')}{plan.remainderIds.length ? ` / 余り${plan.remainderIds.length}` : ''} · ↑出力先</small>}
     </div>
-    <GameMenu extra={panel === 'attributes' ? <AttributePanel game={game} session={session} onDetail={id=>{setDetailId(id);setPanel('slime')}}/> : panel === 'settings' ? <label className="setting-row"><input type="checkbox" data-testid="compact-gold" checked={session.goldFormat === 'compact'} disabled={!normal || !!storageError} onChange={e => send({ type: 'gold-format', value: e.target.checked ? 'compact' : 'full' })} />GOLDをK/Mなどで短縮表示</label> : panel === 'shop' ? <>
+    <GameMenu extra={panel === 'land' ? <><p>使用可能 {unlockedCellCount(game.bounds)} / 64マス · 価格は推奨・暫定です。</p><p>右・下は好きな順。右下は両方の解放後に購入できます。</p>{PLOTS.slice(1).filter(p=>!game.bounds.plots?.includes(p)).map(plot=><section className="shop-item" key={plot}><h3>{plot==='B'?'右':plot==='C'?'下':'右下'}の土地 · ＋16マス</h3><p>{canUnlock(game.bounds,plot as PurchasablePlot)?`${landCost(game.bounds)?.toLocaleString()} GOLD`:'右と下の両方を先に解放してください'}</p><button type="button" data-testid={`buy-land-${plot}`} disabled={!!storageError||!canUnlock(game.bounds,plot as PurchasablePlot)||session.wallet.gold<(landCost(game.bounds)??0n)} onClick={()=>send({type:'land',plot:plot as PurchasablePlot,expectedCount:game.bounds.plots!.length})}>購入して解放</button></section>)}{game.bounds.plots?.length===4&&<p>全4区画・64マス解放済み！</p>}<button type="button" onClick={()=>{abort();changeCamera({...cameraRef.current,center:{x:700,y:700},zoom:.48});setPanel(null)}}>土地全体を表示</button><p>購入時のカメラ位置・マスの大きさは保持します。</p></> : panel === 'attributes' ? <AttributePanel game={game} session={session} onDetail={id=>{setDetailId(id);setPanel('slime')}}/> : panel === 'settings' ? <label className="setting-row"><input type="checkbox" data-testid="compact-gold" checked={session.goldFormat === 'compact'} disabled={!normal || !!storageError} onChange={e => send({ type: 'gold-format', value: e.target.checked ? 'compact' : 'full' })} />GOLDをK/Mなどで短縮表示</label> : panel === 'shop' ? <>
       <p className="shop-wallet">所持 GOLD：{session.wallet.gold.toLocaleString()}</p>
       {(['speed', 'tap', 'storage'] as const).map(key => {
         const lv = session.wallet.upgrades[key], cost = upgradeCost(key, lv), max = lv >= UPGRADE_MAX_LEVEL[key]

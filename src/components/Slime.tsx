@@ -2,9 +2,9 @@ import { AttributeDecorationLayer } from './slime-visuals/AttributeDecorationLay
 import {awakeningCount} from '../core/attributes/awakening'
 import type { Attributes } from '../domain/attributes'
 import { AttributeBadges } from './AttributeBadges'
-import type { CSSProperties } from 'react'
+import { memo, type CSSProperties } from 'react'
 /** Tier body, face and badge are independent layers. Future trait/aura slots stay separate. */
-export function Slime({ tier, attributes }: { tier: number; attributes?: Attributes | undefined }) {
+export const Slime = memo(function Slime({ tier, attributes }: { tier: number; attributes?: Attributes | undefined }) {
   const awake=awakeningCount(attributes)
   const colors = ['#82d963', '#6ebff4', '#fb828a']
   const color = tier === 4 ? '#c9a0ed' : colors[tier - 1] ?? `hsl(${(tier * 47 + 12) % 360} 77% 72%)`
@@ -24,6 +24,6 @@ export function Slime({ tier, attributes }: { tier: number; attributes?: Attribu
     <AttributeBadges {...(attributes ? { attributes } : {})} />
     <span className="tier-pill">{tier}</span>
   </span>
-}
+})
 
 

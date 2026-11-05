@@ -1,0 +1,12 @@
+{
+  "browser": "134.0.6998.35",
+  "checks": [
+    {
+      "name": "1920x1080 4x4 fit, no page scroll, buttons ≥44px and reachable",
+      "result": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n64 !== 16\n"
+    }
+  ],
+  "errors": [],
+  "measurements": []
+}

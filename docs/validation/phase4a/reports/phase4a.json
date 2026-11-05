@@ -1,0 +1,187 @@
+{
+  "checks": [
+    {
+      "name": "1920x1080 initial16, full exact GOLD, right/down selectable, D locked, no page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 buy B-C-D or C-B-D costs512/8192/131072 once, no automatic shrink, retained individual data and reload",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 native drag across plot boundary, swap traits, FIFO in unlocked land, source cancel/pinch, overview wheel/pan",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 Tier40 native sale exact addition and repeat input cannot resell; compact/reload preserves exact decimal",
+      "result": "PASS"
+    },
+    {
+      "name": "1920x1080 insufficient funds prevents all purchases and page scroll remains absent",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 initial16, full exact GOLD, right/down selectable, D locked, no page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 buy B-C-D or C-B-D costs512/8192/131072 once, no automatic shrink, retained individual data and reload",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 native drag across plot boundary, swap traits, FIFO in unlocked land, source cancel/pinch, overview wheel/pan",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 Tier40 native sale exact addition and repeat input cannot resell; compact/reload preserves exact decimal",
+      "result": "PASS"
+    },
+    {
+      "name": "1366x768 insufficient funds prevents all purchases and page scroll remains absent",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 initial16, full exact GOLD, right/down selectable, D locked, no page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 buy B-C-D or C-B-D costs512/8192/131072 once, no automatic shrink, retained individual data and reload",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 native drag across plot boundary, swap traits, FIFO in unlocked land, source cancel/pinch, overview wheel/pan",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 Tier40 native sale exact addition and repeat input cannot resell; compact/reload preserves exact decimal",
+      "result": "PASS"
+    },
+    {
+      "name": "1280x720 insufficient funds prevents all purchases and page scroll remains absent",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 initial16, full exact GOLD, right/down selectable, D locked, no page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 buy B-C-D or C-B-D costs512/8192/131072 once, no automatic shrink, retained individual data and reload",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 native drag across plot boundary, swap traits, FIFO in unlocked land, source cancel/pinch, overview wheel/pan",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 Tier40 native sale exact addition and repeat input cannot resell; compact/reload preserves exact decimal",
+      "result": "PASS"
+    },
+    {
+      "name": "1024x768 insufficient funds prevents all purchases and page scroll remains absent",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 initial16, full exact GOLD, right/down selectable, D locked, no page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 buy B-C-D or C-B-D costs512/8192/131072 once, no automatic shrink, retained individual data and reload",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 native drag across plot boundary, swap traits, FIFO in unlocked land, source cancel/pinch, overview wheel/pan",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 Tier40 native sale exact addition and repeat input cannot resell; compact/reload preserves exact decimal",
+      "result": "PASS"
+    },
+    {
+      "name": "768x1024 insufficient funds prevents all purchases and page scroll remains absent",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 initial16, full exact GOLD, right/down selectable, D locked, no page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 buy B-C-D or C-B-D costs512/8192/131072 once, no automatic shrink, retained individual data and reload",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 native drag across plot boundary, swap traits, FIFO in unlocked land, source cancel/pinch, overview wheel/pan",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 Tier40 native sale exact addition and repeat input cannot resell; compact/reload preserves exact decimal",
+      "result": "PASS"
+    },
+    {
+      "name": "390x844 insufficient funds prevents all purchases and page scroll remains absent",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 initial16, full exact GOLD, right/down selectable, D locked, no page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 buy B-C-D or C-B-D costs512/8192/131072 once, no automatic shrink, retained individual data and reload",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 native drag across plot boundary, swap traits, FIFO in unlocked land, source cancel/pinch, overview wheel/pan",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 Tier40 native sale exact addition and repeat input cannot resell; compact/reload preserves exact decimal",
+      "result": "PASS"
+    },
+    {
+      "name": "375x667 insufficient funds prevents all purchases and page scroll remains absent",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 initial16, full exact GOLD, right/down selectable, D locked, no page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 buy B-C-D or C-B-D costs512/8192/131072 once, no automatic shrink, retained individual data and reload",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 native drag across plot boundary, swap traits, FIFO in unlocked land, source cancel/pinch, overview wheel/pan",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 Tier40 native sale exact addition and repeat input cannot resell; compact/reload preserves exact decimal",
+      "result": "PASS"
+    },
+    {
+      "name": "320x568 insufficient funds prevents all purchases and page scroll remains absent",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 initial16, full exact GOLD, right/down selectable, D locked, no page scroll",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 buy B-C-D or C-B-D costs512/8192/131072 once, no automatic shrink, retained individual data and reload",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 native drag across plot boundary, swap traits, FIFO in unlocked land, source cancel/pinch, overview wheel/pan",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 Tier40 native sale exact addition and repeat input cannot resell; compact/reload preserves exact decimal",
+      "result": "PASS"
+    },
+    {
+      "name": "844x390 insufficient funds prevents all purchases and page scroll remains absent",
+      "result": "PASS"
+    }
+  ],
+  "errors": [],
+  "browser": "134.0.6998.35",
+  "realDevices": false
+}

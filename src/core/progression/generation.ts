@@ -214,7 +214,7 @@ export function isValidGeneratedTier(tier: number, highest: number): boolean {
 export function emptyCells(game: GameState): readonly GridPosition[] {
   const { origin, width, height } = game.bounds
   return Array.from({ length: width * height }, (_, i) => ({ x: origin.x + i % width, y: origin.y + Math.floor(i / width) }))
-    .filter(position => !game.slimes.some(s => samePosition(s.position, position)))
+    .filter(position => inBounds(game.bounds, position) && !game.slimes.some(s => samePosition(s.position, position)))
 }
 
 /** One bounded draw, no rejection loop. Empty/full queues do not consume randomness. */

@@ -1,3 +1,4 @@
+import { fixtureJSON } from '../helpers/serialization'
 import { describe, expect, it } from 'vitest'
 import { createPreset } from '../../src/app/presets'
 import { EXPERIMENTAL_GENERATION, advanceGenerator, drawTier, newGenerator, tapGenerator, tierWeights, withdrawToCell } from '../../src/core/progression/generation'
@@ -106,9 +107,9 @@ describe('Phase 2 elapsed-time storage and click acceleration', () => {
 
 describe('Phase 2 GOLD economy and event primitive', () => {
   it('prices grow by Tier, remain finite through Tier40', () => {
-    expect(baseSaleValue(1)).toBe(2)
-    expect(baseSaleValue(40)).toBe(2 ** 40)
-    expect(Number.isSafeInteger(baseSaleValue(40))).toBe(true)
+    expect(baseSaleValue(1)).toBe(BigInt(2))
+    expect(baseSaleValue(40)).toBe(604462909807314587353088n)
+    expect((typeof baseSaleValue(40) === 'bigint' && baseSaleValue(40) >= 0n)).toBe(true)
     expect(() => baseSaleValue(41)).toThrow(RangeError)
   })
   it('sale changes GOLD and board together, preserving highest-ever Tier', () => {
@@ -128,7 +129,7 @@ describe('Phase 2 GOLD economy and event primitive', () => {
   it('shop prevents insufficient funds and uses increasing costs', () => {
     const w = freshWallet()
     expect(purchaseUpgrade(w, 'speed').ok).toBe(false)
-    const funded = { ...w, gold: 1000 }
+    const funded = { ...w, gold: BigInt(1000) }
     const a = purchaseUpgrade(funded, 'speed')
     expect(a.ok).toBe(true)
     expect(a.cost).toBe(upgradeCost('speed', 0))
@@ -149,7 +150,7 @@ describe('Phase 2 GOLD economy and event primitive', () => {
       event = r.event
     }
     expect(event.paid).toBe(10)
-    expect(wallet.gold).toBe(event.unitGOLD * 10)
+    expect(wallet.gold).toBe(BigInt(event.unitGOLD * BigInt(10)))
     const extra = payGoldRush(wallet, event)
     expect(extra.ok).toBe(false)
     expect(extra.wallet).toBe(wallet)
@@ -171,15 +172,17 @@ describe('Phase 2 future LocalStorage codec', () => {
   it('round trips a versioned, validated session', () => {
     expect(isProgressionSnapshot(initial)).toBe(true)
     expect(decodeProgression(encodeProgression(initial))).toEqual(initial)
+    expect(JSON.parse(encodeProgression(initial)).wallet.gold).toBe(0)
+    expect(()=>encodeProgression({...initial,wallet:{...initial.wallet,gold:10n**30n}})).toThrow(/schema1 currency limit/)
   })
   it('rejects malformed saves, invalid versions and stored Tier above history', () => {
     expect(decodeProgression('{')).toBeNull()
     expect(decodeProgression('{"version":0}')).toBeNull()
-    expect(decodeProgression(JSON.stringify({ ...initial, version: 2 }))).toBeNull()
+    expect(decodeProgression(fixtureJSON({ ...initial, version: 2 }))).toBeNull()
     const invalid = { ...initial, generator: { ...initial.generator, storedTiers: [40], totalGenerated: 1 } }
-    expect(decodeProgression(JSON.stringify(invalid))).toBeNull()
-    const negativeGold = { ...initial, wallet: { ...initial.wallet, gold: -1 } }
-    expect(decodeProgression(JSON.stringify(negativeGold))).toBeNull()
-    expect(decodeProgression(JSON.stringify({ ...initial, savedAtMs: -1 }))).toBeNull()
+    expect(decodeProgression(fixtureJSON(invalid))).toBeNull()
+    const negativeGold = { ...initial, wallet: { ...initial.wallet, gold: BigInt(-1) } }
+    expect(decodeProgression(fixtureJSON(negativeGold))).toBeNull()
+    expect(decodeProgression(fixtureJSON({ ...initial, savedAtMs: -1 }))).toBeNull()
   })
 })

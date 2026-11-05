@@ -1,3 +1,4 @@
+import { fixtureJSON } from '../helpers/serialization'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { ATTRIBUTE_IDS, type Attributes } from '../../src/domain/attributes'
 import { stripAttributes } from '../../src/core/attributes/strip'
@@ -10,19 +11,19 @@ import { planDrop } from '../../src/core/merge/plan'
 const a=(id:Attributes[number]['id'],level=3):Attributes=>[{id,level}]
 function fixture(attrs:readonly Attributes[]=[a('fire')]):Session {
  const s=freshSession(0)
- return {...s,nextId:attrs.length+1,researchLevel:1,researchMaxTier:10,protectedIds:attrs.length?['p-1']:[],wallet:{gold:500,upgrades:{speed:0,tap:0,storage:0}},game:{...s.game,highestTierReached:8,slimes:attrs.map((attributes,i)=>({id:`p-${i+1}`,tier:8,position:{x:i%4,y:Math.floor(i/4)},attributes,tag:`individual-${i}`}))}}
+ return {...s,nextId:attrs.length+1,researchLevel:1,researchMaxTier:10,protectedIds:attrs.length?['p-1']:[],wallet:{gold:BigInt(500),upgrades:{speed:0,tap:0,storage:0}},game:{...s.game,highestTierReached:8,slimes:attrs.map((attributes,i)=>({id:`p-${i+1}`,tier:8,position:{x:i%4,y:Math.floor(i/4)},attributes,tag:`individual-${i}`}))}}
 }
 const quiet=()=>.99
 afterEach(()=>{vi.restoreAllMocks();vi.unstubAllGlobals()})
 describe('free whole-attribute removal',()=>{
  it.each([1,2,3])('%i attributes removed; only target attributes/revision change',count=>{
-  const attrs=[...a('fire'),...a('ice'),...a('mutation')].slice(0,count),s=fixture([attrs,a('gold')]),before=JSON.stringify(s)
+  const attrs=[...a('fire'),...a('ice'),...a('mutation')].slice(0,count),s=fixture([attrs,a('gold')]),before=fixtureJSON(s)
   const r=stripAttributes(s.game,'p-1')
   expect(r.ok&&r.changed).toBe(true);expect(r.game.revision).toBe(s.game.revision+1)
   expect(r.game.slimes[0]).toEqual({...s.game.slimes[0],attributes:[]});expect(r.game.slimes[1]).toBe(s.game.slimes[1]);expect(r.game.highestTierReached).toBe(8)
   const n=reduceSession(s,{type:'strip-attributes',id:'p-1'},0,quiet)
   expect(n.wallet).toEqual(s.wallet);expect(n.protectedIds).toEqual(s.protectedIds);expect(n.researchLevel).toBe(s.researchLevel);expect(n.nextId).toBe(s.nextId);expect(n.game.slimes).toHaveLength(2)
-  expect(JSON.stringify(s)).toBe(before);expect(isSession(n)).toBe(true)
+  expect(fixtureJSON(s)).toBe(before);expect(isSession(n)).toBe(true)
   expect(decodeSession(encodeSession(n),0)).toEqual({ok:true,session:n,migrated:false})
  })
  it.each(['','missing','p-999'])('invalid target %s refuses before elapsed/RNG/resources',id=>{
@@ -40,12 +41,12 @@ describe('free whole-attribute removal',()=>{
   const s=fixture([a(id)]),n=reduceSession(s,{type:'strip-attributes',id:'p-1'},0,quiet)
   expect(n.game.slimes[0]!.attributes).toEqual([])
   expect(boardEffects(n.game)).toEqual(boardEffects(fixture([[]]).game))
-  expect(saleValue(n.game.slimes[0]!)).toBe(256);expect(sessionRules(n).intervalMs).toBe(15000);expect(sessionRules(n).tapAdvanceMs).toBe(1000)
+  expect(saleValue(n.game.slimes[0]!)).toBe(32768n);expect(sessionRules(n).intervalMs).toBe(15000);expect(sessionRules(n).tapAdvanceMs).toBe(1000)
   expect(specialCellWeights(n.game,[{x:1,y:0},{x:3,y:3}])).toEqual([1,1])
  })
  it.each([['fire','gold'],['ice','lightning'],['luck','mutation']] as const)('%s+%s combo ends on stripping', (first,second)=>{
   const s=fixture([[...a(first),...a(second)]]),n=reduceSession(s,{type:'strip-attributes',id:'p-1'},0,quiet)
-  expect(boardEffects(n.game)).toEqual(boardEffects(fixture([[]]).game));expect(saleValue(n.game.slimes[0]!)).toBe(256)
+  expect(boardEffects(n.game)).toEqual(boardEffects(fixture([[]]).game));expect(saleValue(n.game.slimes[0]!)).toBe(32768n)
  })
  it('ice removal preserves normal progress fraction without producing any extra specimen',()=>{
   const s=fixture([a('ice')]),interval=sessionRules(s).intervalMs,ready={...s,generator:{...s.generator,progressMs:Math.floor(interval*.6)}}
@@ -68,8 +69,8 @@ describe('free whole-attribute removal',()=>{
   expect(n.generator.progressMs/sessionRules(n).intervalMs).toBeCloseTo(.5,3);expect(n.generator.totalGenerated).toBe(0)
  })
  it('active GOLD contract retains frozen count/unit/paid and same ID+cell, then pays old amount',()=>{
-  const base=fixture([[...a('fire'),...a('gold'),...a('dark')]]),unit=goldPayment(8,3)
-  const s:Session={...base,goldCellUnlocked:true,eventSequence:1,event:{id:'gold-1',sequence:1,rewardVersion:2,cell:{x:0,y:0},tier:8,sourceId:'p-1',attributeCount:3,paid:4,receivedGOLD:unit*4,cappedGOLD:0,unitGOLD:unit,nextPaymentAtMs:350,expiresAtMs:45000}}
+  const base=fixture([[...a('fire'),...a('gold'),...a('dark')]]),unit=goldPayment(8,3,2)
+  const s:Session={...base,goldCellUnlocked:true,eventSequence:1,event:{id:'gold-1',sequence:1,rewardVersion:2,cell:{x:0,y:0},tier:8,sourceId:'p-1',attributeCount:3,paid:4,receivedGOLD:BigInt(unit*BigInt(4)),cappedGOLD:BigInt(0),unitGOLD:unit,nextPaymentAtMs:350,expiresAtMs:45000}}
   const n=reduceSession(s,{type:'strip-attributes',id:'p-1'},0,quiet);expect(n.event).toEqual(s.event);expect(n.wallet.gold).toBe(s.wallet.gold)
   const loaded=decodeSession(encodeSession(n),0);expect(loaded.ok).toBe(true);if(!loaded.ok)throw Error(loaded.reason)
   const paid=reduceSession(loaded.session,{type:'pay',eventId:'gold-1',expectedPaid:4},350,quiet)

@@ -1,0 +1,12 @@
+{
+  "checks": [
+    {
+      "name": "1920x1080 normal/focus buttons reachable without shrinking board or page scroll",
+      "result": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: {\"width\":1920,\"height\":1080,\"scroll\":[1920,1080],\"board\":{\"x\":455,\"y\":60,\"w\":2020,\"h\":2020,\"right\":2475,\"bottom\":2080},\"mode\":{\"x\":1855,\"y\":351,\"w\":44,\"h\":54,\"right\":1899,\"bottom\":405},\"tap\":{\"x\":1745,\"y\":351,\"w\":107,\"h\":54,\"right\":1852,\"bottom\":405},\"add\":{\"x\":1747,\"y\":112,\"w\":150,\"h\":150,\"right\":1897,\"bottom\":262}}"
+    }
+  ],
+  "errors": [],
+  "measurements": [],
+  "browser": "134.0.6998.35"
+}
