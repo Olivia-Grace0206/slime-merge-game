@@ -1,3 +1,4 @@
+import { fixtureJSON } from '../helpers/serialization'
 import { it, expect } from 'vitest'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { freshSession, reduceSession, type Command, type Session } from '../../src/core/progression/session'
@@ -8,7 +9,7 @@ import { planDrop } from '../../src/core/merge/plan'
 it('independent conservation audit: 20k mixed saved transactions with stale requests and protected specimens',()=>{
  const reports=[]
  for(const initialSeed of [12,61,210,901]){
-  let seed=initialSeed,now=0,s:Session={...freshSession(0),researchLevel:16,researchMaxTier:40,goldCellUnlocked:true,wallet:{gold:10000,upgrades:{speed:0,tap:0,storage:0}}}
+  let seed=initialSeed,now=0,s:Session={...freshSession(0),researchLevel:16,researchMaxTier:40,goldCellUnlocked:true,wallet:{gold:BigInt(10000),upgrades:{speed:0,tap:0,storage:0}}}
   const random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296},seen=new Set<string>(),counts:Record<string,number>={}
   for(let step=0;step<5000;step++){
    now+=Math.floor(random()*15000)
@@ -23,9 +24,9 @@ it('independent conservation audit: 20k mixed saved transactions with stale requ
    if(choice===7)c={type:'buy',key:'storage',expectedLevel:s.wallet.upgrades.storage}
    if(choice===10&&a)c={type:'strip-attributes',id:a.id}
    if(choice===8)c={type:'withdraw',expectedId:0,expectedMode:s.generationMode}
-   const before=JSON.stringify(s),next=reduceSession(s,c,now,random)
-   expect(JSON.stringify(s)).toBe(before)
-   if(!isSession(next)){mkdirSync('docs/validation/phase3c/regression-phase3b/audit',{recursive:true});writeFileSync('docs/validation/phase3c/regression-phase3b/audit/failed-transaction.json',JSON.stringify({initialSeed,step,command:c,before:s,after:next},null,2))}
+   const before=fixtureJSON(s),next=reduceSession(s,c,now,random)
+   expect(fixtureJSON(s)).toBe(before)
+   if(!isSession(next)){mkdirSync('docs/validation/phase3c/regression-phase3b/audit',{recursive:true});writeFileSync('docs/validation/phase3c/regression-phase3b/audit/failed-transaction.json',fixtureJSON({initialSeed,step,command:c,before:s,after:next},null,2))}
    expect(isSession(next)).toBe(true)
    expect(next.game.highestTierReached).toBeGreaterThanOrEqual(s.game.highestTierReached)
    expect(new Set(next.game.slimes.map(x=>x.id)).size).toBe(next.game.slimes.length)
@@ -49,5 +50,5 @@ it('independent conservation audit: 20k mixed saved transactions with stale requ
   }
   reports.push({seed:initialSeed,attempts:5000,counts,uniqueIndividualIds:seen.size,highestTier:s.game.highestTierReached,generated:s.generator.totalGenerated,natureGenerated:s.nature.totalGenerated,focusedGenerated:s.focusedGenerated,saveChecks:50,violations:0})
  }
- mkdirSync('docs/validation/phase3c/regression-phase3b/audit',{recursive:true});writeFileSync('docs/validation/phase3c/regression-phase3b/audit/transactions.json',JSON.stringify({oracle:'Ownership/ID/cell/count/immutability/save invariants, separate from effect formulas. Same implementation agent; no third-party review claimed.',reports},null,2))
+ mkdirSync('docs/validation/phase3c/regression-phase3b/audit',{recursive:true});writeFileSync('docs/validation/phase3c/regression-phase3b/audit/transactions.json',fixtureJSON({oracle:'Ownership/ID/cell/count/immutability/save invariants, separate from effect formulas. Same implementation agent; no third-party review claimed.',reports},null,2))
 },120000)

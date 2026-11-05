@@ -1,3 +1,4 @@
+import { fireSaleBonus } from '../core/attributes/effects'
 import {AWAKENED_DARK_LOSS} from '../core/special/config'
 import type { Slime } from '../domain/game'
 import { attributePower, EFFECTS, comboPower } from '../core/attributes/effects'
@@ -7,7 +8,7 @@ export function effectLabels(slime: Slime): readonly string[] {
   const labels = (a ?? []).map(attr => {
     const p = attributePower(a,attr.id)
     switch(attr.id) {
-      case 'fire': return `炎Lv${attr.level}：売却に+${Math.ceil(2**slime.tier*EFFECTS.fireRate*p)} GOLD加算`
+      case 'fire': return `炎Lv${attr.level}：売却に+${fireSaleBonus(slime).toLocaleString()} GOLD加算`
       case 'gold': return `黄金Lv${attr.level}：売却×${(1+EFFECTS.goldRate*p).toFixed(2)}`
       case 'dark': return `闇Lv${attr.level}：売却×${(1+EFFECTS.darkRate*p).toFixed(2)}・マージ時に闇だけ${attr.awakened?AWAKENED_DARK_LOSS*100:20}%消失（組単位）`
       case 'ice': return `氷Lv${attr.level}：配置中、通常生成時間−${pct(EFFECTS.iceRate*p)}（合計上限25%）`

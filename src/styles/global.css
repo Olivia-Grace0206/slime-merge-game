@@ -735,3 +735,10 @@ progress::-webkit-progress-value { background: linear-gradient(90deg,#79b65b,#ab
 .ornament-option input { width:16px; height:16px; flex-shrink:0; }
 .ornament-option .ornament-awaken { font-size:11px; }
 @media(max-width:600px) { .ornament-options { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+
+/* Phase4A: fixed 175-unit cells; expansion never changes the camera fit. */
+.cell[data-locked='true']{background:#718268;border-color:#61745b;opacity:.7}
+.locked-plot{position:absolute;width:700px;height:700px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;color:#fff9d5;background:#263c3460;border:5px dashed #adc18c;border-radius:20px;pointer-events:none;text-align:center;padding:55px;font-size:28px}
+.locked-plot strong{font-size:40px}.locked-plot button{pointer-events:auto;font-size:28px;border-radius:20px;padding:18px 28px;background:#fff1ba;color:#66561e;border:3px solid #c6ac58}.locked-plot button:disabled{opacity:.6}
+.wallet b{overflow-wrap:anywhere;word-break:break-all}.wide-gold .wallet b{flex-shrink:1!important;max-height:2.6em;overflow:auto}.shop-wallet,.research-balance,.shop-item p{overflow-wrap:anywhere}
+.slime-piece{contain:layout style}.board-world .cell{content-visibility:auto;contain-intrinsic-size:175px 175px}

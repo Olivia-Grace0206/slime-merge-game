@@ -1,3 +1,4 @@
+import { fixtureJSON } from '../helpers/serialization'
 import {describe,it,expect} from 'vitest'
 import {allocateAwakenings,withAwakenings,awakeningCandidates} from '../../src/core/attributes/awakening'
 import {isAttributes,type Attributes,type AttributeId} from '../../src/domain/attributes'
@@ -48,6 +49,6 @@ describe('approved concentrated awakening allocation',()=>{
  it('no duplicate awakening candidates',()=>expect(awakeningCandidates([f,a('ice',false)])).toEqual([a('ice',false)]))
  it('validates flags and excludes a fourth attribute',()=>{expect(isAttributes([f])).toBe(true);expect(isAttributes([{...f,awakened:1}])).toBe(false);expect(isAttributes([f,ice,lightning,a('light')])).toBe(false)})
  it('old schema6 must not silently acquire awakening flags',()=>{
-  const s=freshSession(0);expect(decodeSession(JSON.stringify({...s,version:6,nextId:2,game:{...s.game,slimes:[{id:'p-1',tier:1,position:{x:0,y:0},attributes:[f]}]}}),0).ok).toBe(false)
+  const s=freshSession(0);expect(decodeSession(fixtureJSON({...s,version:6,nextId:2,game:{...s.game,slimes:[{id:'p-1',tier:1,position:{x:0,y:0},attributes:[f]}]}}),0).ok).toBe(false)
  })
 })

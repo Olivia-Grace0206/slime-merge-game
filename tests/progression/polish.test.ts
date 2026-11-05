@@ -1,3 +1,4 @@
+import { fixtureJSON } from '../helpers/serialization'
 import { describe, it, expect } from 'vitest'
 import { freshSession as newSession, reduceSession as currentReduceSession, goldPayment, sessionRules, EXPERIMENTAL_PHASE2, type Session } from '../../src/core/progression/session'
 // Legacy regression fixture: research40 and GOLD already unlocked, as migrated pre-research saves.
@@ -58,10 +59,10 @@ describe('gold source identity and atomic exit',()=>{
   for(let i=0;i<10;i++){
    const at=s.event!.nextPaymentAtMs,prev=s
    expect(reduceSession(s,{type:'pay',eventId:id,expectedPaid:i},at-1,zero)).toBe(s)
-   s=pay(s);expect(s.wallet.gold-prev.wallet.gold).toBe(5)
+   s=pay(s);expect(s.wallet.gold-prev.wallet.gold).toBe(BigInt(5))
    expect(reduceSession(s,{type:'pay',eventId:id,expectedPaid:i},at,zero)).toBe(s)
   }
-  expect(s.event).toBeNull();expect(s.wallet.gold).toBe(50)
+  expect(s.event).toBeNull();expect(s.wallet.gold).toBe(BigInt(50))
   expect(reduceSession(s,{type:'pay',eventId:id,expectedPaid:10},100000,zero)).toBe(s)
  })
  it('occupied cells excluded; all-full skips spawn with finite cooldown and no ID consumed',()=>{
@@ -82,7 +83,7 @@ describe('gold source identity and atomic exit',()=>{
    s=reduceSession(s,{type:'drop',plan:planDrop(s.game,'p-8',{x:0,y:0})},s.event!.nextPaymentAtMs,zero)
   }
   expect(s.event).toBeNull();expect(s.lastEvent).toEqual({id,receivedGOLD:received,paid:4})
-  expect(s.wallet.gold).toBe(received+(kind==='sell'?32:0))
+  expect(s.wallet.gold).toBe(BigInt(received+BigInt((kind==='sell'?32:0))))
   expect(reduceSession(s,{type:'pay',eventId:id,expectedPaid:4},s.savedAtMs+10000,zero)).toBe(s)
   expect(isSession(s)).toBe(true)
  })
@@ -96,7 +97,7 @@ describe('gold source identity and atomic exit',()=>{
   const s=four(),id=s.event!.sourceId!,now=s.event!.nextPaymentAtMs
   const paid=reduceSession(s,{type:'tick'},now,zero)
   const moved=reduceSession(paid,{type:'drop',plan:planDrop(paid.game,id,{x:3,y:3})},now,zero)
-  expect(moved.wallet.gold).toBe(s.wallet.gold+5);expect(moved.lastEvent!.paid).toBe(5)
+  expect(moved.wallet.gold).toBe(BigInt(s.wallet.gold+BigInt(5)));expect(moved.lastEvent!.paid).toBe(5)
   const first=reduceSession(s,{type:'drop',plan:planDrop(s.game,id,{x:3,y:3})},now,zero)
   expect(first.wallet.gold).toBe(s.wallet.gold);expect(first.event).toBeNull()
  })
@@ -106,30 +107,30 @@ describe('gold source identity and atomic exit',()=>{
   const load=decodeSession(raw,0);expect(load.ok&&load.session).toEqual(s)
  })
  it('cap counts receipts without overflow; replay cannot reclaim capped reward',()=>{
-  let s=active(40);s={...s,wallet:{...s.wallet,gold:Number.MAX_SAFE_INTEGER-1}}
-  s=pay(s);expect(s.event!.receivedGOLD).toBe(1);expect(s.event!.cappedGOLD).toBe(goldPayment(40,0)-1)
+  let s=active(40);s={...s,wallet:{...s.wallet,gold:BigInt(Number.MAX_SAFE_INTEGER-1)}}
+  s=pay(s);expect(s.event!.receivedGOLD).toBe(BigInt(1));expect(s.event!.cappedGOLD).toBe(goldPayment(40,0)-BigInt(1))
   for(let i=1;i<10;i++)s=pay(s)
-  expect(isSession(s)).toBe(true);expect(s.wallet.gold).toBe(Number.MAX_SAFE_INTEGER)
+  expect(isSession(s)).toBe(true);expect(s.wallet.gold).toBe(BigInt(Number.MAX_SAFE_INTEGER))
  })
 })
 
 describe('explicit migration and protection',()=>{
  it.each([null,'waiting','active','detached'] as const)('legacy v2 %s preserves GOLD, queue, IDs and frozen unit',state=>{
   const s=state==='active'||state==='detached'?four():ready()
-  const legacy=JSON.parse(JSON.stringify({...s,version:2}))
-  if(state==='waiting')legacy.event={id:'gold-1',sequence:1,cell:{x:3,y:3},expiresAtMs:45000,tier:null,sourceId:null,attributeCount:0,paid:0,receivedGOLD:0,unitGOLD:0,nextPaymentAtMs:0}
+  const legacy=JSON.parse(fixtureJSON({...s,version:2}))
+  if(state==='waiting')legacy.event={id:'gold-1',sequence:1,cell:{x:3,y:3},expiresAtMs:45000,tier:null,sourceId:null,attributeCount:0,paid:0,receivedGOLD:BigInt(0),unitGOLD:BigInt(0),nextPaymentAtMs:0}
   if(legacy.event){legacy.eventSequence=1;delete legacy.event.rewardVersion;if(legacy.event.tier!==null){legacy.event.unitGOLD=goldPayment(legacy.event.tier,0,1);legacy.event.receivedGOLD=legacy.event.paid*legacy.event.unitGOLD;legacy.wallet.gold=legacy.event.receivedGOLD}}
   if(state==='detached')legacy.game.slimes=[]
-  const raw=JSON.stringify(legacy),load=decodeSession(raw,1000)
+  const raw=fixtureJSON(legacy),load=decodeSession(raw,1000)
   expect(load.ok).toBe(true);if(!load.ok)return
   expect(load.migrated).toBe(true);expect(load.session.version).toBe(7);expect(load.session.wallet).toEqual(legacy.wallet)
   expect(load.session.generator).toEqual({...legacy.generator,progressMs:Math.floor(legacy.generator.progressMs*1.5)});expect(isSession(load.session)).toBe(true)
-  if(state==='active') {const n=pay(load.session);expect(n.wallet.gold-load.session.wallet.gold).toBe(1)}
-  if(state==='detached'){const n=pay(load.session);expect(n.event).toBeNull();expect(n.wallet.gold).toBe(legacy.wallet.gold)}
+  if(state==='active') {const n=pay(load.session);expect(n.wallet.gold-load.session.wallet.gold).toBe(BigInt(1))}
+  if(state==='detached'){const n=pay(load.session);expect(n.event).toBeNull();expect(n.wallet.gold).toBe(BigInt(legacy.wallet.gold))}
  })
  it('corrupt v2 unit / receipt rejected without forgiving malformed data',()=>{
-  const s=JSON.parse(JSON.stringify({...four(),version:2}));delete s.event.rewardVersion
-  expect(decodeSession(JSON.stringify(s),0).ok).toBe(false)
+  const s=JSON.parse(fixtureJSON({...four(),version:2}));delete s.event.rewardVersion
+  expect(decodeSession(fixtureJSON(s),0).ok).toBe(false)
  })
  it('protected specimen survives refused sale/reload and remains usable as merge material',()=>{
   let s=add(add(add(ready())));s=reduceSession(s,{type:'protect',id:'p-1'},0,zero)
@@ -139,7 +140,7 @@ describe('explicit migration and protection',()=>{
   expect(s.game.slimes).toHaveLength(1);expect(s.protectedIds).toEqual([])
  })
  it.each([1,2,3,4,5,10,20,30,40])('Tier%i payment is safe, increases with tier, decreases with attributes',tier=>{
-  expect(Number.isSafeInteger(goldPayment(tier,0)*10)).toBe(true)
+  expect((typeof (goldPayment(tier,0)*10n) === 'bigint' && goldPayment(tier,0)*BigInt(10) >= 0n)).toBe(true)
   if(tier<40)expect(goldPayment(tier+1,0)).toBeGreaterThan(goldPayment(tier,0))
   for(let a=0;a<10;a++)expect(goldPayment(tier,a)).toBeGreaterThanOrEqual(goldPayment(tier,a+1))
  })

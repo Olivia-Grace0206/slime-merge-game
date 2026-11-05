@@ -1,4 +1,5 @@
 /// <reference types="node" />
+import { fixtureJSON } from '../helpers/serialization'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { it, expect } from 'vitest'
 import { freshSession as newSession, reduceSession, sessionRules, goldPayment, type Command } from '../../src/core/progression/session'
@@ -15,7 +16,7 @@ function simulate(profile:DistributionProfile,seed:number){
  const reached:Record<string,number|null>={5:null,10:null,20:null,30:null,40:null}
  const dt=2000,limit=6*3600000
  function cmd(c:Command,now:number){const old=s,beforeGenerated=s.generator.totalGenerated;s=reduceSession(s,c,now,random,{...sessionRules(s), attributeChance:0, attributeMutationChance:0,distribution:profile});
-  goldIncome+=Math.max(0,s.wallet.gold-old.wallet.gold-(c.type==='sell'?Math.min(2**(old.game.slimes.find(x=>x.id===c.id)?.tier??0),Number.MAX_SAFE_INTEGER-old.wallet.gold):0))
+  goldIncome+=Math.max(0,Number(s.wallet.gold-old.wallet.gold)-(c.type==='sell'?Math.min(2**(old.game.slimes.find(x=>x.id===c.id)?.tier??0),Number.MAX_SAFE_INTEGER-Number(old.wallet.gold)):0))
   const n=s.generator.totalGenerated-beforeGenerated
   if(n>0){const created=s.generator.storedTiers.slice(-n);samples+=n;for(const t of created){tierSum+=t;if(t>=old.game.highestTierReached-1)near++}}
  }
@@ -36,12 +37,12 @@ function simulate(profile:DistributionProfile,seed:number){
    const moved=false
    if(!moved){
     if(s.game.slimes.length===16){const lowest=[...s.game.slimes].filter(x=>x.id!==protectedSource).sort((a,b)=>a.tier-b.tier)[0]!
-     const prev=s.wallet.gold;cmd({type:'sell',id:lowest.id},now);sales++;saleIncome+=s.wallet.gold-prev}
+     const prev=s.wallet.gold;cmd({type:'sell',id:lowest.id},now);sales++;saleIncome+=Number(s.wallet.gold-prev)}
     else if(s.generator.storedTiers.length)cmd({type:'withdraw',expectedId:s.nextId},now)
    }
   }
   if(now%30000===0){const dup=[...s.game.slimes].sort((a,b)=>b.tier-a.tier).find(a=>a.id!==protectedSource&&s.game.slimes.filter(b=>b.tier===a.tier).length>=2)
-   if(dup){const prev=s.wallet.gold;cmd({type:'sell',id:dup.id},now);sales++;saleIncome+=s.wallet.gold-prev}}
+   if(dup){const prev=s.wallet.gold;cmd({type:'sell',id:dup.id},now);sales++;saleIncome+=Number(s.wallet.gold-prev)}}
   for(const key of ['speed','tap','storage'] as const){const lv=s.wallet.upgrades[key];if(lv<16&&s.wallet.gold>=upgradeCost(key,lv))cmd({type:'buy',key,expectedLevel:lv},now)}
   for(const t of [5,10,20,30,40])if(s.game.highestTierReached>=t)reached[t]??=now
   if(now%600000===0){expect(isSession(s)).toBe(true);const load=decodeSession(encodeSession(s),now);expect(load.ok).toBe(true)}
@@ -52,8 +53,8 @@ function simulate(profile:DistributionProfile,seed:number){
 it('Polish 4x4 progression: three distributions, seeded random placements and actual moves/merges/sales',()=>{
  const results=profiles.flatMap(p=>[12,61,210,513,901].map(seed=>simulate(p,seed)))
  const distributions=profiles.flatMap(p=>[5,10,20,30,40].map(H=>{const w=tierWeights(H,p);return{slope:p.centerSlope,H,mean:w.reduce((a,b)=>a+b.tier*b.probability,0),pHighest:w.at(-1)!.probability,pNearHighest:w.filter(x=>x.tier>=H-1).reduce((a,b)=>a+b.probability,0)}}))
- const rewards=[1,2,3,4,5,10,20,30,40].map(tier=>({tier,sale:2**tier,old:goldPayment(tier,0,1),linearFloor:goldPayment(tier,0),additive:Math.max(1,Math.floor(2**tier*.05))+tier-1,doubleRate:Math.max(1,Math.floor(2**tier*.1)),attributes3:goldPayment(tier,3),totalToSale:10*goldPayment(tier,0)/(2**tier)}))
- mkdirSync('docs/validation/phase3c/regression-phase3b/regression/regression-balance/legacy-gaussian',{recursive:true});writeFileSync('docs/validation/phase3c/regression-phase3b/regression/regression-balance/legacy-gaussian/simulation.json',JSON.stringify({model:'4x4 actual Core; random FIFO; one board action / 2s plus tap, 5 preferred then 3 at >=13, periodic duplicate sale / 30s, shops bought when affordable. Seek gold then hold source. Five fixed seeds, six-hour censor; receipt times 350ms. Bot comparison, not a human time forecast.',results,distributions,rewards},null,2))
+ const rewards=[1,2,3,4,5,10,20,30,40].map(tier=>({tier,sale:2**tier,old:goldPayment(tier,0,1),linearFloor:goldPayment(tier,0),additive:Math.max(1,Math.floor(2**tier*.05))+tier-1,doubleRate:Math.max(1,Math.floor(2**tier*.1)),attributes3:goldPayment(tier,3),totalToSale:10*Number(goldPayment(tier,0))/(2**tier)}))
+ mkdirSync('docs/validation/phase3c/regression-phase3b/regression/regression-balance/legacy-gaussian',{recursive:true});writeFileSync('docs/validation/phase3c/regression-phase3b/regression/regression-balance/legacy-gaussian/simulation.json',fixtureJSON({model:'4x4 actual Core; random FIFO; one board action / 2s plus tap, 5 preferred then 3 at >=13, periodic duplicate sale / 30s, shops bought when affordable. Seek gold then hold source. Five fixed seeds, six-hour censor; receipt times 350ms. Bot comparison, not a human time forecast.',results,distributions,rewards},null,2))
  expect(results).toHaveLength(15)
 },240000)
 

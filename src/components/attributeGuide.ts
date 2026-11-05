@@ -9,8 +9,8 @@ export function attributeGuide():readonly GuideEntry[]{
  const p='p(L)=1+'+EFFECTS.levelSlope+'×log₂(L)'
  const growth=`属性Lvは${p}で逓減強化。Lv1=${levelPower(1).toFixed(2)}、Lv5=${levelPower(5).toFixed(2)}、Lv10=${levelPower(10).toFixed(2)}。`
  const data:Record<AttributeId,Omit<GuideEntry,'id'|'name'|'growth'>>={
-  fire:{condition:'売却時',effect:`基本売値B=2^Tierにceil(B×${EFFECTS.fireRate}×p) GOLDを加算。Lv1は基本値の約${percent(EFFECTS.fireRate)}。`,limit:'最後に切り捨て。GOLDの空き額・安全整数が上限。',note:'GOLDマス10回報酬へは売却補正を掛けません。'},
-  gold:{condition:'売却時',effect:`加算後の売値を×(1+${EFFECTS.goldRate}×p)。Lv1は×${1+EFFECTS.goldRate}。`,limit:'GOLDの空き額・安全整数が上限。',note:'炎とは加算後に乗算。GOLDマス報酬は別計算。'},
+  fire:{condition:'売却時',effect:`基本売値B=2×4^(Tier−1)にceil(B×${EFFECTS.fireRate}×p) GOLDを加算。Lv1は基本値の約${percent(EFFECTS.fireRate)}。`,limit:'最後に切り捨て。BigInt整数比で計算。通貨上限なし。',note:'GOLDマス10回報酬へは売却補正を掛けません。'},
+  gold:{condition:'売却時',effect:`加算後の売値を×(1+${EFFECTS.goldRate}×p)。Lv1は×${1+EFFECTS.goldRate}。`,limit:'BigInt整数比で計算。通貨上限なし。',note:'炎とは加算後に乗算。GOLDマス報酬は別計算。'},
   dark:{condition:'売却時・マージ時',effect:`売値×(1+${EFFECTS.darkRate}×p)。Lv1は×${1+EFFECTS.darkRate}。継承した闇だけマージ時に${percent(EFFECTS.darkLossChance)}/組で消失。`,limit:'5体の2出力は共通判定。スライム本体・Tier・他属性・出力数は失いません。',note:'リスクは確定前に予告。新たに変異で得た闇は直後に消失させません。'},
   ice:{condition:'盤面配置中',effect:`通常生成時間を${percent(EFFECTS.iceRate)}×有効pずつ短縮（Lv1単体）。`,limit:`全体の短縮率上限${percent(EFFECTS.iceCap)}。クリック加速とは別。`,note:'周囲の光・氷＋雷の複合を合算してから上限。間隔変更時は進捗率を保持。'},
   lightning:{condition:'盤面配置中・クリック時',effect:`クリック短縮量を${percent(EFFECTS.lightningRate)}×有効pずつ増加。`,limit:`全体補正上限${percent(EFFECTS.lightningCap)}。1クリックは最終生成間隔の${percent(GENERATION_PACE.maxTapIntervalFraction)}まで。`,note:'自然生成の間隔は直接変えません。光・氷＋雷の複合を含めて上限。'},

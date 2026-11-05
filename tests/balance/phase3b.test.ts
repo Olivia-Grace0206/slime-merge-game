@@ -1,3 +1,4 @@
+import { fixtureJSON } from '../helpers/serialization'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { it, expect } from 'vitest'
 import { boardEffects, EFFECTS, levelPower, saleValue, specialCellWeights } from '../../src/core/attributes/effects'
@@ -12,7 +13,7 @@ import { isSession, decodeSession, encodeSession } from '../../src/core/progress
 import type { Attributes } from '../../src/domain/attributes'
 const dir='docs/balance/phase3c/regression-phase3b'
 const rng=(seed:number)=>()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296}
-const write=(name:string,data:unknown)=>{mkdirSync(dir,{recursive:true});writeFileSync(`${dir}/${name}.json`,JSON.stringify(data,null,2))}
+const write=(name:string,data:unknown)=>{mkdirSync(dir,{recursive:true});writeFileSync(`${dir}/${name}.json`,fixtureJSON(data,null,2))}
 it('compares provisional pace, Lv curves and bounded maximum support',()=>{
  const pace=[{base:10000,factor:.9,tap:350},...[12000,15000,18000].flatMap(base=>[.95,.97].flatMap(factor=>[100,200].map(tap=>({base,factor,tap}))))].flatMap(c=>[0,1,5,10,16].map(lv=>{
   const interval=Math.max(2000,Math.round(c.base*c.factor**lv)),advance=1000+c.tap*lv
@@ -42,18 +43,18 @@ it('100-resource comparisons of normal, FIFO-stock A, future-generation B and fo
   const random=rng(seed),s=freshSession(0),game={...s.game,highestTierReached:H}
   let generator={...newGenerator(0),storedTiers:Array.from({length:100},()=>drawTier(H,random())),storedAttributes:[] as Attributes[],totalGenerated:100}
   generator.storedAttributes=generator.storedTiers.map(()=>drawAttributes(random,.03))
-  const original=[...generator.storedTiers],normalAttributes=generator.storedAttributes.filter(a=>a.length).length,normalGold=generator.storedTiers.reduce((n,t,i)=>n+saleValue({tier:t,attributes:generator.storedAttributes[i]!}),0)
+  const original=[...generator.storedTiers],normalAttributes=generator.storedAttributes.filter(a=>a.length).length,normalGold=generator.storedTiers.reduce((n,t,i)=>n+Number(saleValue({tier:t,attributes:generator.storedAttributes[i]!})),0)
   let conversions=0,newAttributes=0,outGOLD=0;const outputTiers:number[]=[]
   while(generator.storedTiers.length>=10){
    const result=withdrawFocused(game,generator,'focused',chance,random);if(!result.ok)throw Error('focus')
    generator={...result.generator,storedTiers:[...result.generator.storedTiers],storedAttributes:[...(result.generator.storedAttributes??[])]}
-   const out=result.game.slimes[0]!;conversions++;newAttributes+=out.attributes!.length?1:0;outGOLD+=saleValue(out);outputTiers.push(out.tier)
+   const out=result.game.slimes[0]!;conversions++;newAttributes+=out.attributes!.length?1:0;outGOLD+=Number(saleValue(out));outputTiers.push(out.tier)
   }
-  const remainingGold=generator.storedTiers.reduce((n,t,i)=>n+saleValue({tier:t,attributes:generator.storedAttributes[i]!}),0)
+  const remainingGold=generator.storedTiers.reduce((n,t,i)=>n+Number(saleValue({tier:t,attributes:generator.storedAttributes[i]!})),0)
   const B=Array.from({length:10},()=>({tier:drawTier(H,random()),attributes:drawAttributes(random,chance)}))
-  return{H,chance,seed,resources:100,normal:{count:100,attributes:normalAttributes,gold:normalGold,tierHistogram:histogram(original)},
-   A:{conversions,count:generator.storedTiers.length+conversions,retainedCount:generator.storedTiers.length,attributes:normalAttributes+newAttributes,newAttributes,gold:outGOLD+remainingGold,goldOpportunityCost:normalGold-outGOLD-remainingGold,outputTierHistogram:histogram(outputTiers)},
-   B:{count:10,attributes:B.filter(x=>x.attributes.length).length,gold:B.reduce((n,x)=>n+saleValue(x),0),tierHistogram:histogram(B.map(x=>x.tier))}}
+  return{H,chance,seed,resources:100,normal:{count:100,attributes:normalAttributes,gold:BigInt(normalGold),tierHistogram:histogram(original)},
+   A:{conversions,count:generator.storedTiers.length+conversions,retainedCount:generator.storedTiers.length,attributes:normalAttributes+newAttributes,newAttributes,gold:BigInt(outGOLD+remainingGold),goldOpportunityCost:normalGold-outGOLD-remainingGold,outputTierHistogram:histogram(outputTiers)},
+   B:{count:10,attributes:B.filter(x=>x.attributes.length).length,gold:BigInt(B.reduce((n,x)=>n+Number(saleValue(x)),0)),tierHistogram:histogram(B.map(x=>x.tier))}}
  })))
  write('generation-modes',{provisional:true,model:'100 fresh normal draws (3% existing attributes) for A; FIFO head10 regardless of attributes/Tier. A min consumed Tier. B ten future cycles→one normal weighted Tier with focused chance. No board constraint for resource experiment. GOLD is immediate liquidation opportunity, not actual play income.',analytic:[.2,.35,.5].map(chance=>({chance,normalOutputs:100,normalAttributes:3,tenSafeConversionsOutputs:10,tenSafeConversionsNewAttributes:10*chance,BAttributes:10*chance})),results})
  expect(results).toHaveLength(450);expect(results.every(x=>x.A.count===10&&x.A.conversions===10&&x.A.retainedCount===0)).toBe(true)
@@ -76,7 +77,7 @@ function play(style:Style,seed:number,policy:'research'|'production') {
  function cmd(c:Command,time:number){const before=s;s=reduceSession(s,c,time,random)
   if(s===before)return
   if(c.type==='withdraw'){adds++;attributes+=(s.game.slimes.find(x=>x.id===`p-${before.nextId}`)?.attributes?.length??0)>0?1:0;focus+=s.focusedGenerated-before.focusedGenerated}
-  if(c.type==='sell'){sales++;saleGold+=s.wallet.gold-before.wallet.gold}else eventGold+=Math.max(0,s.wallet.gold-before.wallet.gold)
+  if(c.type==='sell'){sales++;saleGold+=Number(s.wallet.gold-before.wallet.gold)}else eventGold+=Math.max(0,Number(s.wallet.gold-before.wallet.gold))
   if(c.type==='tap')taps++
   if(c.type==='research'){researchBuys++;firstResearch??=time}
  }
@@ -110,8 +111,8 @@ function play(style:Style,seed:number,policy:'research'|'production') {
   if(now%30000===0){const dup=options.filter(a=>a.id!==source&&s.game.slimes.filter(b=>b.tier===a.tier&&!supportIds.has(b.id)).length>=3).sort((a,b)=>b.tier-a.tier)[0];if(dup)cmd({type:'sell',id:dup.id},now)}
   const blocked=s.game.highestTierReached>=s.researchMaxTier
   if((policy==='research'||blocked)&&s.researchLevel<16&&s.wallet.gold>=researchCost(s.researchLevel))cmd({type:'research',expectedLevel:s.researchLevel},now)
-  for(const key of ['speed','tap','storage'] as const){const lv=s.wallet.upgrades[key],reserve=blocked&&s.researchLevel<16?researchCost(s.researchLevel):0
-   if(lv<(key==='storage'?3:policy==='research'?5:16)&&s.wallet.gold>=upgradeCost(key,lv)+reserve)cmd({type:'buy',key,expectedLevel:lv},now)}
+  for(const key of ['speed','tap','storage'] as const){const lv=s.wallet.upgrades[key],reserve=blocked&&s.researchLevel<16?Number(researchCost(s.researchLevel)):0
+   if(lv<(key==='storage'?3:policy==='research'?5:16)&&s.wallet.gold>=Number(upgradeCost(key,lv))+reserve)cmd({type:'buy',key,expectedLevel:lv},now)}
   if(!s.goldCellUnlocked&&s.wallet.gold>=128)cmd({type:'gold-unlock'},now)
   if(!blocked&&s.researchLevel<16&&s.wallet.gold>=researchCost(s.researchLevel))cmd({type:'research',expectedLevel:s.researchLevel},now)
   for(const tier of [5,10,20,30,40])if(s.game.highestTierReached>=tier)milestones[tier]??=now

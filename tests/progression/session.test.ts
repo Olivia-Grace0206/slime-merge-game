@@ -1,4 +1,5 @@
 /// <reference types="node" />
+import { fixtureJSON } from '../helpers/serialization'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { describe, it, expect } from 'vitest'
 import { freshSession as newSession, reduceSession as currentReduceSession, goldPayment, sessionRules, type Session } from '../../src/core/progression/session'
@@ -45,7 +46,7 @@ describe('integrated progression safety',()=>{
   expect(reduceSession(s,{type:'sell',id},s.savedAtMs,zero)).toBe(s)
   s=reduceSession(s,{type:'protect',id},s.savedAtMs,zero)
   const before=s.wallet.gold;s=reduceSession(s,{type:'sell',id},s.savedAtMs,zero)
-  expect(s.wallet.gold).toBe(before+2);expect(reduceSession(s,{type:'sell',id},s.savedAtMs,zero)).toBe(s)
+  expect(s.wallet.gold).toBe(BigInt(before+BigInt(2)));expect(reduceSession(s,{type:'sell',id},s.savedAtMs,zero)).toBe(s)
   expect(out(s,0,0).game.slimes[0]!.id).not.toBe(id)
  })
  it('full 16 different Tiers can always sell a chosen unprotected specimen',()=>{
@@ -72,13 +73,13 @@ describe('integrated progression safety',()=>{
  it('speed purchase handles near-complete timer, guards duplicate expected Lv and lacks GOLD',()=>{
   let s=reduceSession(freshSession(0),{type:'tick'},9999,zero)
   expect(reduceSession(s,{type:'buy',key:'speed',expectedLevel:0},9999,zero)).toBe(s)
-  s={...s,wallet:{...s.wallet,gold:12}}
+  s={...s,wallet:{...s.wallet,gold:BigInt(12)}}
   const n=reduceSession(s,{type:'buy',key:'speed',expectedLevel:0},9999,zero)
-  expect(n.wallet.gold).toBe(0);expect(n.generator.progressMs).toBeLessThan(sessionRules(n).intervalMs);expect(isSession(n)).toBe(true)
+  expect(n.wallet.gold).toBe(BigInt(0));expect(n.generator.progressMs).toBeLessThan(sessionRules(n).intervalMs);expect(isSession(n)).toBe(true)
   expect(reduceSession(n,{type:'buy',key:'speed',expectedLevel:0},9999,zero)).toBe(n)
  })
  it('rejects inherited shop keys and overflow generation counter',()=>{
-  expect(purchaseUpgrade({gold:100,upgrades:{speed:0,tap:0,storage:0}},'toString' as 'speed').ok).toBe(false)
+  expect(purchaseUpgrade({gold:BigInt(100),upgrades:{speed:0,tap:0,storage:0}},'toString' as 'speed').ok).toBe(false)
   const s=freshSession(0)
   expect(()=>advanceGenerator({...s.generator,totalGenerated:Number.MAX_SAFE_INTEGER},15000,1,sessionRules(s),zero)).toThrow()
  })
@@ -90,7 +91,7 @@ describe('integrated progression safety',()=>{
 describe('gold event ledger and recovery',()=>{
  it('legacy primitive rejects stale event and reused ID even after shopping',()=>{
   const event=beginGoldRush('old-event',10,0)
-  let result=payGoldRush({...freshWallet(),gold:100},event)
+  let result=payGoldRush({...freshWallet(),gold:BigInt(100)},event)
   expect(result.ok).toBe(true)
   expect(payGoldRush(result.wallet,event).ok).toBe(false)
   const purchase=purchaseUpgrade(result.wallet,'speed')
@@ -106,13 +107,13 @@ describe('gold event ledger and recovery',()=>{
    const now=s.event!.nextPaymentAtMs
    const old=s
    s=reduceSession(s,{type:'pay',eventId:id,expectedPaid:paid},now,zero)
-   expect(s.wallet.gold).toBe(initial+(paid+1)*unit)
+   expect(s.wallet.gold).toBe(BigInt(initial+BigInt(BigInt(paid+1)*unit)))
    expect(reduceSession(s,{type:'pay',eventId:id,expectedPaid:paid},now+1000,zero)).toBe(s)
    const loaded=decodeSession(encodeSession(s),now);expect(loaded.ok).toBe(true)
    if(loaded.ok)s=loaded.session
-   expect(s.game.slimes).toContainEqual(slime);expect(old.wallet.gold).toBe(initial+paid*unit)
+   expect(s.game.slimes).toContainEqual(slime);expect(old.wallet.gold).toBe(BigInt(initial+BigInt(BigInt(paid)*unit)))
   }
-  expect(s.event).toBeNull();expect(s.lastEvent).toEqual({id,receivedGOLD:10*unit})
+  expect(s.event).toBeNull();expect(s.lastEvent).toEqual({id,receivedGOLD:BigInt(BigInt(10)*unit)})
   expect(reduceSession(s,{type:'pay',eventId:id,expectedPaid:0},s.savedAtMs+100_000,zero)).toBe(s)
  })
  it('relocation expires unpaid receipts and the same event ID cannot restart',()=>{
@@ -121,7 +122,7 @@ describe('gold event ledger and recovery',()=>{
   expect(s.event).toBeNull();expect(s.lastEvent!.id).toBe(e.id)
   expect(reduceSession(s,{type:'pay',eventId:e.id,expectedPaid:0},s.savedAtMs+1000,zero)).toBe(s)
   s=reduceSession(s,{type:'sell',id},s.savedAtMs,zero)
-  expect(s.wallet.gold).toBe(2)
+  expect(s.wallet.gold).toBe(BigInt(2))
  })
  it('waiting events expire, random cell is in bounds, there is a cooldown',()=>{
   let s=full(60_000);expect(s.event!.cell).toEqual({x:0,y:0})
@@ -134,11 +135,11 @@ describe('gold event ledger and recovery',()=>{
   for(let tier=1;tier<40;tier++)expect(goldPayment(tier,0)).toBeLessThanOrEqual(goldPayment(tier+1,0))
  })
  it('wallet cap settles receipt without overflow and never traps a full board',()=>{
-  let s=start();s={...s,wallet:{...s.wallet,gold:Number.MAX_SAFE_INTEGER}}
+  let s=start();s={...s,wallet:{...s.wallet,gold:BigInt(Number.MAX_SAFE_INTEGER)}}
   const n=reduceSession(s,{type:'pay',eventId:s.event!.id,expectedPaid:0},s.event!.nextPaymentAtMs,zero)
-  expect(n.wallet.gold).toBe(Number.MAX_SAFE_INTEGER);expect(n.event!.paid).toBe(1);expect(n.event!.receivedGOLD).toBe(0);expect(n.event!.cappedGOLD).toBe(s.event!.unitGOLD);expect(isSession(n)).toBe(true)
+  expect(n.wallet.gold).toBe(BigInt(Number.MAX_SAFE_INTEGER));expect(n.event!.paid).toBe(1);expect(n.event!.receivedGOLD).toBe(BigInt(0));expect(n.event!.cappedGOLD).toBe(s.event!.unitGOLD);expect(isSession(n)).toBe(true)
   const sold=reduceSession(n,{type:'sell',id:n.game.slimes[0]!.id},n.savedAtMs,zero)
-  expect(sold.game.slimes).toHaveLength(0);expect(sold.wallet.gold).toBe(Number.MAX_SAFE_INTEGER)
+  expect(sold.game.slimes).toHaveLength(0);expect(sold.wallet.gold).toBe(BigInt(Number.MAX_SAFE_INTEGER))
  })
 })
 
@@ -161,12 +162,12 @@ describe('strict v2 persistence and failed writes',()=>{
   if(field==='receipt')v.event.receivedGOLD=999
   if(field==='event-id')v.event.id='gold-0'
   if(field==='protection')v.protectedIds=['missing']
-  expect(decodeSession(JSON.stringify(v),0).ok).toBe(false)
+  expect(decodeSession(fixtureJSON(v),0).ok).toBe(false)
  })
  it('v1 4x4 migrates explicitly, v1 experimental 7x7 refuses without cropping',()=>{
   const s=freshSession(0), v={version:1,savedAtMs:0,nextId:1,game:s.game,wallet:s.wallet,generator:s.generator}
-  const ok=decodeSession(JSON.stringify(v),0);expect(ok.ok).toBe(true);if(ok.ok)expect(ok.migrated).toBe(true)
-  expect(decodeSession(JSON.stringify({...v,game:{...s.game,bounds:{...s.game.bounds,width:7,height:7}}}),0).ok).toBe(false)
+  const ok=decodeSession(fixtureJSON(v),0);expect(ok.ok).toBe(true);if(ok.ok)expect(ok.migrated).toBe(true)
+  expect(decodeSession(fixtureJSON({...v,game:{...s.game,bounds:{...s.game.bounds,width:7,height:7}}}),0).ok).toBe(false)
  })
  it('storage failure and external modification never publish/overwrite partial transactions',()=>{
   let raw:string|null='existing';const memory={getItem:()=>raw,setItem:(_k:string,v:string)=>{raw=v}}
@@ -183,9 +184,9 @@ describe('strict v2 persistence and failed writes',()=>{
    expect(isSession(s)).toBe(true)
    const loaded=decodeSession(encodeSession(s),s.savedAtMs);if(loaded.ok)s=loaded.session
   }
-  expect(s.nextId).toBe(2401);expect(Number.isSafeInteger(s.wallet.gold)).toBe(true)
+  expect(s.nextId).toBe(2401);expect((typeof s.wallet.gold === 'bigint' && s.wallet.gold >= 0n)).toBe(true)
   mkdirSync('docs/validation/phase3c/regression-phase3b/regression/regression-session',{recursive:true})
-  writeFileSync('docs/validation/phase3c/regression-phase3b/regression/regression-session/long-simulation.json',JSON.stringify({virtualHours:240,checkpoints:240,totalGenerated:s.generator.totalGenerated,nextId:s.nextId,gold:s.wallet.gold,eventSequence:s.eventSequence,uniqueIds:true,validEveryCheckpoint:true,roundTripEveryCheckpoint:true,storageBounded:true,errors:0},null,2))
+  writeFileSync('docs/validation/phase3c/regression-phase3b/regression/regression-session/long-simulation.json',fixtureJSON({virtualHours:240,checkpoints:240,totalGenerated:s.generator.totalGenerated,nextId:s.nextId,gold:s.wallet.gold,eventSequence:s.eventSequence,uniqueIds:true,validEveryCheckpoint:true,roundTripEveryCheckpoint:true,storageBounded:true,errors:0},null,2))
  })
 })
 

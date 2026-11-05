@@ -9,7 +9,8 @@ export function inBounds(bounds: BoardBounds, p: GridPosition): boolean {
     p.x >= bounds.origin.x &&
     p.y >= bounds.origin.y &&
     p.x - bounds.origin.x < bounds.width &&
-    p.y - bounds.origin.y < bounds.height
+    p.y - bounds.origin.y < bounds.height &&
+    (!bounds.plots || bounds.plots.includes((['A','B','C','D'] as const)[(p.y >= 4 ? 2 : 0) + (p.x >= 4 ? 1 : 0)]!))
   )
 }
 export function isGameState(value: unknown): value is GameState {
@@ -32,6 +33,9 @@ export function isGameState(value: unknown): value is GameState {
     s.revision >= Number.MAX_SAFE_INTEGER
   )
     return false
+  if (b.plots !== undefined && (!Array.isArray(b.plots) || b.width !== 8 || b.height !== 8 || b.origin.x !== 0 || b.origin.y !== 0 ||
+    !b.plots.includes('A') || new Set(b.plots).size !== b.plots.length || b.plots.some(p => !['A','B','C','D'].includes(p)) ||
+    (b.plots.includes('D') && (!b.plots.includes('B') || !b.plots.includes('C'))))) return false
   const ids = new Set<string>(),
     cells = new Set<string>()
   for (const slime of s.slimes) {

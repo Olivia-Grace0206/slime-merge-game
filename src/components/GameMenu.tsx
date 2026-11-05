@@ -1,8 +1,8 @@
 import { useEffect, useRef, type ReactNode } from 'react'
 import { PRESETS, type PresetId } from '../app/presets'
 import { SlimeVisualGallery } from './SlimeVisualGallery'
-export type Panel = 'help' | 'presets' | 'appearance' | 'settings' | 'shop' | 'slime' | 'attributes'
-const TITLES: Record<Panel, string> = { attributes: '属性紹介', help: '遊び方', presets: '検証用プリセット', appearance: 'スライム一覧・外見確認', settings: '表示設定', shop: 'GOLDショップ', slime: 'スライム詳細' }
+export type Panel = 'land' | 'help' | 'presets' | 'appearance' | 'settings' | 'shop' | 'slime' | 'attributes'
+const TITLES: Record<Panel, string> = { land: '土地解放', attributes: '属性紹介', help: '遊び方', presets: '検証用プリセット', appearance: 'スライム一覧・外見確認', settings: '表示設定', shop: 'GOLDショップ', slime: 'スライム詳細' }
 export function GameMenu({ panel, onClose, preset, onPreset, reducedEffects, onEffects, onZoom, onResetCamera, extra, normal, onNormal }: {
   extra?: ReactNode; normal: boolean; onNormal: () => void
   panel: Panel | null; onClose: () => void; preset: PresetId; onPreset: (id: PresetId) => void
@@ -31,7 +31,7 @@ export function GameMenu({ panel, onClose, preset, onPreset, reducedEffects, onE
         <p className="muted">時間で貯蔵→スライム追加を1回押すとランダムな空きマスへ1体配置。加速は生成待ち時間を短縮します。売却エリアへドロップすると即売却。右クリック／長押し（約500ms）で売却保護。Pキーでも保護、Iキーで詳細。Enterで個体選択後、売却エリアへTab→Enterでも売却できます。選択後に属性解除へTab→Enterでも無料解除できます。保護は売却だけを防ぎ、属性解除やマージは妨げません。金マスから対象を動かすと残り報酬は失効します。ショップで強化できます。通常プレイは自動保存されます。</p>
       </>}
       {panel === 'presets' && <>
-        <p>7×7検証セッションへ切り替えます。通常4×4プレイの保存には影響しません。</p><button type="button" className="reset-button" onClick={onNormal}>通常プレイへ戻る</button>
+        <p>7×7検証セッションへ切り替えます。通常プレイの保存には影響しません。</p><button type="button" className="reset-button" onClick={onNormal}>通常プレイへ戻る</button>
         <div className="preset-grid">{PRESETS.map(p => <button type="button" key={p.id} aria-pressed={preset === p.id} onClick={() => onPreset(p.id)}>{p.label}</button>)}</div>
         <button type="button" className="reset-button" onClick={() => onPreset('five')}>盤面リセット</button>
         <p className="muted">高Tier試験：Tier 39→40とTier 40上限。通常配置の最高到達Tierは1、高Tier配置は40。</p>
@@ -45,7 +45,7 @@ export function GameMenu({ panel, onClose, preset, onPreset, reducedEffects, onE
         </div>
         <label className="setting-row"><input type="checkbox" checked={reducedEffects} onChange={e => onEffects(e.target.checked)} />発光・進化アニメーションを軽減</label>
         <p className="muted">OSのモーション削減設定にも対応します。{normal ? '通常プレイの表示設定は保存されます。' : '検証モードの表示設定は保存されません。'}</p>
-        <p>ズーム：75〜300%。100%は盤面全体が見えるフィット表示。画面サイズ変更時は表示をリセットします。</p>
+        <p>通常盤面のズーム：37.5〜300%（検証は75〜300%）。100%は初期4×4が見える大きさ。土地メニューで全体表示。画面サイズ変更時は表示をリセットします。</p>
       </>}
     </div>
   </dialog>

@@ -1,7 +1,7 @@
 import type { Point } from '../../core/input/coordinates'
 
 export type Camera = Readonly<{ center: Point; zoom: number }>
-export type View = Readonly<{ width: number; height: number; fit: number }>
+export type View = Readonly<{ width: number; height: number; fit: number; worldSize?: number }>
 export const WORLD_SIZE = 700
 export const MIN_ZOOM = 0.75
 export const MAX_ZOOM = 3
@@ -23,12 +23,12 @@ export function screenToWorld(p: Point, camera: Camera, view: View): Point {
 export function constrainCamera(camera: Camera, view: View): Camera {
   const halfX = view.width / (2 * view.fit * camera.zoom)
   const halfY = view.height / (2 * view.fit * camera.zoom)
-  const clamp = (v: number, half: number) => Math.max(100 - half, Math.min(600 + half, v))
+  const clamp = (v: number, half: number) => Math.max(100 - half, Math.min((view.worldSize ?? WORLD_SIZE) - 100 + half, v))
   return { ...camera, center: { x: clamp(camera.center.x, halfX), y: clamp(camera.center.y, halfY) } }
 }
 /** The world point at `from` follows `to`; handles zoom and moving pinch midpoints together. */
 export function zoomAt(camera: Camera, view: View, from: Point, zoom: number, to = from): Camera {
-  const boundedZoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, zoom))
+  const boundedZoom = Math.max(view.worldSize === 1400 ? .375 : MIN_ZOOM, Math.min(MAX_ZOOM, zoom))
   const anchor = screenToWorld(from, camera, view)
   const scale = boundedZoom * view.fit
   return constrainCamera({ zoom: boundedZoom, center: {
