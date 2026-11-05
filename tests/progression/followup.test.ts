@@ -65,7 +65,7 @@ describe('table discovery contract', () => {
 })
 describe('research transactions and materials', () => {
   it('real new game has research5 and GOLD locked', () => {
-    expect(freshSession(0)).toMatchObject({ version: 7, researchLevel: 0, researchMaxTier: 5, goldCellUnlocked: false, goldFrequencyLevel: 0, goldFormat: 'full' })
+    expect(freshSession(0)).toMatchObject({ version: 8, researchLevel: 0, researchMaxTier: 5, goldCellUnlocked: false, goldFrequencyLevel: 0, goldFormat: 'full' })
     expect(isSession(freshSession(0))).toBe(true)
   })
   it.each(RESEARCH_CAPS.slice(1).map((cap, i) => [i, cap]))('stage %i unlocks cap %i once, without discovery', (lv, cap) => {
@@ -95,7 +95,7 @@ describe('research transactions and materials', () => {
   it('locked at cap still sells and can fund research from ordinary sales without gold cells', () => {
     let s = board(5, 5)
     for (const x of s.game.slimes.slice(0, 3)) s = cmd(s, { type: 'sell', id: x.id })
-    expect(s.wallet.gold).toBe(researchCost(0)); expect(cmd(s, { type: 'research', expectedLevel: 0 }).researchMaxTier).toBe(10)
+    expect(s.wallet.gold).toBe(1536n); expect(cmd(s, { type: 'research', expectedLevel: 0 }).researchMaxTier).toBe(10)
   })
 })
 describe('GOLD unlock, format and migration', () => {
@@ -129,6 +129,7 @@ describe('GOLD unlock, format and migration', () => {
   it('v3 partially paid event keeps its exact unit, receipt and reward version; migration does not replay', () => {
     let s = { ...board(5, 1), goldCellUnlocked: true }
     s = reduceSession(s, { type: 'tick' }, 60000, () => .1)
+    s = {...s,event:{...s.event!,rewardVersion:2}}
     s = cmd(s, { type: 'drop', plan: planDrop(s.game, 'p-1', s.event!.cell, s.researchMaxTier) })
     for (let i = 0; i < 4; i++) s = reduceSession(s, { type: 'tick' }, s.event!.nextPaymentAtMs, zero)
     const old = { ...s, version: 3 }, load = decodeSession(fixtureJSON(old), s.savedAtMs)

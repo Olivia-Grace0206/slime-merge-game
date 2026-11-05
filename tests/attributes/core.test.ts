@@ -91,13 +91,13 @@ describe('storage, migration and atomic replay',()=>{
   const rawSession={...s,version,wallet:{...s.wallet,gold:BigInt(4567)},goldCellUnlocked:true,protectedIds:['p-1'],generator:{...s.generator,storedTiers:[1,39,40],totalGenerated:3},eventSequence:3,event:{id:'gold-3',sequence:3,cell:{x:0,y:0},tier:40,sourceId:'p-1',attributeCount:0,paid:4,receivedGOLD:BigInt(BigInt(4)*unit),unitGOLD:unit,nextPaymentAtMs:1400,expiresAtMs:45000,...(version!==2?{rewardVersion:2}:{})}}
   if(version===1){ rawSession.event=null as never } // v1 had no event contract
   const raw=fixtureJSON(rawSession),d=decodeSession(raw,0);expect(d.ok).toBe(true);if(!d.ok)throw Error(d.reason)
-  expect(d.session.version).toBe(7);expect(d.migrated).toBe(true);expect(d.session.game.highestTierReached).toBe(40);expect(d.session.game.slimes[0]!.attributes).toEqual([])
+  expect(d.session.version).toBe(8);expect(d.migrated).toBe(true);expect(d.session.game.highestTierReached).toBe(40);expect(d.session.game.slimes[0]!.attributes).toEqual([])
   expect(d.session.generator.storedTiers).toEqual([1,39,40]);expect(d.session.generator.storedAttributes).toEqual([[],[],[]]);expect(d.session.wallet.gold).toBe(BigInt(4567))
   if(version!==1){expect(d.session.protectedIds).toEqual(['p-1']);expect(d.session.event?.unitGOLD).toBe(unit);expect(d.session.event?.paid).toBe(4)}
  })
  it('schema4 research/format/frequency lock fields preserved exactly',()=>{
   const s={...freshSession(0),version:4,goldFrequencyLevel:3,goldCellUnlocked:true,goldFormat:'compact',wallet:{gold:BigInt(123),upgrades:{speed:1,tap:2,storage:3}}}
-  const d=decodeSession(fixtureJSON(s),0);expect(d.ok&&d.session).toMatchObject({...s,version:7})
+  const d=decodeSession(fixtureJSON(s),0);expect(d.ok&&d.session).toMatchObject({...s,version:8})
  })
  it('FIFO stores generation-time attributes; occupied withdrawal and reload never reroll',()=>{
   const s=reduceSession(freshSession(0),{type:'tick'},15000,stream(.9,0,.35))
@@ -119,7 +119,7 @@ describe('storage, migration and atomic replay',()=>{
  })
  it('gold freezes actual attribute count/unit, reload preserves partial payment, same Tier exchange closes it',()=>{
   let s={...board([fire(3),[]],5),goldCellUnlocked:true,eventSequence:1,event:{id:'gold-1',sequence:1,cell:{x:0,y:0},tier:null,sourceId:null,attributeCount:0,paid:0,receivedGOLD:BigInt(0),unitGOLD:BigInt(0),nextPaymentAtMs:0,expiresAtMs:45000,rewardVersion:2} } as Session
-  s=reduceSession(s,{type:'tick'},0,quiet);expect(s.event?.attributeCount).toBe(1);expect(s.event?.unitGOLD).toBe(4)
+  s=reduceSession(s,{type:'tick'},0,quiet);expect(s.event?.attributeCount).toBe(1);expect(s.event?.unitGOLD).toBe(4n)
   s=reduceSession(s,{type:'pay',eventId:'gold-1',expectedPaid:0},350,quiet)
   const d=decodeSession(encodeSession(s),350);if(!d.ok)throw Error('load');expect(d.session.event).toEqual(s.event)
   const next=reduceSession(d.session,{type:'drop',plan:planDrop(s.game,'p-2',{x:0,y:0},40)},350,quiet)

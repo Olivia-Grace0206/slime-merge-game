@@ -41,12 +41,12 @@ describe('free whole-attribute removal',()=>{
   const s=fixture([a(id)]),n=reduceSession(s,{type:'strip-attributes',id:'p-1'},0,quiet)
   expect(n.game.slimes[0]!.attributes).toEqual([])
   expect(boardEffects(n.game)).toEqual(boardEffects(fixture([[]]).game))
-  expect(saleValue(n.game.slimes[0]!)).toBe(BigInt(256));expect(sessionRules(n).intervalMs).toBe(15000);expect(sessionRules(n).tapAdvanceMs).toBe(1000)
+  expect(saleValue(n.game.slimes[0]!)).toBe(32768n);expect(sessionRules(n).intervalMs).toBe(15000);expect(sessionRules(n).tapAdvanceMs).toBe(1000)
   expect(specialCellWeights(n.game,[{x:1,y:0},{x:3,y:3}])).toEqual([1,1])
  })
  it.each([['fire','gold'],['ice','lightning'],['luck','mutation']] as const)('%s+%s combo ends on stripping', (first,second)=>{
   const s=fixture([[...a(first),...a(second)]]),n=reduceSession(s,{type:'strip-attributes',id:'p-1'},0,quiet)
-  expect(boardEffects(n.game)).toEqual(boardEffects(fixture([[]]).game));expect(saleValue(n.game.slimes[0]!)).toBe(BigInt(256))
+  expect(boardEffects(n.game)).toEqual(boardEffects(fixture([[]]).game));expect(saleValue(n.game.slimes[0]!)).toBe(32768n)
  })
  it('ice removal preserves normal progress fraction without producing any extra specimen',()=>{
   const s=fixture([a('ice')]),interval=sessionRules(s).intervalMs,ready={...s,generator:{...s.generator,progressMs:Math.floor(interval*.6)}}
@@ -69,7 +69,7 @@ describe('free whole-attribute removal',()=>{
   expect(n.generator.progressMs/sessionRules(n).intervalMs).toBeCloseTo(.5,3);expect(n.generator.totalGenerated).toBe(0)
  })
  it('active GOLD contract retains frozen count/unit/paid and same ID+cell, then pays old amount',()=>{
-  const base=fixture([[...a('fire'),...a('gold'),...a('dark')]]),unit=goldPayment(8,3)
+  const base=fixture([[...a('fire'),...a('gold'),...a('dark')]]),unit=goldPayment(8,3,2)
   const s:Session={...base,goldCellUnlocked:true,eventSequence:1,event:{id:'gold-1',sequence:1,rewardVersion:2,cell:{x:0,y:0},tier:8,sourceId:'p-1',attributeCount:3,paid:4,receivedGOLD:BigInt(unit*BigInt(4)),cappedGOLD:BigInt(0),unitGOLD:unit,nextPaymentAtMs:350,expiresAtMs:45000}}
   const n=reduceSession(s,{type:'strip-attributes',id:'p-1'},0,quiet);expect(n.event).toEqual(s.event);expect(n.wallet.gold).toBe(s.wallet.gold)
   const loaded=decodeSession(encodeSession(n),0);expect(loaded.ok).toBe(true);if(!loaded.ok)throw Error(loaded.reason)

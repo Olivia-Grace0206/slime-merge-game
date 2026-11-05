@@ -742,3 +742,25 @@ progress::-webkit-progress-value { background: linear-gradient(90deg,#79b65b,#ab
 .locked-plot strong{font-size:40px}.locked-plot button{pointer-events:auto;font-size:28px;border-radius:20px;padding:18px 28px;background:#fff1ba;color:#66561e;border:3px solid #c6ac58}.locked-plot button:disabled{opacity:.6}
 .wallet b{overflow-wrap:anywhere;word-break:break-all}.wide-gold .wallet b{flex-shrink:1!important;max-height:2.6em;overflow:auto}.shop-wallet,.research-balance,.shop-item p{overflow-wrap:anywhere}
 .slime-piece{contain:layout style}.board-world .cell{content-visibility:auto;contain-intrinsic-size:175px 175px}
+/* A currency string may outgrow the header even in landscape. Keep its exact text locally scrollable. */
+.session-stats{min-width:0;flex-shrink:1}.session-stats .wallet{max-width:100%}
+.wide-gold .wallet b{white-space:normal;line-height:1.05;font-size:clamp(12px,1.6vw,20px);max-height:2.1em}
+@media(max-width:900px) and (min-height:501px){
+ .normal-play .edge-menu button{flex-direction:column;white-space:nowrap;height:44px;min-height:44px;font-size:10px;gap:2px;padding:2px 0}
+}
+@media(min-width:901px) and (max-height:850px){
+ .normal-play .edge-menu{gap:6px}
+ .normal-play .edge-menu button{min-height:54px;padding:4px;gap:3px;font-size:12px}
+ .normal-play .edge-menu button>span{font-size:24px}
+}
+@media(max-height:500px){
+ .normal-play .edge-menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:center;gap:4px}
+ .normal-play .edge-menu button{width:100%;min-height:44px;padding:2px;font-size:10px;gap:2px}
+ .normal-play .edge-menu .blue-buff-status{grid-column:1/-1}
+}
+
+.land-flash{position:absolute;width:700px;height:700px;border:8px solid #e9bc42;border-radius:18px;color:#577231;display:grid;place-items:center;font-size:45px;font-weight:bold;background:#fff6ad66;pointer-events:none;animation:land-reveal .9s ease-out both}
+@keyframes land-reveal{from{opacity:1;box-shadow:inset 0 0 80px #fff1ab}to{opacity:0}}
+.reduced-effects .land-flash{animation:none;background:transparent}
+
+@media(max-width:360px) and (min-height:501px){.normal-play .edge-menu{gap:0}}

@@ -27,3 +27,12 @@ export function multiplyRatios(ratios: readonly Ratio[]): Ratio {
 }
 /** Only used for trusted schema construction/tests. Public decoder validates exact currency paths. */
 export const moneyJSON = (value: unknown): string => JSON.stringify(value, (_key, v: unknown) => typeof v === 'bigint' ? v.toString() : v)
+
+/** Display-only truncation. Exact amounts remain in titles/details and persistence. */
+export function compactGold(value: Gold): string {
+  const digits=value.toString(),group=Math.floor((digits.length-1)/3)
+  if(group===0)return digits
+  const suffix=['','K','M','B','T','Qa','Qi','Sx','Sp','Oc','No'][group]
+  const leading=suffix?digits.length-group*3:1,decimal=digits.slice(leading,leading+2).replace(/0+$/,'')
+  return digits.slice(0,leading)+(decimal?'.'+decimal:'')+(suffix??`e+${digits.length-1}`)
+}

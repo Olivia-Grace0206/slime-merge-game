@@ -86,7 +86,7 @@ function readMoney(value: unknown): unknown {
     if (!record || typeof record !== 'object' || Array.isArray(record)) return
     const r = record as Record<string, unknown>, v = r[key]
     if (optional && v === undefined) return
-    if (modern ? typeof v !== 'string' || !/^(0|[1-9][0-9]{0,999})$/.test(v) : !Number.isSafeInteger(v) || (v as number) < 0) throw Error('Invalid currency')
+    if (modern ? typeof v !== 'string' || !/^(0|[1-9][0-9]*)$/.test(v) : !Number.isSafeInteger(v) || (v as number) < 0) throw Error('Invalid currency')
     r[key] = BigInt(v as string | number)
   }
   field(root.wallet, 'gold')
@@ -109,7 +109,7 @@ export function decodeSession(raw: string, now: number): LoadResult {
       const rebased = rebaseLegacyProgress(session)
       if (isSession(rebased)) return { ok: true, session: rebased, migrated: true }
     }
-    if (isProgressionSnapshot(parsed) && parsed.game.slimes.every(x => x.attributes === undefined || (isAttributes(x.attributes) && x.attributes.length === 0)) && (parsed.generator.storedAttributes === undefined || (Array.isArray(parsed.generator.storedAttributes) && parsed.generator.storedAttributes.every(a => isAttributes(a) && a.length === 0)))) {
+    if (isProgressionSnapshot(parsed) && parsed.game.bounds.plots === undefined && parsed.game.slimes.every(x => x.attributes === undefined || (isAttributes(x.attributes) && x.attributes.length === 0)) && (parsed.generator.storedAttributes === undefined || (Array.isArray(parsed.generator.storedAttributes) && parsed.generator.storedAttributes.every(a => isAttributes(a) && a.length === 0)))) {
       // v1 experimental 7x7 presets are not normal-play saves; never crop or silently discard them.
       const researchLevel = legacyResearchLevel(parsed.game.highestTierReached)
       const migrated: Session = { ...freshSession(now), ...parsed, ...attributeMigration(parsed), version: 8, game: { ...attributeMigration(parsed).game, bounds: parsed.game.bounds.width === 4 && parsed.game.bounds.height === 4 ? freshLandBounds() : parsed.game.bounds }, specials:freshSpecials(now), nature:{progressMs:0,updatedAtMs:parsed.generator.updatedAtMs,totalGenerated:0}, sequence: 0, event: null,

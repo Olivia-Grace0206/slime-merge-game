@@ -59,10 +59,10 @@ describe('gold source identity and atomic exit',()=>{
   for(let i=0;i<10;i++){
    const at=s.event!.nextPaymentAtMs,prev=s
    expect(reduceSession(s,{type:'pay',eventId:id,expectedPaid:i},at-1,zero)).toBe(s)
-   s=pay(s);expect(s.wallet.gold-prev.wallet.gold).toBe(BigInt(5))
+   s=pay(s);expect(s.wallet.gold-prev.wallet.gold).toBe(25n)
    expect(reduceSession(s,{type:'pay',eventId:id,expectedPaid:i},at,zero)).toBe(s)
   }
-  expect(s.event).toBeNull();expect(s.wallet.gold).toBe(BigInt(50))
+  expect(s.event).toBeNull();expect(s.wallet.gold).toBe(250n)
   expect(reduceSession(s,{type:'pay',eventId:id,expectedPaid:10},100000,zero)).toBe(s)
  })
  it('occupied cells excluded; all-full skips spawn with finite cooldown and no ID consumed',()=>{
@@ -83,7 +83,7 @@ describe('gold source identity and atomic exit',()=>{
    s=reduceSession(s,{type:'drop',plan:planDrop(s.game,'p-8',{x:0,y:0})},s.event!.nextPaymentAtMs,zero)
   }
   expect(s.event).toBeNull();expect(s.lastEvent).toEqual({id,receivedGOLD:received,paid:4})
-  expect(s.wallet.gold).toBe(BigInt(received+BigInt((kind==='sell'?32:0))))
+  expect(s.wallet.gold).toBe(BigInt(received+BigInt((kind==='sell'?512:0))))
   expect(reduceSession(s,{type:'pay',eventId:id,expectedPaid:4},s.savedAtMs+10000,zero)).toBe(s)
   expect(isSession(s)).toBe(true)
  })
@@ -97,7 +97,7 @@ describe('gold source identity and atomic exit',()=>{
   const s=four(),id=s.event!.sourceId!,now=s.event!.nextPaymentAtMs
   const paid=reduceSession(s,{type:'tick'},now,zero)
   const moved=reduceSession(paid,{type:'drop',plan:planDrop(paid.game,id,{x:3,y:3})},now,zero)
-  expect(moved.wallet.gold).toBe(BigInt(s.wallet.gold+BigInt(5)));expect(moved.lastEvent!.paid).toBe(5)
+  expect(moved.wallet.gold).toBe(BigInt(s.wallet.gold+s.event!.unitGOLD));expect(moved.lastEvent!.paid).toBe(5)
   const first=reduceSession(s,{type:'drop',plan:planDrop(s.game,id,{x:3,y:3})},now,zero)
   expect(first.wallet.gold).toBe(s.wallet.gold);expect(first.event).toBeNull()
  })
@@ -106,11 +106,11 @@ describe('gold source identity and atomic exit',()=>{
   expect(commitStorage({getItem:()=>raw,setItem:()=>{throw Error('quota')}},raw,next).ok).toBe(false)
   const load=decodeSession(raw,0);expect(load.ok&&load.session).toEqual(s)
  })
- it('cap counts receipts without overflow; replay cannot reclaim capped reward',()=>{
+ it('full BigInt receipts pass the former cap and cannot replay',()=>{
   let s=active(40);s={...s,wallet:{...s.wallet,gold:BigInt(Number.MAX_SAFE_INTEGER-1)}}
-  s=pay(s);expect(s.event!.receivedGOLD).toBe(BigInt(1));expect(s.event!.cappedGOLD).toBe(goldPayment(40,0)-BigInt(1))
+  s=pay(s);expect(s.event!.receivedGOLD).toBe(goldPayment(40,0));expect(s.event!.cappedGOLD).toBe(0n)
   for(let i=1;i<10;i++)s=pay(s)
-  expect(isSession(s)).toBe(true);expect(s.wallet.gold).toBe(BigInt(Number.MAX_SAFE_INTEGER))
+  expect(isSession(s)).toBe(true);expect(s.wallet.gold).toBe(BigInt(Number.MAX_SAFE_INTEGER-1)+10n*goldPayment(40,0))
  })
 })
 
@@ -119,11 +119,11 @@ describe('explicit migration and protection',()=>{
   const s=state==='active'||state==='detached'?four():ready()
   const legacy=JSON.parse(fixtureJSON({...s,version:2}))
   if(state==='waiting')legacy.event={id:'gold-1',sequence:1,cell:{x:3,y:3},expiresAtMs:45000,tier:null,sourceId:null,attributeCount:0,paid:0,receivedGOLD:BigInt(0),unitGOLD:BigInt(0),nextPaymentAtMs:0}
-  if(legacy.event){legacy.eventSequence=1;delete legacy.event.rewardVersion;if(legacy.event.tier!==null){legacy.event.unitGOLD=goldPayment(legacy.event.tier,0,1);legacy.event.receivedGOLD=legacy.event.paid*legacy.event.unitGOLD;legacy.wallet.gold=legacy.event.receivedGOLD}}
+  if(legacy.event){legacy.eventSequence=1;delete legacy.event.rewardVersion;if(legacy.event.tier!==null){legacy.event.unitGOLD=goldPayment(legacy.event.tier,0,1);legacy.event.receivedGOLD=BigInt(legacy.event.paid)*legacy.event.unitGOLD;legacy.wallet.gold=legacy.event.receivedGOLD}}
   if(state==='detached')legacy.game.slimes=[]
   const raw=fixtureJSON(legacy),load=decodeSession(raw,1000)
   expect(load.ok).toBe(true);if(!load.ok)return
-  expect(load.migrated).toBe(true);expect(load.session.version).toBe(7);expect(load.session.wallet).toEqual(legacy.wallet)
+  expect(load.migrated).toBe(true);expect(load.session.version).toBe(8);expect(load.session.wallet).toEqual({...legacy.wallet,gold:BigInt(legacy.wallet.gold)})
   expect(load.session.generator).toEqual({...legacy.generator,progressMs:Math.floor(legacy.generator.progressMs*1.5)});expect(isSession(load.session)).toBe(true)
   if(state==='active') {const n=pay(load.session);expect(n.wallet.gold-load.session.wallet.gold).toBe(BigInt(1))}
   if(state==='detached'){const n=pay(load.session);expect(n.event).toBeNull();expect(n.wallet.gold).toBe(BigInt(legacy.wallet.gold))}

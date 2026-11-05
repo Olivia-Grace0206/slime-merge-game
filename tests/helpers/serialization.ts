@@ -12,7 +12,7 @@ export function fixtureJSON(value: unknown, replacer?: null, space?: number): st
       if (!Number.isSafeInteger(n)) throw new Error('Unsafe legacy fixture')
       return n
     }
-    if (legacy && key === 'bounds' && root.game?.bounds === v && root.game?.bounds?.plots?.join() === 'A') {
+    if (legacy && key === 'bounds' && root.game?.bounds === v && root.game?.bounds?.plots?.join() === 'A' && root.game.bounds.width === 8 && root.game.bounds.height === 8) {
       return {origin:{x:0,y:0},width:4,height:4}
     }
     return v

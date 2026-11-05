@@ -108,7 +108,7 @@ describe('Phase 2 elapsed-time storage and click acceleration', () => {
 describe('Phase 2 GOLD economy and event primitive', () => {
   it('prices grow by Tier, remain finite through Tier40', () => {
     expect(baseSaleValue(1)).toBe(BigInt(2))
-    expect(baseSaleValue(40)).toBe(BigInt(2 ** 40))
+    expect(baseSaleValue(40)).toBe(604462909807314587353088n)
     expect((typeof baseSaleValue(40) === 'bigint' && baseSaleValue(40) >= 0n)).toBe(true)
     expect(() => baseSaleValue(41)).toThrow(RangeError)
   })

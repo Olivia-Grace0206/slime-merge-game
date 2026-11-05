@@ -1,3 +1,4 @@
+import { moneyJSON } from '../../src/core/progression/money'
 import { createElement } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
@@ -94,7 +95,7 @@ describe('Phase 3C visual polish', () => {
 describe('blue read-only support labels',()=>{
  it.each(['ice','lightning','nature','luck','mutation','light','magnet'] as const)('%s multiplier and level come from the shared Core',id=>{
  const {game,session}=sessionWithBlue();const live={...game,slimes:[{...game.slimes[0]!,attributes:[{id,level:99,awakened:true}]}]}
- const before=JSON.stringify({live,session});const html=renderToStaticMarkup(createElement(BlueBuffStatus,{game:live,session}))
- expect(html).toContain('×'+BLUE_MULTIPLIERS[id].toFixed(2));expect(html).toContain('Lv99');expect(JSON.stringify({live,session})).toBe(before)
+ const before=moneyJSON({live,session});const html=renderToStaticMarkup(createElement(BlueBuffStatus,{game:live,session}))
+ expect(html).toContain('×'+BLUE_MULTIPLIERS[id].toFixed(2));expect(html).toContain('Lv99');expect(moneyJSON({live,session})).toBe(before)
  })
 })

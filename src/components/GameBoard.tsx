@@ -1,3 +1,4 @@
+import { compactGold } from '../core/progression/money'
 import { inBounds } from '../core/board/state'
 import { emptyCells } from '../core/progression/generation'
 import { PLOTS, canUnlock, landCost, unlockedCellCount, type PurchasablePlot } from '../core/progression/land'
@@ -14,7 +15,7 @@ import { attributeText } from './attributeLabels'
 import { GoldBag } from './ProgressIcons'
 import { RESEARCH_CAPS, researchCost, frequencyCost, EXPERIMENTAL_RESEARCH } from '../core/progression/research'
 import {
-  useCallback, useEffect, useRef, useState,
+  useCallback, useEffect, useMemo, useRef, useState,
   type CSSProperties, type PointerEvent as ReactPointerEvent,
 } from 'react'
 import { MAX_TIER, type DropPlan, type InvalidReason } from '../domain/game'
@@ -51,6 +52,8 @@ export function GameBoard() {
   const [store] = useState(() => new SessionStore({ getItem: key => window.localStorage.getItem(key), setItem: (key, value) => window.localStorage.setItem(key, value) }, Date.now()))
   const [session, setSession] = useState(store.state.session)
   const [storageError, setStorageError] = useState(store.state.error)
+  const [openedPlot, setOpenedPlot] = useState<PurchasablePlot | null>(null)
+  useEffect(()=>{if(!openedPlot)return;const timer=window.setTimeout(()=>setOpenedPlot(null),900);return()=>clearTimeout(timer)},[openedPlot])
   const [normal, setNormal] = useState(true)
   const normalRef = useRef(true)
   const touchContext = useRef(false)
@@ -85,6 +88,7 @@ export function GameBoard() {
     void store.dispatch(command, Date.now()).then(state => {
       setStorageError(state.error)
       setSession(state.session)
+      if(command.type==='land'&&!state.error&&state.session.game.bounds.plots?.length===command.expectedCount+1){setOpenedPlot(command.plot);setMessage('土地を解放しました · ＋16マス')}
       if(command.type==='strip-attributes'&&!state.error){
         const target=state.session.game.slimes.find(s=>s.id===command.id),before=gameRef.current.slimes.find(s=>s.id===command.id)
         const notice=!target?'操作を取り消しました':before?.attributes?.length?'解除しました・無料':'属性がありません'
@@ -315,7 +319,8 @@ export function GameBoard() {
     gameRef.current = store.state.session.game; setGame(store.state.session.game)
     changeCamera(initialCamera()); setPanel(null); send({ type: 'tick' })
   }
-  const saleValue = (tier: number, id: string) => quoteSale(game.slimes.find(s => s.id === id) ?? {tier})
+  const saleQuotes = useMemo(()=>new Map(game.slimes.map(slime=>[slime.id,quoteSale(slime)])),[game.slimes])
+  const saleValue = (tier: number, id: string) => saleQuotes.get(id) ?? quoteSale({tier})
   const rules = sessionRules(session)
   const protectedIds = normal ? session.protectedIds : []
   const detail = game.slimes.find(s => s.id === detailId)
@@ -325,7 +330,7 @@ export function GameBoard() {
   const swap = preview?.kind === 'swap' ? preview : null
   const dragged = gesture.mode === 'drag' ? game.slimes.find(s => s.id === gesture.single?.sourceId) : undefined
   const showPrices = normal && saleHover && !!dragged && gesture.mode === 'drag'
-  const priceTag = (tier: number, id: string) => <span className="price-tag" data-testid="sale-price" data-for={id} title={`${saleValue(tier,id).toLocaleString('en-US')} GOLD`}><svg className="price-coin" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8" fill="#ffd66f" stroke="#b68a32" strokeWidth="2"/><path d="M12 6H8v8h4M10 5v10" fill="none" stroke="#a57425" strokeWidth="1.5"/></svg><b>{saleValue(tier,id).toLocaleString('en-US').split(',').map((part, i, a) => <span key={i}>{part}{i < a.length - 1 ? ',' : ''}<wbr /></span>)}</b>{protectedIds.includes(id) && <small>保護中</small>}</span>
+  const priceTag = (tier: number, id: string) => <span className="price-tag" data-testid="sale-price" data-for={id} title={`${saleValue(tier,id).toLocaleString('en-US')} GOLD`}><svg className="price-coin" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8" fill="#ffd66f" stroke="#b68a32" strokeWidth="2"/><path d="M12 6H8v8h4M10 5v10" fill="none" stroke="#a57425" strokeWidth="1.5"/></svg><b>{(saleValue(tier,id).toString().length>15?compactGold(saleValue(tier,id)):saleValue(tier,id).toLocaleString('en-US')).split(',').map((part, i, a) => <span key={i}>{part}{i < a.length - 1 ? ',' : ''}<wbr /></span>)}</b>{protectedIds.includes(id) && <small>保護中</small>}</span>
   const text = swap ? `⇄ 位置交換${swap.reason === 'research-locked' ? ' · 研究未解放（消費なし）' : ''}` : plan ? `Tier ${plan.outputTier} × ${plan.groups.reduce((n, g) => n + g.outputs.length, 0)}体`
     : preview?.kind === 'invalid' && preview.reason !== 'same-cell' ? REASONS[preview.reason] : message
   const cellSize = normal ? 175 : 100
@@ -406,6 +411,7 @@ export function GameBoard() {
               {outputGroup && <span className="output-mark">↑{outputGroup.number}</span>}
             </button>
           })}
+          {normal && openedPlot && <div className="land-flash" aria-hidden="true" style={{left:openedPlot==='B'||openedPlot==='D'?700:0,top:openedPlot==='C'||openedPlot==='D'?700:0}}>✦ ＋16マス</div>}
           {normal && PLOTS.filter(p => !game.bounds.plots?.includes(p)).map(plot => <div key={plot} className="locked-plot" style={{left:plot === 'B' || plot === 'D' ? 700 : 0,top:plot === 'C' || plot === 'D' ? 700 : 0}}>
             <strong>🔒 土地 {plot} · 16マス</strong><span>{plot === 'D' && !canUnlock(game.bounds,plot) ? '右・下の両方を解放すると購入可能' : `${landCost(game.bounds)?.toLocaleString()} GOLD`}</span>
             <button type="button" data-testid={`unlock-plot-${plot}`} disabled={!!storageError || !canUnlock(game.bounds,plot as PurchasablePlot) || session.wallet.gold < (landCost(game.bounds) ?? 0n)} onPointerDown={e=>e.stopPropagation()} onClick={()=>send({type:'land',plot:plot as PurchasablePlot,expectedCount:game.bounds.plots!.length})}>16マスを解放</button>

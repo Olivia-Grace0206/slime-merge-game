@@ -19,7 +19,7 @@ const out = (s: Session, x: number, y: number, now = s.savedAtMs) => {
 
 describe('integrated progression safety',()=>{
  it('4x4 empty normal start, full storage never banks offline time',()=>{
-  let s=full();expect(s.game.bounds.width).toBe(4);expect(s.game.slimes).toHaveLength(0);expect(s.generator.storedTiers).toHaveLength(10)
+  let s=full();expect(s.game.bounds.width).toBe(8);expect(s.game.slimes).toHaveLength(0);expect(s.generator.storedTiers).toHaveLength(10)
   s=reduceSession(s,{type:'tick'},86400_000,zero);s=out(s,0,0)
   s=reduceSession(s,{type:'tick'},s.savedAtMs+9999,zero);expect(s.generator.storedTiers).toHaveLength(9)
   s=reduceSession(s,{type:'tick'},s.savedAtMs+1,zero);expect(s.generator.storedTiers).toHaveLength(10)
@@ -134,12 +134,12 @@ describe('gold event ledger and recovery',()=>{
   expect(goldPayment(10,0)).toBeGreaterThan(goldPayment(10,3))
   for(let tier=1;tier<40;tier++)expect(goldPayment(tier,0)).toBeLessThanOrEqual(goldPayment(tier+1,0))
  })
- it('wallet cap settles receipt without overflow and never traps a full board',()=>{
+ it('wallet beyond the former cap settles full receipt without overflow and never traps a full board',()=>{
   let s=start();s={...s,wallet:{...s.wallet,gold:BigInt(Number.MAX_SAFE_INTEGER)}}
   const n=reduceSession(s,{type:'pay',eventId:s.event!.id,expectedPaid:0},s.event!.nextPaymentAtMs,zero)
-  expect(n.wallet.gold).toBe(BigInt(Number.MAX_SAFE_INTEGER));expect(n.event!.paid).toBe(1);expect(n.event!.receivedGOLD).toBe(BigInt(0));expect(n.event!.cappedGOLD).toBe(s.event!.unitGOLD);expect(isSession(n)).toBe(true)
+  expect(n.wallet.gold).toBe(s.wallet.gold+s.event!.unitGOLD);expect(n.event!.paid).toBe(1);expect(n.event!.receivedGOLD).toBe(s.event!.unitGOLD);expect(n.event!.cappedGOLD).toBe(0n);expect(isSession(n)).toBe(true)
   const sold=reduceSession(n,{type:'sell',id:n.game.slimes[0]!.id},n.savedAtMs,zero)
-  expect(sold.game.slimes).toHaveLength(0);expect(sold.wallet.gold).toBe(BigInt(Number.MAX_SAFE_INTEGER))
+  expect(sold.game.slimes).toHaveLength(0);expect(sold.wallet.gold).toBe(n.wallet.gold+2n)
  })
 })
 
@@ -185,8 +185,8 @@ describe('strict v2 persistence and failed writes',()=>{
    const loaded=decodeSession(encodeSession(s),s.savedAtMs);if(loaded.ok)s=loaded.session
   }
   expect(s.nextId).toBe(2401);expect((typeof s.wallet.gold === 'bigint' && s.wallet.gold >= 0n)).toBe(true)
-  mkdirSync('docs/validation/phase3c/regression-phase3b/regression/regression-session',{recursive:true})
-  writeFileSync('docs/validation/phase3c/regression-phase3b/regression/regression-session/long-simulation.json',fixtureJSON({virtualHours:240,checkpoints:240,totalGenerated:s.generator.totalGenerated,nextId:s.nextId,gold:s.wallet.gold,eventSequence:s.eventSequence,uniqueIds:true,validEveryCheckpoint:true,roundTripEveryCheckpoint:true,storageBounded:true,errors:0},null,2))
+  mkdirSync('docs/validation/phase4a/regression/validation-phase3c/regression-phase3b/regression/regression-session',{recursive:true})
+  writeFileSync('docs/validation/phase4a/regression/validation-phase3c/regression-phase3b/regression/regression-session/long-simulation.json',fixtureJSON({virtualHours:240,checkpoints:240,totalGenerated:s.generator.totalGenerated,nextId:s.nextId,gold:s.wallet.gold,eventSequence:s.eventSequence,uniqueIds:true,validEveryCheckpoint:true,roundTripEveryCheckpoint:true,storageBounded:true,errors:0},null,2))
  })
 })
 
