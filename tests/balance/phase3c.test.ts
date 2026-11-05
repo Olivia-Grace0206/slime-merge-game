@@ -31,4 +31,5 @@ it('compares provisional times, coefficients, dark risks and actual bounded Core
  const dark=[.2,.25,.3,.4].flatMap(chance=>[12,91,2026].map(seed=>{const random=rng(seed);let lost=0;for(let i=0;i<10000;i++)if(random()<chance)lost++;return{chance,seed,lost,rate:lost/10000}}))
  mkdirSync('docs/validation/phase4a/regression/balance-phase3c',{recursive:true});writeFileSync('docs/validation/phase4a/regression/balance-phase3c/comparison.json',fixtureJSON({provisional:true,adopted:{AWAKENING_MULTIPLIERS,BLUE_MULTIPLIERS,SPECIAL_TIMING},effects,timing,core,candidates,dark,limitations:'Timing candidates omit geometry and assume supplied specimens; Core active policy injects replacement subjects but performs no ordinary merging or spending. Full storage still permits purple processing. No human progression prediction. Three seeds; offline no missed-event replay.'},null,2))
  expect(effects).toHaveLength(360);expect(core.every(r=>r.stock<=10)).toBe(true)
-})
+// Bounded deterministic simulation; allow CPU variance across managed/CI hosts.
+},30_000)

@@ -67,3 +67,11 @@ Chromium134.0.6998.35 / Playwright1.51.1、ヘッドレス。CDPタッチ/ピン
 [64個体PC](screenshots/actual64-1366.webp) / [64個体320](screenshots/actual64-320.webp)。ゲームの保存へ投入した検証用状態で撮影し、通常のプレイ時間で入手した残高と誤解しない。PNGからWebPへ記録用に圧縮。
 
 土地価格の承認、Windows/iPhone試遊、Safariの実機性能は未解決。[経済の限界](economy/RESULTS.md) / [試遊・引き継ぎ](../../PHASE4A_HANDOFF.md)。
+
+## 再開後の確認
+
+作業枠回復後、最終ソースのSHA256と全1059検査の原本を照合し、画像/ログ/比較JSONを全て回収した。復旧途中に作成した不完全な要約案は採用しない。
+
+再開環境の標準コマンドで、旧経済比較2件だけが時間上限を超過（phase2約280.7秒対240秒、phase3c約6.1秒対既定5秒）。1014件は成功し、出力は期待値不一致ではなくtimeoutだった。[最初の再試験原文](logs/resume-timeouts.txt)を保全。比較ケース数/seed/assertionは減らさず、この2つの決定論的な比較試験に限り360秒/30秒へ変更した。壁時計速度を測る性能試験の期待値は変更しない。標準コマンドと同じ最終HEADのCIを再確認する。
+
+上限調整後、Node22.23.4/npm10.9.9で標準のlint、Vitest1016件/32ファイル、build/typecheckが全て成功。npm ciも再開時に成功。[再実行単体ログ](logs/resume-vitest-1016.txt)・[lint](logs/resume-lint.txt)・[build](logs/resume-build.txt)・[npm ci](logs/resume-npm-ci.txt)を保存した。再実行後も全109ソース/試験と本番Build3ファイルのSHA256を照合し一致。ブラウザ試験時から製品コード/Buildは変更していない。最終remote HEADと同一SHAのCI URL/成功確認はDraft PR17本文に記録する。
